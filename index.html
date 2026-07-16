@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Re:Lefela — Setswana, starting from zero</title>
+<meta name="theme-color" content="#151c2c">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>
+:root{
+  --bg:#151c2c; --bg2:#1d2740; --card:#232f4d; --card2:#2b3a5e;
+  --ink:#eef2fb; --ink-dim:#9aa7c7; --line:#35456e;
+  --gold:#f6b73c; --gold-deep:#d99a1b; --teal:#3ecfb2; --coral:#ff6f61;
+  --good:#4cd684; --bad:#ff6f61; --radius:16px;
+  --shadow:0 6px 18px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+html,body{margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Segoe UI",system-ui,-apple-system,sans-serif; min-height:100%}
+body{display:flex; flex-direction:column; align-items:center}
+#app{width:100%; max-width:560px; padding:16px 16px calc(24px + env(safe-area-inset-bottom)); min-height:100vh}
+h1,h2,h3{margin:.2em 0}
+button{font:inherit; cursor:pointer; border:none; border-radius:var(--radius); color:var(--ink)}
+.btn{display:block; width:100%; padding:14px 18px; background:var(--card2); font-size:1.05rem; font-weight:600;
+  border-bottom:4px solid var(--line); transition:transform .06s}
+.btn:active{transform:translateY(2px); border-bottom-width:2px}
+.btn.primary{background:var(--gold); border-bottom-color:var(--gold-deep); color:#241a03}
+.btn.ghost{background:transparent; border:2px solid var(--line)}
+.btn:disabled{opacity:.45; cursor:default}
+.card{background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); margin:10px 0}
+input{width:100%; padding:13px 14px; border-radius:12px; border:2px solid var(--line); background:var(--bg2);
+  color:var(--ink); font-size:1.05rem; margin:6px 0}
+input:focus{outline:none; border-color:var(--gold)}
+.muted{color:var(--ink-dim); font-size:.92rem}
+.tiny{font-size:.8rem; color:var(--ink-dim)}
+.row{display:flex; gap:10px; align-items:center}
+.spread{justify-content:space-between}
+.center{text-align:center}
+.logo{font-weight:800; font-size:1.9rem; letter-spacing:.5px}
+.logo .re{color:var(--teal)} .logo .zero{color:var(--gold)}
+.pill{display:inline-block; padding:3px 12px; border-radius:99px; background:var(--bg2); font-size:.85rem; color:var(--ink-dim)}
+.xppill{background:var(--gold); color:#241a03; font-weight:700}
+.streakpill{background:var(--coral); color:#fff; font-weight:700}
+/* home path */
+.lesson-node{display:flex; gap:14px; align-items:center; width:100%; text-align:left;
+  background:var(--card); padding:16px; border-radius:var(--radius); margin:10px 0; border-bottom:4px solid var(--line)}
+.lesson-node.done{border-left:5px solid var(--good)}
+.lesson-node.locked{opacity:.5}
+.lesson-node .idx{width:44px; height:44px; border-radius:50%; background:var(--bg2); display:flex;
+  align-items:center; justify-content:center; font-weight:800; font-size:1.1rem; flex:none}
+.lesson-node.done .idx{background:var(--good); color:#06331a}
+.lesson-node.next .idx{background:var(--gold); color:#241a03}
+/* exercise area */
+#exArea{min-height:340px; display:flex; flex-direction:column}
+.prompt{font-size:1.35rem; font-weight:700; margin:14px 0}
+.bigtsw{font-size:1.7rem; font-weight:800; color:var(--gold)}
+.tokens{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; min-height:52px;
+  border-bottom:2px dashed var(--line); padding-bottom:10px}
+.pool{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0}
+.tok{padding:10px 14px; background:var(--card2); border-radius:12px; font-size:1.05rem; font-weight:600;
+  border-bottom:3px solid var(--line)}
+.tok.used{opacity:.25; pointer-events:none}
+.choice{display:block; width:100%; text-align:left; padding:13px 16px; margin:7px 0; background:var(--card2);
+  border-radius:12px; font-size:1.05rem; border-bottom:3px solid var(--line)}
+.choice.sel{outline:3px solid var(--gold)}
+.choice.good{background:#1d5c38; border-color:#0f3d23}
+.choice.bad{background:#6e2f33; border-color:#4a1e21}
+.matchgrid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:12px 0}
+.matchgrid .tok{text-align:center}
+.tok.matched{opacity:.2; pointer-events:none}
+.tok.selL,.tok.selR{outline:3px solid var(--teal)}
+.feedback{padding:14px; border-radius:var(--radius); margin-top:auto; font-weight:700; font-size:1.1rem}
+.feedback.good{background:#1d5c38} .feedback.bad{background:#6e2f33}
+.progressbar{height:12px; background:var(--bg2); border-radius:99px; overflow:hidden; flex:1}
+.progressbar>div{height:100%; background:var(--gold); border-radius:99px; transition:width .3s}
+.audio-btn{width:56px; height:56px; border-radius:50%; background:var(--teal); color:#04302a;
+  font-size:1.5rem; flex:none; border-bottom:4px solid #2aa38c}
+.rec-btn{background:var(--coral); border-bottom-color:#c94f44; color:#fff}
+.notecard{background:var(--bg2); border-left:4px solid var(--teal); padding:10px 14px; border-radius:8px;
+  margin:10px 0; font-size:.95rem; color:var(--ink-dim)}
+.rulecard{background:linear-gradient(135deg,#233355,#1c2a48); border:1px solid var(--line);
+  padding:18px; border-radius:var(--radius); font-size:1.05rem; line-height:1.55}
+.topbar{display:flex; gap:10px; align-items:center; margin-bottom:10px}
+.topbar .quit{background:none; font-size:1.4rem; color:var(--ink-dim); padding:4px 10px; width:auto}
+.lb-row{display:flex; align-items:center; gap:12px; padding:12px 14px; background:var(--card); border-radius:12px; margin:8px 0}
+.lb-row.me{outline:2px solid var(--gold)}
+.lb-row .name{font-weight:700; flex:1}
+.crown{font-size:1.3rem}
+.toast{position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:var(--coral); color:#fff;
+  padding:12px 20px; border-radius:12px; font-weight:600; box-shadow:var(--shadow); z-index:99; max-width:90vw}
+.hidden{display:none!important}
+.fade-in{animation:fadein .25s ease-out}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.statgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0}
+.stat{background:var(--card); border-radius:var(--radius); padding:14px; text-align:center}
+.stat b{display:block; font-size:1.5rem; color:var(--gold)}
+a{color:var(--teal)}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="content.js"></script>
+<script>
+'use strict';
+/* ===== Re:Lefela engine ===== */
+const RL_CFG = {
+  url: 'https://opacjlgljeippheotyhz.supabase.co',
+  key: 'sb_publishable_Ga_kGVKb-ph90YxcAWissQ_wvaFklEv',
+  emailDomain: 'relefela.app'
+};
+const LOCAL_MODE = new URLSearchParams(location.search).has('local');
+const sb = LOCAL_MODE ? null : supabase.createClient(RL_CFG.url, RL_CFG.key);
+const $app = document.getElementById('app');
+
+/* ---------- local state + sync queue ---------- */
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem('rl_'+k); return v===null ? d : JSON.parse(v); }catch(e){ return d; } },
+  set(k, v){ localStorage.setItem('rl_'+k, JSON.stringify(v)); }
+};
+let state = {
+  user: null,               // {id, username, display}
+  srs: store.get('srs', {}),        // itemId -> {ease, interval, due, reps, lapses}
+  progress: store.get('progress', {}), // unitId -> {lessonIdx, completed}
+  xpTotal: store.get('xpTotal', 0),
+  streak: store.get('streak', {current:0, best:0, last:null}),
+  queue: store.get('queue', [])      // pending sync ops
+};
+function persist(){ store.set('srs', state.srs); store.set('progress', state.progress);
+  store.set('xpTotal', state.xpTotal); store.set('streak', state.streak); store.set('queue', state.queue); }
+
+function enqueue(op){ state.queue.push(op); persist(); flushQueue(); }
+let flushing = false;
+async function flushQueue(){
+  if (LOCAL_MODE || flushing || !state.user || !navigator.onLine || state.queue.length===0) return;
+  flushing = true;
+  try{
+    while(state.queue.length){
+      const op = state.queue[0];
+      let err = null;
+      if (op.t==='xp') ({error:err} = await sb.from('xp_events').insert({user_id:state.user.id, amount:op.amount, kind:op.kind}));
+      else if (op.t==='srs') ({error:err} = await sb.from('srs_items').upsert({user_id:state.user.id, item_id:op.item_id,
+        ease:op.ease, interval_days:op.interval_days, due_at:op.due_at, reps:op.reps, lapses:op.lapses, updated_at:new Date().toISOString()}));
+      else if (op.t==='streak') ({error:err} = await sb.from('streaks').upsert({user_id:state.user.id,
+        current:op.current, best:op.best, last_active_date:op.last}));
+      else if (op.t==='unit') ({error:err} = await sb.from('unit_progress').upsert({user_id:state.user.id,
+        unit_id:op.unit_id, lesson_idx:op.lesson_idx, completed:op.completed, updated_at:new Date().toISOString()}));
+      if (err){ toast('Save failed — will retry. ('+ (err.message||err.code||'network') +')'); break; }
+      state.queue.shift(); persist();
+    }
+  } finally { flushing = false; }
+}
+window.addEventListener('online', flushQueue);
+setInterval(flushQueue, 30000);
+
+function toast(msg){
+  const t = document.createElement('div'); t.className='toast'; t.textContent = msg;
+  document.body.appendChild(t); setTimeout(()=>t.remove(), 4200);
+}
+
+/* ---------- XP / streak / SRS ---------- */
+function todayStr(){ const d = new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function addXP(amount, kind){
+  state.xpTotal += amount; persist();
+  enqueue({t:'xp', amount, kind});
+  touchStreak();
+}
+function touchStreak(){
+  const today = todayStr();
+  const s = state.streak;
+  if (s.last === today) return;
+  const yest = new Date(Date.now()-86400000);
+  const yestStr = yest.getFullYear()+'-'+String(yest.getMonth()+1).padStart(2,'0')+'-'+String(yest.getDate()).padStart(2,'0');
+  s.current = (s.last === yestStr) ? s.current+1 : 1;
+  s.best = Math.max(s.best, s.current);
+  s.last = today; persist();
+  enqueue({t:'streak', current:s.current, best:s.best, last:today});
+}
+function srsGrade(itemId, ok){
+  const now = Date.now();
+  const it = state.srs[itemId] || {ease:2.5, interval:0, due:now, reps:0, lapses:0};
+  if (ok){
+    it.reps++;
+    it.interval = it.reps===1 ? 1 : it.reps===2 ? 3 : Math.round(it.interval * it.ease * 10)/10;
+    it.ease = Math.min(3.0, it.ease + 0.05);
+  } else {
+    it.lapses++; it.reps = 0; it.interval = 0;
+    it.ease = Math.max(1.3, it.ease - 0.25);
+  }
+  it.due = now + it.interval*86400000;
+  state.srs[itemId] = it; persist();
+  enqueue({t:'srs', item_id:itemId, ease:it.ease, interval_days:it.interval, due_at:new Date(it.due).toISOString(), reps:it.reps, lapses:it.lapses});
+}
+function dueItems(){
+  const now = Date.now(); const all = [];
+  for (const u of RL_CONTENT.units) for (const l of u.lessons) for (const it of l.items){
+    if (it.kind==='rule') continue;
+    const s = state.srs[it.id];
+    if (s && s.due <= now) all.push(it);
+  }
+  return all;
+}
+
+/* ---------- text helpers ---------- */
+function norm(s){ return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')
+  .replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim(); }
+function lev(a, b){
+  const m = a.length, n = b.length;
+  if (Math.abs(m-n) > 3) return 99;
+  const dp = Array.from({length:m+1}, (_,i)=>[i, ...Array(n).fill(0)]);
+  for (let j=1;j<=n;j++) dp[0][j]=j;
+  for (let i=1;i<=m;i++) for (let j=1;j<=n;j++)
+    dp[i][j] = Math.min(dp[i-1][j]+1, dp[i][j-1]+1, dp[i-1][j-1] + (a[i-1]===b[j-1]?0:1));
+  return dp[m][n];
+}
+function answerMatches(given, expected){
+  const g = norm(given), e = norm(expected);
+  if (g === e) return 'exact';
+  const tol = e.length > 12 ? 2 : 1;
+  if (lev(g, e) <= tol) return 'close';
+  return null;
+}
+function shuffle(arr){ const a = arr.slice(); for (let i=a.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function esc(s){ return s.replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+/* word pool for tap-exercise distractors */
+function unitWordPool(unit){
+  const words = new Set();
+  for (const l of unit.lessons) for (const it of l.items)
+    if (it.tsw) it.tsw.split(/\s+/).forEach(w=>words.add(w));
+  return [...words];
+}
+
+/* ---------- audio ---------- */
+let currentAudio = null;
+function playAudio(file){
+  if (!file) return;
+  if (currentAudio){ currentAudio.pause(); }
+  currentAudio = new Audio('audio/'+file);
+  currentAudio.play().catch(()=>{});
+}
+
+/* ---------- screens ---------- */
+function render(html){ $app.innerHTML = '<div class="fade-in">'+html+'</div>'; }
+
+function screenAuth(msg){
+  render(`
+    <div class="center" style="margin-top:8vh">
+      <div class="logo"><span class="re">Re:</span><span class="zero">Lefela</span></div>
+      <p class="muted">Setswana, starting from zero. Together.</p>
+    </div>
+    <div class="card">
+      ${msg?`<p style="color:var(--coral)">${esc(msg)}</p>`:''}
+      <input id="f-user" placeholder="Username" autocomplete="username">
+      <input id="f-pass" placeholder="Password" type="password" autocomplete="current-password">
+      <div id="signup-extra" class="hidden">
+        <input id="f-display" placeholder="Display name (e.g. Megan)">
+        <input id="f-code" placeholder="Join code">
+      </div>
+      <button class="btn primary" id="b-login" style="margin-top:8px">Log in</button>
+      <button class="btn ghost" id="b-signup" style="margin-top:8px">Sign up</button>
+      <p class="tiny center" style="margin-top:10px">Two learners. One language. Lefela → legendary.</p>
+    </div>`);
+  let signupMode = false;
+  const extra = document.getElementById('signup-extra');
+  document.getElementById('b-signup').onclick = async ()=>{
+    if (!signupMode){ signupMode = true; extra.classList.remove('hidden');
+      document.getElementById('b-signup').textContent = 'Create account'; return; }
+    await doSignup();
+  };
+  document.getElementById('b-login').onclick = doLogin;
+  async function doLogin(){
+    const u = document.getElementById('f-user').value.trim().toLowerCase();
+    const p = document.getElementById('f-pass').value;
+    if (!u || !p) return toast('Username and password, tsweetswee.');
+    const {data, error} = await sb.auth.signInWithPassword({email:`${u}@${RL_CFG.emailDomain}`, password:p});
+    if (error) return screenAuth('Login failed: '+error.message);
+    await afterAuth(data.user);
+  }
+  async function doSignup(){
+    const u = document.getElementById('f-user').value.trim().toLowerCase();
+    const p = document.getElementById('f-pass').value;
+    const d = document.getElementById('f-display').value.trim() || u;
+    const c = document.getElementById('f-code').value.trim();
+    if (!u || !p || !c) return toast('Username, password and join code, tsweetswee.');
+    if (!/^[a-z0-9_]{3,20}$/.test(u)) return toast('Username: 3-20 letters/numbers/underscores.');
+    const {data, error} = await sb.auth.signUp({email:`${u}@${RL_CFG.emailDomain}`, password:p});
+    if (error) return screenAuth('Signup failed: '+error.message);
+    if (!data.session) return screenAuth('Account created but e-mail confirmation is still ON in Supabase — Megan needs to switch it off, then just log in.');
+    const {error: e2} = await sb.rpc('join_relefela', {join_code:c, uname:u, display:d});
+    if (e2) return screenAuth('Join failed: '+e2.message);
+    await afterAuth(data.user);
+  }
+}
+
+async function afterAuth(user){
+  const {data: prof} = await sb.from('profiles').select('*').eq('id', user.id).single();
+  if (!prof) return screenAuth('No profile found — sign up with the join code first.');
+  state.user = {id:user.id, username:prof.username, display:prof.display_name};
+  store.set('lastUser', state.user);
+  await pullRemote();
+  flushQueue();
+  screenHome();
+}
+
+async function pullRemote(){
+  // merge remote SRS/progress into local (remote wins when newer)
+  try{
+    const {data: rows} = await sb.from('srs_items').select('*').eq('user_id', state.user.id);
+    (rows||[]).forEach(r=>{
+      const localItem = state.srs[r.item_id];
+      const remoteDue = new Date(r.due_at).getTime();
+      if (!localItem || new Date(r.updated_at).getTime() > (localItem.touched||0))
+        state.srs[r.item_id] = {ease:r.ease, interval:r.interval_days, due:remoteDue, reps:r.reps, lapses:r.lapses};
+    });
+    const {data: up} = await sb.from('unit_progress').select('*').eq('user_id', state.user.id);
+    (up||[]).forEach(r=>{
+      const loc = state.progress[r.unit_id] || {lessonIdx:0, completed:false};
+      if (r.lesson_idx > loc.lessonIdx) loc.lessonIdx = r.lesson_idx;
+      loc.completed = loc.completed || r.completed;
+      state.progress[r.unit_id] = loc;
+    });
+    const {data: st} = await sb.from('streaks').select('*').eq('user_id', state.user.id).single();
+    if (st && st.current > state.streak.current){ state.streak = {current:st.current, best:st.best, last:st.last_active_date}; }
+    const {data: xp} = await sb.from('leaderboard_week').select('*').eq('username', state.user.username).single();
+    if (xp && xp.total_xp > state.xpTotal) state.xpTotal = xp.total_xp;
+    persist();
+  }catch(e){ /* offline is fine */ }
+}
+
+function screenHome(){
+  const unit = RL_CONTENT.units[0];
+  const prog = state.progress[unit.id] || {lessonIdx:0, completed:false};
+  const due = dueItems().length;
+  const nodes = unit.lessons.map((l, i)=>{
+    const cls = i < prog.lessonIdx ? 'done' : i === prog.lessonIdx ? 'next' : 'locked';
+    const icon = i < prog.lessonIdx ? '✓' : (i+1);
+    return `<button class="lesson-node ${cls}" data-i="${i}" ${cls==='locked'?'disabled':''}>
+      <div class="idx">${icon}</div>
+      <div><b>${esc(l.title)}</b><br><span class="muted">${esc(l.blurb)}</span></div>
+    </button>`;
+  }).join('');
+  render(`
+    <div class="row spread">
+      <div class="logo" style="font-size:1.3rem"><span class="re">Re:</span><span class="zero">Lefela</span></div>
+      <div class="row">
+        <span class="pill streakpill">🔥 ${state.streak.current}</span>
+        <span class="pill xppill">⭐ ${state.xpTotal} XP</span>
+      </div>
+    </div>
+    <h2 style="margin-top:18px">${esc(RL_CONTENT.flavour.greeting)}, ${esc(state.user.display)}!</h2>
+    <p class="muted">${esc(unit.title)} — ${esc(unit.subtitle)}</p>
+    ${due>0?`<button class="btn primary" id="b-review" style="margin:10px 0">🔁 ${esc(RL_CONTENT.flavour.review)} — review ${due} item${due>1?'s':''}</button>`:''}
+    ${nodes}
+    <div class="row" style="margin-top:16px">
+      <button class="btn ghost" id="b-lb" style="flex:1">🏆 Scoreboard</button>
+      <button class="btn ghost" id="b-me" style="flex:1">📊 My stats</button>
+    </div>
+    <p class="tiny center" style="margin-top:14px">Gotlhe go simolola fano — it all starts here.</p>`);
+  document.querySelectorAll('.lesson-node').forEach(n=>{
+    n.onclick = ()=> startLesson(unit, parseInt(n.dataset.i,10));
+  });
+  const rv = document.getElementById('b-review'); if (rv) rv.onclick = startReview;
+  document.getElementById('b-lb').onclick = screenLeaderboard;
+  document.getElementById('b-me').onclick = screenStats;
+}
+
+async function screenLeaderboard(){
+  render(`<div class="topbar"><button class="quit" id="b-back">←</button><h2>🏆 Scoreboard</h2></div><div id="lb"><p class="muted">Loading…</p></div>`);
+  document.getElementById('b-back').onclick = screenHome;
+  if (LOCAL_MODE){ document.getElementById('lb').innerHTML = '<p class="muted">Local mode — no scoreboard.</p>'; return; }
+  const {data: rows, error} = await sb.from('leaderboard_week').select('*').order('week_xp', {ascending:false});
+  const {data: streaks} = await sb.from('streaks').select('user_id, current');
+  const {data: profs} = await sb.from('profiles').select('id, username');
+  if (error){ document.getElementById('lb').innerHTML = '<p class="muted">Could not load — offline?</p>'; return; }
+  const streakByName = {};
+  (profs||[]).forEach(p=>{ const s = (streaks||[]).find(x=>x.user_id===p.id); streakByName[p.username] = s ? s.current : 0; });
+  document.getElementById('lb').innerHTML = `
+    <p class="muted">XP this week (resets Monday)</p>
+    ${(rows||[]).map((r,i)=>`
+      <div class="lb-row ${r.username===state.user.username?'me':''}">
+        <span class="crown">${i===0 && r.week_xp>0 ?'👑':'•'}</span>
+        <span class="name">${esc(r.display_name)}</span>
+        <span class="pill streakpill">🔥 ${streakByName[r.username]||0}</span>
+        <span class="pill xppill">${r.week_xp} XP</span>
+      </div>`).join('')}
+    <p class="tiny center" style="margin-top:12px">Total: ${(rows||[]).map(r=>`${esc(r.display_name)} ${r.total_xp}`).join(' · ')}</p>`;
+}
+
+function screenStats(){
+  const learned = Object.keys(state.srs).length;
+  const due = dueItems().length;
+  render(`<div class="topbar"><button class="quit" id="b-back">←</button><h2>📊 My stats</h2></div>
+    <div class="statgrid">
+      <div class="stat"><b>${state.xpTotal}</b>total XP</div>
+      <div class="stat"><b>${state.streak.current}🔥</b>day streak (best ${state.streak.best})</div>
+      <div class="stat"><b>${learned}</b>words & phrases met</div>
+      <div class="stat"><b>${due}</b>due for review</div>
+    </div>
+    <div class="card">
+      <b>Listening immersion</b>
+      <p class="muted">Motsweding FM — SABC's Setswana station. Have it on while you work; your ear learns before you do.</p>
+      <a href="https://www.sabc.co.za/radio/motswedingfm" target="_blank" rel="noopener">Open Motsweding FM ↗</a>
+    </div>
+    <button class="btn ghost" id="b-logout" style="margin-top:8px">Log out</button>`);
+  document.getElementById('b-back').onclick = screenHome;
+  document.getElementById('b-logout').onclick = async ()=>{ if(sb) await sb.auth.signOut(); localStorage.removeItem('rl_lastUser'); location.reload(); };
+}
+
+/* ---------- lesson & exercise generation ---------- */
+function buildExercises(items, isReview, tracks){
+  const real = items.filter(i=>i.kind!=='rule');
+  const seq = [];
+  if (!isReview){
+    for (const it of items){
+      if (it.kind==='rule') seq.push({type:'rule', item:it});
+      else if (!state.srs[it.id]) seq.push({type:'teach', item:it});
+    }
+    if (tracks && tracks.length) seq.push({type:'dialogue', tracks});
+  }
+  const introCount = seq.length; // teach/rule/dialogue cards end here
+  const pool = shuffle(real);
+  const per = isReview ? pool : pool.concat(shuffle(real).slice(0, Math.ceil(real.length/2))); // 1.5 passes
+  for (const it of per){
+    const types = ['tap','choose'];
+    if (it.tsw.split(/\s+/).length===1) types.push('typeEng');
+    else types.push('typeTsw');
+    if (it.concordSlot) types.push('concord');
+    if (it.audio){ types.push('listen'); types.push('record'); }
+    seq.push({type:pick(types), item:it});
+  }
+  // one match block per session, placed after the intro cards + a few drills
+  if (real.length >= 4) seq.splice(Math.min(introCount + 3, seq.length), 0, {type:'match', items:shuffle(real).slice(0,4)});
+  return seq;
+}
+
+let session = null;
+function startLesson(unit, idx){
+  const lesson = unit.lessons[idx];
+  session = {unit, lessonIdx:idx, ex:buildExercises(lesson.items, false, lesson.audioTracks), at:0, right:0, wrong:0, isReview:false};
+  runExercise();
+}
+function startReview(){
+  const due = shuffle(dueItems()).slice(0, 15);
+  if (!due.length) return;
+  session = {unit:null, lessonIdx:null, ex:buildExercises(due, true), at:0, right:0, wrong:0, isReview:true};
+  runExercise();
+}
+
+function exHeader(){
+  const pct = Math.round(100*session.at/session.ex.length);
+  return `<div class="topbar">
+    <button class="quit" id="b-quit">✕</button>
+    <div class="progressbar"><div style="width:${pct}%"></div></div>
+    <span class="pill">${session.at+1}/${session.ex.length}</span>
+  </div>`;
+}
+
+function runExercise(){
+  if (session.at >= session.ex.length) return finishSession();
+  const ex = session.ex[session.at];
+  const it = ex.item;
+  const H = exHeader();
+  if (ex.type==='rule'){
+    render(H + `<div id="exArea"><div class="rulecard">💡 ${esc(it.rule)}</div>
+      <button class="btn primary" id="b-next" style="margin-top:auto">Got it</button></div>`);
+    hookQuit(); document.getElementById('b-next').onclick = next(true, false);
+  }
+  else if (ex.type==='teach'){
+    render(H + `<div id="exArea">
+      <p class="muted">New ${it.kind==='verb'?'verb':it.kind}</p>
+      <div class="row">
+        <div class="bigtsw">${esc(it.tsw)}</div>
+        ${it.audio?`<button class="audio-btn" id="b-play">🔊</button>`:''}
+      </div>
+      <div class="prompt" style="font-weight:500">${esc(it.eng)}</div>
+      ${it.plural?`<div class="notecard">Plural: <b>${esc(it.plural)}</b></div>`:''}
+      ${it.note?`<div class="notecard">${esc(it.note)}</div>`:''}
+      <p class="tiny">source: ${esc(it.src)}</p>
+      <button class="btn primary" id="b-next" style="margin-top:auto">Continue</button></div>`);
+    hookQuit(); hookPlay(it);
+    if (it.audio) playAudio(it.audio);
+    document.getElementById('b-next').onclick = ()=>{ srsGrade(it.id, true); session.at++; runExercise(); };
+  }
+  else if (ex.type==='tap'){
+    const words = it.tsw.split(/\s+/);
+    const distract = shuffle(unitWordPool(session.unit || RL_CONTENT.units[0]).filter(w=>!words.includes(w))).slice(0, Math.min(4, 8-words.length));
+    const poolWords = shuffle(words.concat(distract));
+    render(H + `<div id="exArea">
+      <p class="muted">Build the Setswana</p>
+      <div class="prompt">${esc(it.eng)}</div>
+      <div class="tokens" id="answer"></div>
+      <div class="pool" id="pool">${poolWords.map((w,i)=>`<button class="tok" data-w="${esc(w)}" data-i="${i}">${esc(w)}</button>`).join('')}</div>
+      <button class="btn primary" id="b-check" style="margin-top:auto" disabled>Check</button></div>`);
+    hookQuit();
+    const picked = [];
+    const ans = document.getElementById('answer');
+    document.querySelectorAll('#pool .tok').forEach(t=>{
+      t.onclick = ()=>{
+        t.classList.add('used'); picked.push({w:t.dataset.w, el:t});
+        const chip = document.createElement('button'); chip.className='tok'; chip.textContent = t.dataset.w;
+        chip.onclick = ()=>{ chip.remove(); t.classList.remove('used'); picked.splice(picked.findIndex(p=>p.el===t),1); upd(); };
+        ans.appendChild(chip); upd();
+      };
+    });
+    function upd(){ document.getElementById('b-check').disabled = picked.length===0; }
+    document.getElementById('b-check').onclick = ()=>{
+      const given = picked.map(p=>p.w).join(' ');
+      grade(norm(given)===norm(it.tsw), it, given);
+    };
+  }
+  else if (ex.type==='choose'){
+    const others = shuffle(allItemsExcept(it)).slice(0,3);
+    const opts = shuffle([it, ...others]);
+    render(H + `<div id="exArea">
+      <p class="muted">What does this mean?</p>
+      <div class="row"><div class="bigtsw">${esc(it.tsw)}</div>${it.audio?`<button class="audio-btn" id="b-play">🔊</button>`:''}</div>
+      ${opts.map(o=>`<button class="choice" data-id="${o.id}">${esc(o.eng)}</button>`).join('')}
+      <div style="margin-top:auto"></div></div>`);
+    hookQuit(); hookPlay(it); if (it.audio) playAudio(it.audio);
+    document.querySelectorAll('.choice').forEach(c=>{
+      c.onclick = ()=>{
+        const ok = c.dataset.id === it.id;
+        c.classList.add(ok?'good':'bad');
+        if (!ok) document.querySelector(`.choice[data-id="${it.id}"]`).classList.add('good');
+        setTimeout(()=>grade(ok, it, null, true), 350);
+      };
+    });
+  }
+  else if (ex.type==='typeEng' || ex.type==='typeTsw'){
+    const toTsw = ex.type==='typeTsw';
+    render(H + `<div id="exArea">
+      <p class="muted">${toTsw?'Type it in Setswana':'Type the English'}</p>
+      <div class="row"><div class="${toTsw?'prompt':'bigtsw'}">${esc(toTsw?it.eng:it.tsw)}</div>
+        ${!toTsw && it.audio?`<button class="audio-btn" id="b-play">🔊</button>`:''}</div>
+      <input id="f-ans" autocomplete="off" autocapitalize="off" placeholder="${toTsw?'Kwala mo…':'Type here…'}">
+      <button class="btn primary" id="b-check" style="margin-top:auto">Check</button></div>`);
+    hookQuit(); hookPlay(it);
+    const inp = document.getElementById('f-ans'); inp.focus();
+    const check = ()=>{
+      const m = answerMatches(inp.value, toTsw?it.tsw:it.eng);
+      grade(!!m, it, inp.value, false, m==='close');
+    };
+    document.getElementById('b-check').onclick = check;
+    inp.addEventListener('keydown', e=>{ if (e.key==='Enter') check(); });
+  }
+  else if (ex.type==='concord'){
+    const cs = it.concordSlot;
+    render(H + `<div id="exArea">
+      <p class="muted">Pick the right concord — "${esc(cs.hint)}"</p>
+      <div class="prompt">${esc(it.eng)}</div>
+      <div class="bigtsw">___ ${esc(cs.tail)}</div>
+      ${shuffle(cs.options).map(o=>`<button class="choice" data-o="${esc(o)}">${esc(o)}</button>`).join('')}
+      <div style="margin-top:auto"></div></div>`);
+    hookQuit();
+    document.querySelectorAll('.choice').forEach(c=>{
+      c.onclick = ()=>{
+        const ok = c.dataset.o === cs.answer;
+        c.classList.add(ok?'good':'bad');
+        if (!ok) document.querySelector(`.choice[data-o="${cs.answer}"]`).classList.add('good');
+        setTimeout(()=>grade(ok, it, null, true), 350);
+      };
+    });
+  }
+  else if (ex.type==='listen'){
+    const others = shuffle(allItemsExcept(it).filter(o=>o.tsw.split(' ').length <= it.tsw.split(' ').length+2)).slice(0,3);
+    const opts = shuffle([it, ...others]);
+    render(H + `<div id="exArea">
+      <p class="muted">What did you hear?</p>
+      <div class="center" style="margin:14px 0"><button class="audio-btn" id="b-play" style="width:80px;height:80px;font-size:2rem">🔊</button></div>
+      ${opts.map(o=>`<button class="choice" data-id="${o.id}">${esc(o.tsw)}</button>`).join('')}
+      <div style="margin-top:auto"></div></div>`);
+    hookQuit(); hookPlay(it); playAudio(it.audio);
+    document.querySelectorAll('.choice').forEach(c=>{
+      c.onclick = ()=>{
+        const ok = c.dataset.id === it.id;
+        c.classList.add(ok?'good':'bad');
+        if (!ok) document.querySelector(`.choice[data-id="${it.id}"]`).classList.add('good');
+        setTimeout(()=>grade(ok, it, null, true), 350);
+      };
+    });
+  }
+  else if (ex.type==='record'){
+    render(H + `<div id="exArea">
+      <p class="muted">Say it out loud, then compare</p>
+      <div class="row"><div class="bigtsw">${esc(it.tsw)}</div><button class="audio-btn" id="b-play">🔊</button></div>
+      <p class="muted">${esc(it.eng)}</p>
+      <div class="row" style="margin:16px 0">
+        <button class="audio-btn rec-btn" id="b-rec">🎙️</button>
+        <button class="audio-btn" id="b-mine" disabled style="opacity:.4">▶️</button>
+        <span class="muted" id="rec-status">Tap 🎙️ to record</span>
+      </div>
+      <button class="btn primary" id="b-next" style="margin-top:auto">Sounds close — continue</button>
+      <button class="btn ghost" id="b-skip" style="margin-top:8px">Skip speaking</button></div>`);
+    hookQuit(); hookPlay(it); playAudio(it.audio);
+    let rec = null, chunks = [], myUrl = null, recording = false;
+    const stat = document.getElementById('rec-status');
+    const bMine = document.getElementById('b-mine');
+    document.getElementById('b-rec').onclick = async ()=>{
+      if (recording){ rec.stop(); return; }
+      try{
+        const stream = await navigator.mediaDevices.getUserMedia({audio:true});
+        rec = new MediaRecorder(stream); chunks = [];
+        rec.ondataavailable = e=>chunks.push(e.data);
+        rec.onstop = ()=>{
+          stream.getTracks().forEach(t=>t.stop());
+          myUrl = URL.createObjectURL(new Blob(chunks));
+          bMine.disabled = false; bMine.style.opacity = 1;
+          stat.textContent = 'Recorded! ▶️ = you, 🔊 = native';
+          recording = false;
+        };
+        rec.start(); recording = true; stat.textContent = 'Recording… tap 🎙️ to stop';
+      }catch(e){ stat.textContent = 'Mic not available — skip this one.'; }
+    };
+    bMine.onclick = ()=>{ if (myUrl){ if(currentAudio) currentAudio.pause(); currentAudio = new Audio(myUrl); currentAudio.play(); } };
+    document.getElementById('b-next').onclick = ()=>{ srsGrade(it.id, true); addXP(10, 'speak'); session.right++; session.at++; runExercise(); };
+    document.getElementById('b-skip').onclick = ()=>{ session.at++; runExercise(); };
+  }
+  else if (ex.type==='dialogue'){
+    render(H + `<div id="exArea">
+      <p class="muted">🎧 Real Setswana — native speaker recordings (Peace Corps Botswana)</p>
+      ${ex.tracks.map((t,i)=>`
+        <div class="card" style="margin:8px 0"><div class="row">
+          <button class="audio-btn" data-track="${i}">🔊</button>
+          <div style="flex:1">${esc(t.label)}<br><span class="tiny">source: ${esc(t.src)}</span></div>
+        </div></div>`).join('')}
+      <div class="card"><div class="row">
+        <button class="audio-btn rec-btn" id="b-rec">🎙️</button>
+        <button class="audio-btn" id="b-mine" disabled style="opacity:.4">▶️</button>
+        <span class="muted" id="rec-status">Imitate a line — record yourself, compare</span>
+      </div></div>
+      <button class="btn primary" id="b-next" style="margin-top:auto">Continue</button></div>`);
+    hookQuit();
+    document.querySelectorAll('[data-track]').forEach(b=>{
+      b.onclick = ()=>playAudio(ex.tracks[parseInt(b.dataset.track,10)].file);
+    });
+    let rec = null, chunks = [], myUrl = null, recording = false;
+    const stat = document.getElementById('rec-status');
+    const bMine = document.getElementById('b-mine');
+    document.getElementById('b-rec').onclick = async ()=>{
+      if (recording){ rec.stop(); return; }
+      try{
+        const stream = await navigator.mediaDevices.getUserMedia({audio:true});
+        rec = new MediaRecorder(stream); chunks = [];
+        rec.ondataavailable = e=>chunks.push(e.data);
+        rec.onstop = ()=>{
+          stream.getTracks().forEach(t=>t.stop());
+          myUrl = URL.createObjectURL(new Blob(chunks));
+          bMine.disabled = false; bMine.style.opacity = 1;
+          stat.textContent = 'Recorded! ▶️ = you, 🔊 = native';
+          recording = false;
+        };
+        rec.start(); recording = true; stat.textContent = 'Recording… tap 🎙️ to stop';
+      }catch(e){ stat.textContent = 'Mic not available on this device.'; }
+    };
+    bMine.onclick = ()=>{ if (myUrl){ if(currentAudio) currentAudio.pause(); currentAudio = new Audio(myUrl); currentAudio.play(); } };
+    document.getElementById('b-next').onclick = ()=>{ addXP(5, 'listen'); session.at++; runExercise(); };
+  }
+  else if (ex.type==='match'){
+    const items = ex.items;
+    const left = shuffle(items), right = shuffle(items);
+    render(H + `<div id="exArea">
+      <p class="muted">Match the pairs</p>
+      <div class="matchgrid">
+        ${left.map(o=>`<button class="tok" data-side="L" data-id="${o.id}">${esc(o.tsw)}</button>`).join('')}
+        ${right.map(o=>`<button class="tok" data-side="R" data-id="${o.id}">${esc(o.eng)}</button>`).join('')}
+      </div><div style="margin-top:auto"></div></div>`);
+    hookQuit();
+    let selL = null, selR = null, remaining = items.length, mistakes = 0;
+    document.querySelectorAll('.matchgrid .tok').forEach(t=>{
+      t.onclick = ()=>{
+        if (t.dataset.side==='L'){ if(selL) selL.classList.remove('selL'); selL = t; t.classList.add('selL'); }
+        else { if(selR) selR.classList.remove('selR'); selR = t; t.classList.add('selR'); }
+        if (selL && selR){
+          if (selL.dataset.id === selR.dataset.id){
+            selL.classList.add('matched'); selR.classList.add('matched'); remaining--;
+          } else mistakes++;
+          selL.classList.remove('selL'); selR.classList.remove('selR'); selL = selR = null;
+          if (remaining===0){
+            items.forEach(o=>srsGrade(o.id, mistakes<=1));
+            addXP(mistakes<=1?15:8, 'match'); session.right++;
+            setTimeout(()=>{ session.at++; runExercise(); }, 350);
+          }
+        }
+      };
+    });
+  }
+}
+function allItemsExcept(it){
+  const all = [];
+  for (const u of RL_CONTENT.units) for (const l of u.lessons) for (const x of l.items)
+    if (x.kind!=='rule' && x.id!==it.id) all.push(x);
+  return all;
+}
+function hookQuit(){ document.getElementById('b-quit').onclick = ()=>{ if (confirm('Leave this lesson?')) screenHome(); }; }
+function hookPlay(it){ const b = document.getElementById('b-play'); if (b) b.onclick = ()=>playAudio(it.audio); }
+function next(ok, count){ return ()=>{ session.at++; runExercise(); }; }
+
+function grade(ok, it, given, silent, close){
+  srsGrade(it.id, ok);
+  if (ok){ session.right++; addXP(close?8:10, session.isReview?'review':'lesson'); }
+  else session.wrong++;
+  const area = document.getElementById('exArea');
+  const fb = document.createElement('div');
+  fb.className = 'feedback ' + (ok?'good':'bad');
+  fb.innerHTML = ok
+    ? `${esc(pick(RL_CONTENT.flavour.correct))}${close?' <span class="tiny">(watch the spelling: '+esc(it.tsw)+')</span>':''}`
+    : `${esc(pick(RL_CONTENT.flavour.wrong))} — <b>${esc(it.tsw)}</b> = ${esc(it.eng)}`;
+  const btn = document.createElement('button');
+  btn.className = 'btn primary'; btn.style.marginTop = '10px';
+  btn.textContent = 'Continue';
+  btn.onclick = ()=>{ session.at++; runExercise(); };
+  area.appendChild(fb); area.appendChild(btn); btn.focus();
+  area.querySelectorAll('.choice,.tok,input,#b-check').forEach(e=>{ e.disabled = true; e.style.pointerEvents='none'; });
+}
+
+function finishSession(){
+  const bonus = session.isReview ? 10 : 20;
+  addXP(bonus, session.isReview?'review-done':'lesson-done');
+  if (!session.isReview){
+    const prog = state.progress[session.unit.id] || {lessonIdx:0, completed:false};
+    if (session.lessonIdx === prog.lessonIdx){
+      prog.lessonIdx++;
+      if (prog.lessonIdx >= session.unit.lessons.length) prog.completed = true;
+      state.progress[session.unit.id] = prog; persist();
+      enqueue({t:'unit', unit_id:session.unit.id, lesson_idx:prog.lessonIdx, completed:prog.completed});
+    }
+  }
+  const acc = session.right + session.wrong === 0 ? 100 : Math.round(100*session.right/(session.right+session.wrong));
+  render(`<div class="center" style="margin-top:12vh">
+    <h1 style="font-size:2.2rem">${esc(RL_CONTENT.flavour.lessonDone)}</h1>
+    <p class="muted">"You did well." — and you did.</p>
+    <div class="statgrid" style="margin-top:20px">
+      <div class="stat"><b>+${session.right*10 + bonus}</b>XP-ish earned</div>
+      <div class="stat"><b>${acc}%</b>accuracy</div>
+    </div>
+    <button class="btn primary" id="b-home" style="margin-top:16px">Back to the path</button>
+  </div>`);
+  document.getElementById('b-home').onclick = screenHome;
+}
+
+/* ---------- boot ---------- */
+async function boot(){
+  if ('serviceWorker' in navigator && !LOCAL_MODE) navigator.serviceWorker.register('sw.js').catch(()=>{});
+  if (LOCAL_MODE){
+    state.user = {id:'local', username:'local', display:'Local'};
+    return screenHome();
+  }
+  const {data:{session: s}} = await sb.auth.getSession();
+  if (s && s.user) await afterAuth(s.user);
+  else screenAuth();
+}
+boot();
+</script>
+</body>
+</html>

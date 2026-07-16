@@ -1,0 +1,4 @@
+corpus/
+*.zip
+*.wav
+node_modules/
