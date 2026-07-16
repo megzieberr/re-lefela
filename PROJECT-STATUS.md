@@ -32,12 +32,22 @@ Live: https://megzieberr.github.io/re-lefela/ · Supabase project `re-lefela` (o
 (Confirm-email OFF + signup/the second learner onboarding both confirmed done 2026-07-16.)
 
 ## Next sessions (in rough order)
+- **Lesson pacing rework (Megan's feedback 2026-07-16):** Lesson u1l1 felt overwhelming after
+  working through it (now 19 items after the greeting-chain additions). Break lessons into
+  smaller parts (~6-8 items per session chunk — sub-lessons or checkpoints on the home path),
+  and add MORE repetition per item, not less — she wants drill-heavy, gentle pacing
+  ("imagine a very dumb old person" — her words; design for lots of reps and pronunciation
+  practice). Record-compare exercises help the tongue — consider weighting them up once
+  per-item audio coverage grows.
 - **Unit 3 Mo sekolong** (future + past tenses, classroom language — the highest-value unit for her
   teaching) — same recipe; after adding it, RE-RUN `python toolkit/nchlt-filter.py` + convert + append
   so the gym grows with the vocab.
 - **Conversational track** — Peace Corps L13-L23 as post-module lessons (needs the extraction+verify fan-out).
 - **Per-phrase audio clips** — silence-split candidates exist (`corpus/audio-urls.txt` + ffmpeg silencedetect
   at -30dB/0.35s); mapping segments→phrases needs a human ear (Megan). Then listen/record exercises go per-item.
+- **OpenSLR 32 grows with the app** — studio corpus (corpus/tn_za/, CC BY-SA 4.0, 2,378 sentences)
+  yields 0 per-item matches and only 2 gym-eligible sentences at 2-unit vocab; re-run
+  toolkit/nchlt-item-audio.py + the gym check after each new unit — coverage will climb.
 - **Smart Guide day** — when it lands on eFundi: re-align Unit content to lecturer forms (Smart Guide WINS).
   Open Smart-Guide questions parked: bosetlha yellow-vs-grey gloss; borokwa brown (Davies) vs Beibele's
   purple usage; PC class numbering vs lecturer's.

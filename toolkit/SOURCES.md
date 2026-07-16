@@ -13,8 +13,18 @@
 | **Beibele — FULL BSSA Bible 1970/87/2007** (SA-standard Setswana, 4.6 M chars — primary usage-grep corpus, © BSSA: LOCAL ONLY, never commit/publish) | `corpus/beibele-bssa-full.pdf` (+`.txt`) | Megan's copy, 2026-07-16 |
 | Otlogetswe rhyming dictionary (420 pp wordlist, CASAS 2010) | `corpus/otlogetswe-rhyming-dictionary.pdf` (+`.txt`) | Megan's copy, 2026-07-16 |
 | Davies et al. 1992 colour terms study (verified colour vocab for Unit 2 adjectives) | `corpus/colour-terms-davies1992.pdf` (+`.txt`) | Megan's copy, 2026-07-16 |
+| **OpenSLR 32 Setswana TTS corpus** (NWU + Google, CC BY-SA 4.0 — studio-quality sentences + `line_index.tsv` transcriptions) | `corpus/tn_za/` (from `tn_za.tar.gz`, 729 MB) | https://www.openslr.org/32/ |
 | SECL121 module plan | `Desktop\NWU Semester 2\SECL121\Resources\fin-SECL121PTD2026.pdf` | eFundi |
 | Smart Guide (compulsory module material) | **NOT YET OBTAINED** — watch eFundi | eFundi |
+
+## Per-item audio (`audio/items/`, deployed)
+
+- `u*.mp3` clips are cut from the **Peace Corps lesson MP3s** (lessons 2/3/4/8), ear-tagged by
+  Megan via `tagger.html` (mapping: `toolkit/audio-mapping-unit1.json`, cutter:
+  `toolkit/export-item-audio.py`). Peace Corps materials are US-government works (public domain).
+- NCHLT exact-match items (CC BY 3.0, attribution as for the Listening gym) come via
+  `toolkit/nchlt-item-audio.py`; OpenSLR 32 exact matches (CC BY-SA 4.0) via the same pipeline.
+- Rule: an item only gets audio when a real native clip says exactly that text — no TTS, no guessing.
 
 ## Usage-checking corpus greps
 
@@ -28,7 +38,7 @@ grep -i "batla" corpus/peace-corps-full-course.txt
 
 - Glosbe Tswana–English dictionary (example sentences): https://glosbe.com/tn/en
 - Google Translate (Tswana since Jun 2024 — second opinion only, never authority): https://translate.google.com
-- Motsweding FM (SABC Setswana radio, listening immersion): https://www.sabc.co.za/radio/motswedingfm (also on most radio-stream apps)
+- Motsweding FM (SABC Setswana radio, listening immersion): https://www.motswedingfm.co.za/ (also on most radio-stream apps; old sabc.co.za/radio/ URL is dead)
 - UNISA free Setswana course: https://www.unisa.ac.za/static/corporate_web/Content/UnisaOpen/freeOnlineCourse/Setswana/Setswana.html
 - Peace Corps video lessons (18 videos): https://www.livelingua.com/course/peace_corps/setswana_video_course
 

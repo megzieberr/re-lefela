@@ -1,0 +1,26 @@
+[
+ {
+  "itemId": "u1l5-03",
+  "tsw": "Setswana",
+  "wav": "C:\\Users\\megzi\\Desktop\\NWU Semester 2\\SECL121\\Corpus\\nchlt_tsn\\audio\\131\\nchlt_tsn_131f_0575.wav",
+  "spk": "131 (female, -1, gauteng)",
+  "src": "nchlt",
+  "dur": 1.6
+ },
+ {
+  "itemId": "u1l5-06",
+  "tsw": "ntlo",
+  "wav": "C:\\Users\\megzi\\Desktop\\NWU Semester 2\\SECL121\\Corpus\\nchlt_tsn\\audio\\077\\nchlt_tsn_077m_0281.wav",
+  "spk": "077 (male, 17, gauteng)",
+  "src": "nchlt",
+  "dur": 1.08
+ },
+ {
+  "itemId": "u2l5-10",
+  "tsw": "dikgomo",
+  "wav": "C:\\Users\\megzi\\Desktop\\NWU Semester 2\\SECL121\\Corpus\\nchlt_tsn\\audio\\183\\nchlt_tsn_183m_0097.wav",
+  "spk": "183 (male, -1, gauteng)",
+  "src": "nchlt",
+  "dur": 1.6
+ }
+]

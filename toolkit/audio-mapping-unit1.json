@@ -1,0 +1,1008 @@
+{
+ "version": 1,
+ "app": "re-lefela",
+ "tool": "tagger",
+ "files": {
+  "2": "BW_Setswana_Lesson_2.mp3",
+  "3": "BW_Setswana_Lesson_3.mp3",
+  "4": "BW_Setswana_Lesson_4.mp3",
+  "8": "BW_Setswana_Lesson_8.mp3"
+ },
+ "note": "if one itemId is tagged more than once, the LAST tag wins in Phase B",
+ "tags": [
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 0,
+   "start": 0.793,
+   "end": 1.801,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 1,
+   "start": 2.136,
+   "end": 2.845,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 2,
+   "start": 3.396,
+   "end": 4.518,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 3,
+   "start": 4.735,
+   "end": 5.893,
+   "action": "item",
+   "itemId": "u1l1-01",
+   "tsw": "Dumela rra"
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 4,
+   "start": 6.969,
+   "end": 8.094,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 5,
+   "start": 8.648,
+   "end": 11.241,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 6,
+   "start": 11.614,
+   "end": 12.762,
+   "action": "item",
+   "itemId": "u1l1-02",
+   "tsw": "Dumela mma"
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 7,
+   "start": 13.085,
+   "end": 14.244,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 8,
+   "start": 14.539,
+   "end": 15.616,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 9,
+   "start": 15.98,
+   "end": 17.219,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 10,
+   "start": 17.481,
+   "end": 18.739,
+   "action": "item",
+   "itemId": "u1l1-04",
+   "tsw": "O tsogile jang?"
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 11,
+   "start": 19.09,
+   "end": 19.839,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 12,
+   "start": 20.292,
+   "end": 21.914,
+   "action": "item",
+   "itemId": "u1l1-05",
+   "tsw": "Ke tsogile sentle"
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 13,
+   "start": 22.278,
+   "end": 23.745,
+   "action": "item",
+   "itemId": "u1l1-16",
+   "tsw": "Re teng, a lona le teng?"
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 14,
+   "start": 24.245,
+   "end": 26.016,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 15,
+   "start": 26.349,
+   "end": 28.09,
+   "action": "item",
+   "itemId": "u1l1-05",
+   "tsw": "Ke tsogile sentle"
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 16,
+   "start": 28.352,
+   "end": 29.279,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 17,
+   "start": 30.54,
+   "end": 31.565,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 18,
+   "start": 32.237,
+   "end": 34.621,
+   "action": "item",
+   "itemId": "u1l1-03",
+   "tsw": "Dumelang borra le bomma"
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 19,
+   "start": 35.293,
+   "end": 36.91,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 20,
+   "start": 37.166,
+   "end": 38.347,
+   "action": "item",
+   "itemId": "u1l1-02",
+   "tsw": "Dumela mma"
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 21,
+   "start": 38.68,
+   "end": 39.671,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 22,
+   "start": 39.954,
+   "end": 41.38,
+   "action": "item",
+   "itemId": "u1l1-14",
+   "tsw": "Le tsogile jang?"
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 23,
+   "start": 41.697,
+   "end": 42.52,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 24,
+   "start": 42.72,
+   "end": 43.316,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 25,
+   "start": 43.646,
+   "end": 45.59,
+   "action": "item",
+   "itemId": "u1l1-17",
+   "tsw": "Re tsogile sentle"
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 26,
+   "start": 45.876,
+   "end": 47.831,
+   "action": "item",
+   "itemId": "u1l1-18",
+   "tsw": "Wena o tsogile jang?"
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 27,
+   "start": 48.04,
+   "end": 49.881,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 28,
+   "start": 50.076,
+   "end": 51.919,
+   "action": "item",
+   "itemId": "u1l1-05",
+   "tsw": "Ke tsogile sentle"
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 29,
+   "start": 52.245,
+   "end": 54.565,
+   "action": "skip",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 30,
+   "start": 54.815,
+   "end": 55.573,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 31,
+   "start": 55.927,
+   "end": 59.396,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 32,
+   "start": 59.725,
+   "end": 61.817,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 33,
+   "sub": 0,
+   "start": 62.117,
+   "end": 63.127,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 33,
+   "sub": 1,
+   "start": 63.306,
+   "end": 64.343,
+   "action": "item",
+   "itemId": "u1l1-06",
+   "tsw": "Le kae?"
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 33,
+   "sub": 2,
+   "start": 64.566,
+   "end": 65.399,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 34,
+   "start": 65.647,
+   "end": 66.691,
+   "action": "skip",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 35,
+   "start": 66.9,
+   "end": 68.111,
+   "action": "skip",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 36,
+   "sub": 0,
+   "start": 68.419,
+   "end": 70.04,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 36,
+   "sub": 1,
+   "start": 70.182,
+   "end": 71.263,
+   "action": "item",
+   "itemId": "u1l1-20",
+   "tsw": "Re teng"
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 37,
+   "start": 71.573,
+   "end": 72.504,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 38,
+   "start": 73.544,
+   "end": 76.675,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 39,
+   "start": 77.039,
+   "end": 81.562,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 0,
+   "start": 0,
+   "end": 0.739,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 1,
+   "start": 0.949,
+   "end": 2.293,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 2,
+   "start": 2.846,
+   "end": 5.028,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 3,
+   "start": 5.544,
+   "end": 7.839,
+   "action": "item",
+   "itemId": "u1l2-01",
+   "tsw": "Leina lame ke Megan"
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 4,
+   "start": 8.348,
+   "end": 9.716,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 5,
+   "start": 9.908,
+   "end": 12.847,
+   "action": "item",
+   "itemId": "u1l2-03",
+   "tsw": "Sefane same ke Moeng"
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 6,
+   "sub": 0,
+   "start": 13.286,
+   "end": 15.043,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 6,
+   "sub": 1,
+   "start": 15.369,
+   "end": 16.996,
+   "action": "item",
+   "itemId": "u1l2-02",
+   "tsw": "Leina la gago ke mang?"
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 7,
+   "start": 17.668,
+   "end": 18.833,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 8,
+   "start": 19.175,
+   "end": 20.046,
+   "action": "item",
+   "itemId": "u1l2-10",
+   "tsw": "Ke tswa kwa…"
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 9,
+   "start": 20.249,
+   "end": 21.321,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 10,
+   "start": 21.885,
+   "end": 23.282,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 11,
+   "start": 23.473,
+   "end": 24.442,
+   "action": "item",
+   "itemId": "u1l2-06",
+   "tsw": "O tswa kae?"
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 12,
+   "start": 25.005,
+   "end": 25.919,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 13,
+   "start": 26.466,
+   "end": 29.28,
+   "action": "item",
+   "itemId": "u1l2-08",
+   "tsw": "Leina la gagwe ke Thabo"
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 14,
+   "start": 29.779,
+   "end": 31.222,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 15,
+   "sub": 0,
+   "start": 31.466,
+   "end": 33.079,
+   "action": "skip",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 15,
+   "sub": 1,
+   "start": 33.153,
+   "end": 33.643,
+   "action": "skip",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 15,
+   "sub": 2,
+   "start": 33.7,
+   "end": 34.549,
+   "action": "skip",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 16,
+   "start": 35.042,
+   "end": 36.566,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 17,
+   "start": 37.184,
+   "end": 39.066,
+   "action": "item",
+   "itemId": "u1l2-07",
+   "tsw": "A o tswa kwa Amerika?"
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 18,
+   "start": 39.944,
+   "end": 41.2,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 19,
+   "start": 41.69,
+   "end": 43.277,
+   "action": "skip",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "3",
+   "file": "BW_Setswana_Lesson_3.mp3",
+   "seg": 20,
+   "start": 43.749,
+   "end": 44.782,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "4",
+   "file": "BW_Setswana_Lesson_4.mp3",
+   "seg": 0,
+   "start": 1.34,
+   "end": 2.572,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "4",
+   "file": "BW_Setswana_Lesson_4.mp3",
+   "seg": 1,
+   "start": 2.767,
+   "end": 4.659,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "4",
+   "file": "BW_Setswana_Lesson_4.mp3",
+   "seg": 2,
+   "sub": 0,
+   "start": 4.938,
+   "end": 6.293,
+   "action": "item",
+   "itemId": "u1l3-01",
+   "tsw": "Go siame"
+  },
+  {
+   "lesson": "4",
+   "file": "BW_Setswana_Lesson_4.mp3",
+   "seg": 2,
+   "sub": 1,
+   "start": 6.807,
+   "end": 7.531,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "4",
+   "file": "BW_Setswana_Lesson_4.mp3",
+   "seg": 3,
+   "start": 8.09,
+   "end": 9.565,
+   "action": "item",
+   "itemId": "u1l3-02",
+   "tsw": "Ke tla go bona"
+  },
+  {
+   "lesson": "4",
+   "file": "BW_Setswana_Lesson_4.mp3",
+   "seg": 4,
+   "start": 10.361,
+   "end": 10.981,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "4",
+   "file": "BW_Setswana_Lesson_4.mp3",
+   "seg": 5,
+   "start": 11.605,
+   "end": 13.542,
+   "action": "item",
+   "itemId": "u1l3-05",
+   "tsw": "Tlhola sentle"
+  },
+  {
+   "lesson": "4",
+   "file": "BW_Setswana_Lesson_4.mp3",
+   "seg": 6,
+   "start": 13.786,
+   "end": 14.84,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "4",
+   "file": "BW_Setswana_Lesson_4.mp3",
+   "seg": 7,
+   "start": 15.382,
+   "end": 17.087,
+   "action": "item",
+   "itemId": "u1l3-06",
+   "tsw": "Robala sentle"
+  },
+  {
+   "lesson": "4",
+   "file": "BW_Setswana_Lesson_4.mp3",
+   "seg": 8,
+   "sub": 0,
+   "start": 17.418,
+   "end": 18.209,
+   "action": "skip",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "4",
+   "file": "BW_Setswana_Lesson_4.mp3",
+   "seg": 8,
+   "sub": 1,
+   "start": 18.268,
+   "end": 19.337,
+   "action": "item",
+   "itemId": "u1l3-07",
+   "tsw": "Boroko"
+  },
+  {
+   "lesson": "4",
+   "file": "BW_Setswana_Lesson_4.mp3",
+   "seg": 9,
+   "start": 19.933,
+   "end": 20.711,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "4",
+   "file": "BW_Setswana_Lesson_4.mp3",
+   "seg": 10,
+   "start": 21.546,
+   "end": 24.395,
+   "action": "item",
+   "itemId": "u1l3-03",
+   "tsw": "Ke tla go bona kamoso"
+  },
+  {
+   "lesson": "4",
+   "file": "BW_Setswana_Lesson_4.mp3",
+   "seg": 11,
+   "start": 24.655,
+   "end": 26.046,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "4",
+   "file": "BW_Setswana_Lesson_4.mp3",
+   "seg": 12,
+   "start": 26.818,
+   "end": 29.333,
+   "action": "item",
+   "itemId": "u1l3-04",
+   "tsw": "Ke tla go bona kgantele"
+  },
+  {
+   "lesson": "4",
+   "file": "BW_Setswana_Lesson_4.mp3",
+   "seg": 13,
+   "start": 30.035,
+   "end": 31.067,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "8",
+   "file": "BW_Setswana_Lesson_8.mp3",
+   "seg": 0,
+   "start": 0.558,
+   "end": 2.065,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "8",
+   "file": "BW_Setswana_Lesson_8.mp3",
+   "seg": 1,
+   "start": 2.593,
+   "end": 3.41,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "8",
+   "file": "BW_Setswana_Lesson_8.mp3",
+   "seg": 2,
+   "start": 4.328,
+   "end": 5.286,
+   "action": "item",
+   "itemId": "u1l4-01",
+   "tsw": "nna"
+  },
+  {
+   "lesson": "8",
+   "file": "BW_Setswana_Lesson_8.mp3",
+   "seg": 3,
+   "start": 6.021,
+   "end": 7.43,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "8",
+   "file": "BW_Setswana_Lesson_8.mp3",
+   "seg": 4,
+   "start": 7.737,
+   "end": 8.864,
+   "action": "item",
+   "itemId": "u1l4-02",
+   "tsw": "wena"
+  },
+  {
+   "lesson": "8",
+   "file": "BW_Setswana_Lesson_8.mp3",
+   "seg": 5,
+   "start": 9.448,
+   "end": 10.05,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "8",
+   "file": "BW_Setswana_Lesson_8.mp3",
+   "seg": 6,
+   "start": 10.908,
+   "end": 12.039,
+   "action": "item",
+   "itemId": "u1l4-03",
+   "tsw": "ene"
+  },
+  {
+   "lesson": "8",
+   "file": "BW_Setswana_Lesson_8.mp3",
+   "seg": 7,
+   "start": 12.679,
+   "end": 14.249,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "8",
+   "file": "BW_Setswana_Lesson_8.mp3",
+   "seg": 8,
+   "start": 14.517,
+   "end": 15.824,
+   "action": "item",
+   "itemId": "u1l4-04",
+   "tsw": "rona"
+  },
+  {
+   "lesson": "8",
+   "file": "BW_Setswana_Lesson_8.mp3",
+   "seg": 9,
+   "start": 16.322,
+   "end": 16.931,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "8",
+   "file": "BW_Setswana_Lesson_8.mp3",
+   "seg": 10,
+   "start": 17.262,
+   "end": 18.081,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "8",
+   "file": "BW_Setswana_Lesson_8.mp3",
+   "seg": 11,
+   "start": 18.366,
+   "end": 19.606,
+   "action": "item",
+   "itemId": "u1l4-05",
+   "tsw": "lona"
+  },
+  {
+   "lesson": "8",
+   "file": "BW_Setswana_Lesson_8.mp3",
+   "seg": 12,
+   "start": 19.966,
+   "end": 21.328,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  },
+  {
+   "lesson": "8",
+   "file": "BW_Setswana_Lesson_8.mp3",
+   "seg": 13,
+   "start": 21.6,
+   "end": 22.871,
+   "action": "item",
+   "itemId": "u1l4-06",
+   "tsw": "bone"
+  },
+  {
+   "lesson": "8",
+   "file": "BW_Setswana_Lesson_8.mp3",
+   "seg": 14,
+   "start": 23.331,
+   "end": 23.991,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null
+  }
+ ]
+}

@@ -1,4 +1,8 @@
 corpus/
+# local-only tagging tool (references gitignored corpus audio; never deploy)
+tagger.html
+toolkit/segments.json
+toolkit/segments.js
 *.zip
 *.wav
 node_modules/

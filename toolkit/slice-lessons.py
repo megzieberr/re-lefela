@@ -1,0 +1,104 @@
+# Silence-slice Peace Corps lesson audio into candidate phrase segments.
+# Feeds tagger.html (Phase A of per-item audio). Re-run if thresholds need tuning.
+#
+#   python toolkit/slice-lessons.py
+#
+# Output: toolkit/segments.json  { "2": {file, duration, segments:[{i,start,end}]}, ... }
+# Thresholds: silencedetect -30dB / 0.35s min silence; keep segments > 0.4s.
+# Padding: 0.08s either side so consonant onsets don't get clipped.
+
+import json
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+AUDIO_DIR = ROOT / 'corpus' / 'audio'
+OUT = Path(__file__).resolve().parent / 'segments.json'
+
+LESSONS = {
+    '2': 'BW_Setswana_Lesson_2.mp3',
+    '3': 'BW_Setswana_Lesson_3.mp3',
+    '4': 'BW_Setswana_Lesson_4.mp3',
+    '8': 'BW_Setswana_Lesson_8.mp3',
+}
+
+NOISE_DB = '-30dB'
+MIN_SILENCE = 0.35
+MIN_SEG = 0.4
+PAD = 0.08
+# finer second pass: sub-segments for the tagger's Split button (mixed EN+TSW clips)
+FINE_SILENCE = 0.15
+FINE_MIN_SEG = 0.3
+FINE_PAD = 0.06
+
+
+def probe_duration(path):
+    r = subprocess.run(
+        ['ffprobe', '-v', 'error', '-show_entries', 'format=duration',
+         '-of', 'default=noprint_wrappers=1:nokey=1', str(path)],
+        capture_output=True, text=True, check=True)
+    return float(r.stdout.strip())
+
+
+def detect_silences(path, min_silence):
+    r = subprocess.run(
+        ['ffmpeg', '-hide_banner', '-i', str(path), '-af',
+         f'silencedetect=noise={NOISE_DB}:d={min_silence}', '-f', 'null', '-'],
+        capture_output=True, text=True)
+    starts = [float(m) for m in re.findall(r'silence_start: ([\d.]+)', r.stderr)]
+    ends = [float(m) for m in re.findall(r'silence_end: ([\d.]+)', r.stderr)]
+    return list(zip(starts, ends[:len(starts)])) if len(ends) >= len(starts) else \
+        list(zip(starts, ends + [None]))
+
+
+def segments_from_silences(silences, duration, min_seg, pad):
+    segs, cursor = [], 0.0
+    for s_start, s_end in silences:
+        if s_start - cursor > min_seg:
+            segs.append((max(0.0, cursor - pad), min(duration, s_start + pad)))
+        cursor = s_end if s_end is not None else duration
+    if duration - cursor > min_seg:
+        segs.append((max(0.0, cursor - pad), duration))
+    return segs
+
+
+def subs_for(seg, fine_segs):
+    # fine segments whose midpoint falls inside the coarse segment
+    a, b = seg
+    inside = [(fa, fb) for fa, fb in fine_segs if a <= (fa + fb) / 2 <= b]
+    if len(inside) < 2:
+        return None
+    return [[round(max(a, fa), 3), round(min(b, fb), 3)] for fa, fb in inside]
+
+
+def main():
+    out = {}
+    for lesson, fname in LESSONS.items():
+        path = AUDIO_DIR / fname
+        if not path.exists():
+            sys.exit(f'missing: {path}')
+        duration = probe_duration(path)
+        segs = segments_from_silences(detect_silences(path, MIN_SILENCE), duration, MIN_SEG, PAD)
+        fine = segments_from_silences(detect_silences(path, FINE_SILENCE), duration, FINE_MIN_SEG, FINE_PAD)
+        seg_dicts = []
+        splittable = 0
+        for i, (a, b) in enumerate(segs):
+            d = {'i': i, 'start': round(a, 3), 'end': round(b, 3)}
+            subs = subs_for((a, b), fine)
+            if subs:
+                d['subs'] = subs
+                splittable += 1
+            seg_dicts.append(d)
+        out[lesson] = {'file': fname, 'duration': round(duration, 2), 'segments': seg_dicts}
+        print(f'Lesson {lesson}: {len(segs)} segments over {duration:.0f}s ({splittable} splittable)')
+    OUT.write_text(json.dumps(out, indent=1), encoding='utf-8')
+    # file://-safe copy for tagger.html (script tag instead of fetch)
+    js_out = OUT.with_suffix('.js')
+    js_out.write_text('window.RL_SEGMENTS = ' + json.dumps(out) + ';\n', encoding='utf-8')
+    print(f'wrote {OUT}\nwrote {js_out}')
+
+
+if __name__ == '__main__':
+    main()
