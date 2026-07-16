@@ -1,19 +1,26 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-16 (session 1 — built from zero, appropriately)
+**Updated:** 2026-07-16 (session 2 — Unit 2 Mmele + NCHLT Listening gym; session 1 built v1)
 
 ## What this is
 Two-player (Megan + the second learner) Duolingo-style Setswana PWA for NWU SECL121 + life after it.
 Live: https://megzieberr.github.io/re-lefela/ · Supabase project `re-lefela` (opacjlgljeippheotyhz, Uni Hub org)
 
-## State: v1 LIVE
+## State: v2 LIVE (Units 1 + 2 + Listening gym)
 - Engine: teach/tap-words/type/choose/match/listen/record-compare/concord-picker + dialogue cards,
   SM-2 SRS (one word bank, review sessions), XP + streaks + weekly scoreboard (resets Monday),
   English UI with Setswana flavour text, offline-first sync queue (toast on failure), installable PWA.
-- Content: Unit 1 *Go dumedisa!* = 7 lessons, ~65 items, all sourced (`src` on every item).
-  Native Peace Corps audio as lesson-level dialogue cards (L1,2,3,4,8,10).
-- Toolkit: `toolkit/GRAMMAR.md`, `toolkit/sentence-bank.tsv` (~230 sourced rows), `toolkit/SOURCES.md`.
-  Corpus (gitignored): Peace Corps PDF+25 MP3s, Setswana NT (CC BY-SA) + English WEB parallel.
+  Home renders ALL units; concord exercises support a `head` word (Mpho ___ ngaka).
+  Change-password + show-password toggles (other session, same day). SW cache `relefela-v3`.
+- Content: Unit 1 *Go dumedisa!* (7 lessons, ~65 items) + **Unit 2 *Mmele*** (7 lessons, ~70 items:
+  body parts, questions, copulatives, adjectives & adverbs, Davies-1992 colours, health/doctor).
+  All sourced (`src` on every item); PC audio dialogue cards now also L11, L12, L22.
+- **Listening gym**: 34 real NCHLT native clips (audio/nchlt/, 408 KB), filtered so every word is
+  already-taught vocab — `toolkit/nchlt-filter.py` re-generates after each new unit (re-run it!).
+  Gym = play clip → choose the transcription; +10 XP each, no SRS.
+- Toolkit: `toolkit/GRAMMAR.md` (§9 = Unit 2 pack), `toolkit/sentence-bank.tsv` (336 sourced rows),
+  `toolkit/SOURCES.md`. Corpus (gitignored): Peace Corps course+grammar PDF+25 MP3s, Setswana NT
+  (CC BY-SA) + English WEB parallel, full BSSA Beibele (LOCAL ONLY), Davies 1992 colours, Otlogetswe 2010.
 - Schema: profiles / xp_events / srs_items / streaks / unit_progress, RLS (read-both write-own),
   `join_relefela` RPC gates signup by shared code. `schema.sql` in repo is REDACTED (join code);
   real code known to Megan, set in the deployed RPC.
@@ -26,16 +33,15 @@ Live: https://megzieberr.github.io/re-lefela/ · Supabase project `re-lefela` (o
 4. (Standing) keepalive Task-Scheduler registration still awaiting her OK.
 
 ## Next sessions (in rough order)
-- **Unit 2 Mmele** (body, questions, copulatives, adjectives) — same recipe as Unit 1; sentence bank already
-  holds L12 question material.
+- **Unit 3 Mo sekolong** (future + past tenses, classroom language — the highest-value unit for her
+  teaching) — same recipe; after adding it, RE-RUN `python toolkit/nchlt-filter.py` + convert + append
+  so the gym grows with the vocab.
 - **Conversational track** — Peace Corps L13-L23 as post-module lessons (needs the extraction+verify fan-out).
 - **Per-phrase audio clips** — silence-split candidates exist (`corpus/audio-urls.txt` + ffmpeg silencedetect
   at -30dB/0.35s); mapping segments→phrases needs a human ear (Megan). Then listen/record exercises go per-item.
-- **NCHLT listening exercises (big unlock, downloaded 2026-07-16)** — 58k pre-segmented native clips WITH exact
-  transcriptions at `Desktop\NWU Semester 2\SECL121\Corpus\nchlt_tsn\` (trn.xml `<orth>` per clip). Unlike the
-  Peace Corps audio these need NO ear-mapping: filter `<orth>` for clips whose words she already knows, convert
-  those WAVs → small MP3s, and real-native listen-and-choose exercises drop straight in. Do this in the Unit 2 session.
 - **Smart Guide day** — when it lands on eFundi: re-align Unit content to lecturer forms (Smart Guide WINS).
+  Open Smart-Guide questions parked: bosetlha yellow-vs-grey gloss; borokwa brown (Davies) vs Beibele's
+  purple usage; PC class numbering vs lecturer's.
 - Optional: hub tile/link for the app (modules table has no links column — would need hub change).
 
 ## Gotchas learned

@@ -130,6 +130,129 @@ const RL_CONTENT = {
           ]
         }
       ]
+    },
+    {
+      id: 'u2',
+      title: 'Mmele',
+      subtitle: 'The body — SECL121 Unit 2',
+      lessons: [
+        {
+          id: 'u2l1', title: 'Tlhogo ya me', blurb: 'The head and face — and the classes their names live in.',
+          items: [
+            { id: 'u2l1-00', kind: 'rule', tsw: '', eng: '', src: 'grammar-toolkit', rule: 'Body parts are a noun-class safari: head words scatter across the classes, so their plurals differ. le-/ma- (leitlho → matlho), se-/di- (sefatlhego → difatlhego), mo-/me- (molomo → melomo), 9/di- (tsebe → ditsebe). Watch the prefix — it tells you the plural AND the concord.' },
+            { id: 'u2l1-01', kind: 'word', tsw: 'mmele', eng: 'body', src: 'beibele+nt-parallel', cls: 3, plural: 'mebele' },
+            { id: 'u2l1-02', kind: 'word', tsw: 'tlhogo', eng: 'head', src: 'peace-corps-L22', cls: 9, plural: 'ditlhogo' },
+            { id: 'u2l1-03', kind: 'word', tsw: 'sefatlhego', eng: 'face', src: 'beibele+nt-parallel', cls: 7, plural: 'difatlhego' },
+            { id: 'u2l1-04', kind: 'word', tsw: 'moriri', eng: 'hair', src: 'beibele+nt-parallel', cls: 3, plural: 'meriri' },
+            { id: 'u2l1-05', kind: 'word', tsw: 'leitlho', eng: 'eye', src: 'beibele+nt-parallel', cls: 5, plural: 'matlho', note: 'le- → ma-: matlho = eyes.' },
+            { id: 'u2l1-06', kind: 'word', tsw: 'tsebe', eng: 'ear', src: 'beibele+nt-parallel', cls: 9, plural: 'ditsebe' },
+            { id: 'u2l1-07', kind: 'word', tsw: 'nko', eng: 'nose', src: 'beibele', cls: 9, plural: 'dinko' },
+            { id: 'u2l1-08', kind: 'word', tsw: 'molomo', eng: 'mouth', src: 'beibele+nt-parallel', cls: 3, plural: 'melomo' },
+            { id: 'u2l1-09', kind: 'word', tsw: 'leino', eng: 'tooth', src: 'beibele', cls: 5, plural: 'meno', note: 'le- → ma-… almost: meno, not maino. Old class quirk.' },
+            { id: 'u2l1-10', kind: 'word', tsw: 'loleme', eng: 'tongue', src: 'beibele+nt-parallel', cls: 11, plural: 'diteme', note: 'Class 11 lo-; plural jumps to di-: diteme.' },
+            { id: 'u2l1-11', kind: 'word', tsw: 'molala', eng: 'neck', src: 'beibele', cls: 3, plural: 'melala' }
+          ]
+        },
+        {
+          id: 'u2l2', title: 'Diatla le dinao', blurb: 'Arms, hands, legs, feet — and the heart of it all.',
+          items: [
+            { id: 'u2l2-01', kind: 'word', tsw: 'letsogo', eng: 'arm / hand', src: 'beibele+nt-parallel', cls: 5, plural: 'mabogo', note: 'Irregular plural: mabogo, not matsogo.' },
+            { id: 'u2l2-02', kind: 'word', tsw: 'seatla', eng: 'hand', src: 'beibele+nt-parallel', cls: 7, plural: 'diatla', note: 'The palm-and-fingers hand; letsogo is the whole arm.' },
+            { id: 'u2l2-03', kind: 'word', tsw: 'monwana', eng: 'finger', src: 'beibele+nt-parallel', cls: 3, plural: 'menwana' },
+            { id: 'u2l2-04', kind: 'word', tsw: 'mpa', eng: 'stomach / belly', src: 'beibele+nt-parallel', cls: 9, note: 'Careful: mpa is also a little word meaning "rather/merely". Context decides.' },
+            { id: 'u2l2-05', kind: 'word', tsw: 'mala', eng: 'stomach / insides', src: 'peace-corps-L22', cls: 6, note: 'The word the Peace Corps health lesson uses: mala ame a botlhoko.' },
+            { id: 'u2l2-06', kind: 'word', tsw: 'pelo', eng: 'heart', src: 'beibele+nt-parallel', cls: 9, plural: 'dipelo', note: 'Pelo-khutshwane, "short heart" = short-tempered. Setswana anatomy has opinions.' },
+            { id: 'u2l2-07', kind: 'word', tsw: 'leoto', eng: 'leg', src: 'peace-corps-L22', cls: 5, plural: 'maoto' },
+            { id: 'u2l2-08', kind: 'word', tsw: 'lonao', eng: 'foot', src: 'beibele', cls: 11, plural: 'dinao', note: 'You met dinao in Unit 1: Ema ka dinao — stand on your feet.' },
+            { id: 'u2l2-09', kind: 'phrase', tsw: 'Ema ka dinao', eng: 'Stand up', src: 'peace-corps-L12', note: 'Lit. "stand on feet" — now you know why.' }
+          ]
+        },
+        {
+          id: 'u2l3', title: 'Dipotso', blurb: 'Question words: who, what, where, when, why, which.',
+          audioTracks: [{ file: 'lesson12-questions.mp3', label: 'Questions & commands (native speaker)', src: 'peace-corps-L12' }],
+          items: [
+            { id: 'u2l3-00', kind: 'rule', tsw: '', eng: '', src: 'peace-corps-L12', rule: 'Question words sit where the answer would sit — no word-order gymnastics: O batla eng? = "You want WHAT?". And any statement becomes a yes/no question by putting A in front: A o tswa kwa Amerika? For "why", Setswana says go reng / ka go reng.' },
+            { id: 'u2l3-01', kind: 'phrase', tsw: 'Ke eng?', eng: 'What is it?', src: 'peace-corps-L12', note: 'eng = what.' },
+            { id: 'u2l3-02', kind: 'phrase', tsw: 'O tsile leng?', eng: 'When did you come?', src: 'peace-corps-L12', note: 'leng = when.' },
+            { id: 'u2l3-03', kind: 'phrase', tsw: 'Go reng?', eng: 'Why?', src: 'peace-corps-L12', note: 'Also ka go reng — lit. "for saying what?"' },
+            { id: 'u2l3-04', kind: 'phrase', tsw: 'O batla efe?', eng: 'Which one do you want?', src: 'peace-corps-L12', note: 'efe = which (one thing).' },
+            { id: 'u2l3-05', kind: 'phrase', tsw: 'O batla dife?', eng: 'Which ones do you want?', src: 'peace-corps-L12', note: 'dife = which (plural).' },
+            { id: 'u2l3-06', kind: 'phrase', tsw: 'O batla eng?', eng: 'What do you want?', src: 'peace-corps-L13' },
+            { id: 'u2l3-07', kind: 'phrase', tsw: 'Ke bokae?', eng: 'How much is it?', src: 'peace-corps-L20', note: 'bokae = how much/many.' },
+            { id: 'u2l3-08', kind: 'phrase', tsw: 'A o na le dipotso?', eng: 'Do you have any questions?', src: 'peace-corps-L6', note: 'A + statement = yes/no question. dipotso = questions.' },
+            { id: 'u2l3-09', kind: 'phrase', tsw: 'O batla go dira eng jaanong?', eng: 'What do you want to do now?', src: 'peace-corps-L13', note: 'jaanong = now.' }
+          ]
+        },
+        {
+          id: 'u2l4', title: 'Ke ngaka!', blurb: 'Copulatives: saying what things ARE (and are not).',
+          audioTracks: [{ file: 'lesson11-tobe.mp3', label: 'To be & to have (native speaker)', src: 'peace-corps-L11' }],
+          items: [
+            { id: 'u2l4-00', kind: 'rule', tsw: '', eng: '', src: 'pc-comp-grammar-ch2', rule: 'Setswana has no verb "to be" in the present — a tiny copula does the job. Talking ABOUT someone/something: ke (Mpho ke ngaka — Mpho is a doctor). Talking as I/you: your own subject marker IS the copula (Ke morutabana — I am a teacher; O morutabana — you are). Negative: ga se (Ga se ngaka — she is not a doctor).' },
+            { id: 'u2l4-01', kind: 'word', tsw: 'ngaka', eng: 'doctor', src: 'pc-comp-grammar-ch7', cls: 9, plural: 'dingaka' },
+            { id: 'u2l4-02', kind: 'word', tsw: 'morutabana', eng: 'teacher', src: 'nchlt+otlogetswe-2010', cls: 1, plural: 'barutabana', note: 'mo-/ba-, a person word — your job title, soon.' },
+            { id: 'u2l4-03', kind: 'phrase', tsw: 'Mpho ke ngaka', eng: 'Mpho is a doctor', src: 'pc-comp-grammar-ch7', concordSlot: { head: 'Mpho', answer: 'ke', options: ['ke', 'o', 'ga se', 'ba'], tail: 'ngaka', hint: 'is (about someone else)' } },
+            { id: 'u2l4-04', kind: 'phrase', tsw: 'Ke morutabana', eng: 'I am a teacher', src: 'pc-comp-grammar-ch2', note: 'That ke is the I-marker doing copula duty — not the same ke as in Mpho ke ngaka.' },
+            { id: 'u2l4-05', kind: 'phrase', tsw: 'Ga se ngaka', eng: 'He/she is not a doctor', src: 'pc-comp-grammar-ch2', note: 'ga se = is not (identity).' },
+            { id: 'u2l4-06', kind: 'phrase', tsw: 'Mpho o mo ntlong', eng: 'Mpho is in the house', src: 'pc-comp-grammar-ch7', note: 'Location: mo + noun + -ng. ntlo → mo ntlong.' },
+            { id: 'u2l4-07', kind: 'phrase', tsw: 'Le ene ke moithaopi wa Peace Corps', eng: 'He too is a Peace Corps volunteer', src: 'pc-comp-grammar-dialogue', note: 'le ene = him/her too.' },
+            { id: 'u2l4-08', kind: 'phrase', tsw: 'O na le bana ba le babedi', eng: 'He/she has two children', src: 'pc-comp-grammar-ch2', note: 'Counting people: ba le babedi — the concord counts along.' }
+          ]
+        },
+        {
+          id: 'u2l5', title: 'Mmele o montle', blurb: 'Adjectives & adverbs: describing what you see.',
+          items: [
+            { id: 'u2l5-00', kind: 'rule', tsw: '', eng: '', src: 'pc-comp-grammar-ch4', rule: 'Adjectives agree with their noun\'s class, like everything else. "The X is …" = subject marker + adjective: Mpho o montle (Mpho is beautiful), Dikgomo di bogale (the cows are fierce). Many adjectives repeat the class prefix: di-ntle, mo-golo, mo-nnye. Adverbs are easier — sentle (well) and thata (very/a lot) just follow the verb.' },
+            { id: 'u2l5-01', kind: 'word', tsw: 'mogolo', eng: 'big / great / elder', src: 'beibele', note: 'You met it in ntate mogolo — grandfather, the "great father". Class 9 form: kgolo.' },
+            { id: 'u2l5-02', kind: 'word', tsw: 'monnye', eng: 'small / young', src: 'beibele' },
+            { id: 'u2l5-03', kind: 'word', tsw: 'moleele', eng: 'tall / long', src: 'beibele', note: 'Class 9 form: telele (tsela e telele — a long road).' },
+            { id: 'u2l5-04', kind: 'word', tsw: 'khutshwane', eng: 'short', src: 'beibele' },
+            { id: 'u2l5-05', kind: 'word', tsw: 'monate', eng: 'nice / tasty / sweet', src: 'beibele', note: 'Dijo di monate — the food is delicious. You will use this one.' },
+            { id: 'u2l5-06', kind: 'phrase', tsw: 'Mpho o montle', eng: 'Mpho is beautiful', src: 'pc-comp-grammar-ch7' },
+            { id: 'u2l5-07', kind: 'phrase', tsw: 'Dikgomo di bogale', eng: 'The cows are fierce', src: 'pc-comp-grammar-ch2', concordSlot: { head: 'Dikgomo', answer: 'di', options: ['di', 'ba', 'e', 'a'], tail: 'bogale', hint: 'cows — class 10' } },
+            { id: 'u2l5-08', kind: 'phrase', tsw: 'Dikgomo di dintle', eng: 'The cows are beautiful', src: 'pc-comp-grammar-ch2', note: 'Weak adjective repeats the prefix: di + di-ntle.' },
+            { id: 'u2l5-09', kind: 'phrase', tsw: 'Ke na le dikgomo tse dintle', eng: 'I have beautiful cows', src: 'pc-comp-grammar-ch4', note: 'Inside a phrase the adjective takes a linker: tse dintle.' },
+            { id: 'u2l5-10', kind: 'word', tsw: 'dikgomo', eng: 'cows / cattle', src: 'pc-comp-grammar-ch2', cls: 10, note: 'Singular: kgomo. The grammar book\'s favourite example animal.' },
+            { id: 'u2l5-11', kind: 'phrase', tsw: 'O opela sentle', eng: 'You sing well', src: 'pc-comp-grammar-adv', note: 'go opela = to sing; sentle after the verb = well.' },
+            { id: 'u2l5-12', kind: 'phrase', tsw: 'Ke rata nama thata', eng: 'I like meat a lot', src: 'pc-comp-grammar-adv', note: 'thata = very / a lot; nama = meat.' }
+          ]
+        },
+        {
+          id: 'u2l6', title: 'Mebala', blurb: 'Colours — including the one word that is both green and blue.',
+          items: [
+            { id: 'u2l6-00', kind: 'rule', tsw: '', eng: '', src: 'davies-1992', rule: 'Setswana colour names wear the abstract bo- prefix: bontsho (black), bosweu (white), bohibidu (red). The famous one: botala covers BOTH green and blue — one colour to Setswana eyes. Need to split it? botala jwa tlhaga (grue of the grass = green) vs botala jwa legodimo (grue of the sky = blue). Describing a thing, the stem takes the noun\'s concord: pitse e tshweu — a white horse.' },
+            { id: 'u2l6-01', kind: 'word', tsw: 'bontsho', eng: 'black', src: 'davies-1992' },
+            { id: 'u2l6-02', kind: 'word', tsw: 'bosweu', eng: 'white', src: 'davies-1992' },
+            { id: 'u2l6-03', kind: 'word', tsw: 'bohibidu', eng: 'red', src: 'davies-1992' },
+            { id: 'u2l6-04', kind: 'word', tsw: 'botala', eng: 'green / blue', src: 'davies-1992', note: 'One word, two English colours — "grue". Linguists study Setswana for this.' },
+            { id: 'u2l6-05', kind: 'phrase', tsw: 'botala jwa tlhaga', eng: 'green (grass-colour)', src: 'davies-1992' },
+            { id: 'u2l6-06', kind: 'phrase', tsw: 'botala jwa legodimo', eng: 'blue (sky-colour)', src: 'davies-1992' },
+            { id: 'u2l6-07', kind: 'word', tsw: 'bosetlha', eng: 'yellow', src: 'davies-1992' },
+            { id: 'u2l6-08', kind: 'word', tsw: 'borokwa', eng: 'brown', src: 'davies-1992' },
+            { id: 'u2l6-09', kind: 'word', tsw: 'selaole', eng: 'purple', src: 'davies-1992' },
+            { id: 'u2l6-10', kind: 'phrase', tsw: 'Pitse e tshweu', eng: 'A white horse', src: 'beibele', concordSlot: { head: 'Pitse', answer: 'e', options: ['e', 'di', 'o', 'le'], tail: 'tshweu', hint: 'horse — class 9' }, note: '-sweu hardens to tshweu after class 9\'s hidden N. Straight out of Revelation 6.' },
+            { id: 'u2l6-11', kind: 'phrase', tsw: 'Pitse e ntsho', eng: 'A black horse', src: 'beibele' },
+            { id: 'u2l6-12', kind: 'phrase', tsw: 'Tlhale e khibidu', eng: 'A red thread', src: 'beibele', note: '-hibidu hardens to khibidu the same way.' }
+          ]
+        },
+        {
+          id: 'u2l7', title: 'Kwa ngakeng', blurb: 'At the doctor: saying where it hurts.',
+          audioTracks: [{ file: 'lesson22-health.mp3', label: 'Health expressions (native speaker)', src: 'peace-corps-L22' }],
+          items: [
+            { id: 'u2l7-00', kind: 'rule', tsw: '', eng: '', src: 'peace-corps-L22', rule: 'Pain grammar: [body part] + possessive + concord + botlhoko. Mala ame a botlhoko — my stomach hurts (mala is class 6, so its concord is a). Swap the body part and let the concord follow: matlho a gagwe a botlhoko — his/her eyes are sore. This is the whole unit in one pattern: body words + concords + an adjective.' },
+            { id: 'u2l7-01', kind: 'phrase', tsw: 'O ikutlwa jang?', eng: 'How do you feel?', src: 'peace-corps-L13', note: 'go ikutlwa = to feel (yourself). The doctor\'s first question.' },
+            { id: 'u2l7-02', kind: 'phrase', tsw: 'Ke a lwala', eng: 'I am sick', src: 'peace-corps-L22' },
+            { id: 'u2l7-03', kind: 'phrase', tsw: 'Ga ke a tsoga', eng: 'I am not well', src: 'peace-corps-L22', note: 'Lit. "I have not risen" — the flip side of o tsogile jang?' },
+            { id: 'u2l7-04', kind: 'phrase', tsw: 'Ke opiwa ke tlhogo', eng: 'I have a headache', src: 'peace-corps-L22', note: 'Lit. "I am being hit by the head".' },
+            { id: 'u2l7-05', kind: 'phrase', tsw: 'Tlhogo yame e santse e opa', eng: 'My head still aches', src: 'peace-corps-L13', note: 'santse = still.' },
+            { id: 'u2l7-06', kind: 'phrase', tsw: 'Mala ame a botlhoko', eng: 'My stomach hurts', src: 'peace-corps-L22', concordSlot: { head: 'Mala ame', answer: 'a', options: ['a', 'e', 'di', 'o'], tail: 'botlhoko', hint: 'mala — class 6' } },
+            { id: 'u2l7-07', kind: 'phrase', tsw: 'Matlho a gagwe a botlhoko', eng: 'His/her eyes are sore', src: 'peace-corps-L22' },
+            { id: 'u2l7-08', kind: 'word', tsw: 'botlhoko', eng: 'sore / painful', src: 'peace-corps-L22' },
+            { id: 'u2l7-09', kind: 'phrase', tsw: 'O rurugile leoto', eng: 'His/her leg is swollen', src: 'peace-corps-L22', note: 'go ruruga = to swell.' },
+            { id: 'u2l7-10', kind: 'phrase', tsw: 'O ile ngakeng', eng: 'He/she went to the doctor', src: 'peace-corps-L22', note: 'ngaka + -ng = ngakeng, "to the doctor\'s".' },
+            { id: 'u2l7-11', kind: 'phrase', tsw: 'Ke kopa thuso', eng: 'I need help', src: 'peace-corps-L23', note: 'Lit. "I ask for help" — polite and useful everywhere.' }
+          ]
+        }
+      ]
     }
   ],
   // Flavour text — every string sourced from the sentence bank
@@ -142,3 +265,42 @@ const RL_CONTENT = {
     streak: 'Letsatsi le letsatsi'   // "day by day"
   }
 };
+
+// Listening gym — NCHLT Setswana speech corpus (SADiLaR, CC BY 3.0): real native speakers,
+// clips filtered so every word is already-taught vocabulary (toolkit/nchlt-filter.py).
+RL_CONTENT.nchlt = [
+  {id: 'nchlt_tsn_150f_0511', tsw: 'eng mang jang kae leng', audio: 'nchlt/nchlt_tsn_150f_0511.mp3', spk: '150 (female, -1, gauteng)'},
+  {id: 'nchlt_tsn_177m_0531', tsw: 'mang eng kae leng jang', audio: 'nchlt/nchlt_tsn_177m_0531.mp3', spk: '177 (male, -1, gauteng)'},
+  {id: 'nchlt_tsn_066f_0494', tsw: 'motho thata ya go reka', audio: 'nchlt/nchlt_tsn_066f_0494.mp3', spk: '066 (female, 19, gauteng)'},
+  {id: 'nchlt_tsn_090f_0573', tsw: 'leina la gago le a', audio: 'nchlt/nchlt_tsn_090f_0573.mp3', spk: '090 (female, -1, gauteng)'},
+  {id: 'nchlt_tsn_072m_0329', tsw: 'e ka nna ya dira', audio: 'nchlt/nchlt_tsn_072m_0329.mp3', spk: '072 (male, 18, gauteng)'},
+  {id: 'nchlt_tsn_064f_0217', tsw: 'a ka nna a kopa', audio: 'nchlt/nchlt_tsn_064f_0217.mp3', spk: '064 (female, 17, gauteng)'},
+  {id: 'nchlt_tsn_168f_0577', tsw: 're tla tsoga re bona', audio: 'nchlt/nchlt_tsn_168f_0577.mp3', spk: '168 (female, -1, gauteng)'},
+  {id: 'nchlt_tsn_165m_0195', tsw: 'o ka nna wa dira', audio: 'nchlt/nchlt_tsn_165m_0195.mp3', spk: '165 (male, -1, gauteng)'},
+  {id: 'nchlt_tsn_151f_0322', tsw: 'wa rona ke batho ba', audio: 'nchlt/nchlt_tsn_151f_0322.mp3', spk: '151 (female, -1, gauteng)'},
+  {id: 'nchlt_tsn_113f_0194', tsw: 'maina a batho ba ba', audio: 'nchlt/nchlt_tsn_113f_0194.mp3', spk: '113 (female, -1, gauteng)'},
+  {id: 'nchlt_tsn_016m_0331', tsw: 'batho ba le babedi ba', audio: 'nchlt/nchlt_tsn_016m_0331.mp3', spk: '016 (male, 25, north west)'},
+  {id: 'nchlt_tsn_066f_0415', tsw: 'e e leng teng mo', audio: 'nchlt/nchlt_tsn_066f_0415.mp3', spk: '066 (female, 19, gauteng)'},
+  {id: 'nchlt_tsn_089f_0395', tsw: 'ya thata ya go dira', audio: 'nchlt/nchlt_tsn_089f_0395.mp3', spk: '089 (female, 31, gauteng)'},
+  {id: 'nchlt_tsn_086f_0460', tsw: 'teng ga madi se se', audio: 'nchlt/nchlt_tsn_086f_0460.mp3', spk: '086 (female, 33, gauteng)'},
+  {id: 'nchlt_tsn_094m_0275', tsw: 'ya madi go tswa go', audio: 'nchlt/nchlt_tsn_094m_0275.mp3', spk: '094 (male, 21, gauteng)'},
+  {id: 'nchlt_tsn_186f_0178', tsw: 're batla thuso re tla', audio: 'nchlt/nchlt_tsn_186f_0178.mp3', spk: '186 (female, -1, gauteng)'},
+  {id: 'nchlt_tsn_089f_0088', tsw: 'go tswa kwa ngakeng ya', audio: 'nchlt/nchlt_tsn_089f_0088.mp3', spk: '089 (female, 31, gauteng)'},
+  {id: 'nchlt_tsn_023f_0240', tsw: 'go tla tswa mo go', audio: 'nchlt/nchlt_tsn_023f_0240.mp3', spk: '023 (female, 25, north west)'},
+  {id: 'nchlt_tsn_023f_0886', tsw: 'o na le madi a', audio: 'nchlt/nchlt_tsn_023f_0886.mp3', spk: '023 (female, 25, north west)'},
+  {id: 'nchlt_tsn_131f_0575', tsw: 'setswana', audio: 'nchlt/nchlt_tsn_131f_0575.mp3', spk: '131 (female, -1, gauteng)'},
+  {id: 'nchlt_tsn_079m_0319', tsw: 'tsweetswee o se ka wa', audio: 'nchlt/nchlt_tsn_079m_0319.mp3', spk: '079 (male, 20, gauteng)'},
+  {id: 'nchlt_tsn_008f_0407', tsw: 'botswana', audio: 'nchlt/nchlt_tsn_008f_0407.mp3', spk: '008 (female, 20, north west)'},
+  {id: 'nchlt_tsn_086f_0195', tsw: 'le ya bana ba ba', audio: 'nchlt/nchlt_tsn_086f_0195.mp3', spk: '086 (female, 33, gauteng)'},
+  {id: 'nchlt_tsn_077m_0281', tsw: 'ntlo', audio: 'nchlt/nchlt_tsn_077m_0281.mp3', spk: '077 (male, 17, gauteng)'},
+  {id: 'nchlt_tsn_183m_0097', tsw: 'dikgomo', audio: 'nchlt/nchlt_tsn_183m_0097.mp3', spk: '183 (male, -1, gauteng)'},
+  {id: 'nchlt_tsn_167m_0085', tsw: 'bana', audio: 'nchlt/nchlt_tsn_167m_0085.mp3', spk: '167 (male, -1, gauteng)'},
+  {id: 'nchlt_tsn_014f_0430', tsw: 'ba le babedi ba ba', audio: 'nchlt/nchlt_tsn_014f_0430.mp3', spk: '014 (female, 23, north west)'},
+  {id: 'nchlt_tsn_069m_0340', tsw: 'borra', audio: 'nchlt/nchlt_tsn_069m_0340.mp3', spk: '069 (male, 19, gauteng)'},
+  {id: 'nchlt_tsn_087f_0618', tsw: 'ba go ithuta ba ba', audio: 'nchlt/nchlt_tsn_087f_0618.mp3', spk: '087 (female, 35, gauteng)'},
+  {id: 'nchlt_tsn_022m_0447', tsw: 'barutabana', audio: 'nchlt/nchlt_tsn_022m_0447.mp3', spk: '022 (male, -1, north west)'},
+  {id: 'nchlt_tsn_079m_0112', tsw: 'o tla go kopa go', audio: 'nchlt/nchlt_tsn_079m_0112.mp3', spk: '079 (male, 20, gauteng)'},
+  {id: 'nchlt_tsn_084f_0553', tsw: 'ya gago o le kwa', audio: 'nchlt/nchlt_tsn_084f_0553.mp3', spk: '084 (female, -1, gauteng)'},
+  {id: 'nchlt_tsn_139m_0408', tsw: 'ke eng se o se', audio: 'nchlt/nchlt_tsn_139m_0408.mp3', spk: '139 (male, -1, gauteng)'},
+  {id: 'nchlt_tsn_090f_0875', tsw: 'e ka bona go le', audio: 'nchlt/nchlt_tsn_090f_0875.mp3', spk: '090 (female, -1, gauteng)'}
+];

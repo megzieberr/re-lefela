@@ -127,7 +127,31 @@ le (and, with) · mme (but) · kgotsa / kana (or) · jaaka (as/like) · ka jalo 
 - Ke tla go bona (kamoso / kgantele) — see you (tomorrow / later)
 - Intshwarele — excuse me / forgive me; Tsweetswee — please
 
-## 9. Numbers & counting (SECL121 Unit 4 preview)
+## 9. Unit 2 pack: body, adjectives, colours (added 2026-07-16)
+
+**Body parts** (all corpus-verified; full list w/ classes in sentence-bank.tsv): mmele (3, body),
+tlhogo (9, head), sefatlhego (7, face), moriri (3, hair), leitlho/matlho (5/6, eye/s),
+tsebe/ditsebe (9/10, ear/s), nko (9, nose), molomo (3, mouth), leino/meno (tooth/teeth),
+loleme/diteme (11, tongue/s), molala (3, neck), letsogo/mabogo (arm — irregular pl.),
+seatla/diatla (7/8, hand/s), monwana/menwana (3/4, finger/s), mpa (9, belly — homograph: also
+"rather"), mala (6, stomach/insides), pelo (9, heart), leoto/maoto (5/6, leg/s), lonao/dinao (11, foot/feet).
+Pain pattern (PC L22): [body part] + poss + concord + botlhoko — *mala ame a botlhoko*.
+
+**Adjectives** (PC Comprehensive Grammar ch.4): predicate = subject marker + adjective; weak
+adjectives repeat the class prefix (*Dikgomo di bogale* — strong; *Dikgomo di dintle* — weak).
+In a nominal phrase the adjective concord links: *dikgomo tse dintle*. Enumerative: *bana ba le
+babedi*. Common stems: -golo (big), -nnye (small), -leele/-telele (tall/long), khutshwane (short),
+monate (nice/tasty), bogale (fierce), -ntle (beautiful), botlhoko (sore).
+Adverbs follow the verb: sentle (well), thata (very/a lot), tota (really), fela (only), gape (again).
+
+**Colours** (Davies et al. 1992 — field-verified basic terms; abstract bo- forms): bontsho (black),
+bosweu (white), bohibidu (red), **botala = green AND blue** ("grue"; split: botala jwa tlhaga =
+green, botala jwa legodimo = blue), bosetlha (yellow), borokwa (brown), selaole (purple).
+Class 9 attributive: nasal hardens the stem — *pitse e tshweu*, *tlhale e khibidu* (both Beibele
+verbatim). NB the Beibele renders "purple" as borokwa (Rev 17-18); Davies' informants say brown —
+Davies wins until the Smart Guide rules.
+
+## 10. Numbers & counting (SECL121 Unit 4 preview)
 
 0 **lefela** · 1 nngwe · 2 pedi · 3 tharo · 4 nne · 5 tlhano · 6 thataro · 7 supa
 8 robedi (lit. bend two) · 9 robongwe (bend one) · 10 lesome
