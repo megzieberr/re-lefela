@@ -107,6 +107,7 @@ a{color:var(--teal)}
 .katse-wrap.tappable{cursor:pointer}
 .katse{width:76px; height:auto; display:block; transform-origin:50% 100%}
 .katse-home .katse{width:64px}
+.kv-home{aspect-ratio:270/340} .kv-awake{aspect-ratio:340/211} .kv-rest{aspect-ratio:340/239}
 .katse.bounce{animation:katse-bounce .5s ease-out}
 @keyframes katse-bounce{
   0%{transform:translateY(0) scale(1)}
@@ -121,14 +122,6 @@ a{color:var(--teal)}
 .kbubble.show{opacity:1; transform:translateX(-50%) translateY(0)}
 .kbubble::after{content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%);
   border:6px solid transparent; border-top-color:var(--ink)}
-.katse .zz{opacity:0; transform-box:fill-box; transform-origin:center; animation:katse-z 2.7s ease-out infinite}
-.katse .zz.z2{animation-delay:.9s}
-.katse .zz.z3{animation-delay:1.8s}
-@keyframes katse-z{
-  0%{opacity:0; transform:translate(0,3px)}
-  25%{opacity:.85}
-  100%{opacity:0; transform:translate(3px,-9px)}
-}
 </style>
 </head>
 <body>
@@ -276,42 +269,16 @@ function playAudio(file){
 }
 
 /* ---------- Katse the mascot 🐈‍⬛ ---------- */
-function katseSVG(awake){
-  const fur = '#12141d', rim = '#46557f', pink = '#e58fa2';
-  if (awake) return `<svg class="katse" viewBox="0 0 100 100" aria-label="Katse the cat">
-    <path d="M74 82 Q92 76 87 58 Q85 52 80 54 Q77 56 79 61 Q82 72 68 77 Z" fill="${fur}" stroke="${rim}" stroke-width="1.5"/>
-    <ellipse cx="50" cy="74" rx="24" ry="19" fill="${fur}" stroke="${rim}" stroke-width="1.5"/>
-    <path d="M36 26 L30 8 L46 17 Z" fill="${fur}" stroke="${rim}" stroke-width="1.5"/>
-    <path d="M64 26 L70 8 L54 17 Z" fill="${fur}" stroke="${rim}" stroke-width="1.5"/>
-    <path d="M36.5 22 L33 12 L42 17.5 Z" fill="${pink}"/>
-    <path d="M63.5 22 L67 12 L58 17.5 Z" fill="${pink}"/>
-    <circle cx="50" cy="38" r="21" fill="${fur}" stroke="${rim}" stroke-width="1.5"/>
-    <circle cx="42" cy="36" r="5" fill="var(--gold)"/><circle cx="42" cy="36" r="2.3" fill="#12141d"/>
-    <circle cx="58" cy="36" r="5" fill="var(--gold)"/><circle cx="58" cy="36" r="2.3" fill="#12141d"/>
-    <circle cx="43.4" cy="34.4" r="1" fill="#fff" opacity=".9"/><circle cx="59.4" cy="34.4" r="1" fill="#fff" opacity=".9"/>
-    <path d="M48 45 L52 45 L50 48 Z" fill="${pink}"/>
-    <path d="M50 48 Q50 51 46 52 M50 48 Q50 51 54 52" stroke="${rim}" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-    <path d="M30 42 L14 39 M30 46 L15 47 M70 42 L86 39 M70 46 L85 47" stroke="#9aa7c7" stroke-width="1.1" opacity=".75" stroke-linecap="round"/>
-    <ellipse cx="40" cy="91" rx="8" ry="3.5" fill="${fur}" stroke="${rim}" stroke-width="1.2"/>
-    <ellipse cx="60" cy="91" rx="8" ry="3.5" fill="${fur}" stroke="${rim}" stroke-width="1.2"/>
-  </svg>`;
-  return `<svg class="katse" viewBox="0 0 100 100" aria-label="Katse is sleeping">
-    <ellipse cx="50" cy="70" rx="29" ry="17" fill="${fur}" stroke="${rim}" stroke-width="1.5"/>
-    <path d="M22 74 Q16 60 30 58 Q40 57 38 66" fill="${fur}" stroke="${rim}" stroke-width="1.5"/>
-    <circle cx="35" cy="63" r="14" fill="${fur}" stroke="${rim}" stroke-width="1.5"/>
-    <path d="M26 53 L23 43 L33 48 Z" fill="${fur}" stroke="${rim}" stroke-width="1.4"/>
-    <path d="M42 51 L45 42 L35 46 Z" fill="${fur}" stroke="${rim}" stroke-width="1.4"/>
-    <path d="M29 62 Q31.5 64.5 34 62 M38 62 Q40.5 64.5 43 62" stroke="#9aa7c7" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-    <path d="M33.5 68 L36.5 68 L35 70 Z" fill="${pink}"/>
-    <path d="M76 76 Q90 70 84 56 Q82 51 77 53 Q74 55 76 60 Q79 68 68 72 Z" fill="${fur}" stroke="${rim}" stroke-width="1.5"/>
-    <text class="zz z1" x="62" y="42" fill="#9aa7c7" font-size="11" font-weight="700">z</text>
-    <text class="zz z2" x="70" y="32" fill="#9aa7c7" font-size="13" font-weight="700">z</text>
-    <text class="zz z3" x="79" y="21" fill="#9aa7c7" font-size="15" font-weight="700">z</text>
-  </svg>`;
+function katseImg(variant){
+  const src = {home:'img/katse-home.png', awake:'img/katse-awake.png', rest:'img/katse-rest.png'}[variant];
+  const alt = {home:'Katse the cat', awake:'Katse the cat', rest:'Katse resting'}[variant];
+  return `<img class="katse kv-${variant}" src="${src}" alt="${alt}" draggable="false">`;
 }
 function katseHTML(id, awake, extraClass){
-  return `<button class="katse-wrap ${awake?'tappable':''} ${extraClass||''}" id="${id}" aria-label="${awake?'Tap Katse to hear it':'Katse is sleeping'}">
-    <div class="kbubble"></div>${katseSVG(awake)}</button>`;
+  const isHome = (extraClass||'').indexOf('katse-home') !== -1;
+  const variant = isHome ? 'home' : (awake ? 'awake' : 'rest');
+  return `<button class="katse-wrap ${awake?'tappable':''} ${extraClass||''}" id="${id}" aria-label="${awake?'Tap Katse to hear it':'Katse is resting'}">
+    <div class="kbubble"></div>${katseImg(variant)}</button>`;
 }
 function hookKatse(id, getItem){
   const el = document.getElementById(id);

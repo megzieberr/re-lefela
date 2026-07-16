@@ -26,7 +26,7 @@ Round-2 audio is done & live. Open follow-ups:
    (`bala`/`na le` = to-be/to-have) audio is fully tagged but mostly has no cards yet. Building a
    "want" / "to be & have" lesson would light up ~30 + ~12 more clips. Decoded word tables are in
    memory [[relefela-conjugation-audio]]. Her call — it's a content decision.
-3. **Katse redesign** still pinned (see below).
+3. **Katse redesign — DONE & wired 2026-07-16, pending /ship** (see below).
 
 ### ⚠️ Tagger gotcha (critical for any future export)
 Her tagger's localStorage keeps **dropping the Lesson-2 redo** — every export she downloads has 0
@@ -67,10 +67,19 @@ only spoken inside sentences). Don't chase these with the tagger.
 fixed. Latest download: `C:\Users\megzi\Downloads\relefela-audio-mapping-round2 (1).json` (already
 copied into `toolkit/`).
 
-## Katse redesign (step 1 of session 3 brief) — PINNED, do not wire in
-Tried a chibi v2 then a pointy-eared v3 (per her reference cat pics). **She's still not fond of it.**
-Preview at `katse-preview.html` (gitignored). The app still uses the ORIGINAL inline Katse SVG in
-`index.html` (`katseSVG()`). App-logo icons (step 2) depend on her approving a look — not started.
+## Katse redesign — DONE & WIRED (2026-07-16), pending /ship
+She rejected the hand-drawn SVG attempts and supplied her own PNG art (7 poses in `Katse/`, transparent
+RGBA 1080×1350). Approved mapping, now live in `index.html`:
+- **home** mascot = `img/katse-home.png` (7.png, sitting cat) — top-right home corner, tappable
+- **awake** = `img/katse-awake.png` (5.png, peeking over the wall) — teach cards WITH audio
+- **rest** = `img/katse-rest.png` (3.png, draped/winking) — teach cards with NO audio; **no Zzz**
+`katseSVG()` replaced by `katseImg(variant)` + variant-picking `katseHTML()`. Images trimmed to content
+bbox + shrunk to 340px (script logic in session scratchpad; source in `Katse/`). CSS: `.kv-{variant}`
+carry `aspect-ratio` so height is reserved before load (no layout jump). `sw.js` bumped v7→**v8** and the
+3 images added to CORE precache. Verified live via local http server + `?local=1` (DOM/JS — pane can't
+screenshot): home 64×81, awake 76×47 tappable+bounce, all 3 images 200, no console errors.
+Old inline-SVG `katse-preview.html` replaced with an image preview (still gitignored). App-logo icons
+(step 2) can now proceed on the approved look — not started.
 
 ## Also discussed, not built
 - **App "Back" button** — step back to the previous card inside a lesson (to re-check earlier words).
@@ -82,8 +91,11 @@ Preview at `katse-preview.html` (gitignored). The app still uses the ORIGINAL in
 2. (Standing) keepalive Task-Scheduler registration still awaiting her OK.
 3. 2026-07-16: Megan asked for session-starter prompts for the three open build tasks — (a) keepalive
    registration, (b) conjugation lessons L10/L11, (c) in-lesson Back button — each to run as its own
-   session. Katse redesign stays on hold (design-gated). Missing-audio list written to
-   `toolkit/missing-audio.md` (64 items).
+   session. Missing-audio list written to `toolkit/missing-audio.md` (64 items).
+4. **/ship the Katse redesign** — index.html + sw.js (v8) + new `img/` folder (3 PNGs) are edited &
+   verified but NOT committed/pushed. Commit index.html, sw.js, img/katse-{home,awake,rest}.png; the
+   `Katse/` source-art folder + proof PNGs are optional to commit. New dev file
+   `.claude/.claude/launch.json` (python http.server for Preview) — keep or gitignore, her call.
 
 ## Decisions (append-only)
 - 2026-07-16: Do NOT coarsen the slicer for sentence lessons — silence gaps are a continuum (no clean
@@ -92,6 +104,9 @@ Preview at `katse-preview.html` (gitignored). The app still uses the ORIGINAL in
   → per-segment supersede in the export works correctly with no extra "drop-on-redo" change needed.
 - 2026-07-16: Reset progress = clear that round's SRS (bring teach cards back); don't touch XP/streak.
 - 2026-07-16: Katse redesign on hold; original SVG stays in the app until Megan approves a new look.
+- 2026-07-16 (session 5): Katse approved — use HER OWN PNG art (not hand-drawn SVG), as-is (no
+  recolour/redraw). 3 states: home=sitting(7), awake=peek(5), rest=draped(3), no Zzz. Wired into
+  index.html as `<img>`, sw v8. She dislikes AI-drawn cats — always offer to use supplied art first.
 - 2026-07-16 (session 5): Reset done server-side + on-device; re-lefela confirmed ON the Supabase MCP
   (org zlbbzmzdpfwcyyeloedj). pullRemote() merge-never-deletes means a server-only reset silently
   re-syncs from the client — always clear rl_srs on the device too.

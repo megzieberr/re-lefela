@@ -1,6 +1,7 @@
 // Re:Lefela service worker
-const CACHE = 'relefela-v7';
-const CORE = ['./', 'index.html', 'content.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
+const CACHE = 'relefela-v8';
+const CORE = ['./', 'index.html', 'content.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png',
+  'img/katse-home.png', 'img/katse-awake.png', 'img/katse-rest.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
