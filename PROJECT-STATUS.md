@@ -1,6 +1,6 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-16 (session 4 — round-2 audio tagging FINISHED + deployed; sw v7, 88 clips)
+**Updated:** 2026-07-16 (session 5 — Lesson-1 progress reset done; missing-audio list added; MCP note corrected)
 
 ## What this is
 Two-player (Megan + the second learner) Duolingo-style Setswana PWA for NWU SECL121 + life after it.
@@ -14,10 +14,14 @@ All tagger lessons done (5a-c, 6, 7, 10, 11, 12, 13, 18, 20, 22, 23) and deploye
 ## ⏸️ WHERE WE STOPPED — pick up here
 Round-2 audio is done & live. Open follow-ups:
 
-1. **Reset Megan's Lesson-1 progress** (still not done) so she can replay it with the teach cards
-   showing (skipped for words already in her SRS). Delete `srs_items` rows for `u1l1-*` for her user
-   in Supabase `opacjlgljeippheotyhz`. That project is likely NOT on the Supabase MCP (only nwu-hub
-   is) → hand her copy-paste SQL for her dashboard. She does NOT want a reset *feature* in the app.
+1. **Reset Megan's Lesson-1 progress — DONE 2026-07-16 (session 5).** Deleted her 20 `srs_items`
+   rows (`u1l1-*`, which was her *entire* progress) on Supabase `opacjlgljeippheotyhz` via the MCP.
+   Left the second learner (0 rows) + XP/streak untouched. ⚠️ CORRECTION: re-lefela IS on the Supabase MCP
+   (project `opacjlgljeippheotyhz`, org `zlbbzmzdpfwcyyeloedj` — same org as nwu-hub), so no
+   copy-paste SQL was needed. ⚠️ Server delete alone is NOT enough — see the pullRemote merge gotcha
+   below: her device's `rl_srs` localStorage still held the 20 items and would have re-pushed them,
+   so she cleared it on-device with a console snippet (`localStorage.removeItem('rl_srs')` + strip
+   `srs` ops from `rl_queue`, then reload). She does NOT want a reset *feature* in the app.
 2. **Optional new content — conjugation lessons.** L10 (`batla` = want, full 6×6 paradigm) and L11
    (`bala`/`na le` = to-be/to-have) audio is fully tagged but mostly has no cards yet. Building a
    "want" / "to be & have" lesson would light up ~30 + ~12 more clips. Decoded word tables are in
@@ -74,8 +78,12 @@ Preview at `katse-preview.html` (gitignored). The app still uses the ORIGINAL in
   "check the words" need; the Lesson-1 reset above is the quick workaround she asked for instead.
 
 ## Pending on Megan
-1. Finish round-2 tagging (lessons 11/12/13/18/20/22/23 + redo 10), then re-download the mapping.
+1. ~~Finish round-2 tagging~~ DONE (session 4 — all lessons tagged, sw v7, 88 clips).
 2. (Standing) keepalive Task-Scheduler registration still awaiting her OK.
+3. 2026-07-16: Megan asked for session-starter prompts for the three open build tasks — (a) keepalive
+   registration, (b) conjugation lessons L10/L11, (c) in-lesson Back button — each to run as its own
+   session. Katse redesign stays on hold (design-gated). Missing-audio list written to
+   `toolkit/missing-audio.md` (64 items).
 
 ## Decisions (append-only)
 - 2026-07-16: Do NOT coarsen the slicer for sentence lessons — silence gaps are a continuum (no clean
@@ -84,6 +92,9 @@ Preview at `katse-preview.html` (gitignored). The app still uses the ORIGINAL in
   → per-segment supersede in the export works correctly with no extra "drop-on-redo" change needed.
 - 2026-07-16: Reset progress = clear that round's SRS (bring teach cards back); don't touch XP/streak.
 - 2026-07-16: Katse redesign on hold; original SVG stays in the app until Megan approves a new look.
+- 2026-07-16 (session 5): Reset done server-side + on-device; re-lefela confirmed ON the Supabase MCP
+  (org zlbbzmzdpfwcyyeloedj). pullRemote() merge-never-deletes means a server-only reset silently
+  re-syncs from the client — always clear rl_srs on the device too.
 
 ## Gotchas learned
 - SW cache-first serves stale files through hard refresh; tagger now self-unregisters. To bust a
@@ -91,3 +102,8 @@ Preview at `katse-preview.html` (gitignored). The app still uses the ORIGINAL in
 - A tagging redo does nothing to the live app until `export-item-audio.py` runs AND you deploy.
 - Peace Corps audio can't be blind-sliced to phrases; PDF ê/ô normalised to plain e/o everywhere.
 - `?local=1` = offline LocalBackend (skips SW + auth), so it can't test real Supabase progress.
+- pullRemote() MERGES remote SRS/progress into local and never DELETES local items missing from the
+  server (remote only wins when its updated_at is newer). So a server-side progress wipe does nothing
+  on a device that already has the rows cached in `rl_srs` — and the client re-pushes them via the
+  outbox (`rl_queue`). To truly reset progress: clear the server rows AND clear `rl_srs` (+ strip
+  `srs` ops from `rl_queue`) on each device, then reload.
