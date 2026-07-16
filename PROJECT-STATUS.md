@@ -1,6 +1,42 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-16 (session 6 — Katse mascot redesign SHIPPED using Megan's own PNG art; sw v8) · (session 6 audio thread — NCHLT per-word audio tried & ABANDONED; lecturer record-list created; L2/L3 redo confirmed landed) · (session 7 — in-lesson Back button BUILT & SHIPPED, permanent for everyone, sw v9) · (session 8 — typed-sentence verdict bug FIXED + Katse now a permanent bigger corner mascot, sw v10, **SHIPPED & live** commit d32db44)
+**Updated:** 2026-07-17 (session 9 — Katse-as-star + black/white/pink reskin + baby-steps pedagogy engine, sw v11, BUILT & preview-verified, **awaiting Megan's OK to ship**) · previous: session 8 typed-verdict fix + corner Katse (sw v10, live, commit d32db44)
+
+## Session 9 (2026-07-17) — Katse the star + light reskin + baby-steps engine (sw v11, NOT YET SHIPPED)
+Megan asked: (1) make Katse a real feature ("scary Duolingo bird" energy, she should *say* the words),
+maybe reskin the whole app black/white/soft-pink like her; (2) Round 1 is hectic — more scaffolding,
+baby steps, repetition. Both approved with light theme + auto-split parts.
+- **4 new pose PNGs** (same trim-to-bbox + 340px recipe): `katse-happy` (4.png belly-up, celebrations),
+  `katse-curious` (6.png lean-around, teach cards — tall 340×533, corner width capped 84px),
+  `katse-oops` (9.png paws-peek, wrong answers + auth screen), `katse-sleep` (8.png curled, home
+  when today's streak is safe). Script in session scratchpad (`make_poses.py`).
+- **Katse "says" everything:** `playAudio()` now adds a `.talking` sway to the on-screen Katse for the
+  clip's duration; `katseSay(text, audio)` bubbles the Setswana while it plays. Teach/choose/record
+  cards bubble the phrase; listen cards bubble "🎵 …" so the answer isn't spoiled. Reactions in
+  `grade()`: bounce on correct, **happy pose + "✨ N in a row!"** every 3-combo, **oops pose + tilt**
+  on a miss. Home = hero Katse (150px) who greets you with a vetted u1l1 phrase bubble on load
+  (text-only — browsers block un-gestured audio; tap her to hear one).
+- **Reskin:** light paper theme (#fdf7f9 bg, near-black ink, soft pink #f6a8c7 / deep #d76a9b),
+  comic-style 2px black outlines on cards/buttons/audio-btn, pink progress + pills, black streak pill.
+  Kept **green/red for answer feedback** (semantics matter), now as light tints. manifest + meta
+  theme-colour updated. `--gold`→`--pink`, `--teal` gone. App icons still the OLD look — follow-up.
+- **Baby-steps engine** (`buildExercises()` rewrite): words arrive in **batches of 4** (teach×4 →
+  recognition drill each (listen/choose) → build drill each (tap) → per-batch match), 2 warm-up drills
+  of earlier words per batch, closing quiz = one `auto` card per word whose difficulty resolves at
+  render time from live SRS reps: **typing/concord/record gated behind reps ≥ 3**. Misses **re-queue**
+  3–5 cards later as a recognition drill (one retry max, `retry:true`). Lessons with >8 real items
+  **auto-split into balanced parts** (L1: 20 → 7/7/6) — path node shows "Part k of n", header shows a
+  Pk/n pill, mid-lesson finish screen offers "Keep going — Part k+1 ▶" / "That's enough for now";
+  `lessonIdx` only advances on the final part (schema/sync untouched — parts derive from SRS state).
+  Replaying a fully-learned lesson = light 12-card practice mix, not the full build. Review sessions
+  = all-auto (ladder applies). Session-8 verdict debounce + `mountKatseCorner` contract preserved
+  (corner mount now takes an optional pose; teach cards get `curious`).
+- **sw.js v10→v11**, 4 new PNGs added to CORE precache.
+- **Verified in preview** (?local=1, DOM/JS — pane can't screenshot): theme vars live, hero + bubble,
+  L1 splits 7/7/6, session shape teach×4→listen×4→tap×4→match→…→auto×7 (31 cards), retry insert,
+  oops/happy poses + combo bubble, typing gate (fresh word only ever `tap`; after 3 reps typeTsw/record
+  appear), Part-1-done checkpoint (lessonIdx stays 0), home badge "Part 2 of 3", sleep hero, recap/Back
+  works, all 6 pose images 200, 0 console errors. Test localStorage cleared afterwards.
 
 ## Session 8 (2026-07-16) — typed-verdict fix + always-on Katse (sw v10, SHIPPED — commit d32db44, live-verified)
 Megan reported: (a) type-a-sentence cards never show a verdict — "it just goes on"; (b) Katse
@@ -161,6 +197,10 @@ and zero XP-farming.
    `NATIVE-RECORDINGS-NEEDED.md`, then tag them (new voice) & export.
 
 ## Decisions (append-only)
+- 2026-07-17 (session 9): Katse is the app's face — light black/white/soft-pink theme (her art needs a
+  light base; black would swallow her), answer feedback stays green/red tints, big lessons auto-split
+  into parts of ≤8 new words derived from SRS state (NO schema change), typing gated behind reps≥3,
+  misses re-queue once. Duolingo-bird presence = speech bubble + talking sway, not lip-sync.
 - 2026-07-16: Do NOT coarsen the slicer for sentence lessons — silence gaps are a continuum (no clean
   threshold). The Join button handles fragmentation instead; slicing left at 0.35s default.
 - 2026-07-16: We did NOT re-slice lessons 2/3/4, so their round-2 redo seg-indices still match round 1

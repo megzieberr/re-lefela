@@ -4,17 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Re:Lefela — Setswana, starting from zero</title>
-<meta name="theme-color" content="#151c2c">
+<meta name="theme-color" content="#fdf7f9">
+<meta name="color-scheme" content="light">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <style>
 :root{
-  --bg:#151c2c; --bg2:#1d2740; --card:#232f4d; --card2:#2b3a5e;
-  --ink:#eef2fb; --ink-dim:#9aa7c7; --line:#35456e;
-  --gold:#f6b73c; --gold-deep:#d99a1b; --teal:#3ecfb2; --coral:#ff6f61;
-  --good:#4cd684; --bad:#ff6f61; --radius:16px;
-  --shadow:0 6px 18px rgba(0,0,0,.35);
+  /* Katse palette — black, white, soft pink (her ears) */
+  --bg:#fdf7f9; --bg2:#f6e7ee; --card:#ffffff; --card2:#fdeff5;
+  --ink:#1a161d; --ink-dim:#82717c; --line:#eed7e1;
+  --pink:#f6a8c7; --pink-deep:#d76a9b; --coral:#e05d6f;
+  --good:#3db878; --bad:#e05d6f; --radius:16px;
+  --shadow:0 4px 14px rgba(215,106,155,.14);
 }
 *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
 html,body{margin:0; padding:0; background:var(--bg); color:var(--ink);
@@ -23,73 +25,76 @@ body{display:flex; flex-direction:column; align-items:center}
 #app{width:100%; max-width:560px; padding:16px 16px calc(24px + env(safe-area-inset-bottom)); min-height:100vh; position:relative}
 h1,h2,h3{margin:.2em 0}
 button{font:inherit; cursor:pointer; border:none; border-radius:var(--radius); color:var(--ink)}
-.btn{display:block; width:100%; padding:14px 18px; background:var(--card2); font-size:1.05rem; font-weight:600;
-  border-bottom:4px solid var(--line); transition:transform .06s}
+.btn{display:block; width:100%; padding:14px 18px; background:#fff; font-size:1.05rem; font-weight:600;
+  border:2px solid var(--ink); border-bottom-width:4px; transition:transform .06s}
 .btn:active{transform:translateY(2px); border-bottom-width:2px}
-.btn.primary{background:var(--gold); border-bottom-color:var(--gold-deep); color:#241a03}
+.btn.primary{background:var(--pink); border-color:var(--ink); color:var(--ink)}
 .btn.ghost{background:transparent; border:2px solid var(--line)}
 .btn:disabled{opacity:.45; cursor:default}
-.card{background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); margin:10px 0}
-input{width:100%; padding:13px 14px; border-radius:12px; border:2px solid var(--line); background:var(--bg2);
+.card{background:var(--card); border:2px solid var(--ink); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); margin:10px 0}
+input{width:100%; padding:13px 14px; border-radius:12px; border:2px solid var(--line); background:#fff;
   color:var(--ink); font-size:1.05rem; margin:6px 0}
-input:focus{outline:none; border-color:var(--gold)}
+input:focus{outline:none; border-color:var(--pink)}
 .muted{color:var(--ink-dim); font-size:.92rem}
 .tiny{font-size:.8rem; color:var(--ink-dim)}
 .row{display:flex; gap:10px; align-items:center}
 .spread{justify-content:space-between}
 .center{text-align:center}
 .logo{font-weight:800; font-size:1.9rem; letter-spacing:.5px}
-.logo .re{color:var(--teal)} .logo .zero{color:var(--gold)}
+.logo .re{color:var(--ink)} .logo .zero{color:var(--pink-deep)}
 .pill{display:inline-block; padding:3px 12px; border-radius:99px; background:var(--bg2); font-size:.85rem; color:var(--ink-dim)}
-.xppill{background:var(--gold); color:#241a03; font-weight:700}
-.streakpill{background:var(--coral); color:#fff; font-weight:700}
+.xppill{background:var(--pink); color:var(--ink); font-weight:700}
+.streakpill{background:var(--ink); color:#fff; font-weight:700}
 /* home path */
 .lesson-node{display:flex; gap:14px; align-items:center; width:100%; text-align:left;
-  background:var(--card); padding:16px; border-radius:var(--radius); margin:10px 0; border-bottom:4px solid var(--line)}
+  background:var(--card); padding:16px; border-radius:var(--radius); margin:10px 0;
+  border:2px solid var(--line); border-bottom-width:4px}
 .lesson-node.done{border-left:5px solid var(--good)}
 .lesson-node.locked{opacity:.5}
+.lesson-node.next{border-color:var(--ink)}
 .lesson-node .idx{width:44px; height:44px; border-radius:50%; background:var(--bg2); display:flex;
   align-items:center; justify-content:center; font-weight:800; font-size:1.1rem; flex:none}
-.lesson-node.done .idx{background:var(--good); color:#06331a}
-.lesson-node.next .idx{background:var(--gold); color:#241a03}
+.lesson-node.done .idx{background:var(--good); color:#fff}
+.lesson-node.next .idx{background:var(--pink); color:var(--ink)}
 /* exercise area */
 #exArea{min-height:340px; display:flex; flex-direction:column}
 .prompt{font-size:1.35rem; font-weight:700; margin:14px 0}
-.bigtsw{font-size:1.7rem; font-weight:800; color:var(--gold)}
+.bigtsw{font-size:1.7rem; font-weight:800; color:var(--pink-deep)}
 .tokens{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; min-height:52px;
   border-bottom:2px dashed var(--line); padding-bottom:10px}
 .pool{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0}
-.tok{padding:10px 14px; background:var(--card2); border-radius:12px; font-size:1.05rem; font-weight:600;
-  border-bottom:3px solid var(--line)}
+.tok{padding:10px 14px; background:#fff; border-radius:12px; font-size:1.05rem; font-weight:600;
+  border:2px solid var(--line); border-bottom-width:3px; color:var(--ink)}
 .tok.used{opacity:.25; pointer-events:none}
-.choice{display:block; width:100%; text-align:left; padding:13px 16px; margin:7px 0; background:var(--card2);
-  border-radius:12px; font-size:1.05rem; border-bottom:3px solid var(--line)}
-.choice.sel{outline:3px solid var(--gold)}
-.choice.good{background:#1d5c38; border-color:#0f3d23}
-.choice.bad{background:#6e2f33; border-color:#4a1e21}
+.choice{display:block; width:100%; text-align:left; padding:13px 16px; margin:7px 0; background:#fff;
+  border-radius:12px; font-size:1.05rem; border:2px solid var(--line); border-bottom-width:3px}
+.choice.sel{outline:3px solid var(--pink)}
+.choice.good{background:#e0f5e9; border-color:var(--good)}
+.choice.bad{background:#fce4e8; border-color:var(--bad)}
 .matchgrid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:12px 0}
 .matchgrid .tok{text-align:center}
 .tok.matched{opacity:.2; pointer-events:none}
-.tok.selL,.tok.selR{outline:3px solid var(--teal)}
+.tok.selL,.tok.selR{outline:3px solid var(--pink-deep)}
 .feedback{padding:14px; border-radius:var(--radius); margin-top:auto; font-weight:700; font-size:1.1rem}
-.feedback.good{background:#1d5c38} .feedback.bad{background:#6e2f33}
+.feedback.good{background:#e0f5e9; border:2px solid var(--good); color:#14532d}
+.feedback.bad{background:#fce4e8; border:2px solid var(--bad); color:#7f1d2d}
 .progressbar{height:12px; background:var(--bg2); border-radius:99px; overflow:hidden; flex:1}
-.progressbar>div{height:100%; background:var(--gold); border-radius:99px; transition:width .3s}
-.audio-btn{width:56px; height:56px; border-radius:50%; background:var(--teal); color:#04302a;
-  font-size:1.5rem; flex:none; border-bottom:4px solid #2aa38c}
-.rec-btn{background:var(--coral); border-bottom-color:#c94f44; color:#fff}
-.notecard{background:var(--bg2); border-left:4px solid var(--teal); padding:10px 14px; border-radius:8px;
-  margin:10px 0; font-size:.95rem; color:var(--ink-dim)}
-.rulecard{background:linear-gradient(135deg,#233355,#1c2a48); border:1px solid var(--line);
+.progressbar>div{height:100%; background:var(--pink); border-radius:99px; transition:width .3s}
+.audio-btn{width:56px; height:56px; border-radius:50%; background:var(--pink); color:var(--ink);
+  font-size:1.5rem; flex:none; border:2px solid var(--ink); border-bottom-width:4px}
+.rec-btn{background:var(--coral); color:#fff}
+.notecard{background:var(--card2); border-left:4px solid var(--pink); padding:10px 14px; border-radius:8px;
+  margin:10px 0; font-size:.95rem; color:#5f5560}
+.rulecard{background:#fff; border:2px solid var(--ink);
   padding:18px; border-radius:var(--radius); font-size:1.05rem; line-height:1.55}
 .topbar{display:flex; gap:10px; align-items:center; margin-bottom:10px}
 .topbar .quit{background:none; font-size:1.4rem; color:var(--ink-dim); padding:4px 10px; width:auto}
-.lb-row{display:flex; align-items:center; gap:12px; padding:12px 14px; background:var(--card); border-radius:12px; margin:8px 0}
-.lb-row.me{outline:2px solid var(--gold)}
+.lb-row{display:flex; align-items:center; gap:12px; padding:12px 14px; background:#fff; border:2px solid var(--line); border-radius:12px; margin:8px 0}
+.lb-row.me{border-color:var(--ink)}
 .lb-row .name{font-weight:700; flex:1}
 .crown{font-size:1.3rem}
-.toast{position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:var(--coral); color:#fff;
-  padding:12px 20px; border-radius:12px; font-weight:600; box-shadow:var(--shadow); z-index:99; max-width:90vw}
+.toast{position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:var(--ink); color:#fff;
+  border:2px solid var(--pink); padding:12px 20px; border-radius:12px; font-weight:600; box-shadow:var(--shadow); z-index:99; max-width:90vw}
 .hidden{display:none!important}
 .pwrow{position:relative}
 .pwrow input{padding-right:52px}
@@ -98,25 +103,52 @@ input:focus{outline:none; border-color:var(--gold)}
 .fade-in{animation:fadein .25s ease-out}
 @keyframes fadein{from{opacity:0}to{opacity:1}}
 .statgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0}
-.stat{background:var(--card); border-radius:var(--radius); padding:14px; text-align:center}
-.stat b{display:block; font-size:1.5rem; color:var(--gold)}
-a{color:var(--teal)}
+.stat{background:#fff; border:2px solid var(--line); border-radius:var(--radius); padding:14px; text-align:center}
+.stat b{display:block; font-size:1.5rem; color:var(--pink-deep)}
+a{color:var(--pink-deep)}
 /* Katse the mascot 🐈‍⬛ */
 .katse-wrap{position:relative; display:inline-flex; flex-direction:column; align-items:center; flex:none;
   background:none; padding:0; border:none}
 .katse-wrap.tappable{cursor:pointer}
 .katse{width:120px; height:auto; display:block; transform-origin:50% 100%}
-.katse-home .katse{width:96px}
 .kv-home{aspect-ratio:270/340} .kv-awake{aspect-ratio:340/211} .kv-rest{aspect-ratio:340/239}
+.kv-happy{aspect-ratio:340/171} .kv-curious{aspect-ratio:340/533}
+.kv-oops{aspect-ratio:340/238} .kv-sleep{aspect-ratio:340/211}
 /* persistent companion in the bottom-right corner of every lesson card */
 .katse-corner{position:absolute; right:8px; bottom:calc(10px + env(safe-area-inset-bottom)); z-index:4; margin:0}
-@media (max-height:640px){ .katse-corner .katse{width:92px} }
+.katse-corner .katse.kv-curious{width:84px}  /* tall lean-around pose */
+@media (max-height:640px){ .katse-corner .katse{width:92px} .katse-corner .katse.kv-curious{width:68px} }
+/* big Katse on the home screen — her house, we just live here */
+.katse-hero .katse{width:150px}
+.katse-hero .kbubble{left:8px; transform:translateX(0) translateY(4px)}
+.katse-hero .kbubble.show{transform:translateX(0) translateY(0)}
+.katse-hero .kbubble::after{left:64px}
 .katse.bounce{animation:katse-bounce .5s ease-out}
 @keyframes katse-bounce{
   0%{transform:translateY(0) scale(1)}
   30%{transform:translateY(-7px) scale(1.05)}
   60%{transform:translateY(0) scale(.97)}
   100%{transform:translateY(0) scale(1)}
+}
+/* she's talking! gentle sway while a clip plays */
+.katse.talking{animation:katse-talk .45s ease-in-out infinite; transform-origin:50% 90%}
+@keyframes katse-talk{
+  0%,100%{transform:rotate(0)}
+  25%{transform:rotate(-2.5deg)}
+  75%{transform:rotate(2.5deg)}
+}
+.katse.celebrate{animation:katse-pop .6s ease-out}
+@keyframes katse-pop{
+  0%{transform:scale(1)}
+  40%{transform:scale(1.18) rotate(-4deg)}
+  70%{transform:scale(.96) rotate(2deg)}
+  100%{transform:scale(1)}
+}
+.katse.tilt{animation:katse-tilt .7s ease-in-out}
+@keyframes katse-tilt{
+  0%,100%{transform:rotate(0)}
+  30%{transform:rotate(-6deg)}
+  70%{transform:rotate(3deg)}
 }
 .kbubble{position:absolute; bottom:calc(100% + 8px); left:50%; background:var(--ink); color:var(--bg);
   padding:6px 12px; border-radius:12px; font-weight:700; font-size:.95rem; max-width:72vw; text-align:center;
@@ -265,36 +297,68 @@ function unitWordPool(unit){
 /* ---------- audio ---------- */
 let currentAudio = null;
 function playAudio(file){
-  if (!file) return;
+  if (!file) return null;
   if (currentAudio){ currentAudio.pause(); }
   currentAudio = new Audio('audio/'+file);
   currentAudio.play().catch(()=>{});
+  // whatever plays, Katse is the one saying it — sway while the clip runs
+  const img = document.querySelector('#katse-corner .katse, #katse-home .katse');
+  if (img){
+    img.classList.add('talking');
+    const stop = ()=>img.classList.remove('talking');
+    currentAudio.addEventListener('ended', stop);
+    currentAudio.addEventListener('pause', stop);
+    setTimeout(stop, 8000); // safety net if neither event fires
+  }
+  return currentAudio;
 }
 
 /* ---------- Katse the mascot 🐈‍⬛ ---------- */
+const KATSE_POSES = {
+  home:'img/katse-home.png',       // sitting — her home screen
+  awake:'img/katse-awake.png',     // peeking over the wall — card has audio
+  rest:'img/katse-rest.png',       // draped, winking — no audio here
+  happy:'img/katse-happy.png',     // belly-up — celebration
+  curious:'img/katse-curious.png', // leaning around the corner — new word!
+  oops:'img/katse-oops.png',       // big peek with paws — sympathetic miss
+  sleep:'img/katse-sleep.png'      // curled up — today's streak is safe
+};
 function katseImg(variant){
-  const src = {home:'img/katse-home.png', awake:'img/katse-awake.png', rest:'img/katse-rest.png'}[variant];
-  const alt = {home:'Katse the cat', awake:'Katse the cat', rest:'Katse resting'}[variant];
-  return `<img class="katse kv-${variant}" src="${src}" alt="${alt}" draggable="false">`;
+  return `<img class="katse kv-${variant}" src="${KATSE_POSES[variant]}" alt="Katse the cat" draggable="false">`;
 }
-function katseHTML(id, awake, extraClass){
-  const isHome = (extraClass||'').indexOf('katse-home') !== -1;
-  const variant = isHome ? 'home' : (awake ? 'awake' : 'rest');
+function katseHTML(id, awake, extraClass, pose){
+  const isHome = (extraClass||'').indexOf('katse-h') !== -1; // katse-home or katse-hero
+  const variant = pose || (isHome ? 'home' : (awake ? 'awake' : 'rest'));
   return `<button class="katse-wrap ${awake?'tappable':''} ${extraClass||''}" id="${id}" aria-label="${awake?'Tap Katse to hear it':'Katse is resting'}">
     <div class="kbubble"></div>${katseImg(variant)}</button>`;
+}
+/* the on-screen Katse right now (corner during lessons, hero on home) */
+function katseWrapEl(){ return document.getElementById('katse-corner') || document.getElementById('katse-home'); }
+function katseBubble(text, ms){
+  const el = katseWrapEl(); if (!el) return;
+  const bub = el.querySelector('.kbubble'); if (!bub) return;
+  bub.textContent = text; bub.classList.add('show');
+  clearTimeout(bub._t); bub._t = setTimeout(()=>bub.classList.remove('show'), ms||2600);
+}
+function katseSay(text, audioFile){ if (text) katseBubble(text); if (audioFile) playAudio(audioFile); }
+function katseSetPose(pose){
+  const el = katseWrapEl(); const img = el && el.querySelector('.katse');
+  if (!img) return;
+  img.src = KATSE_POSES[pose]; img.className = 'katse kv-'+pose;
+}
+function katseAnim(cls){
+  const el = katseWrapEl(); const img = el && el.querySelector('.katse');
+  if (!img) return;
+  img.classList.remove('bounce','celebrate','tilt'); void img.offsetWidth; img.classList.add(cls);
 }
 function hookKatse(id, getItem){
   const el = document.getElementById(id);
   if (!el) return;
-  const bub = el.querySelector('.kbubble');
   el.onclick = ()=>{
     const it = typeof getItem === 'function' ? getItem() : getItem;
     if (!it || !it.audio) return;
-    playAudio(it.audio);
-    const svg = el.querySelector('.katse');
-    svg.classList.remove('bounce'); void svg.offsetWidth; svg.classList.add('bounce');
-    bub.textContent = it.tsw; bub.classList.add('show');
-    clearTimeout(bub._t); bub._t = setTimeout(()=>bub.classList.remove('show'), 2200);
+    katseAnim('bounce');
+    katseSay(it.tsw, it.audio);
   };
 }
 function voicedItems(){
@@ -304,13 +368,13 @@ function voicedItems(){
 }
 /* Persistent corner mascot — kept on EVERY lesson/recap card so Katse never vanishes.
    Awake & tappable (plays the clip) when the card has audio; resting otherwise. */
-function mountKatseCorner(it){
+function mountKatseCorner(it, pose){
   if (session && session.gym) return;
   const app = document.getElementById('app');
   if (!app) return;
   const old = document.getElementById('katse-corner'); if (old) old.remove();
   const audio = !!(it && it.audio);
-  app.insertAdjacentHTML('beforeend', katseHTML('katse-corner', audio, 'katse-corner'));
+  app.insertAdjacentHTML('beforeend', katseHTML('katse-corner', audio, 'katse-corner', pose));
   if (audio) hookKatse('katse-corner', it);
 }
 
@@ -319,7 +383,10 @@ function render(html){ $app.innerHTML = '<div class="fade-in">'+html+'</div>'; }
 
 function screenAuth(msg){
   render(`
-    <div class="center" style="margin-top:8vh">
+    <div class="center" style="margin-top:5vh">
+      <div style="display:flex; justify-content:center">
+        <img class="katse kv-oops" src="img/katse-oops.png" style="width:150px" alt="Katse peeking" draggable="false">
+      </div>
       <div class="logo"><span class="re">Re:</span><span class="zero">Lefela</span></div>
       <p class="muted">Setswana, starting from zero. Together.</p>
     </div>
@@ -408,14 +475,20 @@ async function pullRemote(){
 
 function screenHome(){
   const due = dueItems().length;
+  const doneToday = state.streak.last === todayStr();
   const unitsHtml = RL_CONTENT.units.map(unit=>{
     const prog = state.progress[unit.id] || {lessonIdx:0, completed:false};
     const nodes = unit.lessons.map((l, i)=>{
       const cls = i < prog.lessonIdx ? 'done' : i === prog.lessonIdx ? 'next' : 'locked';
       const icon = i < prog.lessonIdx ? '✓' : (i+1);
+      let partBadge = '';
+      if (cls === 'next' && lessonParts(l) > 1){
+        const k = firstOpenPart(l);
+        if (k >= 0) partBadge = ` <span class="pill" style="font-size:.75rem">Part ${k+1} of ${lessonParts(l)}</span>`;
+      }
       return `<button class="lesson-node ${cls}" data-u="${unit.id}" data-i="${i}" ${cls==='locked'?'disabled':''}>
         <div class="idx">${icon}</div>
-        <div><b>${esc(l.title)}</b><br><span class="muted">${esc(l.blurb)}</span></div>
+        <div><b>${esc(l.title)}</b>${partBadge}<br><span class="muted">${esc(l.blurb)}</span></div>
       </button>`;
     }).join('');
     return `<h3 style="margin-top:20px">${esc(unit.title)} <span class="muted" style="font-weight:400;font-size:.85rem">— ${esc(unit.subtitle)}</span></h3>${nodes}`;
@@ -430,9 +503,12 @@ function screenHome(){
         <span class="pill xppill">⭐ ${state.xpTotal} XP</span>
       </div>
     </div>
-    <div class="row spread" style="margin-top:14px">
-      <h2 style="margin:0">${esc(RL_CONTENT.flavour.greeting)}, ${esc(state.user.display)}!</h2>
-      ${katseHTML('katse-home', voicedItems().length > 0, 'katse-home')}
+    <div class="row" style="margin-top:48px; align-items:flex-end; gap:6px">
+      ${katseHTML('katse-home', voicedItems().length > 0, 'katse-hero', doneToday ? 'sleep' : 'home')}
+      <div style="padding-bottom:10px">
+        <h2 style="margin:0">${esc(RL_CONTENT.flavour.greeting)}, ${esc(state.user.display)}!</h2>
+        <p class="muted" style="margin:4px 0 0">${doneToday ? 'Streak safe — Katse is napping happy.' : 'Katse has been waiting for you.'}</p>
+      </div>
     </div>
     ${due>0?`<button class="btn primary" id="b-review" style="margin:10px 0">🔁 ${esc(RL_CONTENT.flavour.review)} — review ${due} item${due>1?'s':''}</button>`:''}
     ${gym}
@@ -446,6 +522,9 @@ function screenHome(){
     n.onclick = ()=> startLesson(RL_CONTENT.units.find(u=>u.id===n.dataset.u), parseInt(n.dataset.i,10));
   });
   hookKatse('katse-home', ()=>pick(voicedItems()));
+  // she greets you when you walk in — a real course phrase, tap her to hear one
+  const greetings = voicedItems().filter(v=>v.id.indexOf('u1l1')===0);
+  if (greetings.length && !doneToday) setTimeout(()=>katseBubble(pick(greetings).tsw, 3400), 600);
   const rv = document.getElementById('b-review'); if (rv) rv.onclick = startReview;
   const gy = document.getElementById('b-gym'); if (gy) gy.onclick = startGym;
   document.getElementById('b-lb').onclick = screenLeaderboard;
@@ -565,43 +644,102 @@ function screenStats(){
   document.getElementById('b-logout').onclick = async ()=>{ if(sb) await sb.auth.signOut(); localStorage.removeItem('rl_lastUser'); location.reload(); };
 }
 
-/* ---------- lesson & exercise generation ---------- */
+/* ---------- lesson & exercise generation ----------
+   Baby-steps engine (2026-07-17): new words arrive in batches of 4, each batch
+   is drilled easy-first (recognition → build), typing is gated until a word has
+   proven itself (reps ≥ 3), misses re-queue later in the session (see grade()),
+   and big lessons split into parts of at most 8 new words per sitting. */
+const PART_MAX = 8, BATCH = 4;
+function realOf(items){ return items.filter(i=>i.kind!=='rule'); }
+function lessonParts(lesson){ const n = realOf(lesson.items).length; return n > PART_MAX ? Math.ceil(n/PART_MAX) : 1; }
+function partSlices(lesson){
+  // slice lesson.items in order; each part gets its share of real items, rules travel with the word that follows them
+  const total = lessonParts(lesson);
+  if (total === 1) return [lesson.items];
+  const reals = realOf(lesson.items).length;
+  const base = Math.floor(reals/total), extra = reals % total;
+  const want = Array.from({length: total}, (_,i)=> base + (i < extra ? 1 : 0));
+  const parts = []; let cur = [], k = 0, count = 0;
+  for (const it of lesson.items){
+    cur.push(it);
+    if (it.kind !== 'rule' && ++count === want[k]){ parts.push(cur); cur = []; count = 0; k++; }
+  }
+  if (cur.length) parts[parts.length-1].push(...cur); // trailing rules stay with the last part
+  return parts;
+}
+function firstOpenPart(lesson){
+  const parts = partSlices(lesson);
+  for (let i=0;i<parts.length;i++) if (realOf(parts[i]).some(it=>!state.srs[it.id])) return i;
+  return -1; // every word already met
+}
+/* the difficulty ladder */
+function tier0(it){ return it.audio ? pick(['listen','choose']) : 'choose'; }        // recognition
+function tier1(it){                                                                  // build / recall
+  if (it.tsw.split(/\s+/).length > 1) return 'tap';
+  return it.audio ? pick(['listen','choose']) : 'choose';
+}
+function pickAutoType(it){
+  // production (typing, concords, speaking) only once a word has proven itself
+  const reps = (state.srs[it.id] || {}).reps || 0;
+  if (reps < 3) return tier1(it);
+  const types = [tier1(it)];
+  types.push(it.tsw.split(/\s+/).length === 1 ? 'typeEng' : 'typeTsw');
+  if (it.concordSlot) types.push('concord');
+  if (it.audio) types.push('record');
+  return pick(types);
+}
 function buildExercises(items, isReview, tracks){
-  const real = items.filter(i=>i.kind!=='rule');
+  if (isReview) return shuffle(realOf(items)).map(it=>({type:'auto', item:it}));
   const seq = [];
-  if (!isReview){
-    for (const it of items){
-      if (it.kind==='rule') seq.push({type:'rule', item:it});
-      else if (!state.srs[it.id]) seq.push({type:'teach', item:it});
-    }
-    if (tracks && tracks.length) seq.push({type:'dialogue', tracks});
+  const earlier = [];   // words from batches already drilled this session
+  let intro = [], batch = [];
+  const flushBatch = ()=>{
+    seq.push(...intro); intro = [];
+    if (!batch.length) return;
+    for (const it of shuffle(batch)) seq.push({type: tier0(it), item: it});
+    for (const it of shuffle(batch)) seq.push({type: tier1(it), item: it});
+    for (const it of shuffle(earlier).slice(0,2)) seq.push({type: tier0(it), item: it}); // keep earlier words warm
+    if (batch.length >= 4) seq.push({type:'match', items: batch.slice(0,4)});
+    earlier.push(...batch); batch = [];
+  };
+  for (const it of items){
+    if (it.kind === 'rule'){ intro.push({type:'rule', item:it}); continue; }
+    if (!state.srs[it.id]) intro.push({type:'teach', item:it});
+    batch.push(it);
+    if (batch.length === BATCH) flushBatch();
   }
-  const introCount = seq.length; // teach/rule/dialogue cards end here
-  const pool = shuffle(real);
-  const per = isReview ? pool : pool.concat(shuffle(real).slice(0, Math.ceil(real.length/2))); // 1.5 passes
-  for (const it of per){
-    const types = ['tap','choose'];
-    if (it.tsw.split(/\s+/).length===1) types.push('typeEng');
-    else types.push('typeTsw');
-    if (it.concordSlot) types.push('concord');
-    if (it.audio){ types.push('listen'); types.push('record'); }
-    seq.push({type:pick(types), item:it});
-  }
-  // one match block per session, placed after the intro cards + a few drills
-  if (real.length >= 4) seq.splice(Math.min(introCount + 3, seq.length), 0, {type:'match', items:shuffle(real).slice(0,4)});
+  flushBatch();
+  if (tracks && tracks.length) seq.push({type:'dialogue', tracks});
+  for (const it of shuffle(earlier)) seq.push({type:'auto', item:it}); // closing quiz — difficulty scales with reps
   return seq;
 }
 
 let session = null;
 function startLesson(unit, idx){
   const lesson = unit.lessons[idx];
-  session = {unit, lessonIdx:idx, ex:buildExercises(lesson.items, false, lesson.audioTracks), at:0, maxAt:0, right:0, wrong:0, isReview:false};
+  const total = lessonParts(lesson);
+  let items = lesson.items, part = null, tracks = lesson.audioTracks;
+  const allMet = realOf(lesson.items).every(it=>state.srs[it.id]);
+  if (allMet){
+    // replaying a finished lesson → light practice mix, not the full build
+    session = {unit, lessonIdx:idx, ex:buildExercises(shuffle(realOf(lesson.items)).slice(0,12), true),
+      at:0, maxAt:0, right:0, wrong:0, combo:0, isReview:false, part:null};
+    return runExercise();
+  }
+  if (total > 1){
+    const k = firstOpenPart(lesson);
+    const parts = partSlices(lesson);
+    items = parts[k];
+    part = {idx:k, total};
+    if (k < total-1) tracks = null; // the lesson's dialogue plays in the final part
+  }
+  session = {unit, lessonIdx:idx, ex:buildExercises(items, false, tracks), at:0, maxAt:0, right:0, wrong:0, combo:0, isReview:false, part};
   runExercise();
 }
 function startReview(){
   const due = shuffle(dueItems()).slice(0, 15);
   if (!due.length) return;
-  session = {unit:null, lessonIdx:null, ex:buildExercises(due, true), at:0, maxAt:0, right:0, wrong:0, isReview:true};
+  session = {unit:null, lessonIdx:null, ex:buildExercises(due, true), at:0, maxAt:0, right:0, wrong:0, combo:0, isReview:true, part:null};
   runExercise();
 }
 
@@ -611,6 +749,7 @@ function exHeader(){
   return `<div class="topbar">
     ${back}<button class="quit" id="b-quit">✕</button>
     <div class="progressbar"><div style="width:${pct}%"></div></div>
+    ${session.part?`<span class="pill">P${session.part.idx+1}/${session.part.total}</span>`:''}
     <span class="pill">${session.at+1}/${session.ex.length}</span>
   </div>`;
 }
@@ -620,6 +759,7 @@ function runExercise(){
   if (session.at > session.maxAt) session.maxAt = session.at;   // only forward-answering pushes the high-water mark
   if (session.at < session.maxAt) return runRecap();            // revisiting an already-done card → read-only, no scoring
   const ex = session.ex[session.at];
+  if (ex.type === 'auto') ex.type = pickAutoType(ex.item);      // ladder decides now, using live rep counts
   const it = ex.item;
   const H = exHeader();
   if (ex.type==='rule'){
@@ -640,7 +780,6 @@ function runExercise(){
       <p class="tiny">source: ${esc(it.src)}</p>
       <button class="btn primary" id="b-next" style="margin-top:auto">Continue</button></div>`);
     hookQuit(); hookPlay(it);
-    if (it.audio) playAudio(it.audio);
     document.getElementById('b-next').onclick = ()=>{ srsGrade(it.id, true); session.at++; runExercise(); };
   }
   else if (ex.type==='tap'){
@@ -678,7 +817,7 @@ function runExercise(){
       <div class="row"><div class="bigtsw">${esc(it.tsw)}</div>${it.audio?`<button class="audio-btn" id="b-play">🔊</button>`:''}</div>
       ${opts.map(o=>`<button class="choice" data-id="${o.id}">${esc(o.eng)}</button>`).join('')}
       <div style="margin-top:auto"></div></div>`);
-    hookQuit(); hookPlay(it); if (it.audio) playAudio(it.audio);
+    hookQuit(); hookPlay(it);
     document.querySelectorAll('.choice').forEach(c=>{
       c.onclick = ()=>{
         const ok = c.dataset.id === it.id;
@@ -735,7 +874,7 @@ function runExercise(){
       <div class="center" style="margin:14px 0"><button class="audio-btn" id="b-play" style="width:80px;height:80px;font-size:2rem">🔊</button></div>
       ${opts.map(o=>`<button class="choice" data-id="${o.id}">${esc(o.tsw)}</button>`).join('')}
       <div style="margin-top:auto"></div></div>`);
-    hookQuit(); hookPlay(it); playAudio(it.audio);
+    hookQuit(); hookPlay(it);
     document.querySelectorAll('.choice').forEach(c=>{
       c.onclick = ()=>{
         const ok = c.dataset.id === it.id;
@@ -757,7 +896,7 @@ function runExercise(){
       </div>
       <button class="btn primary" id="b-next" style="margin-top:auto">Sounds close — continue</button>
       <button class="btn ghost" id="b-skip" style="margin-top:8px">Skip speaking</button></div>`);
-    hookQuit(); hookPlay(it); playAudio(it.audio);
+    hookQuit(); hookPlay(it);
     let rec = null, chunks = [], myUrl = null, recording = false;
     const stat = document.getElementById('rec-status');
     const bMine = document.getElementById('b-mine');
@@ -850,7 +989,13 @@ function runExercise(){
       };
     });
   }
-  mountKatseCorner(it);   // Katse stays in the corner on every card, not just the teach cards
+  // Katse stays in the corner on every card — curious for new words, and she
+  // "says" each clip herself: bubble + talking sway, synced to the audio.
+  mountKatseCorner(it, ex.type==='teach' ? 'curious' : undefined);
+  if (it && it.audio){
+    if (ex.type==='listen') katseSay('🎵 …', it.audio);                        // don't spoil the answer
+    else if (ex.type==='teach' || ex.type==='choose' || ex.type==='record') katseSay(it.tsw, it.audio);
+  }
 }
 function runRecap(){
   // Read-only view of an already-completed card, reached via the Back button.
@@ -915,6 +1060,19 @@ function grade(ok, it, given, silent, close){
   srsGrade(it.id, ok);
   if (ok){ session.right++; addXP(close?8:10, session.isReview?'review':'lesson'); }
   else session.wrong++;
+  // Katse reacts — and a missed word quietly comes back for another go later
+  session.combo = ok ? (session.combo||0)+1 : 0;
+  if (ok){
+    if (session.combo % 3 === 0){ katseSetPose('happy'); katseAnim('celebrate'); katseBubble('✨ '+session.combo+' in a row!'); }
+    else katseAnim('bounce');
+  } else {
+    katseSetPose('oops'); katseAnim('tilt');
+    const cur = session.ex[session.at];
+    if (cur && cur.item && !cur.retry){
+      const pos = Math.min(session.ex.length, session.at + 3 + Math.floor(Math.random()*3));
+      session.ex.splice(pos, 0, {type: tier0(cur.item), item: cur.item, retry: true});
+    }
+  }
   const area = document.getElementById('exArea');
   const fb = document.createElement('div');
   fb.className = 'feedback ' + (ok?'good':'bad');
@@ -934,9 +1092,11 @@ function grade(ok, it, given, silent, close){
 }
 
 function finishSession(){
+  const part = session.part;
+  const lastPart = !part || part.idx === part.total - 1;
   const bonus = session.isReview ? 10 : 20;
   addXP(bonus, session.isReview?'review-done':'lesson-done');
-  if (!session.isReview){
+  if (!session.isReview && lastPart && session.unit){
     const prog = state.progress[session.unit.id] || {lessonIdx:0, completed:false};
     if (session.lessonIdx === prog.lessonIdx){
       prog.lessonIdx++;
@@ -946,7 +1106,27 @@ function finishSession(){
     }
   }
   const acc = session.right + session.wrong === 0 ? 100 : Math.round(100*session.right/(session.right+session.wrong));
-  render(`<div class="center" style="margin-top:12vh">
+  const kat = `<div style="display:flex; justify-content:center; margin-bottom:8px">
+    <img class="katse kv-happy celebrate" src="${KATSE_POSES.happy}" style="width:190px" alt="Katse celebrating" draggable="false"></div>`;
+  if (!lastPart){
+    // a part in the middle of a big lesson — checkpoint, then her choice
+    render(`<div class="center" style="margin-top:9vh">
+      ${kat}
+      <h1 style="font-size:2rem">Part ${part.idx+1} of ${part.total} — done!</h1>
+      <p class="muted">New words in the bag. The next part waits whenever you're ready.</p>
+      <div class="statgrid" style="margin-top:20px">
+        <div class="stat"><b>+${session.right*10 + bonus}</b>XP-ish earned</div>
+        <div class="stat"><b>${acc}%</b>accuracy</div>
+      </div>
+      <button class="btn primary" id="b-more" style="margin-top:16px">Keep going — Part ${part.idx+2} ▶</button>
+      <button class="btn ghost" id="b-home" style="margin-top:8px">That's enough for now</button>
+    </div>`);
+    document.getElementById('b-more').onclick = ()=>startLesson(session.unit, session.lessonIdx);
+    document.getElementById('b-home').onclick = screenHome;
+    return;
+  }
+  render(`<div class="center" style="margin-top:9vh">
+    ${kat}
     <h1 style="font-size:2.2rem">${esc(RL_CONTENT.flavour.lessonDone)}</h1>
     <p class="muted">"You did well." — and you did.</p>
     <div class="statgrid" style="margin-top:20px">
