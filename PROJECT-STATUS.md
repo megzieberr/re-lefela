@@ -1,38 +1,39 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-16 (session 3 — per-item audio round 2: tagger overhaul + Katse redesign attempt)
+**Updated:** 2026-07-16 (session 4 — round-2 audio tagging FINISHED + deployed; sw v7, 88 clips)
 
 ## What this is
 Two-player (Megan + the second learner) Duolingo-style Setswana PWA for NWU SECL121 + life after it.
 Live: https://megzieberr.github.io/re-lefela/ · Supabase `re-lefela` (opacjlgljeippheotyhz, Uni Hub org).
 
-## State: v2 LIVE (Units 1 + 2 + Listening gym). Session 3 work is NOT deployed yet.
-The live site is unchanged from session 2. Everything below (Katse redesign, round-2 audio) is
-work-in-progress on disk / in the tagger, not on the site.
+## State: LIVE — round-2 per-item audio COMPLETE (sw `relefela-v7`, 88 item clips wired).
+All tagger lessons done (5a-c, 6, 7, 10, 11, 12, 13, 18, 20, 22, 23) and deployed to GitHub Pages.
 
 ---
 
 ## ⏸️ WHERE WE STOPPED — pick up here
-Megan wants to **check whether Lesson 1's audio now works** (in the app, u1l1 greetings, a few words
-had Katse asleep = no clip). She redid tagger lessons 2–4, which *should* fix it — but that redo is
-only in her tagger download, **not deployed**. To let her verify, the next session must:
+Round-2 audio is done & live. Open follow-ups:
 
-1. **Run the export** (her round-2 mapping is already copied to `toolkit/audio-mapping-round2.json`):
-   `python toolkit/export-item-audio.py` — regenerates `audio/items/*.mp3` + rewires `content.js`.
-   - Before/after check: which `u1l1`/`u1l2`/`u1l3` items are voiced vs sleeping. A ready scratch
-     script pattern: regex `\{ id: '(u1l[1-4]-\d+)',( audio:)?` over content.js. **Verify coverage
-     goes UP, not down** (her redo could in theory un-wire a clip if she junked a segment round 1 had
-     tagged) before deploying — this affects the second learner's app too.
-2. **Deploy**: bump `sw.js` cache (currently `relefela-v4` → v5), commit, push (GitHub Pages).
-3. **Reset her Lesson-1 progress** so she can replay it with the teach cards showing (they're skipped
-   for words already in her SRS). Delete `srs_items` rows for the `u1l1-*` items for her user, in
-   Supabase `opacjlgljeippheotyhz`. **Check if that project is on the Supabase MCP** — likely NOT
-   (only nwu-hub is), so hand her copy-paste SQL for her Supabase dashboard SQL editor.
-   - Done lessons are already clickable/replayable; the ONLY reason a reset is needed is to bring the
-     teach cards (word + meaning + Katse) back for already-learned words.
+1. **Reset Megan's Lesson-1 progress** (still not done) so she can replay it with the teach cards
+   showing (skipped for words already in her SRS). Delete `srs_items` rows for `u1l1-*` for her user
+   in Supabase `opacjlgljeippheotyhz`. That project is likely NOT on the Supabase MCP (only nwu-hub
+   is) → hand her copy-paste SQL for her dashboard. She does NOT want a reset *feature* in the app.
+2. **Optional new content — conjugation lessons.** L10 (`batla` = want, full 6×6 paradigm) and L11
+   (`bala`/`na le` = to-be/to-have) audio is fully tagged but mostly has no cards yet. Building a
+   "want" / "to be & have" lesson would light up ~30 + ~12 more clips. Decoded word tables are in
+   memory [[relefela-conjugation-audio]]. Her call — it's a content decision.
+3. **Katse redesign** still pinned (see below).
 
-She explicitly does **not** want a reset *feature* built in the app — "just reset lesson 1 for me."
-Reset her data directly; don't build UI for it.
+### ⚠️ Tagger gotcha (critical for any future export)
+Her tagger's localStorage keeps **dropping the Lesson-2 redo** — every export she downloads has 0
+lesson-2 tags. Deploying one raw DELETES 3 live clips (u1l1-13/15/19). **Always splice the L2 redo
+back from the committed `toolkit/audio-mapping-round2.json` (git HEAD) before running the export.**
+Per-lesson raw exports from this session are backed up in the session scratchpad.
+
+### Cards intentionally left silent (no Peace Corps audio exists — need native recordings)
+u1l7-07 "Ga ke batle tee" (tea), u1l7-08 "Ga ba bue Sekgoa" (English), u1l6-09 "Ke batla kofi"
+(coffee — audio only says *o rata kofi?*), and L22 body-part vocab (tlhogo/mala/leoto/botlhoko,
+only spoken inside sentences). Don't chase these with the tagger.
 
 ## Session 3 — what got built (mostly in the local-only tagger)
 
