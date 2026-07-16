@@ -17,11 +17,27 @@ ROOT = Path(__file__).resolve().parent.parent
 AUDIO_DIR = ROOT / 'corpus' / 'audio'
 OUT = Path(__file__).resolve().parent / 'segments.json'
 
+# Round-1 lessons (2/3/4/8) stay in the output so the tagger's "revisit skips"
+# entries can resolve their file + segment titles. Lesson 5 ships as three parts;
+# the tagger maps '5a'/'5b'/'5c' back to L5 items via its baseLesson() helper.
 LESSONS = {
     '2': 'BW_Setswana_Lesson_2.mp3',
     '3': 'BW_Setswana_Lesson_3.mp3',
     '4': 'BW_Setswana_Lesson_4.mp3',
+    '5a': 'BW_Setswana_Lesson_5_Part_1.mp3',
+    '5b': 'BW_Setswana_Lesson_5_Part_2.mp3',
+    '5c': 'BW_Setswana_Lesson_5_Part_3.mp3',
+    '6': 'BW_Setswana_Lesson_6.mp3',
+    '7': 'BW_Setswana_Lesson_7.mp3',
     '8': 'BW_Setswana_Lesson_8.mp3',
+    '10': 'BW_Setswana_Lesson_10.mp3',
+    '11': 'BW_Setswana_Lesson_11.mp3',
+    '12': 'BW_Setswana_Lesson_12.mp3',
+    '13': 'BW_Setswana_Lesson_13.mp3',
+    '18': 'BW_Setswana_Lesson_18.mp3',
+    '20': 'BW_Setswana_Lesson_20.mp3',
+    '22': 'BW_Setswana_Lesson_22.mp3',
+    '23': 'BW_Setswana_Lesson_23.mp3',
 }
 
 NOISE_DB = '-30dB'

@@ -3,6 +3,9 @@ corpus/
 tagger.html
 toolkit/segments.json
 toolkit/segments.js
+toolkit/__pycache__/
+# Katse v2 design WIP (pinned 2026-07-16; approve before wiring into the app)
+katse-preview.html
 *.zip
 *.wav
 node_modules/
