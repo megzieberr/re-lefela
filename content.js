@@ -47,7 +47,7 @@ const RL_CONTENT = {
             { id: 'u1l2-01', kind: 'phrase', tsw: 'Leina lame ke Megan', eng: 'My name is Megan', src: 'peace-corps-L3', note: 'leina = name (class 5), lame = my, ke = is.' },
             { id: 'u1l2-02', audio: 'items/u1l2-02.mp3', kind: 'phrase', tsw: 'Leina la gago ke mang?', eng: 'What is your name?', src: 'peace-corps-L3', note: 'mang = who — Setswana asks "your name is who?"' },
             { id: 'u1l2-03', audio: 'items/u1l2-03.mp3', kind: 'phrase', tsw: 'Sefane same ke Moeng', eng: 'My surname is Moeng', src: 'peace-corps-L3', note: 'sefane = surname (class 7).' },
-            { id: 'u1l2-04', kind: 'phrase', tsw: 'O mang?', eng: 'Who are you?', src: 'peace-corps-L12' },
+            { id: 'u1l2-04', audio: 'items/u1l2-04.mp3', kind: 'phrase', tsw: 'O mang?', eng: 'Who are you?', src: 'peace-corps-L12' },
             { id: 'u1l2-05', kind: 'phrase', tsw: 'Ke tswa kwa Botswana', eng: 'I am from Botswana', src: 'peace-corps-L3', note: 'go tswa = to come from; kwa points to a place.' },
             { id: 'u1l2-10', audio: 'items/u1l2-10.mp3', kind: 'phrase', tsw: 'Ke tswa kwa…', eng: 'I am from…', src: 'peace-corps-L3', note: 'The frame — drop in any place: kwa Amerika, kwa Potchefstroom.' },
             { id: 'u1l2-06', audio: 'items/u1l2-06.mp3', kind: 'phrase', tsw: 'O tswa kae?', eng: 'Where are you from?', src: 'peace-corps-L3', note: 'kae = where.' },
@@ -101,7 +101,7 @@ const RL_CONTENT = {
             { id: 'u1l5-06', audio: 'items/u1l5-06.mp3', kind: 'word', tsw: 'ntlo', eng: 'house', src: 'peace-corps-L18', cls: 9, plural: 'dintlo' },
             { id: 'u1l5-07', kind: 'word', tsw: 'leina', eng: 'name', src: 'peace-corps-L3', cls: 5, plural: 'maina', note: 'le- → ma-: maina = names.' },
             { id: 'u1l5-08', audio: 'items/u1l5-08.mp3', kind: 'word', tsw: 'lebati', eng: 'door', src: 'peace-corps-L7', cls: 5, plural: 'mabati' },
-            { id: 'u1l5-09', kind: 'word', tsw: 'sekolo', eng: 'school', src: 'peace-corps-L18', cls: 7, plural: 'dikolo' },
+            { id: 'u1l5-09', audio: 'items/u1l5-09.mp3', kind: 'word', tsw: 'sekolo', eng: 'school', src: 'peace-corps-L18', cls: 7, plural: 'dikolo' },
             { id: 'u1l5-10', kind: 'word', tsw: 'lelapa', eng: 'family / home', src: 'peace-corps-L15', cls: 5 }
           ]
         },
@@ -120,7 +120,7 @@ const RL_CONTENT = {
             { id: 'u1l6-09', kind: 'phrase', tsw: 'Ke batla kofi', eng: 'I want coffee', src: 'peace-corps-L13', note: 'Object follows, so no "a": not "ke a batla kofi".' },
             { id: 'u1l6-10', audio: 'items/u1l6-10.mp3', kind: 'phrase', tsw: 'O ya kae?', eng: 'Where are you going?', src: 'peace-corps-L6' },
             { id: 'u1l6-11', audio: 'items/u1l6-11.mp3', kind: 'phrase', tsw: 'Ke ya lapeng', eng: 'I am going home', src: 'peace-corps-L6', note: 'lelapa (home) + -eng = lapeng, "to/at home".' },
-            { id: 'u1l6-12', kind: 'phrase', tsw: 'Ke tlhoka madi', eng: 'I need money', src: 'peace-corps-L13', note: 'go tlhoka = to need; madi = money.' }
+            { id: 'u1l6-12', audio: 'items/u1l6-12.mp3', kind: 'phrase', tsw: 'Ke tlhoka madi', eng: 'I need money', src: 'peace-corps-L13', note: 'go tlhoka = to need; madi = money.' }
           ]
         },
         {
@@ -131,7 +131,7 @@ const RL_CONTENT = {
             { id: 'u1l7-01', audio: 'items/u1l7-01.mp3', kind: 'phrase', tsw: 'Ga ke batle', eng: 'I do not want', src: 'peace-corps-L10' },
             { id: 'u1l7-02', audio: 'items/u1l7-02.mp3', kind: 'phrase', tsw: 'Ga a je', eng: 'He/she does not eat', src: 'peace-corps-L6', note: 'Note the concord: o becomes a in the negative.' },
             { id: 'u1l7-03', audio: 'items/u1l7-03.mp3', kind: 'phrase', tsw: 'Ga ke rate kofi', eng: 'I don\'t like coffee', src: 'peace-corps-L6', note: 'go rata = to like/love; rata → rate.' },
-            { id: 'u1l7-04', kind: 'phrase', tsw: 'Ga ke itse', eng: 'I do not know', src: 'peace-corps-L13', note: 'The most useful sentence in any language.' },
+            { id: 'u1l7-04', audio: 'items/u1l7-04.mp3', kind: 'phrase', tsw: 'Ga ke itse', eng: 'I do not know', src: 'peace-corps-L13', note: 'The most useful sentence in any language.' },
             { id: 'u1l7-05', audio: 'items/u1l7-05.mp3', kind: 'phrase', tsw: 'Ga ke tlhaloganye', eng: 'I don\'t understand', src: 'peace-corps-L6' },
             { id: 'u1l7-06', kind: 'phrase', tsw: 'Nnyaa, ga ke na mathata', eng: 'No, I don\'t have a problem', src: 'peace-corps-L6', note: 'ga ke na = I don\'t have.' },
             { id: 'u1l7-07', kind: 'phrase', tsw: 'Ga ke batle tee', eng: 'I don\'t want tea', src: 'peace-corps-L10+L14', note: 'Built from Ga ke batle + tee (both sourced).' },
@@ -173,7 +173,7 @@ const RL_CONTENT = {
             { id: 'u2l2-06', kind: 'word', tsw: 'pelo', eng: 'heart', src: 'beibele+nt-parallel', cls: 9, plural: 'dipelo', note: 'Pelo-khutshwane, "short heart" = short-tempered. Setswana anatomy has opinions.' },
             { id: 'u2l2-07', kind: 'word', tsw: 'leoto', eng: 'leg', src: 'peace-corps-L22', cls: 5, plural: 'maoto' },
             { id: 'u2l2-08', kind: 'word', tsw: 'lonao', eng: 'foot', src: 'beibele', cls: 11, plural: 'dinao', note: 'You met dinao in Unit 1: Ema ka dinao — stand on your feet.' },
-            { id: 'u2l2-09', kind: 'phrase', tsw: 'Ema ka dinao', eng: 'Stand up', src: 'peace-corps-L12', note: 'Lit. "stand on feet" — now you know why.' }
+            { id: 'u2l2-09', audio: 'items/u2l2-09.mp3', kind: 'phrase', tsw: 'Ema ka dinao', eng: 'Stand up', src: 'peace-corps-L12', note: 'Lit. "stand on feet" — now you know why.' }
           ]
         },
         {
@@ -181,15 +181,15 @@ const RL_CONTENT = {
           audioTracks: [{ file: 'lesson12-questions.mp3', label: 'Questions & commands (native speaker)', src: 'peace-corps-L12' }],
           items: [
             { id: 'u2l3-00', kind: 'rule', tsw: '', eng: '', src: 'peace-corps-L12', rule: 'Question words sit where the answer would sit — no word-order gymnastics: O batla eng? = "You want WHAT?". And any statement becomes a yes/no question by putting A in front: A o tswa kwa Amerika? For "why", Setswana says go reng / ka go reng.' },
-            { id: 'u2l3-01', kind: 'phrase', tsw: 'Ke eng?', eng: 'What is it?', src: 'peace-corps-L12', note: 'eng = what.' },
-            { id: 'u2l3-02', kind: 'phrase', tsw: 'O tsile leng?', eng: 'When did you come?', src: 'peace-corps-L12', note: 'leng = when.' },
-            { id: 'u2l3-03', kind: 'phrase', tsw: 'Go reng?', eng: 'Why?', src: 'peace-corps-L12', note: 'Also ka go reng — lit. "for saying what?"' },
-            { id: 'u2l3-04', kind: 'phrase', tsw: 'O batla efe?', eng: 'Which one do you want?', src: 'peace-corps-L12', note: 'efe = which (one thing).' },
-            { id: 'u2l3-05', kind: 'phrase', tsw: 'O batla dife?', eng: 'Which ones do you want?', src: 'peace-corps-L12', note: 'dife = which (plural).' },
-            { id: 'u2l3-06', kind: 'phrase', tsw: 'O batla eng?', eng: 'What do you want?', src: 'peace-corps-L13' },
-            { id: 'u2l3-07', kind: 'phrase', tsw: 'Ke bokae?', eng: 'How much is it?', src: 'peace-corps-L20', note: 'bokae = how much/many.' },
+            { id: 'u2l3-01', audio: 'items/u2l3-01.mp3', kind: 'phrase', tsw: 'Ke eng?', eng: 'What is it?', src: 'peace-corps-L12', note: 'eng = what.' },
+            { id: 'u2l3-02', audio: 'items/u2l3-02.mp3', kind: 'phrase', tsw: 'O tsile leng?', eng: 'When did you come?', src: 'peace-corps-L12', note: 'leng = when.' },
+            { id: 'u2l3-03', audio: 'items/u2l3-03.mp3', kind: 'phrase', tsw: 'Go reng?', eng: 'Why?', src: 'peace-corps-L12', note: 'Also ka go reng — lit. "for saying what?"' },
+            { id: 'u2l3-04', audio: 'items/u2l3-04.mp3', kind: 'phrase', tsw: 'O batla efe?', eng: 'Which one do you want?', src: 'peace-corps-L12', note: 'efe = which (one thing).' },
+            { id: 'u2l3-05', audio: 'items/u2l3-05.mp3', kind: 'phrase', tsw: 'O batla dife?', eng: 'Which ones do you want?', src: 'peace-corps-L12', note: 'dife = which (plural).' },
+            { id: 'u2l3-06', audio: 'items/u2l3-06.mp3', kind: 'phrase', tsw: 'O batla eng?', eng: 'What do you want?', src: 'peace-corps-L13' },
+            { id: 'u2l3-07', audio: 'items/u2l3-07.mp3', kind: 'phrase', tsw: 'Ke bokae?', eng: 'How much is it?', src: 'peace-corps-L20', note: 'bokae = how much/many.' },
             { id: 'u2l3-08', audio: 'items/u2l3-08.mp3', kind: 'phrase', tsw: 'A o na le dipotso?', eng: 'Do you have any questions?', src: 'peace-corps-L6', note: 'A + statement = yes/no question. dipotso = questions.' },
-            { id: 'u2l3-09', kind: 'phrase', tsw: 'O batla go dira eng jaanong?', eng: 'What do you want to do now?', src: 'peace-corps-L13', note: 'jaanong = now.' }
+            { id: 'u2l3-09', audio: 'items/u2l3-09.mp3', kind: 'phrase', tsw: 'O batla go dira eng jaanong?', eng: 'What do you want to do now?', src: 'peace-corps-L13', note: 'jaanong = now.' }
           ]
         },
         {
@@ -248,17 +248,17 @@ const RL_CONTENT = {
           audioTracks: [{ file: 'lesson22-health.mp3', label: 'Health expressions (native speaker)', src: 'peace-corps-L22' }],
           items: [
             { id: 'u2l7-00', kind: 'rule', tsw: '', eng: '', src: 'peace-corps-L22', rule: 'Pain grammar: [body part] + possessive + concord + botlhoko. Mala ame a botlhoko — my stomach hurts (mala is class 6, so its concord is a). Swap the body part and let the concord follow: matlho a gagwe a botlhoko — his/her eyes are sore. This is the whole unit in one pattern: body words + concords + an adjective.' },
-            { id: 'u2l7-01', kind: 'phrase', tsw: 'O ikutlwa jang?', eng: 'How do you feel?', src: 'peace-corps-L13', note: 'go ikutlwa = to feel (yourself). The doctor\'s first question.' },
-            { id: 'u2l7-02', kind: 'phrase', tsw: 'Ke a lwala', eng: 'I am sick', src: 'peace-corps-L22' },
-            { id: 'u2l7-03', kind: 'phrase', tsw: 'Ga ke a tsoga', eng: 'I am not well', src: 'peace-corps-L22', note: 'Lit. "I have not risen" — the flip side of o tsogile jang?' },
-            { id: 'u2l7-04', kind: 'phrase', tsw: 'Ke opiwa ke tlhogo', eng: 'I have a headache', src: 'peace-corps-L22', note: 'Lit. "I am being hit by the head".' },
-            { id: 'u2l7-05', kind: 'phrase', tsw: 'Tlhogo yame e santse e opa', eng: 'My head still aches', src: 'peace-corps-L13', note: 'santse = still.' },
-            { id: 'u2l7-06', kind: 'phrase', tsw: 'Mala ame a botlhoko', eng: 'My stomach hurts', src: 'peace-corps-L22', concordSlot: { head: 'Mala ame', answer: 'a', options: ['a', 'e', 'di', 'o'], tail: 'botlhoko', hint: 'mala — class 6' } },
-            { id: 'u2l7-07', kind: 'phrase', tsw: 'Matlho a gagwe a botlhoko', eng: 'His/her eyes are sore', src: 'peace-corps-L22' },
+            { id: 'u2l7-01', audio: 'items/u2l7-01.mp3', kind: 'phrase', tsw: 'O ikutlwa jang?', eng: 'How do you feel?', src: 'peace-corps-L13', note: 'go ikutlwa = to feel (yourself). The doctor\'s first question.' },
+            { id: 'u2l7-02', audio: 'items/u2l7-02.mp3', kind: 'phrase', tsw: 'Ke a lwala', eng: 'I am sick', src: 'peace-corps-L22' },
+            { id: 'u2l7-03', audio: 'items/u2l7-03.mp3', kind: 'phrase', tsw: 'Ga ke a tsoga', eng: 'I am not well', src: 'peace-corps-L22', note: 'Lit. "I have not risen" — the flip side of o tsogile jang?' },
+            { id: 'u2l7-04', audio: 'items/u2l7-04.mp3', kind: 'phrase', tsw: 'Ke opiwa ke tlhogo', eng: 'I have a headache', src: 'peace-corps-L22', note: 'Lit. "I am being hit by the head".' },
+            { id: 'u2l7-05', audio: 'items/u2l7-05.mp3', kind: 'phrase', tsw: 'Tlhogo yame e santse e opa', eng: 'My head still aches', src: 'peace-corps-L13', note: 'santse = still.' },
+            { id: 'u2l7-06', audio: 'items/u2l7-06.mp3', kind: 'phrase', tsw: 'Mala ame a botlhoko', eng: 'My stomach hurts', src: 'peace-corps-L22', concordSlot: { head: 'Mala ame', answer: 'a', options: ['a', 'e', 'di', 'o'], tail: 'botlhoko', hint: 'mala — class 6' } },
+            { id: 'u2l7-07', audio: 'items/u2l7-07.mp3', kind: 'phrase', tsw: 'Matlho a gagwe a botlhoko', eng: 'His/her eyes are sore', src: 'peace-corps-L22' },
             { id: 'u2l7-08', kind: 'word', tsw: 'botlhoko', eng: 'sore / painful', src: 'peace-corps-L22' },
-            { id: 'u2l7-09', kind: 'phrase', tsw: 'O rurugile leoto', eng: 'His/her leg is swollen', src: 'peace-corps-L22', note: 'go ruruga = to swell.' },
-            { id: 'u2l7-10', kind: 'phrase', tsw: 'O ile ngakeng', eng: 'He/she went to the doctor', src: 'peace-corps-L22', note: 'ngaka + -ng = ngakeng, "to the doctor\'s".' },
-            { id: 'u2l7-11', kind: 'phrase', tsw: 'Ke kopa thuso', eng: 'I need help', src: 'peace-corps-L23', note: 'Lit. "I ask for help" — polite and useful everywhere.' }
+            { id: 'u2l7-09', audio: 'items/u2l7-09.mp3', kind: 'phrase', tsw: 'O rurugile leoto', eng: 'His/her leg is swollen', src: 'peace-corps-L22', note: 'go ruruga = to swell.' },
+            { id: 'u2l7-10', audio: 'items/u2l7-10.mp3', kind: 'phrase', tsw: 'O ile ngakeng', eng: 'He/she went to the doctor', src: 'peace-corps-L22', note: 'ngaka + -ng = ngakeng, "to the doctor\'s".' },
+            { id: 'u2l7-11', audio: 'items/u2l7-11.mp3', kind: 'phrase', tsw: 'Ke kopa thuso', eng: 'I need help', src: 'peace-corps-L23', note: 'Lit. "I ask for help" — polite and useful everywhere.' }
           ]
         }
       ]
