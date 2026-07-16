@@ -23,21 +23,21 @@ const RL_CONTENT = {
             { id: 'u1l1-03', audio: 'items/u1l1-03.mp3', kind: 'phrase', tsw: 'Dumelang borra le bomma', eng: 'Good day, ladies and gentlemen', src: 'peace-corps-L2', note: 'Dumela → Dumelang when greeting more than one person.' },
             { id: 'u1l1-04', audio: 'items/u1l1-04.mp3', kind: 'phrase', tsw: 'O tsogile jang?', eng: 'How are you?', src: 'peace-corps-L2', note: 'Literally "how have you risen?" — a morning-flavoured how-are-you.' },
             { id: 'u1l1-05', audio: 'items/u1l1-05.mp3', kind: 'phrase', tsw: 'Ke tsogile sentle', eng: 'I am well', src: 'peace-corps-L2', note: 'sentle = well/nicely. Lit. "I have risen well."' },
-            { id: 'u1l1-13', kind: 'phrase', tsw: 'Ke tsogile sentle, wena o tsogile jang?', eng: 'I am well — and how are you?', src: 'peace-corps-L2', note: 'The natural reply chain: answer, then bounce the question back with wena (you).' },
+            { id: 'u1l1-13', audio: 'items/u1l1-13.mp3', kind: 'phrase', tsw: 'Ke tsogile sentle, wena o tsogile jang?', eng: 'I am well — and how are you?', src: 'peace-corps-L2', note: 'The natural reply chain: answer, then bounce the question back with wena (you).' },
             { id: 'u1l1-18', audio: 'items/u1l1-18.mp3', kind: 'phrase', tsw: 'Wena o tsogile jang?', eng: 'And how are you?', src: 'peace-corps-L2', note: 'wena = you (emphatic) — bounces the question back.' },
             { id: 'u1l1-14', audio: 'items/u1l1-14.mp3', kind: 'phrase', tsw: 'Le tsogile jang?', eng: 'How are you? (to a group)', src: 'peace-corps-L2', note: 'O → Le when asking more than one person.' },
-            { id: 'u1l1-17', audio: 'items/u1l1-17.mp3', kind: 'phrase', tsw: 'Re tsogile sentle', eng: 'We are well', src: 'peace-corps-L2', note: 'The group answers with re (we).' },
-            { id: 'u1l1-15', kind: 'phrase', tsw: 'Re tsogile sentle, wena o tsogile jang?', eng: 'We are well — and how are you?', src: 'peace-corps-L2', note: 'Answer for the group, then bounce the question back.' },
+            { id: 'u1l1-17', kind: 'phrase', tsw: 'Re tsogile sentle', eng: 'We are well', src: 'peace-corps-L2', note: 'The group answers with re (we).' },
+            { id: 'u1l1-15', audio: 'items/u1l1-15.mp3', kind: 'phrase', tsw: 'Re tsogile sentle, wena o tsogile jang?', eng: 'We are well — and how are you?', src: 'peace-corps-L2', note: 'Answer for the group, then bounce the question back.' },
             { id: 'u1l1-06', audio: 'items/u1l1-06.mp3', kind: 'phrase', tsw: 'Le kae?', eng: 'How are you? (informal)', src: 'peace-corps-L2', note: 'Literally "where are you (all)?" — the casual greeting.' },
             { id: 'u1l1-07', kind: 'phrase', tsw: 'Ke teng', eng: 'I am fine', src: 'peace-corps-L2', note: 'teng = present/there. "I am around" = I\'m fine.' },
             { id: 'u1l1-16', audio: 'items/u1l1-16.mp3', kind: 'phrase', tsw: 'Re teng, a lona le teng?', eng: 'We are fine — are you all well?', src: 'peace-corps-L2', note: 'Informal reply to Le kae?. Lit. "we are there — are you (all) there?"' },
             { id: 'u1l1-20', audio: 'items/u1l1-20.mp3', kind: 'phrase', tsw: 'Re teng', eng: 'We are fine', src: 'peace-corps-L2', note: 'Ke teng = I\'m fine, Re teng = we\'re fine — same teng, different concord.' },
             { id: 'u1l1-08', kind: 'phrase', tsw: 'Re a leboga', eng: 'Thank you (we thank)', src: 'peace-corps-L2' },
-            { id: 'u1l1-19', kind: 'phrase', tsw: 'Ke a leboga', eng: 'Thank you (I thank)', src: 'peace-corps-L2+beibele', note: 'ke = I, re = we — same thanks, different thanker.' },
-            { id: 'u1l1-09', kind: 'phrase', tsw: 'Ke itumetse', eng: 'Thank you / I am glad', src: 'peace-corps-L6', note: 'From go itumela, to be happy.' },
-            { id: 'u1l1-10', kind: 'word', tsw: 'Tsweetswee', eng: 'Please', src: 'peace-corps-L6' },
-            { id: 'u1l1-11', kind: 'word', tsw: 'Ee', eng: 'Yes', src: 'peace-corps-L6' },
-            { id: 'u1l1-12', kind: 'word', tsw: 'Nnyaa', eng: 'No', src: 'peace-corps-L6' }
+            { id: 'u1l1-19', audio: 'items/u1l1-19.mp3', kind: 'phrase', tsw: 'Ke a leboga', eng: 'Thank you (I thank)', src: 'peace-corps-L2+beibele', note: 'ke = I, re = we — same thanks, different thanker.' },
+            { id: 'u1l1-09', audio: 'items/u1l1-09.mp3', kind: 'phrase', tsw: 'Ke itumetse', eng: 'Thank you / I am glad', src: 'peace-corps-L6', note: 'From go itumela, to be happy.' },
+            { id: 'u1l1-10', audio: 'items/u1l1-10.mp3', kind: 'word', tsw: 'Tsweetswee', eng: 'Please', src: 'peace-corps-L6' },
+            { id: 'u1l1-11', audio: 'items/u1l1-11.mp3', kind: 'word', tsw: 'Ee', eng: 'Yes', src: 'peace-corps-L6' },
+            { id: 'u1l1-12', audio: 'items/u1l1-12.mp3', kind: 'word', tsw: 'Nnyaa', eng: 'No', src: 'peace-corps-L6' }
           ]
         },
         {
@@ -53,7 +53,7 @@ const RL_CONTENT = {
             { id: 'u1l2-06', audio: 'items/u1l2-06.mp3', kind: 'phrase', tsw: 'O tswa kae?', eng: 'Where are you from?', src: 'peace-corps-L3', note: 'kae = where.' },
             { id: 'u1l2-07', audio: 'items/u1l2-07.mp3', kind: 'phrase', tsw: 'A o tswa kwa Amerika?', eng: 'Are you from America?', src: 'peace-corps-L3', note: 'Starting a sentence with "A" turns it into a yes/no question.' },
             { id: 'u1l2-08', audio: 'items/u1l2-08.mp3', kind: 'phrase', tsw: 'Leina la gagwe ke Thabo', eng: 'His/her name is Thabo', src: 'peace-corps-L3', note: 'gago = your, gagwe = his/her.' },
-            { id: 'u1l2-09', kind: 'phrase', tsw: 'Ke ithuta Setswana', eng: 'I am learning Setswana', src: 'peace-corps-L6', note: 'go ithuta = to learn. The sentence you\'ll say most this semester.' }
+            { id: 'u1l2-09', audio: 'items/u1l2-09.mp3', kind: 'phrase', tsw: 'Ke ithuta Setswana', eng: 'I am learning Setswana', src: 'peace-corps-L6', note: 'go ithuta = to learn. The sentence you\'ll say most this semester.' }
           ]
         },
         {
@@ -67,8 +67,8 @@ const RL_CONTENT = {
             { id: 'u1l3-05', audio: 'items/u1l3-05.mp3', kind: 'phrase', tsw: 'Tlhola sentle', eng: 'Have a good day', src: 'peace-corps-L4', note: 'Lit. "spend the day well".' },
             { id: 'u1l3-06', audio: 'items/u1l3-06.mp3', kind: 'phrase', tsw: 'Robala sentle', eng: 'Good night (sleep well)', src: 'peace-corps-L4' },
             { id: 'u1l3-07', audio: 'items/u1l3-07.mp3', kind: 'word', tsw: 'Boroko', eng: 'Good night', src: 'peace-corps-L4', note: 'Short version — just "sleep".' },
-            { id: 'u1l3-08', kind: 'word', tsw: 'Intshwarele', eng: 'Excuse me / forgive me', src: 'peace-corps-L6' },
-            { id: 'u1l3-09', kind: 'phrase', tsw: 'Bua ka bonya', eng: 'Speak slowly', src: 'peace-corps-L6', note: 'Your survival phrase for the whole semester.' }
+            { id: 'u1l3-08', audio: 'items/u1l3-08.mp3', kind: 'word', tsw: 'Intshwarele', eng: 'Excuse me / forgive me', src: 'peace-corps-L6' },
+            { id: 'u1l3-09', audio: 'items/u1l3-09.mp3', kind: 'phrase', tsw: 'Bua ka bonya', eng: 'Speak slowly', src: 'peace-corps-L6', note: 'Your survival phrase for the whole semester.' }
           ]
         },
         {
@@ -96,11 +96,11 @@ const RL_CONTENT = {
             { id: 'u1l5-01', kind: 'word', tsw: 'motho', eng: 'person', src: 'grammar-toolkit', cls: 1, plural: 'batho', note: 'mo- (person, singular) → ba- (plural): batho = people.' },
             { id: 'u1l5-02', kind: 'word', tsw: 'batho', eng: 'people', src: 'grammar-toolkit', cls: 2, note: 'Plural of motho.' },
             { id: 'u1l5-03', audio: 'items/u1l5-03.mp3', kind: 'word', tsw: 'Setswana', eng: 'the Setswana language', src: 'module-doc', cls: 7, note: 'se- marks languages and cultures: Setswana, Sekgoa (English)…' },
-            { id: 'u1l5-04', kind: 'word', tsw: 'setilo', eng: 'chair', src: 'peace-corps-L7', cls: 7, plural: 'ditilo', note: 'se- → di-: ditilo = chairs.' },
-            { id: 'u1l5-05', kind: 'word', tsw: 'buka', eng: 'book', src: 'peace-corps-L7', cls: 9, plural: 'dibuka' },
+            { id: 'u1l5-04', audio: 'items/u1l5-04.mp3', kind: 'word', tsw: 'setilo', eng: 'chair', src: 'peace-corps-L7', cls: 7, plural: 'ditilo', note: 'se- → di-: ditilo = chairs.' },
+            { id: 'u1l5-05', audio: 'items/u1l5-05.mp3', kind: 'word', tsw: 'buka', eng: 'book', src: 'peace-corps-L7', cls: 9, plural: 'dibuka' },
             { id: 'u1l5-06', audio: 'items/u1l5-06.mp3', kind: 'word', tsw: 'ntlo', eng: 'house', src: 'peace-corps-L18', cls: 9, plural: 'dintlo' },
             { id: 'u1l5-07', kind: 'word', tsw: 'leina', eng: 'name', src: 'peace-corps-L3', cls: 5, plural: 'maina', note: 'le- → ma-: maina = names.' },
-            { id: 'u1l5-08', kind: 'word', tsw: 'lebati', eng: 'door', src: 'peace-corps-L7', cls: 5, plural: 'mabati' },
+            { id: 'u1l5-08', audio: 'items/u1l5-08.mp3', kind: 'word', tsw: 'lebati', eng: 'door', src: 'peace-corps-L7', cls: 5, plural: 'mabati' },
             { id: 'u1l5-09', kind: 'word', tsw: 'sekolo', eng: 'school', src: 'peace-corps-L18', cls: 7, plural: 'dikolo' },
             { id: 'u1l5-10', kind: 'word', tsw: 'lelapa', eng: 'family / home', src: 'peace-corps-L15', cls: 5 }
           ]
@@ -109,17 +109,17 @@ const RL_CONTENT = {
           id: 'u1l6', title: 'Ke a ja!', blurb: 'Verbs and your first real sentences.',
           items: [
             { id: 'u1l6-00', kind: 'rule', tsw: '', eng: '', src: 'grammar-toolkit', rule: 'Verbs are named with go: go ja = to eat, go nwa = to drink. To say a present-tense sentence: concord + a + verb when nothing follows (Ke a ja — I am eating), and drop the "a" when an object follows (Ke ja borotho — I eat bread).' },
-            { id: 'u1l6-01', kind: 'verb', tsw: 'go ja', eng: 'to eat', src: 'peace-corps-L5' },
-            { id: 'u1l6-02', kind: 'verb', tsw: 'go nwa', eng: 'to drink', src: 'peace-corps-L5' },
-            { id: 'u1l6-03', kind: 'verb', tsw: 'go bua', eng: 'to speak', src: 'peace-corps-L5' },
-            { id: 'u1l6-04', kind: 'verb', tsw: 'go ya', eng: 'to go', src: 'peace-corps-L5' },
-            { id: 'u1l6-05', kind: 'verb', tsw: 'go batla', eng: 'to want', src: 'peace-corps-L5' },
-            { id: 'u1l6-06', kind: 'verb', tsw: 'go reka', eng: 'to buy', src: 'peace-corps-L5' },
-            { id: 'u1l6-07', kind: 'verb', tsw: 'go ithuta', eng: 'to learn / study', src: 'peace-corps-L5' },
-            { id: 'u1l6-08', kind: 'phrase', tsw: 'Ke a ja', eng: 'I am eating', src: 'peace-corps-L6' },
+            { id: 'u1l6-01', audio: 'items/u1l6-01.mp3', kind: 'verb', tsw: 'go ja', eng: 'to eat', src: 'peace-corps-L5' },
+            { id: 'u1l6-02', audio: 'items/u1l6-02.mp3', kind: 'verb', tsw: 'go nwa', eng: 'to drink', src: 'peace-corps-L5' },
+            { id: 'u1l6-03', audio: 'items/u1l6-03.mp3', kind: 'verb', tsw: 'go bua', eng: 'to speak', src: 'peace-corps-L5' },
+            { id: 'u1l6-04', audio: 'items/u1l6-04.mp3', kind: 'verb', tsw: 'go ya', eng: 'to go', src: 'peace-corps-L5' },
+            { id: 'u1l6-05', audio: 'items/u1l6-05.mp3', kind: 'verb', tsw: 'go batla', eng: 'to want', src: 'peace-corps-L5' },
+            { id: 'u1l6-06', audio: 'items/u1l6-06.mp3', kind: 'verb', tsw: 'go reka', eng: 'to buy', src: 'peace-corps-L5' },
+            { id: 'u1l6-07', audio: 'items/u1l6-07.mp3', kind: 'verb', tsw: 'go ithuta', eng: 'to learn / study', src: 'peace-corps-L5' },
+            { id: 'u1l6-08', audio: 'items/u1l6-08.mp3', kind: 'phrase', tsw: 'Ke a ja', eng: 'I am eating', src: 'peace-corps-L6' },
             { id: 'u1l6-09', kind: 'phrase', tsw: 'Ke batla kofi', eng: 'I want coffee', src: 'peace-corps-L13', note: 'Object follows, so no "a": not "ke a batla kofi".' },
-            { id: 'u1l6-10', kind: 'phrase', tsw: 'O ya kae?', eng: 'Where are you going?', src: 'peace-corps-L6' },
-            { id: 'u1l6-11', kind: 'phrase', tsw: 'Ke ya lapeng', eng: 'I am going home', src: 'peace-corps-L6', note: 'lelapa (home) + -eng = lapeng, "to/at home".' },
+            { id: 'u1l6-10', audio: 'items/u1l6-10.mp3', kind: 'phrase', tsw: 'O ya kae?', eng: 'Where are you going?', src: 'peace-corps-L6' },
+            { id: 'u1l6-11', audio: 'items/u1l6-11.mp3', kind: 'phrase', tsw: 'Ke ya lapeng', eng: 'I am going home', src: 'peace-corps-L6', note: 'lelapa (home) + -eng = lapeng, "to/at home".' },
             { id: 'u1l6-12', kind: 'phrase', tsw: 'Ke tlhoka madi', eng: 'I need money', src: 'peace-corps-L13', note: 'go tlhoka = to need; madi = money.' }
           ]
         },
@@ -128,11 +128,11 @@ const RL_CONTENT = {
           audioTracks: [{ file: 'lesson10-negation.mp3', label: 'Tenses & negation walkthrough (native speaker, 3½ min)', src: 'peace-corps-L10' }],
           items: [
             { id: 'u1l7-00', kind: 'rule', tsw: '', eng: '', src: 'peace-corps-L10', rule: 'Negative present = ga + concord + verb, and the verb\'s final -a becomes -e. Ke a batla (I want) → Ga ke batle (I don\'t want). Ke a ja → Ga ke je.' },
-            { id: 'u1l7-01', kind: 'phrase', tsw: 'Ga ke batle', eng: 'I do not want', src: 'peace-corps-L10' },
-            { id: 'u1l7-02', kind: 'phrase', tsw: 'Ga a je', eng: 'He/she does not eat', src: 'peace-corps-L6', note: 'Note the concord: o becomes a in the negative.' },
-            { id: 'u1l7-03', kind: 'phrase', tsw: 'Ga ke rate kofi', eng: 'I don\'t like coffee', src: 'peace-corps-L6', note: 'go rata = to like/love; rata → rate.' },
+            { id: 'u1l7-01', audio: 'items/u1l7-01.mp3', kind: 'phrase', tsw: 'Ga ke batle', eng: 'I do not want', src: 'peace-corps-L10' },
+            { id: 'u1l7-02', audio: 'items/u1l7-02.mp3', kind: 'phrase', tsw: 'Ga a je', eng: 'He/she does not eat', src: 'peace-corps-L6', note: 'Note the concord: o becomes a in the negative.' },
+            { id: 'u1l7-03', audio: 'items/u1l7-03.mp3', kind: 'phrase', tsw: 'Ga ke rate kofi', eng: 'I don\'t like coffee', src: 'peace-corps-L6', note: 'go rata = to like/love; rata → rate.' },
             { id: 'u1l7-04', kind: 'phrase', tsw: 'Ga ke itse', eng: 'I do not know', src: 'peace-corps-L13', note: 'The most useful sentence in any language.' },
-            { id: 'u1l7-05', kind: 'phrase', tsw: 'Ga ke tlhaloganye', eng: 'I don\'t understand', src: 'peace-corps-L6' },
+            { id: 'u1l7-05', audio: 'items/u1l7-05.mp3', kind: 'phrase', tsw: 'Ga ke tlhaloganye', eng: 'I don\'t understand', src: 'peace-corps-L6' },
             { id: 'u1l7-06', kind: 'phrase', tsw: 'Nnyaa, ga ke na mathata', eng: 'No, I don\'t have a problem', src: 'peace-corps-L6', note: 'ga ke na = I don\'t have.' },
             { id: 'u1l7-07', kind: 'phrase', tsw: 'Ga ke batle tee', eng: 'I don\'t want tea', src: 'peace-corps-L10+L14', note: 'Built from Ga ke batle + tee (both sourced).' },
             { id: 'u1l7-08', kind: 'phrase', tsw: 'Ga ba bue Sekgoa', eng: 'They don\'t speak English', src: 'peace-corps-L10+L5', note: 'Sekgoa = English. bua → bue in the negative.' }
@@ -188,7 +188,7 @@ const RL_CONTENT = {
             { id: 'u2l3-05', kind: 'phrase', tsw: 'O batla dife?', eng: 'Which ones do you want?', src: 'peace-corps-L12', note: 'dife = which (plural).' },
             { id: 'u2l3-06', kind: 'phrase', tsw: 'O batla eng?', eng: 'What do you want?', src: 'peace-corps-L13' },
             { id: 'u2l3-07', kind: 'phrase', tsw: 'Ke bokae?', eng: 'How much is it?', src: 'peace-corps-L20', note: 'bokae = how much/many.' },
-            { id: 'u2l3-08', kind: 'phrase', tsw: 'A o na le dipotso?', eng: 'Do you have any questions?', src: 'peace-corps-L6', note: 'A + statement = yes/no question. dipotso = questions.' },
+            { id: 'u2l3-08', audio: 'items/u2l3-08.mp3', kind: 'phrase', tsw: 'A o na le dipotso?', eng: 'Do you have any questions?', src: 'peace-corps-L6', note: 'A + statement = yes/no question. dipotso = questions.' },
             { id: 'u2l3-09', kind: 'phrase', tsw: 'O batla go dira eng jaanong?', eng: 'What do you want to do now?', src: 'peace-corps-L13', note: 'jaanong = now.' }
           ]
         },
