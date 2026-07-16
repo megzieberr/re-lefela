@@ -92,9 +92,10 @@ Old inline-SVG `katse-preview.html` replaced with an image preview (still gitign
 3. 2026-07-16: Megan asked for session-starter prompts for the three open build tasks — (a) keepalive
    registration, (b) conjugation lessons L10/L11, (c) in-lesson Back button — each to run as its own
    session. Missing-audio list written to `toolkit/missing-audio.md` (64 items).
-4. **/ship the Katse redesign** — index.html + sw.js (v8) + new `img/` folder (3 PNGs) are edited &
-   verified but NOT committed/pushed. Commit index.html, sw.js, img/katse-{home,awake,rest}.png; the
-   `Katse/` source-art folder + proof PNGs are optional to commit. New dev file
+4. ~~/ship the Katse redesign~~ **SHIPPED 2026-07-16** (commit `bf7375a`, pushed to Pages; verified live
+   — sw `relefela-v8`, all 3 `img/katse-*.png` return 200, index.html references the new art).
+   **Post-deploy (Megan):** close & reopen the PWA **twice** (service-worker double-load) to drop the
+   old cached cat. Left uncommitted on purpose: `Katse/` source art + proof PNGs, and dev file
    `.claude/.claude/launch.json` (python http.server for Preview) — keep or gitignore, her call.
 
 ## Decisions (append-only)
