@@ -184,7 +184,8 @@ and zero XP-farming.
    Katse. Follow-ups when wanted: app icons still the old dark look; the second learner should also double-reload.
    (Katse/ source art + NATIVE-RECORDINGS-NEEDED.md + dev launch.json are now committed. The
    keepalive pinger got its re-lefela entry committed too — Task-Scheduler registration STILL awaits
-   her OK. Mindbourne pad_end/gain tweak committed & pushed to mindbourne-video-tools.)
+   her OK. Mindbourne pad_end/gain tweak turned out to be her PERSONAL tuning — commit reverted same
+   day, restored as uncommitted local changes; see memory mindbourne-github-distribution.)
 1. ~~Finish round-2 tagging~~ DONE (session 4 — all lessons tagged, sw v7, 88 clips).
 2. (Standing) keepalive Task-Scheduler registration still awaiting her OK.
 3. 2026-07-16: Megan asked for session-starter prompts for the three open build tasks — (a) keepalive
