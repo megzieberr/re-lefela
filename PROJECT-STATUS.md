@@ -1,6 +1,27 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-16 (session 6 — Katse mascot redesign SHIPPED using Megan's own PNG art; sw v8) · (session 6 audio thread — NCHLT per-word audio tried & ABANDONED; lecturer record-list created; L2/L3 redo confirmed landed) · (session 7 — in-lesson Back button BUILT & SHIPPED, permanent for everyone, sw v9)
+**Updated:** 2026-07-16 (session 6 — Katse mascot redesign SHIPPED using Megan's own PNG art; sw v8) · (session 6 audio thread — NCHLT per-word audio tried & ABANDONED; lecturer record-list created; L2/L3 redo confirmed landed) · (session 7 — in-lesson Back button BUILT & SHIPPED, permanent for everyone, sw v9) · (session 8 — typed-sentence verdict bug FIXED + Katse now a permanent bigger corner mascot, sw v10, **pending /ship**)
+
+## Session 8 (2026-07-16) — typed-verdict fix + always-on Katse (sw v10, LOCAL, pending /ship)
+Megan reported: (a) type-a-sentence cards never show a verdict — "it just goes on"; (b) Katse
+vanishes after a few rounds and is too small.
+- **Root cause (a):** the *check* logic was fine (Check button worked). The Enter used to answer
+  bled through to the freshly-focused Continue button `grade()` renders → the verdict flashed and
+  was instantly skipped. Unique to the type cards (only they have an input + Enter + auto-focused
+  Continue). **Fix:** `e.preventDefault()` + one-shot `checked` guard on the Enter handler, `inp.blur()`
+  so the mobile keyboard closes and the verdict shows, and a **400 ms debounce on the Continue button**
+  in `grade()` so the same keystroke can't advance. Verified: Enter shows verdict, an immediate
+  Continue click is blocked (stays on card), a click after 400 ms advances. Wrong answers still verdict.
+- **Root cause (b):** `katseHTML` was only rendered on home + *teach* cards; every drill had no cat.
+  **Fix:** new `mountKatseCorner(it)` appends a persistent **bottom-right corner** Katse to `#app` at
+  the end of `runExercise()` and `runRecap()` — awake & tappable (plays the clip) when the card has
+  audio, resting otherwise. Removed the inline teach-card katse (teach now shows a 🔊 button + the
+  corner cat like every card). Sizes bumped: lessons `76→120px` (`92px` under `max-height:640`), home
+  `64→96px`. `#app` given `position:relative`. Corner sits at screen bottom (y≈720+), action buttons
+  live up at y≈180–400 → verified NO overlap on 812px, 720px and 600px-tall viewports; corner absent
+  on home/stats; 0 console errors. (Pane can't screenshot — all verified via DOM/JS.)
+- **sw.js v9→v10.** Local-only; run `/ship` to deploy. Post-deploy: close/reopen the PWA twice to
+  drop the old cache.
 
 ## What this is
 Two-player (Megan + the second learner) Duolingo-style Setswana PWA for NWU SECL121 + life after it.

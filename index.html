@@ -20,7 +20,7 @@
 html,body{margin:0; padding:0; background:var(--bg); color:var(--ink);
   font-family:"Segoe UI",system-ui,-apple-system,sans-serif; min-height:100%}
 body{display:flex; flex-direction:column; align-items:center}
-#app{width:100%; max-width:560px; padding:16px 16px calc(24px + env(safe-area-inset-bottom)); min-height:100vh}
+#app{width:100%; max-width:560px; padding:16px 16px calc(24px + env(safe-area-inset-bottom)); min-height:100vh; position:relative}
 h1,h2,h3{margin:.2em 0}
 button{font:inherit; cursor:pointer; border:none; border-radius:var(--radius); color:var(--ink)}
 .btn{display:block; width:100%; padding:14px 18px; background:var(--card2); font-size:1.05rem; font-weight:600;
@@ -105,9 +105,12 @@ a{color:var(--teal)}
 .katse-wrap{position:relative; display:inline-flex; flex-direction:column; align-items:center; flex:none;
   background:none; padding:0; border:none}
 .katse-wrap.tappable{cursor:pointer}
-.katse{width:76px; height:auto; display:block; transform-origin:50% 100%}
-.katse-home .katse{width:64px}
+.katse{width:120px; height:auto; display:block; transform-origin:50% 100%}
+.katse-home .katse{width:96px}
 .kv-home{aspect-ratio:270/340} .kv-awake{aspect-ratio:340/211} .kv-rest{aspect-ratio:340/239}
+/* persistent companion in the bottom-right corner of every lesson card */
+.katse-corner{position:absolute; right:8px; bottom:calc(10px + env(safe-area-inset-bottom)); z-index:4; margin:0}
+@media (max-height:640px){ .katse-corner .katse{width:92px} }
 .katse.bounce{animation:katse-bounce .5s ease-out}
 @keyframes katse-bounce{
   0%{transform:translateY(0) scale(1)}
@@ -298,6 +301,17 @@ function voicedItems(){
   const out = [];
   for (const u of RL_CONTENT.units) for (const l of u.lessons) for (const it of l.items) if (it.audio) out.push(it);
   return out;
+}
+/* Persistent corner mascot — kept on EVERY lesson/recap card so Katse never vanishes.
+   Awake & tappable (plays the clip) when the card has audio; resting otherwise. */
+function mountKatseCorner(it){
+  if (session && session.gym) return;
+  const app = document.getElementById('app');
+  if (!app) return;
+  const old = document.getElementById('katse-corner'); if (old) old.remove();
+  const audio = !!(it && it.audio);
+  app.insertAdjacentHTML('beforeend', katseHTML('katse-corner', audio, 'katse-corner'));
+  if (audio) hookKatse('katse-corner', it);
 }
 
 /* ---------- screens ---------- */
@@ -618,14 +632,14 @@ function runExercise(){
       <p class="muted">New ${it.kind==='verb'?'verb':it.kind}</p>
       <div class="row spread">
         <div class="bigtsw">${esc(it.tsw)}</div>
-        ${katseHTML('katse-teach', !!it.audio)}
+        ${it.audio?`<button class="audio-btn" id="b-play">🔊</button>`:''}
       </div>
       <div class="prompt" style="font-weight:500">${esc(it.eng)}</div>
       ${it.plural?`<div class="notecard">Plural: <b>${esc(it.plural)}</b></div>`:''}
       ${it.note?`<div class="notecard">${esc(it.note)}</div>`:''}
       <p class="tiny">source: ${esc(it.src)}</p>
       <button class="btn primary" id="b-next" style="margin-top:auto">Continue</button></div>`);
-    hookQuit(); hookKatse('katse-teach', it);
+    hookQuit(); hookPlay(it);
     if (it.audio) playAudio(it.audio);
     document.getElementById('b-next').onclick = ()=>{ srsGrade(it.id, true); session.at++; runExercise(); };
   }
@@ -684,12 +698,16 @@ function runExercise(){
       <button class="btn primary" id="b-check" style="margin-top:auto">Check</button></div>`);
     hookQuit(); hookPlay(it);
     const inp = document.getElementById('f-ans'); inp.focus();
+    let checked = false;
     const check = ()=>{
+      if (checked) return;            // guard against a double-fire (Enter keydown + soft-keyboard submit)
+      checked = true;
+      inp.blur();                     // close the mobile keyboard so the verdict + Continue are visible
       const m = answerMatches(inp.value, toTsw?it.tsw:it.eng);
       grade(!!m, it, inp.value, false, m==='close');
     };
     document.getElementById('b-check').onclick = check;
-    inp.addEventListener('keydown', e=>{ if (e.key==='Enter') check(); });
+    inp.addEventListener('keydown', e=>{ if (e.key==='Enter'){ e.preventDefault(); check(); } });
   }
   else if (ex.type==='concord'){
     const cs = it.concordSlot;
@@ -832,6 +850,7 @@ function runExercise(){
       };
     });
   }
+  mountKatseCorner(it);   // Katse stays in the corner on every card, not just the teach cards
 }
 function runRecap(){
   // Read-only view of an already-completed card, reached via the Back button.
@@ -868,6 +887,7 @@ function runRecap(){
     const bp = document.getElementById('b-play'); if (bp) bp.onclick = ()=>playAudio(ex.item.audio);
   }
   document.getElementById('b-recap-next').onclick = ()=>{ session.at++; runExercise(); };
+  mountKatseCorner(ex.item);
 }
 function allItemsExcept(it){
   const all = [];
@@ -904,7 +924,11 @@ function grade(ok, it, given, silent, close){
   const btn = document.createElement('button');
   btn.className = 'btn primary'; btn.style.marginTop = '10px';
   btn.textContent = 'Continue';
-  btn.onclick = ()=>{ session.at++; runExercise(); };
+  // Ignore an activation from the *same* keystroke that just triggered the check
+  // (the Enter used to answer would otherwise land on this freshly-focused button
+  //  and skip straight past the verdict). Real taps/clicks arrive well after this.
+  const shownAt = performance.now();
+  btn.onclick = ()=>{ if (performance.now() - shownAt < 400) return; session.at++; runExercise(); };
   area.appendChild(fb); area.appendChild(btn); btn.focus();
   area.querySelectorAll('.choice,.tok,input,#b-check').forEach(e=>{ e.disabled = true; e.style.pointerEvents='none'; });
 }
