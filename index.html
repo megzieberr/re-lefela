@@ -150,6 +150,30 @@ a{color:var(--pink-deep)}
   30%{transform:rotate(-6deg)}
   70%{transform:rotate(3deg)}
 }
+/* part map — circles on a dotted path, Katse stands where you are */
+.pmap{display:flex; align-items:center; justify-content:center; padding-top:52px}
+.pslot{position:relative; display:flex; align-items:center}
+.pslot:not(:last-child)::after{content:''; width:34px; border-top:3px dotted var(--line); margin:0 4px}
+.pnode{width:36px; height:36px; border-radius:50%; border:2px solid var(--line); background:#fff;
+  display:inline-flex; align-items:center; justify-content:center; font-weight:800; color:var(--ink-dim)}
+.pnode.done{background:var(--pink); border-color:var(--ink); color:var(--ink)}
+.pnode.cur{border-color:var(--ink); color:var(--ink)}
+.pmap-kwrap{position:absolute; left:50%; bottom:calc(100% + 2px); margin-left:-24px;
+  transition:transform .9s cubic-bezier(.5,0,.5,1)}
+.pmap-katse{width:48px; height:auto; display:block}
+.pmap-kwrap.hop .pmap-katse{animation:khop .9s ease-in-out}
+@keyframes khop{
+  0%,100%{transform:translateY(0)}
+  30%{transform:translateY(-22px) rotate(-5deg)}
+  60%{transform:translateY(-10px)}
+  80%{transform:translateY(-16px)}
+}
+/* mini variant on the lesson path */
+.pmap-mini{justify-content:flex-start; padding-top:34px; margin-top:2px}
+.pmap-mini .pnode{width:20px; height:20px; font-size:.68rem; border-width:2px}
+.pmap-mini .pslot:not(:last-child)::after{width:18px; margin:0 3px; border-top-width:2px}
+.pmap-mini .pmap-kwrap{margin-left:-15px}
+.pmap-mini .pmap-katse{width:30px}
 .kbubble{position:absolute; bottom:calc(100% + 8px); left:50%; background:var(--ink); color:var(--bg);
   padding:6px 12px; border-radius:12px; font-weight:700; font-size:.95rem; max-width:72vw; text-align:center;
   opacity:0; transform:translateX(-50%) translateY(4px); transition:opacity .25s, transform .25s;
@@ -368,6 +392,17 @@ function voicedItems(){
 }
 /* Persistent corner mascot — kept on EVERY lesson/recap card so Katse never vanishes.
    Awake & tappable (plays the clip) when the card has audio; resting otherwise. */
+/* part map — the little circle path with Katse standing on the current part.
+   cur === total renders an all-done row with no cat. */
+function partMapHTML(total, cur, mini){
+  let slots = '';
+  for (let i=0; i<total; i++){
+    const st = i < cur ? 'done' : (i === cur ? 'cur' : '');
+    const kat = i === cur ? `<span class="pmap-kwrap"><img class="pmap-katse" src="${KATSE_POSES.home}" alt="Katse is here" draggable="false"></span>` : '';
+    slots += `<span class="pslot">${kat}<span class="pnode ${st}">${i < cur ? '✓' : i+1}</span></span>`;
+  }
+  return `<div class="pmap ${mini?'pmap-mini':''}">${slots}</div>`;
+}
 function mountKatseCorner(it, pose){
   if (session && session.gym) return;
   const app = document.getElementById('app');
@@ -481,14 +516,14 @@ function screenHome(){
     const nodes = unit.lessons.map((l, i)=>{
       const cls = i < prog.lessonIdx ? 'done' : i === prog.lessonIdx ? 'next' : 'locked';
       const icon = i < prog.lessonIdx ? '✓' : (i+1);
-      let partBadge = '';
+      let partMap = '';
       if (cls === 'next' && lessonParts(l) > 1){
         const k = firstOpenPart(l);
-        if (k >= 0) partBadge = ` <span class="pill" style="font-size:.75rem">Part ${k+1} of ${lessonParts(l)}</span>`;
+        if (k >= 0) partMap = partMapHTML(lessonParts(l), k, true);
       }
       return `<button class="lesson-node ${cls}" data-u="${unit.id}" data-i="${i}" ${cls==='locked'?'disabled':''}>
         <div class="idx">${icon}</div>
-        <div><b>${esc(l.title)}</b>${partBadge}<br><span class="muted">${esc(l.blurb)}</span></div>
+        <div><b>${esc(l.title)}</b><br><span class="muted">${esc(l.blurb)}</span>${partMap}</div>
       </button>`;
     }).join('');
     return `<h3 style="margin-top:20px">${esc(unit.title)} <span class="muted" style="font-weight:400;font-size:.85rem">— ${esc(unit.subtitle)}</span></h3>${nodes}`;
@@ -688,9 +723,12 @@ function pickAutoType(it){
   if (it.audio) types.push('record');
   return pick(types);
 }
-function buildExercises(items, isReview, tracks){
-  if (isReview) return shuffle(realOf(items)).map(it=>({type:'auto', item:it}));
-  const seq = [];
+function buildExercises(items, isReview, tracks, recapPool){
+  // every sitting opens with a quick, skippable recap of words you already met
+  const recap = (recapPool && recapPool.length)
+    ? shuffle(recapPool).slice(0, 8).map(it=>({type:'recap', item:it})) : [];
+  if (isReview) return recap.concat(shuffle(realOf(items)).map(it=>({type:'auto', item:it})));
+  const seq = recap.slice();
   const earlier = [];   // words from batches already drilled this session
   let intro = [], batch = [];
   const flushBatch = ()=>{
@@ -719,10 +757,11 @@ function startLesson(unit, idx){
   const lesson = unit.lessons[idx];
   const total = lessonParts(lesson);
   let items = lesson.items, part = null, tracks = lesson.audioTracks;
-  const allMet = realOf(lesson.items).every(it=>state.srs[it.id]);
+  const known = realOf(lesson.items).filter(it=>state.srs[it.id]); // this lesson's already-met words
+  const allMet = known.length === realOf(lesson.items).length;
   if (allMet){
-    // replaying a finished lesson → light practice mix, not the full build
-    session = {unit, lessonIdx:idx, ex:buildExercises(shuffle(realOf(lesson.items)).slice(0,12), true),
+    // replaying a finished lesson → recap + light practice mix, not the full build
+    session = {unit, lessonIdx:idx, ex:buildExercises(shuffle(realOf(lesson.items)).slice(0,12), true, null, known),
       at:0, maxAt:0, right:0, wrong:0, combo:0, isReview:false, part:null};
     return runExercise();
   }
@@ -733,7 +772,7 @@ function startLesson(unit, idx){
     part = {idx:k, total};
     if (k < total-1) tracks = null; // the lesson's dialogue plays in the final part
   }
-  session = {unit, lessonIdx:idx, ex:buildExercises(items, false, tracks), at:0, maxAt:0, right:0, wrong:0, combo:0, isReview:false, part};
+  session = {unit, lessonIdx:idx, ex:buildExercises(items, false, tracks, known), at:0, maxAt:0, right:0, wrong:0, combo:0, isReview:false, part};
   runExercise();
 }
 function startReview(){
@@ -781,6 +820,27 @@ function runExercise(){
       <button class="btn primary" id="b-next" style="margin-top:auto">Continue</button></div>`);
     hookQuit(); hookPlay(it);
     document.getElementById('b-next').onclick = ()=>{ srsGrade(it.id, true); session.at++; runExercise(); };
+  }
+  else if (ex.type==='recap'){
+    // warm-up flip-through of words you already know — no grading, no rep credit
+    render(H + `<div id="exArea">
+      <p class="muted">🔁 Quick recap — you know this one</p>
+      <div class="row spread">
+        <div class="bigtsw">${esc(it.tsw)}</div>
+        ${it.audio?`<button class="audio-btn" id="b-play">🔊</button>`:''}
+      </div>
+      <div class="prompt" style="font-weight:500">${esc(it.eng)}</div>
+      ${it.plural?`<div class="notecard">Plural: <b>${esc(it.plural)}</b></div>`:''}
+      ${it.note?`<div class="notecard">${esc(it.note)}</div>`:''}
+      <button class="btn primary" id="b-next" style="margin-top:auto">Continue</button>
+      <button class="btn ghost" id="b-skiprecap" style="margin-top:8px">Skip recap ▸</button></div>`);
+    hookQuit(); hookPlay(it);
+    document.getElementById('b-next').onclick = ()=>{ session.at++; runExercise(); };
+    document.getElementById('b-skiprecap').onclick = ()=>{
+      let j = session.at;
+      while (j < session.ex.length && session.ex[j].type === 'recap') j++;
+      session.at = j; runExercise();
+    };
   }
   else if (ex.type==='tap'){
     const words = it.tsw.split(/\s+/);
@@ -994,7 +1054,7 @@ function runExercise(){
   mountKatseCorner(it, ex.type==='teach' ? 'curious' : undefined);
   if (it && it.audio){
     if (ex.type==='listen') katseSay('🎵 …', it.audio);                        // don't spoil the answer
-    else if (ex.type==='teach' || ex.type==='choose' || ex.type==='record') katseSay(it.tsw, it.audio);
+    else if (ex.type==='teach' || ex.type==='recap' || ex.type==='choose' || ex.type==='record') katseSay(it.tsw, it.audio);
   }
 }
 function runRecap(){
@@ -1109,12 +1169,12 @@ function finishSession(){
   const kat = `<div style="display:flex; justify-content:center; margin-bottom:8px">
     <img class="katse kv-happy celebrate" src="${KATSE_POSES.happy}" style="width:190px" alt="Katse celebrating" draggable="false"></div>`;
   if (!lastPart){
-    // a part in the middle of a big lesson — checkpoint, then her choice
-    render(`<div class="center" style="margin-top:9vh">
-      ${kat}
+    // a part in the middle of a big lesson — checkpoint map: Katse hops to the next circle
+    render(`<div class="center" style="margin-top:8vh">
       <h1 style="font-size:2rem">Part ${part.idx+1} of ${part.total} — done!</h1>
-      <p class="muted">New words in the bag. The next part waits whenever you're ready.</p>
-      <div class="statgrid" style="margin-top:20px">
+      <div id="pmap-hop">${partMapHTML(part.total, part.idx, false)}</div>
+      <p class="muted" style="margin-top:14px">New words in the bag. The next part waits whenever you're ready.</p>
+      <div class="statgrid" style="margin-top:16px">
         <div class="stat"><b>+${session.right*10 + bonus}</b>XP-ish earned</div>
         <div class="stat"><b>${acc}%</b>accuracy</div>
       </div>
@@ -1123,6 +1183,18 @@ function finishSession(){
     </div>`);
     document.getElementById('b-more').onclick = ()=>startLesson(session.unit, session.lessonIdx);
     document.getElementById('b-home').onclick = screenHome;
+    setTimeout(()=>{ // the hop: finished circle turns ✓, Katse jumps to the next one
+      const map = document.getElementById('pmap-hop'); if (!map) return;
+      const slots = map.querySelectorAll('.pslot');
+      const from = slots[part.idx], to = slots[part.idx+1];
+      const kw = map.querySelector('.pmap-kwrap');
+      if (!from || !to || !kw) return;
+      const oldNode = from.querySelector('.pnode');
+      oldNode.classList.remove('cur'); oldNode.classList.add('done'); oldNode.textContent = '✓';
+      kw.classList.add('hop');
+      kw.style.transform = 'translateX(' + (to.getBoundingClientRect().left - from.getBoundingClientRect().left) + 'px)';
+      setTimeout(()=>{ to.querySelector('.pnode').classList.add('cur'); }, 900);
+    }, 700);
     return;
   }
   render(`<div class="center" style="margin-top:9vh">

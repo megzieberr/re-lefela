@@ -64,6 +64,26 @@ vanishes after a few rounds and is too small.
   the type cards. Re-read this section before touching that code so the verdict-debounce and the
   corner-mascot mount aren't accidentally reverted.
 
+## Session 9b (2026-07-17, same day) — part map + recap-every-time (sw v12, SHIPPED)
+Megan's live feedback on 9a: couldn't SEE part progress inside Lesson 1, and sessions jumped straight
+into drills — she wants revision "over and over".
+- **Part map** (`partMapHTML(total, cur, mini)`): dotted-path circles, done = pink ✓, current carries a
+  mini sitting Katse. Mini variant on multi-part lesson nodes (replaces the "Part k of n" pill); big
+  variant on the mid-lesson checkpoint where the finished circle flips to ✓ and **Katse hops** to the
+  next circle (inline translateX transition + khop keyframe — pane can't show the tween, verified end
+  position; real browsers animate).
+- **Recap block:** every lesson sitting (parts AND practice replays; NOT the review button) opens with
+  up to 8 shuffled 'recap' cards of this lesson's already-known words — teach-style card, Katse says
+  the word, "🔁 Quick recap" header, **no srsGrade** (viewing must not feed the reps≥3 typing gate),
+  plus a "Skip recap ▸" ghost button that jumps past the remaining recap cards (maxAt follows, so
+  Back into skipped cards = read-only view, harmless). Fresh part 1 = no recap (nothing known yet).
+  `buildExercises(items, isReview, tracks, recapPool)` — recapPool passed by startLesson only.
+- sw v11→**v12**. Verified in preview: fresh/continue/replay flows, skip jump, home mini-map slot,
+  checkpoint hop end-state, review unchanged, 0 console errors.
+- ⚠️ Preview gotcha rediscovered: preview_start opens the bare URL (no ?local=1) which registers the
+  REAL service worker in the pane → later edits get served stale. Unregister SW + clear caches in the
+  pane console before verifying (same trick as the tagger).
+
 ## What this is
 Two-player (Megan + the second learner) Duolingo-style Setswana PWA for NWU SECL121 + life after it.
 Live: https://megzieberr.github.io/re-lefela/ · Supabase `re-lefela` (opacjlgljeippheotyhz, Uni Hub org).
