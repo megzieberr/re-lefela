@@ -1,5 +1,5 @@
 // Re:Lefela service worker
-const CACHE = 'relefela-v5';
+const CACHE = 'relefela-v6';
 const CORE = ['./', 'index.html', 'content.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', e => {

@@ -82,11 +82,11 @@ const RL_CONTENT = {
             { id: 'u1l4-04', audio: 'items/u1l4-04.mp3', kind: 'word', tsw: 'rona', eng: 'we / us', src: 'peace-corps-L8', note: 'Concord: re.' },
             { id: 'u1l4-05', audio: 'items/u1l4-05.mp3', kind: 'word', tsw: 'lona', eng: 'you (a group)', src: 'peace-corps-L8', note: 'Concord: le (or lo).' },
             { id: 'u1l4-06', audio: 'items/u1l4-06.mp3', kind: 'word', tsw: 'bone', eng: 'they / them', src: 'peace-corps-L8', note: 'Concord: ba.' },
-            { id: 'u1l4-07', kind: 'phrase', tsw: 'Ke a bala', eng: 'I am reading', src: 'peace-corps-L11', concordSlot: { answer: 'Ke', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'a bala', hint: 'I' } },
-            { id: 'u1l4-08', kind: 'phrase', tsw: 'Re a bala', eng: 'We are reading', src: 'peace-corps-L11', concordSlot: { answer: 'Re', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'a bala', hint: 'we' } },
-            { id: 'u1l4-09', kind: 'phrase', tsw: 'Ba a bala', eng: 'They are reading', src: 'peace-corps-L11', concordSlot: { answer: 'Ba', options: ['Ke', 'Le', 'Re', 'Ba'], tail: 'a bala', hint: 'they' } },
-            { id: 'u1l4-10', kind: 'phrase', tsw: 'Ke na le buka', eng: 'I have a book', src: 'peace-corps-L11', note: 'na le = have (lit. "be with").' },
-            { id: 'u1l4-11', kind: 'phrase', tsw: 'O na le buka', eng: 'You have a book', src: 'peace-corps-L11', concordSlot: { answer: 'O', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'na le buka', hint: 'you (sg)' } }
+            { id: 'u1l4-07', audio: 'items/u1l4-07.mp3', kind: 'phrase', tsw: 'Ke a bala', eng: 'I am reading', src: 'peace-corps-L11', concordSlot: { answer: 'Ke', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'a bala', hint: 'I' } },
+            { id: 'u1l4-08', audio: 'items/u1l4-08.mp3', kind: 'phrase', tsw: 'Re a bala', eng: 'We are reading', src: 'peace-corps-L11', concordSlot: { answer: 'Re', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'a bala', hint: 'we' } },
+            { id: 'u1l4-09', audio: 'items/u1l4-09.mp3', kind: 'phrase', tsw: 'Ba a bala', eng: 'They are reading', src: 'peace-corps-L11', concordSlot: { answer: 'Ba', options: ['Ke', 'Le', 'Re', 'Ba'], tail: 'a bala', hint: 'they' } },
+            { id: 'u1l4-10', audio: 'items/u1l4-10.mp3', kind: 'phrase', tsw: 'Ke na le buka', eng: 'I have a book', src: 'peace-corps-L11', note: 'na le = have (lit. "be with").' },
+            { id: 'u1l4-11', audio: 'items/u1l4-11.mp3', kind: 'phrase', tsw: 'O na le buka', eng: 'You have a book', src: 'peace-corps-L11', concordSlot: { answer: 'O', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'na le buka', hint: 'you (sg)' } }
           ]
         },
         {
