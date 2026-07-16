@@ -581,20 +581,21 @@ function buildExercises(items, isReview, tracks){
 let session = null;
 function startLesson(unit, idx){
   const lesson = unit.lessons[idx];
-  session = {unit, lessonIdx:idx, ex:buildExercises(lesson.items, false, lesson.audioTracks), at:0, right:0, wrong:0, isReview:false};
+  session = {unit, lessonIdx:idx, ex:buildExercises(lesson.items, false, lesson.audioTracks), at:0, maxAt:0, right:0, wrong:0, isReview:false};
   runExercise();
 }
 function startReview(){
   const due = shuffle(dueItems()).slice(0, 15);
   if (!due.length) return;
-  session = {unit:null, lessonIdx:null, ex:buildExercises(due, true), at:0, right:0, wrong:0, isReview:true};
+  session = {unit:null, lessonIdx:null, ex:buildExercises(due, true), at:0, maxAt:0, right:0, wrong:0, isReview:true};
   runExercise();
 }
 
 function exHeader(){
   const pct = Math.round(100*session.at/session.ex.length);
+  const back = (session.at>0 && !session.gym) ? `<button class="quit" id="b-back" title="Previous card">◀</button>` : '';
   return `<div class="topbar">
-    <button class="quit" id="b-quit">✕</button>
+    ${back}<button class="quit" id="b-quit">✕</button>
     <div class="progressbar"><div style="width:${pct}%"></div></div>
     <span class="pill">${session.at+1}/${session.ex.length}</span>
   </div>`;
@@ -602,6 +603,8 @@ function exHeader(){
 
 function runExercise(){
   if (session.at >= session.ex.length) return finishSession();
+  if (session.at > session.maxAt) session.maxAt = session.at;   // only forward-answering pushes the high-water mark
+  if (session.at < session.maxAt) return runRecap();            // revisiting an already-done card → read-only, no scoring
   const ex = session.ex[session.at];
   const it = ex.item;
   const H = exHeader();
@@ -830,6 +833,42 @@ function runExercise(){
     });
   }
 }
+function runRecap(){
+  // Read-only view of an already-completed card, reached via the Back button.
+  // No srsGrade / addXP / right / wrong here — revisiting can never change the score.
+  const ex = session.ex[session.at];
+  const H = exHeader();
+  let body;
+  if (ex.type==='rule'){
+    body = `<div class="rulecard">💡 ${esc(ex.item.rule)}</div>`;
+  } else if (ex.type==='dialogue'){
+    body = ex.tracks.map((t,i)=>`
+      <div class="card" style="margin:8px 0"><div class="row">
+        <button class="audio-btn" data-track="${i}">🔊</button>
+        <div style="flex:1">${esc(t.label)}<br><span class="tiny">source: ${esc(t.src)}</span></div>
+      </div></div>`).join('');
+  } else if (ex.type==='match'){
+    body = ex.items.map(o=>`<div class="notecard"><b>${esc(o.tsw)}</b> — ${esc(o.eng)}</div>`).join('');
+  } else {
+    const it = ex.item;
+    body = `<div class="row"><div class="bigtsw">${esc(it.tsw)}</div>${it.audio?`<button class="audio-btn" id="b-play">🔊</button>`:''}</div>
+      <div class="prompt" style="font-weight:500">${esc(it.eng)}</div>
+      ${it.plural?`<div class="notecard">Plural: <b>${esc(it.plural)}</b></div>`:''}
+      ${it.note?`<div class="notecard">${esc(it.note)}</div>`:''}
+      ${it.src?`<p class="tiny">source: ${esc(it.src)}</p>`:''}`;
+  }
+  render(H + `<div id="exArea">
+    <p class="muted">↩ Looking back — this won't change your score</p>
+    ${body}
+    <button class="btn primary" id="b-recap-next" style="margin-top:auto">Continue ▶</button></div>`);
+  hookQuit();
+  if (ex.type==='dialogue'){
+    document.querySelectorAll('[data-track]').forEach(b=>{ b.onclick = ()=>playAudio(ex.tracks[parseInt(b.dataset.track,10)].file); });
+  } else if (ex.item && ex.item.audio){
+    const bp = document.getElementById('b-play'); if (bp) bp.onclick = ()=>playAudio(ex.item.audio);
+  }
+  document.getElementById('b-recap-next').onclick = ()=>{ session.at++; runExercise(); };
+}
 function allItemsExcept(it){
   const all = [];
   for (const u of RL_CONTENT.units) for (const l of u.lessons) for (const x of l.items)
@@ -845,7 +884,10 @@ function hookEyes(){
     };
   });
 }
-function hookQuit(){ document.getElementById('b-quit').onclick = ()=>{ if (confirm('Leave this lesson?')) screenHome(); }; }
+function hookQuit(){
+  document.getElementById('b-quit').onclick = ()=>{ if (confirm('Leave this lesson?')) screenHome(); };
+  const bb = document.getElementById('b-back'); if (bb) bb.onclick = ()=>{ session.at--; runExercise(); };
+}
 function hookPlay(it){ const b = document.getElementById('b-play'); if (b) b.onclick = ()=>playAudio(it.audio); }
 function next(ok, count){ return ()=>{ session.at++; runExercise(); }; }
 

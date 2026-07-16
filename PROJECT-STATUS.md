@@ -1,6 +1,6 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-16 (session 6 — Katse mascot redesign SHIPPED using Megan's own PNG art; sw v8)
+**Updated:** 2026-07-16 (session 6 — Katse mascot redesign SHIPPED using Megan's own PNG art; sw v8) · (session 6 audio thread — NCHLT per-word audio tried & ABANDONED; lecturer record-list created; L2/L3 redo confirmed landed) · (session 7 — in-lesson Back button BUILT & SHIPPED, permanent for everyone, sw v9)
 
 ## What this is
 Two-player (Megan + the second learner) Duolingo-style Setswana PWA for NWU SECL121 + life after it.
@@ -38,6 +38,24 @@ Per-lesson raw exports from this session are backed up in the session scratchpad
 u1l7-07 "Ga ke batle tee" (tea), u1l7-08 "Ga ba bue Sekgoa" (English), u1l6-09 "Ke batla kofi"
 (coffee — audio only says *o rata kofi?*), and L22 body-part vocab (tlhogo/mala/leoto/botlhoko,
 only spoken inside sentences). Don't chase these with the tagger.
+
+### 🎙️ Session-6 audio thread (2026-07-16) — remaining gaps → lecturer recordings
+- **NCHLT per-word audio TRIED & ABANDONED — do NOT retry.** Grabbed NCHLT sentence-clips that
+  *contain* each missing vocab word and wired them into the tagger as a synthetic "★ NCHLT words"
+  lesson (concat `nchlt-words.mp3` + `segments-words.js` + `build-word-lesson.py`). Words lifted from
+  running speech are coarticulated/unusable — Megan rejected them. All of it reverted & deleted;
+  tagger.html is back to stock. NCHLT stays ONLY for the Listening gym (whole sentences).
+- **Path forward = native recordings from the lecturer.** `NATIVE-RECORDINGS-NEEDED.md` (repo root,
+  51 items) = the Bible/grammar-book vocab (Unit 2 body/colour/adjective) + the 2 Unit-1 orphans.
+- **`Ke teng` (u1l1-07) & `Re a leboga` (u1l1-08) are genuine orphans** — only the plural `Re teng`
+  and the I-form `Ke a leboga` are ever spoken. Both on the lecturer list.
+- **`Re tsogile sentle` (u1l1-17) IS now tagged** — split from u1l1-15 (L2 seg25), trimmed to [43.6–45.6s].
+- **Still tagger-able (NOT on the lecturer list):** `kofi` (split off "Ga ke rate kofi", u1l7-03),
+  and `tlhogo`/`mala`/`leoto`/`botlhoko` (L22), `leina` (L3), `lelapa` (L15).
+- **The export "files-map" is COSMETIC, not the L2-drop bug.** `export-item-audio.py` reads each tag's
+  own `file`, never the top-level `files` map (which omits DONE_LESSONS 1/2/3/4/8 by design). Export
+  `relefela-audio-mapping-round2 (11).json` DID contain L2 (42 tags) + L3 (36). So L2/L3 export fine —
+  just copy the latest download into `toolkit/audio-mapping-round2.json` before running.
 
 ## Session 3 — what got built (mostly in the local-only tagger)
 
@@ -81,22 +99,40 @@ screenshot): home 64×81, awake 76×47 tappable+bounce, all 3 images 200, no con
 Old inline-SVG `katse-preview.html` replaced with an image preview (still gitignored). App-logo icons
 (step 2) can now proceed on the approved look — not started.
 
-## Also discussed, not built
-- **App "Back" button** — step back to the previous card inside a lesson (to re-check earlier words).
-  Open: permanent-for-everyone vs dev-only (`?dev=1`). This is arguably the real fix for her
-  "check the words" need; the Lesson-1 reset above is the quick workaround she asked for instead.
+## In-lesson Back button — BUILT & SHIPPED (2026-07-16, session 7), sw v9
+Step back to a previous card mid-lesson to re-check a word. **Permanent for everyone** (chosen over
+`?dev=1`): the design makes the "the second learner skips drills" worry impossible — Back can only reach cards you've
+*already* answered, and you must still answer the live drill to advance, so it grants zero drill-skip
+and zero XP-farming.
+- **Mechanism:** `session.maxAt` high-water mark. One guard at the top of `runExercise()`:
+  `if(at>maxAt) maxAt=at` (only genuine forward-answering pushes it); `if(at<maxAt) return runRecap()`.
+  Because only answering the live card raises `maxAt`, and recap-Continue never exceeds it, revisiting
+  is always read-only — no need to touch the ~8 scattered `at++`/scoring sites.
+- **`runRecap()`** = read-only render, NO srsGrade/addXP/right/wrong. Per type: rule→rule text,
+  dialogue→track labels + play (no mic), match→the 4 pairs, teach/drills→tsw/eng/plural/note/🔊/source.
+  "↩ Looking back — this won't change your score" + Continue ▶. Forward out of recaps resumes the live card.
+- **◀ button** in the topbar (`exHeader`), shown only when `at>0 && !gym`; wired in `hookQuit()`.
+  Applies to lessons AND review; the listening **gym** (`runGym`) is untouched.
+- **Verified** via preview JS/DOM (pane can't screenshot): all 4 recap branches render, score/xp
+  unchanged across back→forward cycles (even caught a real wrong-grade staying 1 not 2), button
+  hides at card 0, resume lands on the correct live card, 0 console errors.
 
 ## Pending on Megan
 1. ~~Finish round-2 tagging~~ DONE (session 4 — all lessons tagged, sw v7, 88 clips).
 2. (Standing) keepalive Task-Scheduler registration still awaiting her OK.
 3. 2026-07-16: Megan asked for session-starter prompts for the three open build tasks — (a) keepalive
-   registration, (b) conjugation lessons L10/L11, (c) in-lesson Back button — each to run as its own
-   session. Missing-audio list written to `toolkit/missing-audio.md` (64 items).
+   registration, (b) conjugation lessons L10/L11, ~~(c) in-lesson Back button~~ **DONE session 7** —
+   each to run as its own session. Missing-audio list written to `toolkit/missing-audio.md` (64 items).
 4. ~~/ship the Katse redesign~~ **SHIPPED 2026-07-16** (commit `bf7375a`, pushed to Pages; verified live
    — sw `relefela-v8`, all 3 `img/katse-*.png` return 200, index.html references the new art).
    **Post-deploy (Megan):** close & reopen the PWA **twice** (service-worker double-load) to drop the
    old cached cat. Left uncommitted on purpose: `Katse/` source art + proof PNGs, and dev file
    `.claude/.claude/launch.json` (python http.server for Preview) — keep or gitignore, her call.
+5. 2026-07-16 (session 6 audio): Copy `relefela-audio-mapping-round2 (11).json` →
+   `toolkit/audio-mapping-round2.json`, run `export-item-audio.py`, deploy — brings the L2/L3 redo +
+   `Re tsogile sentle` live. Optionally tag `kofi`/`tlhogo`/`mala`/`leoto`/`botlhoko` in the tagger first.
+6. 2026-07-16 (session 6 audio): Get native recordings from the lecturer for the 51 items in
+   `NATIVE-RECORDINGS-NEEDED.md`, then tag them (new voice) & export.
 
 ## Decisions (append-only)
 - 2026-07-16: Do NOT coarsen the slicer for sentence lessons — silence gaps are a continuum (no clean
@@ -111,6 +147,9 @@ Old inline-SVG `katse-preview.html` replaced with an image preview (still gitign
 - 2026-07-16 (session 5): Reset done server-side + on-device; re-lefela confirmed ON the Supabase MCP
   (org zlbbzmzdpfwcyyeloedj). pullRemote() merge-never-deletes means a server-only reset silently
   re-syncs from the client — always clear rl_srs on the device too.
+- 2026-07-16 (session 6 audio): NCHLT-per-word audio ABANDONED — words cut from NCHLT running speech
+  are coarticulated/unusable. Native recordings (lecturer) is the path; do NOT re-grab NCHLT for
+  isolated vocab. NCHLT stays only for the Listening gym (whole sentences).
 
 ## Gotchas learned
 - SW cache-first serves stale files through hard refresh; tagger now self-unregisters. To bust a
