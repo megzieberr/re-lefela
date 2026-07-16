@@ -1,8 +1,8 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-17 (session 9 — Katse-as-star + black/white/pink reskin + baby-steps pedagogy engine, sw v11, BUILT & preview-verified, **awaiting Megan's OK to ship**) · previous: session 8 typed-verdict fix + corner Katse (sw v10, live, commit d32db44)
+**Updated:** 2026-07-17 (session 9 — Katse-as-star + black/white/pink reskin + baby-steps pedagogy engine, sw v11, **SHIPPED & live-verified** commit 830c847) · previous: session 8 typed-verdict fix + corner Katse (sw v10, live, commit d32db44)
 
-## Session 9 (2026-07-17) — Katse the star + light reskin + baby-steps engine (sw v11, NOT YET SHIPPED)
+## Session 9 (2026-07-17) — Katse the star + light reskin + baby-steps engine (sw v11, SHIPPED 830c847)
 Megan asked: (1) make Katse a real feature ("scary Duolingo bird" energy, she should *say* the words),
 maybe reskin the whole app black/white/soft-pink like her; (2) Round 1 is hectic — more scaffolding,
 baby steps, repetition. Both approved with light theme + auto-split parts.
@@ -180,6 +180,11 @@ and zero XP-farming.
   hides at card 0, resume lands on the correct live card, 0 console errors.
 
 ## Pending on Megan
+0. 2026-07-17 (session 9): close & reopen the PWA **twice** to drop the v10 cache and meet the new
+   Katse. Follow-ups when wanted: app icons still the old dark look; the second learner should also double-reload.
+   (Katse/ source art + NATIVE-RECORDINGS-NEEDED.md + dev launch.json are now committed. The
+   keepalive pinger got its re-lefela entry committed too — Task-Scheduler registration STILL awaits
+   her OK. Mindbourne pad_end/gain tweak committed & pushed to mindbourne-video-tools.)
 1. ~~Finish round-2 tagging~~ DONE (session 4 — all lessons tagged, sw v7, 88 clips).
 2. (Standing) keepalive Task-Scheduler registration still awaiting her OK.
 3. 2026-07-16: Megan asked for session-starter prompts for the three open build tasks — (a) keepalive
