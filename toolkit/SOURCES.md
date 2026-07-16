@@ -8,7 +8,11 @@
 | Peace Corps audio (25 MP3s, native speakers) | `corpus/audio/BW_Setswana_Lesson_*.mp3` | URLs in `corpus/audio-urls.txt` (livelingua.com) |
 | Setswana NT, Biblica Open Tswana Living (CC BY-SA 4.0) | `corpus/bible-tsn/*.txt` | https://eBible.org/Scriptures/tsn_readaloud.zip |
 | English parallel (World English Bible, public domain) | `corpus/bible-eng/*.txt` | https://eBible.org/Scriptures/engwebp_readaloud.zip |
-| NCHLT Setswana Speech Corpus (~56 h) | `Desktop\NWU Semester 2\SECL121\Corpus\` (Megan downloads; licence click-through) | https://repo.sadilar.org/handle/20.500.12185/281 |
+| NCHLT Setswana Speech Corpus (~56 h) | `Desktop\NWU Semester 2\SECL121\Corpus\` (downloaded 2026-07-16) | https://repo.sadilar.org/handle/20.500.12185/281 |
+| **Peace Corps Comprehensive Grammar** (77 pp — the deep-grammar authority pending Smart Guide) | `corpus/peace-corps-comprehensive-grammar.pdf` (+`.txt`) | Megan's copy, 2026-07-16 |
+| **Beibele — FULL BSSA Bible 1970/87/2007** (SA-standard Setswana, 4.6 M chars — primary usage-grep corpus, © BSSA: LOCAL ONLY, never commit/publish) | `corpus/beibele-bssa-full.pdf` (+`.txt`) | Megan's copy, 2026-07-16 |
+| Otlogetswe rhyming dictionary (420 pp wordlist, CASAS 2010) | `corpus/otlogetswe-rhyming-dictionary.pdf` (+`.txt`) | Megan's copy, 2026-07-16 |
+| Davies et al. 1992 colour terms study (verified colour vocab for Unit 2 adjectives) | `corpus/colour-terms-davies1992.pdf` (+`.txt`) | Megan's copy, 2026-07-16 |
 | SECL121 module plan | `Desktop\NWU Semester 2\SECL121\Resources\fin-SECL121PTD2026.pdf` | eFundi |
 | Smart Guide (compulsory module material) | **NOT YET OBTAINED** — watch eFundi | eFundi |
 

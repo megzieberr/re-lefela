@@ -20,6 +20,13 @@
   mabele (sorghum vs breasts), lapa (be tired vs home), goga (pull vs smoke),
   utlwa (feel/hear/taste), nna (me vs sit), fitlha (bury vs hide), di kae? (how many vs where)
 
+> **Verified 2026-07-16** against the Peace Corps *Comprehensive Grammar* (77 pp,
+> `corpus/peace-corps-comprehensive-grammar.pdf`): subject concords, class 1 o/a split,
+> negation constructions, and copula rules below all match. **Numbering caveat:** class
+> NUMBERS vary by book — this file uses standard Bantu numbering (lo-=11, bo-=14); the PC
+> Comprehensive Grammar renumbers the teens (plural of lo- = 12, bo- = 13, ma- of borotho = 14).
+> Prefixes and concords are identical either way; when the Smart Guide lands, adopt ITS numbering.
+
 ## 2. Noun classes (SECL121 Unit 1 core)
 
 Setswana nouns fall into classes marked by prefix; everything else in the sentence agrees
@@ -89,7 +96,10 @@ tsaya→tsere, robala→robetse … full list per verb in sentence-bank / Peace 
 
 - Progressive "be doing": concord + **a** + verb — *ke a bala* (I am reading)
 - **To have = na le**: *ke na le buka* (I have a book); negative: *ga ke na buka* / *ga ke na le madi*
-- Identifying copulative **ke**: *leina lame ke Itumeleng* (my name is Itumeleng); *ke morutabana* (I am a teacher)
+- Identifying copulative: 3rd-person subjects take **ke** (*leina lame ke Itumeleng*); 1st/2nd-person
+  subjects use their own subject marker as the copula (*ke morutabana* = I am a teacher — that "ke" is
+  the I-marker, not the copula; *o morutabana* = you are / he is a teacher). Negative: **ga se** (*ga se
+  morutabana* — he's not a teacher). [PC Comprehensive Grammar ch.2]
 - Descriptive/locative: *o kae?* (where is he/she?), *o teng* (he/she is present/fine),
   *go siame* (it's fine/OK)
 - Weather/impersonal **go**: *go serame* (it's cold), *go mogote* (it's hot), *go letsatsi* (sunny)
