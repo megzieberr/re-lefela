@@ -8,7 +8,7 @@
 | Peace Corps audio (25 MP3s, native speakers) | `corpus/audio/BW_Setswana_Lesson_*.mp3` | URLs in `corpus/audio-urls.txt` (livelingua.com) |
 | Setswana NT, Biblica Open Tswana Living (CC BY-SA 4.0) | `corpus/bible-tsn/*.txt` | https://eBible.org/Scriptures/tsn_readaloud.zip |
 | English parallel (World English Bible, public domain) | `corpus/bible-eng/*.txt` | https://eBible.org/Scriptures/engwebp_readaloud.zip |
-| NCHLT Setswana Speech Corpus (~56 h) | `Desktop\NWU Semester 2\SECL121\Corpus\` (downloaded 2026-07-16) | https://repo.sadilar.org/handle/20.500.12185/281 |
+| NCHLT Setswana Speech Corpus — 6.3 GB, **58,404 pre-segmented WAV clips (2–4 s) with exact per-clip transcriptions** in `nchlt_tsn/transcriptions/nchlt_tsn.trn.xml` (`<orth>` = spoken text, + speaker age/gender/region) | `Desktop\NWU Semester 2\SECL121\Corpus\nchlt_tsn\` | https://repo.sadilar.org/handle/20.500.12185/281 |
 | **Peace Corps Comprehensive Grammar** (77 pp — the deep-grammar authority pending Smart Guide) | `corpus/peace-corps-comprehensive-grammar.pdf` (+`.txt`) | Megan's copy, 2026-07-16 |
 | **Beibele — FULL BSSA Bible 1970/87/2007** (SA-standard Setswana, 4.6 M chars — primary usage-grep corpus, © BSSA: LOCAL ONLY, never commit/publish) | `corpus/beibele-bssa-full.pdf` (+`.txt`) | Megan's copy, 2026-07-16 |
 | Otlogetswe rhyming dictionary (420 pp wordlist, CASAS 2010) | `corpus/otlogetswe-rhyming-dictionary.pdf` (+`.txt`) | Megan's copy, 2026-07-16 |

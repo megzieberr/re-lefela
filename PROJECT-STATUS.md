@@ -31,6 +31,10 @@ Live: https://megzieberr.github.io/re-lefela/ · Supabase project `re-lefela` (o
 - **Conversational track** — Peace Corps L13-L23 as post-module lessons (needs the extraction+verify fan-out).
 - **Per-phrase audio clips** — silence-split candidates exist (`corpus/audio-urls.txt` + ffmpeg silencedetect
   at -30dB/0.35s); mapping segments→phrases needs a human ear (Megan). Then listen/record exercises go per-item.
+- **NCHLT listening exercises (big unlock, downloaded 2026-07-16)** — 58k pre-segmented native clips WITH exact
+  transcriptions at `Desktop\NWU Semester 2\SECL121\Corpus\nchlt_tsn\` (trn.xml `<orth>` per clip). Unlike the
+  Peace Corps audio these need NO ear-mapping: filter `<orth>` for clips whose words she already knows, convert
+  those WAVs → small MP3s, and real-native listen-and-choose exercises drop straight in. Do this in the Unit 2 session.
 - **Smart Guide day** — when it lands on eFundi: re-align Unit content to lecturer forms (Smart Guide WINS).
 - Optional: hub tile/link for the app (modules table has no links column — would need hub change).
 
