@@ -1,8 +1,8 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-16 (session 6 — Katse mascot redesign SHIPPED using Megan's own PNG art; sw v8) · (session 6 audio thread — NCHLT per-word audio tried & ABANDONED; lecturer record-list created; L2/L3 redo confirmed landed) · (session 7 — in-lesson Back button BUILT & SHIPPED, permanent for everyone, sw v9) · (session 8 — typed-sentence verdict bug FIXED + Katse now a permanent bigger corner mascot, sw v10, **pending /ship**)
+**Updated:** 2026-07-16 (session 6 — Katse mascot redesign SHIPPED using Megan's own PNG art; sw v8) · (session 6 audio thread — NCHLT per-word audio tried & ABANDONED; lecturer record-list created; L2/L3 redo confirmed landed) · (session 7 — in-lesson Back button BUILT & SHIPPED, permanent for everyone, sw v9) · (session 8 — typed-sentence verdict bug FIXED + Katse now a permanent bigger corner mascot, sw v10, **SHIPPED & live** commit d32db44)
 
-## Session 8 (2026-07-16) — typed-verdict fix + always-on Katse (sw v10, LOCAL, pending /ship)
+## Session 8 (2026-07-16) — typed-verdict fix + always-on Katse (sw v10, SHIPPED — commit d32db44, live-verified)
 Megan reported: (a) type-a-sentence cards never show a verdict — "it just goes on"; (b) Katse
 vanishes after a few rounds and is too small.
 - **Root cause (a):** the *check* logic was fine (Check button worked). The Enter used to answer
@@ -20,8 +20,13 @@ vanishes after a few rounds and is too small.
   `64→96px`. `#app` given `position:relative`. Corner sits at screen bottom (y≈720+), action buttons
   live up at y≈180–400 → verified NO overlap on 812px, 720px and 600px-tall viewports; corner absent
   on home/stats; 0 console errors. (Pane can't screenshot — all verified via DOM/JS.)
-- **sw.js v9→v10.** Local-only; run `/ship` to deploy. Post-deploy: close/reopen the PWA twice to
-  drop the old cache.
+- **sw.js v9→v10. SHIPPED** 2026-07-16 (commit d32db44, pushed to Pages; live-verified: sw serves
+  `relefela-v10`, index.html contains `mountKatseCorner` + Continue debounce + `width:120px`).
+  Megan tried it, "fine for now". Post-deploy on her: close/reopen the PWA twice to drop the old cache.
+- **⚠️ HEADS-UP for next session:** Megan is about to make "a few other changes that will impact
+  these" — expect edits around the exercise runner (`runExercise`/`grade`/`mountKatseCorner`) and/or
+  the type cards. Re-read this section before touching that code so the verdict-debounce and the
+  corner-mascot mount aren't accidentally reverted.
 
 ## What this is
 Two-player (Megan + the second learner) Duolingo-style Setswana PWA for NWU SECL121 + life after it.
