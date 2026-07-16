@@ -4,6 +4,7 @@ tagger.html
 toolkit/segments.json
 toolkit/segments.js
 toolkit/course-glossary.js
+toolkit/wordlist.js
 toolkit/__pycache__/
 # Katse v2 design WIP (pinned 2026-07-16; approve before wiring into the app)
 katse-preview.html
