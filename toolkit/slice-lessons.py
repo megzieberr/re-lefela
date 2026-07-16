@@ -21,6 +21,7 @@ OUT = Path(__file__).resolve().parent / 'segments.json'
 # entries can resolve their file + segment titles. Lesson 5 ships as three parts;
 # the tagger maps '5a'/'5b'/'5c' back to L5 items via its baseLesson() helper.
 LESSONS = {
+    '1': 'BW_Setswana_Lesson_1.mp3',
     '2': 'BW_Setswana_Lesson_2.mp3',
     '3': 'BW_Setswana_Lesson_3.mp3',
     '4': 'BW_Setswana_Lesson_4.mp3',
