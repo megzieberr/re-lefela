@@ -27,9 +27,9 @@ Live: https://megzieberr.github.io/re-lefela/ · Supabase project `re-lefela` (o
 - SECL121 tutor CLAUDE.md updated (app + toolkit are the tutor's authority); keepalive.ps1 includes re-lefela.
 
 ## Pending on Megan
-1. Supabase dashboard → re-lefela project → Auth → Sign In / Up → **turn OFF "Confirm email"** (signup blocks politely until then).
-2. Sign up in the app (username + password + join code), then give the second learner the URL + code.
-3. (Standing) keepalive Task-Scheduler registration still awaiting her OK.
+1. (Standing) keepalive Task-Scheduler registration still awaiting her OK.
+
+(Confirm-email OFF + signup/the second learner onboarding both confirmed done 2026-07-16.)
 
 ## Next sessions (in rough order)
 - **Unit 3 Mo sekolong** (future + past tenses, classroom language — the highest-value unit for her
