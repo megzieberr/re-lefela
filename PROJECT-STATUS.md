@@ -1,12 +1,12 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-16 (session 5 — Lesson-1 progress reset done; missing-audio list added; MCP note corrected)
+**Updated:** 2026-07-16 (session 6 — Katse mascot redesign SHIPPED using Megan's own PNG art; sw v8)
 
 ## What this is
 Two-player (Megan + the second learner) Duolingo-style Setswana PWA for NWU SECL121 + life after it.
 Live: https://megzieberr.github.io/re-lefela/ · Supabase `re-lefela` (opacjlgljeippheotyhz, Uni Hub org).
 
-## State: LIVE — round-2 per-item audio COMPLETE (sw `relefela-v7`, 88 item clips wired).
+## State: LIVE — Katse image redesign shipped (sw `relefela-v8`); round-2 per-item audio COMPLETE, 88 clips wired.
 All tagger lessons done (5a-c, 6, 7, 10, 11, 12, 13, 18, 20, 22, 23) and deployed to GitHub Pages.
 
 ---
