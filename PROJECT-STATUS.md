@@ -29,8 +29,7 @@ Live: https://megzieberr.github.io/re-lefela/ · Supabase project `re-lefela` (o
 ## Pending on Megan
 1. Supabase dashboard → re-lefela project → Auth → Sign In / Up → **turn OFF "Confirm email"** (signup blocks politely until then).
 2. Sign up in the app (username + password + join code), then give the second learner the URL + code.
-3. NCHLT speech corpus download (in progress) → `Desktop\NWU Semester 2\SECL121\Corpus\`.
-4. (Standing) keepalive Task-Scheduler registration still awaiting her OK.
+3. (Standing) keepalive Task-Scheduler registration still awaiting her OK.
 
 ## Next sessions (in rough order)
 - **Unit 3 Mo sekolong** (future + past tenses, classroom language — the highest-value unit for her
