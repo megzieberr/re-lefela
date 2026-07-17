@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "app": "re-lefela",
+  "tool": "hand-authored (session 16, 2026-07-17)",
+  "round": "session16",
+  "files": {
+    "3": "BW_Setswana_Lesson_3.mp3"
+  },
+  "note": "Hand-authored supersede, NOT a tagger download. Sorts after audio-mapping-round2.json, so its tags win per-segment. It lives in its own file precisely so a future tagger re-download of round2 cannot silently revert it. Restores L3 seg 3 to a full-sentence item tag for u1l2-01: round 1 tagged 5.544-7.839 as 'Leina lame ke Megan'; round 2 re-tagged the same segment as a NOTE trimmed to the frame only ('Leina lame ke', 5.544-6.794), which un-wired the card. Megan's 2026-07-17 ruling fixed the CARD instead - u1l2-01 now reads 'Leina lame ke Itumeleng', which is what the announcer actually says - so the full silence-bounded segment is correct again.",
+  "tags": [
+    {
+      "lesson": "3",
+      "file": "BW_Setswana_Lesson_3.mp3",
+      "seg": 3,
+      "start": 5.544,
+      "end": 7.839,
+      "action": "item",
+      "itemId": "u1l2-01",
+      "tsw": "Leina lame ke Itumeleng",
+      "retag": true
+    }
+  ]
+}

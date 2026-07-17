@@ -24,7 +24,11 @@ CONTENT = ROOT / 'content.js'
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # items Megan retracted after tagging (clip text ≠ card text)
-EXCLUDE = {'u1l2-01'}   # announcer says "…ke Itumeleng", card says "…ke Megan" (2026-07-16)
+# u1l2-01 lived here 2026-07-16..17: the announcer says "…ke Itumeleng" but the card said
+# "…ke Megan". Resolved 2026-07-17 (session 16) by fixing the CARD, not dropping the clip —
+# the deck already teaches this frame with Setswana names (u1l2-03 Moeng, u1l2-08 Thabo),
+# and the app is shared with the second learner, for whom "ke Megan" was simply wrong.
+EXCLUDE = set()
 
 # Tagger lessons whose source recording isn't fit to cut from yet. ★ Colours (native)
 # still has background music under every word, and its 7 tags point at cards

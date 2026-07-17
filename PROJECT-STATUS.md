@@ -1,6 +1,43 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-17 (session 15 — Unit 3 conjugation lessons, 33 clips lit up, sw v18) · previous: session 14 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
+**Updated:** 2026-07-17 (session 16 — Itumeleng card fix + 🐢 slow-audio button, sw v19) · previous: session 15 Unit 3 conjugation lessons (sw v18), session 14 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 16 (2026-07-17, same day) — Itumeleng + slow playback (sw v19, BUILT, not yet pushed)
+
+**1. `u1l2-01` is now "Leina lame ke Itumeleng"** (was "…ke Megan") — 123rd clip lit up.
+- Fixed the CARD, not the clip. The announcer always said *Itumeleng*; the card was the lie. It also
+  fixes a real bug: **the app is shared with the second learner**, so "My name is Megan" was wrong in her mouth. The
+  deck already teaches these frames with Setswana names (`u1l2-03` Moeng, `u1l2-08` Thabo) — u1l2-01
+  was the odd one out. Card note now says to swap your own name into the frame.
+- `EXCLUDE` in `export-item-audio.py` is now **empty** (was `{'u1l2-01'}`); history kept in the comment.
+- ⚠️ **`EXCLUDE` was never why the clip was missing.** Round 2 re-tagged L3 seg 3 as a `note`
+  ("Leina lame ke", trimmed 5.544→6.794), and per-SEGMENT supersede beats the round-1 item tag, so
+  the card was un-wired regardless. Removing EXCLUDE alone exports nothing — the giveaway is
+  `audio: added to 0 items`.
+- **Restored via a NEW mapping file, `toolkit/audio-mapping-session16.json`**, not by hand-editing
+  round2 — the tagger rewrites round2 on download and would silently eat the edit. It sorts after
+  round2, so its tags win. **This is the pattern for any future hand-authored supersede.**
+- Verified in-browser: clip is **2.295s = exactly 7.839 − 5.544**, the tagged range to the ms.
+- 🎧 **Megan should confirm by ear once**: the card spells it `lame` — check the announcer isn't
+  saying `la me`.
+
+**2. 🐢 Slow-audio button (the second learner's ask) — every clip, no new files.**
+- `playAudio(file, rate)` sets `playbackRate` + `preservesPitch` (`webkitPreservesPitch` for Safari
+  <17, else it chipmunks). `SLOW_RATE = 0.65` — below ~0.5 browsers mangle or mute.
+- **No byte of `audio/` changes, so this can never need an AUDIO_CACHE bump** — and it lights up all
+  123 item clips + the NCHLT gym at once, including clips not yet enhanced.
+- Markup centralised in **`playBtnsHTML(big)`** so the 8 card layouts can't drift; `hookPlay()` wires
+  both buttons. The NCHLT gym wires its own pair (it doesn't use hookPlay).
+- 🐢 is 44px vs 🔊's 56px (secondary, still a legal tap target), `--card2` background, 10px gap.
+- **Sway safety net checked, not assumed:** `playAudio` stops Katse's `.talking` after a hard 8s.
+  Longest clip in the whole app is 4.44s → 6.83s at 0.65x, so nothing outruns it. Re-check this if a
+  clip longer than **5.2s** is ever added.
+- Dialogue tracks (`data-track`, full lesson recordings) deliberately have **no** 🐢 — slow mode is a
+  per-phrase idea.
+- Verified in-browser (Supabase-gated, so tested by driving the real functions, not by logging in):
+  `hookPlay` → click 🔊 = rate 1, click 🐢 = rate 0.65 pitch-preserved, same src. No console errors.
+
+**Syllable display was deliberately NOT built** — see Decisions.
 
 ## Session 15 (2026-07-17, same day) — Unit 3 "Go batla": the conjugation lessons (sw v18)
 The long-pending optional content (Pending item 2) — built. **New Unit 3 "Go batla"**, the Peace
@@ -387,6 +424,17 @@ and zero XP-farming.
   hides at card 0, resume lands on the correct live card, 0 console errors.
 
 ## Pending on Megan
+-2. 2026-07-17 (session 16): **Two small ones from the Itumeleng/slow session.**
+   (a) 🎧 Listen to `u1l2-01` once on live and confirm the announcer says "Leina **lame** ke
+       Itumeleng" and not "Leina **la me** ke…". The card spells it `lame`; the tag can't tell us.
+   (b) **`u1l2-05` "Ke tswa kwa Botswana" — re-tag it in the tagger, Peace Corps Lesson 3**
+       (`BW_Setswana_Lesson_3.mp3`). She believes she tagged it once; NO tag for it exists in any
+       committed mapping, which fits the known partial-regression-on-download failure. Safe to redo:
+       supersede is per-segment, so re-opening L3 and tagging only that phrase won't disturb the
+       other L3 tags. **Only junking an already-tagged segment un-wires it.**
+   (c) **Decide `u2l6-19 mmala wa namune`** (raised session 14, still open): it's the deck's ONLY
+       word for orange, so the one-word-per-colour ruling doesn't reach it. Keep + record, or drop?
+       This is part of the -1(a) decision below and still blocks the colours workstream.
 -1. 2026-07-17 (session 14): **Colours workstream REPLANNED — the session-13 plan below is dead.**
    Megan re-recorded the colours herself as individual bo- form words instead of de-musicking the
    ★ Colours source, and ruled ONE WORD PER COLOUR (see Decisions). New shape:
@@ -470,6 +518,24 @@ and zero XP-farming.
 - 2026-07-17 (session 15): **Follow the book/app spelling over the ear-transcription** — `tla` not
   the book-table's `tlaa` (matches live u1l3-02), `batle` not the book's `battle` typo, and
   `Ga re kake ra batla` even though the unstressed `ra` is easy to mishear as `a`.
+- 2026-07-17 (session 16): **Hand-authored mapping supersedes get their OWN file.**
+  `audio-mapping-session16.json` exists so the tagger's next round2 download can't revert it. Any
+  future by-hand tag correction should do the same rather than editing a tagger-owned file.
+- 2026-07-17 (session 16): **The card bends to the recording, not the reverse.** `u1l2-01` said
+  "ke Megan"; the native clip said "ke Itumeleng", so the card changed. Named cards in this deck
+  teach the FRAME, not the name (u1l2-03 Moeng, u1l2-08 Thabo) — and a personal name is actively
+  wrong in a two-learner app. Prefer a real Setswana name over burning a native clip.
+- 2026-07-17 (session 16): **Slow audio is playbackRate, never a second file set.** Keeps the audio
+  cache immutable and covers every clip for free, including un-enhanced ones. Don't "improve" this
+  into pre-rendered slow MP3s — that would double the cache and re-download her ~123 clips.
+- 2026-07-17 (session 16): **Syllable display deferred, deliberately.** Duolingo's slow button shows
+  no syllables; this would be new linguistic output, and generated splits are generated CLAIMS —
+  against the no-invented-Setswana rule if unverified. Setswana needs digraph/trigraph handling
+  (`tlh`, `tsh`, `kg`, `ny`, `ng` = one sound) and syllabic nasals (`mmele` = *m·me·le*, `ngaka` =
+  *nga·ka*). When built: derive from a documented davies-1992 rule set, **store splits as a field in
+  `content.js`** (greppable + reviewable, not computed at runtime), and eyeball all ~130 voiced items
+  once. Note it can only ever be STATIC text beside the audio — syncing highlight to slowed playback
+  needs forced alignment, a different project.
 - 2026-07-17 (session 15): **Guard export hazards in code, not in prose.** The ★ Colours exclusion
   lives in `export-item-audio.py` as `SKIP_LESSONS`, because a warning in a status file only
   protects the session that reads it. Same spirit as the audio-cache byte-diff check.

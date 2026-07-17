@@ -44,7 +44,7 @@ const RL_CONTENT = {
           id: 'u1l2', title: 'Ke mang?', blurb: 'Introducing yourself: name, surname, where you\'re from.',
           audioTracks: [{ file: 'lesson3-intro.mp3', label: 'Introducing yourself (native speaker)', src: 'peace-corps-L3' }],
           items: [
-            { id: 'u1l2-01', kind: 'phrase', tsw: 'Leina lame ke Megan', eng: 'My name is Megan', src: 'peace-corps-L3', note: 'leina = name (class 5), lame = my, ke = is.' },
+            { id: 'u1l2-01', audio: 'items/u1l2-01.mp3', kind: 'phrase', tsw: 'Leina lame ke Itumeleng', eng: 'My name is Itumeleng', src: 'peace-corps-L3', note: 'leina = name (class 5), lame = my, ke = is. Swap in your own name — the frame is what matters.' },
             { id: 'u1l2-02', audio: 'items/u1l2-02.mp3', kind: 'phrase', tsw: 'Leina la gago ke mang?', eng: 'What is your name?', src: 'peace-corps-L3', note: 'mang = who — Setswana asks "your name is who?"' },
             { id: 'u1l2-03', audio: 'items/u1l2-03.mp3', kind: 'phrase', tsw: 'Sefane same ke Moeng', eng: 'My surname is Moeng', src: 'peace-corps-L3', note: 'sefane = surname (class 7).' },
             { id: 'u1l2-04', audio: 'items/u1l2-04.mp3', kind: 'phrase', tsw: 'O mang?', eng: 'Who are you?', src: 'peace-corps-L12' },

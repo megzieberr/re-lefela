@@ -83,6 +83,8 @@ input:focus{outline:none; border-color:var(--pink)}
 .progressbar>div{height:100%; background:var(--pink); border-radius:99px; transition:width .3s}
 .audio-btn{width:56px; height:56px; border-radius:50%; background:var(--pink); color:var(--ink);
   font-size:1.5rem; flex:none; border:2px solid var(--ink); border-bottom-width:4px}
+/* 🐢 slow replay — secondary to 🔊, so it sits smaller and in the card colour */
+.slow-btn{width:44px; height:44px; font-size:1.15rem; background:var(--card2)}
 .rec-btn{background:var(--coral); color:#fff}
 .notecard{background:var(--card2); border-left:4px solid var(--pink); padding:10px 14px; border-radius:8px;
   margin:10px 0; font-size:.95rem; color:#5f5560}
@@ -345,11 +347,22 @@ function unitWordPool(unit){
 }
 
 /* ---------- audio ---------- */
+/* Slow playback (the second learner's ask, 2026-07-17) is playbackRate only — there is NO second
+   set of files. Every clip gets a 🐢 for free, and adding it can never require an
+   AUDIO_CACHE bump, because no byte of audio/ changes. preservesPitch keeps the
+   voice human instead of a chipmunk; Safari still wants the webkit- spelling.
+   0.65 is the floor worth using — below ~0.5 browsers start mangling or muting. */
+const SLOW_RATE = 0.65;
 let currentAudio = null;
-function playAudio(file){
+function playAudio(file, rate){
   if (!file) return null;
   if (currentAudio){ currentAudio.pause(); }
   currentAudio = new Audio('audio/'+file);
+  if (rate && rate !== 1){
+    currentAudio.preservesPitch = true;
+    currentAudio.webkitPreservesPitch = true;   // Safari < 17
+    currentAudio.playbackRate = rate;
+  }
   currentAudio.play().catch(()=>{});
   // whatever plays, Katse is the one saying it — sway while the clip runs
   const img = document.querySelector('#katse-corner .katse, #katse-home .katse');
@@ -391,6 +404,14 @@ function katseBubble(text, ms){
   clearTimeout(bub._t); bub._t = setTimeout(()=>bub.classList.remove('show'), ms||2600);
 }
 function katseSay(text, audioFile){ if (text) katseBubble(text); if (audioFile) playAudio(audioFile); }
+/* The 🔊 + 🐢 pair. One helper so the eight card layouts can't drift apart.
+   `big` = the centred listen-card treatment; the turtle stays the normal 56px
+   there so it reads as secondary to the main play button. */
+function playBtnsHTML(big){
+  const bigStyle = big ? ' style="width:80px;height:80px;font-size:2rem"' : '';
+  return `<button class="audio-btn" id="b-play"${bigStyle} aria-label="Play">🔊</button>`
+       + `<button class="audio-btn slow-btn" id="b-slow" aria-label="Play slowly" title="Slowly">🐢</button>`;
+}
 function katseSetPose(pose){
   const el = katseWrapEl(); const img = el && el.querySelector('.katse');
   if (!img) return;
@@ -667,12 +688,13 @@ function runGym(){
   const opts = shuffle([c, ...shuffle(RL_CONTENT.nchlt.filter(x=>x.id!==c.id && x.tsw!==c.tsw)).slice(0,3)]);
   render(exHeader() + `<div id="exArea">
     <p class="muted">A real Motswana is speaking — what did they say?</p>
-    <div class="center" style="margin:14px 0"><button class="audio-btn" id="b-play" style="width:80px;height:80px;font-size:2rem">🔊</button></div>
+    <div class="center row" style="margin:14px 0; justify-content:center">${playBtnsHTML(true)}</div>
     ${opts.map(o=>`<button class="choice" data-id="${esc(o.id)}">${esc(o.tsw)}</button>`).join('')}
     <p class="tiny" style="margin-top:auto">source: NCHLT Setswana speech corpus (SADiLaR) — every word is one you know</p>
   </div>`);
   hookQuit();
   document.getElementById('b-play').onclick = ()=>playAudio(c.audio);
+  document.getElementById('b-slow').onclick = ()=>playAudio(c.audio, SLOW_RATE);
   playAudio(c.audio);
   document.querySelectorAll('.choice').forEach(ch=>{
     ch.onclick = ()=>{
@@ -919,7 +941,7 @@ function runExercise(){
         <p class="muted">New ${it.kind==='verb'?'verb':it.kind}</p>
         <div class="row spread">
           <div class="bigtsw">${esc(it.tsw)}</div>
-          ${it.audio?`<button class="audio-btn" id="b-play">🔊</button>`:''}
+          ${it.audio?playBtnsHTML():''}
         </div>
         <div class="prompt" style="font-weight:500">${esc(it.eng)}</div>
         ${it.plural?`<div class="notecard">Plural: <b>${esc(it.plural)}</b></div>`:''}
@@ -940,7 +962,7 @@ function runExercise(){
         <p class="muted">🔁 Quick recap — you know this one</p>
         <div class="row spread">
           <div class="bigtsw">${esc(it.tsw)}</div>
-          ${it.audio?`<button class="audio-btn" id="b-play">🔊</button>`:''}
+          ${it.audio?playBtnsHTML():''}
         </div>
         <div class="prompt" style="font-weight:500">${esc(it.eng)}</div>
         ${it.plural?`<div class="notecard">Plural: <b>${esc(it.plural)}</b></div>`:''}
@@ -991,7 +1013,7 @@ function runExercise(){
     const opts = shuffle([it, ...others]);
     render(H + `<div id="exArea">
       <p class="muted">What does this mean?</p>
-      <div class="row"><div class="bigtsw">${esc(it.tsw)}</div>${it.audio?`<button class="audio-btn" id="b-play">🔊</button>`:''}</div>
+      <div class="row"><div class="bigtsw">${esc(it.tsw)}</div>${it.audio?playBtnsHTML():''}</div>
       ${opts.map(o=>`<button class="choice" data-id="${o.id}">${esc(o.eng)}</button>`).join('')}
       <div style="margin-top:auto"></div></div>`);
     hookQuit(); hookPlay(it);
@@ -1009,7 +1031,7 @@ function runExercise(){
     render(H + `<div id="exArea">
       <p class="muted">${toTsw?'Type it in Setswana':'Type the English'}</p>
       <div class="row"><div class="${toTsw?'prompt':'bigtsw'}">${esc(toTsw?it.eng:it.tsw)}</div>
-        ${!toTsw && it.audio?`<button class="audio-btn" id="b-play">🔊</button>`:''}</div>
+        ${!toTsw && it.audio?playBtnsHTML():''}</div>
       <input id="f-ans" autocomplete="off" autocapitalize="off" placeholder="${toTsw?'Kwala mo…':'Type here…'}">
       <button class="btn primary" id="b-check" style="margin-top:auto">Check</button></div>`);
     hookQuit(); hookPlay(it);
@@ -1048,7 +1070,7 @@ function runExercise(){
     const opts = shuffle([it, ...others]);
     render(H + `<div id="exArea">
       <p class="muted">What did you hear?</p>
-      <div class="center" style="margin:14px 0"><button class="audio-btn" id="b-play" style="width:80px;height:80px;font-size:2rem">🔊</button></div>
+      <div class="center row" style="margin:14px 0; justify-content:center">${playBtnsHTML(true)}</div>
       ${opts.map(o=>`<button class="choice" data-id="${o.id}">${esc(o.tsw)}</button>`).join('')}
       <div style="margin-top:auto"></div></div>`);
     hookQuit(); hookPlay(it);
@@ -1064,7 +1086,7 @@ function runExercise(){
   else if (ex.type==='record'){
     render(H + `<div id="exArea">
       <p class="muted">Say it out loud, then compare</p>
-      <div class="row"><div class="bigtsw">${esc(it.tsw)}</div><button class="audio-btn" id="b-play">🔊</button></div>
+      <div class="row"><div class="bigtsw">${esc(it.tsw)}</div>${playBtnsHTML()}</div>
       <p class="muted">${esc(it.eng)}</p>
       <div class="row" style="margin:16px 0">
         <button class="audio-btn rec-btn" id="b-rec">🎙️</button>
@@ -1197,7 +1219,7 @@ function runRecap(){
     body = ex.items.map(o=>`<div class="notecard"><b>${esc(o.tsw)}</b> — ${esc(o.eng)}</div>`).join('');
   } else {
     const it = ex.item;
-    body = `<div class="row"><div class="bigtsw">${esc(it.tsw)}</div>${it.audio?`<button class="audio-btn" id="b-play">🔊</button>`:''}</div>
+    body = `<div class="row"><div class="bigtsw">${esc(it.tsw)}</div>${it.audio?playBtnsHTML():''}</div>
       <div class="prompt" style="font-weight:500">${esc(it.eng)}</div>
       ${it.plural?`<div class="notecard">Plural: <b>${esc(it.plural)}</b></div>`:''}
       ${it.note?`<div class="notecard">${esc(it.note)}</div>`:''}
@@ -1214,7 +1236,7 @@ function runRecap(){
   if (ex.type==='dialogue'){
     document.querySelectorAll('[data-track]').forEach(b=>{ b.onclick = ()=>playAudio(ex.tracks[parseInt(b.dataset.track,10)].file); });
   } else if (ex.item && ex.item.audio){
-    const bp = document.getElementById('b-play'); if (bp) bp.onclick = ()=>playAudio(ex.item.audio);
+    hookPlay(ex.item);
   }
   document.getElementById('b-recap-next').onclick = ()=>{ session.at++; runExercise(); };
   mountKatseMid(ex.item);
@@ -1241,7 +1263,10 @@ function hookQuit(){
   document.getElementById('b-quit').onclick = ()=>{ if (confirm('Leave this lesson?')) screenHome(); };
   const bb = document.getElementById('b-back'); if (bb) bb.onclick = ()=>{ session.at--; runExercise(); };
 }
-function hookPlay(it){ const b = document.getElementById('b-play'); if (b) b.onclick = ()=>playAudio(it.audio); }
+function hookPlay(it){
+  const b = document.getElementById('b-play'); if (b) b.onclick = ()=>playAudio(it.audio);
+  const s = document.getElementById('b-slow'); if (s) s.onclick = ()=>playAudio(it.audio, SLOW_RATE);
+}
 function next(ok, count){ return ()=>{ session.at++; runExercise(); }; }
 
 function grade(ok, it, given, silent, close){
