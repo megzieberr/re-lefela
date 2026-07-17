@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "app": "re-lefela",
+  "tool": "hand-authored (session 19, 2026-07-17)",
+  "round": "session19",
+  "files": {
+    "7": "BW_Setswana_Lesson_7.mp3",
+    "12": "BW_Setswana_Lesson_12.mp3",
+    "18": "BW_Setswana_Lesson_18.mp3"
+  },
+  "note": "Hand-authored supersede, NOT a tagger download — sorts after audio-mapping-round2.json, session16, session17 AND session18 (name 'session19' > 'session18' alphabetically), so its tags win per-segment; own file so a future tagger re-download of round2 cannot silently revert it (session-16/17/18 pattern). ORIGIN: Unit 3 part 2 'Mo sekolong' build (session 19). The committed round2.json already carries 'note' tags (timing only, action:'note', itemId:null) on these 13 segments, each with an explicit 'text' label typed by Megan while tagging (NOT a positional guess). This file converts note -> item for exactly those 13, keyed identically on (lesson,seg,sub) so each supersedes its round2 note. ALL 13 note 'text' labels were read and cross-checked against the spec's proposed decode before wiring: L7 seg4/30/32/34 (tafole/beke/pene/fensetere) and L18 seg5 (Tlelase) matched the spec's table exactly. L12 did NOT: the spec's book-order inference put 'Reetsa' at seg44 and flagged it for an ear-check ('book entry is didimala/reetsa, may be a compound clip'), then assigned Boela kwa morago/Tla kwa pele/Nna fatshe to seg46/48/50. The committed note TEXT proves otherwise: seg44 is labelled 'didimala' alone (a separate, uncarded command not in this build), seg46 is labelled 'reetsa' alone (clean, NOT compound with didimala), seg48 is labelled 'boela kwa morago', seg50 is labelled 'tlaa kwa pele', and 'nna fatshe' is actually a 14th note at seg52. This file therefore wires u3l5-01 Reetsa (seg46, resolving the ear-check concern in the affirmative -- it is not a compound clip). u3l5-02 Nna fatshe was initially left silent (seg52 wasn't in the spec's 13-segment wire list), then wired in the same session on supervisor follow-up: seg52's committed note carries Megan's own typed labels (text 'nna fatshe', eng 'Sit down'), exactly as unambiguous as the other 13, and the '13-clip budget' was positional-decode bookkeeping, not a cap. 14 tags total -- see PROJECT-STATUS.md session-19 entry for the full explanation. Durations post-correction fit phrase length far better (e.g. the 3-word 'Boela kwa morago' is 1.811s at its true segment, not the 1.14s the mis-aligned table implied for it). Confirmed corpus/audio/BW_Setswana_Lesson_7.mp3, _12.mp3 and _18.mp3 all exist before exporting.",
+  "tags": [
+    { "lesson": "7", "file": "BW_Setswana_Lesson_7.mp3", "seg": 4, "start": 7.429, "end": 8.825, "action": "item", "itemId": "u3l4-03", "tsw": "tafole", "retag": true },
+    { "lesson": "7", "file": "BW_Setswana_Lesson_7.mp3", "seg": 30, "start": 54.612, "end": 55.79, "action": "item", "itemId": "u3l4-07", "tsw": "beke", "retag": true },
+    { "lesson": "7", "file": "BW_Setswana_Lesson_7.mp3", "seg": 32, "start": 57.886, "end": 58.979, "action": "item", "itemId": "u3l4-05", "tsw": "pene", "retag": true },
+    { "lesson": "7", "file": "BW_Setswana_Lesson_7.mp3", "seg": 34, "start": 60.458, "end": 62.223, "action": "item", "itemId": "u3l4-04", "tsw": "fensetere", "retag": true },
+    { "lesson": "18", "file": "BW_Setswana_Lesson_18.mp3", "seg": 5, "start": 11.278, "end": 13.057, "action": "item", "itemId": "u3l4-02", "tsw": "tlelase", "retag": true },
+    { "lesson": "12", "file": "BW_Setswana_Lesson_12.mp3", "seg": 32, "start": 56.48, "end": 58.699, "action": "item", "itemId": "u3l5-09", "tsw": "Bula lebati", "retag": true },
+    { "lesson": "12", "file": "BW_Setswana_Lesson_12.mp3", "seg": 34, "start": 60.872, "end": 63.013, "action": "item", "itemId": "u3l5-10", "tsw": "Tswala lebati", "retag": true },
+    { "lesson": "12", "file": "BW_Setswana_Lesson_12.mp3", "seg": 36, "start": 64.996, "end": 66.383, "action": "item", "itemId": "u3l5-04", "tsw": "Ema o bue", "retag": true },
+    { "lesson": "12", "file": "BW_Setswana_Lesson_12.mp3", "seg": 40, "start": 72.197, "end": 73.811, "action": "item", "itemId": "u3l5-08", "tsw": "Tsena mo teng", "retag": true },
+    { "lesson": "12", "file": "BW_Setswana_Lesson_12.mp3", "seg": 42, "start": 75.582, "end": 76.904, "action": "item", "itemId": "u3l5-05", "tsw": "Tla kwano", "retag": true },
+    { "lesson": "12", "file": "BW_Setswana_Lesson_12.mp3", "seg": 46, "start": 82.161, "end": 83.297, "action": "item", "itemId": "u3l5-01", "tsw": "Reetsa", "retag": true },
+    { "lesson": "12", "file": "BW_Setswana_Lesson_12.mp3", "seg": 48, "start": 84.464, "end": 86.275, "action": "item", "itemId": "u3l5-07", "tsw": "Boela kwa morago", "retag": true },
+    { "lesson": "12", "file": "BW_Setswana_Lesson_12.mp3", "seg": 50, "start": 87.944, "end": 89.454, "action": "item", "itemId": "u3l5-06", "tsw": "Tla kwa pele", "retag": true },
+    { "lesson": "12", "file": "BW_Setswana_Lesson_12.mp3", "seg": 52, "start": 91.388, "end": 92.691, "action": "item", "itemId": "u3l5-02", "tsw": "Nna fatshe", "retag": true }
+  ]
+}

@@ -7,11 +7,46 @@
   "wav": "nchlt_tsn/audio/150/nchlt_tsn_150f_0511.wav"
  },
  {
+  "id": "nchlt_tsn_120m_0170",
+  "tsw": "dikoko jalo jalo pele pele",
+  "audio": "nchlt/nchlt_tsn_120m_0170.mp3",
+  "spk": "120 (male, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/120/nchlt_tsn_120m_0170.wav"
+ },
+ {
   "id": "nchlt_tsn_177m_0531",
   "tsw": "mang eng kae leng jang",
   "audio": "nchlt/nchlt_tsn_177m_0531.mp3",
   "spk": "177 (male, -1, gauteng)",
   "wav": "nchlt_tsn/audio/177/nchlt_tsn_177m_0531.wav"
+ },
+ {
+  "id": "nchlt_tsn_163m_0336",
+  "tsw": "dumela mma lo tsoga jang",
+  "audio": "nchlt/nchlt_tsn_163m_0336.mp3",
+  "spk": "163 (male, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/163/nchlt_tsn_163m_0336.wav"
+ },
+ {
+  "id": "nchlt_tsn_162m_0352",
+  "tsw": "leina la gagwe kgotsa la",
+  "audio": "nchlt/nchlt_tsn_162m_0352.mp3",
+  "spk": "162 (male, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/162/nchlt_tsn_162m_0352.wav"
+ },
+ {
+  "id": "nchlt_tsn_125f_0328",
+  "tsw": "wena dira jaaka motho yo",
+  "audio": "nchlt/nchlt_tsn_125f_0328.mp3",
+  "spk": "125 (female, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/125/nchlt_tsn_125f_0328.wav"
+ },
+ {
+  "id": "nchlt_tsn_107f_0018",
+  "tsw": "re leng batho mme nna",
+  "audio": "nchlt/nchlt_tsn_107f_0018.mp3",
+  "spk": "107 (female, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/107/nchlt_tsn_107f_0018.wav"
  },
  {
   "id": "nchlt_tsn_066f_0494",
@@ -21,11 +56,74 @@
   "wav": "nchlt_tsn/audio/066/nchlt_tsn_066f_0494.wav"
  },
  {
+  "id": "nchlt_tsn_140m_0217",
+  "tsw": "nngwe morago ga gore motho",
+  "audio": "nchlt/nchlt_tsn_140m_0217.mp3",
+  "spk": "140 (male, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/140/nchlt_tsn_140m_0217.wav"
+ },
+ {
+  "id": "nchlt_tsn_135f_0234",
+  "tsw": "baithuti pele ga ba dira",
+  "audio": "nchlt/nchlt_tsn_135f_0234.mp3",
+  "spk": "135 (female, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/135/nchlt_tsn_135f_0234.wav"
+ },
+ {
   "id": "nchlt_tsn_090f_0573",
   "tsw": "leina la gago le a",
   "audio": "nchlt/nchlt_tsn_090f_0573.mp3",
   "spk": "090 (female, -1, gauteng)",
   "wav": "nchlt_tsn/audio/090/nchlt_tsn_090f_0573.wav"
+ },
+ {
+  "id": "nchlt_tsn_098m_0780",
+  "tsw": "ya bana morago ga sekolo",
+  "audio": "nchlt/nchlt_tsn_098m_0780.mp3",
+  "spk": "098 (male, 39, gauteng)",
+  "wav": "nchlt_tsn/audio/098/nchlt_tsn_098m_0780.wav"
+ },
+ {
+  "id": "nchlt_tsn_091f_0341",
+  "tsw": "nngwe le nngwe e ja",
+  "audio": "nchlt/nchlt_tsn_091f_0341.mp3",
+  "spk": "091 (female, 27, gauteng)",
+  "wav": "nchlt_tsn/audio/091/nchlt_tsn_091f_0341.wav"
+ },
+ {
+  "id": "nchlt_tsn_173m_0351",
+  "tsw": "mogolo kgotsa moithuti yo mogolo",
+  "audio": "nchlt/nchlt_tsn_173m_0351.mp3",
+  "spk": "173 (male, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/173/nchlt_tsn_173m_0351.wav"
+ },
+ {
+  "id": "nchlt_tsn_107f_0421",
+  "tsw": "leitlho yo montle yo ene",
+  "audio": "nchlt/nchlt_tsn_107f_0421.mp3",
+  "spk": "107 (female, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/107/nchlt_tsn_107f_0421.wav"
+ },
+ {
+  "id": "nchlt_tsn_117m_0295",
+  "tsw": "gagwe letsogo mme rona re",
+  "audio": "nchlt/nchlt_tsn_117m_0295.mp3",
+  "spk": "117 (male, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/117/nchlt_tsn_117m_0295.wav"
+ },
+ {
+  "id": "nchlt_tsn_175f_0245",
+  "tsw": "a a jalo maina a",
+  "audio": "nchlt/nchlt_tsn_175f_0245.mp3",
+  "spk": "175 (female, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/175/nchlt_tsn_175f_0245.wav"
+ },
+ {
+  "id": "nchlt_tsn_064f_0452",
+  "tsw": "sa go nna teng ga",
+  "audio": "nchlt/nchlt_tsn_064f_0452.mp3",
+  "spk": "064 (female, 17, gauteng)",
+  "wav": "nchlt_tsn/audio/064/nchlt_tsn_064f_0452.wav"
  },
  {
   "id": "nchlt_tsn_072m_0329",
@@ -35,13 +133,6 @@
   "wav": "nchlt_tsn/audio/072/nchlt_tsn_072m_0329.wav"
  },
  {
-  "id": "nchlt_tsn_064f_0217",
-  "tsw": "a ka nna a kopa",
-  "audio": "nchlt/nchlt_tsn_064f_0217.mp3",
-  "spk": "064 (female, 17, gauteng)",
-  "wav": "nchlt_tsn/audio/064/nchlt_tsn_064f_0217.wav"
- },
- {
   "id": "nchlt_tsn_168f_0577",
   "tsw": "re tla tsoga re bona",
   "audio": "nchlt/nchlt_tsn_168f_0577.mp3",
@@ -49,11 +140,39 @@
   "wav": "nchlt_tsn/audio/168/nchlt_tsn_168f_0577.wav"
  },
  {
-  "id": "nchlt_tsn_165m_0195",
-  "tsw": "o ka nna wa dira",
-  "audio": "nchlt/nchlt_tsn_165m_0195.mp3",
-  "spk": "165 (male, -1, gauteng)",
-  "wav": "nchlt_tsn/audio/165/nchlt_tsn_165m_0195.wav"
+  "id": "nchlt_tsn_155f_0276",
+  "tsw": "di le thataro morago ga",
+  "audio": "nchlt/nchlt_tsn_155f_0276.mp3",
+  "spk": "155 (female, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/155/nchlt_tsn_155f_0276.wav"
+ },
+ {
+  "id": "nchlt_tsn_130f_0429",
+  "tsw": "re bona jaaka lo batla",
+  "audio": "nchlt/nchlt_tsn_130f_0429.mp3",
+  "spk": "130 (female, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/130/nchlt_tsn_130f_0429.wav"
+ },
+ {
+  "id": "nchlt_tsn_087f_0496",
+  "tsw": "nnang mo go lona le",
+  "audio": "nchlt/nchlt_tsn_087f_0496.mp3",
+  "spk": "087 (female, 35, gauteng)",
+  "wav": "nchlt_tsn/audio/087/nchlt_tsn_087f_0496.wav"
+ },
+ {
+  "id": "nchlt_tsn_096m_0341",
+  "tsw": "go reka dijo tse di",
+  "audio": "nchlt/nchlt_tsn_096m_0341.mp3",
+  "spk": "096 (male, 20, gauteng)",
+  "wav": "nchlt_tsn/audio/096/nchlt_tsn_096m_0341.wav"
+ },
+ {
+  "id": "nchlt_tsn_079m_0003",
+  "tsw": "sa madi kgotsa madi mo",
+  "audio": "nchlt/nchlt_tsn_079m_0003.mp3",
+  "spk": "079 (male, 20, gauteng)",
+  "wav": "nchlt_tsn/audio/079/nchlt_tsn_079m_0003.wav"
  },
  {
   "id": "nchlt_tsn_151f_0322",
@@ -63,6 +182,13 @@
   "wav": "nchlt_tsn/audio/151/nchlt_tsn_151f_0322.wav"
  },
  {
+  "id": "nchlt_tsn_029m_0227",
+  "tsw": "dibeke di le thataro go",
+  "audio": "nchlt/nchlt_tsn_029m_0227.mp3",
+  "spk": "029 (male, 22, north west)",
+  "wav": "nchlt_tsn/audio/029/nchlt_tsn_029m_0227.wav"
+ },
+ {
   "id": "nchlt_tsn_113f_0194",
   "tsw": "maina a batho ba ba",
   "audio": "nchlt/nchlt_tsn_113f_0194.mp3",
@@ -70,25 +196,46 @@
   "wav": "nchlt_tsn/audio/113/nchlt_tsn_113f_0194.wav"
  },
  {
-  "id": "nchlt_tsn_016m_0331",
-  "tsw": "batho ba le babedi ba",
-  "audio": "nchlt/nchlt_tsn_016m_0331.mp3",
-  "spk": "016 (male, 25, north west)",
-  "wav": "nchlt_tsn/audio/016/nchlt_tsn_016m_0331.wav"
+  "id": "nchlt_tsn_024m_0503",
+  "tsw": "moithuti mo sekolong sa mo",
+  "audio": "nchlt/nchlt_tsn_024m_0503.mp3",
+  "spk": "024 (male, 23, north west)",
+  "wav": "nchlt_tsn/audio/024/nchlt_tsn_024m_0503.wav"
  },
  {
-  "id": "nchlt_tsn_066f_0415",
-  "tsw": "e e leng teng mo",
-  "audio": "nchlt/nchlt_tsn_066f_0415.mp3",
-  "spk": "066 (female, 19, gauteng)",
-  "wav": "nchlt_tsn/audio/066/nchlt_tsn_066f_0415.wav"
+  "id": "nchlt_tsn_138f_0213",
+  "tsw": "baithuti ba itse se se",
+  "audio": "nchlt/nchlt_tsn_138f_0213.mp3",
+  "spk": "138 (female, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/138/nchlt_tsn_138f_0213.wav"
  },
  {
-  "id": "nchlt_tsn_089f_0395",
-  "tsw": "ya thata ya go dira",
-  "audio": "nchlt/nchlt_tsn_089f_0395.mp3",
-  "spk": "089 (female, 31, gauteng)",
-  "wav": "nchlt_tsn/audio/089/nchlt_tsn_089f_0395.wav"
+  "id": "nchlt_tsn_047m_0501",
+  "tsw": "e e ka nnang teng",
+  "audio": "nchlt/nchlt_tsn_047m_0501.mp3",
+  "spk": "047 (male, 25, north west)",
+  "wav": "nchlt_tsn/audio/047/nchlt_tsn_047m_0501.wav"
+ },
+ {
+  "id": "nchlt_tsn_022m_0008",
+  "tsw": "dibeke di le pedi go",
+  "audio": "nchlt/nchlt_tsn_022m_0008.mp3",
+  "spk": "022 (male, -1, north west)",
+  "wav": "nchlt_tsn/audio/022/nchlt_tsn_022m_0008.wav"
+ },
+ {
+  "id": "nchlt_tsn_178f_0279",
+  "tsw": "tla tsoga re bona gore",
+  "audio": "nchlt/nchlt_tsn_178f_0279.mp3",
+  "spk": "178 (female, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/178/nchlt_tsn_178f_0279.wav"
+ },
+ {
+  "id": "nchlt_tsn_118f_0258",
+  "tsw": "go ruta le go ithuta",
+  "audio": "nchlt/nchlt_tsn_118f_0258.mp3",
+  "spk": "118 (female, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/118/nchlt_tsn_118f_0258.wav"
  },
  {
   "id": "nchlt_tsn_086f_0460",
@@ -98,11 +245,25 @@
   "wav": "nchlt_tsn/audio/086/nchlt_tsn_086f_0460.wav"
  },
  {
-  "id": "nchlt_tsn_094m_0275",
-  "tsw": "ya madi go tswa go",
-  "audio": "nchlt/nchlt_tsn_094m_0275.mp3",
-  "spk": "094 (male, 21, gauteng)",
-  "wav": "nchlt_tsn/audio/094/nchlt_tsn_094m_0275.wav"
+  "id": "nchlt_tsn_079m_0469",
+  "tsw": "o ka nne wa kopa",
+  "audio": "nchlt/nchlt_tsn_079m_0469.mp3",
+  "spk": "079 (male, 20, gauteng)",
+  "wav": "nchlt_tsn/audio/079/nchlt_tsn_079m_0469.wav"
+ },
+ {
+  "id": "nchlt_tsn_135f_0252",
+  "tsw": "leboga re lo leboga jaaka",
+  "audio": "nchlt/nchlt_tsn_135f_0252.mp3",
+  "spk": "135 (female, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/135/nchlt_tsn_135f_0252.wav"
+ },
+ {
+  "id": "nchlt_tsn_130f_0203",
+  "tsw": "letsogo mme rona re tla",
+  "audio": "nchlt/nchlt_tsn_130f_0203.mp3",
+  "spk": "130 (female, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/130/nchlt_tsn_130f_0203.wav"
  },
  {
   "id": "nchlt_tsn_186f_0178",
@@ -112,129 +273,10 @@
   "wav": "nchlt_tsn/audio/186/nchlt_tsn_186f_0178.wav"
  },
  {
-  "id": "nchlt_tsn_089f_0088",
-  "tsw": "go tswa kwa ngakeng ya",
-  "audio": "nchlt/nchlt_tsn_089f_0088.mp3",
-  "spk": "089 (female, 31, gauteng)",
-  "wav": "nchlt_tsn/audio/089/nchlt_tsn_089f_0088.wav"
- },
- {
-  "id": "nchlt_tsn_023f_0240",
-  "tsw": "go tla tswa mo go",
-  "audio": "nchlt/nchlt_tsn_023f_0240.mp3",
-  "spk": "023 (female, 25, north west)",
-  "wav": "nchlt_tsn/audio/023/nchlt_tsn_023f_0240.wav"
- },
- {
-  "id": "nchlt_tsn_023f_0886",
-  "tsw": "o na le madi a",
-  "audio": "nchlt/nchlt_tsn_023f_0886.mp3",
-  "spk": "023 (female, 25, north west)",
-  "wav": "nchlt_tsn/audio/023/nchlt_tsn_023f_0886.wav"
- },
- {
-  "id": "nchlt_tsn_131f_0575",
-  "tsw": "setswana",
-  "audio": "nchlt/nchlt_tsn_131f_0575.mp3",
-  "spk": "131 (female, -1, gauteng)",
-  "wav": "nchlt_tsn/audio/131/nchlt_tsn_131f_0575.wav"
- },
- {
-  "id": "nchlt_tsn_079m_0319",
-  "tsw": "tsweetswee o se ka wa",
-  "audio": "nchlt/nchlt_tsn_079m_0319.mp3",
-  "spk": "079 (male, 20, gauteng)",
-  "wav": "nchlt_tsn/audio/079/nchlt_tsn_079m_0319.wav"
- },
- {
-  "id": "nchlt_tsn_008f_0407",
-  "tsw": "botswana",
-  "audio": "nchlt/nchlt_tsn_008f_0407.mp3",
-  "spk": "008 (female, 20, north west)",
-  "wav": "nchlt_tsn/audio/008/nchlt_tsn_008f_0407.wav"
- },
- {
-  "id": "nchlt_tsn_086f_0195",
-  "tsw": "le ya bana ba ba",
-  "audio": "nchlt/nchlt_tsn_086f_0195.mp3",
-  "spk": "086 (female, 33, gauteng)",
-  "wav": "nchlt_tsn/audio/086/nchlt_tsn_086f_0195.wav"
- },
- {
-  "id": "nchlt_tsn_077m_0281",
-  "tsw": "ntlo",
-  "audio": "nchlt/nchlt_tsn_077m_0281.mp3",
-  "spk": "077 (male, 17, gauteng)",
-  "wav": "nchlt_tsn/audio/077/nchlt_tsn_077m_0281.wav"
- },
- {
-  "id": "nchlt_tsn_183m_0097",
-  "tsw": "dikgomo",
-  "audio": "nchlt/nchlt_tsn_183m_0097.mp3",
-  "spk": "183 (male, -1, gauteng)",
-  "wav": "nchlt_tsn/audio/183/nchlt_tsn_183m_0097.wav"
- },
- {
-  "id": "nchlt_tsn_167m_0085",
-  "tsw": "bana",
-  "audio": "nchlt/nchlt_tsn_167m_0085.mp3",
-  "spk": "167 (male, -1, gauteng)",
-  "wav": "nchlt_tsn/audio/167/nchlt_tsn_167m_0085.wav"
- },
- {
-  "id": "nchlt_tsn_014f_0430",
-  "tsw": "ba le babedi ba ba",
-  "audio": "nchlt/nchlt_tsn_014f_0430.mp3",
-  "spk": "014 (female, 23, north west)",
-  "wav": "nchlt_tsn/audio/014/nchlt_tsn_014f_0430.wav"
- },
- {
-  "id": "nchlt_tsn_069m_0340",
-  "tsw": "borra",
-  "audio": "nchlt/nchlt_tsn_069m_0340.mp3",
-  "spk": "069 (male, 19, gauteng)",
-  "wav": "nchlt_tsn/audio/069/nchlt_tsn_069m_0340.wav"
- },
- {
-  "id": "nchlt_tsn_087f_0618",
-  "tsw": "ba go ithuta ba ba",
-  "audio": "nchlt/nchlt_tsn_087f_0618.mp3",
-  "spk": "087 (female, 35, gauteng)",
-  "wav": "nchlt_tsn/audio/087/nchlt_tsn_087f_0618.wav"
- },
- {
-  "id": "nchlt_tsn_022m_0447",
-  "tsw": "barutabana",
-  "audio": "nchlt/nchlt_tsn_022m_0447.mp3",
-  "spk": "022 (male, -1, north west)",
-  "wav": "nchlt_tsn/audio/022/nchlt_tsn_022m_0447.wav"
- },
- {
-  "id": "nchlt_tsn_079m_0112",
-  "tsw": "o tla go kopa go",
-  "audio": "nchlt/nchlt_tsn_079m_0112.mp3",
-  "spk": "079 (male, 20, gauteng)",
-  "wav": "nchlt_tsn/audio/079/nchlt_tsn_079m_0112.wav"
- },
- {
-  "id": "nchlt_tsn_084f_0553",
-  "tsw": "ya gago o le kwa",
-  "audio": "nchlt/nchlt_tsn_084f_0553.mp3",
-  "spk": "084 (female, -1, gauteng)",
-  "wav": "nchlt_tsn/audio/084/nchlt_tsn_084f_0553.wav"
- },
- {
-  "id": "nchlt_tsn_139m_0408",
-  "tsw": "ke eng se o se",
-  "audio": "nchlt/nchlt_tsn_139m_0408.mp3",
-  "spk": "139 (male, -1, gauteng)",
-  "wav": "nchlt_tsn/audio/139/nchlt_tsn_139m_0408.wav"
- },
- {
-  "id": "nchlt_tsn_090f_0875",
-  "tsw": "e ka bona go le",
-  "audio": "nchlt/nchlt_tsn_090f_0875.mp3",
-  "spk": "090 (female, -1, gauteng)",
-  "wav": "nchlt_tsn/audio/090/nchlt_tsn_090f_0875.wav"
+  "id": "nchlt_tsn_102m_0160",
+  "tsw": "ga ke itse gore wena",
+  "audio": "nchlt/nchlt_tsn_102m_0160.mp3",
+  "spk": "102 (male, -1, gauteng)",
+  "wav": "nchlt_tsn/audio/102/nchlt_tsn_102m_0160.wav"
  }
 ]
