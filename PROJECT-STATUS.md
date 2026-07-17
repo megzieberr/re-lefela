@@ -1,6 +1,80 @@
 ﻿# Re:Lefela — Project Status
 
-**Updated:** 2026-07-17 (release wave — sessions 18-21 SHIPPED as sw **v23**: Units 3-5 complete + mid-Katse id rename + daily XP rivalry nudge + weekly champion popup; 212/307 real cards voiced) · (session 21 — new Unit 5 "Diphologolo" built: u5l1-u5l5, 36 real items + 5 rule cards, 5 reuse cards, NCHLT gym re-filtered to 40) · previous: session 20 — new Unit 4 "Go ja dijo" built: u4l1-u4l5, 41 real items + 5 rule cards, 1 reuse card, NCHLT gym re-filtered to 40; sw stays v22, not yet shipped; session 19 — Unit 3 part 2 "Mo sekolong" built: u3l4-u3l8, 41 cards + 5 rule cards, 13 clips spliced, NCHLT gym re-filtered to 40; sw stays v22, not yet shipped; session 17 — 5-agent audit + fix batch v20, colours drop + 65-clip wiring wave v21, L11 finale + export scope fix v22 — ALL SHIPPED; session 16 Itumeleng card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
+**Updated:** 2026-07-17 (session 22 — "Ask your tutor" feature SHIPPED as sw **v24**: Megan-only 💬
+floating button parks a mid-app question straight into a new `tutor_questions` table for her SECL121
+tutor to see first thing next session; seeded with her real "where do I use wena" question from
+today) · previous: release wave — sessions 18-21 SHIPPED as sw **v23**: Units 3-5 complete + mid-Katse
+id rename + daily XP rivalry nudge + weekly champion popup; 212/307 real cards voiced) · (session 21 —
+new Unit 5 "Diphologolo" built: u5l1-u5l5, 36 real items + 5 rule cards, 5 reuse cards, NCHLT gym
+re-filtered to 40) · previous: session 20 — new Unit 4 "Go ja dijo" built: u4l1-u4l5, 41 real items +
+5 rule cards, 1 reuse card, NCHLT gym re-filtered to 40; sw stays v22, not yet shipped; session 19 —
+Unit 3 part 2 "Mo sekolong" built: u3l4-u3l8, 41 cards + 5 rule cards, 13 clips spliced, NCHLT gym
+re-filtered to 40; sw stays v22, not yet shipped; session 17 — 5-agent audit + fix batch v20, colours
+drop + 65-clip wiring wave v21, L11 finale + export scope fix v22 — ALL SHIPPED; session 16 Itumeleng
+card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14
+enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button
+(sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 22 (2026-07-17, same day) — "Ask your tutor" feature (sw v24, SHIPPED)
+Megan's own ask, same session: she got stuck on "where do I use wena" mid-lesson today and had to
+park it in WhatsApp for her next SECL121 tutor session. Built a hovering help button — like a
+website's AI-help bot — that parks a question straight into Supabase instead, so her next tutor
+session sees it immediately.
+- **Migration (additive, applied via MCP, project `opacjlgljeippheotyhz`):** new `tutor_questions`
+  table — `id uuid pk default gen_random_uuid()`, `user_id uuid not null references auth.users(id)
+  default auth.uid()`, `question text not null`, `context text`, `created_at timestamptz not null
+  default now()`, `addressed_at timestamptz`. RLS enabled; `insert`/`select` policies both `user_id =
+  auth.uid()`; deliberately **no update/delete policy** — the tutor marks a question addressed via the
+  Supabase MCP service role, which bypasses RLS, so a learner-facing write policy isn't needed.
+  Existing 5 tables + their RLS/policies untouched — nothing dropped or altered.
+- **Seeded her real question:** `'Where do I use wena?'`, context `'seeded 2026-07-17 from chat — came
+  up during today's lessons, she parked it in WhatsApp'`, row id `153243a3-4fc3-4f2a-8326-b12a62836c82`.
+- **Her user id disambiguated with zero ambiguity:** `select id, username, display_name from profiles`
+  returned exactly 2 rows — `megzieberr` / "Megan" (id `0b6fd25f-10ad-4d74-9dd5-0e67e31629f2`) and
+  `the second learner` / "the second learner". Matches her known locked username from other apps (Budget App). Gated the client on
+  `username === 'megzieberr'`.
+- **Client (`index.html`):** small 💬 button, 44px, `position:fixed` bottom-LEFT (Katse owns
+  bottom-right), appended to `document.body` — NOT inside `#app`, so it survives every `render()`/
+  `renderFill()` screen swap and stays visible mid-lesson, which is the whole point (that's when
+  confusion strikes). Mounted once from `afterAuth()` via `mountTutorFab()`, gated on `!LOCAL_MODE &&
+  state.user && state.user.username === 'megzieberr'` — invisible on the second learner's account and in `?local=1`.
+  Tap → `.tutor-overlay`/`.tutor-card` (same overlay pattern as `.champ-overlay`, own z-index 210 so it
+  sits above the champion popup's 200 rather than colliding with it; the fab itself is z-index 90,
+  below the toast's 99). "Ask your tutor" title, textarea, Send + Cancel, tap-outside-to-close.
+  **Context auto-capture** (`currentContext()`): mid-lesson/review/gym, reads live off the global
+  `session` object — `unit.id/l<lessonIdx+1> — <current card's tsw>` (or `Listening gym — <clip tsw>`,
+  or `review`); elsewhere, a lightweight `currentScreen` global set at the top of `screenHome` /
+  `screenLeaderboard` / `screenStats` ('Home'/'Scoreboard'/'Stats'). On send: inserts `{user_id,
+  question, context}` into `tutor_questions`. Success → toast "Sent — it'll be waiting for your
+  tutor." Offline/failure → saved to `localStorage 'rl_tutorq'` (own key, not routed through the
+  existing srs/xp/streak/unit sync queue — that queue's op-shape and retry contract is for those 4
+  ops only), toast "queued", flushed via `flushTutorQuestions()` called fire-and-forget from
+  `afterAuth` (LOCAL_MODE never reaches `afterAuth`, so never touches any of this). `'rl_tutorq'`
+  added to `clearLearnerState()`'s wipe list so it can't leak across an account switch on a shared
+  device.
+- **Verified in preview** (`?local=1`): 💬 button absent (LOCAL_MODE gate), 0 console errors on a
+  fresh load. Then drove `openTutorOverlay()`/`sendTutorQuestion()`/`queueTutorQuestion()`/
+  `flushTutorQuestions()` directly in-page with a mocked `sb` (insert always erroring, to force the
+  queue path) and a mocked `state.user` — send → localStorage `rl_tutorq` gained the queued row,
+  toast fired, overlay closed; queue path confirmed independent of `enqueue()`'s xp/srs/streak/unit
+  queue (`rl_queue` untouched by either test). Test localStorage cleared afterward. Main inline
+  `<script>` block re-parsed with Node's `new Function()` after every edit — syntax-clean throughout.
+  375×812 layout check: fab sits clear of the ◀ back button (top bar) and doesn't overlap any
+  `.exa-actions`/`Check`/`Continue` button on the tap/choose/teach card layouts (all bottom-anchored
+  content leaves the fab's bottom-left 44px corner clear).
+- **`schema.sql`** documents the new table + policies in the file's established style (a comment
+  block + the exact DDL), noting it was deployed via MCP, matching how every other table in the file
+  is presented. **Not re-run on live** — the file is reference-only, per its own header.
+- **Tutor hook wired end-to-end:** `Desktop\NWU Semester 2\SECL121\CLAUDE.md` gained an "Ask-your-tutor
+  queue" section — session start now queries `tutor_questions where addressed_at is null order by
+  created_at` via the Study Hub's Supabase MCP and raises anything found FIRST, before the normal
+  session menu; after genuinely addressing one, `update ... set addressed_at = now()`; addressed
+  questions feed the existing "leaky items" list. (Side note while reading that file: it already has a
+  2026-07-17-dated leaky-item entry on "wena" — looks like a real tutor session covered this earlier
+  today, independent of this build. The seeded row stays unaddressed on purpose; the SECL121 tutor's
+  next session start will surface it and can mark it addressed, referencing that existing note.)
+- **sw.js: `relefela-v23` → `relefela-v24`** (`AUDIO_CACHE` `relefela-audio-v1` untouched — no audio
+  byte changed).
 
 ## Session 21 (2026-07-17, same day) — new Unit 5 "Diphologolo" built (sw stays v22, NOT shipped)
 Built from a read-only spec (`SPEC-u5-diphologolo.md`) + supervisor rulings resolving its open
@@ -813,6 +887,11 @@ and zero XP-farming.
   hides at card 0, resume lands on the correct live card, 0 console errors.
 
 ## Pending on Megan
+-6. 2026-07-17 (session 22): **Try the "Ask your tutor" button once on live.** Log in as
+   `megzieberr` on the live site, tap the 💬 bottom-left, send a throwaway test question, confirm
+   it lands in Supabase (`select * from tutor_questions order by created_at desc limit 1`), then
+   either leave it for the next SECL121 tutor session to find or delete the test row by hand — your
+   call. Also worth one glance: confirm the button is genuinely invisible on the second learner's account.
 -5. 2026-07-17 (session 21): **New Unit 5 "Diphologolo" — ready but NOT shipped.** u5l1-u5l5 built
    (36 real items + 5 rule cards, 5 reuse cards pointing at existing `u2l5-07/08/09.mp3` +
    `u2l6-10/11.mp3`), NCHLT gym re-filtered to 40 clips (8 in / 8 out). Ships whenever the next

@@ -88,6 +88,29 @@ $$;
 revoke all on function public.join_relefela from anon, public;
 grant execute on function public.join_relefela to authenticated;
 
+-- "Ask your tutor" (2026-07-17, migration add_tutor_questions — ALREADY APPLIED to
+-- opacjlgljeippheotyhz via MCP, do NOT re-run schema.sql on live). Megan-only feature
+-- (client gates the button on username = 'megzieberr'): a floating in-app button lets
+-- her park a question for her SECL121 tutor mid-lesson, instead of parking it in
+-- WhatsApp. No update/delete policy on purpose — the tutor marks a question addressed
+-- via the Supabase MCP service role, which bypasses RLS entirely; a learner-facing
+-- update policy isn't needed and would just be one more thing that could be misused.
+create table public.tutor_questions (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users(id) default auth.uid(),
+  question text not null,
+  context text,
+  created_at timestamptz not null default now(),
+  addressed_at timestamptz
+);
+
+alter table public.tutor_questions enable row level security;
+
+create policy tutor_questions_insert on public.tutor_questions for insert to authenticated
+  with check (user_id = auth.uid());
+create policy tutor_questions_select on public.tutor_questions for select to authenticated
+  using (user_id = auth.uid());
+
 create view public.leaderboard_week
 with (security_invoker = true) as
 select p.username, p.display_name,

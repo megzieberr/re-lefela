@@ -103,6 +103,25 @@ input:focus{outline:none; border-color:var(--pink)}
   align-items:center; justify-content:center; z-index:200; padding:20px}
 .champ-card{background:#fff; border:2px solid var(--ink); border-radius:var(--radius);
   padding:28px 24px; text-align:center; max-width:320px; box-shadow:var(--shadow)}
+/* "Ask your tutor" — Megan-only floating button, bottom-LEFT (Katse owns bottom-right).
+   Lives outside #app (appended to document.body) so render()/renderFill() replacing
+   #app's innerHTML on every screen switch never removes it — persists mid-lesson too,
+   which is the whole point (that's when confusion strikes). z-index sits below the
+   toast (99) and both overlays so it never fights them; the overlay itself sits ABOVE
+   champ-overlay (200) so it's never trapped behind a celebration popup. */
+.tutor-fab{position:fixed; left:12px; bottom:calc(12px + env(safe-area-inset-bottom));
+  width:44px; height:44px; border-radius:50%; background:var(--ink); color:#fff;
+  font-size:1.3rem; display:flex; align-items:center; justify-content:center;
+  box-shadow:var(--shadow); border:2px solid var(--pink); z-index:90; padding:0}
+.tutor-fab:active{transform:translateY(1px)}
+.tutor-overlay{position:fixed; inset:0; background:rgba(26,22,29,.55); display:flex;
+  align-items:center; justify-content:center; z-index:210; padding:20px}
+.tutor-card{background:#fff; border:2px solid var(--ink); border-radius:var(--radius);
+  padding:22px 20px; max-width:360px; width:100%; box-shadow:var(--shadow)}
+.tutor-card textarea{width:100%; min-height:110px; padding:12px 14px; border-radius:12px;
+  border:2px solid var(--line); background:#fff; color:var(--ink); font:inherit;
+  font-size:1rem; margin:10px 0; resize:vertical}
+.tutor-card textarea:focus{outline:none; border-color:var(--pink)}
 .hidden{display:none!important}
 .pwrow{position:relative}
 .pwrow input{padding-right:52px}
@@ -176,6 +195,14 @@ a{color:var(--pink-deep)}
 @media (max-height:640px){ .katse-mid .katse{width:145px} }
 @media (max-height:600px){ .katse-mid .katse{width:120px} }
 .exa-actions{padding-bottom:env(safe-area-inset-bottom)}
+/* Clearance for the tutor fab (bottom-left, 44px + 12px margin = 56px footprint):
+   teach/recap cards are the one layout that pins Continue/Skip-recap to the TRUE
+   viewport bottom (exwrap-fill's whole point), so they're the only place the fab's
+   corner can land ON a button's tap target instead of beside it. Scoped to Megan's
+   session only via body.tutor-fab-on (set by mountTutorFab) — the second learner's layout is
+   untouched. Verified at 375x812: without this, the fab overlapped Continue's
+   bottom-left corner by ~32x40px; this padding clears it with room to spare. */
+body.tutor-fab-on .exa-actions{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 .exa-actions .btn+.btn{margin-top:8px}
 /* part map — circles on a dotted path, Katse stands where you are */
 .pmap{display:flex; align-items:center; justify-content:center; padding-top:52px}
@@ -252,7 +279,7 @@ function persist(){ store.set('srs', state.srs); store.set('progress', state.pro
 // own by the caller. There are no app-scoped rl_ keys. Used by logout + the account-
 // switch guard in afterAuth so one learner's data can never bleed into another's.
 function clearLearnerState(){
-  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_replay','rl_rivalry','rl_champWeekSeen']
+  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq']
     .forEach(k=>localStorage.removeItem(k));
 }
 
@@ -577,6 +604,8 @@ async function afterAuth(user){
   flushQueue();
   screenHome();
   maybeShowWeeklyChampion(); // fire-and-forget — never blocks/delays home render
+  mountTutorFab();
+  flushTutorQuestions(); // fire-and-forget — flushes anything queued while offline
 }
 
 async function pullRemote(){
@@ -648,6 +677,7 @@ async function resetLesson1(){
 }
 
 function screenHome(){
+  currentScreen = 'Home';
   const due = dueItems().length;
   const doneToday = state.streak.last === todayStr();
   const unitsHtml = RL_CONTENT.units.map(unit=>{
@@ -762,6 +792,7 @@ function finishGym(){
 }
 
 async function screenLeaderboard(){
+  currentScreen = 'Scoreboard';
   render(`<div class="topbar"><button class="quit" id="b-back">←</button><h2>🏆 Scoreboard</h2></div><div id="lb"><p class="muted">Loading…</p></div>`);
   document.getElementById('b-back').onclick = screenHome;
   if (LOCAL_MODE){ document.getElementById('lb').innerHTML = '<p class="muted">Local mode — no scoreboard.</p>'; return; }
@@ -881,7 +912,120 @@ async function maybeShowWeeklyChampion(){
   showChampionPopup(champ.display);
 }
 
+/* ----- "Ask your tutor" — Megan-only, 2026-07-17 ------------------------------
+   A hovering help button like a site's AI-help bot, but it just parks a question
+   for her real SECL121 tutor to see at the start of her next tutoring session
+   (mid-app confusion, e.g. "where do I use wena", used to get stuck in WhatsApp).
+   Useless on the second learner's account (she has no NWU tutor session), so gated hard on
+   username. LOCAL_MODE is offline-only by design and never reaches afterAuth,
+   so it never sees this feature either — no extra guard needed beyond the ones
+   already on mountTutorFab/sendTutorQuestion. */
+const TUTOR_USERNAME = 'megzieberr';
+// Tracks which non-lesson screen is on-screen, for the question's auto-captured
+// context. Lesson/review/gym context is read live off `session` instead (richer:
+// unit/lesson id + the exact card she's stuck on) — see currentContext() below.
+let currentScreen = 'Home';
+
+function currentContext(){
+  if (session && document.getElementById('exArea')){
+    if (session.gym){
+      const c = session.ex && session.ex[session.at];
+      return 'Listening gym' + (c && c.tsw ? ' — ' + c.tsw : '');
+    }
+    const ex = session.ex && session.ex[session.at];
+    const tsw = ex && ex.item ? ex.item.tsw : null;
+    const where = session.unit ? (session.unit.id + '/l' + (session.lessonIdx+1))
+      : (session.isReview ? 'review' : 'lesson');
+    return where + (tsw ? ' — ' + tsw : '');
+  }
+  return currentScreen;
+}
+
+function openTutorOverlay(){
+  if (document.querySelector('.tutor-overlay')) return; // already open, no double-mount
+  const ctx = currentContext();
+  const wrap = document.createElement('div'); wrap.className = 'tutor-overlay';
+  wrap.innerHTML = `<div class="tutor-card">
+    <h2 style="margin:0 0 4px">Ask your tutor</h2>
+    <p class="muted" style="margin:0 0 10px">It'll be waiting for you at your next SECL121 session.</p>
+    <textarea id="tq-text" placeholder="What are you stuck on?"></textarea>
+    <button class="btn primary" id="tq-send">Send</button>
+    <button class="btn ghost" id="tq-cancel" style="margin-top:8px">Cancel</button>
+  </div>`;
+  document.body.appendChild(wrap);
+  wrap.addEventListener('click', e=>{ if (e.target === wrap) wrap.remove(); });
+  document.getElementById('tq-cancel').onclick = ()=>wrap.remove();
+  const ta = document.getElementById('tq-text'); ta.focus();
+  document.getElementById('tq-send').onclick = async ()=>{
+    const q = ta.value.trim();
+    if (!q) return toast('Type your question first, tsweetswee.');
+    const btn = document.getElementById('tq-send'); btn.disabled = true; btn.textContent = 'Sending…';
+    await sendTutorQuestion(q, ctx);
+    wrap.remove();
+  };
+}
+
+/* Queue shape: [{question, context, at}]. Own key (not routed through the srs/xp
+   sync queue — that queue is stamped+flushed against `state.queue`/enqueue(),
+   which is srs/xp/streak/unit shaped; a 5th op type there would touch flushQueue's
+   error/retry contract for the other three learner-progress ops for no reason). */
+function queueTutorQuestion(question, context){
+  const q = store.get('tutorq', []);
+  q.push({question, context, at:Date.now()});
+  store.set('tutorq', q);
+}
+async function sendTutorQuestion(question, context){
+  if (!navigator.onLine){
+    queueTutorQuestion(question, context);
+    return toast("You're offline — queued, it'll send once you're back online.");
+  }
+  try{
+    const {error} = await sb.from('tutor_questions').insert({user_id:state.user.id, question, context});
+    if (error) throw error;
+    toast("Sent — it'll be waiting for your tutor.");
+  }catch(e){
+    queueTutorQuestion(question, context);
+    toast("Couldn't send right now — queued, it'll go out later. (" + (e.message||e.code||'network') + ")");
+  }
+}
+/* Flushes any question saved while offline/failed. Called fire-and-forget from
+   afterAuth (never LOCAL_MODE — afterAuth is unreachable there). Best-effort: a
+   row that still fails to insert stays queued for the next successful open. */
+async function flushTutorQuestions(){
+  if (LOCAL_MODE || !state.user || !navigator.onLine) return;
+  const q = store.get('tutorq', []);
+  if (!q.length) return;
+  const remaining = [];
+  for (const item of q){
+    const {error} = await sb.from('tutor_questions')
+      .insert({user_id:state.user.id, question:item.question, context:item.context});
+    if (error) remaining.push(item);
+  }
+  store.set('tutorq', remaining);
+  if (remaining.length < q.length) toast("A queued tutor question just went through.");
+}
+function mountTutorFab(){
+  const existing = document.getElementById('tutor-fab');
+  if (LOCAL_MODE || !state.user || state.user.username !== TUTOR_USERNAME){
+    if (existing) existing.remove();
+    document.body.classList.remove('tutor-fab-on');
+    return;
+  }
+  // body class gives teach/recap cards (the pinned-to-true-bottom layout) extra
+  // clearance so the fab's corner can never sit on top of Continue/Skip-recap —
+  // see the .exa-actions rule in <style>. Set even if `existing`, so a stray
+  // removal of the class (there isn't one, but cheap insurance) self-heals.
+  document.body.classList.add('tutor-fab-on');
+  if (existing) return; // outside #app, so it survives every render() — mount once
+  const btn = document.createElement('button');
+  btn.id = 'tutor-fab'; btn.className = 'tutor-fab'; btn.setAttribute('aria-label', 'Ask your tutor');
+  btn.textContent = '💬';
+  btn.onclick = openTutorOverlay;
+  document.body.appendChild(btn);
+}
+
 function screenStats(){
+  currentScreen = 'Stats';
   const learned = Object.keys(state.srs).length;
   const due = dueItems().length;
   render(`<div class="topbar"><button class="quit" id="b-back">←</button><h2>📊 My stats</h2></div>
