@@ -2,7 +2,9 @@
 
 **Updated:** 2026-07-17 (session 16 — Itumeleng card fix + 🐢 slow-audio button, sw v19) · previous: session 15 Unit 3 conjugation lessons (sw v18), session 14 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
 
-## Session 16 (2026-07-17, same day) — Itumeleng + slow playback (sw v19, BUILT, not yet pushed)
+## Session 16 (2026-07-17, same day) — Itumeleng + slow playback (sw v19, SHIPPED 4ded19c)
+Verified live: sw `relefela-v19`, `AUDIO_CACHE` still `relefela-audio-v1` (correctly untouched),
+`u1l2-01.mp3` 200 at 18869 bytes, "ke Megan" 0 hits, `SLOW_RATE = 0.65` serving. Pages built in ~20s.
 
 **1. `u1l2-01` is now "Leina lame ke Itumeleng"** (was "…ke Megan") — 123rd clip lit up.
 - Fixed the CARD, not the clip. The announcer always said *Itumeleng*; the card was the lie. It also
