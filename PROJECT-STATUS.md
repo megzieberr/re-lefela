@@ -1,6 +1,23 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-17 (session 11 — stale-cache root-cause fix: network-first SW + in-app update flow, sw v14, SHIPPED 1ba76a1) · previous: session 10 agent batch (icon/layout/audio/replays, sw v13)
+**Updated:** 2026-07-17 (session 12 — Reset Lesson 1 button in stats, sw v15, SHIPPED 9648452) · previous: session 11 SW cache overhaul (sw v14, 1ba76a1)
+
+## Session 12 (2026-07-17, same session as 11) — Reset Lesson 1 button (sw v15, SHIPPED 9648452)
+Megan asked for a reset button for Lesson 1 in the stats tab (supersedes the session-5 "no reset
+feature" ruling — that was about SQL being faster than a flaky build, not a permanent objection).
+Built by a Sonnet agent under supervision.
+- Small ghost `Reset Lesson 1` button at the bottom of `screenStats()`, confirm dialog, XP/streak/
+  lessonIdx untouched (later lessons stay unlocked; unlock state and "known" state are independent).
+- **Mechanism = hard DELETE, never zero-out upsert:** `buildExercises()` treats a word as known by
+  the mere PRESENCE of its `state.srs` row, so a reps:0 row would keep teach cards away forever.
+  RLS `srs_all` is `for all`, so the user may delete her own `srs_items` rows.
+- **Sync-safe order (the session-5 gotcha):** server delete FIRST (awaited, aborts on error), only
+  then clear local `rl_srs` u1l1-*, strip pending u1l1 `srs` ops from `rl_queue`, drop the u1:0
+  `rl_replay` cursor. LOCAL_MODE resets locally only; offline shows a toast and does nothing.
+- **Known limitation (accepted, matches session-5 precedent):** a second device holding stale local
+  u1l1 rows isn't cleaned by this — pullRemote never deletes — so run the reset on each device.
+- Agent-verified in preview with seeded progress: only u1l1-* removed, u2 row/XP 250/streak/
+  lessonIdx 3 all intact, fresh startLesson = part 1/3 with 7 grading teach cards (not replay).
 
 ## Session 11 (2026-07-17, evening) — cache audit + SW overhaul (sw v14, SHIPPED & live-verified, commit 1ba76a1)
 Megan reported the chronic "app only updates after uninstall/reinstall" problem. Supervised
@@ -289,6 +306,9 @@ and zero XP-farming.
    `NATIVE-RECORDINGS-NEEDED.md`, then tag them (new voice) & export.
 
 ## Decisions (append-only)
+- 2026-07-17 (session 12): The session-5 "she does NOT want a reset feature" ruling is RETIRED —
+  she wants in-app resets when supervised builds are reliable. Reset semantics stay: hard-delete
+  the SRS rows (server first, then local+outbox), XP/streak/lessonIdx untouched, per-device.
 - 2026-07-17 (session 11): SW strategy = network-first for app code, persistent versioned audio
   cache (`relefela-audio-vN` — bump N ONLY when a clip changes under its same filename; app CACHE
   bumps never evict audio). In-app auto-reload on SW update, but NEVER while `#exArea` is on
