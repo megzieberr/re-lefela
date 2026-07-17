@@ -86,7 +86,9 @@ const RL_CONTENT = {
             { id: 'u1l4-08', audio: 'items/u1l4-08.mp3', kind: 'phrase', tsw: 'Re a bala', eng: 'We are reading', src: 'peace-corps-L11', concordSlot: { answer: 'Re', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'a bala', hint: 'we' } },
             { id: 'u1l4-09', audio: 'items/u1l4-09.mp3', kind: 'phrase', tsw: 'Ba a bala', eng: 'They are reading', src: 'peace-corps-L11', concordSlot: { answer: 'Ba', options: ['Ke', 'Le', 'Re', 'Ba'], tail: 'a bala', hint: 'they' } },
             { id: 'u1l4-10', audio: 'items/u1l4-10.mp3', kind: 'phrase', tsw: 'Ke na le buka', eng: 'I have a book', src: 'peace-corps-L11', note: 'na le = have (lit. "be with").' },
-            { id: 'u1l4-11', audio: 'items/u1l4-11.mp3', kind: 'phrase', tsw: 'O na le buka', eng: 'You have a book', src: 'peace-corps-L11', concordSlot: { answer: 'O', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'na le buka', hint: 'you (sg)' } }
+            { id: 'u1l4-11', audio: 'items/u1l4-11.mp3', kind: 'phrase', tsw: 'O na le buka', eng: 'You have a book', src: 'peace-corps-L11', concordSlot: { answer: 'O', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'na le buka', hint: 'you (sg)' } },
+            { id: 'u1l4-12', audio: 'items/u1l4-12.mp3', kind: 'phrase', tsw: 'O a bala', eng: 'You are reading / He-she is reading', src: 'peace-corps-L11', concordSlot: { answer: 'O', options: ['Ke', 'O', 'Lo', 'Ba'], tail: 'a bala', hint: 'you / he-she' }, note: 'One o for both — Setswana doesn\'t split "you" and "he/she" here. Context decides.' },
+            { id: 'u1l4-13', audio: 'items/u1l4-13.mp3', kind: 'phrase', tsw: 'Lo a bala', eng: 'You are reading (a group)', src: 'peace-corps-L11', concordSlot: { answer: 'Lo', options: ['Ke', 'O', 'Lo', 'Re'], tail: 'a bala', hint: 'you all' }, note: 'The book\'s table uses lo for "you (pl)" here — le works too, as lona\'s card says.' }
           ]
         },
         {
@@ -266,6 +268,66 @@ const RL_CONTENT = {
             { id: 'u2l7-09', audio: 'items/u2l7-09.mp3', kind: 'phrase', tsw: 'O rurugile leoto', eng: 'His/her leg is swollen', src: 'peace-corps-L22', note: 'go ruruga = to swell.' },
             { id: 'u2l7-10', audio: 'items/u2l7-10.mp3', kind: 'phrase', tsw: 'O ile ngakeng', eng: 'He/she went to the doctor', src: 'peace-corps-L22', note: 'ngaka + -ng = ngakeng, "to the doctor\'s".' },
             { id: 'u2l7-11', audio: 'items/u2l7-11.mp3', kind: 'phrase', tsw: 'Ke kopa thuso', eng: 'I need help', src: 'peace-corps-L23', note: 'Lit. "I ask for help" — polite and useful everywhere.' }
+          ]
+        }
+      ]
+    },
+    {
+      id: 'u3',
+      title: 'Go batla',
+      subtitle: 'One verb through time — Peace Corps Lesson 10',
+      lessons: [
+        {
+          id: 'u3l1', title: 'Ke a batla', blurb: 'Wanting, right now — and not wanting.',
+          audioTracks: [{ file: 'lesson10-negation.mp3', label: 'Tenses & negation walkthrough (native speaker, 3½ min)', src: 'peace-corps-L10' }],
+          items: [
+            { id: 'u3l1-00', kind: 'rule', tsw: '', eng: '', src: 'peace-corps-L10', rule: 'One verb, six people — the concord does all the work: ke (I), o (you), o (she/he), re (we), le (you all), ba (they), each + a + batla. Yes, o is both "you" and "she/he"; context decides. To say no, put ga in front and the verb\'s last -a becomes -e: Ke a batla → Ga ke batle.' },
+            { id: 'u3l1-01', audio: 'items/u3l1-01.mp3', kind: 'phrase', tsw: 'Ke a batla', eng: 'I want', src: 'peace-corps-L10', concordSlot: { answer: 'Ke', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'a batla', hint: 'I' } },
+            { id: 'u3l1-02', audio: 'items/u3l1-02.mp3', kind: 'phrase', tsw: 'O a batla', eng: 'You want / He-she wants', src: 'peace-corps-L10', concordSlot: { answer: 'O', options: ['Ke', 'O', 'Le', 'Ba'], tail: 'a batla', hint: 'you / he-she' }, note: 'The book prints this row twice — once for "you", once for "she/he". Same three words both times.' },
+            { id: 'u3l1-03', audio: 'items/u3l1-03.mp3', kind: 'phrase', tsw: 'Re a batla', eng: 'We want', src: 'peace-corps-L10', concordSlot: { answer: 'Re', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'a batla', hint: 'we' } },
+            { id: 'u3l1-04', audio: 'items/u3l1-04.mp3', kind: 'phrase', tsw: 'Le a batla', eng: 'You want (a group)', src: 'peace-corps-L10', concordSlot: { answer: 'Le', options: ['Ke', 'O', 'Le', 'Ba'], tail: 'a batla', hint: 'you all' } },
+            { id: 'u3l1-05', audio: 'items/u3l1-05.mp3', kind: 'phrase', tsw: 'Ba a batla', eng: 'They want', src: 'peace-corps-L10', concordSlot: { answer: 'Ba', options: ['Ke', 'Le', 'Re', 'Ba'], tail: 'a batla', hint: 'they' } },
+            { id: 'u3l1-06', audio: 'items/u3l1-06.mp3', kind: 'phrase', tsw: 'Ga ke batle', eng: 'I do not want', src: 'peace-corps-L10', concordSlot: { head: 'Ga', answer: 'ke', options: ['ke', 'o', 're', 'ba'], tail: 'batle', hint: 'I' }, note: 'You meet this one again in Unit 1 lesson 7 — here it is as the first cell of the whole table.' },
+            { id: 'u3l1-07', audio: 'items/u3l1-07.mp3', kind: 'phrase', tsw: 'Ga o batle', eng: 'You do not want', src: 'peace-corps-L10', concordSlot: { head: 'Ga', answer: 'o', options: ['ke', 'o', 're', 'ba'], tail: 'batle', hint: 'you' } },
+            { id: 'u3l1-08', kind: 'phrase', tsw: 'Ga a batle', eng: 'She/he does not want', src: 'peace-corps-L10', concordSlot: { head: 'Ga', answer: 'a', options: ['ke', 'a', 're', 'ba'], tail: 'batle', hint: 'she/he' }, note: 'Here o finally splits: "you" stays o, but "she/he" becomes a in the negative.' },
+            { id: 'u3l1-09', audio: 'items/u3l1-09.mp3', kind: 'phrase', tsw: 'Ga re batle', eng: 'We do not want', src: 'peace-corps-L10', concordSlot: { head: 'Ga', answer: 're', options: ['ke', 'o', 're', 'ba'], tail: 'batle', hint: 'we' } },
+            { id: 'u3l1-10', audio: 'items/u3l1-10.mp3', kind: 'phrase', tsw: 'Ga le batle', eng: 'You do not want (a group)', src: 'peace-corps-L10', concordSlot: { head: 'Ga', answer: 'le', options: ['ke', 'le', 're', 'ba'], tail: 'batle', hint: 'you all' } },
+            { id: 'u3l1-11', audio: 'items/u3l1-11.mp3', kind: 'phrase', tsw: 'Ga ba batle', eng: 'They do not want', src: 'peace-corps-L10', concordSlot: { head: 'Ga', answer: 'ba', options: ['ke', 'le', 're', 'ba'], tail: 'batle', hint: 'they' } }
+          ]
+        },
+        {
+          id: 'u3l2', title: 'Ke ne ke batla', blurb: 'Yesterday: what you did and didn\'t want.',
+          items: [
+            { id: 'u3l2-00', kind: 'rule', tsw: '', eng: '', src: 'peace-corps-L10', rule: 'The past says the concord TWICE, with ne in between: Ke ne ke batla — I wanted. The only trick is she/he, where the second one turns into a: O ne a batla. For "didn\'t", slip sa in before the verb and let -a become -e again: Ke ne ke sa batle.' },
+            { id: 'u3l2-01', audio: 'items/u3l2-01.mp3', kind: 'phrase', tsw: 'Ke ne ke batla', eng: 'I wanted', src: 'peace-corps-L10', concordSlot: { head: 'Ke ne', answer: 'ke', options: ['ke', 'o', 're', 'ba'], tail: 'batla', hint: 'I — the second concord' } },
+            { id: 'u3l2-02', audio: 'items/u3l2-02.mp3', kind: 'phrase', tsw: 'O ne o batla', eng: 'You wanted', src: 'peace-corps-L10', concordSlot: { head: 'O ne', answer: 'o', options: ['ke', 'o', 'a', 're'], tail: 'batla', hint: 'you — the second concord' } },
+            { id: 'u3l2-03', audio: 'items/u3l2-03.mp3', kind: 'phrase', tsw: 'O ne a batla', eng: 'She/he wanted', src: 'peace-corps-L10', concordSlot: { head: 'O ne', answer: 'a', options: ['ke', 'o', 'a', 're'], tail: 'batla', hint: 'she/he — the second concord' }, note: 'Same opening as "You wanted" — the second concord is the only thing that tells them apart.' },
+            { id: 'u3l2-04', kind: 'phrase', tsw: 'Re ne re batla', eng: 'We wanted', src: 'peace-corps-L10', concordSlot: { head: 'Re ne', answer: 're', options: ['ke', 'o', 're', 'ba'], tail: 'batla', hint: 'we — the second concord' } },
+            { id: 'u3l2-05', audio: 'items/u3l2-05.mp3', kind: 'phrase', tsw: 'Le ne le batla', eng: 'You wanted (a group)', src: 'peace-corps-L10', concordSlot: { head: 'Le ne', answer: 'le', options: ['ke', 'le', 're', 'ba'], tail: 'batla', hint: 'you all — the second concord' } },
+            { id: 'u3l2-06', audio: 'items/u3l2-06.mp3', kind: 'phrase', tsw: 'Ba ne ba batla', eng: 'They wanted', src: 'peace-corps-L10', concordSlot: { head: 'Ba ne', answer: 'ba', options: ['ke', 'le', 're', 'ba'], tail: 'batla', hint: 'they — the second concord' } },
+            { id: 'u3l2-07', audio: 'items/u3l2-07.mp3', kind: 'phrase', tsw: 'Ke ne ke sa batle', eng: 'I did not want', src: 'peace-corps-L10', concordSlot: { head: 'Ke ne ke', answer: 'sa', options: ['sa', 'ga', 'a', 'ne'], tail: 'batle', hint: 'the "not" of the past' } },
+            { id: 'u3l2-08', audio: 'items/u3l2-08.mp3', kind: 'phrase', tsw: 'O ne o sa batle', eng: 'You did not want', src: 'peace-corps-L10' },
+            { id: 'u3l2-09', audio: 'items/u3l2-09.mp3', kind: 'phrase', tsw: 'O ne a sa batle', eng: 'She/he did not want', src: 'peace-corps-L10' },
+            { id: 'u3l2-10', audio: 'items/u3l2-10.mp3', kind: 'phrase', tsw: 'Re ne re sa batle', eng: 'We did not want', src: 'peace-corps-L10' },
+            { id: 'u3l2-11', audio: 'items/u3l2-11.mp3', kind: 'phrase', tsw: 'Le ne le sa batle', eng: 'You did not want (a group)', src: 'peace-corps-L10' },
+            { id: 'u3l2-12', audio: 'items/u3l2-12.mp3', kind: 'phrase', tsw: 'Ba ne ba sa batle', eng: 'They did not want', src: 'peace-corps-L10' }
+          ]
+        },
+        {
+          id: 'u3l3', title: 'Ke tla batla', blurb: 'Tomorrow: the easiest tense and the strangest one.',
+          items: [
+            { id: 'u3l3-00', kind: 'rule', tsw: '', eng: '', src: 'peace-corps-L10', rule: 'The future is the kind one: concord + tla + verb. Ke tla batla — I will want. Its negative is the strangest cell in the table: ga + concord + kake + a SECOND, changed concord + batla. Ga ke kake ka batla. Watch the swap: ke→ka, o→wa, re→ra, le→la; a and ba keep their shape.' },
+            { id: 'u3l3-01', audio: 'items/u3l3-01.mp3', kind: 'phrase', tsw: 'Ke tla batla', eng: 'I will want', src: 'peace-corps-L10', concordSlot: { answer: 'Ke', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'tla batla', hint: 'I' }, note: 'tla marks the future — the same tla as Ke tla go bona, "see you".' },
+            { id: 'u3l3-02', audio: 'items/u3l3-02.mp3', kind: 'phrase', tsw: 'O tla batla', eng: 'You will want / He-she will want', src: 'peace-corps-L10', concordSlot: { answer: 'O', options: ['Ke', 'O', 'Le', 'Ba'], tail: 'tla batla', hint: 'you / he-she' }, note: 'Like the present, one form covers both.' },
+            { id: 'u3l3-03', audio: 'items/u3l3-03.mp3', kind: 'phrase', tsw: 'Re tla batla', eng: 'We will want', src: 'peace-corps-L10', concordSlot: { answer: 'Re', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'tla batla', hint: 'we' } },
+            { id: 'u3l3-04', audio: 'items/u3l3-04.mp3', kind: 'phrase', tsw: 'Le tla batla', eng: 'You will want (a group)', src: 'peace-corps-L10', concordSlot: { answer: 'Le', options: ['Ke', 'O', 'Le', 'Ba'], tail: 'tla batla', hint: 'you all' } },
+            { id: 'u3l3-05', audio: 'items/u3l3-05.mp3', kind: 'phrase', tsw: 'Ba tla batla', eng: 'They will want', src: 'peace-corps-L10', concordSlot: { answer: 'Ba', options: ['Ke', 'Le', 'Re', 'Ba'], tail: 'tla batla', hint: 'they' } },
+            { id: 'u3l3-06', audio: 'items/u3l3-06.mp3', kind: 'phrase', tsw: 'Ga ke kake ka batla', eng: 'I will not want', src: 'peace-corps-L10', concordSlot: { head: 'Ga ke kake', answer: 'ka', options: ['ka', 'wa', 'ra', 'la'], tail: 'batla', hint: 'I — the changed second concord' } },
+            { id: 'u3l3-07', audio: 'items/u3l3-07.mp3', kind: 'phrase', tsw: 'Ga o kake wa batla', eng: 'You will not want', src: 'peace-corps-L10', concordSlot: { head: 'Ga o kake', answer: 'wa', options: ['ka', 'wa', 'ra', 'la'], tail: 'batla', hint: 'you — the changed second concord' } },
+            { id: 'u3l3-08', kind: 'phrase', tsw: 'Ga a kake a batla', eng: 'She/he will not want', src: 'peace-corps-L10', concordSlot: { head: 'Ga a kake', answer: 'a', options: ['a', 'wa', 'ra', 'la'], tail: 'batla', hint: 'she/he — the changed second concord' }, note: 'she/he is the lazy one: a stays a.' },
+            { id: 'u3l3-09', audio: 'items/u3l3-09.mp3', kind: 'phrase', tsw: 'Ga re kake ra batla', eng: 'We will not want', src: 'peace-corps-L10', concordSlot: { head: 'Ga re kake', answer: 'ra', options: ['ka', 'wa', 'ra', 'la'], tail: 'batla', hint: 'we — the changed second concord' } },
+            { id: 'u3l3-10', audio: 'items/u3l3-10.mp3', kind: 'phrase', tsw: 'Ga le kake la batla', eng: 'You will not want (a group)', src: 'peace-corps-L10', concordSlot: { head: 'Ga le kake', answer: 'la', options: ['ka', 'wa', 'ra', 'la'], tail: 'batla', hint: 'you all — the changed second concord' } },
+            { id: 'u3l3-11', audio: 'items/u3l3-11.mp3', kind: 'phrase', tsw: 'Ga ba kake ba batla', eng: 'They will not want', src: 'peace-corps-L10', concordSlot: { head: 'Ga ba kake', answer: 'ba', options: ['ba', 'wa', 'ra', 'la'], tail: 'batla', hint: 'they — the changed second concord' }, note: 'they is lazy too: ba stays ba.' }
           ]
         }
       ]

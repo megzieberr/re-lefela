@@ -1,6 +1,54 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-17 (session 14 — Adobe enhance bot for the missing audio + Katse bubble fix, sw v17, SHIPPED e466a6e + d31fdf1) · previous: session 13 colour stem cards (sw v16), session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
+**Updated:** 2026-07-17 (session 15 — Unit 3 conjugation lessons, 33 clips lit up, sw v18) · previous: session 14 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 15 (2026-07-17, same day) — Unit 3 "Go batla": the conjugation lessons (sw v18)
+The long-pending optional content (Pending item 2) — built. **New Unit 3 "Go batla"**, the Peace
+Corps Lesson-10 negation table as 3 lessons, + the 2 leftover L11 `bala` forms into u1l4.
+- **u3l1 "Ke a batla"** present + neg present (11 real → parts 6/5) · **u3l2 "Ke ne ke batla"** past
+  + neg past (12 → 6/6) · **u3l3 "Ke tla batla"** future + neg future (11 → 6/5). Every card
+  `src: 'peace-corps-L10'`, each with a `concordSlot` (the paradigm IS a concord drill).
+- **New unit, NOT u1l8+ — the deciding reason:** `lessonIdx` is per-unit, so u3l1 is unlocked
+  immediately and u1 progress is untouched; a `u1l8` would have sat locked behind u1l4–u1l7.
+- **33 clips lit up** (89 → 122 items): 31 from L10, 2 from L11. All were `note` tags carrying only
+  timings — no `tsw` — so each was decoded to a paradigm cell and spliced note→item (splice script
+  in session scratchpad, `splice_conjugation.py`, with per-tag assertions).
+- **The decode is evidence-backed, not guessed:** book row order (Present, Neg present, Past, Neg
+  past, **Neg future, Future** — negatives interleave), Megan's own eng hints (`Le a batla` = person
+  5; `I will not want` = neg-future person 1), the longest English gloss in each row always being the
+  she/he cell, and clip durations tracking phrase length (verified post-export in the browser:
+  3-word futures 1.62–1.77s, 5-word negatives 2.56–3.05s — every clip in its predicted band).
+- ⚠️ **Memory note [[relefela-conjugation-audio]] was WRONG on one cell** (now corrected): it listed
+  `Ga ba kake ba batla` as untagged. Megan confirmed by ear that L10 seg56 = "Ga re kake ra batla"
+  (person 4), which puts the untagged cell at person 3 — **`Ga a kake a batla`**. `Ga ba kake ba
+  batla` IS tagged (seg59) and has a clip. The other 3 untagged cells the memory names are right.
+- **3 cards ship silent** (no clip exists — the Join button ate those fragments): `Ga a batle`,
+  `Re ne re batla`, `Ga a kake a batla`. Cards are complete otherwise; the table has no holes.
+- **"O a batla" is ONE card, not two.** The book prints persons 2 and 3 identically (you / she-he) in
+  the present and future rows; two cards with the same `tsw` would be an unanswerable drill. Same for
+  `O a bala`. Precedent: `u1l4-03 ene` = "he / she".
+- **`Ga ke batle` is deliberately duplicated** (u1l7-01 in Unit 1, u3l1-06 as the table's first
+  cell). One clip feeds both via a **`sub:0` dup tag on L10 seg16** — the u1l1-15/u1l1-17 trick.
+  Required a 1-line engine fix: **`allItemsExcept()` now excludes same-`tsw` items, not just
+  same-id** — a distractor identical to the answer was always a latent bug. Verified over 900 draws.
+- **Export guard: `SKIP_LESSONS = {'★ Colours (native)'}`** added to `export-item-audio.py` — its 7
+  tags still point at live cards u2l6-13..19 and `corpus/audio/Colours.mp3` still has music under
+  every word, so an unguarded run wires music-laden clips onto live cards. Remove this ONLY together
+  with the corpus recording + its mapping tags, as part of Pending item -1.
+- **`relefela-audio-v1` NOT bumped, correctly:** the export re-encodes all 89 existing clips every
+  run, so they were md5'd before and after — **0 changed, 0 deleted, 33 new**. ffmpeg is
+  deterministic here. New files only → no re-download of her ~120 clips. (Keep this check in the
+  ritual; it's what tells you whether the audio cache needs a bump.)
+- **L11 yielded 2 clips, not the ~12 the prompt expected** — its 5 real cards (u1l4-07..11) have had
+  audio since session 10. Of its 5 notes: 2 usable (`O a bala`, `Lo a bala` → u1l4-12/13), 1 a
+  duplicate string, 1 the announcer reading the English header "to be", 1 unidentifiable.
+  ⚠️ **The whole "to have" row is junk-tagged** (L11 segs 25/27/29, ~2s each = plausibly real
+  Setswana: Lo/O/Ba/Re na le buka). Probably junked because no cards existed then. A re-tag in the
+  tagger would light up ~4 more clips — her call, not something to guess at.
+- Verified in preview (?local=1, DOM/JS — pane can't screenshot): 3 units, u3l1 `next`/u3l2-3
+  locked, session shape rule→teach×4→listen/choose→tap×4→match→…→auto×6 (28 cards, P1/2), all 33
+  clips 200 + decode + play through the app's own `playAudio`, every concord card reconstructs its
+  phrase, no unsourced items, no duplicate ids, 0 console errors. Test localStorage cleared.
 
 ## Session 14 (2026-07-17, same day) — enhance bot + Katse bubble fix (sw v17, SHIPPED & live-verified)
 Megan found recordings for the missing audio but they carry background music, so she wanted her
@@ -357,10 +405,9 @@ and zero XP-farming.
    lesson from every export. Deleting the corpus copy + its 7 mapping tags is part of (a), not a
    thing to do quietly on the side.
    Animals.mp3 + the single phrases are a SEPARATE workstream, unaffected by this ruling.
-2. 2026-07-17 (session 13): the conjugation-lesson prompt (L10 batla / L11 bala) needs two
-   amendments after this ship: bump is now v16→v17 (not v15→v16), and either replace
-   corpus\audio\Colours.mp3 with the cleaned version BEFORE its export step or tell that session
-   to exclude the ★ Colours lesson from the export run (see item -1).
+2. ~~2026-07-17 (session 13): the conjugation-lesson prompt needs two amendments~~ **DONE — that
+   session ran as session 15 and shipped.** Its ★ Colours hazard is now guarded in code
+   (`SKIP_LESSONS` in export-item-audio.py), not just in prose, so the next export is safe too.
 0. 2026-07-17 (session 11): ONE LAST ritual on both phones — the old v13 worker still updates the
    slow way, so force a real cold start: swipe the PWA away, then in Android Settings force-stop
    it (or just wait and open it twice with real closes in between). Once v14 is in, this whole
@@ -369,15 +416,12 @@ and zero XP-farming.
    (The home-screen icon itself may still need reinstall/re-pin on Android — platform limitation.)
 1. Get native recordings from the lecturer for the 51 items in `NATIVE-RECORDINGS-NEEDED.md`,
    then tag (new voice) & export. Optionally tag kofi/tlhogo/mala/leoto/botlhoko in the tagger.
-2. Optional content: conjugation lessons L10 (batla) / L11 (bala/na le) — ~42 tagged clips waiting.
-   2026-07-17 (session 14): the session-13 prompt for this was reviewed against the repo and is
-   still sound (canonical mapping at HEAD, "(11)" banned, diff-don't-copy, export-then-diff-bytes,
-   SW contract, baby-steps auto-split, `src` required, stop-for-OK — all verified as still true;
-   its 87/30 tag counts are right). Its AMENDMENTS block is stale: bump **v17 → v18** (not v16→v17,
-   spent by session 14), read PROJECT-STATUS **through session 14** (not 12), and the whole Colours
-   amendment is void — colours are OUT of that session's scope, ★ Colours must be EXCLUDED from
-   every export, and no u2l6 card may be touched (see item -1). Corrected AMENDMENTS block was
-   handed to Megan in the session-14 chat; she'll run it next session.
+2. ~~Optional content: conjugation lessons L10 (batla) / L11 (bala/na le)~~ **DONE — SHIPPED
+   session 15** as Unit 3 "Go batla" + u1l4-12/13. Yield was 33 clips, not the ~42 estimated (the
+   estimate counted L11 tags that were already live since session 10, and L10 notes that are
+   duplicate strings). ONE follow-up left, her call: **re-tag L11 segs 25/27/29** (currently junk,
+   ~2s each, probably the "to have" row — Lo/O/Ba/Re na le buka) to light up ~4 more clips and
+   complete that table; the 4 cards would need adding too. Not urgent, not guessable.
 4. 2026-07-17 (session 14): **Finish the missing-audio run — 36 of 39 left.** Clear the Adobe
    queue, then double-click `missing audio\enhance-bot\RUN ENHANCE BOT.bat`. Done + verified so
    far: bosweu, bontsho, bohibidu (+ Dikgomo di bogale from the live test). Don't run it while the
@@ -415,6 +459,22 @@ and zero XP-farming.
    `NATIVE-RECORDINGS-NEEDED.md`, then tag them (new voice) & export.
 
 ## Decisions (append-only)
+- 2026-07-17 (session 15): **Grammar content gets its own unit, outside the SECL121 unit numbering.**
+  Unit 3 "Go batla" is Peace Corps grammar, not an SECL121 study unit, and its subtitle says so.
+  Mechanical reason it must be a unit and not `u1l8+`: `lessonIdx` is per-unit, so a new unit opens
+  immediately while appended lessons sit locked behind the rest of Unit 1.
+- 2026-07-17 (session 15): **One card per distinct Setswana string.** Where the book prints a form
+  twice for two persons (`O a batla` = you AND she/he; `O a bala`; `O tla batla`), it's ONE card
+  glossed for both — two cards with identical `tsw` make an unanswerable drill. Where a phrase
+  genuinely belongs to two lessons (`Ga ke batle`), duplicate cards ARE allowed, because
+  `allItemsExcept()` now filters distractors by `tsw` as well as id. One clip can serve both cards
+  via a `sub:N` dup tag on the shared segment.
+- 2026-07-17 (session 15): **Follow the book/app spelling over the ear-transcription** — `tla` not
+  the book-table's `tlaa` (matches live u1l3-02), `batle` not the book's `battle` typo, and
+  `Ga re kake ra batla` even though the unstressed `ra` is easy to mishear as `a`.
+- 2026-07-17 (session 15): **Guard export hazards in code, not in prose.** The ★ Colours exclusion
+  lives in `export-item-audio.py` as `SKIP_LESSONS`, because a warning in a status file only
+  protects the session that reads it. Same spirit as the audio-cache byte-diff check.
 - 2026-07-17 (session 14): **ONE WORD PER COLOUR — supersedes the session-13 stems ruling below.**
   Megan's call, in her words: "It is going to be very confusing if I have to learn 2 different words
   for the same colour." She is the learner, so pedagogy wins over completeness here even though the

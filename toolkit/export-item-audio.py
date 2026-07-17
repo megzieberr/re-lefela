@@ -26,6 +26,14 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 # items Megan retracted after tagging (clip text ≠ card text)
 EXCLUDE = {'u1l2-01'}   # announcer says "…ke Itumeleng", card says "…ke Megan" (2026-07-16)
 
+# Tagger lessons whose source recording isn't fit to cut from yet. ★ Colours (native)
+# still has background music under every word, and its 7 tags point at cards
+# u2l6-13..19 — an unguarded run wires music-laden clips onto live cards. Megan's
+# 2026-07-17 ruling (one word per colour) may delete those cards outright; until
+# that's settled this stays. Remove it only together with the corpus recording and
+# its mapping tags. (2026-07-17, session 15)
+SKIP_LESSONS = {'★ Colours (native)'}
+
 # 1. winning Peace Corps tag per item.
 #    Step 1: per SEGMENT, the latest tag across all mapping files wins — a round-2
 #    re-tag/junk of a segment supersedes what round 1 said about that same segment
@@ -37,6 +45,8 @@ for mp in MAPPINGS:
     mapping = json.loads(mp.read_text(encoding='utf-8'))
     print(f'mapping: {mp.name} ({len(mapping["tags"])} tags)')
     for t in mapping['tags']:
+        if t['lesson'] in SKIP_LESSONS:
+            continue
         seg_last[(t['lesson'], t['seg'], t.get('sub'))] = (order, t)
         order += 1
 winner = {}

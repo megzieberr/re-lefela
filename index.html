@@ -1219,10 +1219,13 @@ function runRecap(){
   document.getElementById('b-recap-next').onclick = ()=>{ session.at++; runExercise(); };
   mountKatseMid(ex.item);
 }
+/* Distractor pool. Excludes same-TEXT items, not just same-id: a phrase may
+   legitimately live on two cards (Ga ke batle is both u1l7-01 and u3l1-06), and a
+   distractor identical to the answer makes the card unanswerable. */
 function allItemsExcept(it){
   const all = [];
   for (const u of RL_CONTENT.units) for (const l of u.lessons) for (const x of l.items)
-    if (x.kind!=='rule' && x.id!==it.id) all.push(x);
+    if (x.kind!=='rule' && x.id!==it.id && x.tsw!==it.tsw) all.push(x);
   return all;
 }
 function hookEyes(){
