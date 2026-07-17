@@ -117,12 +117,16 @@ a{color:var(--pink-deep)}
 .kv-oops{aspect-ratio:340/238} .kv-sleep{aspect-ratio:340/211}
 /* persistent companion in the bottom-right corner of every lesson card */
 .katse-corner{position:absolute; right:8px; bottom:calc(10px + env(safe-area-inset-bottom)); z-index:4; margin:0}
+/* she sits hard against the right edge here, so grow the bubble leftward from
+   that edge instead of centring it — centring would push a long bubble off-screen */
+.katse-corner .kbubble{left:auto; right:0; transform:translateX(0) translateY(4px)}
+.katse-corner .kbubble.show{transform:translateX(0) translateY(0)}
 .katse-corner .katse{width:155px}
 .katse-corner .katse.kv-curious{width:110px}  /* tall lean-around pose */
 @media (max-height:640px){ .katse-corner .katse{width:115px} .katse-corner .katse.kv-curious{width:82px} }
 /* big Katse on the home screen — her house, we just live here */
 .katse-hero .katse{width:150px}
-.katse-hero .kbubble{left:8px; transform:translateX(0) translateY(4px)}
+.katse-hero .kbubble{left:8px; right:auto; transform:translateX(0) translateY(4px)}
 .katse-hero .kbubble.show{transform:translateX(0) translateY(0)}
 .katse-hero .kbubble::after{left:64px}
 .katse.bounce{animation:katse-bounce .5s ease-out}
@@ -158,7 +162,7 @@ a{color:var(--pink-deep)}
    floating mid-page above a stretch of empty space with a tiny corner cat. */
 .exwrap-fill{display:flex; flex-direction:column; min-height:calc(100vh - 40px - env(safe-area-inset-bottom))}
 .exwrap-fill #exArea.exArea-solo{flex:1; display:flex; flex-direction:column; min-height:0}
-.exa-mid{flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:4px 0; overflow:hidden}
+.exa-mid{flex:1; min-height:0; display:flex; align-items:flex-end; justify-content:center; padding:4px 0; overflow:visible}
 .katse-mid{margin:0 auto}
 .katse-mid .katse{width:200px}
 @media (max-height:720px){ .katse-mid .katse{width:170px} }
@@ -192,8 +196,12 @@ a{color:var(--pink-deep)}
    row — floating above is what overlapped the lesson description text. */
 .pmap-mini .pmap-kwrap{left:auto; right:0; bottom:-6px; margin-left:0; transition:none}
 .pmap-mini .pmap-katse{width:22px}
+/* width:max-content is load-bearing: without an explicit width, an absolutely
+   positioned box with left:50% shrink-to-fits into the space from that offset to
+   the parent's right edge — i.e. HALF Katse's width (100px), so max-width:72vw
+   never applied and long phrases wrapped to 5 clipped lines. */
 .kbubble{position:absolute; bottom:calc(100% + 8px); left:50%; background:var(--ink); color:var(--bg);
-  padding:6px 12px; border-radius:12px; font-weight:700; font-size:.95rem; max-width:72vw; text-align:center;
+  padding:6px 12px; border-radius:12px; font-weight:700; font-size:.95rem; width:max-content; max-width:72vw; text-align:center;
   opacity:0; transform:translateX(-50%) translateY(4px); transition:opacity .25s, transform .25s;
   pointer-events:none; z-index:5}
 .kbubble.show{opacity:1; transform:translateX(-50%) translateY(0)}

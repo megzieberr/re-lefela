@@ -315,6 +315,15 @@ and zero XP-farming.
 1. Get native recordings from the lecturer for the 51 items in `NATIVE-RECORDINGS-NEEDED.md`,
    then tag (new voice) & export. Optionally tag kofi/tlhogo/mala/leoto/botlhoko in the tagger.
 2. Optional content: conjugation lessons L10 (batla) / L11 (bala/na le) — ~42 tagged clips waiting.
+3. 2026-07-17 (session 14): **NEXT AUDIT — rename the mid-Katse id.** `mountKatseMid()` mounts the
+   big centred Katse with `id="katse-corner"` but `class="katse-mid"`, so the two Katse contexts are
+   told apart by CLASS while the id lies (`mountKatseCorner()` uses the same id). The id reuse is
+   deliberate — `playAudio`'s `.talking` sway, `katseBubble`, `katseSetPose` and `katseWrapEl()` all
+   key off `#katse-corner` — so renaming means touching that plumbing, which is why session 14 left
+   it. Cost of leaving it: it silently misleads. In session 14 a verification pass measured
+   `#katse-corner` on a teach card, got the MID cat back, and looked like a clean pass while
+   proving nothing about the corner cat. Fix = give the mid one its own id and route the shared
+   helpers through `katseWrapEl()` (which already handles both), then re-verify all three contexts.
 
 ### Cleared 2026-07-17 (session 10)
 - ~~Keepalive Task-Scheduler registration~~ — was already registered & running (Mon+Thu 09:00).
@@ -380,6 +389,12 @@ and zero XP-farming.
   isolated vocab. NCHLT stays only for the Listening gym (whole sentences).
 
 ## Gotchas learned
+- **`#katse-corner` is TWO different cats.** Both `mountKatseCorner()` (small, bottom-right of drill
+  cards, class `katse-corner`) and `mountKatseMid()` (big, centred above Continue, class `katse-mid`)
+  mount with `id="katse-corner"`. Only the CLASS tells them apart — so `document.getElementById(
+  'katse-corner')` gives you whichever is on screen, and a check written against the id can measure
+  the wrong cat and still report a pass. Always select `.katse-corner` / `.katse-mid` by class when
+  verifying. (Cleanup queued — see Pending item 3.)
 - SW cache-first serves stale files through hard refresh; tagger now self-unregisters. To bust a
   stale served page manually: load it with a novel `?query`, or unregister SW + clear caches in console.
 - A tagging redo does nothing to the live app until `export-item-audio.py` runs AND you deploy.

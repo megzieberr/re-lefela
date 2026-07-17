@@ -9,7 +9,7 @@
 //   - precache uses {cache:'reload'} so install never reads a stale HTTP-cached
 //     index.html (GitHub Pages serves max-age=600).
 //   - non-GET and cross-origin (Supabase, CDN) requests pass straight through.
-const CACHE = 'relefela-v16';
+const CACHE = 'relefela-v17';
 // Bump AUDIO_CACHE's version suffix ONLY when an existing audio file's content
 // changes (re-record/re-splice under the same filename). App version bumps
 // (CACHE above) must never evict audio.
