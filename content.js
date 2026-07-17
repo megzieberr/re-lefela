@@ -26,7 +26,7 @@ const RL_CONTENT = {
             { id: 'u1l1-13', audio: 'items/u1l1-13.mp3', kind: 'phrase', tsw: 'Ke tsogile sentle, wena o tsogile jang?', eng: 'I am well — and how are you?', src: 'peace-corps-L2', note: 'The natural reply chain: answer, then bounce the question back with wena (you).' },
             { id: 'u1l1-18', audio: 'items/u1l1-18.mp3', kind: 'phrase', tsw: 'Wena o tsogile jang?', eng: 'And how are you?', src: 'peace-corps-L2', note: 'wena = you (emphatic) — bounces the question back.' },
             { id: 'u1l1-14', audio: 'items/u1l1-14.mp3', kind: 'phrase', tsw: 'Le tsogile jang?', eng: 'How are you? (to a group)', src: 'peace-corps-L2', note: 'O → Le when asking more than one person.' },
-            { id: 'u1l1-17', kind: 'phrase', tsw: 'Re tsogile sentle', eng: 'We are well', src: 'peace-corps-L2', note: 'The group answers with re (we).' },
+            { id: 'u1l1-17', audio: 'items/u1l1-17.mp3', kind: 'phrase', tsw: 'Re tsogile sentle', eng: 'We are well', src: 'peace-corps-L2', note: 'The group answers with re (we).' },
             { id: 'u1l1-15', audio: 'items/u1l1-15.mp3', kind: 'phrase', tsw: 'Re tsogile sentle, wena o tsogile jang?', eng: 'We are well — and how are you?', src: 'peace-corps-L2', note: 'Answer for the group, then bounce the question back.' },
             { id: 'u1l1-06', audio: 'items/u1l1-06.mp3', kind: 'phrase', tsw: 'Le kae?', eng: 'How are you? (informal)', src: 'peace-corps-L2', note: 'Literally "where are you (all)?" — the casual greeting.' },
             { id: 'u1l1-07', kind: 'phrase', tsw: 'Ke teng', eng: 'I am fine', src: 'peace-corps-L2', note: 'teng = present/there. "I am around" = I\'m fine.' },

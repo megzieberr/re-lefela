@@ -116,8 +116,9 @@ a{color:var(--pink-deep)}
 .kv-oops{aspect-ratio:340/238} .kv-sleep{aspect-ratio:340/211}
 /* persistent companion in the bottom-right corner of every lesson card */
 .katse-corner{position:absolute; right:8px; bottom:calc(10px + env(safe-area-inset-bottom)); z-index:4; margin:0}
-.katse-corner .katse.kv-curious{width:84px}  /* tall lean-around pose */
-@media (max-height:640px){ .katse-corner .katse{width:92px} .katse-corner .katse.kv-curious{width:68px} }
+.katse-corner .katse{width:155px}
+.katse-corner .katse.kv-curious{width:110px}  /* tall lean-around pose */
+@media (max-height:640px){ .katse-corner .katse{width:115px} .katse-corner .katse.kv-curious{width:82px} }
 /* big Katse on the home screen — her house, we just live here */
 .katse-hero .katse{width:150px}
 .katse-hero .kbubble{left:8px; transform:translateX(0) translateY(4px)}
@@ -150,6 +151,20 @@ a{color:var(--pink-deep)}
   30%{transform:rotate(-6deg)}
   70%{transform:rotate(3deg)}
 }
+/* full-height layout for single-continue-button cards (teach / recap / Back's
+   read-only recap view): content on top, Katse centred in the freed-up middle,
+   Continue(+Skip recap) pinned to the true bottom of the screen instead of
+   floating mid-page above a stretch of empty space with a tiny corner cat. */
+.exwrap-fill{display:flex; flex-direction:column; min-height:calc(100vh - 40px - env(safe-area-inset-bottom))}
+.exwrap-fill #exArea.exArea-solo{flex:1; display:flex; flex-direction:column; min-height:0}
+.exa-mid{flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:4px 0; overflow:hidden}
+.katse-mid{margin:0 auto}
+.katse-mid .katse{width:200px}
+@media (max-height:720px){ .katse-mid .katse{width:170px} }
+@media (max-height:640px){ .katse-mid .katse{width:145px} }
+@media (max-height:600px){ .katse-mid .katse{width:120px} }
+.exa-actions{padding-bottom:env(safe-area-inset-bottom)}
+.exa-actions .btn+.btn{margin-top:8px}
 /* part map — circles on a dotted path, Katse stands where you are */
 .pmap{display:flex; align-items:center; justify-content:center; padding-top:52px}
 .pslot{position:relative; display:flex; align-items:center}
@@ -169,11 +184,13 @@ a{color:var(--pink-deep)}
   80%{transform:translateY(-16px)}
 }
 /* mini variant on the lesson path */
-.pmap-mini{justify-content:flex-start; padding-top:34px; margin-top:2px}
+.pmap-mini{justify-content:flex-start; padding-top:6px; margin-top:2px}
 .pmap-mini .pnode{width:20px; height:20px; font-size:.68rem; border-width:2px}
 .pmap-mini .pslot:not(:last-child)::after{width:18px; margin:0 3px; border-top-width:2px}
-.pmap-mini .pmap-kwrap{margin-left:-15px}
-.pmap-mini .pmap-katse{width:30px}
+/* current-position Katse sits beside/below her circle, never floating above the
+   row — floating above is what overlapped the lesson description text. */
+.pmap-mini .pmap-kwrap{left:auto; right:0; bottom:-6px; margin-left:0; transition:none}
+.pmap-mini .pmap-katse{width:22px}
 .kbubble{position:absolute; bottom:calc(100% + 8px); left:50%; background:var(--ink); color:var(--bg);
   padding:6px 12px; border-radius:12px; font-weight:700; font-size:.95rem; max-width:72vw; text-align:center;
   opacity:0; transform:translateX(-50%) translateY(4px); transition:opacity .25s, transform .25s;
@@ -395,10 +412,14 @@ function voicedItems(){
 /* part map — the little circle path with Katse standing on the current part.
    cur === total renders an all-done row with no cat. */
 function partMapHTML(total, cur, mini){
+  // mini (home lesson node) uses the flatter "awake" peek pose — she sits low
+  // and wide beside the circle so she never pokes up into the description text
+  // above; the big checkpoint map keeps her sitting pose + hop animation as-is.
+  const pose = mini ? KATSE_POSES.awake : KATSE_POSES.home;
   let slots = '';
   for (let i=0; i<total; i++){
     const st = i < cur ? 'done' : (i === cur ? 'cur' : '');
-    const kat = i === cur ? `<span class="pmap-kwrap"><img class="pmap-katse" src="${KATSE_POSES.home}" alt="Katse is here" draggable="false"></span>` : '';
+    const kat = i === cur ? `<span class="pmap-kwrap"><img class="pmap-katse" src="${pose}" alt="Katse is here" draggable="false"></span>` : '';
     slots += `<span class="pslot">${kat}<span class="pnode ${st}">${i < cur ? '✓' : i+1}</span></span>`;
   }
   return `<div class="pmap ${mini?'pmap-mini':''}">${slots}</div>`;
@@ -412,9 +433,23 @@ function mountKatseCorner(it, pose){
   app.insertAdjacentHTML('beforeend', katseHTML('katse-corner', audio, 'katse-corner', pose));
   if (audio) hookKatse('katse-corner', it);
 }
+/* Same Katse contract (id="katse-corner", so playAudio's .talking sway, katseBubble,
+   katseSetPose etc. all keep working unchanged) but mounted bigger + centred into the
+   flexible middle slot of a "solo continue button" card instead of the bottom corner. */
+function mountKatseMid(it, pose){
+  if (session && session.gym) return;
+  const slot = document.getElementById('katse-mid-slot');
+  if (!slot) return;
+  const audio = !!(it && it.audio);
+  slot.innerHTML = katseHTML('katse-corner', audio, 'katse-mid', pose);
+  if (audio) hookKatse('katse-corner', it);
+}
 
 /* ---------- screens ---------- */
 function render(html){ $app.innerHTML = '<div class="fade-in">'+html+'</div>'; }
+/* same as render(), but the wrapper is a full-height flex column so an #exArea.exArea-solo
+   child can pin its buttons to the true bottom (see .exwrap-fill in <style>). */
+function renderFill(html){ $app.innerHTML = '<div class="fade-in exwrap-fill">'+html+'</div>'; }
 
 function screenAuth(msg){
   render(`
@@ -517,9 +552,11 @@ function screenHome(){
       const cls = i < prog.lessonIdx ? 'done' : i === prog.lessonIdx ? 'next' : 'locked';
       const icon = i < prog.lessonIdx ? '✓' : (i+1);
       let partMap = '';
-      if (cls === 'next' && lessonParts(l) > 1){
-        const k = firstOpenPart(l);
-        if (k >= 0) partMap = partMapHTML(lessonParts(l), k, true);
+      if (cls !== 'locked' && lessonParts(l) > 1){
+        const total = lessonParts(l), k = firstOpenPart(l);
+        if (k >= 0){ if (cls === 'next') partMap = partMapHTML(total, k, true); }
+        // fully learned → show where the next replay sitting starts (local cursor)
+        else partMap = partMapHTML(total, cls === 'done' ? replayCursor(unit.id, i, total) : total-1, true);
       }
       return `<button class="lesson-node ${cls}" data-u="${unit.id}" data-i="${i}" ${cls==='locked'?'disabled':''}>
         <div class="idx">${icon}</div>
@@ -707,6 +744,19 @@ function firstOpenPart(lesson){
   for (let i=0;i<parts.length;i++) if (realOf(parts[i]).some(it=>!state.srs[it.id])) return i;
   return -1; // every word already met
 }
+/* replay cursor — which part a fully-learned lesson replays next sitting.
+   Device-local only (localStorage rl_replay, unitId:lessonIdx → partIdx); wraps
+   after the last part so replays never run out. Never synced — cosmetic state. */
+function replayKey(unitId, idx){ return unitId + ':' + idx; }
+function replayCursor(unitId, idx, total){
+  const c = store.get('replay', {})[replayKey(unitId, idx)];
+  return (typeof c === 'number' && c >= 0 && c < total) ? c : 0;
+}
+function setReplayCursor(unitId, idx, part){
+  const m = store.get('replay', {});
+  m[replayKey(unitId, idx)] = part;
+  store.set('replay', m);
+}
 /* the difficulty ladder */
 function tier0(it){ return it.audio ? pick(['listen','choose']) : 'choose'; }        // recognition
 function tier1(it){                                                                  // build / recall
@@ -723,7 +773,7 @@ function pickAutoType(it){
   if (it.audio) types.push('record');
   return pick(types);
 }
-function buildExercises(items, isReview, tracks, recapPool){
+function buildExercises(items, isReview, tracks, recapPool, reteach){
   // every sitting opens with a quick, skippable recap of words you already met
   const recap = (recapPool && recapPool.length)
     ? shuffle(recapPool).slice(0, 8).map(it=>({type:'recap', item:it})) : [];
@@ -742,7 +792,7 @@ function buildExercises(items, isReview, tracks, recapPool){
   };
   for (const it of items){
     if (it.kind === 'rule'){ intro.push({type:'rule', item:it}); continue; }
-    if (!state.srs[it.id]) intro.push({type:'teach', item:it});
+    if (reteach || !state.srs[it.id]) intro.push({type:'teach', item:it}); // replays re-show the teach cards
     batch.push(it);
     if (batch.length === BATCH) flushBatch();
   }
@@ -759,20 +809,22 @@ function startLesson(unit, idx){
   let items = lesson.items, part = null, tracks = lesson.audioTracks;
   const known = realOf(lesson.items).filter(it=>state.srs[it.id]); // this lesson's already-met words
   const allMet = known.length === realOf(lesson.items).length;
-  if (allMet){
-    // replaying a finished lesson → recap + light practice mix, not the full build
-    session = {unit, lessonIdx:idx, ex:buildExercises(shuffle(realOf(lesson.items)).slice(0,12), true, null, known),
-      at:0, maxAt:0, right:0, wrong:0, combo:0, isReview:false, part:null};
-    return runExercise();
-  }
+  const prog = state.progress[unit.id] || {lessonIdx:0, completed:false};
+  // Replaying a COMPLETED, fully-learned lesson = the same full baby-steps build,
+  // part by part (local replay cursor picks the part; wraps forever). Teach cards
+  // are re-shown but don't srsGrade — replays never change lessonIdx or unlocks.
+  // A fully-learned but UNfinished lesson is not a replay: it runs its final part
+  // as normal learning so completing it can still advance the path.
+  const replay = allMet && idx < prog.lessonIdx;
   if (total > 1){
-    const k = firstOpenPart(lesson);
-    const parts = partSlices(lesson);
-    items = parts[k];
+    let k = replay ? replayCursor(unit.id, idx, total) : firstOpenPart(lesson);
+    if (k < 0) k = total - 1; // all words met but lesson unfinished → finish on the last part
+    items = partSlices(lesson)[k];
     part = {idx:k, total};
     if (k < total-1) tracks = null; // the lesson's dialogue plays in the final part
   }
-  session = {unit, lessonIdx:idx, ex:buildExercises(items, false, tracks, known), at:0, maxAt:0, right:0, wrong:0, combo:0, isReview:false, part};
+  session = {unit, lessonIdx:idx, ex:buildExercises(items, false, tracks, known, replay),
+    at:0, maxAt:0, right:0, wrong:0, combo:0, isReview:false, part, replay};
   runExercise();
 }
 function startReview(){
@@ -807,33 +859,43 @@ function runExercise(){
     hookQuit(); document.getElementById('b-next').onclick = next(true, false);
   }
   else if (ex.type==='teach'){
-    render(H + `<div id="exArea">
-      <p class="muted">New ${it.kind==='verb'?'verb':it.kind}</p>
-      <div class="row spread">
-        <div class="bigtsw">${esc(it.tsw)}</div>
-        ${it.audio?`<button class="audio-btn" id="b-play">🔊</button>`:''}
+    renderFill(H + `<div id="exArea" class="exArea-solo">
+      <div class="exa-top">
+        <p class="muted">New ${it.kind==='verb'?'verb':it.kind}</p>
+        <div class="row spread">
+          <div class="bigtsw">${esc(it.tsw)}</div>
+          ${it.audio?`<button class="audio-btn" id="b-play">🔊</button>`:''}
+        </div>
+        <div class="prompt" style="font-weight:500">${esc(it.eng)}</div>
+        ${it.plural?`<div class="notecard">Plural: <b>${esc(it.plural)}</b></div>`:''}
+        ${it.note?`<div class="notecard">${esc(it.note)}</div>`:''}
+        <p class="tiny">source: ${esc(it.src)}</p>
       </div>
-      <div class="prompt" style="font-weight:500">${esc(it.eng)}</div>
-      ${it.plural?`<div class="notecard">Plural: <b>${esc(it.plural)}</b></div>`:''}
-      ${it.note?`<div class="notecard">${esc(it.note)}</div>`:''}
-      <p class="tiny">source: ${esc(it.src)}</p>
-      <button class="btn primary" id="b-next" style="margin-top:auto">Continue</button></div>`);
+      <div class="exa-mid" id="katse-mid-slot"></div>
+      <div class="exa-actions"><button class="btn primary" id="b-next">Continue</button></div></div>`);
     hookQuit(); hookPlay(it);
-    document.getElementById('b-next').onclick = ()=>{ srsGrade(it.id, true); session.at++; runExercise(); };
+    // replay sittings re-show teach cards, but viewing them must not feed the
+    // reps≥3 typing gate or push real reviews further out (same rule as recap)
+    document.getElementById('b-next').onclick = ()=>{ if (!session.replay) srsGrade(it.id, true); session.at++; runExercise(); };
   }
   else if (ex.type==='recap'){
     // warm-up flip-through of words you already know — no grading, no rep credit
-    render(H + `<div id="exArea">
-      <p class="muted">🔁 Quick recap — you know this one</p>
-      <div class="row spread">
-        <div class="bigtsw">${esc(it.tsw)}</div>
-        ${it.audio?`<button class="audio-btn" id="b-play">🔊</button>`:''}
+    renderFill(H + `<div id="exArea" class="exArea-solo">
+      <div class="exa-top">
+        <p class="muted">🔁 Quick recap — you know this one</p>
+        <div class="row spread">
+          <div class="bigtsw">${esc(it.tsw)}</div>
+          ${it.audio?`<button class="audio-btn" id="b-play">🔊</button>`:''}
+        </div>
+        <div class="prompt" style="font-weight:500">${esc(it.eng)}</div>
+        ${it.plural?`<div class="notecard">Plural: <b>${esc(it.plural)}</b></div>`:''}
+        ${it.note?`<div class="notecard">${esc(it.note)}</div>`:''}
       </div>
-      <div class="prompt" style="font-weight:500">${esc(it.eng)}</div>
-      ${it.plural?`<div class="notecard">Plural: <b>${esc(it.plural)}</b></div>`:''}
-      ${it.note?`<div class="notecard">${esc(it.note)}</div>`:''}
-      <button class="btn primary" id="b-next" style="margin-top:auto">Continue</button>
-      <button class="btn ghost" id="b-skiprecap" style="margin-top:8px">Skip recap ▸</button></div>`);
+      <div class="exa-mid" id="katse-mid-slot"></div>
+      <div class="exa-actions">
+        <button class="btn primary" id="b-next">Continue</button>
+        <button class="btn ghost" id="b-skiprecap">Skip recap ▸</button>
+      </div></div>`);
     hookQuit(); hookPlay(it);
     document.getElementById('b-next').onclick = ()=>{ session.at++; runExercise(); };
     document.getElementById('b-skiprecap').onclick = ()=>{
@@ -1049,9 +1111,14 @@ function runExercise(){
       };
     });
   }
-  // Katse stays in the corner on every card — curious for new words, and she
-  // "says" each clip herself: bubble + talking sway, synced to the audio.
-  mountKatseCorner(it, ex.type==='teach' ? 'curious' : undefined);
+  // Katse stays in the corner on drill cards; on solo teach/recap cards she moves
+  // bigger + centred into the freed-up middle (see mountKatseMid). She "says" each
+  // clip herself either way: bubble + talking sway, synced to the audio.
+  if (ex.type==='teach' || ex.type==='recap'){
+    mountKatseMid(it, ex.type==='teach' ? 'curious' : undefined);
+  } else {
+    mountKatseCorner(it);
+  }
   if (it && it.audio){
     if (ex.type==='listen') katseSay('🎵 …', it.audio);                        // don't spoil the answer
     else if (ex.type==='teach' || ex.type==='recap' || ex.type==='choose' || ex.type==='record') katseSay(it.tsw, it.audio);
@@ -1081,10 +1148,13 @@ function runRecap(){
       ${it.note?`<div class="notecard">${esc(it.note)}</div>`:''}
       ${it.src?`<p class="tiny">source: ${esc(it.src)}</p>`:''}`;
   }
-  render(H + `<div id="exArea">
-    <p class="muted">↩ Looking back — this won't change your score</p>
-    ${body}
-    <button class="btn primary" id="b-recap-next" style="margin-top:auto">Continue ▶</button></div>`);
+  renderFill(H + `<div id="exArea" class="exArea-solo">
+    <div class="exa-top">
+      <p class="muted">↩ Looking back — this won't change your score</p>
+      ${body}
+    </div>
+    <div class="exa-mid" id="katse-mid-slot"></div>
+    <div class="exa-actions"><button class="btn primary" id="b-recap-next">Continue ▶</button></div></div>`);
   hookQuit();
   if (ex.type==='dialogue'){
     document.querySelectorAll('[data-track]').forEach(b=>{ b.onclick = ()=>playAudio(ex.tracks[parseInt(b.dataset.track,10)].file); });
@@ -1092,7 +1162,7 @@ function runRecap(){
     const bp = document.getElementById('b-play'); if (bp) bp.onclick = ()=>playAudio(ex.item.audio);
   }
   document.getElementById('b-recap-next').onclick = ()=>{ session.at++; runExercise(); };
-  mountKatseCorner(ex.item);
+  mountKatseMid(ex.item);
 }
 function allItemsExcept(it){
   const all = [];
@@ -1156,7 +1226,10 @@ function finishSession(){
   const lastPart = !part || part.idx === part.total - 1;
   const bonus = session.isReview ? 10 : 20;
   addXP(bonus, session.isReview?'review-done':'lesson-done');
-  if (!session.isReview && lastPart && session.unit){
+  // a replayed part is done → next sitting starts on the following part (wraps to 1)
+  if (session.replay && session.unit && part)
+    setReplayCursor(session.unit.id, session.lessonIdx, (part.idx + 1) % part.total);
+  if (!session.isReview && !session.replay && lastPart && session.unit){
     const prog = state.progress[session.unit.id] || {lessonIdx:0, completed:false};
     if (session.lessonIdx === prog.lessonIdx){
       prog.lessonIdx++;
@@ -1173,7 +1246,7 @@ function finishSession(){
     render(`<div class="center" style="margin-top:8vh">
       <h1 style="font-size:2rem">Part ${part.idx+1} of ${part.total} — done!</h1>
       <div id="pmap-hop">${partMapHTML(part.total, part.idx, false)}</div>
-      <p class="muted" style="margin-top:14px">New words in the bag. The next part waits whenever you're ready.</p>
+      <p class="muted" style="margin-top:14px">${session.replay ? 'Good practice — repetition is how it sticks.' : 'New words in the bag.'} The next part waits whenever you're ready.</p>
       <div class="statgrid" style="margin-top:16px">
         <div class="stat"><b>+${session.right*10 + bonus}</b>XP-ish earned</div>
         <div class="stat"><b>${acc}%</b>accuracy</div>

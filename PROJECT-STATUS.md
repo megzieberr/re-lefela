@@ -1,6 +1,37 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-17 (session 9 — Katse-as-star + black/white/pink reskin + baby-steps pedagogy engine, sw v11, **SHIPPED & live-verified** commit 830c847) · previous: session 8 typed-verdict fix + corner Katse (sw v10, live, commit d32db44)
+**Updated:** 2026-07-17 (session 10 — orchestrated agent batch: Variant-B cat icon, layout pass, u1l1-17 audio, part-split replays, sw v13) · previous: session 9/9b Katse-as-star + reskin + baby-steps engine + part map (sw v11/v12, commits 830c847/4b89422)
+
+## Session 10 (2026-07-17, later same day) — 3-agent batch (2×Sonnet + 1×Opus), sw v13
+Megan's 6 feedback items after using v12, built by parallel agents under orchestrator review:
+- **App icon → "Variant B"** (her pick from 3 rendered candidates): black bg, deep-pink glowing
+  ring restyled as a cat head with Katse-style ears (pink inners), "R:" white + "0" pink. Both
+  icons/icon-*.png overwritten (favicon + apple-touch-icon reuse the same files). Generator script
+  in session scratchpad (`wire_final_b.py`).
+- **Layout pass:** corner Katse on drills 120→155px (115px short-viewport); teach/recap cards are
+  now full-height flex (`.exwrap-fill`): Continue/Skip pinned 24px from viewport bottom, Katse
+  200px centered mid-space via `mountKatseMid()` (same DOM id as the corner mount so all
+  katse helpers keep working); mini part-map Katse repositioned onto the circle (awake pose,
+  22px) — no more overlap with the lesson blurb. `rule` cards deliberately left old-style.
+- **u1l1-17 "Re tsogile sentle" audio exported & wired** (88→89 clips, nothing deleted).
+  ⚠️ CRITICAL: her tagger download `round2 (11).json` is a partial regression — running the export
+  on it raw would DELETE 15 live clips (incl. u1l1-13/15). Canonical mapping = the repo's
+  `toolkit/audio-mapping-round2.json` (committed HEAD + only the u1l1-17 tag keyed `sub:0` so it
+  coexists with u1l1-15 on shared L2 seg25). Never use a raw tagger download without diffing its
+  export winners against the committed mapping first. (Also in auto-memory.)
+- **Part-split replays (her "option 1"):** the 12-card practice-mix branch is REMOVED. Replaying a
+  fully-learned lesson now runs the identical baby-steps part machinery (recap block, teach×4
+  batches, drills, part pill/map, checkpoint hop) with a device-local `rl_replay` cursor
+  (localStorage only, NO schema/sync change) that advances per completed part and wraps forever —
+  she wants to replay L1's 4-word batches "at least 5 times". Replay teach cards do NOT srsGrade
+  (won't inflate the reps≥3 typing gate); lessonIdx/unlocks never change on replay; a fully-learned
+  but *unfinished* lesson still counts as learning (deadlock guard). Done multi-part home nodes
+  show the mini map at the replay cursor. Replays still earn XP (flag if that ever bothers her).
+- **Keepalive Task-Scheduler registration:** turned out to be ALREADY registered & healthy (Mon+Thu
+  09:00, last run 2026-07-16 OK) — pending item closed, nothing was done.
+- sw v12→**v13**. Verified by orchestrator in preview: fully-learned L1 opens as P1/3 · 1/39 with
+  recap first, lessonIdx untouched, teach/recap bottom-pinned layout, drill corner cat 155px
+  (the "overlap" is Katse's own tappable audio button), mini-map no text overlap, 0 console errors.
 
 ## Session 9 (2026-07-17) — Katse the star + light reskin + baby-steps engine (sw v11, SHIPPED 830c847)
 Megan asked: (1) make Katse a real feature ("scary Duolingo bird" energy, she should *say* the words),
@@ -200,12 +231,18 @@ and zero XP-farming.
   hides at card 0, resume lands on the correct live card, 0 console errors.
 
 ## Pending on Megan
-0. 2026-07-17 (session 9): close & reopen the PWA **twice** to drop the v10 cache and meet the new
-   Katse. Follow-ups when wanted: app icons still the old dark look; the second learner should also double-reload.
-   (Katse/ source art + NATIVE-RECORDINGS-NEEDED.md + dev launch.json are now committed. The
-   keepalive pinger got its re-lefela entry committed too — Task-Scheduler registration STILL awaits
-   her OK. Mindbourne pad_end/gain tweak turned out to be her PERSONAL tuning — commit reverted same
-   day, restored as uncommitted local changes; see memory mindbourne-github-distribution.)
+0. 2026-07-17 (session 10): close & reopen the PWA **twice** to drop the v12 cache — brings the new
+   cat icon, bottom-pinned buttons, bigger Katse, u1l1-17 audio and part-split replays. the second learner too.
+   (The home-screen icon itself may need reinstall/re-pin on Android to refresh.)
+1. Get native recordings from the lecturer for the 51 items in `NATIVE-RECORDINGS-NEEDED.md`,
+   then tag (new voice) & export. Optionally tag kofi/tlhogo/mala/leoto/botlhoko in the tagger.
+2. Optional content: conjugation lessons L10 (batla) / L11 (bala/na le) — ~42 tagged clips waiting.
+
+### Cleared 2026-07-17 (session 10)
+- ~~Keepalive Task-Scheduler registration~~ — was already registered & running (Mon+Thu 09:00).
+- ~~Copy round2 (11).json → toolkit + export~~ — SUPERSEDED: (11) is a destructive partial
+  regression, never deploy it raw (see Session 10 above); the u1l1-17 clip was spliced in safely.
+- ~~v10/v11 PWA double-reload items~~ — replaced by item 0 above.
 1. ~~Finish round-2 tagging~~ DONE (session 4 — all lessons tagged, sw v7, 88 clips).
 2. (Standing) keepalive Task-Scheduler registration still awaiting her OK.
 3. 2026-07-16: Megan asked for session-starter prompts for the three open build tasks — (a) keepalive
@@ -223,6 +260,13 @@ and zero XP-farming.
    `NATIVE-RECORDINGS-NEEDED.md`, then tag them (new voice) & export.
 
 ## Decisions (append-only)
+- 2026-07-17 (session 10): App icon = "Variant B" (black bg, deep-pink glowing ring-as-cat-head,
+  white "R:" + pink "0"). Replays of learned lessons = FULL baby-steps part experience, wrapping
+  forever (her option 1); the 12-card practice mix is gone. Design north star while she & the second learner
+  learn: smallest possible steps, endless repetition — she wants L1's 4-word batches ≥5 times.
+  Replay teach cards never srsGrade. rl_replay cursor is deliberately device-local (no sync).
+- 2026-07-17 (session 10): Tagger downloads are NOT append-only — always diff export winners vs
+  the committed mapping before use; round2 (11).json specifically is banned from raw deployment.
 - 2026-07-17 (session 9): Katse is the app's face — light black/white/soft-pink theme (her art needs a
   light base; black would swallow her), answer feedback stays green/red tints, big lessons auto-split
   into parts of ≤8 new words derived from SRS state (NO schema change), typing gated behind reps≥3,

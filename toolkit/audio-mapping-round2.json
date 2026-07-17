@@ -11494,6 +11494,18 @@
    "itemId": null,
    "tsw": null,
    "retag": true
+  },
+  {
+   "lesson": "2",
+   "file": "BW_Setswana_Lesson_2.mp3",
+   "seg": 25,
+   "start": 43.646,
+   "end": 45.59,
+   "action": "item",
+   "itemId": "u1l1-17",
+   "tsw": "Re tsogile sentle",
+   "retag": true,
+   "sub": 0
   }
  ]
 }
