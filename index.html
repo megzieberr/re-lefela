@@ -242,6 +242,14 @@ let state = {
 };
 function persist(){ store.set('srs', state.srs); store.set('progress', state.progress);
   store.set('xpTotal', state.xpTotal); store.set('streak', state.streak); store.set('queue', state.queue); }
+// Learner-scoped keys — everything tied to WHO is signed in (state, progress, outbox,
+// the device-local replay cursor). rl_lastUser (the identity marker) is handled on its
+// own by the caller. There are no app-scoped rl_ keys. Used by logout + the account-
+// switch guard in afterAuth so one learner's data can never bleed into another's.
+function clearLearnerState(){
+  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_replay']
+    .forEach(k=>localStorage.removeItem(k));
+}
 
 function enqueue(op){ state.queue.push(op); persist(); flushQueue(); }
 let flushing = false;
@@ -302,6 +310,7 @@ function srsGrade(itemId, ok){
     it.ease = Math.max(1.3, it.ease - 0.25);
   }
   it.due = now + it.interval*86400000;
+  it.touched = now;                     // last local write, ms epoch — pullRemote compares against remote updated_at so local edits aren't clobbered
   state.srs[itemId] = it; persist();
   enqueue({t:'srs', item_id:itemId, ease:it.ease, interval_days:it.interval, due_at:new Date(it.due).toISOString(), reps:it.reps, lapses:it.lapses});
 }
@@ -541,6 +550,17 @@ function screenAuth(msg){
 async function afterAuth(user){
   const {data: prof} = await sb.from('profiles').select('*').eq('id', user.id).single();
   if (!prof) return screenAuth('No profile found — sign up with the join code first.');
+  // Account-switch safety net: if the last learner on this device was someone else,
+  // wipe their state BEFORE flushQueue/pullRemote run — otherwise a pending queued op
+  // (stamped with user_id only at FLUSH time) would be pushed under THIS user's id.
+  // Clear both disk AND the in-memory state loaded at boot (no reload happens here).
+  // LOCAL_MODE never reaches afterAuth (boot() returns early), so local state is safe.
+  const lastUser = store.get('lastUser', null);
+  if (lastUser && lastUser.id && lastUser.id !== user.id){
+    clearLearnerState();
+    state.srs = {}; state.progress = {}; state.xpTotal = 0;
+    state.streak = {current:0, best:0, last:null}; state.queue = [];
+  }
   state.user = {id:user.id, username:prof.username, display:prof.display_name};
   store.set('lastUser', state.user);
   await pullRemote();
@@ -556,7 +576,8 @@ async function pullRemote(){
       const localItem = state.srs[r.item_id];
       const remoteDue = new Date(r.due_at).getTime();
       if (!localItem || new Date(r.updated_at).getTime() > (localItem.touched||0))
-        state.srs[r.item_id] = {ease:r.ease, interval:r.interval_days, due:remoteDue, reps:r.reps, lapses:r.lapses};
+        state.srs[r.item_id] = {ease:r.ease, interval:r.interval_days, due:remoteDue, reps:r.reps, lapses:r.lapses,
+          touched:new Date(r.updated_at).getTime()};   // carry the remote timestamp so the NEXT pull compares sanely
     });
     const {data: up} = await sb.from('unit_progress').select('*').eq('user_id', state.user.id);
     (up||[]).forEach(r=>{
@@ -789,7 +810,18 @@ function screenStats(){
     document.getElementById('f-newpass').value = '';
     toast('Password changed! Use the new one on all devices. Go siame!');
   };
-  document.getElementById('b-logout').onclick = async ()=>{ if(sb) await sb.auth.signOut(); localStorage.removeItem('rl_lastUser'); location.reload(); };
+  document.getElementById('b-logout').onclick = async ()=>{
+    // Best-effort flush FIRST (while still authed — signOut would fail RLS after),
+    // but never let it block logout: offline/hung network races a short timeout.
+    try{ await Promise.race([flushQueue(), new Promise(r=>setTimeout(r, 3000))]); }catch(e){}
+    if(sb){ try{ await sb.auth.signOut(); }catch(e){} }
+    // Clear ALL learner-scoped state so the next learner on this device starts clean
+    // (queued ops are stamped with user_id only at flush time — leaving them would
+    //  absorb them into the next login). rl_lastUser cleared too so the guard resets.
+    clearLearnerState();
+    localStorage.removeItem('rl_lastUser');
+    location.reload();
+  };
   document.getElementById('b-reset-l1').onclick = resetLesson1;
 }
 
@@ -1017,12 +1049,16 @@ function runExercise(){
       ${opts.map(o=>`<button class="choice" data-id="${o.id}">${esc(o.eng)}</button>`).join('')}
       <div style="margin-top:auto"></div></div>`);
     hookQuit(); hookPlay(it);
+    let answered = false;                             // one-shot: a double-tap can't schedule a second grade
     document.querySelectorAll('.choice').forEach(c=>{
       c.onclick = ()=>{
+        if (answered) return; answered = true;
+        document.querySelectorAll('.choice').forEach(e=>{ e.style.pointerEvents='none'; });
+        const atClick = session.at;                   // this verdict belongs to THIS card only
         const ok = c.dataset.id === it.id;
         c.classList.add(ok?'good':'bad');
         if (!ok) document.querySelector(`.choice[data-id="${it.id}"]`).classList.add('good');
-        setTimeout(()=>grade(ok, it, null, true), 350);
+        setTimeout(()=>{ if (session.at !== atClick) return; grade(ok, it, null, true); }, 350);  // bail if ◀ Back moved us (runRecap)
       };
     });
   }
@@ -1056,12 +1092,16 @@ function runExercise(){
       ${shuffle(cs.options).map(o=>`<button class="choice" data-o="${esc(o)}">${esc(o)}</button>`).join('')}
       <div style="margin-top:auto"></div></div>`);
     hookQuit();
+    let answered = false;                             // one-shot: a double-tap can't schedule a second grade
     document.querySelectorAll('.choice').forEach(c=>{
       c.onclick = ()=>{
+        if (answered) return; answered = true;
+        document.querySelectorAll('.choice').forEach(e=>{ e.style.pointerEvents='none'; });
+        const atClick = session.at;                   // this verdict belongs to THIS card only
         const ok = c.dataset.o === cs.answer;
         c.classList.add(ok?'good':'bad');
         if (!ok) document.querySelector(`.choice[data-o="${cs.answer}"]`).classList.add('good');
-        setTimeout(()=>grade(ok, it, null, true), 350);
+        setTimeout(()=>{ if (session.at !== atClick) return; grade(ok, it, null, true); }, 350);  // bail if ◀ Back moved us (runRecap)
       };
     });
   }
@@ -1074,12 +1114,16 @@ function runExercise(){
       ${opts.map(o=>`<button class="choice" data-id="${o.id}">${esc(o.tsw)}</button>`).join('')}
       <div style="margin-top:auto"></div></div>`);
     hookQuit(); hookPlay(it);
+    let answered = false;                             // one-shot: a double-tap can't schedule a second grade
     document.querySelectorAll('.choice').forEach(c=>{
       c.onclick = ()=>{
+        if (answered) return; answered = true;
+        document.querySelectorAll('.choice').forEach(e=>{ e.style.pointerEvents='none'; });
+        const atClick = session.at;                   // this verdict belongs to THIS card only
         const ok = c.dataset.id === it.id;
         c.classList.add(ok?'good':'bad');
         if (!ok) document.querySelector(`.choice[data-id="${it.id}"]`).classList.add('good');
-        setTimeout(()=>grade(ok, it, null, true), 350);
+        setTimeout(()=>{ if (session.at !== atClick) return; grade(ok, it, null, true); }, 350);  // bail if ◀ Back moved us (runRecap)
       };
     });
   }

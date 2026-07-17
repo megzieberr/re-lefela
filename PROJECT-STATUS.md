@@ -1,6 +1,41 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-17 (session 16 — Itumeleng card fix + 🐢 slow-audio button, sw v19) · previous: session 15 Unit 3 conjugation lessons (sw v18), session 14 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
+**Updated:** 2026-07-17 (session 17 — full 5-agent audit + fix batch, sw v20) · previous: session 16 Itumeleng card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 17 (2026-07-17, same day) — full audit + fix batch (sw v20, SHIPPED)
+Megan asked for a full fresh-eyes audit before building further (multitasking day). 5 read-only
+audit agents (2×Opus engine/sync, 3×Sonnet content/toolkit/pending), then 3 fix agents — all
+supervised, key findings independently re-verified in source by the orchestrator.
+**Audit verdict: app in good shape.** Live site matched repo byte-for-byte (v19); content.js
+exceptionally clean (123 audio = 123 files = 123 mapping winners, 0 orphans, Unit 3 paradigm
+39/39 concord cards reconstruct exactly); RLS isolation sound; all session-11 SW invariants held.
+**Fixes shipped this session:**
+1. **Double-grade race (BUG, the real one):** `choose`/`concord`/`listen` handlers left all
+   answer buttons live during the 350ms reveal — a normal double-tap graded twice (double
+   srsGrade/XP, stacked Continue, duplicate retry splices). Fix: one-shot `answered` flag +
+   pointer-events off + `atClick` capture so a pending grade bails if ◀ Back moved to a recap.
+   Type cards' session-8 Enter/debounce contract verified intact.
+2. **`touched` was never written** — pullRemote's "remote wins only when newer" always let
+   remote overwrite local. Now stamped in `srsGrade` (Date.now()) and carried from remote
+   `updated_at` on accepted rows. Self-healed via outbox before, but the invariant now holds.
+3. **Account-switch hygiene (defensive — they never share a device):** logout now flushes
+   best-effort (3s cap, while still authed), then `clearLearnerState()` wipes the 6 learner-
+   scoped rl_ keys; `afterAuth` reads `rl_lastUser` (previously write-only) and wipes disk +
+   in-memory state on user-id mismatch BEFORE flush can stamp stale ops with the new user's id.
+   LOCAL_MODE unaffected (never reaches afterAuth).
+4. **Export unwire-guard (toolkit):** `export-item-audio.py` now refuses (exit 1, lists items)
+   to un-wire any currently-live clip unless `--allow-unwire` is passed — the L2-drop hazard
+   finally guarded in code per the "guard hazards in code" ruling. Tested against a doctored
+   L2-stripped mapping: fires on exactly u1l1-13/15/19, mutates nothing.
+**Audit findings NOT fixed (accepted/known, for the record):** CDN supabase-js means an
+evicted-cache offline cold start can't boot (self-host to fix, someday); SW auto-reload can fire
+on the between-parts checkpoint screen (UX blip, rare); md5 audio-cache check is still a manual
+ritual; progress bar ticks backward on retry-splice (cosmetic, by design); review-session `tap`
+distractors always draw from Unit 1 (low impact); tagger L2-drop root cause still not reproduced
+in code (reopenLesson() wipe is the suspect). Katse id rename stays queued (Pending 3).
+**Pending-list corrections** from the audit are folded into the items below (enhance bot nearly
+done not 3/39; lecturer premise dead — all 51 items self-recorded; phones ritual obsolete;
+⚠️ never wire `Leina lame ke Megan.mp3`).
 
 ## Session 16 (2026-07-17, same day) — Itumeleng + slow playback (sw v19, SHIPPED 4ded19c)
 Verified live: sw `relefela-v19`, `AUDIO_CACHE` still `relefela-audio-v1` (correctly untouched),
@@ -322,19 +357,21 @@ All tagger lessons done (5a-c, 6, 7, 10, 11, 12, 13, 18, 20, 22, 23) and deploye
 ---
 
 ## ⏸️ WHERE WE STOPPED — pick up here
-**Live at sw `relefela-v18` (audio cache `relefela-audio-v1`): Units 1-3, 122 item clips.** Round-2
+**Live at sw `relefela-v20` (audio cache `relefela-audio-v1`): Units 1-3, 123 item clips.** Round-2
 Peace Corps audio is fully mined — session 15 lit up the last 33 clips as Unit 3 "Go batla" + u1l4-12/13.
 The tagger has nothing left worth exporting except the L11 "to have" re-tag (Pending 2).
 
 **Next up — the colours workstream is the live thread**, and it's blocked on Megan, not on us:
 1. **Pending -1(a): the colour-cards decision** — drop u2l6-13..18 (duplicate words under her one-word-
    per-colour ruling), keep or drop u2l6-19? Nothing else in that workstream can move until this lands.
-2. **Pending 4: finish the enhance-bot run** (36 of 39 left), then wire audio to u2l6-01..12.
+2. **Pending 4: the enhance-bot run is nearly done** (2026-07-17 audit snapshot, moving target — see
+   item 4), then wire audio to u2l6-01..12 (no decision needed) and the rest per item -1(a).
 3. ⚠️ Until (1) lands, **every export must keep the `SKIP_LESSONS` ★ Colours guard** in
    `export-item-audio.py` — it's in code now, so it holds by default; don't "tidy" it away.
 
-Smaller open items: the L11 "to have" re-tag (Pending 2), the lecturer's 51 native recordings
-(Pending 1), and the mid-Katse id rename (Pending 3, an audit-time cleanup).
+Smaller open items: the L11 "to have" re-tag (Pending 2), the tag-and-wire wave for recordings
+already on disk (Pending 1 — corrected 2026-07-17, was wrongly framed as waiting on the lecturer),
+and the mid-Katse id rename (Pending 3, an audit-time cleanup).
 
 ### ⚠️ Tagger gotcha (critical for any future export)
 Her tagger's localStorage keeps **dropping the Lesson-2 redo** — every export she downloads has 0
@@ -346,6 +383,10 @@ Per-lesson raw exports from this session are backed up in the session scratchpad
 u1l7-07 "Ga ke batle tee" (tea), u1l7-08 "Ga ba bue Sekgoa" (English), u1l6-09 "Ke batla kofi"
 (coffee — audio only says *o rata kofi?*), and L22 body-part vocab (tlhogo/mala/leoto/botlhoko,
 only spoken inside sentences). Don't chase these with the tagger.
+⚠️ **UPDATE (2026-07-17 audit):** recordings for ALL of these now exist on disk in "missing audio\"
+(Megan's own voice) and are awaiting enhance+tag+wire — see Pending item 1. "Don't chase these with
+the tagger" no longer applies once the enhance-bot run finishes; the rest of this note is historical
+(why they shipped silent) and stays as-is.
 
 ### 🎙️ Session-6 audio thread (2026-07-16) — remaining gaps → lecturer recordings
 - **NCHLT per-word audio TRIED & ABANDONED — do NOT retry.** Grabbed NCHLT sentence-clips that
@@ -355,6 +396,9 @@ only spoken inside sentences). Don't chase these with the tagger.
   tagger.html is back to stock. NCHLT stays ONLY for the Listening gym (whole sentences).
 - **Path forward = native recordings from the lecturer.** `NATIVE-RECORDINGS-NEEDED.md` (repo root,
   51 items) = the Bible/grammar-book vocab (Unit 2 body/colour/adjective) + the 2 Unit-1 orphans.
+  ⚠️ **UPDATE (2026-07-17 audit):** this converged to Megan self-recording everything instead —
+  filename reconciliation confirmed 51/51 items already covered by her own recordings on disk (see
+  Pending item 1). Nobody ended up waiting on the lecturer.
 - **`Ke teng` (u1l1-07) & `Re a leboga` (u1l1-08) are genuine orphans** — only the plural `Re teng`
   and the I-form `Ke a leboga` are ever spoken. Both on the lecturer list.
 - **`Re tsogile sentle` (u1l1-17) IS now tagged** — split from u1l1-15 (L2 seg25), trimmed to [43.6–45.6s].
@@ -456,25 +500,35 @@ and zero XP-farming.
 2. ~~2026-07-17 (session 13): the conjugation-lesson prompt needs two amendments~~ **DONE — that
    session ran as session 15 and shipped.** Its ★ Colours hazard is now guarded in code
    (`SKIP_LESSONS` in export-item-audio.py), not just in prose, so the next export is safe too.
-0. 2026-07-17 (session 11): ONE LAST ritual on both phones — the old v13 worker still updates the
-   slow way, so force a real cold start: swipe the PWA away, then in Android Settings force-stop
-   it (or just wait and open it twice with real closes in between). Once v14 is in, this whole
-   problem is gone: every future deploy lands on the next open, no ritual. Also expect a one-time
-   re-download of played audio clips (they migrate to the new persistent cache lazily).
-   (The home-screen icon itself may still need reinstall/re-pin on Android — platform limitation.)
-1. Get native recordings from the lecturer for the 51 items in `NATIVE-RECORDINGS-NEEDED.md`,
-   then tag (new voice) & export. Optionally tag kofi/tlhogo/mala/leoto/botlhoko in the tagger.
+0. ~~2026-07-17 (session 11): ONE LAST ritual on both phones — force a real cold start (swipe the
+   PWA away, force-stop, or open it twice with real closes in between) to get off the old v13
+   worker.~~ **CLEARED (2026-07-17 audit) — obsolete.** Five successful deploys (v15..v19) have
+   already landed through the v14 network-first auto-update flow since; nothing left to do here.
+1. 2026-07-17 (audit): **Lecturer recordings never needed — dead premise, corrected.** Filename
+   reconciliation confirmed all 51 items in `NATIVE-RECORDINGS-NEEDED.md` already have Megan's OWN
+   recordings sitting in "missing audio\" (38+ already enhanced, the rest raw-only awaiting the
+   bot — see item 4). Nobody is waiting on the lecturer. Remaining work is the **tag-and-wire wave**
+   once the bot finishes, and it can voice far more than the colours: every "cards intentionally
+   left silent" entry has a recording on disk — `Ga ke batle tee`, `Ga ba bue Sekgoa`, `Ke batla
+   kofi`, `Nnyaa ga ke na mathata`, `Ke teng`, `Re a leboga`, the L22 body vocab, `leina`, `lelapa`,
+   **and** the 3 silent Unit-3 cards `Ga a batle` / `Re ne re batla` / `Ga a kake a batla`.
 2. ~~Optional content: conjugation lessons L10 (batla) / L11 (bala/na le)~~ **DONE — SHIPPED
    session 15** as Unit 3 "Go batla" + u1l4-12/13. Yield was 33 clips, not the ~42 estimated (the
    estimate counted L11 tags that were already live since session 10, and L10 notes that are
    duplicate strings). ONE follow-up left, her call: **re-tag L11 segs 25/27/29** (currently junk,
    ~2s each, probably the "to have" row — Lo/O/Ba/Re na le buka) to light up ~4 more clips and
    complete that table; the 4 cards would need adding too. Not urgent, not guessable.
-4. 2026-07-17 (session 14): **Finish the missing-audio run — 36 of 39 left.** Clear the Adobe
-   queue, then double-click `missing audio\enhance-bot\RUN ENHANCE BOT.bat`. Done + verified so
-   far: bosweu, bontsho, bohibidu (+ Dikgomo di bogale from the live test). Don't run it while the
-   Mindbourne bot is running. Then the colours decision in item -1 unblocks wiring audio to
-   u2l6-01..12.
+4. 2026-07-17 (session 14; count corrected 2026-07-17 audit): **The enhance-bot run is nearly
+   done — the "36 of 39 left" count above is stale, ignore it.** Disk audit ~13:20 today: `Raw\`
+   holds 57 files, `Enhanced\` holds 54, only ~12 raw files still lacked an enhanced counterpart,
+   and the bot was **still running** at audit time (`Enhanced\` grew mid-audit) — treat any count
+   here as a moving snapshot, not a fixed total. Once it finishes, the remaining step is the
+   **tag-and-wire wave**: wiring u2l6-01..12 needs no decision and can proceed immediately; the
+   rest of that workstream (u2l6-13..19) stays blocked on the colours decision in item -1 only.
+   Clear the Adobe queue before re-running; don't run it while the Mindbourne bot is running.
+   ⚠️ **Do NOT wire `missing audio\Raw\Leina lame ke Megan.mp3` (or its Enhanced counterpart) to
+   `u1l2-01`.** It was recorded BEFORE session 16 renamed that card to "Leina lame ke Itumeleng" —
+   it says the wrong name for the current card.
 3. 2026-07-17 (session 14): **NEXT AUDIT — rename the mid-Katse id.** `mountKatseMid()` mounts the
    big centred Katse with `id="katse-corner"` but `class="katse-mid"`, so the two Katse contexts are
    told apart by CLASS while the id lies (`mountKatseCorner()` uses the same id). The id reuse is
@@ -500,6 +554,8 @@ and zero XP-farming.
    **Post-deploy (Megan):** close & reopen the PWA **twice** (service-worker double-load) to drop the
    old cached cat. Left uncommitted on purpose: `Katse/` source art + proof PNGs, and dev file
    `.claude/.claude/launch.json` (python http.server for Preview) — keep or gitignore, her call.
+   ⚠️ **UPDATE (2026-07-17 audit):** `.claude/.claude/launch.json` has been tracked/committed since
+   session 9 (commit `830c847`) — no longer an open decision.
 5. 2026-07-16 (session 6 audio): Copy `relefela-audio-mapping-round2 (11).json` →
    `toolkit/audio-mapping-round2.json`, run `export-item-audio.py`, deploy — brings the L2/L3 redo +
    `Re tsogile sentle` live. Optionally tag `kofi`/`tlhogo`/`mala`/`leoto`/`botlhoko` in the tagger first.

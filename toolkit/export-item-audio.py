@@ -6,11 +6,17 @@
 # Rule: if an itemId was tagged more than once, the LAST tag wins.
 # Idempotent: re-running re-exports clips and skips items that already have an audio: field.
 
+import argparse
 import json
 import re
 import subprocess
 import sys
 from pathlib import Path
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--allow-unwire', action='store_true',
+                     help='allow this run to un-wire currently-live items (dangerous; normally refused)')
+args = parser.parse_args()
 
 ROOT = Path(__file__).resolve().parent.parent
 # round 1 (unit1) first, then later rounds alphabetically — tags later in the list win
@@ -67,6 +73,26 @@ for e in nchlt:
     if e['itemId'] not in winner:
         jobs.append((e['itemId'], Path(e['wav']), None, None, 'NCHLT'))
 
+# 2.5 guard: refuse to silently un-wire a currently-live item. A regressed/partial
+#     mapping download can look like a clean run but actually drops clips that are only
+#     tagged in an older file — the tagger's known Lesson-2 drop is the recurring case
+#     (round2 lesson '2' missing silently un-wires u1l1-13/15/19). Diff against content.js's
+#     CURRENT wiring before touching anything: clip cutting, content.js writes, and mp3
+#     deletion all happen after this point.
+have = {item_id for item_id, *_ in jobs}
+currently_wired = dict(re.findall(
+    r"\{ id: '([^']+)', audio: 'items/([^']+)',", CONTENT.read_text(encoding='utf-8')))
+would_unwire = {i: f for i, f in currently_wired.items() if i not in have}
+if would_unwire and not args.allow_unwire:
+    print(f'\nREFUSING TO RUN: this export would UN-WIRE {len(would_unwire)} '
+          f'currently-live item(s) — nothing has been changed:')
+    for item_id in sorted(would_unwire):
+        print(f"  {item_id}  (currently items/{would_unwire[item_id]})")
+    print("\nLikely cause: a regressed/partial mapping download (the tagger's known "
+          "Lesson-2 drop is the recurring case), not a real retraction of these clips.\n"
+          'Re-run with --allow-unwire if this un-wiring is actually intended.')
+    sys.exit(1)
+
 # 3. export
 for item_id, src, start, end, origin in sorted(jobs):
     dst = OUT_DIR / f'{item_id}.mp3'
@@ -95,7 +121,6 @@ for item_id, *_ in jobs:
 
 # 5. un-wire items whose tag was corrected away (re-tagged to another item / junked)
 #    and delete their orphaned MP3s, so Katse goes back to sleep on them.
-have = {item_id for item_id, *_ in jobs}
 removed = []
 for wired_id in re.findall(r"\{ id: '([^']+)', audio: 'items/", src_js):
     if wired_id in have:
