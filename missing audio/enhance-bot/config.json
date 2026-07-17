@@ -1,0 +1,11 @@
+{
+  "raw_folder": "C:\\Users\\megzi\\Desktop\\Claude Code Projects\\re-lefela\\missing audio\\Raw",
+  "enhanced_folder": "C:\\Users\\megzi\\Desktop\\Claude Code Projects\\re-lefela\\missing audio\\Enhanced",
+  "extension": ".mp3",
+  "speech": 50,
+  "music": 0,
+  "background": 0,
+  "profile_dir": "C:\\Users\\megzi\\Desktop\\MINDBOURNE VIDEO PROJECT\\Adobe Enhance Bot (SHARE)\\chrome-profile",
+  "ffprobe": "C:\\Users\\megzi\\Desktop\\MINDBOURNE VIDEO PROJECT\\Adobe Enhance Bot (SHARE)\\ffprobe.exe",
+  "_note": "speech/music/background are the slider percentages (0-100). profile_dir is the Mindbourne bot's Chrome profile, so this bot is already signed into the MDP EDUCATION Adobe account - never run both bots at once."
+}

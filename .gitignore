@@ -10,4 +10,8 @@ toolkit/__pycache__/
 katse-preview.html
 *.zip
 *.wav
+# missing-audio recordings: source audio stays out of git (same as corpus/)
+missing audio/Raw/
+missing audio/Enhanced/
+missing audio/enhance-bot/__pycache__/
 node_modules/
