@@ -1,6 +1,32 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-17 (session 10 — orchestrated agent batch: Variant-B cat icon, layout pass, u1l1-17 audio, part-split replays, sw v13) · previous: session 9/9b Katse-as-star + reskin + baby-steps engine + part map (sw v11/v12, commits 830c847/4b89422)
+**Updated:** 2026-07-17 (session 11 — stale-cache root-cause fix: network-first SW + in-app update flow, sw v14, SHIPPED 1ba76a1) · previous: session 10 agent batch (icon/layout/audio/replays, sw v13)
+
+## Session 11 (2026-07-17, evening) — cache audit + SW overhaul (sw v14, SHIPPED & live-verified, commit 1ba76a1)
+Megan reported the chronic "app only updates after uninstall/reinstall" problem. Supervised
+3-agent fix (2×Sonnet build + Opus adversarial review + 1 Sonnet remediation), audit first.
+- **Root cause:** sw.js was cache-first for the ENTIRE origin including index.html — the exact
+  opposite of MHQ (network-first, whose sw.js comment records the same lesson) and Circle Quest
+  (no caching). Compounded by (a) Android resuming PWAs instead of cold-starting → the browser's
+  on-navigation SW update check never fired, and (b) plain `cache.addAll` reading GitHub Pages'
+  max-age=600 HTTP cache → a NEW install could precache a 10-min-stale index.html (why the
+  double-reopen ritual failed "randomly").
+- **sw.js v14:** network-first for navigations/app code (cache = offline fallback only, non-ok
+  responses also fall back to cache); images cache-first + quiet background refresh; audio in its
+  own persistent `relefela-audio-v1` cache that app version bumps NEVER evict (deploys no longer
+  re-download all ~89 clips) — bump the audio suffix ONLY if a clip's content changes under the
+  same filename; precache via `{cache:'reload'}`; index.html offline fallback = navigations only;
+  206 responses never cached.
+- **index.html update flow** (in `boot()`, LOCAL_MODE still skips): `registration.update()` at
+  boot + on visibilitychange (60 s throttle — catches Android resume); `controllerchange` → ONE
+  guarded `location.reload()`, deferred while `#exArea` exists (never yanks a live exercise;
+  retried on 5 s tick / next visibilitychange), first-install claim ignored via `swHadController`.
+- **Opus review verdict:** safe, no blockers; verified no contract regressions (Enter-verdict
+  debounce, mountKatseCorner, rl_queue/rl_srs sync — all writes persist synchronously, so a
+  home-screen auto-reload can't lose data). Its 2 SHOULD-FIXes (audio-cache versioning, non-ok
+  fallback) applied by a follow-up agent. Known accepted nits: rare auth-form wipe on mid-signup
+  reload; pre-existing double-XP window on reload-during-flush (leaderboard-only, cosmetic).
+- Live-verified after push: sw.js serves v14 + relefela-audio-v1, index.html has the update flow.
 
 ## Session 10 (2026-07-17, later same day) — 3-agent batch (2×Sonnet + 1×Opus), sw v13
 Megan's 6 feedback items after using v12, built by parallel agents under orchestrator review:
@@ -231,9 +257,12 @@ and zero XP-farming.
   hides at card 0, resume lands on the correct live card, 0 console errors.
 
 ## Pending on Megan
-0. 2026-07-17 (session 10): close & reopen the PWA **twice** to drop the v12 cache — brings the new
-   cat icon, bottom-pinned buttons, bigger Katse, u1l1-17 audio and part-split replays. the second learner too.
-   (The home-screen icon itself may need reinstall/re-pin on Android to refresh.)
+0. 2026-07-17 (session 11): ONE LAST ritual on both phones — the old v13 worker still updates the
+   slow way, so force a real cold start: swipe the PWA away, then in Android Settings force-stop
+   it (or just wait and open it twice with real closes in between). Once v14 is in, this whole
+   problem is gone: every future deploy lands on the next open, no ritual. Also expect a one-time
+   re-download of played audio clips (they migrate to the new persistent cache lazily).
+   (The home-screen icon itself may still need reinstall/re-pin on Android — platform limitation.)
 1. Get native recordings from the lecturer for the 51 items in `NATIVE-RECORDINGS-NEEDED.md`,
    then tag (new voice) & export. Optionally tag kofi/tlhogo/mala/leoto/botlhoko in the tagger.
 2. Optional content: conjugation lessons L10 (batla) / L11 (bala/na le) — ~42 tagged clips waiting.
@@ -260,6 +289,10 @@ and zero XP-farming.
    `NATIVE-RECORDINGS-NEEDED.md`, then tag them (new voice) & export.
 
 ## Decisions (append-only)
+- 2026-07-17 (session 11): SW strategy = network-first for app code, persistent versioned audio
+  cache (`relefela-audio-vN` — bump N ONLY when a clip changes under its same filename; app CACHE
+  bumps never evict audio). In-app auto-reload on SW update, but NEVER while `#exArea` is on
+  screen. Any future sw.js edit must preserve these; don't revert to cache-first "offline-first".
 - 2026-07-17 (session 10): App icon = "Variant B" (black bg, deep-pink glowing ring-as-cat-head,
   white "R:" + pink "0"). Replays of learned lessons = FULL baby-steps part experience, wrapping
   forever (her option 1); the 12-card practice mix is gone. Design north star while she & the second learner
