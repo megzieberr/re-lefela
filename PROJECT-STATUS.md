@@ -1,6 +1,28 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-17 (session 12 — Reset Lesson 1 button in stats, sw v15, SHIPPED 9648452) · previous: session 11 SW cache overhaul (sw v14, 1ba76a1)
+**Updated:** 2026-07-17 (session 13 — native-audio tagger wiring + colour stem cards u2l6-13..19, sw v16, SHIPPED fa578e8) · previous: session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 13 (2026-07-17, same day) — native recordings + colour stem cards (sw v16, SHIPPED fa578e8)
+Megan is hunting missing-audio words with a Setswana app + recording them ("missing audio\" folder,
+untracked: Colours.mp3, Animals.mp3 + 8 single phrases incl. both u1l1 orphans + Ke batla kofi).
+All supervised Sonnet-agent builds.
+- **Tagger wiring (local-only):** slice-lessons.py grew ★ Colours (native) / ★ Animals (native)
+  lessons (7 + 10 clean segments; sources copied to corpus/audio/); tagger.html shows them in the
+  redo dropdown, excluded from the main queue, with FILTERED word-choice lists (colours = the 12
+  u2l6 missing items as click-to-tag buttons; animals = 26 corpus-grounded suggestions saved as
+  found-word notes because the app has NO animal content yet — export ignores notes safely).
+- **Spelling verdict (her Q: our words vs the source app's):** NEITHER wrong. App teaches bo- noun
+  forms (bontsho, davies-1992); source app speaks bare adjective stems (ntsho) — same words, two
+  grammatical forms, both corpus-attested. serolwana = genuine second word for yellow (Otlogetswe);
+  mmala wa loapi / wa namune = valid descriptive colour phrases. Her "nstho" was a typo (fixed).
+- **7 new cards u2l6-13..19** (stems + serolwana + the 2 mmala phrases, new `native-recording` src
+  convention for recording-sourced phrases). Lesson now 19 items → parts 7/6/6. Cards deliberately
+  have NO audio: field yet — recordings still carry background music.
+- **Mapping:** ONLY the 7 ★ Colours tags spliced into committed round-2 mapping (note→item, typo
+  fixed). Download "(12)" confirmed the regression pattern AGAIN (missing L2 seg25/38/39 + L3 seg9,
+  plus 17 stray out-of-scope tags incl. an abandoned "lesson 90" batch) — diff-first ritual works.
+- Conjugation-lesson prompt (L10 batla / L11 bala) was refreshed for post-session-11 reality and
+  handed to Megan — see Pending item 2 for the two amendments it needs after THIS ship.
 
 ## Session 12 (2026-07-17, same session as 11) — Reset Lesson 1 button (sw v15, SHIPPED 9648452)
 Megan asked for a reset button for Lesson 1 in the stats tab (supersedes the session-5 "no reset
@@ -274,6 +296,16 @@ and zero XP-farming.
   hides at card 0, resume lands on the correct live card, 0 console errors.
 
 ## Pending on Megan
+-1. 2026-07-17 (session 13): **De-music the native recordings** (Adobe Podcast) — Colours.mp3,
+   Animals.mp3 + the 8 single phrases in "missing audio\". Drop cleaned Colours.mp3 over
+   corpus\audio\Colours.mp3 (same filename). THEN an export session cuts the 7 colour clips and
+   auto-wires audio: onto u2l6-13..19 (new files only → do NOT bump relefela-audio-v1). The 8
+   singles + Animals still need tagger wiring (singles may not need slicing) — ask for an agent.
+   ⚠️ Until the cleaned file is in place, any export-item-audio.py run would cut clips WITH music.
+2. 2026-07-17 (session 13): the conjugation-lesson prompt (L10 batla / L11 bala) needs two
+   amendments after this ship: bump is now v16→v17 (not v15→v16), and either replace
+   corpus\audio\Colours.mp3 with the cleaned version BEFORE its export step or tell that session
+   to exclude the ★ Colours lesson from the export run (see item -1).
 0. 2026-07-17 (session 11): ONE LAST ritual on both phones — the old v13 worker still updates the
    slow way, so force a real cold start: swipe the PWA away, then in Android Settings force-stop
    it (or just wait and open it twice with real closes in between). Once v14 is in, this whole
@@ -306,6 +338,13 @@ and zero XP-farming.
    `NATIVE-RECORDINGS-NEEDED.md`, then tag them (new voice) & export.
 
 ## Decisions (append-only)
+- 2026-07-17 (session 13): Colour stems get their OWN cards alongside the bo- forms (both are
+  correct Setswana — bo- = noun form, bare stem = concord form; verified vs davies-1992/beibele/
+  Otlogetswe). serolwana kept as a second yellow. New src convention: `native-recording` for
+  phrases grounded only in Megan's recordings (component words must still corpus-verify).
+  Never wire audio to a card whose displayed tsw doesn't match what the voice says.
+- 2026-07-17 (session 13): Cards may ship silent (no audio: field) and get audio wired later by
+  the export — preferred over exporting from recordings that still have background music.
 - 2026-07-17 (session 12): The session-5 "she does NOT want a reset feature" ruling is RETIRED —
   she wants in-app resets when supervised builds are reliable. Reset semantics stay: hard-delete
   the SRS rows (server first, then local+outbox), XP/streak/lessonIdx untouched, per-device.
