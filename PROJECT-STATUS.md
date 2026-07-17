@@ -1,6 +1,51 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-17 (session 13 — native-audio tagger wiring + colour stem cards u2l6-13..19, sw v16, SHIPPED fa578e8) · previous: session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
+**Updated:** 2026-07-17 (session 14 — Adobe enhance bot for the missing audio + Katse bubble fix, sw v17, SHIPPED e466a6e + d31fdf1) · previous: session 13 colour stem cards (sw v16), session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 14 (2026-07-17, same day) — enhance bot + Katse bubble fix (sw v17, SHIPPED & live-verified)
+Megan found recordings for the missing audio but they carry background music, so she wanted her
+Mindbourne Adobe Podcast bot cloned for this project. Also fixed Katse's speech bubble clipping.
+
+- **Enhance bot** at `missing audio\enhance-bot\` (`RUN ENHANCE BOT.bat` → `enhance_bot.py`,
+  `config.json`, `README.txt`). Fork of `MINDBOURNE VIDEO PROJECT\Adobe Enhance Bot (SHARE)`,
+  Speech 50 / Music 0 / Background 0, `Raw` → `Enhanced` under the ORIGINAL name (Adobe's
+  `-esv2-50p-bg-m-music-m` suffix dropped). Resume = same-named file in `Enhanced`.
+  Four deliberate differences from the video bot, each load-bearing:
+  (1) verifies an AUDIO stream — the video bot's video-stream check fails on every mp3 and would
+      delete good downloads, burning the daily quota;
+  (2) queue cards matched by EXACT name — "morutabana.mp3" is a substring of "Ke morutabana.mp3",
+      so the video bot's substring click downloads the wrong voice under the right filename;
+  (3) queue names read whole, so names with spaces aren't dropped by the old `\S+\.mp4` regex;
+  (4) borrows the Mindbourne bot's `chrome-profile` (same MDP EDUCATION login) → **never run both
+      bots at once**, Chrome locks the profile; it exits with a plain message if you do.
+  The 22 previously-enhanced files were renamed to their originals (byte-identical "(1)" dup
+  deleted) — that's what lets resume recognise them. mp3s gitignored like corpus/.
+- **Katse bubble fix (sw v17):** long phrases were sliced through the top line. Root cause was
+  WIDTH, not position: `.kbubble` had `left:50%` and no width, so its shrink-to-fit width was
+  capped at the space from that offset to the parent's right edge = HALF Katse's wrapper (100px
+  measured), and `max-width:72vw` (270px) never applied; the 102px-tall result then overflowed
+  `.exa-mid`'s `overflow:hidden`. Fix = `width:max-content` (an explicit width isn't subject to the
+  cap, so `left:50%` is fine once set) + `.exa-mid` `align-items:flex-end` (Katse now sits 4px above
+  Continue, her request) + `overflow:visible`. Kept `translateX(-50%)` centring: `margin:0 auto`
+  puts the bubble 33px off-centre once wider than Katse, dragging the tail off her head.
+  Measured at 375×812, worst-case phrase: 270×54, 44px clear of the clip edge, 0px off-centre;
+  drill card right-aligned on-screen; hero unaffected; 375×600 clean.
+
+### Adobe queue: what we learned the hard way (bot ran 3/39 then stalled)
+- **Adobe silently DROPS uploads when its queue is full.** `borokwa.mp3`/`bosetlha.mp3` never got
+  cards; the bot then polled ghosts for 23 min (its ceiling is 25 min × chunk ≈ 2 h). The queue held
+  exactly 15 cards, mostly stale ones from Megan's manual sessions (Adobe keeps them ~10 days).
+  Suspected cap = 15, NOT proven.
+- **Megan's ruling: leave it, she handles it manually** — her existing habit (no `OK ... saved` line
+  for ~5 min → close it, re-run, it resumes) genuinely recovers dropped files, because pending is
+  recomputed from disk each run and files that still have cards aren't re-uploaded. **Clear the
+  Adobe queue BEFORE a run**, not during — the drop happens at upload time.
+- ⚠️ **KNOWN BUG, left unfixed by her decision (exists in the MINDBOURNE bot too — same code):**
+  `_remove_from_queue` clicks `[data-testid='delete-track-button']` **`.first`**, but there is one
+  delete button PER CARD (15 measured), so it bins whichever card is at the top, not the one it just
+  finished. Silent because it's wrapped in `try/except: pass`. Low harm (nothing is downloaded until
+  ffprobe verifies it) but it's what lets the queue clutter build. One-line fix if ever wanted:
+  target the trash button inside the card being removed.
 
 ## Session 13 (2026-07-17, same day) — native recordings + colour stem cards (sw v16, SHIPPED fa578e8)
 Megan is hunting missing-audio words with a Setswana app + recording them ("missing audio\" folder,
@@ -296,12 +341,22 @@ and zero XP-farming.
   hides at card 0, resume lands on the correct live card, 0 console errors.
 
 ## Pending on Megan
--1. 2026-07-17 (session 13): **De-music the native recordings** (Adobe Podcast) — Colours.mp3,
-   Animals.mp3 + the 8 single phrases in "missing audio\". Drop cleaned Colours.mp3 over
-   corpus\audio\Colours.mp3 (same filename). THEN an export session cuts the 7 colour clips and
-   auto-wires audio: onto u2l6-13..19 (new files only → do NOT bump relefela-audio-v1). The 8
-   singles + Animals still need tagger wiring (singles may not need slicing) — ask for an agent.
-   ⚠️ Until the cleaned file is in place, any export-item-audio.py run would cut clips WITH music.
+-1. 2026-07-17 (session 14): **Colours workstream REPLANNED — the session-13 plan below is dead.**
+   Megan re-recorded the colours herself as individual bo- form words instead of de-musicking the
+   ★ Colours source, and ruled ONE WORD PER COLOUR (see Decisions). New shape:
+   (a) DECIDE (needs Megan): drop u2l6-13..16 (bare stems) + 17 (serolwana, 2nd yellow) + 18 (mmala
+       wa loapi, 2nd blue)? And separately: keep u2l6-19 mmala wa namune, the only orange in the
+       deck, even though it has no audio? These cards are LIVE right now (shipped session 13).
+   (b) Her per-word raws in "missing audio\Raw" cover u2l6-01..12 exactly, 1:1 by filename.
+       Enhance bot output lands in "missing audio\Enhanced" under the original names.
+   (c) Then tag/wire those 12 → audio: fields, export, ship. New files only → do NOT bump
+       relefela-audio-v1.
+   ⚠️ `corpus\audio\Colours.mp3` STILL EXISTS on disk (382 KB, 10:08 2026-07-17) and the COMMITTED
+   mapping still carries 7 ★ Colours tags pointing at it. So any export-item-audio.py run today
+   still cuts music-laden stem clips onto u2l6-13..19. Until (a) is settled: EXCLUDE the ★ Colours
+   lesson from every export. Deleting the corpus copy + its 7 mapping tags is part of (a), not a
+   thing to do quietly on the side.
+   Animals.mp3 + the single phrases are a SEPARATE workstream, unaffected by this ruling.
 2. 2026-07-17 (session 13): the conjugation-lesson prompt (L10 batla / L11 bala) needs two
    amendments after this ship: bump is now v16→v17 (not v15→v16), and either replace
    corpus\audio\Colours.mp3 with the cleaned version BEFORE its export step or tell that session
@@ -315,6 +370,19 @@ and zero XP-farming.
 1. Get native recordings from the lecturer for the 51 items in `NATIVE-RECORDINGS-NEEDED.md`,
    then tag (new voice) & export. Optionally tag kofi/tlhogo/mala/leoto/botlhoko in the tagger.
 2. Optional content: conjugation lessons L10 (batla) / L11 (bala/na le) — ~42 tagged clips waiting.
+   2026-07-17 (session 14): the session-13 prompt for this was reviewed against the repo and is
+   still sound (canonical mapping at HEAD, "(11)" banned, diff-don't-copy, export-then-diff-bytes,
+   SW contract, baby-steps auto-split, `src` required, stop-for-OK — all verified as still true;
+   its 87/30 tag counts are right). Its AMENDMENTS block is stale: bump **v17 → v18** (not v16→v17,
+   spent by session 14), read PROJECT-STATUS **through session 14** (not 12), and the whole Colours
+   amendment is void — colours are OUT of that session's scope, ★ Colours must be EXCLUDED from
+   every export, and no u2l6 card may be touched (see item -1). Corrected AMENDMENTS block was
+   handed to Megan in the session-14 chat; she'll run it next session.
+4. 2026-07-17 (session 14): **Finish the missing-audio run — 36 of 39 left.** Clear the Adobe
+   queue, then double-click `missing audio\enhance-bot\RUN ENHANCE BOT.bat`. Done + verified so
+   far: bosweu, bontsho, bohibidu (+ Dikgomo di bogale from the live test). Don't run it while the
+   Mindbourne bot is running. Then the colours decision in item -1 unblocks wiring audio to
+   u2l6-01..12.
 3. 2026-07-17 (session 14): **NEXT AUDIT — rename the mid-Katse id.** `mountKatseMid()` mounts the
    big centred Katse with `id="katse-corner"` but `class="katse-mid"`, so the two Katse contexts are
    told apart by CLASS while the id lies (`mountKatseCorner()` uses the same id). The id reuse is
@@ -347,9 +415,24 @@ and zero XP-farming.
    `NATIVE-RECORDINGS-NEEDED.md`, then tag them (new voice) & export.
 
 ## Decisions (append-only)
-- 2026-07-17 (session 13): Colour stems get their OWN cards alongside the bo- forms (both are
-  correct Setswana — bo- = noun form, bare stem = concord form; verified vs davies-1992/beibele/
-  Otlogetswe). serolwana kept as a second yellow. New src convention: `native-recording` for
+- 2026-07-17 (session 14): **ONE WORD PER COLOUR — supersedes the session-13 stems ruling below.**
+  Megan's call, in her words: "It is going to be very confusing if I have to learn 2 different words
+  for the same colour." She is the learner, so pedagogy wins over completeness here even though the
+  session-13 linguistics were correct. The colour set = the bo- forms she has just recorded herself
+  (u2l6-01..12 — her 12 new raws match those cards 1:1), and the ★ Colours (native) source recording
+  is OUT: she deleted her working copy and its bare-stem voice is the second word she doesn't want.
+  ⚠️ NOT YET DONE, needs her sign-off on scope (see Pending item -1): u2l6-13..16 (the bare stems
+  ntsho/sweu/khibidu/tala) are duplicates and go; u2l6-17 serolwana is literally noted on the card as
+  "a second, separate word for yellow" and 18 mmala wa loapi is a second way to say blue, so both
+  fall under the same ruling; but u2l6-19 mmala wa namune is the deck's ONLY word for orange, so it
+  is not a duplicate — decide it on its own merits. The stem CONCEPT survives regardless: rule card
+  u2l6-00 teaches it and u2l6-10..12 (Pitse e tshweu / e ntsho / Tlhale e khibidu) drill it in
+  context, all three of which she has recorded.
+- 2026-07-17 (session 13): ~~Colour stems get their OWN cards alongside the bo- forms~~ **SUPERSEDED
+  2026-07-17 by the session-14 ruling above** — kept for the reasoning, which still stands: both are
+  correct Setswana (bo- = noun form, bare stem = concord form; verified vs davies-1992/beibele/
+  Otlogetswe). The linguistics were never wrong; teaching both to one learner was.
+  New src convention: `native-recording` for
   phrases grounded only in Megan's recordings (component words must still corpus-verify).
   Never wire audio to a card whose displayed tsw doesn't match what the voice says.
 - 2026-07-17 (session 13): Cards may ship silent (no audio: field) and get audio wired later by
