@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "app": "re-lefela",
+  "tool": "hand-authored (session 18, 2026-07-17)",
+  "round": "session18",
+  "files": {
+    "11": "BW_Setswana_Lesson_11.mp3"
+  },
+  "note": "Hand-authored supersede, NOT a tagger download — sorts after audio-mapping-round2.json, audio-mapping-session16.json AND audio-mapping-session17.json (name 'session18' > 'session17' alphabetically), so its tags win per-segment; lives in its own file so a future tagger re-download of round2 cannot silently revert it (session-16/17 pattern). ORIGIN: Megan re-tagged Peace Corps Lesson 11 segs 25/27 in her tagger; the wanted note tags were lifted from her download 'relefela-audio-mapping-round2 (14).json' 2026-07-17 (a confirmed partial regression elsewhere in that download; NOT merged wholesale — exact floats copied). Converted note (text only) -> item (itemId + tsw) here. ONLY seg 25 is tagged: seg25 'Lo na le buka' -> u1l4-14 (you-pl have, new card). Seg 27 'O na le buka' was ALSO in Megan's re-tag but is deliberately DROPPED as redundant — it re-tags the phrase already live as u1l4-11 since session 10 (round2 L11 seg23 -> u1l4-11), and the build spec initially missed that; the planned duplicate card u1l4-15 was deleted and u1l4-11 reglossed for both persons instead (one-card-per-distinct-tsw rule, session 15). The committed round2 keeps its junk tag on seg 27, and u1l4-11 keeps its existing seg-23 clip — deliberately NOT retargeting the seg-27 tag at u1l4-11, since re-cutting the same filename would change bytes under audio/items/u1l4-11.mp3 and force an audio-cache bump. Seg29 (the row's next segment) is also NOT tagged: Megan listened and ruled by ear that seg29 is the announcer reading the English lesson header ('to have'), not Setswana speech — not a lost tag, correctly left untagged. SUPERSEDE: the committed audio-mapping-round2.json carries a 'junk' tag on this exact segment (lesson '11', seg 25, no 'sub') from the original round-2 tagging pass, before Megan's redo found a real phrase there. Per-segment supersede keys on (lesson,seg,sub); this file sorts after round2.json (and after session16/17), so its 'item' tag wins and supersedes round2's 'junk' tag on seg25, exactly as intended. Confirmed corpus/audio/BW_Setswana_Lesson_11.mp3 exists before exporting.",
+  "tags": [
+    {
+      "lesson": "11",
+      "file": "BW_Setswana_Lesson_11.mp3",
+      "seg": 25,
+      "start": 55.448,
+      "end": 57.484,
+      "action": "item",
+      "itemId": "u1l4-14",
+      "tsw": "Lo na le buka",
+      "retag": true
+    }
+  ]
+}

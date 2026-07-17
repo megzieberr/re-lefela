@@ -51,7 +51,12 @@ SKIP_LESSONS = {'★ Colours (native)'}
 #    re-tag/junk of a segment supersedes what round 1 said about that same segment
 #    (that's how Megan corrects mis-tags; "Keep as tagged" records nothing).
 #    Step 2: per ITEM, the latest surviving tag wins.
+#    Alongside this, track every itemId that appears in ANY tag of ANY loaded mapping
+#    file (any action, winning or not) — this is the "mapping-managed" set, used below
+#    to tell a real un-wire hazard apart from an item that was never mapping-tracked
+#    at all (see the 2.5 guard comment).
 seg_last = {}
+managed_ids = set()
 order = 0
 for mp in MAPPINGS:
     mapping = json.loads(mp.read_text(encoding='utf-8'))
@@ -59,6 +64,8 @@ for mp in MAPPINGS:
     for t in mapping['tags']:
         if t['lesson'] in SKIP_LESSONS:
             continue
+        if t.get('itemId'):
+            managed_ids.add(t['itemId'])
         seg_last[(t['lesson'], t['seg'], t.get('sub'))] = (order, t)
         order += 1
 winner = {}
@@ -68,6 +75,7 @@ for _, t in sorted(seg_last.values()):
 
 # 2. NCHLT items never override an ear-tagged Peace Corps clip
 nchlt = json.loads(NCHLT.read_text(encoding='utf-8')) if NCHLT.exists() else []
+managed_ids |= {e['itemId'] for e in nchlt}
 jobs = []
 for t in winner.values():
     jobs.append((t['itemId'], AUDIO_SRC / t['file'], t['start'], t['end'], f"PC L{t['lesson']}"))
@@ -75,16 +83,23 @@ for e in nchlt:
     if e['itemId'] not in winner:
         jobs.append((e['itemId'], Path(e['wav']), None, None, 'NCHLT'))
 
-# 2.5 guard: refuse to silently un-wire a currently-live item. A regressed/partial
-#     mapping download can look like a clean run but actually drops clips that are only
-#     tagged in an older file — the tagger's known Lesson-2 drop is the recurring case
-#     (round2 lesson '2' missing silently un-wires u1l1-13/15/19). Diff against content.js's
-#     CURRENT wiring before touching anything: clip cutting, content.js writes, and mp3
-#     deletion all happen after this point.
+# 2.5 guard: refuse to silently un-wire a currently-live MAPPING-MANAGED item. A
+#     regressed/partial mapping download can look like a clean run but actually drops
+#     clips that are only tagged in an older file — the tagger's known Lesson-2 drop is
+#     the recurring case (round2 lesson '2' missing silently un-wires u1l1-13/15/19).
+#     Diff against content.js's CURRENT wiring before touching anything: clip cutting,
+#     content.js writes, and mp3 deletion all happen after this point.
+#     Scope: this guard (and the un-wire step below) only ever look at items in
+#     `managed_ids` — ids named by some tag, any action, in some loaded mapping file or
+#     nchlt-item-audio.json. An id wired straight into content.js's audio: field with NO
+#     tag anywhere in the mapping corpus (e.g. the 64 native-recording clips wired by
+#     hand in the session-17 wiring wave) is EXTERNALLY MANAGED — this script has no tag
+#     for it and so has no opinion on it: never flagged here, never un-wired below, never
+#     counted among stale clips to delete. (2026-07-17, session 18)
 have = {item_id for item_id, *_ in jobs}
 currently_wired = dict(re.findall(
     r"\{ id: '([^']+)', audio: 'items/([^']+)',", CONTENT.read_text(encoding='utf-8')))
-would_unwire = {i: f for i, f in currently_wired.items() if i not in have}
+would_unwire = {i: f for i, f in currently_wired.items() if i not in have and i in managed_ids}
 if would_unwire and not args.allow_unwire:
     print(f'\nREFUSING TO RUN: this export would UN-WIRE {len(would_unwire)} '
           f'currently-live item(s) — nothing has been changed:')
@@ -121,11 +136,15 @@ for item_id, *_ in jobs:
     src_js = new_js
     added.append(item_id)
 
-# 5. un-wire items whose tag was corrected away (re-tagged to another item / junked)
-#    and delete their orphaned MP3s, so Katse goes back to sleep on them.
+# 5. un-wire MAPPING-MANAGED items whose tag was corrected away (re-tagged to another
+#    item / junked) and delete their orphaned MP3s, so Katse goes back to sleep on them.
+#    Externally-managed ids (not in managed_ids — no tag anywhere) are skipped: this
+#    script never touches a clip it has no tag for.
 removed = []
 for wired_id in re.findall(r"\{ id: '([^']+)', audio: 'items/", src_js):
     if wired_id in have:
+        continue
+    if wired_id not in managed_ids:
         continue
     src_js, n = re.subn(
         r"(\{ id: '" + re.escape(wired_id) + r"',) audio: '[^']*',",
@@ -134,10 +153,11 @@ for wired_id in re.findall(r"\{ id: '([^']+)', audio: 'items/", src_js):
         sys.exit(f'UNPATCH FAILED for {wired_id}: {n} matches')
     removed.append(wired_id)
 for mp3 in OUT_DIR.glob('*.mp3'):
-    if mp3.stem not in have:
-        mp3.unlink()
-        if mp3.stem not in removed:
-            removed.append(mp3.stem)
+    if mp3.stem in have or mp3.stem not in managed_ids:
+        continue
+    mp3.unlink()
+    if mp3.stem not in removed:
+        removed.append(mp3.stem)
 
 CONTENT.write_text(src_js, encoding='utf-8')
 print(f'\n{len(jobs)} clips exported; audio: added to {len(added)} items'

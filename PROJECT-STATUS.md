@@ -75,6 +75,44 @@ trim) to `audio/items/<id>.mp3` with the export's exact params (`-ac 1 -b:a 64k`
   (like the ★ Colours splices), or run with `--allow-unwire` knowing the direct wirings are intended.
   Harmless for shipping THIS release (nothing re-runs the export to deploy).
 
+### L11 "to have" finale + export scope fix (later same session, sw v22)
+Megan re-tagged Peace Corps Lesson 11 segs 25/27 in her tagger (the "junk-tagged to have row"
+flagged at the end of session 15). Her download `relefela-audio-mapping-round2 (14).json`
+confirmed the usual partial-regression pattern elsewhere, so only the wanted tag was lifted
+by hand into a new **`toolkit/audio-mapping-session18.json`** (session-16/17 own-file pattern),
+converting note→item and superseding round2's stale `junk` tag on that segment.
+- **Net new = ONE card: `u1l4-14` "Lo na le buka"** (you-pl have, seg 25), `src:
+  'peace-corps-L11'` with `concordSlot`, added after u1l4-13 matching its exact field structure.
+- **Seg 27 "O na le buka" turned out to be a re-tag of an already-voiced card, not a gap** —
+  the build initially added it as a second card `u1l4-15`, which duplicated the byte-identical
+  tsw of the live `u1l4-11` (voiced since session 10, round2 L11 seg23) inside the same lesson,
+  violating the session-15 one-card-per-distinct-tsw Decision. The flag was raised mid-build and
+  the orchestrator resolved it (the spec had missed u1l4-11): **u1l4-15 deleted** (card, mp3,
+  and its mapping tag), and **u1l4-11 reglossed for both persons** per the `O a bala`/u1l4-12
+  pattern — eng "You have a book / He-she has a book", hint "you / he-she", the one-o note moved
+  onto it. u1l4-11's audio/options untouched; the seg-27 tag was deliberately NOT retargeted at
+  u1l4-11 (re-cutting the same filename would change bytes and force an audio-cache bump). The
+  row's audio was thus already 2/2 complete before this session; only the you-pl form was new.
+- **Seg 29 (the row's next segment) deliberately NOT tagged** — Megan's ear ruling: the announcer
+  is reading the English lesson header ("to have"), not Setswana speech. Not a lost tag.
+- **Export scope fix (`toolkit/export-item-audio.py`):** the session-17 side-effect warning above
+  was about to come true — the guard and un-wire step treated "wired in content.js, no mapping
+  winner" as stale, which would have flagged (and `--allow-unwire` would have deleted) all 64
+  native clips on the very next run. Fixed: a new `managed_ids` set collects every itemId named
+  by ANY tag (any action) in ANY loaded mapping file, plus every id in `nchlt-item-audio.json`;
+  only ids in that set are eligible to trip the guard or be un-wired/deleted. An id wired straight
+  into content.js with no tag anywhere (the 64 natives) is now EXTERNALLY MANAGED — never
+  flagged, never touched. Mapping-managed items (the u1l1-13/15/19-style hazard) keep exactly the
+  old behaviour. Tested in scratchpad on copies with ffmpeg stubbed: real mappings + current
+  content.js → guard silent, all 64 natives untouched and unlisted; a doctored copy re-tagging
+  u1l1-13/15/19's exact segments to junk (simulating a regressed re-download, round2.json's
+  originals left in place so they're still mapping-managed) → guard still fired, listed exactly
+  those 3, mutated nothing. Real run: 188 pre-existing files byte-identical (md5'd before/after),
+  exactly `u1l4-14.mp3` (2.036s) added, guard silent, **189 = 189 = 189** (content.js refs =
+  files on disk = live items), 0 orphans, the 64 natives untouched.
+- sw v21→**v22** (`AUDIO_CACHE` untouched — audio is fetched-and-cached on demand by URL, not
+  precached by filename, so a new file under a new filename needs no sw.js audio-side change).
+
 ## Session 16 (2026-07-17, same day) — Itumeleng + slow playback (sw v19, SHIPPED 4ded19c)
 Verified live: sw `relefela-v19`, `AUDIO_CACHE` still `relefela-audio-v1` (correctly untouched),
 `u1l2-01.mp3` 200 at 18869 bytes, "ke Megan" 0 hits, `SLOW_RATE = 0.65` serving. Pages built in ~20s.
@@ -566,9 +604,18 @@ and zero XP-farming.
 2. ~~Optional content: conjugation lessons L10 (batla) / L11 (bala/na le)~~ **DONE — SHIPPED
    session 15** as Unit 3 "Go batla" + u1l4-12/13. Yield was 33 clips, not the ~42 estimated (the
    estimate counted L11 tags that were already live since session 10, and L10 notes that are
-   duplicate strings). ONE follow-up left, her call: **re-tag L11 segs 25/27/29** (currently junk,
-   ~2s each, probably the "to have" row — Lo/O/Ba/Re na le buka) to light up ~4 more clips and
-   complete that table; the 4 cards would need adding too. Not urgent, not guessable.
+   duplicate strings). ~~ONE follow-up left, her call: **re-tag L11 segs 25/27/29** (currently
+   junk, ~2s each, probably the "to have" row — Lo/O/Ba/Re na le buka) to light up ~4 more clips
+   and complete that table; the 4 cards would need adding too. Not urgent, not guessable.~~
+   **DONE (session 17, later same day):** Megan re-tagged segs 25/27 herself (seg 29 ruled
+   English narration, not a lost tag). Net new = ONE card, `u1l4-14` "Lo na le buka" (189 clips
+   live); seg 27's "O na le buka" was a re-tag of the already-voiced `u1l4-11` (live since
+   session 10), which was reglossed for both persons instead of duplicated — see the session-17
+   "L11 finale" entry. The row is complete at its 2 distinct audio forms plus `Ke na le buka`
+   (person 1) — **`Re na le buka`/`Ba na le buka` (we/they) have no audio source at all** (never
+   tagged, no announcer clip found for them in this lesson) — parked, not planned; a future card
+   for either would ship silent or need one of Megan's own recordings. Not something to chase
+   with the tagger.
 4. ~~2026-07-17 (session 14): the enhance-bot run + tag-and-wire wave.~~ **DONE 2026-07-17 (session
    17), pending ship.** The bot finished at **66 files** in `Enhanced\`; **64 wired, 2 correctly
    skipped** (see the session-17 wiring-wave entry for the full list, the one >5.2s flag `u2l4-07`,
@@ -610,6 +657,14 @@ and zero XP-farming.
    `NATIVE-RECORDINGS-NEEDED.md`, then tag them (new voice) & export.
 
 ## Decisions (append-only)
+- 2026-07-17 (session 17, later same day): **Export unwire scope is MAPPING-MANAGED ITEMS ONLY.**
+  Items wired into content.js's `audio:` field with no mapping tag anywhere (the 64 native
+  recordings from the session-17 wiring wave) are externally managed — `export-item-audio.py`
+  never strips or flags them, on this run or any future one. The session-17 wiring-wave warning
+  that "the NEXT export run will refuse / `--allow-unwire` would delete the 64 natives" is now
+  obsolete; the guard and un-wire step both scope to a `managed_ids` set (any itemId named by any
+  tag, any action, in any loaded mapping file, plus `nchlt-item-audio.json`) before touching or
+  even flagging an item. Mapping-managed hazards (the u1l1-13/15/19 L2-drop case) are unaffected.
 - 2026-07-17 (session 17): **Colours decision LANDED — drop u2l6-13..19 entirely, including 19.**
   Her words: "Drop 13-19 please." The deck has no orange word for now — u2l6-19 mmala wa namune
   goes too, decided on its own merits per the session-14 framing. Removal shipped same session:
