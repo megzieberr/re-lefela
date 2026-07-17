@@ -30,6 +30,7 @@ button{font:inherit; cursor:pointer; border:none; border-radius:var(--radius); c
 .btn:active{transform:translateY(2px); border-bottom-width:2px}
 .btn.primary{background:var(--pink); border-color:var(--ink); color:var(--ink)}
 .btn.ghost{background:transparent; border:2px solid var(--line)}
+.btn.small{display:inline-block; width:auto; padding:8px 16px; font-size:.85rem; border-bottom-width:3px}
 .btn:disabled{opacity:.45; cursor:default}
 .card{background:var(--card); border:2px solid var(--ink); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); margin:10px 0}
 input{width:100%; padding:13px 14px; border-radius:12px; border:2px solid var(--line); background:#fff;
@@ -543,6 +544,48 @@ async function pullRemote(){
   }catch(e){ /* offline is fine */ }
 }
 
+/* ---------- Reset Lesson 1 (session 12) ----------
+   Megan wants to relearn Lesson 1 from scratch on demand. Reset = clear ONLY the
+   u1l1-* SRS rows so teach cards come back; XP/streak are untouched by design
+   (2026-07-16 decision).
+   Must be a real DELETE, not a zeroed-out upsert: buildExercises() decides "already
+   know this word" (recap, no teach card) purely from `state.srs[it.id]` being PRESENT
+   — a reset-to-zero row would still be present and would still be treated as known,
+   so the teach cards would never come back. RLS on srs_items is `for all ... using
+   (user_id = auth.uid())`, so the signed-in user can delete her own rows.
+   lessonIdx is deliberately left untouched: unlock progression (prog.lessonIdx, drives
+   locked/done/next on the home path) and "known" state (state.srs presence) are
+   already independent in this app — startLesson()'s `known`/`allMet`/`firstOpenPart`
+   all read live SRS rows, so clearing them alone makes Lesson 1 open fresh (part 1,
+   real teach+grade, not replay mode) without relocking any later lesson.
+   Both sides of the sync must agree or the gotcha in PROJECT-STATUS.md bites: delete
+   the server rows FIRST (await it), and only clear local rl_srs / strip the outbox
+   once that succeeds — otherwise pullRemote() would merge the still-there server rows
+   straight back in, or a lingering queued 'srs' upsert would re-push them. */
+async function resetLesson1(){
+  if (!confirm('Reset Lesson 1? Your XP and streak stay.')) return;
+  const btn = document.getElementById('b-reset-l1');
+  if (btn) btn.disabled = true;
+  const clearLocal = ()=>{
+    state.queue = state.queue.filter(op => !(op.t==='srs' && typeof op.item_id==='string' && op.item_id.indexOf('u1l1-')===0));
+    Object.keys(state.srs).forEach(id=>{ if (id.indexOf('u1l1-')===0) delete state.srs[id]; });
+    const rm = store.get('replay', {}); delete rm[replayKey('u1', 0)]; store.set('replay', rm);
+    persist();
+  };
+  if (LOCAL_MODE){
+    clearLocal();
+    toast('Lesson 1 reset. Go siame!');
+    return screenStats();
+  }
+  if (!state.user){ if (btn) btn.disabled = false; return; }
+  if (!navigator.onLine){ if (btn) btn.disabled = false; return toast('You are offline — connect and try again.'); }
+  const {error} = await sb.from('srs_items').delete().eq('user_id', state.user.id).like('item_id', 'u1l1-%');
+  if (error){ if (btn) btn.disabled = false; return toast('Reset failed: ' + (error.message||error.code||'network')); }
+  clearLocal();
+  toast('Lesson 1 reset. Go siame!');
+  screenStats();
+}
+
 function screenHome(){
   const due = dueItems().length;
   const doneToday = state.streak.last === todayStr();
@@ -699,7 +742,10 @@ function screenStats(){
       </div>
       <button class="btn primary" id="b-chpass" style="margin-top:8px">Change password</button>
     </div>`}
-    <button class="btn ghost" id="b-logout" style="margin-top:8px">Log out</button>`);
+    <button class="btn ghost" id="b-logout" style="margin-top:8px">Log out</button>
+    <div class="center" style="margin-top:24px">
+      <button class="btn ghost small" id="b-reset-l1">Reset Lesson 1</button>
+    </div>`);
   hookEyes();
   document.getElementById('b-back').onclick = screenHome;
   const chp = document.getElementById('b-chpass');
@@ -714,6 +760,7 @@ function screenStats(){
     toast('Password changed! Use the new one on all devices. Go siame!');
   };
   document.getElementById('b-logout').onclick = async ()=>{ if(sb) await sb.auth.signOut(); localStorage.removeItem('rl_lastUser'); location.reload(); };
+  document.getElementById('b-reset-l1').onclick = resetLesson1;
 }
 
 /* ---------- lesson & exercise generation ----------
