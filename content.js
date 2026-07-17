@@ -240,7 +240,14 @@ const RL_CONTENT = {
             { id: 'u2l6-09', kind: 'word', tsw: 'selaole', eng: 'purple', src: 'davies-1992' },
             { id: 'u2l6-10', kind: 'phrase', tsw: 'Pitse e tshweu', eng: 'A white horse', src: 'beibele', concordSlot: { head: 'Pitse', answer: 'e', options: ['e', 'di', 'o', 'le'], tail: 'tshweu', hint: 'horse — class 9' }, note: '-sweu hardens to tshweu after class 9\'s hidden N. Straight out of Revelation 6.' },
             { id: 'u2l6-11', kind: 'phrase', tsw: 'Pitse e ntsho', eng: 'A black horse', src: 'beibele' },
-            { id: 'u2l6-12', kind: 'phrase', tsw: 'Tlhale e khibidu', eng: 'A red thread', src: 'beibele', note: '-hibidu hardens to khibidu the same way.' }
+            { id: 'u2l6-12', kind: 'phrase', tsw: 'Tlhale e khibidu', eng: 'A red thread', src: 'beibele', note: '-hibidu hardens to khibidu the same way.' },
+            { id: 'u2l6-13', kind: 'word', tsw: 'ntsho', eng: 'black', src: 'davies-1992', note: 'Stem of bontsho — the bare form a noun\'s concord attaches to, as in Pitse e ntsho above.' },
+            { id: 'u2l6-14', kind: 'word', tsw: 'sweu', eng: 'white', src: 'davies-1992', note: 'Stem of bosweu — hardens to tshweu after certain concords, as in Pitse e tshweu above.' },
+            { id: 'u2l6-15', kind: 'word', tsw: 'khibidu', eng: 'red', src: 'davies-1992', note: 'Stem of bohibidu — hardens from -hibidu the same way as Tlhale e khibidu above.' },
+            { id: 'u2l6-16', kind: 'word', tsw: 'tala', eng: 'green / blue', src: 'davies-1992', note: 'Stem of botala — still the same grue, just without the bo- prefix.' },
+            { id: 'u2l6-17', kind: 'word', tsw: 'serolwana', eng: 'yellow', src: 'otlogetswe-rhyming-dict', note: 'A second, separate word for yellow — both serolwana and bosetlha are correct Setswana.' },
+            { id: 'u2l6-18', kind: 'phrase', tsw: 'mmala wa loapi', eng: 'blue', src: 'native-recording', note: 'Literally "colour of the sky" — loapi = sky. A descriptive alternative to botala jwa legodimo.' },
+            { id: 'u2l6-19', kind: 'phrase', tsw: 'mmala wa namune', eng: 'orange', src: 'native-recording', note: 'Literally "colour of an orange" — namune = orange (the fruit).' }
           ]
         },
         {

@@ -16,9 +16,10 @@
   "23": "BW_Setswana_Lesson_23.mp3",
   "5a": "BW_Setswana_Lesson_5_Part_1.mp3",
   "5b": "BW_Setswana_Lesson_5_Part_2.mp3",
-  "5c": "BW_Setswana_Lesson_5_Part_3.mp3"
+  "5c": "BW_Setswana_Lesson_5_Part_3.mp3",
+  "★ Colours (native)": "Colours.mp3"
  },
- "note": "if one itemId is tagged more than once, the LAST tag wins in Phase B | lesson-2 redo spliced back from round2(1) 2026-07-16",
+ "note": "if one itemId is tagged more than once, the LAST tag wins in Phase B | lesson-2 redo spliced back from round2(1) 2026-07-16 | spliced 2026-07-17: 7 native-recording Colours item tags (u2l6-13..19), files map cosmetic-only per export-item-audio.py",
  "tags": [
   {
    "lesson": "5a",
@@ -11506,6 +11507,83 @@
    "tsw": "Re tsogile sentle",
    "retag": true,
    "sub": 0
+  },
+  {
+   "lesson": "★ Colours (native)",
+   "file": "Colours.mp3",
+   "seg": 0,
+   "start": 1.395,
+   "end": 1.998,
+   "action": "item",
+   "itemId": "u2l6-16",
+   "tsw": "tala",
+   "retag": true
+  },
+  {
+   "lesson": "★ Colours (native)",
+   "file": "Colours.mp3",
+   "seg": 1,
+   "start": 4.074,
+   "end": 4.868,
+   "action": "item",
+   "itemId": "u2l6-15",
+   "tsw": "khibidu",
+   "retag": true
+  },
+  {
+   "lesson": "★ Colours (native)",
+   "file": "Colours.mp3",
+   "seg": 2,
+   "start": 7.16,
+   "end": 8.428,
+   "action": "item",
+   "itemId": "u2l6-18",
+   "tsw": "mmala wa loapi",
+   "retag": true
+  },
+  {
+   "lesson": "★ Colours (native)",
+   "file": "Colours.mp3",
+   "seg": 3,
+   "start": 11.318,
+   "end": 12.423,
+   "action": "item",
+   "itemId": "u2l6-17",
+   "tsw": "serolwana",
+   "retag": true
+  },
+  {
+   "lesson": "★ Colours (native)",
+   "file": "Colours.mp3",
+   "seg": 4,
+   "start": 14.487,
+   "end": 15.971,
+   "action": "item",
+   "itemId": "u2l6-19",
+   "tsw": "mmala wa namune",
+   "retag": true
+  },
+  {
+   "lesson": "★ Colours (native)",
+   "file": "Colours.mp3",
+   "seg": 5,
+   "start": 18.054,
+   "end": 18.895,
+   "action": "item",
+   "itemId": "u2l6-14",
+   "tsw": "sweu",
+   "retag": true
+  },
+  {
+   "lesson": "★ Colours (native)",
+   "file": "Colours.mp3",
+   "seg": 6,
+   "start": 21.099,
+   "end": 21.827,
+   "action": "item",
+   "itemId": "u2l6-13",
+   "tsw": "ntsho",
+   "retag": true
   }
  ]
 }

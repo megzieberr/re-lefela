@@ -39,6 +39,13 @@ LESSONS = {
     '20': 'BW_Setswana_Lesson_20.mp3',
     '22': 'BW_Setswana_Lesson_22.mp3',
     '23': 'BW_Setswana_Lesson_23.mp3',
+    # Native-recording word lessons (Megan, 2026-07-17) — isolated vocabulary, not Peace
+    # Corps lessons. Non-numeric keys so they can never collide with lessons 1-23; the
+    # tagger keeps them out of the round-2 auto-queue (DONE_LESSONS) and reachable only
+    # via the "redo a lesson" picker, same mechanism as the reverted NCHLT experiment —
+    # but these ARE real isolated-word recordings, so per-item export works normally.
+    '★ Colours (native)': 'Colours.mp3',
+    '★ Animals (native)': 'Animals.mp3',
 }
 
 NOISE_DB = '-30dB'
@@ -91,6 +98,12 @@ def subs_for(seg, fine_segs):
 
 
 def main():
+    # Windows console defaults to cp1252, which can't print the '★' in the native-recording
+    # lesson keys — force utf-8 stdout so the progress log doesn't crash mid-run.
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
     out = {}
     for lesson, fname in LESSONS.items():
         path = AUDIO_DIR / fname
