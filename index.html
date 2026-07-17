@@ -1285,7 +1285,38 @@ function finishSession(){
 
 /* ---------- boot ---------- */
 async function boot(){
-  if ('serviceWorker' in navigator && !LOCAL_MODE) navigator.serviceWorker.register('sw.js').catch(()=>{});
+  /* SW update flow — installed Android PWAs usually resume from memory instead of
+     cold-starting, so the browser's on-navigation SW update check rarely fires.
+     We poll update() ourselves and reload once a new SW takes control, but never
+     mid-exercise: the exercise runner always has #exArea in the DOM while a lesson
+     is live, so we gate the reload on that instead of touching runExercise/session. */
+  if ('serviceWorker' in navigator && !LOCAL_MODE){
+    let swReg = null, swLastCheck = 0, swReloading = false, swPendingReload = false;
+    const swHadController = !!navigator.serviceWorker.controller;
+    const swCheckUpdate = ()=>{
+      if (!swReg) return;
+      const now = Date.now();
+      if (now - swLastCheck < 60000) return;
+      swLastCheck = now;
+      swReg.update().catch(()=>{});
+    };
+    const swReloadIfSafe = ()=>{
+      if (document.getElementById('exArea')){ swPendingReload = true; return; }
+      location.reload();
+    };
+    navigator.serviceWorker.register('sw.js').then(reg=>{ swReg = reg; swCheckUpdate(); }).catch(()=>{});
+    document.addEventListener('visibilitychange', ()=>{
+      if (document.visibilityState !== 'visible') return;
+      swCheckUpdate();
+      if (swPendingReload) swReloadIfSafe();
+    });
+    setInterval(()=>{ if (swPendingReload) swReloadIfSafe(); }, 5000);
+    navigator.serviceWorker.oncontrollerchange = ()=>{
+      if (!swHadController || swReloading) return;
+      swReloading = true;
+      swReloadIfSafe();
+    };
+  }
   if (LOCAL_MODE){
     state.user = {id:'local', username:'local', display:'Local'};
     return screenHome();
