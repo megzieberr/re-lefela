@@ -36,12 +36,14 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 # and the app is shared with the second learner, for whom "ke Megan" was simply wrong.
 EXCLUDE = set()
 
-# Tagger lessons whose source recording isn't fit to cut from yet. ★ Colours (native)
-# still has background music under every word, and its 7 tags point at cards
-# u2l6-13..19 — an unguarded run wires music-laden clips onto live cards. Megan's
-# 2026-07-17 ruling (one word per colour) may delete those cards outright; until
-# that's settled this stays. Remove it only together with the corpus recording and
-# its mapping tags. (2026-07-17, session 15)
+# PERMANENT guard — do NOT remove, ever. (Supersedes the session-15 note that said to
+# remove it together with the corpus recording; the guard STAYS.) Megan's 2026-07-17
+# decision (session 17) dropped cards u2l6-13..19, deleted corpus/audio/Colours.mp3
+# and stripped the 7 ★ Colours tags from the committed mapping — but her TAGGER's
+# localStorage still holds those tags, so any future raw round-2 download would
+# resurrect them, pointing at deleted cards and a deleted, music-laden recording.
+# This guard makes that harmless forever: ★ Colours tags are ignored on sight.
+# Never re-add the u2l6-13..19 cards from a tagger download. (2026-07-17, session 17)
 SKIP_LESSONS = {'★ Colours (native)'}
 
 # 1. winning Peace Corps tag per item.

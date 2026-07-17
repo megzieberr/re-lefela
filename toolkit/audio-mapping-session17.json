@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "app": "re-lefela",
+  "tool": "hand-authored (session 17, 2026-07-17)",
+  "round": "session17",
+  "files": {
+    "3": "BW_Setswana_Lesson_3.mp3"
+  },
+  "note": "Hand-authored supersede, NOT a tagger download. Sorts after audio-mapping-round2.json AND audio-mapping-session16.json, so its tags win per-segment; it lives in its own file so a future tagger re-download of round2 cannot silently revert it (session-16 pattern). ORIGIN: the single wanted tag was lifted from the tagger download 'relefela-audio-mapping-round2 (13).json' (a confirmed partial regression; NOT merged wholesale). Exact floats copied from that download. The download's seg-3 u1l2-01 re-tag was deliberately NOT spliced here - it matches session16's verified timing within ~4ms and re-cutting the same filename would force an audio-cache bump. IMPORTANT DEVIATION (flagged to orchestrator): the download tagged this as L3 seg 8 with NO sub, but the committed round2 ALREADY holds an item tag on L3 seg 8 (sub=None) -> u1l2-10 ('Ke tswa kwa...', the live frame card). Per-segment supersede keys on (lesson,seg,sub), so a no-sub tag here would have superseded and UN-WIRED live card u1l2-10. To wire u1l2-05 WITHOUT disturbing u1l2-10, this tag carries sub:0 - the documented shared-segment coexistence pattern (session 10: u1l1-17 keyed sub:0 to coexist with u1l1-15 on shared L2 seg25). Result: L3 seg8 feeds BOTH u1l2-10 (round2 cut 19.175-20.046, the short frame) and u1l2-05 (this cut 19.175-21.321, the full 'Ke tswa kwa Botswana'). Both clips are correct for their cards.",
+  "tags": [
+    {
+      "lesson": "3",
+      "file": "BW_Setswana_Lesson_3.mp3",
+      "seg": 8,
+      "sub": 0,
+      "start": 19.175,
+      "end": 21.321,
+      "action": "item",
+      "itemId": "u1l2-05",
+      "tsw": "Ke tswa kwa Botswana",
+      "retag": true
+    }
+  ]
+}

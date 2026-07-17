@@ -44,7 +44,9 @@ LESSONS = {
     # tagger keeps them out of the round-2 auto-queue (DONE_LESSONS) and reachable only
     # via the "redo a lesson" picker, same mechanism as the reverted NCHLT experiment —
     # but these ARE real isolated-word recordings, so per-item export works normally.
-    '★ Colours (native)': 'Colours.mp3',
+    # ★ Colours (native) removed 2026-07-17 (session 17): Colours.mp3 deleted with the
+    # u2l6-13..19 cards (one-word-per-colour decision) — the missing file would sys.exit
+    # this script. Do not re-add; export-item-audio.py's SKIP_LESSONS guard is permanent.
     '★ Animals (native)': 'Animals.mp3',
 }
 

@@ -1,6 +1,6 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-17 (session 17 — full 5-agent audit + fix batch, sw v20) · previous: session 16 Itumeleng card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
+**Updated:** 2026-07-17 (session 17 — full 5-agent audit + fix batch, sw v20; later same session: colours decision landed, u2l6-13..19 dropped; then the audio wiring wave — u1l2-05 tagged+wired + 64 enhanced native clips wired, 188 item clips total; sw stays v21, not yet shipped) · previous: session 16 Itumeleng card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
 
 ## Session 17 (2026-07-17, same day) — full audit + fix batch (sw v20, SHIPPED)
 Megan asked for a full fresh-eyes audit before building further (multitasking day). 5 read-only
@@ -36,6 +36,44 @@ in code (reopenLesson() wipe is the suspect). Katse id rename stays queued (Pend
 **Pending-list corrections** from the audit are folded into the items below (enhance bot nearly
 done not 3/39; lecturer premise dead — all 51 items self-recorded; phones ritual obsolete;
 ⚠️ never wire `Leina lame ke Megan.mp3`).
+
+### Wiring wave (later same session, sw stays v21 — ships as ONE release with the audit fixes + colour drop)
+The enhance-bot run finished (66 files in `missing audio\Enhanced\`). **Wired 64 of them** to their
+cards by exact case-insensitive `tsw` match — every card that was silent AND had a matching Enhanced
+file: **u2l6-01..12** (the 12 colours), **u2l1/u2l2** body vocab (mmele, tlhogo, sefatlhego … lonao),
+**u2l4** copulatives (Mpho ke ngaka, Ke morutabana, Ga se ngaka, Mpho o mo ntlong, Le ene ke moithaopi
+wa Peace Corps, O na le bana ba le babedi + the words ngaka/morutabana), **u2l5** adjectives (mogolo,
+monnye, moleele, khutshwane, monate, Mpho o montle, Dikgomo di bogale/dintle, Ke na le dikgomo tse
+dintle, O opela sentle, Ke rata nama thata), **u1l1-07/08** (Ke teng / Re a leboga), **u1l5** (motho,
+batho, leina, lelapa), **u1l6-09** (Ke batla kofi), **u1l7-06/07/08** (Nnyaa ga ke na mathata / Ga ke
+batle tee / Ga ba bue Sekgoa), **u2l7-08** (botlhoko), and the **3 silent Unit-3 cards** (u3l1-08 Ga a
+batle / u3l2-04 Re ne re batla / u3l3-08 Ga a kake a batla). Each Enhanced file re-encoded WHOLE (no
+trim) to `audio/items/<id>.mp3` with the export's exact params (`-ac 1 -b:a 64k`).
+- **2 files deliberately NOT wired:** `Leina lame ke Megan.mp3` (the documented landmine — wrong name
+  for the renamed u1l2-01) and `Re tsogile sentle.mp3` (u1l1-17 already has its Peace Corps clip).
+  0 unmatched, 0 ambiguous, 0 no-card files — the folder mapped cleanly.
+- ⚠️ **ONE clip over the 5.2s slow-mode ceiling:** `u2l4-07` "Le ene ke moithaopi wa Peace Corps" =
+  **5.57s** (8.57s at 0.65×, past Katse's 8s `.talking` hard stop). Wired anyway; the sway just ends a
+  beat before the audio does — cosmetic, per the session-16 rule to flag anything >5.2s. Everything
+  else is 2.37–4.95s.
+- **JOB A — u1l2-05 "Ke tswa kwa Botswana" tagged + wired** via new `toolkit/audio-mapping-session17.json`
+  (hand-authored supersede, own file, sorts last — the session-16 pattern). ⚠️ The tagger download (13)
+  put u1l2-05 on **L3 seg 8 with no `sub`**, but committed round2 ALREADY tags L3 seg 8 → **u1l2-10**
+  (the live frame card "Ke tswa kwa…"). Per-segment supersede keys on `(lesson,seg,sub)`, so a no-sub
+  tag would have superseded and **un-wired live u1l2-10**. Resolved with **`sub:0`** on the session17 tag
+  — the session-10 shared-segment coexistence trick (u1l1-17 keyed sub:0 to coexist with u1l1-15 on L2
+  seg25). Result: L3 seg 8 now feeds BOTH u1l2-10 (short cut 19.175–20.046) and u1l2-05 (full cut
+  19.175–21.321), each correct for its card. Export ran clean: guard passed, **0 existing bytes changed,
+  0 deleted, exactly 1 new file** (`u1l2-05.mp3`, verified by md5 of all 123 files before/after).
+- **Counts after the wave: 188 item clips = 188 content.js audio refs = 188 files** (123 → +1 Job A
+  +64 Job B), 0 orphans / 0 dupes / 0 missing. Verified in preview (`?local=1`, DOM/JS — pane can't
+  screenshot): all spot-checked clips 200 + valid decodable metadata + play through the app's own
+  `playAudio`; a live u1l1 teach card renders both 🔊 and 🐢; 0 console errors; no test state persisted.
+- ⚠️ **Side effect for the NEXT `export-item-audio.py` run:** the 64 native clips are wired DIRECTLY
+  (not through any mapping file), so the export's un-wire guard will now flag ALL 64 (wired-but-not-in
+  `have`) and refuse without `--allow-unwire`. Options when that day comes: add the natives to a mapping
+  (like the ★ Colours splices), or run with `--allow-unwire` knowing the direct wirings are intended.
+  Harmless for shipping THIS release (nothing re-runs the export to deploy).
 
 ## Session 16 (2026-07-17, same day) — Itumeleng + slow playback (sw v19, SHIPPED 4ded19c)
 Verified live: sw `relefela-v19`, `AUDIO_CACHE` still `relefela-audio-v1` (correctly untouched),
@@ -361,13 +399,18 @@ All tagger lessons done (5a-c, 6, 7, 10, 11, 12, 13, 18, 20, 22, 23) and deploye
 Peace Corps audio is fully mined — session 15 lit up the last 33 clips as Unit 3 "Go batla" + u1l4-12/13.
 The tagger has nothing left worth exporting except the L11 "to have" re-tag (Pending 2).
 
-**Next up — the colours workstream is the live thread**, and it's blocked on Megan, not on us:
-1. **Pending -1(a): the colour-cards decision** — drop u2l6-13..18 (duplicate words under her one-word-
-   per-colour ruling), keep or drop u2l6-19? Nothing else in that workstream can move until this lands.
-2. **Pending 4: the enhance-bot run is nearly done** (2026-07-17 audit snapshot, moving target — see
-   item 4), then wire audio to u2l6-01..12 (no decision needed) and the rest per item -1(a).
-3. ⚠️ Until (1) lands, **every export must keep the `SKIP_LESSONS` ★ Colours guard** in
-   `export-item-audio.py` — it's in code now, so it holds by default; don't "tidy" it away.
+**Next up — the colours workstream is UNBLOCKED** (decision landed session 17, sw v21 pending ship):
+1. ~~Pending -1(a): the colour-cards decision~~ **LANDED session 17 — "Drop 13-19 please."** All
+   seven cards u2l6-13..19 deleted (u2l6 = rule card + 12 items), Colours.mp3 + its 7 mapping tags
+   gone. See the session-17 Decisions entry.
+2. ~~Pending 4: the enhance-bot run + tag-and-wire wave.~~ **DONE 2026-07-17 (session 17), pending
+   ship.** Bot finished (66 Enhanced files); **64 wired** (colours u2l6-01..12 + body vocab +
+   copulatives + adjectives + the silent Unit-1/3 cards), **2 skipped** (Leina-lame-ke-Megan landmine
+   + Re-tsogile-sentle already voiced). u1l2-05 also tagged+wired (Job A). 188 clips total, verified.
+   Ships with this same v21 release. ⚠️ Leina-lame-ke-Megan was NOT wired and never should be.
+3. ⚠️ The `SKIP_LESSONS` ★ Colours guard in `export-item-audio.py` is now **PERMANENT** — the
+   tagger's localStorage still holds the ★ Colours tags, so a future raw download would resurrect
+   them; the guard makes that harmless. Don't "tidy" it away, ever.
 
 Smaller open items: the L11 "to have" re-tag (Pending 2), the tag-and-wire wave for recordings
 already on disk (Pending 1 — corrected 2026-07-17, was wrongly framed as waiting on the lecturer),
@@ -473,29 +516,37 @@ and zero XP-farming.
 -2. 2026-07-17 (session 16): **Two small ones from the Itumeleng/slow session.**
    (a) 🎧 Listen to `u1l2-01` once on live and confirm the announcer says "Leina **lame** ke
        Itumeleng" and not "Leina **la me** ke…". The card spells it `lame`; the tag can't tell us.
-   (b) **`u1l2-05` "Ke tswa kwa Botswana" — re-tag it in the tagger, Peace Corps Lesson 3**
-       (`BW_Setswana_Lesson_3.mp3`). She believes she tagged it once; NO tag for it exists in any
-       committed mapping, which fits the known partial-regression-on-download failure. Safe to redo:
-       supersede is per-segment, so re-opening L3 and tagging only that phrase won't disturb the
-       other L3 tags. **Only junking an already-tagged segment un-wires it.**
-   (c) **Decide `u2l6-19 mmala wa namune`** (raised session 14, still open): it's the deck's ONLY
+   (b) ~~**`u1l2-05` "Ke tswa kwa Botswana" — re-tag it in the tagger, Peace Corps Lesson 3**
+       (`BW_Setswana_Lesson_3.mp3`). NO tag for it exists in any committed mapping.~~
+       **DONE 2026-07-17 (session 17 wiring wave): tagged + wired** from tagger download (13) via
+       `toolkit/audio-mapping-session17.json`. The download's tag collided with u1l2-10 on L3 seg 8;
+       resolved with `sub:0` coexistence so both cards keep their clip (see the session-17 wiring-wave
+       entry). Export clean, `u1l2-05.mp3` the only new file. **Ships with the next deploy (not yet pushed).**
+   (c) ~~**Decide `u2l6-19 mmala wa namune`** (raised session 14, still open): it's the deck's ONLY
        word for orange, so the one-word-per-colour ruling doesn't reach it. Keep + record, or drop?
-       This is part of the -1(a) decision below and still blocks the colours workstream.
+       This is part of the -1(a) decision below and still blocks the colours workstream.~~
+       **DECIDED & LANDED 2026-07-17 (session 17): dropped with the rest ("Drop 13-19 please") —
+       no orange word in the deck for now. See the session-17 Decisions entry.**
 -1. 2026-07-17 (session 14): **Colours workstream REPLANNED — the session-13 plan below is dead.**
    Megan re-recorded the colours herself as individual bo- form words instead of de-musicking the
    ★ Colours source, and ruled ONE WORD PER COLOUR (see Decisions). New shape:
-   (a) DECIDE (needs Megan): drop u2l6-13..16 (bare stems) + 17 (serolwana, 2nd yellow) + 18 (mmala
+   (a) ~~DECIDE (needs Megan): drop u2l6-13..16 (bare stems) + 17 (serolwana, 2nd yellow) + 18 (mmala
        wa loapi, 2nd blue)? And separately: keep u2l6-19 mmala wa namune, the only orange in the
-       deck, even though it has no audio? These cards are LIVE right now (shipped session 13).
+       deck, even though it has no audio? These cards are LIVE right now (shipped session 13).~~
+       **DECIDED & LANDED 2026-07-17 (session 17): all seven dropped, 19 included ("Drop 13-19
+       please"). Cards, corpus recording and mapping tags all removed — see the session-17
+       Decisions entry. What REMAINS of this workstream is (b)+(c) below.**
    (b) Her per-word raws in "missing audio\Raw" cover u2l6-01..12 exactly, 1:1 by filename.
        Enhance bot output lands in "missing audio\Enhanced" under the original names.
    (c) Then tag/wire those 12 → audio: fields, export, ship. New files only → do NOT bump
        relefela-audio-v1.
-   ⚠️ `corpus\audio\Colours.mp3` STILL EXISTS on disk (382 KB, 10:08 2026-07-17) and the COMMITTED
+   ~~⚠️ `corpus\audio\Colours.mp3` STILL EXISTS on disk (382 KB, 10:08 2026-07-17) and the COMMITTED
    mapping still carries 7 ★ Colours tags pointing at it. So any export-item-audio.py run today
    still cuts music-laden stem clips onto u2l6-13..19. Until (a) is settled: EXCLUDE the ★ Colours
    lesson from every export. Deleting the corpus copy + its 7 mapping tags is part of (a), not a
-   thing to do quietly on the side.
+   thing to do quietly on the side.~~ **DONE session 17: corpus copy + the 7 mapping tags deleted.
+   The `SKIP_LESSONS` guard STAYS anyway — permanent protection against the tagger's localStorage
+   resurrecting the ★ Colours tags in a future download.**
    Animals.mp3 + the single phrases are a SEPARATE workstream, unaffected by this ruling.
 2. ~~2026-07-17 (session 13): the conjugation-lesson prompt needs two amendments~~ **DONE — that
    session ran as session 15 and shipped.** Its ★ Colours hazard is now guarded in code
@@ -504,31 +555,27 @@ and zero XP-farming.
    PWA away, force-stop, or open it twice with real closes in between) to get off the old v13
    worker.~~ **CLEARED (2026-07-17 audit) — obsolete.** Five successful deploys (v15..v19) have
    already landed through the v14 network-first auto-update flow since; nothing left to do here.
-1. 2026-07-17 (audit): **Lecturer recordings never needed — dead premise, corrected.** Filename
-   reconciliation confirmed all 51 items in `NATIVE-RECORDINGS-NEEDED.md` already have Megan's OWN
-   recordings sitting in "missing audio\" (38+ already enhanced, the rest raw-only awaiting the
-   bot — see item 4). Nobody is waiting on the lecturer. Remaining work is the **tag-and-wire wave**
-   once the bot finishes, and it can voice far more than the colours: every "cards intentionally
-   left silent" entry has a recording on disk — `Ga ke batle tee`, `Ga ba bue Sekgoa`, `Ke batla
-   kofi`, `Nnyaa ga ke na mathata`, `Ke teng`, `Re a leboga`, the L22 body vocab, `leina`, `lelapa`,
-   **and** the 3 silent Unit-3 cards `Ga a batle` / `Re ne re batla` / `Ga a kake a batla`.
+1. ~~2026-07-17 (audit): the **tag-and-wire wave** — voice every "cards intentionally left silent"
+   entry from Megan's own recordings on disk (lecturer premise dead, all 51 items self-recorded).~~
+   **DONE 2026-07-17 (session 17 wiring wave), pending ship.** 64 enhanced native clips wired: the 12
+   colours, u2l1/u2l2 body vocab, u2l4 copulatives, u2l5 adjectives, Ke teng / Re a leboga, Ke batla
+   kofi, Ga ke batle tee, Ga ba bue Sekgoa, Nnyaa ga ke na mathata, leina, lelapa, botlhoko, and the 3
+   silent Unit-3 cards. Every previously-silent card that HAD a matching Enhanced file is now voiced
+   (0 unmatched). **Not yet deployed** — ships with the audit fixes + colour drop as one sw v21 release.
+   Full list + the one >5.2s flag + the export-guard side effect are in the session-17 wiring-wave entry.
 2. ~~Optional content: conjugation lessons L10 (batla) / L11 (bala/na le)~~ **DONE — SHIPPED
    session 15** as Unit 3 "Go batla" + u1l4-12/13. Yield was 33 clips, not the ~42 estimated (the
    estimate counted L11 tags that were already live since session 10, and L10 notes that are
    duplicate strings). ONE follow-up left, her call: **re-tag L11 segs 25/27/29** (currently junk,
    ~2s each, probably the "to have" row — Lo/O/Ba/Re na le buka) to light up ~4 more clips and
    complete that table; the 4 cards would need adding too. Not urgent, not guessable.
-4. 2026-07-17 (session 14; count corrected 2026-07-17 audit): **The enhance-bot run is nearly
-   done — the "36 of 39 left" count above is stale, ignore it.** Disk audit ~13:20 today: `Raw\`
-   holds 57 files, `Enhanced\` holds 54, only ~12 raw files still lacked an enhanced counterpart,
-   and the bot was **still running** at audit time (`Enhanced\` grew mid-audit) — treat any count
-   here as a moving snapshot, not a fixed total. Once it finishes, the remaining step is the
-   **tag-and-wire wave**: wiring u2l6-01..12 needs no decision and can proceed immediately; the
-   rest of that workstream (u2l6-13..19) stays blocked on the colours decision in item -1 only.
-   Clear the Adobe queue before re-running; don't run it while the Mindbourne bot is running.
-   ⚠️ **Do NOT wire `missing audio\Raw\Leina lame ke Megan.mp3` (or its Enhanced counterpart) to
-   `u1l2-01`.** It was recorded BEFORE session 16 renamed that card to "Leina lame ke Itumeleng" —
-   it says the wrong name for the current card.
+4. ~~2026-07-17 (session 14): the enhance-bot run + tag-and-wire wave.~~ **DONE 2026-07-17 (session
+   17), pending ship.** The bot finished at **66 files** in `Enhanced\`; **64 wired, 2 correctly
+   skipped** (see the session-17 wiring-wave entry for the full list, the one >5.2s flag `u2l4-07`,
+   and the direct-wire export-guard side effect). Clear the Adobe queue / don't run alongside the
+   Mindbourne bot still apply if she ever re-runs it.
+   ⚠️ **The `Leina lame ke Megan.mp3` landmine STILL STANDS** — it was NOT wired (wrong name for the
+   renamed `u1l2-01` "Leina lame ke Itumeleng") and must never be wired to anything.
 3. 2026-07-17 (session 14): **NEXT AUDIT — rename the mid-Katse id.** `mountKatseMid()` mounts the
    big centred Katse with `id="katse-corner"` but `class="katse-mid"`, so the two Katse contexts are
    told apart by CLASS while the id lies (`mountKatseCorner()` uses the same id). The id reuse is
@@ -563,6 +610,18 @@ and zero XP-farming.
    `NATIVE-RECORDINGS-NEEDED.md`, then tag them (new voice) & export.
 
 ## Decisions (append-only)
+- 2026-07-17 (session 17): **Colours decision LANDED — drop u2l6-13..19 entirely, including 19.**
+  Her words: "Drop 13-19 please." The deck has no orange word for now — u2l6-19 mmala wa namune
+  goes too, decided on its own merits per the session-14 framing. Removal shipped same session:
+  the 7 cards deleted from content.js, `corpus/audio/Colours.mp3` deleted, the 7 ★ Colours tags
+  stripped from `toolkit/audio-mapping-round2.json` (files-map entry too — cosmetic, export reads
+  per-tag `file`), the ★ Colours entry removed from `slice-lessons.py` (missing file would
+  sys.exit it), sw bumped v21 (audio cache untouched — no app-served audio byte changed).
+  **The `SKIP_LESSONS` guard in `export-item-audio.py` is now PERMANENT re-introduction
+  protection, not a temporary shield** — her tagger's localStorage still holds the ★ Colours
+  tags, so any future raw download would resurrect them; the guard makes that harmless forever.
+  Never re-add these cards from a tagger download. Orphaned SRS rows for the deleted ids are
+  inert (all lookups are content-driven; only the stats "met" counter would count them, cosmetic).
 - 2026-07-17 (session 15): **Grammar content gets its own unit, outside the SECL121 unit numbering.**
   Unit 3 "Go batla" is Peace Corps grammar, not an SECL121 study unit, and its subtitle says so.
   Mechanical reason it must be a unit and not `u1l8+`: `lessonIdx` is per-unit, so a new unit opens
