@@ -897,9 +897,10 @@ and zero XP-farming.
    `u2l6-10/11.mp3`), NCHLT gym re-filtered to 40 clips (8 in / 8 out). Ships whenever the next
    release wave bumps sw.js (stacks with pending items -3/-4 below — same future ship wave, sw
    stays v22 until then).
-   **~31-item recording list** for later, all silent, blocked on de-musicking Megan's own
-   `Animals.mp3` first (enhance bot, same as the colours workstream) before any of it can be tagged
-   and wired — see the session-21 build entry for the exact item list per lesson.
+   **31-item recording list** (exact count) for later, all silent, blocked on de-musicking Megan's
+   own `Animals.mp3` first (enhance bot, same as the colours workstream) before any of it can be
+   tagged and wired — canonical list is `toolkit/missing-audio.md` (regenerated 2026-07-17 directly
+   from `content.js`, u5 section), not this paragraph.
    ⚠️ **Idioms outcome interim-met, not fully met:** `u5l4`'s 5 cards are Biblical figurative
    animal language (verbatim, sourced), explicitly labelled as NOT the module's traditional maele
    — the module's real animal-idiom list needs the Smart Guide (still not obtained, per
@@ -908,16 +909,11 @@ and zero XP-farming.
    (41 real items + 5 rule cards, 1 reuse card pointing at existing `u2l4-08.mp3`), NCHLT gym
    re-filtered to 40 clips (20 in / 20 out). Ships whenever the next release wave bumps sw.js
    (stacks with pending item -3 below — same future ship wave, sw stays v22 until then).
-   **~41-item recording list** for later, all silent, no Peace Corps clip exists for any of them
-   (Megan's own voice, later enhance-and-wire, same pipeline as the u3-part-2 list below):
-   - `u4l1` (10): dijo, nama, borotho, metsi, mashi, mae, namune, merogo, dinawa, letswai
-   - `u4l2` (6): go apaya, moapei, dino, moruti, modiri, Re apaya merogo
-   - `u4l3` (11): lefela, nngwe, pedi, tharo, nne, tlhano, thataro, supa, robedi, robongwe, lesome
-   - `u4l4` (5, excludes the reused u4l4-04): Namune e le nngwe, Batho ba le babedi, Dikgomo di le
-     pedi, Re na le baithuti ba le kae?, Dikgomo tse pedi di a ja
-   - `u4l5` (8): le, Ke rata nama ya koko le nama ya kgomo, mme, kgotsa, A o batla go ja nama ya
-     kgomo kgotsa ya koko?, ka gore, Ke rata seswaa ka gore ke nama, Seswaa ke nama ka jalo ke a se
-     rata
+   **40-item recording list** (exact count — the "~41" earlier in this session's own summary line
+   above was an approximation), all silent, no Peace Corps clip exists for any of them (Megan's own
+   voice, later enhance-and-wire, same pipeline as the u3-part-2 list below). Canonical list is
+   `toolkit/missing-audio.md` (regenerated 2026-07-17 directly from `content.js`, u4 section), not
+   this paragraph.
 -3. 2026-07-17 (session 19): **Unit 3 part 2 "Mo sekolong" — ready but NOT shipped.** u3l4-u3l8
    built (41 items + 5 rule cards), 14 clips spliced + wired, NCHLT gym re-filtered to 40 clips.
    Ships whenever the next release wave bumps sw.js (not done here per the hard constraint —
@@ -933,10 +929,9 @@ and zero XP-farming.
        and `Nna fatshe` got its own clip from seg52 (1.303s, supervisor-verified label) in a
        follow-up pass. If her ear disagrees with the "didimala"/"reetsa" split or which segment
        is which, the fix is a 1-line edit to `toolkit/audio-mapping-session19.json` + a re-export.
-   ~25-item recording list for later (all silent, no PC clip exists): u3l4 moithuti/pensele (2);
-   u3l6 all 9 adverbs (gompieno, maabane, kamoso, phakela, motshegare, maitseboa, bosigo, gone
-   jaanong, kgantele); u3l7 all 8 past sentences; u3l8 6 of 7 future sentences (all but the reused
-   Ke tla go bona kamoso).
+   **25-item recording list** (exact count) for later, all silent, no PC clip exists. Canonical list
+   is `toolkit/missing-audio.md` (regenerated 2026-07-17 directly from `content.js`, u3 section), not
+   this paragraph.
 -2. 2026-07-17 (session 16): **Two small ones from the Itumeleng/slow session.**
    (a) ~~🎧 Listen to `u1l2-01` once on live and confirm the announcer says "Leina **lame** ke
        Itumeleng" and not "Leina **la me** ke…". The card spells it `lame`; the tag can't tell us.~~
