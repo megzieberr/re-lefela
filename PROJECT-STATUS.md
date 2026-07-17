@@ -283,21 +283,19 @@ All tagger lessons done (5a-c, 6, 7, 10, 11, 12, 13, 18, 20, 22, 23) and deploye
 ---
 
 ## ⏸️ WHERE WE STOPPED — pick up here
-Round-2 audio is done & live. Open follow-ups:
+**Live at sw `relefela-v18` (audio cache `relefela-audio-v1`): Units 1-3, 122 item clips.** Round-2
+Peace Corps audio is fully mined — session 15 lit up the last 33 clips as Unit 3 "Go batla" + u1l4-12/13.
+The tagger has nothing left worth exporting except the L11 "to have" re-tag (Pending 2).
 
-1. **Reset Megan's Lesson-1 progress — DONE 2026-07-16 (session 5).** Deleted her 20 `srs_items`
-   rows (`u1l1-*`, which was her *entire* progress) on Supabase `opacjlgljeippheotyhz` via the MCP.
-   Left the second learner (0 rows) + XP/streak untouched. ⚠️ CORRECTION: re-lefela IS on the Supabase MCP
-   (project `opacjlgljeippheotyhz`, org `zlbbzmzdpfwcyyeloedj` — same org as nwu-hub), so no
-   copy-paste SQL was needed. ⚠️ Server delete alone is NOT enough — see the pullRemote merge gotcha
-   below: her device's `rl_srs` localStorage still held the 20 items and would have re-pushed them,
-   so she cleared it on-device with a console snippet (`localStorage.removeItem('rl_srs')` + strip
-   `srs` ops from `rl_queue`, then reload). She does NOT want a reset *feature* in the app.
-2. **Optional new content — conjugation lessons.** L10 (`batla` = want, full 6×6 paradigm) and L11
-   (`bala`/`na le` = to-be/to-have) audio is fully tagged but mostly has no cards yet. Building a
-   "want" / "to be & have" lesson would light up ~30 + ~12 more clips. Decoded word tables are in
-   memory [[relefela-conjugation-audio]]. Her call — it's a content decision.
-3. **Katse redesign — DONE & wired 2026-07-16, pending /ship** (see below).
+**Next up — the colours workstream is the live thread**, and it's blocked on Megan, not on us:
+1. **Pending -1(a): the colour-cards decision** — drop u2l6-13..18 (duplicate words under her one-word-
+   per-colour ruling), keep or drop u2l6-19? Nothing else in that workstream can move until this lands.
+2. **Pending 4: finish the enhance-bot run** (36 of 39 left), then wire audio to u2l6-01..12.
+3. ⚠️ Until (1) lands, **every export must keep the `SKIP_LESSONS` ★ Colours guard** in
+   `export-item-audio.py` — it's in code now, so it holds by default; don't "tidy" it away.
+
+Smaller open items: the L11 "to have" re-tag (Pending 2), the lecturer's 51 native recordings
+(Pending 1), and the mid-Katse id rename (Pending 3, an audit-time cleanup).
 
 ### ⚠️ Tagger gotcha (critical for any future export)
 Her tagger's localStorage keeps **dropping the Lesson-2 redo** — every export she downloads has 0
