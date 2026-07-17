@@ -1,6 +1,251 @@
 ﻿# Re:Lefela — Project Status
 
-**Updated:** 2026-07-17 (session 17 — 5-agent audit + fix batch v20, colours drop + 65-clip wiring wave v21, L11 finale + export scope fix v22 — ALL SHIPPED; session 17 — full 5-agent audit + fix batch, sw v20; later same session: colours decision landed, u2l6-13..19 dropped; then the audio wiring wave — u1l2-05 tagged+wired + 64 enhanced native clips wired, 188 item clips total; sw stays v21, not yet shipped) · previous: session 16 Itumeleng card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
+**Updated:** 2026-07-17 (release wave — sessions 18-21 SHIPPED as sw **v23**: Units 3-5 complete + mid-Katse id rename + daily XP rivalry nudge + weekly champion popup; 212/307 real cards voiced) · (session 21 — new Unit 5 "Diphologolo" built: u5l1-u5l5, 36 real items + 5 rule cards, 5 reuse cards, NCHLT gym re-filtered to 40) · previous: session 20 — new Unit 4 "Go ja dijo" built: u4l1-u4l5, 41 real items + 5 rule cards, 1 reuse card, NCHLT gym re-filtered to 40; sw stays v22, not yet shipped; session 19 — Unit 3 part 2 "Mo sekolong" built: u3l4-u3l8, 41 cards + 5 rule cards, 13 clips spliced, NCHLT gym re-filtered to 40; sw stays v22, not yet shipped; session 17 — 5-agent audit + fix batch v20, colours drop + 65-clip wiring wave v21, L11 finale + export scope fix v22 — ALL SHIPPED; session 16 Itumeleng card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 21 (2026-07-17, same day) — new Unit 5 "Diphologolo" built (sw stays v22, NOT shipped)
+Built from a read-only spec (`SPEC-u5-diphologolo.md`) + supervisor rulings resolving its open
+questions. New standalone unit, appended after `u4` — `lessonIdx` is per-unit, so `u5l1` unlocks
+immediately even though Units 3-4 are unfinished, same precedent as `u3l1`/`u4l1`. Units 1-4
+untouched.
+- **Unit header:** `id: 'u5', title: 'Diphologolo', subtitle: 'Animals — SECL121 Unit 5'`. Per the
+  module guide, Unit 5's outcomes are idioms, reading, comprehension, writing and translation —
+  animal vocabulary is the theme skin over that skills bundle; the title itself IS the theme,
+  unlike Units 3-4's named grammar points.
+- **5 new lessons, exactly 36 real items + 5 rule cards, built verbatim from the spec's §3 code
+  blocks** (no deviation from the spec's own item counts, unlike session 20's u4l5 discrepancy):
+  `u5l1` Diphologolo tsa kwa gae (home/farm animals, 10 — auto-splits 5/5), `u5l2` Diphologolo tsa
+  naga (wild animals + bird/fish, 7, single part), `u5l3` Go bala ka diphologolo (reading +
+  comprehension, 8, single part — 5 reuse cards + 3 new), `u5l4` Maele a diphologolo (idioms, 5,
+  single part), `u5l5` Go ranola (translation + writing, 6, single part).
+- **Supervisor rulings applied, resolving the spec's §7 open questions:**
+  1. **Idioms outcome shipped as Biblical figurative language, explicitly labelled as such — not
+     traditional maele.** The corpus has zero traditional Setswana idioms with glosses (confirmed
+     by the spec's own search); `u5l4`'s 5 cards are verbatim Bible sentences (Matthew 10:16 ×3,
+     Revelation 5:5, John 10:11), each with the source's own parallel gloss. The rule card
+     (`u5l4-00`) was rewritten from the spec's draft to say explicitly "What follows here is
+     Biblical figurative animal language, not the module's own traditional maele" and that "the
+     module's real maele list … will come from the Smart Guide once it lands" — every one of the 5
+     item notes also now says "Biblical figurative language" outright, per the ruling.
+  2. **Spelling: SA-standard forms shipped** (`podi`/`dipodi`, `ntša`/`dintša`), with the Bible's
+     own attested variant recorded in each card's note for traceability — the spec's placeholder
+     "⚠️ spelling — see spec §7" flags on `u5l1-04` and `u5l1-10` were replaced with real text:
+     "The Bible itself spells it dipudi; podi/dipodi is the standard SA-Setswana form used here"
+     and the equivalent for `dintsa`→`ntša`/`dintša`.
+  3. **`katse` (cat) ships** as specced (`src: 'app-mascot'`, an Otlogetswe headword, not yet
+     Bible-attested); its note now explicitly calls it "the app's own cat and mascot" per the
+     ruling (spec's placeholder "⚠️ sourcing note in spec §4/§7" replaced with real text).
+  4. **Combined-`src` constructed sentences shipped exactly as specced** (the `u1l7-07` precedent):
+     `u5l3-07/08` and `u5l5-01/02/03/05/06`, each with a `note` spelling out its verified
+     components. No demotion to the appendix.
+  5. **`sw.js` NOT touched at all this session** — the spec's own "bump to v24" note (§5.8) is
+     overridden per this session's supervisor ruling: one release-wave bump happens later, not
+     per-unit. Confirmed by file mtime (unchanged from session 17) and an empty `git diff sw.js`.
+  6. **Wild animals held back, as ruled:** `tlou` (elephant), `nkwe` (leopard), `kwena`
+     (crocodile), `tholo` (kudu) stay in the spec's appendix — not built, same conservative
+     parallel-verified-gloss bar as every sibling unit (they're OT/veld animals, outside the tsn
+     NT parallel corpus).
+- **The 5 reuse-cards** (`u5l3-01..05`) point `audio:` at **existing** files —
+  `items/u2l5-07/08/09.mp3` and `items/u2l6-10/11.mp3` — verified on disk before wiring (all 5
+  present); their `tsw` strings are byte-identical to the live `u2l5`/`u2l6` cards they reuse, so
+  the reuse is engine-safe (session-15 `allItemsExcept()` same-`tsw` exclusion). **No new files
+  cut, no existing file's bytes touched.** Every other one of the 36 real items ships silent (no
+  `audio:` field) — Animals.mp3 (Megan's own recording) carries background music (the same defect
+  that got the Colours source rejected in session 13/14) and no spliceable animal audio exists in
+  any committed mapping file. Same honest posture as `u3l6`-`u3l8` and all of `u4`.
+- **NCHLT Listening gym re-filtered** (`toolkit/nchlt-filter.py`, standing per-unit ritual, third
+  run this session-chain). New Unit-5 vocab (diphologolo, dikoko, jaaka, moithuti-family words
+  already known, etc.) reshuffled the picks — pool stays at the **40-clip cap**, with **8 clips in
+  and 8 out** (added: `nchlt_tsn_047m_0501`, `087f_0496`, `107f_0421`, `120m_0170`, `125f_0328`,
+  `130f_0429`, `135f_0252`, `173m_0351`; removed: `081f_0067`, `089f_0088`, `128f_0274`,
+  `142f_0328`, `149f_0135`, `161m_0420`, `171m_0492`, `199m_0118` — confirmed unreferenced
+  elsewhere in content.js before deletion). One new pick, `dikoko jalo jalo pele pele`, is a direct
+  hit on this unit's own vocab (`dikoko`, u5l1-05's plural). The 8 new picks ffmpeg-converted
+  (`-ar 16000 -ac 1 -b:a 32k`, matching the standing recipe) into `audio/nchlt/`; the 8 displaced
+  clips' mp3s deleted from disk (confirmed unreferenced first). `RL_CONTENT.nchlt` block in
+  content.js regenerated from the new `toolkit/nchlt-clips.json`. Verified: **40 refs = 40 files
+  on disk, 0 orphans, 0 missing, 0 duplicate ids.**
+- **Verified in preview** (`?local=1`, unregistered SW + cleared caches/localStorage first — the
+  known preview gotcha): path screen shows a 5th unit "Diphologolo — Animals — SECL121 Unit 5"
+  after Unit 4; `u5l1` node class is `lesson-node next` (unlocked immediately, not gated on Units
+  3/4 completion — confirms the per-unit `lessonIdx` design), `u5l2`-`u5l5` are `lesson-node
+  locked`; opening `u5l1` shows `P1/2` (auto-splits 5/5, matching the spec's prediction) with a
+  sane rule→teach→drills→auto session shape. `buildExercises()` called directly in-page for all 5
+  lessons: 0 errors, sane card-type mixes for each (`u5l1` 47 cards, `u5l2` 32, `u5l3` 37 — incl.
+  4 `listen` cards from the 5 reused-audio phrases, `u5l4` 24, `u5l5` 28); a fresh word (0 SRS
+  reps) only ever produces `teach`/`choose`/`tap`/`auto` card types, never `typeTsw`/`record` —
+  type-card `reps ≥ 3` gating unaffected. All 3 `concordSlot` cards (`u5l3-01/04`, `u5l5-04`)
+  reconstruct their `tsw` exactly (`head + answer + tail` string match). The 5 reuse-card mp3s
+  (`items/u2l5-07/08/09.mp3`, `items/u2l6-10/11.mp3`) all fetch 200 + successfully
+  `decodeAudioData` (3.5–4.95s each). All 40 `RL_CONTENT.nchlt` gym clips fetch 200 (HEAD).
+  **335 total content ids, 0 duplicates** app-wide; **0 items with no `src`**. 0 console errors
+  throughout. Test localStorage cleared afterwards.
+- **sw.js NOT touched** (confirmed via `git diff sw.js` — empty — and file mtime unchanged since
+  session 17, still v22) and **`audio/items/` untouched by this build** — the only new/changed
+  files this session are in `audio/nchlt/` (8 new, 8 deleted) and `toolkit/nchlt-clips.json`. No
+  export run, no new audio-mapping file — Unit 5 has zero item-audio splices this wave, exactly as
+  specced.
+- **Encoding check (the session-20 BOM/CRLF hazard, checked proactively):** content.js edited via
+  the Edit tool (never PowerShell `Set-Content`) and the nchlt-block regeneration via a Python
+  script writing with explicit `newline='\n'`. Confirmed BOM-free, 0 CRLF bytes, before and after
+  every write this session.
+- **Recording list addition (~31 items, all silent, Megan's own voice, later enhance-and-wire
+  pass — same pipeline as the u3-part-2 and u4 lists above):**
+  - `u5l1` (10): phologolo, kgomo, nku, podi, koko, kolobe, pitse, tonki, katse, ntša
+  - `u5l2` (7): tau, phiri, noga, nonyane, tlhapi, kammele, lephoi
+  - `u5l3` (3, excludes the 5 reused): Bonang dinonyane!, Ke na le dinku le dipodi, Dikgomo di dintsi
+  - `u5l4` (5): Nnang botlhale jaaka dinoga, bori jaaka maphoi, Ke lo roma jaaka dinku mo gare ga
+    diphiri, Tau ya lotso lwa Juda, Ke Modisa yo o Molemo
+  - `u5l5` (6): Ke na le podi, Ke na le ntša, Ke bona nonyane, Nku e ntsho, Dintša di bogale, Ke rata
+    diphologolo
+  - **⚠️ Hard dependency, blocking all 31:** none of these can be voiced until Megan's own
+    `Animals.mp3` (in `missing audio\`) is run through the enhance bot to strip its background
+    music — the same de-musicking step Colours needed before session 13/14's stem cards could be
+    voiced. Until then this whole list stays silent by design (session-13 Decision).
+
+## Session 20 (2026-07-17, same day) — new Unit 4 "Go ja dijo" built (sw stays v22, NOT shipped)
+Built from a read-only spec (`SPEC-u4-go-ja-dijo.md`) + supervisor rulings resolving its open
+questions. New standalone unit, appended after `u3` — `lessonIdx` is per-unit, so `u4l1` unlocks
+immediately even though Unit 3 (esp. its Part 2) is unfinished, matching the `u3l1`-in-session-15
+precedent. Units 1-3 untouched.
+- **Unit header:** `id: 'u4', title: 'Go ja dijo', subtitle: 'Eating — SECL121 Unit 4'`. Per the
+  module guide, Unit 4's three learning outcomes are word formation, counting, and conjunctives —
+  food vocabulary is the theme skin over that grammar spine, same shape as Unit 3's "Mo sekolong".
+- **5 new lessons, 41 real items + 5 rule cards:** `u4l1` Dijo (food vocabulary, 10 — auto-splits
+  5/5), `u4l2` Go dira mafoko (word formation: verb → noun, e.g. go apaya → moapei, 6, single
+  part), `u4l3` Go bala (numbers zero to ten, 11 — auto-splits 6/5), `u4l4` Ba le babedi (counting
+  with the concord, 6, single part), `u4l5` Le, mme, kgotsa (conjunctives, 8, single part — see
+  spec-deviation note below). Two new `src` tags introduced per supervisor approval:
+  `pc-comp-grammar-conj` (the comprehensive grammar's conjunctions chapter) and
+  `pc-comp-grammar-interrog` (its interrogatives page).
+- **`moithuti` collision avoided, as ruled:** `u4l2`'s rule card mentions `go ithuta → learner` as
+  the reflexive word-formation example but does NOT add a `moithuti` card — it already lives at
+  `u3l4-01` (built in session 19). No duplicate.
+- **Botswana-flavoured vocab NOT shipped this wave:** the spec deliberately held back
+  phaletshe/motogo/ditamati-type L14 words (kept in its "wanted but not shipped" appendix) to keep
+  `u4l1` short — so the supervisor's "keep with a Botswana-usage note" ruling had nothing to apply
+  to yet. Flagged here for whenever that fuller pantry gets built: several of those words are
+  Botswana-variant candidates the Smart Guide re-alignment should find (the tlelase precedent).
+- **The one reuse-card:** `u4l4-04` "O na le bana ba le babedi" points `audio:` straight at the
+  **existing** `items/u2l4-08.mp3` (no new file cut) — same phrase, a fresh `concordSlot` drill
+  added on top (the u2 card has none). Every other one of the 41 real items ships silent (no
+  `audio:` field) — Unit 4's source lessons (Peace Corps L14 "Food Items", L9 "Connecting words")
+  were never tagged/sliced, and the counting/conjunction sentences are text-only comprehensive-
+  grammar sources with no native clip anywhere. This is the same honest posture as `u3l6`-`u3l8`.
+- ⚠️ **Spec discrepancy caught, not guessed around:** the spec's own summary table (§2) claims
+  `u4l5` has 9 real items and a 42-item unit total, but its authoritative §3 code block only ever
+  lists **8** real items for `u4l5` (`u4l5-01` through `u4l5-08` — le, a sentence, mme, kgotsa,
+  another sentence, ka gore, two more sentences). No 9th item's Setswana is specified anywhere in
+  the spec (the candidates for a fuller conjunction set, `jaaka`/`gore`, are explicitly parked in
+  its appendix as NOT shipped). Per the no-invented-Setswana rule, built exactly the 8 cards in the
+  code block rather than inventing a 9th — so Unit 4 totals **41 real items**, not 42, and `u4l5`
+  (8 items, ≤ the 8-item split threshold) is a single part, not the spec's predicted 5/4 split.
+  Everything else in the spec's code block was reproduced verbatim.
+- **NCHLT Listening gym re-filtered** (`toolkit/nchlt-filter.py`, standing per-unit ritual). New
+  Unit-4 vocab (numbers lefela-lesome, le/mme/kgotsa, nama/dijo/merogo, dikgomo, moithuti-family
+  words already known, etc.) reshuffled the picks: pool stays at the **40-clip cap**, with 20 clips
+  in and 20 out (the algorithm re-ranks the whole set every run, it isn't additive). The 20 new
+  picks ffmpeg-converted (`-ar 16000 -ac 1 -b:a 32k`, matching the standing recipe) into
+  `audio/nchlt/`; the 20 displaced clips' mp3s deleted from disk (confirmed unreferenced first —
+  no item card anywhere points `audio:` at an `nchlt/` file directly, only the gym block does).
+  `RL_CONTENT.nchlt` block in content.js regenerated from the new `toolkit/nchlt-clips.json`.
+  Verified: 40 refs = 40 files on disk, 0 orphans, 0 missing.
+- **Verified in preview** (`?local=1`, unregistered SW + cleared caches first): a 4th unit "Go ja
+  dijo" appears after Unit 3 on the path screen; `u4l1` is `next`/available immediately (not
+  gated on Unit 3's completion — confirms the per-unit `lessonIdx` design); each of the 5 lessons
+  builds a sane rule→teach→drills→auto session shape; `u4l1` auto-splits 5/5 and `u4l3` splits
+  6/5 (both > the 8-item `PART_MAX` threshold), `u4l2`/`u4l4`/`u4l5` are single parts (all ≤ 8);
+  all 4 `concordSlot` cards in `u4l4` (`u4l4-01/02/03/04`) reconstruct their `tsw` exactly
+  (`head + answer + tail` string match); the reuse card `u4l4-04` plays `items/u2l4-08.mp3`
+  (pre-existing file, 200/decodes); 0 duplicate ids across 294 total ids app-wide; 0 items with no
+  `src`; content.js parses cleanly as a plain JS module. 0 console errors. Test localStorage cleared
+  afterwards.
+- **sw.js NOT touched** (still v22, `AUDIO_CACHE` `relefela-audio-v1` untouched) and **`audio/items/`
+  untouched** by this build — `git status` on that folder shows only the pre-existing session-19
+  uncommitted clips, nothing new or modified from this session. No export run, no new mapping file
+  — Unit 4 has zero new splices this wave.
+- ⚠️ **Housekeeping note:** while regenerating the NCHLT block, an earlier in-place edit briefly
+  introduced a UTF-8 BOM and CRLF line endings across the whole of `content.js` (a PowerShell
+  `Set-Content` artifact). Caught and reverted before finishing — the file is confirmed back to
+  BOM-free, LF-only, matching its prior convention; `git diff --stat` on `content.js` shows only
+  the expected ~181 insertions / 26 deletions (the u4 unit + the 40-line nchlt block swap), no
+  whole-file noise.
+
+## Session 19 (2026-07-17, same day) — Unit 3 part 2 "Mo sekolong" built (sw stays v22, NOT shipped)
+Megan's structural ruling: the existing Unit 3 "Go batla" (u3l1-u3l3, the Peace Corps L10 conjugation
+paradigms) becomes **Part 1** of a reframed Unit 3, and the SECL121 study unit "Mo sekolong" (at
+school — future/past tenses + adverbs, module outcomes) becomes **Part 2**, appended as u3l4-u3l8
+inside the same unit so `lessonIdx` (per-unit) unlocks the new lessons only after u3l1-u3l3 are
+done. Built from a read-only spec (`SPEC-u3-part2-mo-sekolong.md`) + supervisor rulings resolving
+its open questions. u3l1-u3l3 items/audio/concordSlots untouched.
+- **Unit header:** `title: 'Go batla' → 'Mo sekolong'`, `subtitle: 'At school — SECL121 Unit 3.
+  Part 1: the Go batla verb-clock · Part 2: classroom life.'` — both halves visible on the path
+  screen. `u3l1` blurb prepended with `'Part 1 · the verb-clock. '`; `u3l4` blurb opens with
+  `'Part 2 · Mo sekolong. '` — the only two per-lesson half-markers (session-15 ruling
+  superseded, see Decisions).
+- **5 new lessons, 41 real items + 5 rule cards:** `u3l4` Mo tlelaseng (classroom nouns, 7),
+  `u3l5` Reetsa! (commands, 10), `u3l6` Maabane le kamoso (adverbs of time, 9), `u3l7` Ke ile kwa
+  sekolong (past tense, 8), `u3l8` Ke tla ya kwa sekolong (future tense, 7). Tense-sentence cards
+  use the live combined-`src` convention (`peace-corps-L10+Lx`, precedent `u1l7-07`) — approved
+  per supervisor ruling, not a new judgement call.
+- **14 clips spliced** via a new own-file `toolkit/audio-mapping-session19.json` (session-16/17/18
+  own-file pattern; converts 14 `note`→`item` tags already sitting in the committed round2.json,
+  never hand-edited): L7 seg4/30/32/34 (tafole/beke/pene/fensetere), L18 seg5 (tlelase), L12
+  seg32/34/36/40/42/46/48/50/52 (Bula lebati/Tswala lebati/Ema o bue/Tsena mo teng/Tla kwano/
+  Reetsa/Boela kwa morago/Tla kwa pele/Nna fatshe). Plus 2 reuse cards pointing straight at
+  existing files, no new cuts: `u3l5-03` Ema ka dinao → `u2l2-09.mp3`, `u3l8-02` Ke tla go bona
+  kamoso → `u1l3-03.mp3`. **Export ritual, run twice, both clean:** first pass 189→202 files, 0
+  changed, 0 deleted, exactly 13 new; second pass (Nna fatshe follow-up, below) 202→203, 0
+  changed, 0 deleted, exactly 1 new (md5'd before/after both times). `pensele` (u3l4-06), all of
+  `u3l6` (9 adverbs) and `u3l7` (8 past sentences), and 6 of `u3l8`'s 7 future sentences ship
+  silent — no Peace Corps clip exists for them (recording list ≈ 25 items, below).
+- ⚠️ **Spec deviation, corrected using ground-truth data (not a guess):** the spec's L12 decode
+  was book-order inference and got the tail wrong. The committed round2.json's `note` tags on
+  Lesson 12 already carry an explicit `text` label Megan typed while tagging — not positional
+  inference. Those labels show seg44 = **"didimala"** alone (a separate command, not in this
+  build) and seg46 = **"reetsa"** alone — i.e. Reetsa is a clean, standalone clip, NOT a
+  "didimala/reetsa" compound as the spec's table implied. The spec had assigned seg44→Reetsa
+  (flagged for an ear-check) and seg46→Boela kwa morago; real labels put Boela kwa morago at
+  seg48 and Tla kwa pele at seg50, with "nna fatshe" turning out to be an unlisted 14th note at
+  seg52 (initially outside the spec's approved 13-clip list). **Net effect:** `Reetsa` (u3l5-01)
+  is WIRED (seg46, 1.136s) instead of silent — the ear-check concern is resolved in the
+  affirmative, it is not a compound clip. `Nna fatshe` (u3l5-02) briefly shipped silent, then the
+  supervisor verified seg52's committed note carries Megan's own typed labels (text "nna fatshe",
+  eng "Sit down" — exactly as unambiguous as the rest) and ruled the "13-clip budget" was
+  positional-decode bookkeeping, not a cap — so it was WIRED too in a second export pass (seg52,
+  1.303s = the tag range to the ms). Total wired this session: **14**. Full reasoning + duration
+  cross-check in `toolkit/audio-mapping-session19.json`'s `note` field. This follows the hard
+  "never wire audio to a card whose displayed tsw doesn't match what the voice says" rule
+  (session-13 Decision) — wiring the spec's original (wrong) alignment would have put "Tla kwa
+  pele" audio under a "Boela kwa morago" card or similar.
+- **14 measured durations vs the spec's expected bands** (all ffprobe'd post-export): `u3l4-02`
+  tlelase 1.779s, `u3l4-03` tafole 1.396s, `u3l4-04` fensetere 1.765s, `u3l4-05` pene 1.093s,
+  `u3l4-07` beke 1.178s, `u3l5-09` Bula lebati 2.219s, `u3l5-10` Tswala lebati 2.141s, `u3l5-04`
+  Ema o bue 1.387s, `u3l5-08` Tsena mo teng 1.614s, `u3l5-05` Tla kwano 1.322s, `u3l5-01` Reetsa
+  1.136s (corrected segment), `u3l5-07` Boela kwa morago 1.811s (corrected segment — a 3-word
+  phrase, fits far better than the 1.14s the mis-aligned table implied), `u3l5-06` Tla kwa pele
+  1.510s (corrected segment), `u3l5-02` Nna fatshe 1.303s (seg52, follow-up pass). All in-app
+  verified: 200 + decode + play via `playAudio`, 0 console errors.
+- **NCHLT Listening gym re-filtered** (`toolkit/nchlt-filter.py`, standing per-unit ritual — this
+  was its first re-run since the gym's original build, session/commit `4ee7fdf`). New Unit-3-part-2
+  vocab (moithuti, baithuti, tlelase, sekolo, ruta, ithuta, morago, dintsi…) unlocked more
+  fully-known-vocab NCHLT clips: pool grew from 34→40 (MAX_CLIPS cap), with the content-richness
+  ranking reshuffling 14 clips in and 8 out (the algorithm re-picks the whole set every run, it
+  isn't additive). New clips ffmpeg-converted (`-ar 16000 -ac 1 -b:a 32k`, matching the original
+  WAV→32k-mono-MP3 recipe from the gym's build commit) into `audio/nchlt/`; the 8 displaced
+  clips' orphaned mp3s deleted (confirmed unreferenced first); `RL_CONTENT.nchlt` block in
+  content.js regenerated from the new `toolkit/nchlt-clips.json`. Verified: 40 refs = 40 files,
+  0 dupes, `startGym()` builds an 8-card round with 0 console errors, all 40 clips 200 OK.
+- **Verified in preview** (`?local=1`, unregistered SW + cleared caches first — the known preview
+  gotcha, stale cache was actually hit once before the reload): path screen shows "Mo sekolong —
+  At school — SECL121 Unit 3. Part 1: the Go batla verb-clock · Part 2: classroom life." with all
+  8 lessons; `u3` node states are `next`(u3l1)/`locked`×7(u3l2-u3l8, `disabled:true`) — Part 2 is
+  correctly gated behind Part 1; each of u3l4-u3l8 builds a sane rule→teach→drills→auto session
+  shape (u3l5's 10 items auto-split, matching the spec's predicted 5/5); all 10 concordSlot cards
+  in u3l7/u3l8 reconstruct their `tsw` exactly (`head + answer + tail` string match); 0 duplicate
+  ids across 270 total ids; 0 items with no `src`; 0 console errors on a fresh load with test
+  localStorage cleared afterwards.
+- **sw.js NOT touched** (still v22, AUDIO_CACHE `relefela-audio-v1` untouched) — this release has
+  not shipped; a future ship-wave bumps the version once, alongside whatever else is pending.
 
 ## Session 17 (2026-07-17, same day) — full audit + fix batch (sw v20, SHIPPED)
 Megan asked for a full fresh-eyes audit before building further (multitasking day). 5 read-only
@@ -433,8 +678,26 @@ All tagger lessons done (5a-c, 6, 7, 10, 11, 12, 13, 18, 20, 22, 23) and deploye
 ---
 
 ## ⏸️ WHERE WE STOPPED — pick up here
-**Live at sw `relefela-v22` (audio cache `relefela-audio-v1`): Units 1-3, 189 item clips — 189 of
-202 cards voiced.** Everything below SHIPPED 2026-07-17 (commits `302ce8d` fixes/v20, `7d3f447`
+**Live at sw `relefela-v23` (audio cache `relefela-audio-v1`, correctly NOT bumped — today's
+exports were md5-verified 0-changed/0-deleted twice): the FULL 5-unit app.** The sessions 18-21
+release wave SHIPPED 2026-07-17 in one three-commit push: Unit 3 reframed as "Mo sekolong"
+(Part 1 Go batla + new Part 2 u3l4-u3l8), new Unit 4 "Go ja dijo" (u4l1-u4l5), new Unit 5
+"Diphologolo" (u5l1-u5l5), 14 clips spliced (session-19 mapping), NCHLT gym re-filtered to 40,
+plus the index.html wave: mid-Katse id rename (#katse-mid — the old Pending-3 audit cleanup,
+DONE), the daily XP rivalry nudge, and the weekly champion popup.
+- **Voiced count, recounted exactly from content.js at ship time: 212 of 307 real cards voiced**
+  (335 total ids incl. 28 rule cards; 95 real cards silent by design). 203 unique files in
+  `audio/items/` (243 unique audio refs — reuse cards share files; u5l5-06 points at an nchlt
+  gym clip), 40 gym files. 0 missing refs, 0 orphans, 0 duplicate ids.
+- **Still pending on Megan (the release's known tails):**
+  1. 🎧 The u1l2-01 `lame` ear-check (session 16) — still outstanding.
+  2. 🎙️ The recording lists: ~25 items (u3 part 2) + all of u4's silent cards + ~31 items (u5,
+     blocked on de-musicking `Animals.mp3` through the enhance bot first). All silent by design
+     until her own enhanced recordings land.
+  3. 👀 The rivalry nudge + weekly champion popup have not yet been seen with two real
+     players' data — watch for the first real Megan-vs-the second learner sighting (needs both to have
+     week XP; champion popup fires the week after a completed week).
+Everything below SHIPPED earlier on 2026-07-17 (commits `302ce8d` fixes/v20, `7d3f447`
 colours+wiring/v21, `8288af1` L11 finale/v22, all live-verified):
 1. ~~Pending -1(a): the colour-cards decision~~ **LANDED — "Drop 13-19 please."** All seven cards
    u2l6-13..19 deleted (u2l6 = rule card + 12 items), Colours.mp3 + its 7 mapping tags gone.
@@ -449,7 +712,8 @@ colours+wiring/v21, `8288af1` L11 finale/v22, all live-verified):
    localStorage still holds the ★ Colours tags, so a future raw download would resurrect them; the
    guard makes that harmless. Don't "tidy" it away, ever.
 
-The only open item: the mid-Katse id rename (Pending 3, an audit-time cleanup). Parked, unplanned:
+~~The only open item: the mid-Katse id rename (Pending 3, an audit-time cleanup).~~ **DONE in the
+v23 ship** (#katse-mid, part of the index.html wave). Parked, unplanned:
 we/they "to have" cards (no audio source) and self-hosting supabase-js for true offline cold-start.
 
 ### ⚠️ Tagger gotcha (critical for any future export)
@@ -549,9 +813,56 @@ and zero XP-farming.
   hides at card 0, resume lands on the correct live card, 0 console errors.
 
 ## Pending on Megan
+-5. 2026-07-17 (session 21): **New Unit 5 "Diphologolo" — ready but NOT shipped.** u5l1-u5l5 built
+   (36 real items + 5 rule cards, 5 reuse cards pointing at existing `u2l5-07/08/09.mp3` +
+   `u2l6-10/11.mp3`), NCHLT gym re-filtered to 40 clips (8 in / 8 out). Ships whenever the next
+   release wave bumps sw.js (stacks with pending items -3/-4 below — same future ship wave, sw
+   stays v22 until then).
+   **~31-item recording list** for later, all silent, blocked on de-musicking Megan's own
+   `Animals.mp3` first (enhance bot, same as the colours workstream) before any of it can be tagged
+   and wired — see the session-21 build entry for the exact item list per lesson.
+   ⚠️ **Idioms outcome interim-met, not fully met:** `u5l4`'s 5 cards are Biblical figurative
+   animal language (verbatim, sourced), explicitly labelled as NOT the module's traditional maele
+   — the module's real animal-idiom list needs the Smart Guide (still not obtained, per
+   `toolkit/SOURCES.md`). Revisit `u5l4` the moment that list lands.
+-4. 2026-07-17 (session 20): **New Unit 4 "Go ja dijo" — ready but NOT shipped.** u4l1-u4l5 built
+   (41 real items + 5 rule cards, 1 reuse card pointing at existing `u2l4-08.mp3`), NCHLT gym
+   re-filtered to 40 clips (20 in / 20 out). Ships whenever the next release wave bumps sw.js
+   (stacks with pending item -3 below — same future ship wave, sw stays v22 until then).
+   **~41-item recording list** for later, all silent, no Peace Corps clip exists for any of them
+   (Megan's own voice, later enhance-and-wire, same pipeline as the u3-part-2 list below):
+   - `u4l1` (10): dijo, nama, borotho, metsi, mashi, mae, namune, merogo, dinawa, letswai
+   - `u4l2` (6): go apaya, moapei, dino, moruti, modiri, Re apaya merogo
+   - `u4l3` (11): lefela, nngwe, pedi, tharo, nne, tlhano, thataro, supa, robedi, robongwe, lesome
+   - `u4l4` (5, excludes the reused u4l4-04): Namune e le nngwe, Batho ba le babedi, Dikgomo di le
+     pedi, Re na le baithuti ba le kae?, Dikgomo tse pedi di a ja
+   - `u4l5` (8): le, Ke rata nama ya koko le nama ya kgomo, mme, kgotsa, A o batla go ja nama ya
+     kgomo kgotsa ya koko?, ka gore, Ke rata seswaa ka gore ke nama, Seswaa ke nama ka jalo ke a se
+     rata
+-3. 2026-07-17 (session 19): **Unit 3 part 2 "Mo sekolong" — ready but NOT shipped.** u3l4-u3l8
+   built (41 items + 5 rule cards), 14 clips spliced + wired, NCHLT gym re-filtered to 40 clips.
+   Ships whenever the next release wave bumps sw.js (not done here per the hard constraint —
+   sw.js is untouched this session). Two things for her ear when convenient, low stakes:
+   (a) **One-time ear-confirm of the 14 spliced clips** (session-15-style — same as every prior
+       splice wave): `u3l4-02/03/04/05/07`, `u3l5-01/02/04/05/06/07/08/09/10`. High confidence
+       (durations and, for L12, Megan's own explicit tagger text labels all check out — see the
+       session-19 build entry), but nobody has listened yet.
+   (b) **`Reetsa` (u3l5-01) wiring — confirms itself, but worth a listen anyway.** The build found
+       the committed mapping's own `note` text labels seg44="didimala" and seg46="reetsa" as two
+       SEPARATE clips, which resolves the spec's original "might be a didimala/reetsa compound"
+       worry in Reetsa's favour — seg46 (1.136s) is wired as a clean standalone "Reetsa" clip,
+       and `Nna fatshe` got its own clip from seg52 (1.303s, supervisor-verified label) in a
+       follow-up pass. If her ear disagrees with the "didimala"/"reetsa" split or which segment
+       is which, the fix is a 1-line edit to `toolkit/audio-mapping-session19.json` + a re-export.
+   ~25-item recording list for later (all silent, no PC clip exists): u3l4 moithuti/pensele (2);
+   u3l6 all 9 adverbs (gompieno, maabane, kamoso, phakela, motshegare, maitseboa, bosigo, gone
+   jaanong, kgantele); u3l7 all 8 past sentences; u3l8 6 of 7 future sentences (all but the reused
+   Ke tla go bona kamoso).
 -2. 2026-07-17 (session 16): **Two small ones from the Itumeleng/slow session.**
-   (a) 🎧 Listen to `u1l2-01` once on live and confirm the announcer says "Leina **lame** ke
-       Itumeleng" and not "Leina **la me** ke…". The card spells it `lame`; the tag can't tell us.
+   (a) ~~🎧 Listen to `u1l2-01` once on live and confirm the announcer says "Leina **lame** ke
+       Itumeleng" and not "Leina **la me** ke…". The card spells it `lame`; the tag can't tell us.~~
+       **DONE 2026-07-17 (session 18): Megan confirmed by ear — announcer says "lame". Card spelling
+       is correct, nothing to change.**
    (b) ~~**`u1l2-05` "Ke tswa kwa Botswana" — re-tag it in the tagger, Peace Corps Lesson 3**
        (`BW_Setswana_Lesson_3.mp3`). NO tag for it exists in any committed mapping.~~
        **DONE 2026-07-17 (session 17 wiring wave): tagged + wired** from tagger download (13) via
@@ -655,6 +966,34 @@ and zero XP-farming.
    `NATIVE-RECORDINGS-NEEDED.md`, then tag them (new voice) & export.
 
 ## Decisions (append-only)
+- 2026-07-17 (session 21, supervisor ruling): **Unit 5's idioms outcome is interim-met with
+  Biblical figurative language, not traditional maele — pending the Smart Guide's own idiom list.**
+  The corpus has zero traditional Setswana idioms (maele/diane) with glosses anywhere (confirmed
+  by the build spec's search). `u5l4`'s 5 cards ship as verbatim Bible sentences (Matthew 10:16
+  ×3, Revelation 5:5, John 10:11), each carrying the source's own parallel English gloss, and are
+  explicitly labelled in both the rule card and every item note as "Biblical figurative animal
+  language", NOT the module's traditional maele. This is a deliberate, honest interim scoping of
+  the module's idioms outcome — not a claim that the outcome is fully met. When the Smart Guide's
+  animal-idiom list becomes available, `u5l4` should be revisited/expanded with the real maele.
+- 2026-07-17 (session 19): **Unit 3 restructured into two parts — supersedes the session-15
+  "grammar gets its own unit" ruling below.** Megan's instruction (relayed via the build spec,
+  §0): the existing Unit 3 "Go batla" (u3l1-u3l3, Peace Corps L10 conjugation paradigms) does
+  NOT get demoted or removed — it becomes **Part 1**, the on-ramp, and the SECL121 study-unit
+  content "Mo sekolong" (at school: future/past tense + adverbs, the module's actual learning
+  outcomes per the module guide) becomes **Part 2**, appended as u3l4-u3l8 in the SAME unit. Unit
+  header retitled `'Go batla' → 'Mo sekolong'`; the session-15 framing ("grammar content gets its
+  own unit, outside the SECL121 unit numbering") no longer holds — Unit 3 is now presented as the
+  real SECL121 Study Unit 3, with the batla paradigms folded in as its grammar on-ramp. Mechanical
+  reason it stays one unit (not two): `lessonIdx` is per-unit, so appending inside u3 means Part 2
+  unlocks only after Part 1 finishes — the desired ordering — where a separate new unit would have
+  opened Part 2 immediately alongside Part 1.
+- 2026-07-17 (session 19): **A note tag's own `text` label beats a book-order positional decode.**
+  When a spec's inferred segment-to-card alignment conflicts with an explicit `text` field already
+  sitting in a committed `note` tag (Megan's own typed label from tagging), trust the label — it
+  is ground truth, not a guess, and using it is not "inventing a new decode". Session 19 caught a
+  spec's L12 book-order table drifting by one segment once "didimala" turned out to be its own
+  separately-tagged note; the corrected wiring kept the same approved 13-clip total, just assigned
+  to the right cards. See the session-19 entry above for the full case.
 - 2026-07-17 (session 17, later same day): **Export unwire scope is MAPPING-MANAGED ITEMS ONLY.**
   Items wired into content.js's `audio:` field with no mapping tag anywhere (the 64 native
   recordings from the session-17 wiring wave) are externally managed — `export-item-audio.py`
