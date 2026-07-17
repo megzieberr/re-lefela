@@ -98,6 +98,11 @@ input:focus{outline:none; border-color:var(--pink)}
 .crown{font-size:1.3rem}
 .toast{position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:var(--ink); color:#fff;
   border:2px solid var(--pink); padding:12px 20px; border-radius:12px; font-weight:600; box-shadow:var(--shadow); z-index:99; max-width:90vw}
+/* weekly champion popup — small one-time celebration, first open of a new XP week */
+.champ-overlay{position:fixed; inset:0; background:rgba(26,22,29,.55); display:flex;
+  align-items:center; justify-content:center; z-index:200; padding:20px}
+.champ-card{background:#fff; border:2px solid var(--ink); border-radius:var(--radius);
+  padding:28px 24px; text-align:center; max-width:320px; box-shadow:var(--shadow)}
 .hidden{display:none!important}
 .pwrow{position:relative}
 .pwrow input{padding-right:52px}
@@ -247,7 +252,7 @@ function persist(){ store.set('srs', state.srs); store.set('progress', state.pro
 // own by the caller. There are no app-scoped rl_ keys. Used by logout + the account-
 // switch guard in afterAuth so one learner's data can never bleed into another's.
 function clearLearnerState(){
-  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_replay']
+  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_replay','rl_rivalry','rl_champWeekSeen']
     .forEach(k=>localStorage.removeItem(k));
 }
 
@@ -374,7 +379,8 @@ function playAudio(file, rate){
   }
   currentAudio.play().catch(()=>{});
   // whatever plays, Katse is the one saying it — sway while the clip runs
-  const img = document.querySelector('#katse-corner .katse, #katse-home .katse');
+  const wrapEl = katseWrapEl();
+  const img = wrapEl && wrapEl.querySelector('.katse');
   if (img){
     img.classList.add('talking');
     const stop = ()=>img.classList.remove('talking');
@@ -404,8 +410,10 @@ function katseHTML(id, awake, extraClass, pose){
   return `<button class="katse-wrap ${awake?'tappable':''} ${extraClass||''}" id="${id}" aria-label="${awake?'Tap Katse to hear it':'Katse is resting'}">
     <div class="kbubble"></div>${katseImg(variant)}</button>`;
 }
-/* the on-screen Katse right now (corner during lessons, hero on home) */
-function katseWrapEl(){ return document.getElementById('katse-corner') || document.getElementById('katse-home'); }
+/* the on-screen Katse right now (corner during drill cards, mid on teach/recap cards,
+   hero on home) — the single lookup every shared helper routes through so nobody
+   accidentally grabs the wrong mascot when more than one id could match. */
+function katseWrapEl(){ return document.getElementById('katse-corner') || document.getElementById('katse-mid') || document.getElementById('katse-home'); }
 function katseBubble(text, ms){
   const el = katseWrapEl(); if (!el) return;
   const bub = el.querySelector('.kbubble'); if (!bub) return;
@@ -472,16 +480,18 @@ function mountKatseCorner(it, pose){
   app.insertAdjacentHTML('beforeend', katseHTML('katse-corner', audio, 'katse-corner', pose));
   if (audio) hookKatse('katse-corner', it);
 }
-/* Same Katse contract (id="katse-corner", so playAudio's .talking sway, katseBubble,
-   katseSetPose etc. all keep working unchanged) but mounted bigger + centred into the
-   flexible middle slot of a "solo continue button" card instead of the bottom corner. */
+/* Own id (katse-mid) so this never collides with the corner mascot's #katse-corner —
+   playAudio's .talking sway, katseBubble, katseSetPose etc. all go through katseWrapEl(),
+   which checks katse-corner/katse-mid/katse-home in turn, so the contract still holds.
+   Mounted bigger + centred into the flexible middle slot of a "solo continue button"
+   card instead of the bottom corner. */
 function mountKatseMid(it, pose){
   if (session && session.gym) return;
   const slot = document.getElementById('katse-mid-slot');
   if (!slot) return;
   const audio = !!(it && it.audio);
-  slot.innerHTML = katseHTML('katse-corner', audio, 'katse-mid', pose);
-  if (audio) hookKatse('katse-corner', it);
+  slot.innerHTML = katseHTML('katse-mid', audio, 'katse-mid', pose);
+  if (audio) hookKatse('katse-mid', it);
 }
 
 /* ---------- screens ---------- */
@@ -566,6 +576,7 @@ async function afterAuth(user){
   await pullRemote();
   flushQueue();
   screenHome();
+  maybeShowWeeklyChampion(); // fire-and-forget — never blocks/delays home render
 }
 
 async function pullRemote(){
@@ -687,9 +698,12 @@ function screenHome(){
     n.onclick = ()=> startLesson(RL_CONTENT.units.find(u=>u.id===n.dataset.u), parseInt(n.dataset.i,10));
   });
   hookKatse('katse-home', ()=>pick(voicedItems()));
-  // she greets you when you walk in — a real course phrase, tap her to hear one
+  // she greets you when you walk in — a real course phrase, tap her to hear one.
+  // The daily rivalry nudge takes priority when it's due: one bubble per load,
+  // never two fighting — see maybeShowRivalryNudge for the coexistence rule.
   const greetings = voicedItems().filter(v=>v.id.indexOf('u1l1')===0);
-  if (greetings.length && !doneToday) setTimeout(()=>katseBubble(pick(greetings).tsw, 3400), 600);
+  const fallbackGreet = ()=>{ if (greetings.length && !doneToday) setTimeout(()=>katseBubble(pick(greetings).tsw, 3400), 600); };
+  maybeShowRivalryNudge(fallbackGreet);
   const rv = document.getElementById('b-review'); if (rv) rv.onclick = startReview;
   const gy = document.getElementById('b-gym'); if (gy) gy.onclick = startGym;
   document.getElementById('b-lb').onclick = screenLeaderboard;
@@ -767,6 +781,104 @@ async function screenLeaderboard(){
         <span class="pill xppill">${r.week_xp} XP</span>
       </div>`).join('')}
     <p class="tiny center" style="margin-top:12px">Total: ${(rows||[]).map(r=>`${esc(r.display_name)} ${r.total_xp}`).join(' · ')}</p>`;
+}
+
+/* ---------- rivalry nudge + weekly champion (light competitive touches) ----------
+   Both gates below are device-local localStorage stamps, NEVER synced to Supabase —
+   same rl_replay precedent (PROJECT-STATUS.md): cosmetic "have I shown this" state,
+   not learner progress. Cleared per-learner by clearLearnerState() so they can't leak
+   across accounts on a shared device.
+   Reuses the existing cross-player read paths — no schema change, no new RLS:
+     - rivalry nudge reads `leaderboard_week` (same view screenLeaderboard()/pullRemote()
+       already query; RLS lets any authenticated learner see both players' rows).
+     - weekly champion reads `xp_events` + `profiles` directly (both have
+       `for select ... using (true)` policies in schema.sql, so any authenticated
+       learner can already read every row — just never had a reason to before). */
+function mondayUTC(d){
+  const day = d.getUTCDay(); // 0=Sun..6=Sat
+  const back = day===0 ? 6 : day-1;
+  const m = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+  m.setUTCDate(m.getUTCDate()-back);
+  return m;
+}
+
+/* ----- daily rivalry nudge ----- */
+async function fetchRivalWeekXP(){
+  const {data, error} = await sb.from('leaderboard_week').select('username, display_name, week_xp');
+  if (error || !data) return null;
+  const mine = data.find(r=>r.username === state.user.username);
+  const rival = data.find(r=>r.username !== state.user.username);
+  if (!mine || !rival) return null; // solo so far — the second learner hasn't joined yet, or query hiccup
+  return {display: rival.display_name, myXP: mine.week_xp, rivalXP: rival.week_xp};
+}
+function rivalryMessage(r){
+  const diff = r.myXP - r.rivalXP;
+  if (diff === 0) return r.myXP === 0
+    ? `New week, clean slate — beat ${r.display} to the first XP!`
+    : `You and ${r.display} are tied this week — ${r.myXP} XP each!`;
+  return diff > 0
+    ? `You're ${diff} XP ahead of ${r.display} this week — ha!`
+    : `You're ${-diff} XP behind ${r.display} this week!`;
+}
+/* Once-a-day gate = local CALENDAR day (todayStr(), device timezone), per Megan's
+   spec — deliberately NOT the UTC week boundary the champion popup below uses. */
+function rivalryShownToday(){ return store.get('rivalry', null) === todayStr(); }
+function markRivalryShown(){ store.set('rivalry', todayStr()); }
+/* One bubble per home load, never two fighting: if the nudge is due today, its
+   fetch pre-empts the plain greet bubble entirely; only falls back to the greet
+   bubble when there's nothing to say (no rival yet, offline, LOCAL_MODE, error).
+   Never blocks/delays screenHome() itself — this runs after render, fire-and-forget. */
+function maybeShowRivalryNudge(fallback){
+  if (LOCAL_MODE || !state.user || rivalryShownToday()){ fallback(); return; }
+  fetchRivalWeekXP().then(rival=>{
+    if (!rival) return fallback();
+    if (!document.getElementById('katse-home')) return; // navigated away before this resolved — say nothing
+    markRivalryShown();
+    katseBubble(rivalryMessage(rival), 4200);
+  }).catch(()=>fallback());
+}
+
+/* ----- weekly champion popup ----- */
+let champCheckDone = false; // guards against a double popup if afterAuth ever re-fires this session
+async function fetchLastWeekChampion(){
+  const thisMon = mondayUTC(new Date());
+  const lastMon = new Date(thisMon); lastMon.setUTCDate(lastMon.getUTCDate()-7);
+  const {data: events, error} = await sb.from('xp_events').select('user_id, amount')
+    .gte('created_at', lastMon.toISOString()).lt('created_at', thisMon.toISOString());
+  if (error || !events) return null;
+  const {data: profs, error: perr} = await sb.from('profiles').select('id, display_name');
+  if (perr || !profs || profs.length < 2) return null; // the second learner hasn't joined yet — no race to crown
+  const totals = {};
+  events.forEach(r=>{ totals[r.user_id] = (totals[r.user_id]||0) + r.amount; });
+  const ranked = profs.map(p=>({display:p.display_name, xp: totals[p.id]||0})).sort((a,b)=>b.xp-a.xp);
+  if (ranked[0].xp === ranked[1].xp) return null; // no XP at all last week, or an exact tie — no champion to crown
+  return ranked[0];
+}
+function showChampionPopup(name){
+  const app = document.getElementById('app'); if (!app) return;
+  const wrap = document.createElement('div'); wrap.className = 'champ-overlay';
+  wrap.innerHTML = `<div class="champ-card">
+    <div style="font-size:2.4rem">👑</div>
+    <h2 style="margin:6px 0">Last week's champion</h2>
+    <p style="font-size:1.3rem; font-weight:800; color:var(--pink-deep); margin:4px 0 14px">${esc(name)}</p>
+    <button class="btn primary" id="b-champ-ok">New week, new race</button>
+  </div>`;
+  document.body.appendChild(wrap);
+  document.getElementById('b-champ-ok').onclick = ()=>wrap.remove();
+}
+/* Called once from afterAuth() — "first open" of the app this week. The stamp is
+   the Monday (UTC) date of the CURRENT week, so it naturally flips exactly once
+   per week regardless of how many times the app is opened that week. */
+async function maybeShowWeeklyChampion(){
+  if (LOCAL_MODE || !state.user || champCheckDone) return;
+  champCheckDone = true;
+  const thisMonStr = mondayUTC(new Date()).toISOString().slice(0,10);
+  if (store.get('champWeekSeen', null) === thisMonStr) return;
+  const champ = await fetchLastWeekChampion();
+  store.set('champWeekSeen', thisMonStr); // stamp regardless of outcome — never re-check this week again
+  if (!champ) return;
+  if (!document.getElementById('katse-home')) return; // navigated away before this resolved
+  showChampionPopup(champ.display);
 }
 
 function screenStats(){
