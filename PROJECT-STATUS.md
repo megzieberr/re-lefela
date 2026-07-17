@@ -1,6 +1,6 @@
-# Re:Lefela — Project Status
+﻿# Re:Lefela — Project Status
 
-**Updated:** 2026-07-17 (session 17 — full 5-agent audit + fix batch, sw v20; later same session: colours decision landed, u2l6-13..19 dropped; then the audio wiring wave — u1l2-05 tagged+wired + 64 enhanced native clips wired, 188 item clips total; sw stays v21, not yet shipped) · previous: session 16 Itumeleng card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
+**Updated:** 2026-07-17 (session 17 — 5-agent audit + fix batch v20, colours drop + 65-clip wiring wave v21, L11 finale + export scope fix v22 — ALL SHIPPED; session 17 — full 5-agent audit + fix batch, sw v20; later same session: colours decision landed, u2l6-13..19 dropped; then the audio wiring wave — u1l2-05 tagged+wired + 64 enhanced native clips wired, 188 item clips total; sw stays v21, not yet shipped) · previous: session 16 Itumeleng card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button (sw v15), session 11 SW cache overhaul (sw v14)
 
 ## Session 17 (2026-07-17, same day) — full audit + fix batch (sw v20, SHIPPED)
 Megan asked for a full fresh-eyes audit before building further (multitasking day). 5 read-only
@@ -433,26 +433,24 @@ All tagger lessons done (5a-c, 6, 7, 10, 11, 12, 13, 18, 20, 22, 23) and deploye
 ---
 
 ## ⏸️ WHERE WE STOPPED — pick up here
-**Live at sw `relefela-v20` (audio cache `relefela-audio-v1`): Units 1-3, 123 item clips.** Round-2
-Peace Corps audio is fully mined — session 15 lit up the last 33 clips as Unit 3 "Go batla" + u1l4-12/13.
-The tagger has nothing left worth exporting except the L11 "to have" re-tag (Pending 2).
+**Live at sw `relefela-v22` (audio cache `relefela-audio-v1`): Units 1-3, 189 item clips — 189 of
+202 cards voiced.** Everything below SHIPPED 2026-07-17 (commits `302ce8d` fixes/v20, `7d3f447`
+colours+wiring/v21, `8288af1` L11 finale/v22, all live-verified):
+1. ~~Pending -1(a): the colour-cards decision~~ **LANDED — "Drop 13-19 please."** All seven cards
+   u2l6-13..19 deleted (u2l6 = rule card + 12 items), Colours.mp3 + its 7 mapping tags gone.
+2. ~~Pending 4: the enhance-bot run + tag-and-wire wave.~~ **DONE & SHIPPED.** 64 of her recordings
+   wired (colours u2l6-01..12 + body vocab + copulatives + adjectives + the silent Unit-1/3 cards),
+   2 skipped (Leina-lame-ke-Megan landmine + Re-tsogile-sentle already voiced), u1l2-05 tagged+wired.
+   ⚠️ Leina-lame-ke-Megan was NOT wired and never should be.
+3. ~~The L11 "to have" re-tag~~ **DONE & SHIPPED (v22):** new card u1l4-14 "Lo na le buka"; u1l4-11
+   reglossed for both persons; seg 29 ear-ruled English narration. Export unwire scope now
+   mapping-managed-only (the 64 native clips are permanently exempt).
+4. ⚠️ The `SKIP_LESSONS` ★ Colours guard in `export-item-audio.py` is **PERMANENT** — the tagger's
+   localStorage still holds the ★ Colours tags, so a future raw download would resurrect them; the
+   guard makes that harmless. Don't "tidy" it away, ever.
 
-**Next up — the colours workstream is UNBLOCKED** (decision landed session 17, sw v21 pending ship):
-1. ~~Pending -1(a): the colour-cards decision~~ **LANDED session 17 — "Drop 13-19 please."** All
-   seven cards u2l6-13..19 deleted (u2l6 = rule card + 12 items), Colours.mp3 + its 7 mapping tags
-   gone. See the session-17 Decisions entry.
-2. ~~Pending 4: the enhance-bot run + tag-and-wire wave.~~ **DONE 2026-07-17 (session 17), pending
-   ship.** Bot finished (66 Enhanced files); **64 wired** (colours u2l6-01..12 + body vocab +
-   copulatives + adjectives + the silent Unit-1/3 cards), **2 skipped** (Leina-lame-ke-Megan landmine
-   + Re-tsogile-sentle already voiced). u1l2-05 also tagged+wired (Job A). 188 clips total, verified.
-   Ships with this same v21 release. ⚠️ Leina-lame-ke-Megan was NOT wired and never should be.
-3. ⚠️ The `SKIP_LESSONS` ★ Colours guard in `export-item-audio.py` is now **PERMANENT** — the
-   tagger's localStorage still holds the ★ Colours tags, so a future raw download would resurrect
-   them; the guard makes that harmless. Don't "tidy" it away, ever.
-
-Smaller open items: the L11 "to have" re-tag (Pending 2), the tag-and-wire wave for recordings
-already on disk (Pending 1 — corrected 2026-07-17, was wrongly framed as waiting on the lecturer),
-and the mid-Katse id rename (Pending 3, an audit-time cleanup).
+The only open item: the mid-Katse id rename (Pending 3, an audit-time cleanup). Parked, unplanned:
+we/they "to have" cards (no audio source) and self-hosting supabase-js for true offline cold-start.
 
 ### ⚠️ Tagger gotcha (critical for any future export)
 Her tagger's localStorage keeps **dropping the Lesson-2 redo** — every export she downloads has 0
