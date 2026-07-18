@@ -1,6 +1,9 @@
 ﻿# Re:Lefela — Project Status
 
-**Updated:** 2026-07-18 (session 24 — the ★ Food wiring wave, SHIPPED as sw **v27**: 8 of the 10
+**Updated:** 2026-07-18 (session 25 — **Bua le Katse**, SHIPPED as sw **v28**: a scripted no-LLM
+chat with Katse — scenario 1 "Dumela, Katse!" in a new `dialogues.js`, vocab-gated off real SRS
+reps, chips/typing input, stretch-word ✨eng, every Katse line sourced and mostly voiced from
+existing clips) · previous: 2026-07-18 (session 24 — the ★ Food wiring wave, SHIPPED as sw **v27**: 8 of the 10
 `u4l1` food cards voiced from Megan's own Food recording, a whole-file CRLF bug in
 `export-item-audio.py` caught and fixed, `missing-audio.md` regenerated at 68 silent, and — now
 that she has found a native speaker — a printable **132-word recording sheet** generated straight
@@ -24,6 +27,60 @@ drop + 65-clip wiring wave v21, L11 finale + export scope fix v22 — ALL SHIPPE
 card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14
 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button
 (sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 25 (2026-07-18, same day) — "Bua le Katse" scripted chat (sw v28, SHIPPED)
+Megan's ask: "like an AI chat bot… but only in Setswana and only using the words I have learned…
+it can throw in a new word here or there that I can pick up on context." Her explicit ruling:
+**scripted, no LLM** — chatbot *feel*, deterministic underneath, R0. Spec-first
+(`SPEC-katse-chat.md`, committed) with her "looks good" approval, then built same-session.
+- **New `dialogues.js`** — `RL_DIALOGUES`, same provenance bar as content.js (every line carries
+  `src`). Scenario 1 **"Dumela, Katse!"**: greetings → how-are-you (with the u1l1-13 bounce-back
+  branch) → names (ask-menu lets HER question Katse: O mang? / A o tswa kwa Botswana?) →
+  where-from → coffee beat → goodbyes. Only compositions: combined-src per the u1l7-07 precedent
+  ("Ee! Ke tswa kwa Botswana.", "Ga ke batle kofi") and note-sanctioned slot frames (u1l2-01
+  name swap, u1l2-10 place swap). **Audio only on verbatim voiced cards** — 15 clips, ALL
+  pre-existing, so `AUDIO_CACHE` stays `relefela-audio-v1`. ⚠️ One agreed nuance: chat lines may
+  add terminal `!`/`.` the card lacks ("Ke a leboga!" vs card "Ke a leboga") — the spoken words
+  never differ, dialogues.js header documents it.
+- **Engine in index.html** (~250 lines, `chat*` functions after the gym section):
+  - **Vocab gating is the core:** scenario unlocks only when every id in its `requires` (13 ids)
+    has `state.srs[id].reps >= 1`; Katse variants with an unlearned `uses` id never draw; the
+    home button (`💬 Bua le Katse`, under the gym button) is hidden entirely until unlocked.
+  - **Stretch word** (the "new word from context"): scenario declares it (`eng`, from u2l3-06);
+    renders dotted-underlined in Katse's bubble, tap → gloss reveal, recorded in `rl_chat` —
+    **NO SRS write** (keeps the reps≥3 typing gate honest).
+  - Input dock: chips (tap-card style, pool = accepted-answer words + name/place chips + 3
+    distractors) ⇄ free typing (`answerMatches` + frame token matching, close-match advances
+    with a spelling toast). Fallback: **"Ga ke tlhaloganye."** (u1l7-05, voiced) + the question
+    restated; 2nd miss adds the 🐾 hint and narrows chips to answer words only — no dead ends.
+  - XP through the normal queue: +2/turn (`'chat'`), +10 complete (`'chat-done'`). `rl_chat`
+    (done ✓, stretchMet, input-mode pref) is device-local cosmetic state, added to
+    `clearLearnerState()`. Available to both accounts AND `?local=1` — not Megan-gated.
+    Chat sets `currentScreen` so Ask-your-tutor context works mid-chat.
+  - Dock left-pads 60px to clear the tutor 💬 fab (12+44+4).
+- **sw.js v27 → v28**, `dialogues.js` added to CORE precache.
+- **Verified** (`?local=1`, SW unregistered + caches cleared, test state wiped after): full
+  conversation both input modes incl. the bounce branch, both ask-menu questions + re-click
+  guard, fallback ×2 with pool narrowing 12→9, gate lock/unlock with doctored srs, all 15 clips
+  200 + word-level text/audio match, chips-built turn advances, 375×812 no overflow + dock/fab
+  clearance + autoscroll, busy-flag double-submit guard confirmed (a too-early submit is
+  swallowed, not double-graded), 0 console errors. **Live-verified after push:** sw serving
+  `relefela-v28`, dialogues.js 200 at matching byte size, engine + button present in live
+  index.html, AUDIO_CACHE untouched.
+- **Ruling recorded: `toolkit/recording-sheet.docx` stays LOCAL** — her Word re-save
+  (44 994 → 39 148 bytes) is deliberately uncommitted and must NOT be committed; expect the
+  portfolio sweep to keep flagging it as modified. (Consequence of the session-24 warning: her
+  edited copy ends the no-drift guarantee, so the committed version stays the canonical one.)
+- **Commits:** `b923ef6` (feature + spec, sw v28) · plus this wrap-up. Pushed; live verified.
+
+## Next up (agreed 2026-07-18, end of session 25)
+1. **She plays scenario 1 on the real site** — first real-use feedback on pacing, difficulty,
+   chip pool size, whether the English-peek-on-tap is discoverable.
+2. **More scenarios, spec-first, one per unit theme** (spec §9 Q5 roadmap): Mmele (u2),
+   Mo sekolong (u3), Go ja dijo (u4), Diphologolo (u5). Each maximises voiced-card overlap;
+   variant pools per Katse turn are where replay value comes from.
+3. Sessions 23/24 carry-overs unchanged: native-speaker recording wave (⚠️ AUDIO_CACHE bump
+   needed on that one), Smart Guide for u5l4 maele.
 
 ## Session 24 (2026-07-18, same day) — ★ Food wired (sw v27, SHIPPED) + native-speaker recording sheet
 The session-23 "Next up" item 1, executed: Megan tagged ★ Food in the tagger and handed over the
