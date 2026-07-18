@@ -1,9 +1,10 @@
 ﻿# Re:Lefela — Project Status
 
-**Updated:** 2026-07-18 (session 25 — **Bua le Katse**, SHIPPED as sw **v28**: a scripted no-LLM
-chat with Katse — scenario 1 "Dumela, Katse!" in a new `dialogues.js`, vocab-gated off real SRS
-reps, chips/typing input, stretch-word ✨eng, every Katse line sourced and mostly voiced from
-existing clips) · previous: 2026-07-18 (session 24 — the ★ Food wiring wave, SHIPPED as sw **v27**: 8 of the 10
+**Updated:** 2026-07-18 (session 25 — **Bua le Katse**, SHIPPED as sw **v28** then **v29**: a
+scripted no-LLM chat with Katse — scenario 1 "Dumela, Katse!" in a new `dialogues.js`, vocab-gated
+off real SRS reps, chips/typing input, stretch words, every line sourced and mostly voiced; then
+same-day: beginner scenario 0 **"Le kae?"** (u1l1–l3 vocab only, drills kae→kwa) + a scenario
+picker showing locked scenarios with their unlock hint, after Megan couldn't find the feature) · previous: 2026-07-18 (session 24 — the ★ Food wiring wave, SHIPPED as sw **v27**: 8 of the 10
 `u4l1` food cards voiced from Megan's own Food recording, a whole-file CRLF bug in
 `export-item-audio.py` caught and fixed, `missing-audio.md` regenerated at 68 silent, and — now
 that she has found a native speaker — a printable **132-word recording sheet** generated straight
@@ -73,12 +74,46 @@ it can throw in a new word here or there that I can pick up on context." Her exp
   edited copy ends the no-drift guarantee, so the committed version stays the canonical one.)
 - **Commits:** `b923ef6` (feature + spec, sw v28) · plus this wrap-up. Pushed; live verified.
 
+### Session 25b (same day) — scenario 0 "Le kae?" + picker (sw v29, SHIPPED)
+Megan opened the live app and couldn't see the chat. Root cause (from her real Supabase data):
+she is on **u1 lesson 4** — chat1 requires u1l6-09 / u1l7-05 which she hasn't reached — and the
+spec's "hidden until unlocked" rule made the locked feature invisible. Her ask: a more basic
+scenario for the early lessons, specifically kwa/kae and pronouns ("I haven't gotten smart in
+Setswana yet"). **Implementation delegated to a supervised Sonnet agent** (her instruction) with
+the full scenario data verbatim in the brief — zero Setswana decisions left to the agent; diff
+reviewed line-by-line + independently re-verified after.
+- **`chat0` "Le kae?"** (first in RL_DIALOGUES): u1l1–u1l3 vocab ONLY (all 39 cards learned on
+  her account, reps 3–6), so it unlocked for her at ship time. Deliberately drills her actual
+  weak spots — the lapsed cards `A o tswa kwa Amerika?` (2 lapses), `O mang?`, `O tswa kae?` —
+  and the **kae-asks / kwa-answers** pattern (she asks Katse `O tswa kae?` herself via the
+  ask-menu; `Wena o tswa kae?` → `Ke tswa kwa {place}`). The `Ee` answer to "A o tswa kwa
+  Amerika?" is accepted with a cheerful `Go siame!` (wrap-ee branch). Two composed lines only
+  (`Wena o mang?`, `Wena o tswa kae?`), both halves attested in her learned cards, combined-src.
+- **Stretch = the engine's own fallback phrase:** `Ga ke tlhaloganye` (u1l7-05) is chat0's
+  declared stretch word — phrase-level, the existing regex marks it inside the fallback bubble,
+  tap → gloss + "you'll drill it in lesson 7". No engine change needed; the fallback line goes
+  through `chatBubble` like any Katse line. Neat precedent for using out-of-vocab engine lines.
+- **Scenario picker (`screenChatPick`)**, replacing straight-into-chat: unlocked scenarios
+  tappable (✓ when done), **locked ones VISIBLE** with `🔒` + "Katse needs you to finish
+  '<lesson>' first" via new `chatUnlockHint()` (first unlearned `requires` id → its lesson
+  title). Home-button ✓ now means "all unlocked scenarios done". **The spec §4 fully-hidden rule
+  is revised** — she shipped a feature and couldn't find it; hidden-when-NOTHING-is-unlocked
+  remains.
+- **Verified against a replica of her exact SRS state** (u1l1–l3 learned, nothing else): picker
+  shows chat0 unlocked + chat1 locked with the correct "Ke a ja!" hint; full chat0 walk incl.
+  all three amerika branches, the lekae/howru bounce branches, fallback stretch reveal, XP exact
+  (+2×8, +10); chat1 open-regression pass; parse/LF/BOM checks pass; 0 console errors.
+  **Live-verified: sw serving `relefela-v29`**, dialogues.js byte-match, AUDIO_CACHE untouched.
+- **Commit:** `7823a8b` (chat0 + picker, sw v29).
+
 ## Next up (agreed 2026-07-18, end of session 25)
-1. **She plays scenario 1 on the real site** — first real-use feedback on pacing, difficulty,
-   chip pool size, whether the English-peek-on-tap is discoverable.
+1. **She plays "Le kae?" on the real site** (unlocked for her NOW) — first real-use feedback on
+   pacing, difficulty, chip pool size, English-peek discoverability. "Dumela, Katse!" unlocks
+   when she finishes u1l7 "Ga ke itse!" (the picker tells her so itself).
 2. **More scenarios, spec-first, one per unit theme** (spec §9 Q5 roadmap): Mmele (u2),
    Mo sekolong (u3), Go ja dijo (u4), Diphologolo (u5). Each maximises voiced-card overlap;
-   variant pools per Katse turn are where replay value comes from.
+   variant pools per Katse turn are where replay value comes from. A pronoun-drilling scenario
+   once she finishes u1l4 "Nna le wena" is the natural next one (her explicit struggle).
 3. Sessions 23/24 carry-overs unchanged: native-speaker recording wave (⚠️ AUDIO_CACHE bump
    needed on that one), Smart Guide for u5l4 maele.
 
