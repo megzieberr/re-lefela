@@ -122,6 +122,37 @@ input:focus{outline:none; border-color:var(--pink)}
   border:2px solid var(--line); background:#fff; color:var(--ink); font:inherit;
   font-size:1rem; margin:10px 0; resize:vertical}
 .tutor-card textarea:focus{outline:none; border-color:var(--pink)}
+/* "Bua le Katse" chat 💬 */
+.chat-wrap{display:flex; flex-direction:column; flex:1; min-height:0}
+.chat-log{flex:1; overflow-y:auto; padding:6px 2px 12px; min-height:0}
+.crow{display:flex; margin:8px 0; align-items:flex-end; gap:8px}
+.crow.me{justify-content:flex-end}
+.cbub{max-width:78%; padding:10px 14px; border-radius:16px; font-size:1.05rem; line-height:1.35;
+  border:2px solid var(--line); background:var(--card); box-shadow:var(--shadow)}
+.crow.katse .cbub{border-bottom-left-radius:4px; background:var(--card2); border-color:var(--pink)}
+.crow.me .cbub{border-bottom-right-radius:4px; background:var(--pink); border-color:var(--ink)}
+.cbub .ceng{display:block; font-size:.78rem; color:var(--ink-dim); margin-top:3px}
+.crow.me .cbub .ceng{color:var(--ink)}
+.cbub .creplay{background:none; border:none; padding:0 0 0 6px; font-size:.95rem; width:auto; vertical-align:middle}
+.chat-face{width:40px; height:40px; flex:none; border-radius:50%; border:2px solid var(--ink);
+  background:var(--card2); object-fit:cover; object-position:top}
+.ctyping .cbub{color:var(--ink-dim); letter-spacing:2px}
+.ctyping .cbub span{display:inline-block; animation:cdot 1s infinite}
+.ctyping .cbub span:nth-child(2){animation-delay:.15s} .ctyping .cbub span:nth-child(3){animation-delay:.3s}
+@keyframes cdot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
+.stretch{border-bottom:2px dotted var(--pink-deep); cursor:pointer; font-weight:700}
+.stretch.revealed{border-bottom-style:solid}
+.chat-dock{flex:none; border-top:2px solid var(--line); padding:10px 0 4px 60px}  /* left 60px clears the tutor 💬 fab (12px + 44px + 4px) */
+.chat-dock .pool{margin:8px 0}
+.chat-dock .tokens{min-height:44px; margin:8px 0}
+.chat-dock input{width:100%; padding:12px 14px; border-radius:12px; border:2px solid var(--line);
+  background:#fff; color:var(--ink); font:inherit; font-size:1rem}
+.chat-dock input:focus{outline:none; border-color:var(--pink)}
+.cmode{background:none; border:none; width:auto; padding:4px 8px; font-size:1.1rem; opacity:.7}
+.chat-hint{background:var(--card2); border-left:4px solid var(--pink); padding:8px 12px;
+  border-radius:8px; font-size:.88rem; margin:6px 0}
+.cask{display:block; width:100%; text-align:left; background:#fff; border:2px solid var(--line);
+  border-bottom-width:3px; border-radius:12px; padding:10px 14px; margin:6px 0; font-size:1rem}
 .hidden{display:none!important}
 .pwrow{position:relative}
 .pwrow input{padding-right:52px}
@@ -247,6 +278,7 @@ body.tutor-fab-on .exa-actions{padding-bottom:calc(64px + env(safe-area-inset-bo
 <div id="app"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script src="content.js"></script>
+<script src="dialogues.js"></script>
 <script>
 'use strict';
 /* ===== Re:Lefela engine ===== */
@@ -279,7 +311,7 @@ function persist(){ store.set('srs', state.srs); store.set('progress', state.pro
 // own by the caller. There are no app-scoped rl_ keys. Used by logout + the account-
 // switch guard in afterAuth so one learner's data can never bleed into another's.
 function clearLearnerState(){
-  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq']
+  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat']
     .forEach(k=>localStorage.removeItem(k));
 }
 
@@ -701,6 +733,10 @@ function screenHome(){
   }).join('');
   const gym = (RL_CONTENT.nchlt && RL_CONTENT.nchlt.length >= 4)
     ? `<button class="btn ghost" id="b-gym" style="margin:10px 0">👂 Listening gym — real native voices</button>` : '';
+  // hidden until scenario 1's vocab is learned — no taunting a locked feature (spec §4)
+  const chatSc = chatOpenScenario();
+  const chatBtn = chatSc
+    ? `<button class="btn ghost" id="b-chat" style="margin:10px 0">💬 Bua le Katse — chat with her in Setswana${chatStoreGet().done[chatSc.id] ? ' ✓' : ''}</button>` : '';
   render(`
     <div class="row spread">
       <div class="logo" style="font-size:1.3rem"><span class="re">Re:</span><span class="zero">Lefela</span></div>
@@ -718,6 +754,7 @@ function screenHome(){
     </div>
     ${due>0?`<button class="btn primary" id="b-review" style="margin:10px 0">🔁 ${esc(RL_CONTENT.flavour.review)} — review ${due} item${due>1?'s':''}</button>`:''}
     ${gym}
+    ${chatBtn}
     ${unitsHtml}
     <div class="row" style="margin-top:16px">
       <button class="btn ghost" id="b-lb" style="flex:1">🏆 Scoreboard</button>
@@ -736,6 +773,7 @@ function screenHome(){
   maybeShowRivalryNudge(fallbackGreet);
   const rv = document.getElementById('b-review'); if (rv) rv.onclick = startReview;
   const gy = document.getElementById('b-gym'); if (gy) gy.onclick = startGym;
+  const cb = document.getElementById('b-chat'); if (cb) cb.onclick = ()=>startChat(chatSc);
   document.getElementById('b-lb').onclick = screenLeaderboard;
   document.getElementById('b-me').onclick = screenStats;
 }
@@ -789,6 +827,284 @@ function finishGym(){
     <button class="btn primary" id="b-home" style="margin-top:16px">Back to the path</button>
   </div>`);
   document.getElementById('b-home').onclick = screenHome;
+}
+
+/* ---------- "Bua le Katse" — the scripted chat (SPEC-katse-chat.md) ----------
+   Scripted, no LLM: every Katse line comes verbatim from dialogues.js, where each
+   carries src (same bar as content.js). Vocab-gated off real SRS state — a scenario
+   unlocks only when every id in its `requires` list has reps >= 1. `rl_chat` is
+   device-local cosmetic state (done-marks, stretch words met, input-mode preference),
+   never synced — same precedent as rl_replay. XP flows through the normal addXP queue. */
+let chat = null;   // {sc, nodeId, lastLines, misses, turns, mode, busy}
+function chatStoreGet(){ return store.get('chat', {done:{}, stretchMet:{}, mode:'chips'}); }
+function chatStoreSet(v){ store.set('chat', v); }
+function chatItem(id){
+  for (const u of RL_CONTENT.units) for (const l of u.lessons) for (const it of l.items)
+    if (it.id === id) return it;
+  return null;
+}
+function chatLearned(id){ const s = state.srs[id]; return !!(s && s.reps >= 1); }
+function chatOpenScenario(){
+  if (typeof RL_DIALOGUES === 'undefined') return null;
+  return RL_DIALOGUES.find(sc => sc.requires.every(chatLearned)) || null;
+}
+function chatScroll(){ const log = document.getElementById('chat-log'); if (log) log.scrollTop = log.scrollHeight; }
+
+function startChat(sc){
+  chat = {sc, nodeId:null, lastLines:[], misses:0, turns:0, mode: chatStoreGet().mode || 'chips', busy:false};
+  currentScreen = 'Bua le Katse — ' + sc.id;
+  renderFill(`<div class="topbar">
+      <button class="quit" id="b-quit">✕</button>
+      <h2 style="margin:0; font-size:1.05rem">💬 ${esc(sc.title)}</h2>
+    </div>
+    <div class="chat-wrap">
+      <div class="chat-log" id="chat-log"></div>
+      <div class="chat-dock" id="chat-dock"></div>
+    </div>`);
+  document.getElementById('b-quit').onclick = ()=>{ if (confirm('Leave the chat?')){ chat = null; screenHome(); } };
+  chatEnter(sc.entry);
+}
+
+function chatEnter(nodeId){
+  if (!chat) return;
+  const node = chat.sc.nodes[nodeId];
+  if (!node) return;
+  chat.nodeId = nodeId; chat.misses = 0;
+  // variants that reach beyond the learned vocab never draw (spec §3)
+  const variants = (node.katse || []).filter(v => !v.uses || v.uses.every(chatLearned));
+  const v = variants.length ? pick(variants) : null;
+  if (v) chat.lastLines = v.lines;
+  chatKatseLines(v ? v.lines : [], ()=>{
+    if (!chat) return;
+    if (node.end) return chatFinish();
+    if (node.ask) return chatAskMenu(node);
+    if (node.user) return chatDock(node.user);
+    if (node.next) return chatEnter(node.next);
+  });
+}
+
+/* Katse's lines land one by one behind a short typing indicator — the chatbot feel. */
+function chatKatseLines(lines, done){
+  if (!chat) return;
+  if (!lines.length){ done(); return; }
+  const line = lines[0], rest = lines.slice(1);
+  const log = document.getElementById('chat-log'); if (!log) return;
+  const t = document.createElement('div'); t.className = 'crow katse ctyping';
+  t.innerHTML = `<img class="chat-face" src="${KATSE_POSES.awake}" alt=""><div class="cbub"><span>•</span><span>•</span><span>•</span></div>`;
+  log.appendChild(t); chatScroll();
+  setTimeout(()=>{
+    if (!chat){ t.remove(); return; }
+    t.remove();
+    chatBubble('katse', line);
+    if (line.audio) playAudio(line.audio);
+    setTimeout(()=>chatKatseLines(rest, done), rest.length ? 900 : 250);
+  }, 650);
+}
+
+function chatBubble(who, line){
+  const log = document.getElementById('chat-log'); if (!log) return;
+  const row = document.createElement('div'); row.className = 'crow ' + who;
+  let html = esc(line.tsw);
+  if (who === 'katse' && chat.sc.stretch){
+    for (const s of chat.sc.stretch){
+      const re = new RegExp('(^|[^A-Za-zšŠ])(' + s.word + ')(?=$|[^A-Za-zšŠ])', 'i');
+      html = html.replace(re, (m, p1, p2)=>p1 + '<span class="stretch" data-sw="' + esc(s.word) + '">' + p2 + '</span>');
+    }
+  }
+  const face = who === 'katse' ? `<img class="chat-face" src="${KATSE_POSES.awake}" alt="Katse">` : '';
+  const replay = (who === 'katse' && line.audio) ? `<button class="creplay" title="Replay" aria-label="Replay">🔊</button>` : '';
+  row.innerHTML = `${face}<div class="cbub"><span class="ctsw">${html}</span>${replay}<span class="ceng hidden">${esc(line.eng || '')}</span></div>`;
+  log.appendChild(row); chatScroll();
+  const bub = row.querySelector('.cbub');
+  // tap a Katse bubble to peek at the English — hidden by default so she reads the Setswana first
+  if (who === 'katse' && line.eng) bub.onclick = ()=>bub.querySelector('.ceng').classList.toggle('hidden');
+  const rp = row.querySelector('.creplay');
+  if (rp) rp.onclick = e=>{ e.stopPropagation(); playAudio(line.audio); };
+  row.querySelectorAll('.stretch').forEach(el=>{
+    el.onclick = e=>{
+      e.stopPropagation();
+      if (el.classList.contains('revealed')) return;
+      el.classList.add('revealed');
+      chatRevealStretch(el.dataset.sw);
+    };
+  });
+}
+
+/* Stretch word tapped: reveal the gloss (spec §3 — recorded, but NO SRS write). */
+function chatRevealStretch(w){
+  const s = (chat.sc.stretch || []).find(x=>x.word === w); if (!s) return;
+  const st = chatStoreGet();
+  if (!st.stretchMet[w]){ st.stretchMet[w] = todayStr(); chatStoreSet(st); }
+  const log = document.getElementById('chat-log'); if (!log) return;
+  const d = document.createElement('div'); d.className = 'chat-hint';
+  d.innerHTML = `✨ New word: <b>${esc(s.word)}</b> = ${esc(s.gloss)}${s.note ? ' — ' + esc(s.note) : ''} <span class="tiny">(${esc(s.src)})</span>`;
+  log.appendChild(d); chatScroll();
+}
+
+/* Chip pool = every word of every accepted answer (slots become her name / place chips),
+   plus a few unit-1 distractors — dropped after the 2nd miss so there are no dead ends. */
+function chatChipPool(user){
+  const words = new Set();
+  const addWords = t=>t.replace(/[?!.,]/g, '').split(/\s+/).forEach(w=>{
+    if (w === '{name}') words.add(state.user && state.user.display ? state.user.display : 'Nna');
+    else if (w === '{place}') (chat.sc.placeChips || []).forEach(p=>words.add(p));
+    else if (w) words.add(w);
+  });
+  for (const a of user.accept){
+    if (a.kind === 'item'){ const it = chatItem(a.id); if (it) addWords(it.tsw); }
+    else if (a.kind === 'lit') addWords(a.tsw);
+    else if (a.kind === 'frame') addWords(a.pattern);
+    else if (a.kind === 'contains') (a.words || []).forEach(w=>words.add(w[0].toUpperCase() + w.slice(1)));
+  }
+  (user.chips || []).forEach(w=>words.add(w));
+  let pool = [...words];
+  if (chat.misses < 2){
+    const d = shuffle(unitWordPool(RL_CONTENT.units[0])
+      .map(w=>w.replace(/[?!.,]/g, ''))
+      .filter(w=>w && !words.has(w))).slice(0, 3);
+    pool = pool.concat(d);
+  }
+  return shuffle(pool);
+}
+
+function chatDock(user){
+  if (!chat) return;
+  chat.busy = false;
+  const dock = document.getElementById('chat-dock'); if (!dock) return;
+  const toggle = `<button class="cmode" id="c-mode" title="Switch input mode">${chat.mode === 'chips' ? '⌨️' : '🧩'}</button>`;
+  if (chat.mode === 'chips'){
+    const pool = chatChipPool(user);
+    dock.innerHTML = `<div class="tokens" id="c-ans"></div>
+      <div class="pool" id="c-pool">${pool.map((w, i)=>`<button class="tok" data-w="${esc(w)}" data-i="${i}">${esc(w)}</button>`).join('')}</div>
+      <div class="row">${toggle}<button class="btn primary" id="c-send" style="flex:1" disabled>Send</button></div>`;
+    const picked = [];
+    const ans = document.getElementById('c-ans');
+    function upd(){ document.getElementById('c-send').disabled = picked.length === 0; }
+    dock.querySelectorAll('#c-pool .tok').forEach(t=>{
+      t.onclick = ()=>{
+        t.classList.add('used'); picked.push({w: t.dataset.w, el: t});
+        const tokBtn = document.createElement('button'); tokBtn.className = 'tok'; tokBtn.textContent = t.dataset.w;
+        tokBtn.onclick = ()=>{ tokBtn.remove(); t.classList.remove('used'); picked.splice(picked.findIndex(p=>p.el === t), 1); upd(); };
+        ans.appendChild(tokBtn); upd();
+      };
+    });
+    document.getElementById('c-send').onclick = ()=>chatSubmit(picked.map(p=>p.w).join(' '), user);
+  } else {
+    dock.innerHTML = `<div class="row" style="gap:8px; align-items:center">${toggle}
+      <input id="c-in" autocomplete="off" autocapitalize="off" placeholder="Type your reply in Setswana…" style="flex:1">
+      <button class="btn primary" id="c-send" style="width:auto">➤</button></div>`;
+    const inp = document.getElementById('c-in');
+    inp.onkeydown = e=>{ if (e.key === 'Enter'){ e.preventDefault(); chatSubmit(inp.value, user); } };
+    document.getElementById('c-send').onclick = ()=>chatSubmit(inp.value, user);
+    inp.focus();
+  }
+  document.getElementById('c-mode').onclick = ()=>{
+    chat.mode = chat.mode === 'chips' ? 'type' : 'chips';
+    const st = chatStoreGet(); st.mode = chat.mode; chatStoreSet(st);
+    chatDock(user);
+  };
+}
+
+function chatMatchAccept(given, accepts){
+  for (const a of accepts){
+    if (a.kind === 'item' || a.kind === 'lit'){
+      const t = a.kind === 'item' ? (chatItem(a.id) || {}).tsw : a.tsw;
+      if (!t) continue;
+      const r = answerMatches(given, t);
+      if (r) return {accept: a, close: r === 'close', expected: t};
+    } else if (a.kind === 'frame'){
+      // slots survive norm() as 'zzslotzz'; a final slot slurps the rest of her answer
+      const toks = norm(a.pattern.replace(/\{(name|place)\}/g, 'zzslotzz')).split(' ');
+      const gtoks = norm(given).split(' ');
+      const lastIsSlot = toks[toks.length - 1] === 'zzslotzz';
+      if (lastIsSlot ? gtoks.length < toks.length : gtoks.length !== toks.length) continue;
+      let ok = true;
+      const fixedEnd = lastIsSlot ? toks.length - 1 : toks.length;
+      for (let i = 0; i < fixedEnd; i++){
+        if (toks[i] === 'zzslotzz'){ if (!gtoks[i]) ok = false; }
+        else if (toks[i] !== gtoks[i] && lev(toks[i], gtoks[i]) > 1) ok = false;
+      }
+      if (ok) return {accept: a, close: false, expected: a.pattern};
+    } else if (a.kind === 'contains'){
+      const g = norm(given).split(' ');
+      if ((a.words || []).every(w=>g.some(t=>t === norm(w) || lev(t, norm(w)) <= 1)))
+        return {accept: a, close: false, expected: (a.words || []).join(' ')};
+    }
+  }
+  return null;
+}
+
+function chatSubmit(given, user){
+  if (!chat || chat.busy) return;
+  given = (given || '').trim();
+  if (!given) return;
+  const m = chatMatchAccept(given, user.accept);
+  chatBubble('me', {tsw: given});
+  if (m){
+    chat.busy = true;
+    chat.turns++; chat.misses = 0;
+    addXP(2, 'chat');
+    if (m.close) toast('Katse got it — but check the spelling: ' + m.expected);
+    const dock = document.getElementById('chat-dock'); if (dock) dock.innerHTML = '';
+    setTimeout(()=>{ if (chat) chatEnter(m.accept.next || user.next); }, 350);
+  } else {
+    chat.misses++;
+    // real course Setswana doing real work — then the question again (spec §2 fallback)
+    const fb = {tsw: 'Ga ke tlhaloganye.', eng: "I don't understand.", audio: 'items/u1l7-05.mp3', src: 'peace-corps-L6'};
+    const again = chat.lastLines.length ? [chat.lastLines[chat.lastLines.length - 1]] : [];
+    chatKatseLines([fb].concat(again), ()=>{
+      if (!chat) return;
+      if (chat.misses >= 2){
+        const log = document.getElementById('chat-log');
+        if (log){
+          const d = document.createElement('div'); d.className = 'chat-hint';
+          d.textContent = '🐾 ' + (user.hint || 'Try one of the chips below.');
+          log.appendChild(d); chatScroll();
+        }
+      }
+      chatDock(user);   // re-render — after the 2nd miss the pool narrows to answer words only
+    });
+  }
+}
+
+/* Her turn to ask (spec §2 ask-menu) — optional, each question asked at most once. */
+function chatAskMenu(node){
+  if (!chat) return;
+  chat.busy = false;
+  const dock = document.getElementById('chat-dock'); if (!dock) return;
+  dock.innerHTML = `<p class="muted" style="margin:4px 0">Your turn — ask Katse something, or carry on.</p>
+    ${node.ask.map((a, i)=>`<button class="cask" data-i="${i}">${esc(a.q.tsw)} <span class="tiny">${esc(a.q.eng)}</span></button>`).join('')}
+    <button class="btn ghost" id="c-cont" style="width:100%; margin-top:4px">Continue ▸</button>`;
+  dock.querySelectorAll('.cask').forEach(b=>{
+    b.onclick = ()=>{
+      if (b.disabled) return;
+      b.disabled = true; b.style.opacity = .45;
+      const a = node.ask[parseInt(b.dataset.i, 10)];
+      chatBubble('me', {tsw: a.q.tsw});
+      chat.turns++;
+      addXP(2, 'chat');
+      chatKatseLines(a.reply, ()=>{});
+    };
+  });
+  document.getElementById('c-cont').onclick = ()=>{ dock.innerHTML = ''; chatEnter(node.next); };
+}
+
+function chatFinish(){
+  if (!chat) return;
+  chat.busy = false;
+  const st = chatStoreGet();
+  const first = !st.done[chat.sc.id];
+  st.done[chat.sc.id] = true; chatStoreSet(st);
+  addXP(10, 'chat-done');
+  const dock = document.getElementById('chat-dock'); if (!dock) return;
+  dock.innerHTML = `<div class="center" style="padding:8px 0">
+    <p style="margin:6px 0"><b>${first ? 'First chat complete!' : 'Chat complete!'}</b> +10 XP ⭐</p>
+    <div class="row">
+      <button class="btn ghost" id="c-again" style="flex:1">Chat again</button>
+      <button class="btn primary" id="c-home" style="flex:1">Home</button>
+    </div></div>`;
+  document.getElementById('c-again').onclick = ()=>startChat(chat.sc);
+  document.getElementById('c-home').onclick = ()=>{ chat = null; screenHome(); };
 }
 
 async function screenLeaderboard(){
