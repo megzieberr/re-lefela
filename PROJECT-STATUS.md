@@ -1,6 +1,12 @@
 ﻿# Re:Lefela — Project Status
 
-**Updated:** 2026-07-17 (session 22 — "Ask your tutor" feature SHIPPED as sw **v24**: Megan-only 💬
+**Updated:** 2026-07-18 (session 23 — a research-driven feature + an audio wave, SHIPPED as sw
+**v25** then **v26**: the new **dictation card** ("type what you hear", gated on audio + reps≥3),
+and **20 cards voiced from Megan's own recordings** — all 11 u4l3 numbers + 9 of 10 u5l1 animals.
+Also: three free Setswana corpora pulled onto disk + `autshumato-lookup.py`, ★ Numbers/★ Food added
+to the tagger, ★ Animals fixed to show its real cards, a 🎧 ear-check panel, a public-repo gitignore
+leak closed, and `missing-audio.md` now script-generated) · previous: 2026-07-17 (session 22 —
+"Ask your tutor" feature SHIPPED as sw **v24**: Megan-only 💬
 floating button parks a mid-app question straight into a new `tutor_questions` table for her SECL121
 tutor to see first thing next session; seeded with her real "where do I use wena" question from
 today) · previous: release wave — sessions 18-21 SHIPPED as sw **v23**: Units 3-5 complete + mid-Katse
@@ -14,6 +20,119 @@ drop + 65-clip wiring wave v21, L11 finale + export scope fix v22 — ALL SHIPPE
 card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14
 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button
 (sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 23 (2026-07-18) — research → dictation card (sw v25) + own-voice audio wave (sw v26)
+Megan had claude.ai produce two research reports (evidence-based solo language learning; free
+authoritative Setswana resources) and asked what was worth adopting. Verdict: the app already
+implemented most of the learning-science recommendations independently — SM2 spacing, the
+recognition→production gradient (`typeTsw`/`record` gated at reps≥3), concord chunks, audio on
+every card, and the Bible-register caution she'd already ruled on for `u5l4`. Genuinely new: a
+dictation exercise, and a conversational-register corpus to complement the Bible.
+- **NEW `dictate` card type (sw v25, SHIPPED).** Hear the native clip, type the Setswana, no target
+  text in the DOM before grading. Joins the tier-2 auto-draw pool via `pickAutoType` alongside
+  `typeTsw` — so it requires **audio AND reps≥3**, i.e. per **her explicit ruling** it can only
+  appear after the word has already been drilled through tap/choose spelling exposure. Reuses the
+  type-card machinery verbatim (one-shot `checked` flag, `answerMatches` + Levenshtein close
+  tolerance, Enter with `preventDefault`, `grade()` for XP/SRS/reveal) and the `listen` card's
+  no-spoiler markup; Katse plays the clip via the non-spoiling `katseSay('🎵 …')` branch. 22 lines
+  in `index.html`; `grade`/`srsGrade`/`hookPlay`/`answerMatches`/`runRecap` untouched. Verified by
+  500-draw gate tests (never drawn at reps=2 or on a silent item), correct/wrong/close paths, the
+  double-fire guard, and 375×812 clearance against Katse and the 💬 fab.
+- **Corpora on disk** (all in gitignored `corpus/`, ~77 MB): **Autshumato** EN–TSW parallel corpus
+  (CC BY 2.5 ZA — 3 registers × aligned `.tn`/`.en` files, 159 000 line-aligned pairs), **NCHLT
+  Setswana text corpus** (lexicon + 12 406-word frequency list + NER lists), and the **PanSALB
+  orthography booklet** (51-page PDF; the "site blocks automated fetching" warning proved wrong,
+  no manual download needed — but it carries no explicit reuse licence, so it's marked
+  internal-reference-only). **Marothodi/PuoData deliberately NOT taken** — it mixes GPT-generated
+  synthetic Setswana, which collides with the no-invented-Setswana rule.
+  New **`toolkit/autshumato-lookup.py`**: grep a word, get aligned sentence pairs — the
+  conversational-register sibling of the Bible parallel-chapter gloss trick. Test-driven on
+  **wena** (her parked tutor question) and it returned exactly the everyday usage the Bible corpus
+  can't show. Frequency sanity check: her vocab ranks high (thata #64, metsi #91, batla #129,
+  sekolo #197, dijo #205 of 12 406).
+- **20 cards voiced from her own recordings (sw v26, SHIPPED).** She recorded `Numbers.mp3` and
+  tagged both it and the existing `Animals.mp3`. Wired all 11 `u4l3` numbers (lefela…lesome) and
+  9 of 10 `u5l1` animals. **`u5l1-01 phologolo` has no clip — its segment was junked while
+  tagging**, so it stays silent (only remaining animal gap).
+  - Her download `relefela-audio-mapping-round2 (15).json` was **NOT adopted wholesale** — it is a
+    partial snapshot again (91 item-tags vs 137 across the committed files, 73 missing), the
+    documented regression pattern. Only the two native lessons were lifted, into a new own-file
+    **`toolkit/audio-mapping-session23.json`** (sorts last, wins; committed files untouched).
+  - ⚠️ **Landmine caught:** the download also carried 7 tags on lesson `"90"` / `nchlt-words.mp3`
+    (`u1l5-01/02`, `u2l1-01/05/06/10`, `u2l2-01`) — leftovers of the reverted NCHLT experiment in
+    her tagger localStorage. All 7 cards already carry her own enhanced native recordings, wired
+    directly and therefore *externally managed*. Adopting those tags would have made them
+    mapping-managed and re-cut them from an NCHLT source, **overwriting her voice**. Excluded and
+    documented in the mapping file's `note` so a future session can't re-adopt them.
+  - **Export clean:** 203 → 223 files, **0 existing bytes changed, 0 deleted, exactly 20 new**
+    (md5 of every clip before/after) — so `AUDIO_CACHE relefela-audio-v1` correctly NOT bumped.
+    content.js: 231 refs / 223 unique files, 0 orphans, 0 missing, 0 duplicate ids.
+  - **`export-item-audio.py` fix:** forced utf-8 stdout. The `★` in the native lesson keys reaches
+    the progress log through each job's `origin` label and killed the run under cp1252 **mid-export
+    — after cutting clips, before writing content.js**. Same guard `slice-lessons.py` already had.
+- **Tagger (local-only, gitignored) gained three things:**
+  1. **★ Numbers (native)** — `Numbers.mp3` slices to 11 segments, 1:1 with the 11 number cards.
+  2. **★ Animals fixed.** It was returning `[]` for candidates behind a comment reading "content.js
+     has NO animal items yet" — **stale since Unit 5 was built in session 21**. It was falling back
+     to showing corpus word *suggestions* (kudu, leopard, bear) she was never recording. Now shows
+     the real 10 `u5l1` cards as bubbles; the suggestion pool survives **collapsed** as a fallback
+     for a segment with no card. (This was her complaint, and she was right.)
+  3. **★ Food (native)** — her food recording, laid out Peace-Corps-style (Setswana word, then its
+     English translation), so 32 segments for 10 cards: tag the Setswana, junk the English, 7
+     merged segments are splittable. Gaps measure 0.36–0.84 s, only just over `MIN_SILENCE`.
+     **Thresholds deliberately NOT retuned** — that would renumber every Peace Corps lesson's
+     segments and invalidate every committed tag. Verified after re-slicing: **all 1 187 existing
+     tags still align, 0 misaligned.**
+  4. **🎧 Ear-check panel** — plays exported `audio/items/*.mp3` clips with ✓/✗ verdicts in their
+     own localStorage key, writes no tags, and prints the ✗ ids to report back. Used immediately:
+     **she confirmed all 14 session-19 splices 100% correct** (closes the long-standing
+     ear-confirm item, including the `Reetsa` / `didimala` question — resolved in Reetsa's favour).
+     Now repointed at the 20 new own-voice clips.
+- ⚠️ **A wrong call I made, corrected in-session — worth remembering as method.** I measured a
+  single "gap" in each file and reported Numbers as clean (−91 dB) and Animals as music-laden
+  (−29 dB), repeating the older sessions' claim. Both halves were wrong: the −91 dB reading was the
+  file's silent lead-in, not a real inter-word gap. Measuring **every** gap, plus a **control** on
+  the Peace Corps lessons we already ship, gave: Peace Corps **−18 to −21 dB**, Animals **−30 dB**,
+  Numbers **−29 dB** — i.e. her recordings are ~10 dB *quieter* between words than the professional
+  audio already in the app. **Megan then confirmed by ear: "Animals have no music, it's 100%."**
+  The long-standing "Animals.mp3 carries background music" blocker was therefore false and is
+  retired. Lesson: measure every gap and always measure a known-good control before declaring a
+  defect.
+- **`.gitignore` leak closed.** `missing audio/Raw/` and `Enhanced/` were ignored but **loose mp3s
+  dropped straight into `missing audio/` were not** — her own voice recordings (Animals since
+  2026-07-17, then Numbers and Food) were untracked but committable into a PUBLIC repo. Added
+  `missing audio/*.mp3` and `tagger.html.bak-*`; all verified ignored.
+- **`toolkit/missing-audio.md` is now script-generated** by new **`toolkit/missing-audio.py`**
+  (was hand-maintained, so it drifted). Two lists: **76 silent** cards, and **64 flagged for
+  re-recording** by a native speaker — yesterday's enhance-bot batch, which she judged poor quality
+  on 2026-07-18 (staying wired meanwhile; this is an upgrade, not a gap), plus **8 reuse cards**
+  that inherit those clips for free. The 64 are identified **structurally** — voiced but named by
+  no tag in any mapping file = wired by hand = that batch — not from a hand-kept list. The doc
+  flags that re-recording overwrites existing filenames and so **will** need `AUDIO_CACHE` bumped,
+  unlike a new-files-only export. Two generator bugs were found by validating against the app's own
+  `RL_CONTENT` and fixed: naive brace-matching dropped all 57 items carrying a nested `concordSlot`
+  (the whole u3 paradigm among them), and rule cards counted as silent because they carry
+  `tsw: ''` (empty, not absent — the app filters on truthiness, so the generator now does too).
+  Output verified equal to the app: **307 items, 76 silent, 8 reuse**.
+- **Commits:** `023a0bd` (dictation + autshumato-lookup, sw v25) · `f73093e` (Numbers slicing +
+  gitignore fix) · `dbbeaed` (20 voiced cards, sw v26) · `aa971db` (Food slicing +
+  missing-audio generator). All pushed; live verified serving `relefela-v26` with the new clips
+  fetching 200.
+
+## Next up (agreed 2026-07-18, end of session 23)
+1. **Tag ★ Food in the tagger** (pending item -9) → hand over the download → lift only the new tags
+   into `audio-mapping-session24.json` → export → ship. That voices the 10 `u4l1` food cards.
+   Fold in **`u5l1-01 phologolo`** if she re-records that one word first (pending item -8).
+2. **The 64-card re-record wave, whenever a native speaker is available** —
+   `toolkit/missing-audio.md` §2 is the work list. ⚠️ That wave overwrites existing
+   `audio/items/<id>.mp3` filenames, so unlike every recent export it **WILL** need `AUDIO_CACHE`
+   (`relefela-audio-vN`) bumped in `sw.js`, or phones keep the old clips forever.
+3. **Autshumato is now available for content work** — use `toolkit/autshumato-lookup.py` to verify
+   everyday phrasing when writing new cards, alongside the Bible parallel-chapter trick. Still
+   outstanding regardless: the **Smart Guide** (for `u5l4`'s real maele and any Botswana-variant
+   re-alignment).
+4. Optional/low stakes: ear-check the 20 new own-voice clips (pending -7); the "Ask your tutor"
+   live test (pending -6).
 
 ## Session 22 (2026-07-17, same day) — "Ask your tutor" feature (sw v24, SHIPPED)
 Megan's own ask, same session: she got stuck on "where do I use wena" mid-lesson today and had to
@@ -887,7 +1006,22 @@ and zero XP-farming.
   hides at card 0, resume lands on the correct live card, 0 console errors.
 
 ## Pending on Megan
--6. 2026-07-17 (session 22): **Try the "Ask your tutor" button once on live.** Log in as
+-9. 2026-07-18 (session 23): **★ Food is loaded in the tagger, waiting to be tagged.** Refresh
+   `tagger.html`, pick **★ Food (native)** in the "Redo a whole lesson" picker → the 10 `u4l1`
+   food cards (dijo, nama, borotho, metsi, mashi, mae, namune, merogo, dinawa, letswai) appear as
+   bubbles. The recording is Setswana-word-then-English-translation, so **tag the Setswana and junk
+   the English**; 32 segments for 10 cards, 7 of them splittable (✂ Split) where a pair merged.
+   When done: download the mapping JSON and hand it over — the same lift-only-the-new-tags
+   procedure applies, do NOT adopt the download wholesale.
+-8. 2026-07-18 (session 23): **`u5l1-01 phologolo` still has no clip** — its segment was junked
+   during tagging, so it's the one remaining silent animal. One word to re-record whenever the mic
+   is out; it can then go in with the Food wave.
+-7. 2026-07-18 (session 23): **Optional — ear-check the 20 new own-voice clips.** The 🎧 Ear-check
+   (footer of the tagger) now holds the 11 numbers + 9 animals cut today. They're live already and
+   the music worry is settled, so this is a quality spot-check, not a blocker. Mark any ✗ and the
+   panel prints the ids to report back.
+-6. 2026-07-17 (session 22): **Try the "Ask your tutor" button once on live.** (Still open — not
+   reported done as of 2026-07-18.) Log in as
    `megzieberr` on the live site, tap the 💬 bottom-left, send a throwaway test question, confirm
    it lands in Supabase (`select * from tutor_questions order by created_at desc limit 1`), then
    either leave it for the next SECL121 tutor session to find or delete the test row by hand — your
@@ -897,32 +1031,36 @@ and zero XP-farming.
    `u2l6-10/11.mp3`), NCHLT gym re-filtered to 40 clips (8 in / 8 out). Ships whenever the next
    release wave bumps sw.js (stacks with pending items -3/-4 below — same future ship wave, sw
    stays v22 until then).
-   **31-item recording list** (exact count) for later, all silent, blocked on de-musicking Megan's
-   own `Animals.mp3` first (enhance bot, same as the colours workstream) before any of it can be
-   tagged and wired — canonical list is `toolkit/missing-audio.md` (regenerated 2026-07-17 directly
-   from `content.js`, u5 section), not this paragraph.
+   **SHIPPED since — went live in the session 18-21 release wave as sw v23.**
+   ~~31-item recording list, blocked on de-musicking `Animals.mp3` first.~~ **BLOCKER RETIRED
+   2026-07-18 (session 23): Animals.mp3 has no music** — measured against a Peace Corps control and
+   confirmed by Megan's ear ("Animals have no music, it's 100%"). It was tagged and **9 of its 10
+   cards are now voiced and live**; only `u5l1-01 phologolo` remains (its segment was junked).
+   No enhance-bot pass was needed or done. Canonical remaining list is `toolkit/missing-audio.md`,
+   now regenerated by `toolkit/missing-audio.py` — not this paragraph.
    ⚠️ **Idioms outcome interim-met, not fully met:** `u5l4`'s 5 cards are Biblical figurative
    animal language (verbatim, sourced), explicitly labelled as NOT the module's traditional maele
    — the module's real animal-idiom list needs the Smart Guide (still not obtained, per
    `toolkit/SOURCES.md`). Revisit `u5l4` the moment that list lands.
 -4. 2026-07-17 (session 20): **New Unit 4 "Go ja dijo" — ready but NOT shipped.** u4l1-u4l5 built
    (41 real items + 5 rule cards, 1 reuse card pointing at existing `u2l4-08.mp3`), NCHLT gym
-   re-filtered to 40 clips (20 in / 20 out). Ships whenever the next release wave bumps sw.js
-   (stacks with pending item -3 below — same future ship wave, sw stays v22 until then).
-   **40-item recording list** (exact count — the "~41" earlier in this session's own summary line
-   above was an approximation), all silent, no Peace Corps clip exists for any of them (Megan's own
-   voice, later enhance-and-wire, same pipeline as the u3-part-2 list below). Canonical list is
-   `toolkit/missing-audio.md` (regenerated 2026-07-17 directly from `content.js`, u4 section), not
-   this paragraph.
+   re-filtered to 40 clips (20 in / 20 out).
+   **SHIPPED since — went live in the session 18-21 release wave as sw v23.**
+   Of its recording list: **all 11 `u4l3` numbers are now voiced and live** (2026-07-18), and
+   **`u4l1`'s 10 food words are recorded and loaded in the tagger awaiting tagging** (pending item
+   -9 above). The rest (`u4l2` word formation, `u4l4` counting, `u4l5` conjunctives) are still
+   silent. Canonical list is `toolkit/missing-audio.md`, now regenerated by
+   `toolkit/missing-audio.py` — not this paragraph.
 -3. 2026-07-17 (session 19): **Unit 3 part 2 "Mo sekolong" — ready but NOT shipped.** u3l4-u3l8
    built (41 items + 5 rule cards), 14 clips spliced + wired, NCHLT gym re-filtered to 40 clips.
-   Ships whenever the next release wave bumps sw.js (not done here per the hard constraint —
-   sw.js is untouched this session). Two things for her ear when convenient, low stakes:
-   (a) **One-time ear-confirm of the 14 spliced clips** (session-15-style — same as every prior
-       splice wave): `u3l4-02/03/04/05/07`, `u3l5-01/02/04/05/06/07/08/09/10`. High confidence
-       (durations and, for L12, Megan's own explicit tagger text labels all check out — see the
-       session-19 build entry), but nobody has listened yet.
-   (b) **`Reetsa` (u3l5-01) wiring — confirms itself, but worth a listen anyway.** The build found
+   **SHIPPED since — went live in the session 18-21 release wave as sw v23.** Both ear items below
+   are now CLOSED:
+   (a) ~~**One-time ear-confirm of the 14 spliced clips**: `u3l4-02/03/04/05/07`,
+       `u3l5-01/02/04/05/06/07/08/09/10`.~~ **DONE 2026-07-18 (session 23) — Megan listened to all
+       14 via the new 🎧 Ear-check panel and confirmed: "All 14 of the other audio you gave me are
+       100% correct." No re-splice needed; the session-19 decode is vindicated in full.**
+   (b) ~~**`Reetsa` (u3l5-01) wiring — worth a listen.**~~ **DONE 2026-07-18 — covered by (a);
+       the didimala/reetsa split is confirmed correct.** For the record, the build found
        the committed mapping's own `note` text labels seg44="didimala" and seg46="reetsa" as two
        SEPARATE clips, which resolves the spec's original "might be a didimala/reetsa compound"
        worry in Reetsa's favour — seg46 (1.136s) is wired as a clean standalone "Reetsa" clip,
@@ -1040,6 +1178,37 @@ and zero XP-farming.
    `NATIVE-RECORDINGS-NEEDED.md`, then tag them (new voice) & export.
 
 ## Decisions (append-only)
+- 2026-07-18 (session 23, Megan's rulings on the research reports): **Dictation yes, AI conversation
+  partner NO, interleaving unchanged.** (a) The dictation card must come **after** she has already
+  practised a word's spelling via the tapping/choosing cards — implemented as the existing
+  audio + reps≥3 production gate, so it can never be a learner's first contact with a word.
+  (b) **No AI conversation partner, ever, on current evidence.** She tested a Setswana-speaking bot
+  herself: the rhythm was convincing but, compared against the Peace Corps audio, it mispronounced
+  a lot — "which will be useless to me". This is her own ear independently confirming the research
+  report's low-resource-language warning, and it aligns with the standing no-invented-Setswana rule
+  (an AI partner *generates* unvetted Setswana by definition). (c) Interleaving of confusable
+  concord patterns: leave as is.
+- 2026-07-18 (session 23): **Never declare an audio defect from one measurement without a
+  known-good control.** The "Animals.mp3 carries background music" blocker — carried in this file
+  and in memory since session 21, and repeated by me this session off a single sampled gap — was
+  **false**. Measuring every inter-word gap AND controlling against the Peace Corps lessons already
+  shipping showed Peace Corps at −18…−21 dB versus her recordings at −29…−31 dB, i.e. hers are
+  ~10 dB quieter between words. Megan confirmed by ear ("Animals have no music, it's 100%").
+  The de-musicking precondition on the u5 recording list is **retired**. Standing method: measure
+  every gap, and always measure something known-good for comparison before calling something broken.
+- 2026-07-18 (session 23): **A tagger download is only ever a source of NEW tags, never a
+  replacement mapping** — now three times running. Download (15) carried 91 item-tags against 137
+  across the committed files. Procedure that is now standard: diff the download against the union
+  of all committed mappings, lift ONLY the genuinely-new tags into a fresh own-file
+  `audio-mapping-sessionNN.json`, and inspect every "new" tag for provenance before adopting it.
+  This session that inspection caught 7 tags pointing at the reverted NCHLT experiment's
+  `nchlt-words.mp3` which would have overwritten her own voice on 7 live cards.
+- 2026-07-18 (session 23): **Generated lists beat hand-maintained ones, and must be validated
+  against `RL_CONTENT`.** `missing-audio.md` is now emitted by `toolkit/missing-audio.py`.
+  Validating its output against what the app actually loads caught two silent parser bugs that a
+  plausible-looking hand-check would have missed (nested `concordSlot` objects breaking brace
+  matching; rule cards carrying `tsw: ''` rather than no tsw). Any future content-derived report
+  should be checked the same way — against the app's own parsed data, not against itself.
 - 2026-07-17 (session 21, supervisor ruling): **Unit 5's idioms outcome is interim-met with
   Biblical figurative language, not traditional maele — pending the Smart Guide's own idiom list.**
   The corpus has zero traditional Setswana idioms (maele/diane) with glosses anywhere (confirmed
@@ -1179,6 +1348,29 @@ and zero XP-farming.
   isolated vocab. NCHLT stays only for the Listening gym (whole sentences).
 
 ## Gotchas learned
+- **Never call an audio file defective off one sampled gap, and always measure a known-good
+  control.** (2026-07-18) A single reading at the head of `Numbers.mp3` hit its silent lead-in
+  (−91 dB) and a single reading in `Animals.mp3` hit a real gap (−29 dB), producing the exactly
+  backwards conclusion that one was clean and the other music-laden. Measuring EVERY inter-word gap
+  plus a control on the Peace Corps lessons already shipping settled it: PC −18…−21 dB, her
+  recordings −29…−31 dB, i.e. hers are quieter. Recipe:
+  `ffmpeg -i f.mp3 -ss <gapStart> -t <len> -af volumedetect -f null -` over each gap from
+  `segments.json`. Note `-v error` SUPPRESSES volumedetect's output — leave it off.
+- **Content.js parsers must brace-match and must be validated against `RL_CONTENT`.** (2026-07-18)
+  A `\{[^{}]*id:...[^{}]*\}` regex silently drops every item containing a nested `concordSlot`
+  object — 57 items, the whole u3 paradigm included — and looks perfectly healthy while doing it.
+  Rule cards also carry `tsw: ''` (empty string, not a missing field), so `if not match` counts
+  them as real silent cards; the app filters with `.filter(i => i.tsw)`, so mirror that. Both bugs
+  were invisible until the output was diffed against what the app itself loads.
+- **`export-item-audio.py` / `slice-lessons.py` need utf-8 stdout on Windows.** The `★` in the
+  native lesson keys reaches the log through each job's `origin` label; under cp1252 the export
+  dies **after cutting clips but before writing content.js**, leaving files on disk unwired. Both
+  scripts now force it — don't remove.
+- **Changing the slicer's silence thresholds renumbers every lesson's segments and invalidates
+  every committed tag.** (2026-07-18) Tempting when a new recording has tight gaps (Food's are
+  0.36–0.84 s, barely over `MIN_SILENCE`). Don't: use the tagger's ✂ Split/⤵ Join instead. After
+  any re-slice, verify with a containment check that existing tags still sit inside their segments
+  — 1 187 tags checked, 0 misaligned, is what a safe re-slice looks like.
 - **`#katse-corner` is TWO different cats.** Both `mountKatseCorner()` (small, bottom-right of drill
   cards, class `katse-corner`) and `mountKatseMid()` (big, centred above Continue, class `katse-mid`)
   mount with `id="katse-corner"`. Only the CLASS tells them apart — so `document.getElementById(
