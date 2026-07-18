@@ -406,16 +406,16 @@ const RL_CONTENT = {
           id: 'u4l1', title: 'Dijo', blurb: 'Food on the table — the words you\'ll eat with every day.',
           items: [
             { id: 'u4l1-00', kind: 'rule', tsw: '', eng: '', src: 'grammar-toolkit', rule: 'Food words spread across the noun classes you already know. dijo (food) is a class-8/10 word — it only comes in the "plural" shape, like the English word "groceries". Borrowed foods sit in class 9 and just add di- for more than one: namune → dinamune (oranges). And some, like metsi (water) and mashi (milk), are mass words with no plural at all. dijo itself is built FROM the verb go ja — eating makes "food". More on word-building next lesson.' },
-            { id: 'u4l1-01', kind: 'word', tsw: 'dijo', eng: 'food', src: 'peace-corps-L14', note: 'Only ever "plural" in shape, like "groceries". Built from go ja, to eat.' },
+            { id: 'u4l1-01', audio: 'items/u4l1-01.mp3', kind: 'word', tsw: 'dijo', eng: 'food', src: 'peace-corps-L14', note: 'Only ever "plural" in shape, like "groceries". Built from go ja, to eat.' },
             { id: 'u4l1-02', kind: 'word', tsw: 'nama', eng: 'meat', src: 'peace-corps-L14', cls: 9, note: 'You met it in Ke rata nama thata — I like meat a lot.' },
-            { id: 'u4l1-03', kind: 'word', tsw: 'borotho', eng: 'bread', src: 'peace-corps-L14', cls: 9, note: 'A borrowed word (from Afrikaans "brood").' },
-            { id: 'u4l1-04', kind: 'word', tsw: 'metsi', eng: 'water', src: 'peace-corps-L14', note: 'A mass word — no singular. Always metsi.' },
-            { id: 'u4l1-05', kind: 'word', tsw: 'mashi', eng: 'milk', src: 'peace-corps-L14', note: 'Also a mass word.' },
-            { id: 'u4l1-06', kind: 'word', tsw: 'mae', eng: 'eggs', src: 'peace-corps-L14', cls: 6, note: 'One egg = lee (class 5); mae = the plural.' },
-            { id: 'u4l1-07', kind: 'word', tsw: 'namune', eng: 'orange', src: 'peace-corps-L14', cls: 9, plural: 'dinamune' },
+            { id: 'u4l1-03', audio: 'items/u4l1-03.mp3', kind: 'word', tsw: 'borotho', eng: 'bread', src: 'peace-corps-L14', cls: 9, note: 'A borrowed word (from Afrikaans "brood").' },
+            { id: 'u4l1-04', audio: 'items/u4l1-04.mp3', kind: 'word', tsw: 'metsi', eng: 'water', src: 'peace-corps-L14', note: 'A mass word — no singular. Always metsi.' },
+            { id: 'u4l1-05', audio: 'items/u4l1-05.mp3', kind: 'word', tsw: 'mashi', eng: 'milk', src: 'peace-corps-L14', note: 'Also a mass word.' },
+            { id: 'u4l1-06', audio: 'items/u4l1-06.mp3', kind: 'word', tsw: 'mae', eng: 'eggs', src: 'peace-corps-L14', cls: 6, note: 'One egg = lee (class 5); mae = the plural.' },
+            { id: 'u4l1-07', audio: 'items/u4l1-07.mp3', kind: 'word', tsw: 'namune', eng: 'orange', src: 'peace-corps-L14', cls: 9, plural: 'dinamune' },
             { id: 'u4l1-08', kind: 'word', tsw: 'merogo', eng: 'vegetables', src: 'peace-corps-L14', cls: 4, note: 'One vegetable = morogo (mo-); merogo (me-) = vegetables.' },
-            { id: 'u4l1-09', kind: 'word', tsw: 'dinawa', eng: 'beans', src: 'peace-corps-L14', cls: 10, note: 'One bean = nawa; dinawa = beans.' },
-            { id: 'u4l1-10', kind: 'word', tsw: 'letswai', eng: 'salt', src: 'peace-corps-L14', cls: 5 }
+            { id: 'u4l1-09', audio: 'items/u4l1-09.mp3', kind: 'word', tsw: 'dinawa', eng: 'beans', src: 'peace-corps-L14', cls: 10, note: 'One bean = nawa; dinawa = beans.' },
+            { id: 'u4l1-10', audio: 'items/u4l1-10.mp3', kind: 'word', tsw: 'letswai', eng: 'salt', src: 'peace-corps-L14', cls: 5 }
           ]
         },
         {

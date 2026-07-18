@@ -1,0 +1,102 @@
+{
+ "version": 2,
+ "app": "re-lefela",
+ "tool": "hand-authored from tagger download (16)",
+ "round": "session24",
+ "note": "Session 24 (2026-07-18). Own-file supersede, session-16/17/18/19/23 pattern: sorts LAST so its tags win, and the committed round2/session16-19/23 files stay untouched.\nSource: Megan's tagger download \"relefela-audio-mapping-round2 (16).json\", filtered to the ★ Food native lesson ONLY. That download is a PARTIAL snapshot again (99 item-tags vs 157 across the committed files, i.e. 73 missing) — the documented regression pattern — so it must never be used as round2.json.\nDELIBERATELY EXCLUDED, SECOND TIME: the same 7 tags on lesson \"90\" / nchlt-words.mp3 (u1l5-01, u1l5-02, u2l1-01, u2l1-05, u2l1-06, u2l1-10, u2l2-01) that session 23 excluded. Stale leftovers of the reverted NCHLT experiment still sitting in her tagger localStorage; they reappear in every download. All 7 cards already carry Megan's own enhanced native recordings (wired directly in the session-17 wave, externally managed); tagging them here would make them mapping-managed and re-cut them from an NCHLT source, OVERWRITING HER VOICE. Never adopt them.\nFood: 8 of 10 u4l1 cards wired. u4l1-02 (nama, meat) and u4l1-08 (merogo, vegetables) carry NO tag anywhere in the Food recording — all 35 segments are accounted for as 8 items + 27 junk — so they stay silent and appear on the missing-audio list.",
+ "files": {
+  "★ Food (native)": "Food.mp3"
+ },
+ "tags": [
+  {
+   "lesson": "★ Food (native)",
+   "file": "Food.mp3",
+   "seg": 2,
+   "start": 3.331,
+   "end": 4.332,
+   "action": "item",
+   "itemId": "u4l1-01",
+   "tsw": "dijo",
+   "retag": true
+  },
+  {
+   "lesson": "★ Food (native)",
+   "file": "Food.mp3",
+   "seg": 8,
+   "start": 14.459,
+   "end": 15.997,
+   "action": "item",
+   "itemId": "u4l1-10",
+   "tsw": "letswai",
+   "retag": true
+  },
+  {
+   "lesson": "★ Food (native)",
+   "file": "Food.mp3",
+   "seg": 9,
+   "start": 17.233,
+   "end": 18.378,
+   "action": "item",
+   "itemId": "u4l1-04",
+   "tsw": "metsi",
+   "retag": true
+  },
+  {
+   "lesson": "★ Food (native)",
+   "file": "Food.mp3",
+   "seg": 10,
+   "start": 19.668,
+   "end": 20.85,
+   "action": "item",
+   "itemId": "u4l1-05",
+   "tsw": "mashi",
+   "retag": true
+  },
+  {
+   "lesson": "★ Food (native)",
+   "file": "Food.mp3",
+   "seg": 14,
+   "start": 28.073,
+   "end": 29.22,
+   "action": "item",
+   "itemId": "u4l1-06",
+   "tsw": "mae",
+   "retag": true
+  },
+  {
+   "lesson": "★ Food (native)",
+   "file": "Food.mp3",
+   "seg": 15,
+   "sub": 1,
+   "start": 30.493,
+   "end": 31.756,
+   "action": "item",
+   "itemId": "u4l1-03",
+   "tsw": "borotho",
+   "retag": true
+  },
+  {
+   "lesson": "★ Food (native)",
+   "file": "Food.mp3",
+   "seg": 26,
+   "start": 48.18,
+   "end": 49.595,
+   "action": "item",
+   "itemId": "u4l1-07",
+   "tsw": "namune",
+   "retag": true
+  },
+  {
+   "lesson": "★ Food (native)",
+   "file": "Food.mp3",
+   "seg": 30,
+   "sub": 1,
+   "start": 56.338,
+   "end": 57.866,
+   "action": "item",
+   "itemId": "u4l1-09",
+   "tsw": "dinawa",
+   "retag": true
+  }
+ ]
+}

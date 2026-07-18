@@ -169,7 +169,12 @@ for mp3 in OUT_DIR.glob('*.mp3'):
     if mp3.stem not in removed:
         removed.append(mp3.stem)
 
-CONTENT.write_text(src_js, encoding='utf-8')
+# newline='\n' is REQUIRED, not cosmetic. write_text() defaults to newline=None, which on
+# Windows translates every '\n' to '\r\n' — silently rewriting the WHOLE of content.js to
+# CRLF (606/606 lines, caught session 24). core.autocrlf=true hides it from `git diff`, so
+# it looks like a clean 8-line diff while the file on disk flips convention. Same class of
+# bug as the session-20 PowerShell Set-Content BOM/CRLF incident. content.js is LF-only.
+CONTENT.write_text(src_js, encoding='utf-8', newline='\n')
 print(f'\n{len(jobs)} clips exported; audio: added to {len(added)} items'
       + (f', {len(already)} already wired' if already else '')
       + (f'; REMOVED stale audio from {len(removed)}: {", ".join(sorted(removed))}' if removed else ''))
