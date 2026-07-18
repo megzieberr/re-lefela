@@ -104,7 +104,7 @@ the session produced the hand-over document for that.
   `pdftoppm` either, so the .docx was verified structurally — 159 + 133 table rows, all 132 items
   and ids present, numbering 1–132, Notes column empty, `š` intact — not by rendering it.)
 - **Commits:** `f5e4711` (8 food cards + CRLF fix + regenerated list, sw v27) · `c06e82e`
-  (recording sheet + list + gitignore) · `<docx commit>`. All pushed; live verified.
+  (recording sheet + list + gitignore) · `46a58f7` (editable .docx copy). All pushed; live verified.
 
 ## Next up (agreed 2026-07-18, end of session 24)
 1. **Hand `toolkit/recording-sheet.pdf` to the native speaker** and wait for the audio. Pending
