@@ -93,8 +93,18 @@ the session produced the hand-over document for that.
     headings read the same and looked like a bug (unit title dropped from the heading). Verified all
     132 items, all 132 appendix ids, and both `š` glyphs render. `recording-sheet.tex` is
     gitignored (regenerable build artifact); the PDF is committed because it gets handed over.
+- **Word copy added on request.** `recording-sheet.py` now emits **`recording-sheet.docx`** as well,
+  from the same `rows()` in the same run, so the two documents cannot drift from each other or from
+  content.js. Real Word styles (`Title`, `Heading 1`, `List Bullet`, `Table Grid`) so she gets the
+  Navigation pane and can restyle in one go. ⚠️ **Once she edits it, the no-drift guarantee ends:**
+  adding, removing or reordering words breaks the numbering that `recording-list.json` and the
+  appendix depend on, and tagging would mis-map. The appendix note in the doc says so; if she edits,
+  regenerate the mapping from her edited list rather than trusting the committed JSON.
+  (`docx` npm was unavailable in this environment; built with **python-docx**. No LibreOffice or
+  `pdftoppm` either, so the .docx was verified structurally — 159 + 133 table rows, all 132 items
+  and ids present, numbering 1–132, Notes column empty, `š` intact — not by rendering it.)
 - **Commits:** `f5e4711` (8 food cards + CRLF fix + regenerated list, sw v27) · `c06e82e`
-  (recording sheet + list + gitignore). Both pushed; live verified.
+  (recording sheet + list + gitignore) · `<docx commit>`. All pushed; live verified.
 
 ## Next up (agreed 2026-07-18, end of session 24)
 1. **Hand `toolkit/recording-sheet.pdf` to the native speaker** and wait for the audio. Pending
@@ -1112,9 +1122,10 @@ and zero XP-farming.
    2026-07-18 (session 24) — tagged, lifted into `audio-mapping-session24.json`, exported and
    shipped as sw v27. 8 of the 10 cards voiced.** `u4l1-02` (nama) and `u4l1-08` (merogo) were
    never tagged — all 35 Food segments are 8 items + 27 junk — so they stay silent and are on the
-   recording sheet (items 90–91). **Worth one look in the tagger first:** if those two words ARE in
-   the Food recording and were simply junked, that's a cheap re-tag instead of a re-record.
-   Original instructions kept below for the record.
+   recording sheet (items 90–91). **CONFIRMED by Megan 2026-07-18: nama and merogo are simply not
+   in the Food recording** — so this is not a mis-tag and there is nothing to recover in the tagger;
+   they are genuine gaps and the native speaker records them like any other missing word. Question
+   closed. Original instructions kept below for the record.
    2026-07-18 (session 23): **★ Food is loaded in the tagger, waiting to be tagged.** Refresh
    `tagger.html`, pick **★ Food (native)** in the "Redo a whole lesson" picker → the 10 `u4l1`
    food cards (dijo, nama, borotho, metsi, mashi, mae, namune, merogo, dinawa, letswai) appear as
