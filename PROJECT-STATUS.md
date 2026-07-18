@@ -1,6 +1,10 @@
 ﻿# Re:Lefela — Project Status
 
-**Updated:** 2026-07-18 (session 23 — a research-driven feature + an audio wave, SHIPPED as sw
+**Updated:** 2026-07-18 (session 24 — the ★ Food wiring wave, SHIPPED as sw **v27**: 8 of the 10
+`u4l1` food cards voiced from Megan's own Food recording, a whole-file CRLF bug in
+`export-item-audio.py` caught and fixed, `missing-audio.md` regenerated at 68 silent, and — now
+that she has found a native speaker — a printable **132-word recording sheet** generated straight
+from content.js) · previous: 2026-07-18 (session 23 — a research-driven feature + an audio wave, SHIPPED as sw
 **v25** then **v26**: the new **dictation card** ("type what you hear", gated on audio + reps≥3),
 and **20 cards voiced from Megan's own recordings** — all 11 u4l3 numbers + 9 of 10 u5l1 animals.
 Also: three free Setswana corpora pulled onto disk + `autshumato-lookup.py`, ★ Numbers/★ Food added
@@ -20,6 +24,88 @@ drop + 65-clip wiring wave v21, L11 finale + export scope fix v22 — ALL SHIPPE
 card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14
 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button
 (sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 24 (2026-07-18, same day) — ★ Food wired (sw v27, SHIPPED) + native-speaker recording sheet
+The session-23 "Next up" item 1, executed: Megan tagged ★ Food in the tagger and handed over the
+download. Then, mid-session, she found someone willing to record the rest — so the second half of
+the session produced the hand-over document for that.
+- **8 of the 10 `u4l1` food cards voiced (sw v27, SHIPPED)** — `dijo`, `borotho`, `metsi`, `mashi`,
+  `mae`, `namune`, `dinawa`, `letswai`. `u4l1` now builds **9 `listen` cards** where it previously
+  had none (listen cards only exist for voiced items), verified via `buildExercises` in preview.
+  - Her download `relefela-audio-mapping-round2 (16).json` was **NOT adopted wholesale** — partial
+    snapshot again (**99 item-tags vs 157** across the committed files, 73 missing), the documented
+    regression pattern, now four downloads running. Only the 8 ★ Food tags were lifted, into a new
+    own-file **`toolkit/audio-mapping-session24.json`** (sorts last, wins; committed files untouched).
+  - ⚠️ **The NCHLT landmine reappeared and was excluded a SECOND time.** The same 7 tags on lesson
+    `"90"` / `nchlt-words.mp3` (`u1l5-01/02`, `u2l1-01/05/06/10`, `u2l2-01`) that session 23 caught
+    are still in her tagger's localStorage and will keep coming back in **every** future download.
+    Those 7 cards carry her own enhanced recordings (externally managed); adopting the tags would
+    make them mapping-managed and re-cut them from an NCHLT source, **overwriting her voice**.
+    Documented again in the new mapping file's `note`. Treat this as permanent: check lesson `"90"`
+    on every download.
+  - **`u4l1-02` (nama) and `u4l1-08` (merogo) carry no tag anywhere** in the Food recording — all 35
+    segments are accounted for as 8 items + 27 junk — so they stay silent and went onto the
+    recording sheet. Worth one look in the tagger before the speaker records them: if they ARE in
+    the recording, that's a cheap re-tag rather than a re-record.
+  - **Export clean:** 223 → 231 files, **0 existing bytes changed, 0 deleted, exactly 8 new** (md5
+    of every clip before/after), so `AUDIO_CACHE relefela-audio-v1` correctly NOT bumped. 239 refs /
+    231 unique files, 0 orphans, 0 missing, 0 duplicate ids across 412 ids.
+  - **Verified in preview** (`?local=1`, SW unregistered + caches cleared): all 8 fetch 200, mono,
+    decode; durations match the tag ranges to the millisecond (`u4l1-01` 3.331→4.332 = 1.001s), all
+    1.00–1.54s, well under the 5.2s Katse ceiling. 0 console errors, no test state persisted.
+    **Live-verified after push:** `sw.js` serving `relefela-v27`, `AUDIO_CACHE` still
+    `relefela-audio-v1`, all 8 clips 200 at byte sizes matching local, content.js serving all 8 refs.
+- ⚠️ **BUG FOUND AND FIXED — `export-item-audio.py` was rewriting ALL of content.js to CRLF.**
+  `Path.write_text()` defaults to `newline=None`, which on Windows translates every `\n` to `\r\n`
+  — so a run that changed 8 lines silently flipped **606 of 606 lines** to CRLF, against the file's
+  LF-only convention. **`core.autocrlf=true` hid it completely**: `git diff` showed a clean 8-line
+  diff. This is the same class as the session-20 PowerShell `Set-Content` BOM/CRLF incident, which
+  is why it was checked for at all. Fixed with `newline='\n'` plus a comment explaining why it is
+  not cosmetic; file normalised and the export re-run to confirm the fix holds and is idempotent.
+  ⚠️ **Method note:** Git Bash `grep`/`tr` **strip CR bytes** and will report the file as clean when
+  it is not. Only a **binary** read (`open(...,'rb').read().count(b'\r')`) tells the truth.
+- **`toolkit/missing-audio.md` regenerated:** **68 silent** (was 76), **64** flagged for
+  re-recording, **8** reuse cards free. Cross-checked against the app's own `RL_CONTENT` via Node:
+  **307 real items / 68 silent / 8 reuse — exact match**, so the generator has not drifted.
+- **NEW `toolkit/recording-sheet.py` → `recording-sheet.pdf` + `recording-list.json`.** A
+  hand-to-the-speaker PDF built from content.js, so the sheet cannot drift from the app. Scope is
+  the same data `missing-audio.py` reports, merged into ONE continuous reading order: **68 silent +
+  64 re-record = 132**. The 8 reuse cards are excluded on purpose (they play another card's clip and
+  are fixed for free when the source is re-recorded). 9 pages: a plain-English brief, recording
+  instructions, the numbered list grouped by lesson (Setswana / English / empty **Notes** column),
+  and a Megan-only appendix mapping recording number → card id, marked `new` vs `redo`.
+  - **The instructions are derived from `slice-lessons.py`'s REAL thresholds** (`NOISE_DB -30dB`,
+    `MIN_SILENCE 0.35s`, `MIN_SEG 0.4s`), not generic advice. Her own recordings measured **−29 to
+    −31 dB between words — right at the detection threshold**, which is precisely why Food.mp3
+    produced merged segments needing ✂ Split. So the sheet leads with **a quiet room mattering more
+    than a good mic** and asks for a **~2 second pause**. It also asks for **Setswana only** (reading
+    the English aloud is what turned Food's 10 words into 35 segments, mostly junk), **no silent
+    corrections** (use the Notes column — otherwise clip and card disagree, violating the session-13
+    never-wire-a-mismatched-clip rule), and **no skipping** (the numbering is what maps segments back
+    to cards; say the number aloud instead).
+  - **`recording-list.json`** is the same 132 items in recording order with card ids — the exact
+    shape the tagger's `SYNTH_*_IDS` list needs, so the bubbles can be seeded in order rather than
+    matched by hand when the audio lands.
+  - **Two rendering defects found by actually inspecting the rendered PDF, not trusting the build:**
+    `p{}` columns top-align on each column's own first baseline, and since the Setswana column is
+    11pt while `#`/English are `\small`, the three cells of one row visibly sat on different lines
+    (→ `m{}`); and every Unit-1 lesson displayed the unit title "Go dumedisa!", so four consecutive
+    headings read the same and looked like a bug (unit title dropped from the heading). Verified all
+    132 items, all 132 appendix ids, and both `š` glyphs render. `recording-sheet.tex` is
+    gitignored (regenerable build artifact); the PDF is committed because it gets handed over.
+- **Commits:** `f5e4711` (8 food cards + CRLF fix + regenerated list, sw v27) · `c06e82e`
+  (recording sheet + list + gitignore). Both pushed; live verified.
+
+## Next up (agreed 2026-07-18, end of session 24)
+1. **Hand `toolkit/recording-sheet.pdf` to the native speaker** and wait for the audio. Pending
+   items -11 and -10 below carry the wiring procedure for when it arrives.
+2. ⚠️ **That wave is the exception to the audio-cache rule.** 64 of the 132 overwrite existing
+   `audio/items/<id>.mp3` filenames, so the export **WILL** change existing bytes and **WILL** need
+   `AUDIO_CACHE` (`relefela-audio-vN`) bumped in `sw.js` — every recent wave has been new-files-only,
+   where bumping it would have been wrong. Miss this and phones keep the old clips forever.
+3. **Still outstanding regardless of audio:** the **Smart Guide** (for `u5l4`'s real maele and any
+   Botswana-variant re-alignment) — see `toolkit/SOURCES.md`. `toolkit/autshumato-lookup.py` is
+   available for verifying everyday phrasing when writing new cards.
 
 ## Session 23 (2026-07-18) — research → dictation card (sw v25) + own-voice audio wave (sw v26)
 Megan had claude.ai produce two research reports (evidence-based solo language learning; free
@@ -1006,7 +1092,30 @@ and zero XP-farming.
   hides at card 0, resume lands on the correct live card, 0 console errors.
 
 ## Pending on Megan
--9. 2026-07-18 (session 23): **★ Food is loaded in the tagger, waiting to be tagged.** Refresh
+-11. 2026-07-18 (session 24): **Hand `toolkit/recording-sheet.pdf` to the native speaker.** 132
+   words, one long recording, ~10–15 minutes. The sheet already explains the quiet room, the ~2s
+   pause, Setswana-only, no-skipping and the Notes column, so it needs no covering explanation.
+   **Read her Notes column when it comes back** — anything she flags as wrong wording or a wrong
+   English gloss is a content fix, and per the session-13 rule the card must be corrected rather
+   than the clip wired to a mismatched card.
+-10. 2026-07-18 (session 24): **When that audio arrives — the wiring procedure.** Drop the mp3 into
+   `missing audio/` (gitignored) **and** `corpus/audio/`; run `slice-lessons.py` (do NOT retune its
+   thresholds — that renumbers every lesson and invalidates all 1 187 committed tags); add a ★
+   lesson to `tagger.html` seeded from **`toolkit/recording-list.json`**, which is already in
+   recording order with card ids; tag; lift only the new tags into `audio-mapping-session25.json`;
+   export with md5 before/after.
+   ⚠️ **This is the wave that DOES need `AUDIO_CACHE` bumped** (`relefela-audio-v1` → `v2`): 64 of
+   the 132 overwrite existing `audio/items/<id>.mp3` filenames, so existing bytes change. Every
+   recent wave was new-files-only, where bumping would have been wrong — do not pattern-match off
+   those. The md5 check decides it, as always.
+-9. ~~2026-07-18 (session 23): **★ Food is loaded in the tagger, waiting to be tagged.**~~ **DONE
+   2026-07-18 (session 24) — tagged, lifted into `audio-mapping-session24.json`, exported and
+   shipped as sw v27. 8 of the 10 cards voiced.** `u4l1-02` (nama) and `u4l1-08` (merogo) were
+   never tagged — all 35 Food segments are 8 items + 27 junk — so they stay silent and are on the
+   recording sheet (items 90–91). **Worth one look in the tagger first:** if those two words ARE in
+   the Food recording and were simply junked, that's a cheap re-tag instead of a re-record.
+   Original instructions kept below for the record.
+   2026-07-18 (session 23): **★ Food is loaded in the tagger, waiting to be tagged.** Refresh
    `tagger.html`, pick **★ Food (native)** in the "Redo a whole lesson" picker → the 10 `u4l1`
    food cards (dijo, nama, borotho, metsi, mashi, mae, namune, merogo, dinawa, letswai) appear as
    bubbles. The recording is Setswana-word-then-English-translation, so **tag the Setswana and junk
@@ -1014,8 +1123,9 @@ and zero XP-farming.
    When done: download the mapping JSON and hand it over — the same lift-only-the-new-tags
    procedure applies, do NOT adopt the download wholesale.
 -8. 2026-07-18 (session 23): **`u5l1-01 phologolo` still has no clip** — its segment was junked
-   during tagging, so it's the one remaining silent animal. One word to re-record whenever the mic
-   is out; it can then go in with the Food wave.
+   during tagging, so it's the one remaining silent animal. **Superseded 2026-07-18 (session 24):
+   no longer needs a separate re-record — it is item 111 on `recording-sheet.pdf`** and will be
+   covered by the native-speaker wave along with everything else.
 -7. 2026-07-18 (session 23): **Optional — ear-check the 20 new own-voice clips.** The 🎧 Ear-check
    (footer of the tagger) now holds the 11 numbers + 9 animals cut today. They're live already and
    the music worry is settled, so this is a quality spot-check, not a blocker. Mark any ✗ and the
@@ -1203,6 +1313,29 @@ and zero XP-farming.
   `audio-mapping-sessionNN.json`, and inspect every "new" tag for provenance before adopting it.
   This session that inspection caught 7 tags pointing at the reverted NCHLT experiment's
   `nchlt-words.mp3` which would have overwritten her own voice on 7 live cards.
+- 2026-07-18 (session 24): **The stale lesson-`"90"` NCHLT tags are permanent residents of her
+  tagger's localStorage — check for them on EVERY download, forever.** They appeared in (15) and
+  again in (16), identical 7 tags on `u1l5-01/02`, `u2l1-01/05/06/10`, `u2l2-01`. Adopting them
+  would re-cut those cards from an NCHLT source and overwrite her own enhanced recordings. There is
+  no way to clear them from here (the tagger is local-only and gitignored), so the check is the
+  control. This generalises the session-23 provenance rule from "inspect new tags" to "there is a
+  specific known-bad set, and it will be in the next download too".
+- 2026-07-18 (session 24): **Any script that rewrites `content.js` must pass `newline='\n'`, and
+  CR bytes must be checked with a BINARY read.** `Path.write_text()` defaults to `newline=None`,
+  which on Windows silently converts the whole file to CRLF — 606 of 606 lines, from a run that
+  changed 8. `core.autocrlf=true` masks it entirely in `git diff`, and Git Bash `grep`/`tr` strip
+  CR bytes and will report the file clean when it is not. Only `open(...,'rb').read().count(b'\r')`
+  tells the truth. Second occurrence of this class after the session-20 PowerShell `Set-Content`
+  BOM/CRLF incident, so it is now guarded in code with a comment saying why.
+- 2026-07-18 (session 24): **Documents handed to other people are generated from content.js too,
+  and their instructions must come from the real thresholds.** `recording-sheet.pdf` is built by
+  `toolkit/recording-sheet.py` from the same data `missing-audio.py` reports, so it cannot drift
+  from the app; and its recording guidance (quiet room, ~2s pause, Setswana only) is derived from
+  `slice-lessons.py`'s actual `-30dB` / `0.35s` / `0.4s` values plus the measured fact that her own
+  recordings sit at −29…−31 dB between words. Generic "speak clearly" advice would not have
+  prevented the merged segments Food.mp3 produced. Corollary: **inspect the rendered PDF, not just
+  the build exit code** — two layout defects (mis-aligned `p{}` baselines, a repeated unit title
+  reading like a bug) were invisible in a successful compile.
 - 2026-07-18 (session 23): **Generated lists beat hand-maintained ones, and must be validated
   against `RL_CONTENT`.** `missing-audio.md` is now emitted by `toolkit/missing-audio.py`.
   Validating its output against what the app actually loads caught two silent parser bugs that a
