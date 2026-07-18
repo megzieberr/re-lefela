@@ -52,6 +52,14 @@ LESSONS = {
     # (u4l3-01..11, all silent until tagged). Verified clean before adding — the gaps
     # measure -91dB (digital silence), i.e. no background music, unlike Animals.mp3.
     '★ Numbers (native)': 'Numbers.mp3',
+    # ★ Food (native) added 2026-07-18: Megan's own recording for the 10 u4l1 food cards.
+    # Unlike Animals/Numbers this one is laid out like the Peace Corps lessons — Setswana
+    # word, then its English translation — so it yields ~2 segments per card and the English
+    # ones get junked while tagging. Its inter-word silences measure 0.36-0.84s, i.e. only
+    # just above MIN_SILENCE; anything that comes out merged is fixable with the tagger's
+    # Split button. Do NOT lower the global thresholds to suit it: they would renumber every
+    # Peace Corps lesson's segments and invalidate every committed tag.
+    '★ Food (native)': 'Food.mp3',
 }
 
 NOISE_DB = '-30dB'
