@@ -18,6 +18,16 @@ parser.add_argument('--allow-unwire', action='store_true',
                      help='allow this run to un-wire currently-live items (dangerous; normally refused)')
 args = parser.parse_args()
 
+# Windows console defaults to cp1252, which can't encode the '*' in the native-recording
+# lesson keys ('* Animals (native)' / '* Numbers (native)') that reach the progress log via
+# each job's origin label. Without this the run dies mid-export — AFTER cutting clips but
+# BEFORE content.js is written — leaving clips on disk unwired. Same guard slice-lessons.py
+# has carried since the native lessons were introduced. (2026-07-18, session 23)
+try:
+    sys.stdout.reconfigure(encoding='utf-8')
+except Exception:
+    pass
+
 ROOT = Path(__file__).resolve().parent.parent
 # round 1 (unit1) first, then later rounds alphabetically — tags later in the list win
 MAPPINGS = sorted(Path(__file__).resolve().parent.glob('audio-mapping-*.json'),

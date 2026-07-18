@@ -434,17 +434,17 @@ const RL_CONTENT = {
           id: 'u4l3', title: 'Go bala', blurb: 'Counting from zero to ten — starting with the app\'s own name.',
           items: [
             { id: 'u4l3-00', kind: 'rule', tsw: '', eng: '', src: 'grammar-toolkit', rule: 'Here are the numbers one to ten — and zero, lefela, which you have known all along: Re:Lefela means "we are at zero". Two clean patterns hide in the list: robedi (8) is "ro-bedi", a fold onto two, and robongwe (9) is "ro-bongwe", a fold onto one — a hand folding its last fingers down. lesome is a full ten. Next lesson you\'ll count actual things, where the number grows a little agreement piece in front.' },
-            { id: 'u4l3-01', kind: 'word', tsw: 'lefela', eng: 'zero', src: 'grammar-toolkit', note: 'The app\'s name: Re:Lefela = "we are (at) zero" — everyone starts here.' },
-            { id: 'u4l3-02', kind: 'word', tsw: 'nngwe', eng: 'one', src: 'beibele', note: 'You\'ll hear it as "e le nngwe" — a single one — when counting things.' },
-            { id: 'u4l3-03', kind: 'word', tsw: 'pedi', eng: 'two', src: 'pc-comp-grammar-ch2' },
-            { id: 'u4l3-04', kind: 'word', tsw: 'tharo', eng: 'three', src: 'pc-comp-grammar-ch2' },
-            { id: 'u4l3-05', kind: 'word', tsw: 'nne', eng: 'four', src: 'pc-comp-grammar-ch2' },
-            { id: 'u4l3-06', kind: 'word', tsw: 'tlhano', eng: 'five', src: 'pc-comp-grammar-ch2' },
-            { id: 'u4l3-07', kind: 'word', tsw: 'thataro', eng: 'six', src: 'pc-comp-grammar-ch2' },
-            { id: 'u4l3-08', kind: 'word', tsw: 'supa', eng: 'seven', src: 'pc-comp-grammar-ch2', note: 'Same word as "point at" — you point out seven.' },
-            { id: 'u4l3-09', kind: 'word', tsw: 'robedi', eng: 'eight', src: 'beibele', note: 'ro-bedi: a fold onto two.' },
-            { id: 'u4l3-10', kind: 'word', tsw: 'robongwe', eng: 'nine', src: 'beibele', note: 'ro-bongwe: a fold onto one — the last finger.' },
-            { id: 'u4l3-11', kind: 'word', tsw: 'lesome', eng: 'ten', src: 'beibele' }
+            { id: 'u4l3-01', audio: 'items/u4l3-01.mp3', kind: 'word', tsw: 'lefela', eng: 'zero', src: 'grammar-toolkit', note: 'The app\'s name: Re:Lefela = "we are (at) zero" — everyone starts here.' },
+            { id: 'u4l3-02', audio: 'items/u4l3-02.mp3', kind: 'word', tsw: 'nngwe', eng: 'one', src: 'beibele', note: 'You\'ll hear it as "e le nngwe" — a single one — when counting things.' },
+            { id: 'u4l3-03', audio: 'items/u4l3-03.mp3', kind: 'word', tsw: 'pedi', eng: 'two', src: 'pc-comp-grammar-ch2' },
+            { id: 'u4l3-04', audio: 'items/u4l3-04.mp3', kind: 'word', tsw: 'tharo', eng: 'three', src: 'pc-comp-grammar-ch2' },
+            { id: 'u4l3-05', audio: 'items/u4l3-05.mp3', kind: 'word', tsw: 'nne', eng: 'four', src: 'pc-comp-grammar-ch2' },
+            { id: 'u4l3-06', audio: 'items/u4l3-06.mp3', kind: 'word', tsw: 'tlhano', eng: 'five', src: 'pc-comp-grammar-ch2' },
+            { id: 'u4l3-07', audio: 'items/u4l3-07.mp3', kind: 'word', tsw: 'thataro', eng: 'six', src: 'pc-comp-grammar-ch2' },
+            { id: 'u4l3-08', audio: 'items/u4l3-08.mp3', kind: 'word', tsw: 'supa', eng: 'seven', src: 'pc-comp-grammar-ch2', note: 'Same word as "point at" — you point out seven.' },
+            { id: 'u4l3-09', audio: 'items/u4l3-09.mp3', kind: 'word', tsw: 'robedi', eng: 'eight', src: 'beibele', note: 'ro-bedi: a fold onto two.' },
+            { id: 'u4l3-10', audio: 'items/u4l3-10.mp3', kind: 'word', tsw: 'robongwe', eng: 'nine', src: 'beibele', note: 'ro-bongwe: a fold onto one — the last finger.' },
+            { id: 'u4l3-11', audio: 'items/u4l3-11.mp3', kind: 'word', tsw: 'lesome', eng: 'ten', src: 'beibele' }
           ]
         },
         {
@@ -485,15 +485,15 @@ const RL_CONTENT = {
           items: [
             { id: 'u5l1-00', kind: 'rule', tsw: '', eng: '', src: 'grammar-toolkit', rule: 'Almost every animal name is a class 9/10 word — the same class you met in Unit 1 for "animals and borrowed words". That means the singular has no visible prefix and the plural just adds di-: kgomo → dikgomo (cattle), nku → dinku (sheep), podi → dipodi (goats). This is the tidiest plural in Setswana — one rule covers the whole farmyard. The umbrella word for them all is phologolo (an animal) → diphologolo, which is the name of this unit.' },
             { id: 'u5l1-01', kind: 'word', tsw: 'phologolo', eng: 'animal', src: 'beibele', cls: 9, plural: 'diphologolo', note: 'diphologolo (animals) is the unit\'s name. 52× in the Setswana Bible.' },
-            { id: 'u5l1-02', kind: 'word', tsw: 'kgomo', eng: 'cow / ox', src: 'pc-comp-grammar-ch2', cls: 9, plural: 'dikgomo', note: 'The grammar book\'s favourite example animal. You already met the plural, dikgomo, in Unit 2.' },
-            { id: 'u5l1-03', kind: 'word', tsw: 'nku', eng: 'sheep', src: 'beibele', cls: 9, plural: 'dinku', note: 'Same shape singular and plural stem: nku → dinku. From the shepherd verses (Matthew 25).' },
-            { id: 'u5l1-04', kind: 'word', tsw: 'podi', eng: 'goat', src: 'beibele', cls: 9, plural: 'dipodi', note: 'Sheep and goats together: dinku le dipodi (Matthew 25). The Bible itself spells it dipudi; podi/dipodi is the standard SA-Setswana form used here.' },
-            { id: 'u5l1-05', kind: 'word', tsw: 'koko', eng: 'chicken / hen', src: 'beibele', cls: 9, plural: 'dikoko', note: 'The hen that gathers her chicks — Matthew 23.' },
-            { id: 'u5l1-06', kind: 'word', tsw: 'kolobe', eng: 'pig', src: 'beibele', cls: 9, plural: 'dikolobe', note: 'From "don\'t throw pearls before the pigs" — Matthew 7.' },
-            { id: 'u5l1-07', kind: 'word', tsw: 'pitse', eng: 'horse', src: 'beibele', cls: 9, plural: 'dipitse', note: 'You met it dressed in colours in Unit 2: pitse e tshweu (a white horse).' },
-            { id: 'u5l1-08', kind: 'word', tsw: 'tonki', eng: 'donkey', src: 'beibele', cls: 9, plural: 'ditonki', note: 'A borrowed word (from "donkey"). The one Jesus rode into Jerusalem — Matthew 21. Older word: esele.' },
-            { id: 'u5l1-09', kind: 'word', tsw: 'katse', eng: 'cat', src: 'app-mascot', cls: 9, plural: 'dikatse', note: 'You know one already — Katse, the app\'s own cat and mascot. A real word (Otlogetswe rhyming dictionary), not yet Bible-attested.' },
-            { id: 'u5l1-10', kind: 'word', tsw: 'ntša', eng: 'dog', src: 'beibele', cls: 9, plural: 'dintša', note: 'The dogs that licked the beggar\'s sores — Luke 16. The Bible itself spells it dintsa (no caron); ntša/dintša is the standard SA-Setswana form used here.' }
+            { id: 'u5l1-02', audio: 'items/u5l1-02.mp3', kind: 'word', tsw: 'kgomo', eng: 'cow / ox', src: 'pc-comp-grammar-ch2', cls: 9, plural: 'dikgomo', note: 'The grammar book\'s favourite example animal. You already met the plural, dikgomo, in Unit 2.' },
+            { id: 'u5l1-03', audio: 'items/u5l1-03.mp3', kind: 'word', tsw: 'nku', eng: 'sheep', src: 'beibele', cls: 9, plural: 'dinku', note: 'Same shape singular and plural stem: nku → dinku. From the shepherd verses (Matthew 25).' },
+            { id: 'u5l1-04', audio: 'items/u5l1-04.mp3', kind: 'word', tsw: 'podi', eng: 'goat', src: 'beibele', cls: 9, plural: 'dipodi', note: 'Sheep and goats together: dinku le dipodi (Matthew 25). The Bible itself spells it dipudi; podi/dipodi is the standard SA-Setswana form used here.' },
+            { id: 'u5l1-05', audio: 'items/u5l1-05.mp3', kind: 'word', tsw: 'koko', eng: 'chicken / hen', src: 'beibele', cls: 9, plural: 'dikoko', note: 'The hen that gathers her chicks — Matthew 23.' },
+            { id: 'u5l1-06', audio: 'items/u5l1-06.mp3', kind: 'word', tsw: 'kolobe', eng: 'pig', src: 'beibele', cls: 9, plural: 'dikolobe', note: 'From "don\'t throw pearls before the pigs" — Matthew 7.' },
+            { id: 'u5l1-07', audio: 'items/u5l1-07.mp3', kind: 'word', tsw: 'pitse', eng: 'horse', src: 'beibele', cls: 9, plural: 'dipitse', note: 'You met it dressed in colours in Unit 2: pitse e tshweu (a white horse).' },
+            { id: 'u5l1-08', audio: 'items/u5l1-08.mp3', kind: 'word', tsw: 'tonki', eng: 'donkey', src: 'beibele', cls: 9, plural: 'ditonki', note: 'A borrowed word (from "donkey"). The one Jesus rode into Jerusalem — Matthew 21. Older word: esele.' },
+            { id: 'u5l1-09', audio: 'items/u5l1-09.mp3', kind: 'word', tsw: 'katse', eng: 'cat', src: 'app-mascot', cls: 9, plural: 'dikatse', note: 'You know one already — Katse, the app\'s own cat and mascot. A real word (Otlogetswe rhyming dictionary), not yet Bible-attested.' },
+            { id: 'u5l1-10', audio: 'items/u5l1-10.mp3', kind: 'word', tsw: 'ntša', eng: 'dog', src: 'beibele', cls: 9, plural: 'dintša', note: 'The dogs that licked the beggar\'s sores — Luke 16. The Bible itself spells it dintsa (no caron); ntša/dintša is the standard SA-Setswana form used here.' }
           ]
         },
         {

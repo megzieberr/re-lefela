@@ -1,0 +1,244 @@
+{
+ "version": 2,
+ "app": "re-lefela",
+ "tool": "hand-authored from tagger download (15)",
+ "round": "session23",
+ "note": "Session 23 (2026-07-18). Own-file supersede, session-16/17/18/19 pattern: sorts LAST so its tags win, and the committed round2/session16-19 files stay untouched.\nSource: Megan tagger download \"relefela-audio-mapping-round2 (15).json\", filtered to the two native word lessons ONLY. That download is a PARTIAL snapshot (91 item-tags vs 137 across the committed files, i.e. 73 missing) — the documented regression pattern — so it must never be used as round2.json.\nDELIBERATELY EXCLUDED: 7 tags on lesson \"90\" / nchlt-words.mp3 (u1l5-01, u1l5-02, u2l1-01, u2l1-05, u2l1-06, u2l1-10, u2l2-01) — stale leftovers of the reverted NCHLT experiment still in her tagger localStorage. All 7 cards already carry Megan own enhanced native recordings (wired directly in the session-17 wave, externally managed); tagging them here would have made them mapping-managed and re-cut them from an NCHLT source, overwriting her voice.\nAnimals: 9 of 10 wired — u5l1-01 phologolo has NO clip (its segment, seg 7, was junked). Numbers: all 11 wired, segments 0-10 in card order.",
+ "files": {
+  "★ Animals (native)": "Animals.mp3",
+  "★ Numbers (native)": "Numbers.mp3"
+ },
+ "tags": [
+  {
+   "lesson": "★ Animals (native)",
+   "file": "Animals.mp3",
+   "seg": 0,
+   "start": 1.17,
+   "end": 1.993,
+   "action": "item",
+   "itemId": "u5l1-05",
+   "tsw": "koko",
+   "retag": true
+  },
+  {
+   "lesson": "★ Animals (native)",
+   "file": "Animals.mp3",
+   "seg": 1,
+   "start": 3.126,
+   "end": 3.815,
+   "action": "item",
+   "itemId": "u5l1-10",
+   "tsw": "ntša",
+   "retag": true
+  },
+  {
+   "lesson": "★ Animals (native)",
+   "file": "Animals.mp3",
+   "seg": 2,
+   "start": 4.957,
+   "end": 5.764,
+   "action": "item",
+   "itemId": "u5l1-02",
+   "tsw": "kgomo",
+   "retag": true
+  },
+  {
+   "lesson": "★ Animals (native)",
+   "file": "Animals.mp3",
+   "seg": 3,
+   "start": 6.786,
+   "end": 7.585,
+   "action": "item",
+   "itemId": "u5l1-09",
+   "tsw": "katse",
+   "retag": true
+  },
+  {
+   "lesson": "★ Animals (native)",
+   "file": "Animals.mp3",
+   "seg": 4,
+   "start": 8.83,
+   "end": 9.71,
+   "action": "item",
+   "itemId": "u5l1-06",
+   "tsw": "kolobe",
+   "retag": true
+  },
+  {
+   "lesson": "★ Animals (native)",
+   "file": "Animals.mp3",
+   "seg": 5,
+   "start": 10.773,
+   "end": 11.719,
+   "action": "item",
+   "itemId": "u5l1-07",
+   "tsw": "pitse",
+   "retag": true
+  },
+  {
+   "lesson": "★ Animals (native)",
+   "file": "Animals.mp3",
+   "seg": 6,
+   "start": 13.031,
+   "end": 13.844,
+   "action": "item",
+   "itemId": "u5l1-03",
+   "tsw": "nku",
+   "retag": true
+  },
+  {
+   "lesson": "★ Animals (native)",
+   "file": "Animals.mp3",
+   "seg": 7,
+   "start": 14.658,
+   "end": 15.665,
+   "action": "junk",
+   "itemId": null,
+   "tsw": null,
+   "retag": true
+  },
+  {
+   "lesson": "★ Animals (native)",
+   "file": "Animals.mp3",
+   "seg": 8,
+   "start": 16.893,
+   "end": 17.535,
+   "action": "item",
+   "itemId": "u5l1-04",
+   "tsw": "podi",
+   "retag": true
+  },
+  {
+   "lesson": "★ Animals (native)",
+   "file": "Animals.mp3",
+   "seg": 9,
+   "start": 18.821,
+   "end": 19.567,
+   "action": "item",
+   "itemId": "u5l1-08",
+   "tsw": "tonki",
+   "retag": true
+  },
+  {
+   "lesson": "★ Numbers (native)",
+   "file": "Numbers.mp3",
+   "seg": 0,
+   "start": 3.047,
+   "end": 3.963,
+   "action": "item",
+   "itemId": "u4l3-01",
+   "tsw": "lefela",
+   "retag": true
+  },
+  {
+   "lesson": "★ Numbers (native)",
+   "file": "Numbers.mp3",
+   "seg": 1,
+   "start": 5.287,
+   "end": 6.145,
+   "action": "item",
+   "itemId": "u4l3-02",
+   "tsw": "nngwe",
+   "retag": true
+  },
+  {
+   "lesson": "★ Numbers (native)",
+   "file": "Numbers.mp3",
+   "seg": 2,
+   "start": 7.433,
+   "end": 8.169,
+   "action": "item",
+   "itemId": "u4l3-03",
+   "tsw": "pedi",
+   "retag": true
+  },
+  {
+   "lesson": "★ Numbers (native)",
+   "file": "Numbers.mp3",
+   "seg": 3,
+   "start": 9.8,
+   "end": 10.568,
+   "action": "item",
+   "itemId": "u4l3-04",
+   "tsw": "tharo",
+   "retag": true
+  },
+  {
+   "lesson": "★ Numbers (native)",
+   "file": "Numbers.mp3",
+   "seg": 4,
+   "start": 11.891,
+   "end": 12.616,
+   "action": "item",
+   "itemId": "u4l3-05",
+   "tsw": "nne",
+   "retag": true
+  },
+  {
+   "lesson": "★ Numbers (native)",
+   "file": "Numbers.mp3",
+   "seg": 5,
+   "start": 13.889,
+   "end": 14.79,
+   "action": "item",
+   "itemId": "u4l3-06",
+   "tsw": "tlhano",
+   "retag": true
+  },
+  {
+   "lesson": "★ Numbers (native)",
+   "file": "Numbers.mp3",
+   "seg": 6,
+   "start": 15.77,
+   "end": 16.572,
+   "action": "item",
+   "itemId": "u4l3-07",
+   "tsw": "thataro",
+   "retag": true
+  },
+  {
+   "lesson": "★ Numbers (native)",
+   "file": "Numbers.mp3",
+   "seg": 7,
+   "start": 17.972,
+   "end": 18.78,
+   "action": "item",
+   "itemId": "u4l3-08",
+   "tsw": "supa",
+   "retag": true
+  },
+  {
+   "lesson": "★ Numbers (native)",
+   "file": "Numbers.mp3",
+   "seg": 8,
+   "start": 19.974,
+   "end": 20.881,
+   "action": "item",
+   "itemId": "u4l3-09",
+   "tsw": "robedi",
+   "retag": true
+  },
+  {
+   "lesson": "★ Numbers (native)",
+   "file": "Numbers.mp3",
+   "seg": 9,
+   "start": 21.774,
+   "end": 22.659,
+   "action": "item",
+   "itemId": "u4l3-10",
+   "tsw": "robongwe",
+   "retag": true
+  },
+  {
+   "lesson": "★ Numbers (native)",
+   "file": "Numbers.mp3",
+   "seg": 10,
+   "start": 23.561,
+   "end": 24.49,
+   "action": "item",
+   "itemId": "u4l3-11",
+   "tsw": "lesome",
+   "retag": true
+  }
+ ]
+}
