@@ -733,10 +733,12 @@ function screenHome(){
   }).join('');
   const gym = (RL_CONTENT.nchlt && RL_CONTENT.nchlt.length >= 4)
     ? `<button class="btn ghost" id="b-gym" style="margin:10px 0">👂 Listening gym — real native voices</button>` : '';
-  // hidden until scenario 1's vocab is learned — no taunting a locked feature (spec §4)
+  // visible once ANY scenario is unlocked; locked ones then show in the picker with their
+  // unlock hint (revised from spec §4's fully-hidden rule — she couldn't find the feature)
   const chatSc = chatOpenScenario();
+  const chatAllDone = chatSc && RL_DIALOGUES.filter(sc=>sc.requires.every(chatLearned)).every(sc=>chatStoreGet().done[sc.id]);
   const chatBtn = chatSc
-    ? `<button class="btn ghost" id="b-chat" style="margin:10px 0">💬 Bua le Katse — chat with her in Setswana${chatStoreGet().done[chatSc.id] ? ' ✓' : ''}</button>` : '';
+    ? `<button class="btn ghost" id="b-chat" style="margin:10px 0">💬 Bua le Katse — chat with her in Setswana${chatAllDone ? ' ✓' : ''}</button>` : '';
   render(`
     <div class="row spread">
       <div class="logo" style="font-size:1.3rem"><span class="re">Re:</span><span class="zero">Lefela</span></div>
@@ -773,7 +775,7 @@ function screenHome(){
   maybeShowRivalryNudge(fallbackGreet);
   const rv = document.getElementById('b-review'); if (rv) rv.onclick = startReview;
   const gy = document.getElementById('b-gym'); if (gy) gy.onclick = startGym;
-  const cb = document.getElementById('b-chat'); if (cb) cb.onclick = ()=>startChat(chatSc);
+  const cb = document.getElementById('b-chat'); if (cb) cb.onclick = screenChatPick;
   document.getElementById('b-lb').onclick = screenLeaderboard;
   document.getElementById('b-me').onclick = screenStats;
 }
@@ -847,6 +849,14 @@ function chatLearned(id){ const s = state.srs[id]; return !!(s && s.reps >= 1); 
 function chatOpenScenario(){
   if (typeof RL_DIALOGUES === 'undefined') return null;
   return RL_DIALOGUES.find(sc => sc.requires.every(chatLearned)) || null;
+}
+// the lesson title blocking a locked scenario — first unlearned `requires` id, its lesson's title
+function chatUnlockHint(sc){
+  const id = (sc.requires || []).find(id => !chatLearned(id));
+  if (!id) return '';
+  for (const u of RL_CONTENT.units) for (const l of u.lessons) for (const it of l.items)
+    if (it.id === id) return l.title;
+  return '';
 }
 function chatScroll(){ const log = document.getElementById('chat-log'); if (log) log.scrollTop = log.scrollHeight; }
 
@@ -1105,6 +1115,28 @@ function chatFinish(){
     </div></div>`;
   document.getElementById('c-again').onclick = ()=>startChat(chat.sc);
   document.getElementById('c-home').onclick = ()=>{ chat = null; screenHome(); };
+}
+
+/* Scenario picker — one card per RL_DIALOGUES entry, locked ones show what unlocks them. */
+function screenChatPick(){
+  currentScreen = 'Chat picker';
+  const st = chatStoreGet();
+  const cards = RL_DIALOGUES.map(sc=>{
+    const unlocked = sc.requires.every(chatLearned);
+    if (unlocked){
+      return `<button class="lesson-node" data-id="${esc(sc.id)}">
+        <div><b>${esc(sc.title)}${st.done[sc.id] ? ' ✓' : ''}</b><br><span class="muted">${esc(sc.subtitle)}</span></div>
+      </button>`;
+    }
+    return `<button class="lesson-node locked" disabled>
+      <div><b>🔒 ${esc(sc.title)}</b><br><span class="muted">Katse needs you to finish "${esc(chatUnlockHint(sc))}" first</span></div>
+    </button>`;
+  }).join('');
+  render(`<div class="topbar"><button class="quit" id="b-back">←</button><h2>💬 Bua le Katse</h2></div>${cards}`);
+  document.getElementById('b-back').onclick = screenHome;
+  document.querySelectorAll('.lesson-node[data-id]').forEach(n=>{
+    n.onclick = ()=> startChat(RL_DIALOGUES.find(sc=>sc.id===n.dataset.id));
+  });
 }
 
 async function screenLeaderboard(){

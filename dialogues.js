@@ -18,6 +18,161 @@
 
 const RL_DIALOGUES = [
   {
+    id: 'chat0',
+    title: 'Le kae?',
+    subtitle: 'A first check-in — hello, who, where. Drills kae → kwa.',
+    // spine: all u1l1–u1l3 cards, so this unlocks long before chat1
+    requires: ['u1l1-02','u1l1-05','u1l1-06','u1l1-07','u1l1-09','u1l1-11','u1l1-12','u1l1-18',
+               'u1l1-19','u1l2-01','u1l2-04','u1l2-05','u1l2-06','u1l2-07','u1l2-10',
+               'u1l3-01','u1l3-03','u1l3-05'],
+    // the stretch here is Katse's own fallback phrase — the one line she uses from a later
+    // lesson (u1l7-05). Phrase-level stretch: the existing regex marks it in her bubble.
+    stretch: [ { word: 'Ga ke tlhaloganye', gloss: "I don't understand", src: 'peace-corps-L6',
+                 fromItem: 'u1l7-05',
+                 note: "Katse's survival phrase — she says it when she didn't follow you. You'll drill it properly in lesson 7, Ga ke itse!" } ],
+    placeChips: ['Potchefstroom', 'Botswana', 'Amerika'],
+    entry: 'greet',
+    nodes: {
+
+      greet: {
+        katse: [ { lines: [ { tsw: 'Dumela mma!', eng: 'Hello!', audio: 'items/u1l1-02.mp3', src: 'peace-corps-L2' } ] } ],
+        user: {
+          accept: [ { kind: 'contains', words: ['dumela'] } ],
+          hint: 'Greet her back — Dumela!',
+          chips: ['Dumela', 'Katse'],
+          next: 'lekae'
+        }
+      },
+
+      lekae: {
+        katse: [ { lines: [ { tsw: 'Le kae?', eng: 'How are you? (informal)', audio: 'items/u1l1-06.mp3', src: 'peace-corps-L2' } ] } ],
+        user: {
+          accept: [
+            { kind: 'item', id: 'u1l1-07' },                          // Ke teng
+            { kind: 'item', id: 'u1l1-20' },                          // Re teng
+            { kind: 'item', id: 'u1l1-16', next: 'lekae-bounce' }     // Re teng, a lona le teng?
+          ],
+          hint: 'Ke teng — I am fine!',
+          next: 'howru'
+        }
+      },
+
+      'lekae-bounce': {
+        katse: [ { lines: [
+          { tsw: 'Ke teng.', eng: 'I am fine.', audio: 'items/u1l1-07.mp3', src: 'peace-corps-L2' },
+          { tsw: 'Ke a leboga!', eng: 'Thank you!', audio: 'items/u1l1-19.mp3', src: 'peace-corps-L2+beibele' }
+        ] } ],
+        next: 'howru'
+      },
+
+      howru: {
+        katse: [ { lines: [ { tsw: 'Wena o tsogile jang?', eng: 'And how are you?', audio: 'items/u1l1-18.mp3', src: 'peace-corps-L2' } ] } ],
+        user: {
+          accept: [
+            { kind: 'item', id: 'u1l1-13', next: 'howru-bounce0' },   // …wena o tsogile jang?
+            { kind: 'item', id: 'u1l1-05' },                          // Ke tsogile sentle
+            { kind: 'item', id: 'u1l1-07' }                           // Ke teng
+          ],
+          hint: 'Ke tsogile sentle — I am well.',
+          next: 'mang'
+        }
+      },
+
+      'howru-bounce0': {
+        katse: [ { lines: [
+          { tsw: 'Ke tsogile sentle.', eng: 'I am well.', audio: 'items/u1l1-05.mp3', src: 'peace-corps-L2' },
+          { tsw: 'Ke itumetse!', eng: 'I am glad!', audio: 'items/u1l1-09.mp3', src: 'peace-corps-L6' }
+        ] } ],
+        next: 'mang'
+      },
+
+      mang: {
+        katse: [ { lines: [ { tsw: 'O mang?', eng: 'Who are you?', audio: 'items/u1l2-04.mp3', src: 'peace-corps-L12' } ] } ],
+        user: {
+          accept: [
+            { kind: 'frame', pattern: 'Leina lame ke {name}', eng: 'My name is …', src: 'peace-corps-L3',
+              note: 'u1l2-01 frame — its own note sanctions the name swap' }
+          ],
+          hint: 'Leina lame ke — then your name.',
+          next: 'ask0'
+        }
+      },
+
+      ask0: {
+        ask: [
+          { q: { tsw: 'Wena o mang?', eng: 'And who are YOU?', src: 'peace-corps-L2+L12',
+                 note: 'wena from the attested u1l1-18 frame + O mang? (u1l2-04) — combined-src convention' },
+            reply: [ { tsw: 'Leina lame ke Katse!', eng: 'My name is Katse!', src: 'peace-corps-L3+app-mascot',
+                       note: 'u1l2-01 name-swap frame; silent — text differs from the clip.' } ] },
+          { q: { tsw: 'O tswa kae?', eng: 'Where are you from?', src: 'peace-corps-L3', itemId: 'u1l2-06' },
+            reply: [ { tsw: 'Ke tswa kwa Botswana.', eng: 'I am from Botswana.', audio: 'items/u1l2-05.mp3', src: 'peace-corps-L3' } ] }
+        ],
+        next: 'wherefrom0'
+      },
+
+      wherefrom0: {
+        katse: [ { lines: [ { tsw: 'Wena o tswa kae?', eng: 'And where are YOU from?', src: 'peace-corps-L2+L3',
+                             note: 'wena (attested u1l1-18 frame) + O tswa kae? (u1l2-06) — combined-src; silent, composed text' } ] } ],
+        user: {
+          accept: [
+            { kind: 'frame', pattern: 'Ke tswa kwa {place}', eng: 'I am from …', src: 'peace-corps-L3',
+              note: 'u1l2-10 frame — "drop in any place"' }
+          ],
+          hint: 'Ke tswa kwa … — kwa points at your place. (kae asks, kwa answers!)',
+          next: 'amerika'
+        }
+      },
+
+      amerika: {
+        katse: [ { lines: [ { tsw: 'A o tswa kwa Amerika?', eng: 'Are you from America?', audio: 'items/u1l2-07.mp3', src: 'peace-corps-L3' } ] } ],
+        user: {
+          accept: [
+            { kind: 'frame', pattern: 'Nnyaa, ke tswa kwa {place}', eng: 'No, I am from …', src: 'peace-corps-L6+L3',
+              note: 'Nnyaa (u1l1-12) + the u1l2-10 place frame — combined-src convention', next: 'wrap-good' },
+            { kind: 'item', id: 'u1l1-12', next: 'wrap-good' },       // Nnyaa
+            { kind: 'item', id: 'u1l1-11', next: 'wrap-ee' }          // Ee — fine, you are American now
+          ],
+          hint: 'Nnyaa! Then: ke tswa kwa …',
+          next: 'wrap-good'
+        }
+      },
+
+      'wrap-good': {
+        katse: [ { lines: [ { tsw: 'Ke itumetse!', eng: 'I am glad!', audio: 'items/u1l1-09.mp3', src: 'peace-corps-L6' } ] } ],
+        next: 'bye0'
+      },
+
+      'wrap-ee': {
+        katse: [ { lines: [ { tsw: 'Go siame!', eng: 'Alright then!', audio: 'items/u1l3-01.mp3', src: 'peace-corps-L4' } ] } ],
+        next: 'bye0'
+      },
+
+      bye0: {
+        katse: [ { lines: [
+          { tsw: 'Ke a leboga!', eng: 'Thank you!', audio: 'items/u1l1-19.mp3', src: 'peace-corps-L2+beibele' },
+          { tsw: 'Tlhola sentle!', eng: 'Have a good day!', audio: 'items/u1l3-05.mp3', src: 'peace-corps-L4' }
+        ] } ],
+        user: {
+          accept: [
+            { kind: 'item', id: 'u1l3-01' },                          // Go siame
+            { kind: 'item', id: 'u1l3-02' },                          // Ke tla go bona
+            { kind: 'item', id: 'u1l3-04' },                          // Ke tla go bona kgantele
+            { kind: 'item', id: 'u1l3-05' },                          // Tlhola sentle
+            { kind: 'item', id: 'u1l3-06' },                          // Robala sentle
+            { kind: 'item', id: 'u1l3-07' }                           // Boroko
+          ],
+          hint: 'Say goodbye — Go siame, or Ke tla go bona!',
+          next: 'end0'
+        }
+      },
+
+      end0: {
+        katse: [ { lines: [ { tsw: 'Ke tla go bona kamoso.', eng: 'See you tomorrow.', audio: 'items/u1l3-03.mp3', src: 'peace-corps-L4' } ] } ],
+        end: true
+      }
+    }
+  },
+  {
     id: 'chat1',
     title: 'Dumela, Katse!',
     subtitle: 'Your first chat — greetings, names, coffee.',
