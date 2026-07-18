@@ -1,0 +1,1322 @@
+[
+ {
+  "n": 1,
+  "id": "u1l1-07",
+  "tsw": "Ke teng",
+  "eng": "I am fine",
+  "unit": "Go dumedisa!",
+  "lesson_id": "u1l1",
+  "lesson": "Dumela!",
+  "kind": "redo"
+ },
+ {
+  "n": 2,
+  "id": "u1l1-08",
+  "tsw": "Re a leboga",
+  "eng": "Thank you (we thank)",
+  "unit": "Go dumedisa!",
+  "lesson_id": "u1l1",
+  "lesson": "Dumela!",
+  "kind": "redo"
+ },
+ {
+  "n": 3,
+  "id": "u1l5-01",
+  "tsw": "motho",
+  "eng": "person",
+  "unit": "Go dumedisa!",
+  "lesson_id": "u1l5",
+  "lesson": "Batho le dilo",
+  "kind": "redo"
+ },
+ {
+  "n": 4,
+  "id": "u1l5-02",
+  "tsw": "batho",
+  "eng": "people",
+  "unit": "Go dumedisa!",
+  "lesson_id": "u1l5",
+  "lesson": "Batho le dilo",
+  "kind": "redo"
+ },
+ {
+  "n": 5,
+  "id": "u1l5-07",
+  "tsw": "leina",
+  "eng": "name",
+  "unit": "Go dumedisa!",
+  "lesson_id": "u1l5",
+  "lesson": "Batho le dilo",
+  "kind": "redo"
+ },
+ {
+  "n": 6,
+  "id": "u1l5-10",
+  "tsw": "lelapa",
+  "eng": "family / home",
+  "unit": "Go dumedisa!",
+  "lesson_id": "u1l5",
+  "lesson": "Batho le dilo",
+  "kind": "redo"
+ },
+ {
+  "n": 7,
+  "id": "u1l6-09",
+  "tsw": "Ke batla kofi",
+  "eng": "I want coffee",
+  "unit": "Go dumedisa!",
+  "lesson_id": "u1l6",
+  "lesson": "Ke a ja!",
+  "kind": "redo"
+ },
+ {
+  "n": 8,
+  "id": "u1l7-06",
+  "tsw": "Nnyaa, ga ke na mathata",
+  "eng": "No, I don't have a problem",
+  "unit": "Go dumedisa!",
+  "lesson_id": "u1l7",
+  "lesson": "Ga ke itse!",
+  "kind": "redo"
+ },
+ {
+  "n": 9,
+  "id": "u1l7-07",
+  "tsw": "Ga ke batle tee",
+  "eng": "I don't want tea",
+  "unit": "Go dumedisa!",
+  "lesson_id": "u1l7",
+  "lesson": "Ga ke itse!",
+  "kind": "redo"
+ },
+ {
+  "n": 10,
+  "id": "u1l7-08",
+  "tsw": "Ga ba bue Sekgoa",
+  "eng": "They don't speak English",
+  "unit": "Go dumedisa!",
+  "lesson_id": "u1l7",
+  "lesson": "Ga ke itse!",
+  "kind": "redo"
+ },
+ {
+  "n": 11,
+  "id": "u2l1-01",
+  "tsw": "mmele",
+  "eng": "body",
+  "unit": "Mmele",
+  "lesson_id": "u2l1",
+  "lesson": "Tlhogo ya me",
+  "kind": "redo"
+ },
+ {
+  "n": 12,
+  "id": "u2l1-02",
+  "tsw": "tlhogo",
+  "eng": "head",
+  "unit": "Mmele",
+  "lesson_id": "u2l1",
+  "lesson": "Tlhogo ya me",
+  "kind": "redo"
+ },
+ {
+  "n": 13,
+  "id": "u2l1-03",
+  "tsw": "sefatlhego",
+  "eng": "face",
+  "unit": "Mmele",
+  "lesson_id": "u2l1",
+  "lesson": "Tlhogo ya me",
+  "kind": "redo"
+ },
+ {
+  "n": 14,
+  "id": "u2l1-04",
+  "tsw": "moriri",
+  "eng": "hair",
+  "unit": "Mmele",
+  "lesson_id": "u2l1",
+  "lesson": "Tlhogo ya me",
+  "kind": "redo"
+ },
+ {
+  "n": 15,
+  "id": "u2l1-05",
+  "tsw": "leitlho",
+  "eng": "eye",
+  "unit": "Mmele",
+  "lesson_id": "u2l1",
+  "lesson": "Tlhogo ya me",
+  "kind": "redo"
+ },
+ {
+  "n": 16,
+  "id": "u2l1-06",
+  "tsw": "tsebe",
+  "eng": "ear",
+  "unit": "Mmele",
+  "lesson_id": "u2l1",
+  "lesson": "Tlhogo ya me",
+  "kind": "redo"
+ },
+ {
+  "n": 17,
+  "id": "u2l1-07",
+  "tsw": "nko",
+  "eng": "nose",
+  "unit": "Mmele",
+  "lesson_id": "u2l1",
+  "lesson": "Tlhogo ya me",
+  "kind": "redo"
+ },
+ {
+  "n": 18,
+  "id": "u2l1-08",
+  "tsw": "molomo",
+  "eng": "mouth",
+  "unit": "Mmele",
+  "lesson_id": "u2l1",
+  "lesson": "Tlhogo ya me",
+  "kind": "redo"
+ },
+ {
+  "n": 19,
+  "id": "u2l1-09",
+  "tsw": "leino",
+  "eng": "tooth",
+  "unit": "Mmele",
+  "lesson_id": "u2l1",
+  "lesson": "Tlhogo ya me",
+  "kind": "redo"
+ },
+ {
+  "n": 20,
+  "id": "u2l1-10",
+  "tsw": "loleme",
+  "eng": "tongue",
+  "unit": "Mmele",
+  "lesson_id": "u2l1",
+  "lesson": "Tlhogo ya me",
+  "kind": "redo"
+ },
+ {
+  "n": 21,
+  "id": "u2l1-11",
+  "tsw": "molala",
+  "eng": "neck",
+  "unit": "Mmele",
+  "lesson_id": "u2l1",
+  "lesson": "Tlhogo ya me",
+  "kind": "redo"
+ },
+ {
+  "n": 22,
+  "id": "u2l2-01",
+  "tsw": "letsogo",
+  "eng": "arm / hand",
+  "unit": "Mmele",
+  "lesson_id": "u2l2",
+  "lesson": "Diatla le dinao",
+  "kind": "redo"
+ },
+ {
+  "n": 23,
+  "id": "u2l2-02",
+  "tsw": "seatla",
+  "eng": "hand",
+  "unit": "Mmele",
+  "lesson_id": "u2l2",
+  "lesson": "Diatla le dinao",
+  "kind": "redo"
+ },
+ {
+  "n": 24,
+  "id": "u2l2-03",
+  "tsw": "monwana",
+  "eng": "finger",
+  "unit": "Mmele",
+  "lesson_id": "u2l2",
+  "lesson": "Diatla le dinao",
+  "kind": "redo"
+ },
+ {
+  "n": 25,
+  "id": "u2l2-04",
+  "tsw": "mpa",
+  "eng": "stomach / belly",
+  "unit": "Mmele",
+  "lesson_id": "u2l2",
+  "lesson": "Diatla le dinao",
+  "kind": "redo"
+ },
+ {
+  "n": 26,
+  "id": "u2l2-05",
+  "tsw": "mala",
+  "eng": "stomach / insides",
+  "unit": "Mmele",
+  "lesson_id": "u2l2",
+  "lesson": "Diatla le dinao",
+  "kind": "redo"
+ },
+ {
+  "n": 27,
+  "id": "u2l2-06",
+  "tsw": "pelo",
+  "eng": "heart",
+  "unit": "Mmele",
+  "lesson_id": "u2l2",
+  "lesson": "Diatla le dinao",
+  "kind": "redo"
+ },
+ {
+  "n": 28,
+  "id": "u2l2-07",
+  "tsw": "leoto",
+  "eng": "leg",
+  "unit": "Mmele",
+  "lesson_id": "u2l2",
+  "lesson": "Diatla le dinao",
+  "kind": "redo"
+ },
+ {
+  "n": 29,
+  "id": "u2l2-08",
+  "tsw": "lonao",
+  "eng": "foot",
+  "unit": "Mmele",
+  "lesson_id": "u2l2",
+  "lesson": "Diatla le dinao",
+  "kind": "redo"
+ },
+ {
+  "n": 30,
+  "id": "u2l4-01",
+  "tsw": "ngaka",
+  "eng": "doctor",
+  "unit": "Mmele",
+  "lesson_id": "u2l4",
+  "lesson": "Ke ngaka!",
+  "kind": "redo"
+ },
+ {
+  "n": 31,
+  "id": "u2l4-02",
+  "tsw": "morutabana",
+  "eng": "teacher",
+  "unit": "Mmele",
+  "lesson_id": "u2l4",
+  "lesson": "Ke ngaka!",
+  "kind": "redo"
+ },
+ {
+  "n": 32,
+  "id": "u2l4-03",
+  "tsw": "Mpho ke ngaka",
+  "eng": "Mpho is a doctor",
+  "unit": "Mmele",
+  "lesson_id": "u2l4",
+  "lesson": "Ke ngaka!",
+  "kind": "redo"
+ },
+ {
+  "n": 33,
+  "id": "u2l4-04",
+  "tsw": "Ke morutabana",
+  "eng": "I am a teacher",
+  "unit": "Mmele",
+  "lesson_id": "u2l4",
+  "lesson": "Ke ngaka!",
+  "kind": "redo"
+ },
+ {
+  "n": 34,
+  "id": "u2l4-05",
+  "tsw": "Ga se ngaka",
+  "eng": "He/she is not a doctor",
+  "unit": "Mmele",
+  "lesson_id": "u2l4",
+  "lesson": "Ke ngaka!",
+  "kind": "redo"
+ },
+ {
+  "n": 35,
+  "id": "u2l4-06",
+  "tsw": "Mpho o mo ntlong",
+  "eng": "Mpho is in the house",
+  "unit": "Mmele",
+  "lesson_id": "u2l4",
+  "lesson": "Ke ngaka!",
+  "kind": "redo"
+ },
+ {
+  "n": 36,
+  "id": "u2l4-07",
+  "tsw": "Le ene ke moithaopi wa Peace Corps",
+  "eng": "He too is a Peace Corps volunteer",
+  "unit": "Mmele",
+  "lesson_id": "u2l4",
+  "lesson": "Ke ngaka!",
+  "kind": "redo"
+ },
+ {
+  "n": 37,
+  "id": "u2l4-08",
+  "tsw": "O na le bana ba le babedi",
+  "eng": "He/she has two children",
+  "unit": "Mmele",
+  "lesson_id": "u2l4",
+  "lesson": "Ke ngaka!",
+  "kind": "redo"
+ },
+ {
+  "n": 38,
+  "id": "u2l5-01",
+  "tsw": "mogolo",
+  "eng": "big / great / elder",
+  "unit": "Mmele",
+  "lesson_id": "u2l5",
+  "lesson": "Mmele o montle",
+  "kind": "redo"
+ },
+ {
+  "n": 39,
+  "id": "u2l5-02",
+  "tsw": "monnye",
+  "eng": "small / young",
+  "unit": "Mmele",
+  "lesson_id": "u2l5",
+  "lesson": "Mmele o montle",
+  "kind": "redo"
+ },
+ {
+  "n": 40,
+  "id": "u2l5-03",
+  "tsw": "moleele",
+  "eng": "tall / long",
+  "unit": "Mmele",
+  "lesson_id": "u2l5",
+  "lesson": "Mmele o montle",
+  "kind": "redo"
+ },
+ {
+  "n": 41,
+  "id": "u2l5-04",
+  "tsw": "khutshwane",
+  "eng": "short",
+  "unit": "Mmele",
+  "lesson_id": "u2l5",
+  "lesson": "Mmele o montle",
+  "kind": "redo"
+ },
+ {
+  "n": 42,
+  "id": "u2l5-05",
+  "tsw": "monate",
+  "eng": "nice / tasty / sweet",
+  "unit": "Mmele",
+  "lesson_id": "u2l5",
+  "lesson": "Mmele o montle",
+  "kind": "redo"
+ },
+ {
+  "n": 43,
+  "id": "u2l5-06",
+  "tsw": "Mpho o montle",
+  "eng": "Mpho is beautiful",
+  "unit": "Mmele",
+  "lesson_id": "u2l5",
+  "lesson": "Mmele o montle",
+  "kind": "redo"
+ },
+ {
+  "n": 44,
+  "id": "u2l5-07",
+  "tsw": "Dikgomo di bogale",
+  "eng": "The cows are fierce",
+  "unit": "Mmele",
+  "lesson_id": "u2l5",
+  "lesson": "Mmele o montle",
+  "kind": "redo"
+ },
+ {
+  "n": 45,
+  "id": "u2l5-08",
+  "tsw": "Dikgomo di dintle",
+  "eng": "The cows are beautiful",
+  "unit": "Mmele",
+  "lesson_id": "u2l5",
+  "lesson": "Mmele o montle",
+  "kind": "redo"
+ },
+ {
+  "n": 46,
+  "id": "u2l5-09",
+  "tsw": "Ke na le dikgomo tse dintle",
+  "eng": "I have beautiful cows",
+  "unit": "Mmele",
+  "lesson_id": "u2l5",
+  "lesson": "Mmele o montle",
+  "kind": "redo"
+ },
+ {
+  "n": 47,
+  "id": "u2l5-11",
+  "tsw": "O opela sentle",
+  "eng": "You sing well",
+  "unit": "Mmele",
+  "lesson_id": "u2l5",
+  "lesson": "Mmele o montle",
+  "kind": "redo"
+ },
+ {
+  "n": 48,
+  "id": "u2l5-12",
+  "tsw": "Ke rata nama thata",
+  "eng": "I like meat a lot",
+  "unit": "Mmele",
+  "lesson_id": "u2l5",
+  "lesson": "Mmele o montle",
+  "kind": "redo"
+ },
+ {
+  "n": 49,
+  "id": "u2l6-01",
+  "tsw": "bontsho",
+  "eng": "black",
+  "unit": "Mmele",
+  "lesson_id": "u2l6",
+  "lesson": "Mebala",
+  "kind": "redo"
+ },
+ {
+  "n": 50,
+  "id": "u2l6-02",
+  "tsw": "bosweu",
+  "eng": "white",
+  "unit": "Mmele",
+  "lesson_id": "u2l6",
+  "lesson": "Mebala",
+  "kind": "redo"
+ },
+ {
+  "n": 51,
+  "id": "u2l6-03",
+  "tsw": "bohibidu",
+  "eng": "red",
+  "unit": "Mmele",
+  "lesson_id": "u2l6",
+  "lesson": "Mebala",
+  "kind": "redo"
+ },
+ {
+  "n": 52,
+  "id": "u2l6-04",
+  "tsw": "botala",
+  "eng": "green / blue",
+  "unit": "Mmele",
+  "lesson_id": "u2l6",
+  "lesson": "Mebala",
+  "kind": "redo"
+ },
+ {
+  "n": 53,
+  "id": "u2l6-05",
+  "tsw": "botala jwa tlhaga",
+  "eng": "green (grass-colour)",
+  "unit": "Mmele",
+  "lesson_id": "u2l6",
+  "lesson": "Mebala",
+  "kind": "redo"
+ },
+ {
+  "n": 54,
+  "id": "u2l6-06",
+  "tsw": "botala jwa legodimo",
+  "eng": "blue (sky-colour)",
+  "unit": "Mmele",
+  "lesson_id": "u2l6",
+  "lesson": "Mebala",
+  "kind": "redo"
+ },
+ {
+  "n": 55,
+  "id": "u2l6-07",
+  "tsw": "bosetlha",
+  "eng": "yellow",
+  "unit": "Mmele",
+  "lesson_id": "u2l6",
+  "lesson": "Mebala",
+  "kind": "redo"
+ },
+ {
+  "n": 56,
+  "id": "u2l6-08",
+  "tsw": "borokwa",
+  "eng": "brown",
+  "unit": "Mmele",
+  "lesson_id": "u2l6",
+  "lesson": "Mebala",
+  "kind": "redo"
+ },
+ {
+  "n": 57,
+  "id": "u2l6-09",
+  "tsw": "selaole",
+  "eng": "purple",
+  "unit": "Mmele",
+  "lesson_id": "u2l6",
+  "lesson": "Mebala",
+  "kind": "redo"
+ },
+ {
+  "n": 58,
+  "id": "u2l6-10",
+  "tsw": "Pitse e tshweu",
+  "eng": "A white horse",
+  "unit": "Mmele",
+  "lesson_id": "u2l6",
+  "lesson": "Mebala",
+  "kind": "redo"
+ },
+ {
+  "n": 59,
+  "id": "u2l6-11",
+  "tsw": "Pitse e ntsho",
+  "eng": "A black horse",
+  "unit": "Mmele",
+  "lesson_id": "u2l6",
+  "lesson": "Mebala",
+  "kind": "redo"
+ },
+ {
+  "n": 60,
+  "id": "u2l6-12",
+  "tsw": "Tlhale e khibidu",
+  "eng": "A red thread",
+  "unit": "Mmele",
+  "lesson_id": "u2l6",
+  "lesson": "Mebala",
+  "kind": "redo"
+ },
+ {
+  "n": 61,
+  "id": "u2l7-08",
+  "tsw": "botlhoko",
+  "eng": "sore / painful",
+  "unit": "Mmele",
+  "lesson_id": "u2l7",
+  "lesson": "Kwa ngakeng",
+  "kind": "redo"
+ },
+ {
+  "n": 62,
+  "id": "u3l1-08",
+  "tsw": "Ga a batle",
+  "eng": "She/he does not want",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l1",
+  "lesson": "Ke a batla",
+  "kind": "redo"
+ },
+ {
+  "n": 63,
+  "id": "u3l2-04",
+  "tsw": "Re ne re batla",
+  "eng": "We wanted",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l2",
+  "lesson": "Ke ne ke batla",
+  "kind": "redo"
+ },
+ {
+  "n": 64,
+  "id": "u3l3-08",
+  "tsw": "Ga a kake a batla",
+  "eng": "She/he will not want",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l3",
+  "lesson": "Ke tla batla",
+  "kind": "redo"
+ },
+ {
+  "n": 65,
+  "id": "u3l4-01",
+  "tsw": "moithuti",
+  "eng": "learner / student",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l4",
+  "lesson": "Mo tlelaseng",
+  "kind": "new"
+ },
+ {
+  "n": 66,
+  "id": "u3l4-06",
+  "tsw": "pensele",
+  "eng": "pencil",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l4",
+  "lesson": "Mo tlelaseng",
+  "kind": "new"
+ },
+ {
+  "n": 67,
+  "id": "u3l6-01",
+  "tsw": "gompieno",
+  "eng": "today",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l6",
+  "lesson": "Maabane le kamoso",
+  "kind": "new"
+ },
+ {
+  "n": 68,
+  "id": "u3l6-02",
+  "tsw": "maabane",
+  "eng": "yesterday",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l6",
+  "lesson": "Maabane le kamoso",
+  "kind": "new"
+ },
+ {
+  "n": 69,
+  "id": "u3l6-03",
+  "tsw": "kamoso",
+  "eng": "tomorrow",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l6",
+  "lesson": "Maabane le kamoso",
+  "kind": "new"
+ },
+ {
+  "n": 70,
+  "id": "u3l6-04",
+  "tsw": "phakela",
+  "eng": "in the morning / early",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l6",
+  "lesson": "Maabane le kamoso",
+  "kind": "new"
+ },
+ {
+  "n": 71,
+  "id": "u3l6-05",
+  "tsw": "motshegare",
+  "eng": "at midday / in the afternoon",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l6",
+  "lesson": "Maabane le kamoso",
+  "kind": "new"
+ },
+ {
+  "n": 72,
+  "id": "u3l6-06",
+  "tsw": "maitseboa",
+  "eng": "in the evening",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l6",
+  "lesson": "Maabane le kamoso",
+  "kind": "new"
+ },
+ {
+  "n": 73,
+  "id": "u3l6-07",
+  "tsw": "bosigo",
+  "eng": "at night",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l6",
+  "lesson": "Maabane le kamoso",
+  "kind": "new"
+ },
+ {
+  "n": 74,
+  "id": "u3l6-08",
+  "tsw": "gone jaanong",
+  "eng": "right now / at the moment",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l6",
+  "lesson": "Maabane le kamoso",
+  "kind": "new"
+ },
+ {
+  "n": 75,
+  "id": "u3l6-09",
+  "tsw": "kgantele",
+  "eng": "later on",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l6",
+  "lesson": "Maabane le kamoso",
+  "kind": "new"
+ },
+ {
+  "n": 76,
+  "id": "u3l7-01",
+  "tsw": "Ke ile kwa sekolong",
+  "eng": "I went to school",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l7",
+  "lesson": "Ke ile kwa sekolong",
+  "kind": "new"
+ },
+ {
+  "n": 77,
+  "id": "u3l7-02",
+  "tsw": "Mpho o ile kwa sekolong",
+  "eng": "Mpho went to school",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l7",
+  "lesson": "Ke ile kwa sekolong",
+  "kind": "new"
+ },
+ {
+  "n": 78,
+  "id": "u3l7-03",
+  "tsw": "Ke tlhotse kwa sekolong",
+  "eng": "I spent the day at school",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l7",
+  "lesson": "Ke ile kwa sekolong",
+  "kind": "new"
+ },
+ {
+  "n": 79,
+  "id": "u3l7-04",
+  "tsw": "Ke ne ke ithuta Setswana",
+  "eng": "I was learning Setswana",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l7",
+  "lesson": "Ke ile kwa sekolong",
+  "kind": "new"
+ },
+ {
+  "n": 80,
+  "id": "u3l7-05",
+  "tsw": "O ne a ruta",
+  "eng": "She/he was teaching",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l7",
+  "lesson": "Ke ile kwa sekolong",
+  "kind": "new"
+ },
+ {
+  "n": 81,
+  "id": "u3l7-06",
+  "tsw": "Re ne re dira dilo tse dintsi",
+  "eng": "We were doing many things",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l7",
+  "lesson": "Ke ile kwa sekolong",
+  "kind": "new"
+ },
+ {
+  "n": 82,
+  "id": "u3l7-07",
+  "tsw": "Ke ne ke itumetse",
+  "eng": "I was happy",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l7",
+  "lesson": "Ke ile kwa sekolong",
+  "kind": "new"
+ },
+ {
+  "n": 83,
+  "id": "u3l7-08",
+  "tsw": "Ke rutile",
+  "eng": "I taught",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l7",
+  "lesson": "Ke ile kwa sekolong",
+  "kind": "new"
+ },
+ {
+  "n": 84,
+  "id": "u3l8-01",
+  "tsw": "Ke tla ya kwa sekolong",
+  "eng": "I will go to school",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l8",
+  "lesson": "Ke tla ya kwa sekolong",
+  "kind": "new"
+ },
+ {
+  "n": 85,
+  "id": "u3l8-03",
+  "tsw": "Ke tla ithuta",
+  "eng": "I will learn / study",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l8",
+  "lesson": "Ke tla ya kwa sekolong",
+  "kind": "new"
+ },
+ {
+  "n": 86,
+  "id": "u3l8-04",
+  "tsw": "Ke tla ruta",
+  "eng": "I will teach",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l8",
+  "lesson": "Ke tla ya kwa sekolong",
+  "kind": "new"
+ },
+ {
+  "n": 87,
+  "id": "u3l8-05",
+  "tsw": "Re tla bala buka",
+  "eng": "We will read a book",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l8",
+  "lesson": "Ke tla ya kwa sekolong",
+  "kind": "new"
+ },
+ {
+  "n": 88,
+  "id": "u3l8-06",
+  "tsw": "O tla ya kwa sekolong kamoso",
+  "eng": "You will go to school tomorrow",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l8",
+  "lesson": "Ke tla ya kwa sekolong",
+  "kind": "new"
+ },
+ {
+  "n": 89,
+  "id": "u3l8-07",
+  "tsw": "Ba tla ithuta Setswana",
+  "eng": "They will learn Setswana",
+  "unit": "Mo sekolong",
+  "lesson_id": "u3l8",
+  "lesson": "Ke tla ya kwa sekolong",
+  "kind": "new"
+ },
+ {
+  "n": 90,
+  "id": "u4l1-02",
+  "tsw": "nama",
+  "eng": "meat",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l1",
+  "lesson": "Dijo",
+  "kind": "new"
+ },
+ {
+  "n": 91,
+  "id": "u4l1-08",
+  "tsw": "merogo",
+  "eng": "vegetables",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l1",
+  "lesson": "Dijo",
+  "kind": "new"
+ },
+ {
+  "n": 92,
+  "id": "u4l2-01",
+  "tsw": "go apaya",
+  "eng": "to cook",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l2",
+  "lesson": "Go dira mafoko",
+  "kind": "new"
+ },
+ {
+  "n": 93,
+  "id": "u4l2-02",
+  "tsw": "moapei",
+  "eng": "a cook",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l2",
+  "lesson": "Go dira mafoko",
+  "kind": "new"
+ },
+ {
+  "n": 94,
+  "id": "u4l2-03",
+  "tsw": "dino",
+  "eng": "drinks",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l2",
+  "lesson": "Go dira mafoko",
+  "kind": "new"
+ },
+ {
+  "n": 95,
+  "id": "u4l2-04",
+  "tsw": "moruti",
+  "eng": "teacher / preacher",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l2",
+  "lesson": "Go dira mafoko",
+  "kind": "new"
+ },
+ {
+  "n": 96,
+  "id": "u4l2-05",
+  "tsw": "modiri",
+  "eng": "a worker",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l2",
+  "lesson": "Go dira mafoko",
+  "kind": "new"
+ },
+ {
+  "n": 97,
+  "id": "u4l2-06",
+  "tsw": "Re apaya merogo",
+  "eng": "We are cooking vegetables",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l2",
+  "lesson": "Go dira mafoko",
+  "kind": "new"
+ },
+ {
+  "n": 98,
+  "id": "u4l4-01",
+  "tsw": "Namune e le nngwe",
+  "eng": "One orange",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l4",
+  "lesson": "Ba le babedi",
+  "kind": "new"
+ },
+ {
+  "n": 99,
+  "id": "u4l4-02",
+  "tsw": "Batho ba le babedi",
+  "eng": "Two people",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l4",
+  "lesson": "Ba le babedi",
+  "kind": "new"
+ },
+ {
+  "n": 100,
+  "id": "u4l4-03",
+  "tsw": "Dikgomo di le pedi",
+  "eng": "Two cows",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l4",
+  "lesson": "Ba le babedi",
+  "kind": "new"
+ },
+ {
+  "n": 101,
+  "id": "u4l4-05",
+  "tsw": "Re na le baithuti ba le kae?",
+  "eng": "How many students do we have?",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l4",
+  "lesson": "Ba le babedi",
+  "kind": "new"
+ },
+ {
+  "n": 102,
+  "id": "u4l4-06",
+  "tsw": "Dikgomo tse pedi di a ja",
+  "eng": "The two cows are eating",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l4",
+  "lesson": "Ba le babedi",
+  "kind": "new"
+ },
+ {
+  "n": 103,
+  "id": "u4l5-01",
+  "tsw": "le",
+  "eng": "and / with",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l5",
+  "lesson": "Le, mme, kgotsa",
+  "kind": "new"
+ },
+ {
+  "n": 104,
+  "id": "u4l5-02",
+  "tsw": "Ke rata nama ya koko le nama ya kgomo",
+  "eng": "I like chicken and beef",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l5",
+  "lesson": "Le, mme, kgotsa",
+  "kind": "new"
+ },
+ {
+  "n": 105,
+  "id": "u4l5-03",
+  "tsw": "mme",
+  "eng": "but",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l5",
+  "lesson": "Le, mme, kgotsa",
+  "kind": "new"
+ },
+ {
+  "n": 106,
+  "id": "u4l5-04",
+  "tsw": "kgotsa",
+  "eng": "or",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l5",
+  "lesson": "Le, mme, kgotsa",
+  "kind": "new"
+ },
+ {
+  "n": 107,
+  "id": "u4l5-05",
+  "tsw": "A o batla go ja nama ya kgomo kgotsa ya koko?",
+  "eng": "Do you want to eat beef or chicken?",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l5",
+  "lesson": "Le, mme, kgotsa",
+  "kind": "new"
+ },
+ {
+  "n": 108,
+  "id": "u4l5-06",
+  "tsw": "ka gore",
+  "eng": "because",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l5",
+  "lesson": "Le, mme, kgotsa",
+  "kind": "new"
+ },
+ {
+  "n": 109,
+  "id": "u4l5-07",
+  "tsw": "Ke rata seswaa, ka gore ke nama",
+  "eng": "I like seswaa, because it is meat",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l5",
+  "lesson": "Le, mme, kgotsa",
+  "kind": "new"
+ },
+ {
+  "n": 110,
+  "id": "u4l5-08",
+  "tsw": "Seswaa ke nama. Ka jalo, ke a se rata",
+  "eng": "Seswaa is meat. Therefore, I like it",
+  "unit": "Go ja dijo",
+  "lesson_id": "u4l5",
+  "lesson": "Le, mme, kgotsa",
+  "kind": "new"
+ },
+ {
+  "n": 111,
+  "id": "u5l1-01",
+  "tsw": "phologolo",
+  "eng": "animal",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l1",
+  "lesson": "Diphologolo tsa kwa gae",
+  "kind": "new"
+ },
+ {
+  "n": 112,
+  "id": "u5l2-01",
+  "tsw": "tau",
+  "eng": "lion",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l2",
+  "lesson": "Diphologolo tsa naga",
+  "kind": "new"
+ },
+ {
+  "n": 113,
+  "id": "u5l2-02",
+  "tsw": "phiri",
+  "eng": "wolf / hyena",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l2",
+  "lesson": "Diphologolo tsa naga",
+  "kind": "new"
+ },
+ {
+  "n": 114,
+  "id": "u5l2-03",
+  "tsw": "noga",
+  "eng": "snake",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l2",
+  "lesson": "Diphologolo tsa naga",
+  "kind": "new"
+ },
+ {
+  "n": 115,
+  "id": "u5l2-04",
+  "tsw": "nonyane",
+  "eng": "bird",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l2",
+  "lesson": "Diphologolo tsa naga",
+  "kind": "new"
+ },
+ {
+  "n": 116,
+  "id": "u5l2-05",
+  "tsw": "tlhapi",
+  "eng": "fish",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l2",
+  "lesson": "Diphologolo tsa naga",
+  "kind": "new"
+ },
+ {
+  "n": 117,
+  "id": "u5l2-06",
+  "tsw": "kammele",
+  "eng": "camel",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l2",
+  "lesson": "Diphologolo tsa naga",
+  "kind": "new"
+ },
+ {
+  "n": 118,
+  "id": "u5l2-07",
+  "tsw": "lephoi",
+  "eng": "dove",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l2",
+  "lesson": "Diphologolo tsa naga",
+  "kind": "new"
+ },
+ {
+  "n": 119,
+  "id": "u5l3-06",
+  "tsw": "Bonang dinonyane!",
+  "eng": "See the birds!",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l3",
+  "lesson": "Go bala ka diphologolo",
+  "kind": "new"
+ },
+ {
+  "n": 120,
+  "id": "u5l3-07",
+  "tsw": "Ke na le dinku le dipodi",
+  "eng": "I have sheep and goats",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l3",
+  "lesson": "Go bala ka diphologolo",
+  "kind": "new"
+ },
+ {
+  "n": 121,
+  "id": "u5l3-08",
+  "tsw": "Dikgomo di dintsi",
+  "eng": "The cattle are many",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l3",
+  "lesson": "Go bala ka diphologolo",
+  "kind": "new"
+ },
+ {
+  "n": 122,
+  "id": "u5l4-01",
+  "tsw": "Nnang botlhale jaaka dinoga",
+  "eng": "Be wise as snakes",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l4",
+  "lesson": "Maele a diphologolo",
+  "kind": "new"
+ },
+ {
+  "n": 123,
+  "id": "u5l4-02",
+  "tsw": "bori jaaka maphoi",
+  "eng": "harmless as doves",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l4",
+  "lesson": "Maele a diphologolo",
+  "kind": "new"
+ },
+ {
+  "n": 124,
+  "id": "u5l4-03",
+  "tsw": "Ke lo roma jaaka dinku mo gare ga diphiri",
+  "eng": "I send you out as sheep among wolves",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l4",
+  "lesson": "Maele a diphologolo",
+  "kind": "new"
+ },
+ {
+  "n": 125,
+  "id": "u5l4-04",
+  "tsw": "Tau ya lotso lwa Juda",
+  "eng": "The Lion of the tribe of Judah",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l4",
+  "lesson": "Maele a diphologolo",
+  "kind": "new"
+ },
+ {
+  "n": 126,
+  "id": "u5l4-05",
+  "tsw": "Ke Modisa yo o Molemo",
+  "eng": "I am the good shepherd",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l4",
+  "lesson": "Maele a diphologolo",
+  "kind": "new"
+ },
+ {
+  "n": 127,
+  "id": "u5l5-01",
+  "tsw": "Ke na le podi",
+  "eng": "I have a goat",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l5",
+  "lesson": "Go ranola",
+  "kind": "new"
+ },
+ {
+  "n": 128,
+  "id": "u5l5-02",
+  "tsw": "Ke na le ntša",
+  "eng": "I have a dog",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l5",
+  "lesson": "Go ranola",
+  "kind": "new"
+ },
+ {
+  "n": 129,
+  "id": "u5l5-03",
+  "tsw": "Ke bona nonyane",
+  "eng": "I see a bird",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l5",
+  "lesson": "Go ranola",
+  "kind": "new"
+ },
+ {
+  "n": 130,
+  "id": "u5l5-04",
+  "tsw": "Nku e ntsho",
+  "eng": "A black sheep",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l5",
+  "lesson": "Go ranola",
+  "kind": "new"
+ },
+ {
+  "n": 131,
+  "id": "u5l5-05",
+  "tsw": "Dintša di bogale",
+  "eng": "The dogs are fierce",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l5",
+  "lesson": "Go ranola",
+  "kind": "new"
+ },
+ {
+  "n": 132,
+  "id": "u5l5-06",
+  "tsw": "Ke rata diphologolo",
+  "eng": "I like animals",
+  "unit": "Diphologolo",
+  "lesson_id": "u5l5",
+  "lesson": "Go ranola",
+  "kind": "new"
+ }
+]
