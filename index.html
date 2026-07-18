@@ -1136,6 +1136,7 @@ function pickAutoType(it){
   types.push(it.tsw.split(/\s+/).length === 1 ? 'typeEng' : 'typeTsw');
   if (it.concordSlot) types.push('concord');
   if (it.audio) types.push('record');
+  if (it.audio) types.push('dictate');   // dictation: hear the clip, type the Setswana
   return pick(types);
 }
 function buildExercises(items, isReview, tracks, recapPool, reteach){
@@ -1339,6 +1340,26 @@ function runExercise(){
     document.getElementById('b-check').onclick = check;
     inp.addEventListener('keydown', e=>{ if (e.key==='Enter'){ e.preventDefault(); check(); } });
   }
+  else if (ex.type==='dictate'){
+    // dictation: hear the native clip, type the Setswana — no target text pre-answer
+    render(H + `<div id="exArea">
+      <p class="muted">Type what you hear</p>
+      <div class="center row" style="margin:14px 0; justify-content:center">${playBtnsHTML(true)}</div>
+      <input id="f-ans" autocomplete="off" autocapitalize="off" placeholder="Kwala mo…">
+      <button class="btn primary" id="b-check" style="margin-top:auto">Check</button></div>`);
+    hookQuit(); hookPlay(it);         // the clip auto-plays via Katse's 🎵 line below, same as the listen card
+    const inp = document.getElementById('f-ans'); inp.focus();
+    let checked = false;
+    const check = ()=>{
+      if (checked) return;            // guard against a double-fire (Enter keydown + soft-keyboard submit)
+      checked = true;
+      inp.blur();                     // close the mobile keyboard so the verdict + Continue are visible
+      const m = answerMatches(inp.value, it.tsw);
+      grade(!!m, it, inp.value, false, m==='close');
+    };
+    document.getElementById('b-check').onclick = check;
+    inp.addEventListener('keydown', e=>{ if (e.key==='Enter'){ e.preventDefault(); check(); } });
+  }
   else if (ex.type==='concord'){
     const cs = it.concordSlot;
     render(H + `<div id="exArea">
@@ -1497,7 +1518,7 @@ function runExercise(){
     mountKatseCorner(it);
   }
   if (it && it.audio){
-    if (ex.type==='listen') katseSay('🎵 …', it.audio);                        // don't spoil the answer
+    if (ex.type==='listen' || ex.type==='dictate') katseSay('🎵 …', it.audio); // don't spoil the answer
     else if (ex.type==='teach' || ex.type==='recap' || ex.type==='choose' || ex.type==='record') katseSay(it.tsw, it.audio);
   }
 }
