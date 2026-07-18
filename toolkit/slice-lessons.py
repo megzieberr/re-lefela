@@ -48,6 +48,10 @@ LESSONS = {
     # u2l6-13..19 cards (one-word-per-colour decision) — the missing file would sys.exit
     # this script. Do not re-add; export-item-audio.py's SKIP_LESSONS guard is permanent.
     '★ Animals (native)': 'Animals.mp3',
+    # ★ Numbers (native) added 2026-07-18: Megan's own recording of lefela..lesome
+    # (u4l3-01..11, all silent until tagged). Verified clean before adding — the gaps
+    # measure -91dB (digital silence), i.e. no background music, unlike Animals.mp3.
+    '★ Numbers (native)': 'Numbers.mp3',
 }
 
 NOISE_DB = '-30dB'

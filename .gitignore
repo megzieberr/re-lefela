@@ -13,5 +13,11 @@ katse-preview.html
 # missing-audio recordings: source audio stays out of git (same as corpus/)
 missing audio/Raw/
 missing audio/Enhanced/
+# loose recordings dropped straight into "missing audio/" (Animals.mp3, Numbers.mp3, …).
+# The Raw/Enhanced rules above missed these, leaving Megan's own voice takes untracked but
+# still committable into a PUBLIC repo — added 2026-07-18.
+missing audio/*.mp3
 missing audio/enhance-bot/__pycache__/
+# local-only backups of the gitignored tagger
+tagger.html.bak-*
 node_modules/
