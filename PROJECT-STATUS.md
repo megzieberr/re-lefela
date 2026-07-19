@@ -1,6 +1,9 @@
 ﻿# Re:Lefela — Project Status
 
-**Updated:** 2026-07-18 (session 25 — **Bua le Katse**, SHIPPED as sw **v28** then **v29**: a
+**Updated:** 2026-07-19 (session 26 — **the Daily Quest**, SHIPPED as sw **v30**: Review is gone,
+absorbed into a fixed 10-round daily drill that puts everything due in first and tops up from every
+word she has met; plus a real grading bug fixed — 46 cards whose English lists alternatives
+("he / she") were rejecting correct answers typed in the other order) · previous: 2026-07-18 (session 25 — **Bua le Katse**, SHIPPED as sw **v28** then **v29**: a
 scripted no-LLM chat with Katse — scenario 1 "Dumela, Katse!" in a new `dialogues.js`, vocab-gated
 off real SRS reps, chips/typing input, stretch words, every line sourced and mostly voiced; then
 same-day: beginner scenario 0 **"Le kae?"** (u1l1–l3 vocab only, drills kae→kwa) + a scenario
@@ -28,6 +31,90 @@ drop + 65-clip wiring wave v21, L11 finale + export scope fix v22 — ALL SHIPPE
 card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14
 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button
 (sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 26 (2026-07-19) — answer-matching bug fixed + the Daily Quest (sw v30, SHIPPED)
+She opened the app on her phone, typed **`she/he`** for `ene` ("he / she") and got marked wrong.
+Screenshot in chat. Two independent faults, both real, both fixed; then her second ask, merging
+Review into a daily quest.
+
+### 1. The grading bug — 46 cards affected, not one
+- **`norm()` DELETED punctuation instead of spacing it.** `"she/he"` normalised to the single
+  nonsense word `"shehe"`, so it could not possibly match `"he she"`. Now `/` and hyphens map to a
+  space; apostrophes still vanish, so `"what's"` and `"whats"` stay the same word.
+- **`answerMatches()` compared whole strings**, so even spaced correctly it demanded the author's
+  ordering. It now treats a slashed English gloss as an **alternative set**: split the RAW string
+  (by grading time `norm()` has already eaten the slashes), then accept any one alternative or any
+  combination in any order via new `altOrderings()` — every ordering of every non-empty subset,
+  15 strings for 3 alternatives, 64 for 4. Generosity is deliberate: the card tests whether she
+  knows what the word MEANS, not whether she reproduced the gloss list in the author's order.
+- **Blast radius was 46 of 307 cards** — `nna` "I / me", `rona` "we / us", `letsogo` "arm / hand",
+  `mpa` "stomach / belly", `tala` "green / blue", every "He/she …" sentence. Anyone typing the
+  second alternative first, or only one of them, was marked wrong and **had the card lapsed by the
+  SRS**. Those cards will surface early in her first Daily Quests, since it fronts the most-lapsed
+  words — expect a stretch that feels like it is deliberately serving the words the bug punished.
+- **Setswana grading provably unaffected:** no `tsw` string in the app contains `/` or `-`
+  (checked: 0 of 307), all 307 still self-match `exact`, and **0** distinct-`tsw` pairs newly
+  collide. The chat matcher's tokenised `norm()` use at the `zzslotzz` frames is unaffected too.
+
+### 2. Review → Daily Quest (her ask: "merge the review and daily quest")
+The due-items-only Review button is **gone**, replaced by a Daily Quest that **swallows** it.
+- **Fixed 10 rounds** (`DAILY_ROUNDS`). `dailyPool()` takes everything the SRS says is due,
+  **most-overdue first**, then tops up to 10 from `learnedItems()` — everything she has ever met —
+  **weakest first** (most lapses, then fewest reps). Shuffled BEFORE that sort so equally-weak
+  words rotate day to day rather than the same ten returning forever.
+- **Why the merge is the right shape:** doing the quest IS doing the reviews, so neither can be
+  missed by choosing the other. The old button only *existed* when something was due, which meant
+  quiet days offered no daily habit at all — the exact gap a daily quest is for.
+- All rounds are `type:'auto'`, so `pickAutoType` picks off the existing ladder (tap/choose/listen/
+  dictate/typing/speaking, reps≥3 gates intact) and cards **grade and reschedule exactly as Review
+  did**. No recapPool is passed, so `buildExercises` returns exactly one card per item — the "10
+  rounds" on the button is the 10 the progress counter shows.
+- **Once a day for the bonus, never a lockout:** first completion pays **+25** and shows "Daily
+  Quest done — *Letsatsi le letsatsi*"; further runs still earn per-card XP and still reschedule
+  cards, at **+10**, with an "extra practice" line. XP kinds `daily-done` / `daily-extra`.
+  `firstDaily` is read BEFORE the `rl_daily` store write — that ordering is what makes it true once.
+- Button carries the due count as a sub-label so the absorbed review is visibly still happening,
+  and goes ghost with ✓ once done. Shown once ≥4 words are learned. **Both accounts** (not
+  Megan-gated) and works in `?local=1`. Flavour strings reused from content.js (`Gape!`,
+  `Letsatsi le letsatsi`) — **no new Setswana invented**.
+- New **`rl_daily`** key (device-local, `{date, done}`) added to `clearLearnerState()`.
+
+### Verification
+- **Node harness over the real content.js + the real functions lifted out of index.html**
+  (`scratchpad/test-answers.js`): all **46** alternative-gloss cards accept every single
+  alternative, the full gloss, and both reversed orderings — **0 rejections**; 9 regression
+  controls unchanged (`dumelaa`→close, `goodbye` vs `hello`→null, `whats`→exact, `cat` vs
+  "he / she"→null); 307/307 `tsw` self-match; 0 cross-card exacts. index.html main script
+  re-parsed with `new Function()`.
+- **In preview (`?local=1`, SW unregistered + caches + localStorage cleared first)**, against a
+  seeded 25-word learner with 4 overdue and 1 heavily-lapsed: **300 `dailyPool()` draws** returned
+  **exactly 10 every time**, **never a duplicate**, **never once missed a due item**, always
+  included the lapsed word, and rotated across all 25. Full playthrough: 10 varied card types,
+  header `1/10`, no part pill, **+125 XP** (10×10 + 25) and the daily finish line; **second run
+  +110** with the extra-practice line and `rl_daily.done` → 2; day-rollover (`date` = yesterday)
+  correctly re-arms the bonus; a brand-new learner sees **no button** and `startDaily()` is a safe
+  no-op; 375×812 two-line button fits with no horizontal overflow; **0 console errors**; test
+  localStorage wiped afterwards.
+- **`sw.js` v29 → v30. `AUDIO_CACHE` untouched** (`relefela-audio-v1`) — correct, no audio byte
+  changed. LF-only and BOM-free confirmed by binary read on both files (the standing hazard).
+- **Live-verified after push:** live `sw.js` serves `relefela-v30` with `AUDIO_CACHE` still
+  `relefela-audio-v1`; live `index.html` is **byte-identical to local** (117 902 B) with
+  `startDaily`/`altOrderings`/`DAILY_ROUNDS`/`dailyPool`/`b-daily`/`rl_daily` all present and
+  **0** occurrences of `startReview`/`b-review`.
+- **Commit:** `ac7aa92`. Pushed to `main`; live verified. (`toolkit/recording-sheet.docx` remains
+  deliberately uncommitted per the session-25 ruling.)
+
+## Next up (agreed 2026-07-19, end of session 26)
+1. **She plays the Daily Quest** — first real-use feedback on whether 10 rounds is the right
+   length, and whether the weakest-first top-up feels punishing or useful. Also the first honest
+   read on the 46 un-lapsed cards working their way back through the SRS.
+2. **"Le kae?" (chat0) still awaits its first real play** — carried unchanged from session 25.
+   "Dumela, Katse!" unlocks when she finishes u1l7; the picker says so itself.
+3. **More chat scenarios, spec-first, one per unit theme** — a pronoun-drilling one once she
+   finishes u1l4 "Nna le wena" is the natural next (her explicit struggle, and the same pronoun
+   family as today's `ene` bug).
+4. Carry-overs unchanged: the **native-speaker recording wave** (⚠️ the one that DOES need
+   `AUDIO_CACHE` bumped — pending items -11/-10), and the **Smart Guide** for u5l4 maele.
 
 ## Session 25 (2026-07-18, same day) — "Bua le Katse" scripted chat (sw v28, SHIPPED)
 Megan's ask: "like an AI chat bot… but only in Setswana and only using the words I have learned…
@@ -1391,6 +1478,25 @@ and zero XP-farming.
    `NATIVE-RECORDINGS-NEEDED.md`, then tag them (new voice) & export.
 
 ## Decisions (append-only)
+- 2026-07-19 (session 26, Megan's ruling): **Review is merged INTO the Daily Quest — there is no
+  standalone review any more.** "Let's merge the review and daily quest, that the review things
+  fall into the daily quest." Implemented as: due items go into the 10-round quest first
+  (most-overdue first), then it tops up from everything she has met. The design consequence worth
+  keeping: **a daily drill must never be able to leave a scheduled review behind**, so any future
+  change to `dailyPool()` keeps due-first ordering and a round count ≥ the realistic due count.
+  If due ever routinely exceeds 10, raise `DAILY_ROUNDS` rather than dropping due items.
+- 2026-07-19 (session 26): **Alternative English glosses are graded as a SET, not a string.**
+  A card's `eng` with slashes ("he / she", "big / great / elder") accepts any one alternative or
+  any combination in any order. The card is testing comprehension, not recall of the author's
+  ordering. Corollary for content work: **writing `eng: 'a / b'` is now a real grading decision**,
+  not just display text — it widens what counts as correct, which is usually what you want for a
+  synonym pair and NOT what you want if the two halves are genuinely different words.
+- 2026-07-19 (session 26): **A silent grading bug lapses cards, so fixing one has SRS
+  after-effects.** 46 cards spent an unknown period marking correct answers wrong, and every one of
+  those wrongs ran `srsGrade(id, false)` — reps to 0, ease down 0.25, lapses up. The fix does not
+  un-do that history; the Daily Quest's weakest-first top-up is what quietly repairs it. Standing
+  note: when a grading path changes, say plainly which cards carry damaged scheduling rather than
+  reporting the fix alone.
 - 2026-07-18 (session 23, Megan's rulings on the research reports): **Dictation yes, AI conversation
   partner NO, interleaving unchanged.** (a) The dictation card must come **after** she has already
   practised a word's spelling via the tapping/choosing cards — implemented as the existing
