@@ -311,7 +311,7 @@ function persist(){ store.set('srs', state.srs); store.set('progress', state.pro
 // own by the caller. There are no app-scoped rl_ keys. Used by logout + the account-
 // switch guard in afterAuth so one learner's data can never bleed into another's.
 function clearLearnerState(){
-  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat']
+  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily']
     .forEach(k=>localStorage.removeItem(k));
 }
 
@@ -389,8 +389,14 @@ function dueItems(){
 }
 
 /* ---------- text helpers ---------- */
+/* Separators become SPACES, not nothing. "she/he" used to normalise to "shehe" —
+   one nonsense word that could never match "he she", so every one of the 46 cards
+   whose English lists alternatives ("he / she", "arm / hand") rejected a correct
+   answer typed the other way round. Apostrophes still vanish, so "what's" and
+   "whats" stay the same word. No tsw string contains / or -, so Setswana grading
+   is unaffected (checked: 0 of 307). */
 function norm(s){ return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')
-  .replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim(); }
+  .replace(/[\/\-–—]/g,' ').replace(/[^a-z0-9\s]/g,'').replace(/\s+/g,' ').trim(); }
 function lev(a, b){
   const m = a.length, n = b.length;
   if (Math.abs(m-n) > 3) return 99;
@@ -400,11 +406,40 @@ function lev(a, b){
     dp[i][j] = Math.min(dp[i-1][j]+1, dp[i][j-1]+1, dp[i-1][j-1] + (a[i-1]===b[j-1]?0:1));
   return dp[m][n];
 }
+/* Every ordering of every non-empty subset of the alternatives, e.g.
+   ['big','great','elder'] -> 'big', 'great', …, 'big great', 'great big', …
+   15 strings for 3 alternatives, 64 for 4 — cheap, and generosity is right here:
+   the card is testing whether she knows what the word MEANS, not whether she
+   reproduced the gloss list in the author's order. */
+function altOrderings(alts){
+  const out = [];
+  const walk = (chosen, rest)=>{
+    if (chosen.length) out.push(chosen.join(' '));
+    for (let i=0;i<rest.length;i++) walk(chosen.concat(rest[i]), rest.slice(0,i).concat(rest.slice(i+1)));
+  };
+  walk([], alts);
+  return out;
+}
 function answerMatches(given, expected){
   const g = norm(given), e = norm(expected);
   if (g === e) return 'exact';
   const tol = e.length > 12 ? 2 : 1;
   if (lev(g, e) <= tol) return 'close';
+  /* Alternative glosses: a card's English often lists synonyms with a slash
+     ("he / she", "arm / hand"). Any ONE of them, or any combination in any
+     order, is a right answer. Split the RAW string — norm() has by now turned
+     the slashes into spaces, so the alternatives are no longer separable. */
+  if (expected.indexOf('/') >= 0){
+    const alts = expected.split('/').map(a=>norm(a)).filter(Boolean);
+    if (alts.length > 1 && alts.length <= 4){
+      let close = false;
+      for (const cand of altOrderings(alts)){
+        if (g === cand) return 'exact';
+        if (lev(g, cand) <= (cand.length > 12 ? 2 : 1)) close = true;
+      }
+      if (close) return 'close';
+    }
+  }
   return null;
 }
 function shuffle(arr){ const a = arr.slice(); for (let i=a.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
@@ -731,6 +766,14 @@ function screenHome(){
     }).join('');
     return `<h3 style="margin-top:20px">${esc(unit.title)} <span class="muted" style="font-weight:400;font-size:.85rem">— ${esc(unit.subtitle)}</span></h3>${nodes}`;
   }).join('');
+  // Daily Quest — always there once she has met a few words, whether or not
+  // anything is due; the due count rides along as a sub-label so the review
+  // she used to get its own button for is visibly still happening.
+  const learnedN = learnedItems().length;
+  const qDone = dailyDoneToday();
+  const dailyBtn = learnedN >= 4
+    ? `<button class="btn ${qDone?'ghost':'primary'}" id="b-daily" style="margin:10px 0">🔁 ${esc(RL_CONTENT.flavour.review)} — Daily Quest${qDone?' ✓':''}<br>
+        <span class="tiny">${Math.min(DAILY_ROUNDS, learnedN)} rounds${due>0?` · ${due} due for review`:''} · ${esc(RL_CONTENT.flavour.streak)}</span></button>` : '';
   const gym = (RL_CONTENT.nchlt && RL_CONTENT.nchlt.length >= 4)
     ? `<button class="btn ghost" id="b-gym" style="margin:10px 0">👂 Listening gym — real native voices</button>` : '';
   // visible once ANY scenario is unlocked; locked ones then show in the picker with their
@@ -754,7 +797,7 @@ function screenHome(){
         <p class="muted" style="margin:4px 0 0">${doneToday ? 'Streak safe — Katse is napping happy.' : 'Katse has been waiting for you.'}</p>
       </div>
     </div>
-    ${due>0?`<button class="btn primary" id="b-review" style="margin:10px 0">🔁 ${esc(RL_CONTENT.flavour.review)} — review ${due} item${due>1?'s':''}</button>`:''}
+    ${dailyBtn}
     ${gym}
     ${chatBtn}
     ${unitsHtml}
@@ -773,7 +816,7 @@ function screenHome(){
   const greetings = voicedItems().filter(v=>v.id.indexOf('u1l1')===0);
   const fallbackGreet = ()=>{ if (greetings.length && !doneToday) setTimeout(()=>katseBubble(pick(greetings).tsw, 3400), 600); };
   maybeShowRivalryNudge(fallbackGreet);
-  const rv = document.getElementById('b-review'); if (rv) rv.onclick = startReview;
+  const rv = document.getElementById('b-daily'); if (rv) rv.onclick = startDaily;
   const gy = document.getElementById('b-gym'); if (gy) gy.onclick = startGym;
   const cb = document.getElementById('b-chat'); if (cb) cb.onclick = screenChatPick;
   document.getElementById('b-lb').onclick = screenLeaderboard;
@@ -1541,10 +1584,46 @@ function startLesson(unit, idx){
     at:0, maxAt:0, right:0, wrong:0, combo:0, isReview:false, part, replay};
   runExercise();
 }
-function startReview(){
-  const due = shuffle(dueItems()).slice(0, 15);
-  if (!due.length) return;
-  session = {unit:null, lessonIdx:null, ex:buildExercises(due, true), at:0, maxAt:0, right:0, wrong:0, combo:0, isReview:true, part:null};
+/* ---------- Daily Quest ----------
+   Replaces the old due-items-only Review button (2026-07-19, her ask: "merge the
+   review and daily quest, that the review things fall into the daily quest").
+   A fixed 10 rounds, always available, that SWALLOWS the review: everything the
+   SRS says is due goes in first, so doing the quest IS doing your reviews and
+   nothing can be missed by choosing one over the other. The old button only
+   appeared when something was due, which meant no daily habit on quiet days.
+   Rounds are all `auto`, so they grade and reschedule exactly like a review did. */
+const DAILY_ROUNDS = 10;
+function dailyStore(){ return store.get('daily', {date:null, done:0}); }
+function dailyDoneToday(){ const d = dailyStore(); return d.date === todayStr() && d.done > 0; }
+function learnedItems(){
+  const all = [];
+  for (const u of RL_CONTENT.units) for (const l of u.lessons) for (const it of l.items)
+    if (it.kind !== 'rule' && state.srs[it.id]) all.push(it);
+  return all;
+}
+function dailyPool(){
+  const due = dueItems();
+  const dueIds = new Set(due.map(i=>i.id));
+  // most-overdue first — a full quest can never leave a real review behind
+  const picked = due.slice().sort((a,b)=> state.srs[a.id].due - state.srs[b.id].due).slice(0, DAILY_ROUNDS);
+  if (picked.length < DAILY_ROUNDS){
+    // top up from everything she has ever met, weakest first (most lapses, then
+    // fewest reps). Shuffled BEFORE the sort so equally-weak words rotate day to
+    // day instead of the same ten coming back forever.
+    const rest = shuffle(learnedItems().filter(it=>!dueIds.has(it.id)))
+      .sort((a,b)=>{ const A = state.srs[a.id], B = state.srs[b.id];
+        return (B.lapses||0)-(A.lapses||0) || (A.reps||0)-(B.reps||0); });
+    picked.push(...rest.slice(0, DAILY_ROUNDS - picked.length));
+  }
+  return shuffle(picked);
+}
+function startDaily(){
+  const pool = dailyPool();
+  if (!pool.length) return;
+  // no recapPool → buildExercises returns exactly one `auto` card per item, so
+  // "10 rounds" on the button is the 10 the progress counter shows.
+  session = {unit:null, lessonIdx:null, ex:buildExercises(pool, true), at:0, maxAt:0,
+    right:0, wrong:0, combo:0, isReview:true, daily:true, part:null};
   runExercise();
 }
 
@@ -1976,8 +2055,16 @@ function grade(ok, it, given, silent, close){
 function finishSession(){
   const part = session.part;
   const lastPart = !part || part.idx === part.total - 1;
-  const bonus = session.isReview ? 10 : 20;
-  addXP(bonus, session.isReview?'review-done':'lesson-done');
+  // First quest of the day pays the full bonus; extra runs still earn per-card XP
+  // and still reschedule cards, just without re-paying the daily. Read BEFORE the
+  // store write below, which is what makes "first today" true only once.
+  const firstDaily = session.daily && !dailyDoneToday();
+  const bonus = session.daily ? (firstDaily ? 25 : 10) : session.isReview ? 10 : 20;
+  addXP(bonus, session.daily ? (firstDaily ? 'daily-done' : 'daily-extra') : session.isReview?'review-done':'lesson-done');
+  if (session.daily){
+    const d = dailyStore();
+    store.set('daily', d.date === todayStr() ? {date:d.date, done:d.done+1} : {date:todayStr(), done:1});
+  }
   // a replayed part is done → next sitting starts on the following part (wraps to 1)
   if (session.replay && session.unit && part)
     setReplayCursor(session.unit.id, session.lessonIdx, (part.idx + 1) % part.total);
@@ -2025,7 +2112,9 @@ function finishSession(){
   render(`<div class="center" style="margin-top:9vh">
     ${kat}
     <h1 style="font-size:2.2rem">${esc(RL_CONTENT.flavour.lessonDone)}</h1>
-    <p class="muted">"You did well." — and you did.</p>
+    <p class="muted">${session.daily
+      ? (firstDaily ? `Daily Quest done — ${esc(RL_CONTENT.flavour.streak)}, day by day.` : 'Extra practice — every round still counts towards your words.')
+      : '"You did well." — and you did.'}</p>
     <div class="statgrid" style="margin-top:20px">
       <div class="stat"><b>+${session.right*10 + bonus}</b>XP-ish earned</div>
       <div class="stat"><b>${acc}%</b>accuracy</div>
