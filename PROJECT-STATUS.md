@@ -1,6 +1,9 @@
 ﻿# Re:Lefela — Project Status
 
-**Updated:** 2026-07-19 (session 26 — **the Daily Quest**, SHIPPED as sw **v30**: Review is gone,
+**Updated:** 2026-07-25 (session 27 — the **native-speaker recording wave**, SHIPPED as sw **v31**:
+68 first-time-silent cards voiced + 63 re-recorded, content.js is **307/307, 0 silent, for the
+first time**; also a new tagger.html feature — trimming a merged clip now carves the leftover
+audio into its own taggable segment instead of discarding it) · previous: 2026-07-19 (session 26 — **the Daily Quest**, SHIPPED as sw **v30**: Review is gone,
 absorbed into a fixed 10-round daily drill that puts everything due in first and tops up from every
 word she has met; plus a real grading bug fixed — 46 cards whose English lists alternatives
 ("he / she") were rejecting correct answers typed in the other order) · previous: 2026-07-18 (session 25 — **Bua le Katse**, SHIPPED as sw **v28** then **v29**: a
@@ -31,6 +34,70 @@ drop + 65-clip wiring wave v21, L11 finale + export scope fix v22 — ALL SHIPPE
 card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14
 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button
 (sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 27 (2026-07-25) — native-speaker recording wave: 68 voiced, 63 re-recorded (sw v31, SHIPPED)
+The outsourced Setswana L1 speaker's recording landed as `missing audio/Missing Words.wav`
+(~9 min, 50MB) — a single combined take reading `toolkit/recording-list.json`'s 132-item sheet
+in order, no corrected word list this time (Megan asked; none came back — her call: tag what's
+there, flag/skip anything that sounds different rather than guess).
+
+- **Built the `★ Missing Words (native)` lesson pipeline**, same shape as ★ Food/★ Numbers/★
+  Animals: wav copied into `corpus/audio/`, a new `toolkit/slice-lessons.py` entry (166 segments
+  over 549s, 25 splittable), and `tagger.html` wired with `SYNTH_MISSING_IDS` — the 132 candidate
+  ids in **recording-list.json's exact order**, verified byte-for-byte by script before use.
+- **New tagger.html capability: leftover-carve-out (local-only, gitignored — not committed).**
+  Megan hit a case with no ✂ Split boundary at all: the speaker read "Nnyaa, ga ke na mathata"
+  straight into "Ga ke batle tee" with no gap, so ffmpeg's fine pass found nothing to split on.
+  Narrowing the Trim sliders to bound just the first phrase was silently discarding the second —
+  Join only pulls the *next* segment forward, there's no backward join. Fixed by changing `tag()`
+  so a narrowed trim on an `action:'item'` tag carves whatever's outside `[trim.s, trim.e]` into a
+  new `state.leftover` entry, spliced back into the live queue immediately after the segment it
+  came from (`buildQueue()` now does this splice pass every rebuild, so it survives reloads). Given
+  a synthetic `sub` suffix (`lo1`/`lo2`) so export's `(lesson,seg,sub)` dedup key can't collide with
+  the parent tag. Verified end-to-end in a Node simulation before handing back (parent tag, leftover
+  spliced at the right queue position, both survive to export with distinct keys) — confirmed
+  working live: "Ga ke batle tee" recovered cleanly as `u1l7-07`.
+- **Tagged 131 of 132 in one pass, 0 mismatches** — every word "sounded like it was written," her
+  words. `u2l1-07` "nko" was the only gap: the speaker skipped it (no tag, no explicit skip marker),
+  and since it already carries an existing clip, Megan's call was to leave it exactly as-is rather
+  than chase a re-read this round — it's the one remaining `missing-audio.md` §2 entry.
+- **Downloaded mapping audited before adopting** (the standing gotcha — tagger downloads have been
+  partial snapshots before): this one was clean — 131 item tags + 7 junks, 0 duplicate itemIds, 0
+  stray extras, and critically **no trace of the recurring lesson-"90"/NCHLT landmine** that bit
+  sessions 23/24. Saved verbatim as `toolkit/audio-mapping-session27.json` (sorts last, wins).
+- **Export: 68 new clips + 63 byte-changed clips**, confirmed by md5 of every file in `audio/items/`
+  before/after (not guesswork). `content.js`: **307/307 real items now have `audio:` — 0 silent,
+  the first time this has ever been true** for the whole app. 0 duplicate ids, 0 orphan files, 0
+  missing refs, LF-only/no BOM confirmed. `toolkit/missing-audio.md` regenerated: 0 silent, 1
+  re-record (nko), 8 reuse — exact match.
+- **This was the flagged AUDIO_CACHE-bump case** (per the standing warning since session 24): 63 of
+  the clips overwrite existing filenames, so `sw.js` bumped **both** `relefela-v30→v31` (content.js
+  changed) **and** `AUDIO_CACHE relefela-audio-v1→v2` (existing bytes changed under the same names).
+- **Verified in preview** (`?local=1`, SW unregistered + caches cleared first): sampled 7 clips
+  spanning old/new/re-recorded (incl. "Nnyaa, ga ke na mathata," "Ga ke batle tee," and the
+  untouched `u2l1-07`) — all fetch 200 with real byte sizes; sw.js confirmed serving the bumped
+  version strings; 0 console errors.
+- **Housekeeping folded in:** the `missing audio/enhance-bot/` deletion (ruled 2026-07-19, had sat
+  uncommitted since) is now committed. `toolkit/recording-sheet.docx` stays local-only, untouched,
+  per the session-25 ruling.
+- **Commit:** `aef9982`. Pushed to `main`; live verified (`sw.js` serving `relefela-v31` /
+  `relefela-audio-v2`, sampled clips 200).
+
+### Is Re:Lefela "complete"?
+Not as a whole app — it's a living tool tied to the ongoing SECL121 semester, and the roadmap
+below (chat scenarios, Smart Guide, Daily Quest real-use feedback) is still open. But the **audio
+coverage** — the thread running through a dozen sessions — genuinely is: every real card in the
+app now has a voiced clip, for the first time. That milestone is done.
+
+## Next up (agreed 2026-07-25, end of session 27)
+1. **`u2l1-07` "nko"** is the one card left on the re-record list — low priority, fold into
+   whenever a next native-speaker batch happens (no rush; her existing clip works fine).
+2. **Ear-check the 131 new/re-recorded clips** via the tagger's 🎧 panel — none have been
+   listened back yet post-export.
+3. Carry-overs unchanged: **Daily Quest** first real-use feedback (does 10 rounds feel right,
+   does weakest-first feel punishing), **"Le kae?" (chat0)** first real play, **more chat
+   scenarios** spec-first (pronoun-drilling next, once she finishes u1l4), and the **Smart Guide**
+   for u5l4's real maele.
 
 ## Session 26 (2026-07-19) — answer-matching bug fixed + the Daily Quest (sw v30, SHIPPED)
 She opened the app on her phone, typed **`she/he`** for `ene` ("he / she") and got marked wrong.
