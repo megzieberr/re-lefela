@@ -1348,6 +1348,17 @@ and zero XP-farming.
   hides at card 0, resume lands on the correct live card, 0 console errors.
 
 ## Pending on Megan
+- Nothing. (2026-07-25 amnesty, Megan's call: the native-speaker wave landed and was wired
+  in session 27 — the app is 307/307 voiced. Her ear-checks and the Ask-your-tutor live
+  test are done, per Megan 2026-07-25. Everything below is ARCHIVE, not tasks.)
+
+## Next session (code task, not a Megan task)
+- Rename the mid-Katse id: `mountKatseMid()` reuses `id="katse-corner"` (class tells the
+  two contexts apart, the id lies — it once made a verification pass measure the wrong
+  cat). Give the mid cat its own id, route the shared helpers through `katseWrapEl()`,
+  re-verify all three contexts. Full write-up: archive below, item 3 (session 14).
+
+## Archived pending history (pre-amnesty 2026-07-25, kept for the record — NOT tasks)
 -11. 2026-07-18 (session 24): **Hand `toolkit/recording-sheet.pdf` to the native speaker.** 132
    words, one long recording, ~10–15 minutes. The sheet already explains the quiet room, the ~2s
    pause, Setswana-only, no-skipping and the Notes column, so it needs no covering explanation.
