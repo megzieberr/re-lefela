@@ -328,12 +328,12 @@ const RL_CONTENT = {
           id: 'u3l4', title: 'Mo tlelaseng', blurb: 'Part 2 · Mo sekolong. The words you\'ll use in a classroom.',
           items: [
             { id: 'u3l4-00', kind: 'rule', tsw: '', eng: '', src: 'grammar-toolkit', rule: 'School words gather from a few noun classes. People are mo-/ba-: morutabana (teacher) → barutabana, moithuti (learner) → baithuti. Most classroom objects are borrowed words, so they sit in class 9/10 and just add di- for the plural: pene → dipene, tafole → ditafole. You already met buka, setilo and lebati back in Unit 1.' },
-            { id: 'u3l4-01', kind: 'word', tsw: 'moithuti', eng: 'learner / student', src: 'pc-comp-grammar-ch2', cls: 1, plural: 'baithuti', note: 'mo-/ba-: baithuti = learners. From go ithuta, to learn — the person who learns.' },
+            { id: 'u3l4-01', audio: 'items/u3l4-01.mp3', kind: 'word', tsw: 'moithuti', eng: 'learner / student', src: 'pc-comp-grammar-ch2', cls: 1, plural: 'baithuti', note: 'mo-/ba-: baithuti = learners. From go ithuta, to learn — the person who learns.' },
             { id: 'u3l4-02', audio: 'items/u3l4-02.mp3', kind: 'word', tsw: 'tlelase', eng: 'classroom', src: 'peace-corps-L18', cls: 9, plural: 'ditlelase', note: 'A borrowed word (from "class"), so class 9: plural ditlelase.' },
             { id: 'u3l4-03', audio: 'items/u3l4-03.mp3', kind: 'word', tsw: 'tafole', eng: 'table', src: 'peace-corps-L7', cls: 9, plural: 'ditafole' },
             { id: 'u3l4-04', audio: 'items/u3l4-04.mp3', kind: 'word', tsw: 'fensetere', eng: 'window', src: 'peace-corps-L7', cls: 9, plural: 'difensetere' },
             { id: 'u3l4-05', audio: 'items/u3l4-05.mp3', kind: 'word', tsw: 'pene', eng: 'pen', src: 'peace-corps-L7', cls: 9, plural: 'dipene' },
-            { id: 'u3l4-06', kind: 'word', tsw: 'pensele', eng: 'pencil', src: 'peace-corps-L7', cls: 9, plural: 'dipensele' },
+            { id: 'u3l4-06', audio: 'items/u3l4-06.mp3', kind: 'word', tsw: 'pensele', eng: 'pencil', src: 'peace-corps-L7', cls: 9, plural: 'dipensele' },
             { id: 'u3l4-07', audio: 'items/u3l4-07.mp3', kind: 'word', tsw: 'beke', eng: 'bag', src: 'peace-corps-L7', cls: 9, plural: 'dibeke' }
           ]
         },
@@ -357,42 +357,42 @@ const RL_CONTENT = {
           id: 'u3l6', title: 'Maabane le kamoso', blurb: 'When did it happen? The adverbs that set the time.',
           items: [
             { id: 'u3l6-00', kind: 'rule', tsw: '', eng: '', src: 'peace-corps-L16', rule: 'Time words tell you which tense to reach for. gompieno (today) goes with the present, maabane (yesterday) pulls the past, kamoso (tomorrow) pushes the future. They usually sit at the start or the very end of the sentence: Kamoso ke tla ya sekolong — tomorrow I will go to school.' },
-            { id: 'u3l6-01', kind: 'word', tsw: 'gompieno', eng: 'today', src: 'peace-corps-L16' },
-            { id: 'u3l6-02', kind: 'word', tsw: 'maabane', eng: 'yesterday', src: 'peace-corps-L16', note: 'Your cue for the past tense.' },
-            { id: 'u3l6-03', kind: 'word', tsw: 'kamoso', eng: 'tomorrow', src: 'peace-corps-L16', note: 'Your cue for the future. You met it in Ke tla go bona kamoso.' },
-            { id: 'u3l6-04', kind: 'word', tsw: 'phakela', eng: 'in the morning / early', src: 'peace-corps-L16' },
-            { id: 'u3l6-05', kind: 'word', tsw: 'motshegare', eng: 'at midday / in the afternoon', src: 'peace-corps-L16' },
-            { id: 'u3l6-06', kind: 'word', tsw: 'maitseboa', eng: 'in the evening', src: 'peace-corps-L16' },
-            { id: 'u3l6-07', kind: 'word', tsw: 'bosigo', eng: 'at night', src: 'peace-corps-L16' },
-            { id: 'u3l6-08', kind: 'phrase', tsw: 'gone jaanong', eng: 'right now / at the moment', src: 'peace-corps-L16', note: 'jaanong = now (you saw it in O batla go dira eng jaanong?).' },
-            { id: 'u3l6-09', kind: 'word', tsw: 'kgantele', eng: 'later on', src: 'peace-corps-L16', note: 'The word inside Ke tla go bona kgantele, on its own.' }
+            { id: 'u3l6-01', audio: 'items/u3l6-01.mp3', kind: 'word', tsw: 'gompieno', eng: 'today', src: 'peace-corps-L16' },
+            { id: 'u3l6-02', audio: 'items/u3l6-02.mp3', kind: 'word', tsw: 'maabane', eng: 'yesterday', src: 'peace-corps-L16', note: 'Your cue for the past tense.' },
+            { id: 'u3l6-03', audio: 'items/u3l6-03.mp3', kind: 'word', tsw: 'kamoso', eng: 'tomorrow', src: 'peace-corps-L16', note: 'Your cue for the future. You met it in Ke tla go bona kamoso.' },
+            { id: 'u3l6-04', audio: 'items/u3l6-04.mp3', kind: 'word', tsw: 'phakela', eng: 'in the morning / early', src: 'peace-corps-L16' },
+            { id: 'u3l6-05', audio: 'items/u3l6-05.mp3', kind: 'word', tsw: 'motshegare', eng: 'at midday / in the afternoon', src: 'peace-corps-L16' },
+            { id: 'u3l6-06', audio: 'items/u3l6-06.mp3', kind: 'word', tsw: 'maitseboa', eng: 'in the evening', src: 'peace-corps-L16' },
+            { id: 'u3l6-07', audio: 'items/u3l6-07.mp3', kind: 'word', tsw: 'bosigo', eng: 'at night', src: 'peace-corps-L16' },
+            { id: 'u3l6-08', audio: 'items/u3l6-08.mp3', kind: 'phrase', tsw: 'gone jaanong', eng: 'right now / at the moment', src: 'peace-corps-L16', note: 'jaanong = now (you saw it in O batla go dira eng jaanong?).' },
+            { id: 'u3l6-09', audio: 'items/u3l6-09.mp3', kind: 'word', tsw: 'kgantele', eng: 'later on', src: 'peace-corps-L16', note: 'The word inside Ke tla go bona kgantele, on its own.' }
           ]
         },
         {
           id: 'u3l7', title: 'Ke ile kwa sekolong', blurb: 'What happened yesterday: the past tense at school.',
           items: [
             { id: 'u3l7-00', kind: 'rule', tsw: '', eng: '', src: 'peace-corps-L10+L17', rule: 'Setswana has two ways to look back. The "was doing" past repeats the concord around ne — Ke ne ke ithuta (I was learning) — exactly the shape you drilled with batla in Part 1; remember o → a for she/he (O ne a ruta). The "did / finished" past changes the verb\'s ending instead: go ya → Ke ile (I went), go tlhola → Ke tlhotse (I spent the day). maabane is your cue.' },
-            { id: 'u3l7-01', kind: 'phrase', tsw: 'Ke ile kwa sekolong', eng: 'I went to school', src: 'pc-comp-grammar-ch2', concordSlot: { answer: 'Ke', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'ile kwa sekolong', hint: 'I' }, note: 'go ya → ile is the "finished" past of "go".' },
-            { id: 'u3l7-02', kind: 'phrase', tsw: 'Mpho o ile kwa sekolong', eng: 'Mpho went to school', src: 'pc-comp-grammar-ch2', concordSlot: { head: 'Mpho', answer: 'o', options: ['o', 'ke', 're', 'ba'], tail: 'ile kwa sekolong', hint: 'Mpho — she/he' } },
-            { id: 'u3l7-03', kind: 'phrase', tsw: 'Ke tlhotse kwa sekolong', eng: 'I spent the day at school', src: 'peace-corps-L17', note: 'go tlhola → tlhotse — to spend the day.' },
-            { id: 'u3l7-04', kind: 'phrase', tsw: 'Ke ne ke ithuta Setswana', eng: 'I was learning Setswana', src: 'peace-corps-L10+L6', concordSlot: { head: 'Ke ne', answer: 'ke', options: ['ke', 'o', 're', 'ba'], tail: 'ithuta Setswana', hint: 'I — the second concord' }, note: 'The same ne-past as Ke ne ke batla, now with a school verb.' },
-            { id: 'u3l7-05', kind: 'phrase', tsw: 'O ne a ruta', eng: 'She/he was teaching', src: 'peace-corps-L10+L5', concordSlot: { head: 'O ne', answer: 'a', options: ['a', 'o', 'ke', 're'], tail: 'ruta', hint: 'she/he — the second concord shifts to a' }, note: 'go ruta = to teach. Watch the o → a for she/he.' },
-            { id: 'u3l7-06', kind: 'phrase', tsw: 'Re ne re dira dilo tse dintsi', eng: 'We were doing many things', src: 'peace-corps-L17', note: 'dilo tse dintsi = many things.' },
-            { id: 'u3l7-07', kind: 'phrase', tsw: 'Ke ne ke itumetse', eng: 'I was happy', src: 'peace-corps-L17', note: 'From the school-day text: Ke ne ke itumetse gompieno — I was happy today.' },
-            { id: 'u3l7-08', kind: 'phrase', tsw: 'Ke rutile', eng: 'I taught', src: 'peace-corps-L5', note: 'go ruta → rutile, the "finished" past. This is the tense you\'ll use to tell someone how your lesson went.' }
+            { id: 'u3l7-01', audio: 'items/u3l7-01.mp3', kind: 'phrase', tsw: 'Ke ile kwa sekolong', eng: 'I went to school', src: 'pc-comp-grammar-ch2', concordSlot: { answer: 'Ke', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'ile kwa sekolong', hint: 'I' }, note: 'go ya → ile is the "finished" past of "go".' },
+            { id: 'u3l7-02', audio: 'items/u3l7-02.mp3', kind: 'phrase', tsw: 'Mpho o ile kwa sekolong', eng: 'Mpho went to school', src: 'pc-comp-grammar-ch2', concordSlot: { head: 'Mpho', answer: 'o', options: ['o', 'ke', 're', 'ba'], tail: 'ile kwa sekolong', hint: 'Mpho — she/he' } },
+            { id: 'u3l7-03', audio: 'items/u3l7-03.mp3', kind: 'phrase', tsw: 'Ke tlhotse kwa sekolong', eng: 'I spent the day at school', src: 'peace-corps-L17', note: 'go tlhola → tlhotse — to spend the day.' },
+            { id: 'u3l7-04', audio: 'items/u3l7-04.mp3', kind: 'phrase', tsw: 'Ke ne ke ithuta Setswana', eng: 'I was learning Setswana', src: 'peace-corps-L10+L6', concordSlot: { head: 'Ke ne', answer: 'ke', options: ['ke', 'o', 're', 'ba'], tail: 'ithuta Setswana', hint: 'I — the second concord' }, note: 'The same ne-past as Ke ne ke batla, now with a school verb.' },
+            { id: 'u3l7-05', audio: 'items/u3l7-05.mp3', kind: 'phrase', tsw: 'O ne a ruta', eng: 'She/he was teaching', src: 'peace-corps-L10+L5', concordSlot: { head: 'O ne', answer: 'a', options: ['a', 'o', 'ke', 're'], tail: 'ruta', hint: 'she/he — the second concord shifts to a' }, note: 'go ruta = to teach. Watch the o → a for she/he.' },
+            { id: 'u3l7-06', audio: 'items/u3l7-06.mp3', kind: 'phrase', tsw: 'Re ne re dira dilo tse dintsi', eng: 'We were doing many things', src: 'peace-corps-L17', note: 'dilo tse dintsi = many things.' },
+            { id: 'u3l7-07', audio: 'items/u3l7-07.mp3', kind: 'phrase', tsw: 'Ke ne ke itumetse', eng: 'I was happy', src: 'peace-corps-L17', note: 'From the school-day text: Ke ne ke itumetse gompieno — I was happy today.' },
+            { id: 'u3l7-08', audio: 'items/u3l7-08.mp3', kind: 'phrase', tsw: 'Ke rutile', eng: 'I taught', src: 'peace-corps-L5', note: 'go ruta → rutile, the "finished" past. This is the tense you\'ll use to tell someone how your lesson went.' }
           ]
         },
         {
           id: 'u3l8', title: 'Ke tla ya kwa sekolong', blurb: 'What happens tomorrow: the future tense at school.',
           items: [
             { id: 'u3l8-00', kind: 'rule', tsw: '', eng: '', src: 'peace-corps-L10+L17', rule: 'The future is the kind one: concord + tla + verb, nothing else moves. Ke tla ya kwa sekolong — I will go to school. You already say one future sentence without thinking: Ke tla go bona kamoso. kamoso (tomorrow) is your cue.' },
-            { id: 'u3l8-01', kind: 'phrase', tsw: 'Ke tla ya kwa sekolong', eng: 'I will go to school', src: 'peace-corps-L10+L17', concordSlot: { answer: 'Ke', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'tla ya kwa sekolong', hint: 'I' } },
+            { id: 'u3l8-01', audio: 'items/u3l8-01.mp3', kind: 'phrase', tsw: 'Ke tla ya kwa sekolong', eng: 'I will go to school', src: 'peace-corps-L10+L17', concordSlot: { answer: 'Ke', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'tla ya kwa sekolong', hint: 'I' } },
             { id: 'u3l8-02', kind: 'phrase', tsw: 'Ke tla go bona kamoso', eng: 'See you tomorrow', src: 'peace-corps-L4', audio: 'items/u1l3-03.mp3', note: 'You already knew a future sentence — here it is again, as proof tla is easy.' },
-            { id: 'u3l8-03', kind: 'phrase', tsw: 'Ke tla ithuta', eng: 'I will learn / study', src: 'peace-corps-L10+L6', concordSlot: { answer: 'Ke', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'tla ithuta', hint: 'I' } },
-            { id: 'u3l8-04', kind: 'phrase', tsw: 'Ke tla ruta', eng: 'I will teach', src: 'peace-corps-L10+L5', concordSlot: { answer: 'Ke', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'tla ruta', hint: 'I' }, note: 'go ruta = to teach — your future job in one sentence.' },
-            { id: 'u3l8-05', kind: 'phrase', tsw: 'Re tla bala buka', eng: 'We will read a book', src: 'peace-corps-L10+L11', concordSlot: { answer: 'Re', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'tla bala buka', hint: 'we' }, note: 'go bala = to read (Unit 1); buka = book.' },
-            { id: 'u3l8-06', kind: 'phrase', tsw: 'O tla ya kwa sekolong kamoso', eng: 'You will go to school tomorrow', src: 'peace-corps-L10+L16+L17', concordSlot: { answer: 'O', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'tla ya kwa sekolong kamoso', hint: 'you / she-he' }, note: 'Adverb + future: kamoso pins it to tomorrow.' },
-            { id: 'u3l8-07', kind: 'phrase', tsw: 'Ba tla ithuta Setswana', eng: 'They will learn Setswana', src: 'peace-corps-L10+L6', concordSlot: { answer: 'Ba', options: ['Ke', 'Le', 'Re', 'Ba'], tail: 'tla ithuta Setswana', hint: 'they' } }
+            { id: 'u3l8-03', audio: 'items/u3l8-03.mp3', kind: 'phrase', tsw: 'Ke tla ithuta', eng: 'I will learn / study', src: 'peace-corps-L10+L6', concordSlot: { answer: 'Ke', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'tla ithuta', hint: 'I' } },
+            { id: 'u3l8-04', audio: 'items/u3l8-04.mp3', kind: 'phrase', tsw: 'Ke tla ruta', eng: 'I will teach', src: 'peace-corps-L10+L5', concordSlot: { answer: 'Ke', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'tla ruta', hint: 'I' }, note: 'go ruta = to teach — your future job in one sentence.' },
+            { id: 'u3l8-05', audio: 'items/u3l8-05.mp3', kind: 'phrase', tsw: 'Re tla bala buka', eng: 'We will read a book', src: 'peace-corps-L10+L11', concordSlot: { answer: 'Re', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'tla bala buka', hint: 'we' }, note: 'go bala = to read (Unit 1); buka = book.' },
+            { id: 'u3l8-06', audio: 'items/u3l8-06.mp3', kind: 'phrase', tsw: 'O tla ya kwa sekolong kamoso', eng: 'You will go to school tomorrow', src: 'peace-corps-L10+L16+L17', concordSlot: { answer: 'O', options: ['Ke', 'O', 'Re', 'Ba'], tail: 'tla ya kwa sekolong kamoso', hint: 'you / she-he' }, note: 'Adverb + future: kamoso pins it to tomorrow.' },
+            { id: 'u3l8-07', audio: 'items/u3l8-07.mp3', kind: 'phrase', tsw: 'Ba tla ithuta Setswana', eng: 'They will learn Setswana', src: 'peace-corps-L10+L6', concordSlot: { answer: 'Ba', options: ['Ke', 'Le', 'Re', 'Ba'], tail: 'tla ithuta Setswana', hint: 'they' } }
           ]
         }
       ]
@@ -407,13 +407,13 @@ const RL_CONTENT = {
           items: [
             { id: 'u4l1-00', kind: 'rule', tsw: '', eng: '', src: 'grammar-toolkit', rule: 'Food words spread across the noun classes you already know. dijo (food) is a class-8/10 word — it only comes in the "plural" shape, like the English word "groceries". Borrowed foods sit in class 9 and just add di- for more than one: namune → dinamune (oranges). And some, like metsi (water) and mashi (milk), are mass words with no plural at all. dijo itself is built FROM the verb go ja — eating makes "food". More on word-building next lesson.' },
             { id: 'u4l1-01', audio: 'items/u4l1-01.mp3', kind: 'word', tsw: 'dijo', eng: 'food', src: 'peace-corps-L14', note: 'Only ever "plural" in shape, like "groceries". Built from go ja, to eat.' },
-            { id: 'u4l1-02', kind: 'word', tsw: 'nama', eng: 'meat', src: 'peace-corps-L14', cls: 9, note: 'You met it in Ke rata nama thata — I like meat a lot.' },
+            { id: 'u4l1-02', audio: 'items/u4l1-02.mp3', kind: 'word', tsw: 'nama', eng: 'meat', src: 'peace-corps-L14', cls: 9, note: 'You met it in Ke rata nama thata — I like meat a lot.' },
             { id: 'u4l1-03', audio: 'items/u4l1-03.mp3', kind: 'word', tsw: 'borotho', eng: 'bread', src: 'peace-corps-L14', cls: 9, note: 'A borrowed word (from Afrikaans "brood").' },
             { id: 'u4l1-04', audio: 'items/u4l1-04.mp3', kind: 'word', tsw: 'metsi', eng: 'water', src: 'peace-corps-L14', note: 'A mass word — no singular. Always metsi.' },
             { id: 'u4l1-05', audio: 'items/u4l1-05.mp3', kind: 'word', tsw: 'mashi', eng: 'milk', src: 'peace-corps-L14', note: 'Also a mass word.' },
             { id: 'u4l1-06', audio: 'items/u4l1-06.mp3', kind: 'word', tsw: 'mae', eng: 'eggs', src: 'peace-corps-L14', cls: 6, note: 'One egg = lee (class 5); mae = the plural.' },
             { id: 'u4l1-07', audio: 'items/u4l1-07.mp3', kind: 'word', tsw: 'namune', eng: 'orange', src: 'peace-corps-L14', cls: 9, plural: 'dinamune' },
-            { id: 'u4l1-08', kind: 'word', tsw: 'merogo', eng: 'vegetables', src: 'peace-corps-L14', cls: 4, note: 'One vegetable = morogo (mo-); merogo (me-) = vegetables.' },
+            { id: 'u4l1-08', audio: 'items/u4l1-08.mp3', kind: 'word', tsw: 'merogo', eng: 'vegetables', src: 'peace-corps-L14', cls: 4, note: 'One vegetable = morogo (mo-); merogo (me-) = vegetables.' },
             { id: 'u4l1-09', audio: 'items/u4l1-09.mp3', kind: 'word', tsw: 'dinawa', eng: 'beans', src: 'peace-corps-L14', cls: 10, note: 'One bean = nawa; dinawa = beans.' },
             { id: 'u4l1-10', audio: 'items/u4l1-10.mp3', kind: 'word', tsw: 'letswai', eng: 'salt', src: 'peace-corps-L14', cls: 5 }
           ]
@@ -422,12 +422,12 @@ const RL_CONTENT = {
           id: 'u4l2', title: 'Go dira mafoko', blurb: 'How Setswana grows new words: a verb turns into a noun.',
           items: [
             { id: 'u4l2-00', kind: 'rule', tsw: '', eng: '', src: 'grammar-toolkit', rule: 'Setswana builds new words by changing the FRONT of a word, never by tacking letters on the end like English. A verb becomes a "thing" or a "person" with a new prefix: go ja (to eat) → dijo (food); go nwa (to drink) → dino (drinks); go apaya (to cook) → moapei (a cook). The mo-/ba- prefix turns almost any verb into "the person who does it": go ruta (teach) → moruti. You already did this once without noticing — go ithuta, to learn, is literally "to teach yourself".' },
-            { id: 'u4l2-01', kind: 'verb', tsw: 'go apaya', eng: 'to cook', src: 'peace-corps-L5' },
-            { id: 'u4l2-02', kind: 'word', tsw: 'moapei', eng: 'a cook', src: 'beibele', cls: 1, plural: 'baapei', note: 'go apaya → moapei: the mo- prefix makes "the one who cooks".' },
-            { id: 'u4l2-03', kind: 'word', tsw: 'dino', eng: 'drinks', src: 'beibele', note: 'go nwa (to drink) → dino, the di- pair to dijo. Food and drink: dijo le dino.' },
-            { id: 'u4l2-04', kind: 'word', tsw: 'moruti', eng: 'teacher / preacher', src: 'beibele', cls: 1, plural: 'baruti', note: 'go ruta (to teach) → moruti. Same family as morutabana, the schoolteacher you met in Unit 2.' },
-            { id: 'u4l2-05', kind: 'word', tsw: 'modiri', eng: 'a worker', src: 'beibele', cls: 1, plural: 'badiri', note: 'go dira (to do / work) → modiri: the one who does.' },
-            { id: 'u4l2-06', kind: 'phrase', tsw: 'Re apaya merogo', eng: 'We are cooking vegetables', src: 'pc-comp-grammar-interrog', note: 'Answer to Re apaya eng? — "what are we cooking?"' }
+            { id: 'u4l2-01', audio: 'items/u4l2-01.mp3', kind: 'verb', tsw: 'go apaya', eng: 'to cook', src: 'peace-corps-L5' },
+            { id: 'u4l2-02', audio: 'items/u4l2-02.mp3', kind: 'word', tsw: 'moapei', eng: 'a cook', src: 'beibele', cls: 1, plural: 'baapei', note: 'go apaya → moapei: the mo- prefix makes "the one who cooks".' },
+            { id: 'u4l2-03', audio: 'items/u4l2-03.mp3', kind: 'word', tsw: 'dino', eng: 'drinks', src: 'beibele', note: 'go nwa (to drink) → dino, the di- pair to dijo. Food and drink: dijo le dino.' },
+            { id: 'u4l2-04', audio: 'items/u4l2-04.mp3', kind: 'word', tsw: 'moruti', eng: 'teacher / preacher', src: 'beibele', cls: 1, plural: 'baruti', note: 'go ruta (to teach) → moruti. Same family as morutabana, the schoolteacher you met in Unit 2.' },
+            { id: 'u4l2-05', audio: 'items/u4l2-05.mp3', kind: 'word', tsw: 'modiri', eng: 'a worker', src: 'beibele', cls: 1, plural: 'badiri', note: 'go dira (to do / work) → modiri: the one who does.' },
+            { id: 'u4l2-06', audio: 'items/u4l2-06.mp3', kind: 'phrase', tsw: 'Re apaya merogo', eng: 'We are cooking vegetables', src: 'pc-comp-grammar-interrog', note: 'Answer to Re apaya eng? — "what are we cooking?"' }
           ]
         },
         {
@@ -451,26 +451,26 @@ const RL_CONTENT = {
           id: 'u4l4', title: 'Ba le babedi', blurb: 'Counting real things: the number grows a little agreement piece.',
           items: [
             { id: 'u4l4-00', kind: 'rule', tsw: '', eng: '', src: 'pc-comp-grammar-ch2', rule: 'To count things you don\'t just say the number — you put the noun\'s concord + le in front of it: batho ba le babedi (two people), dikgomo di le pedi (two cows). Two shapes of the number live here: after most classes it takes a prefix (ba-bedi, ba-raro), but classes 8 and 10 use the bare "strong" number (di le pedi, di le tharo). Ask "how many?" with ba le kae? / di le kae?' },
-            { id: 'u4l4-01', kind: 'phrase', tsw: 'Namune e le nngwe', eng: 'One orange', src: 'peace-corps-L20', concordSlot: { head: 'Namune', answer: 'e', options: ['e', 'di', 'ba', 'a'], tail: 'le nngwe', hint: 'orange — class 9' }, note: 'From the market: namune e le nngwe ke bokae? — how much is one orange?' },
-            { id: 'u4l4-02', kind: 'phrase', tsw: 'Batho ba le babedi', eng: 'Two people', src: 'pc-comp-grammar-ch2', concordSlot: { head: 'Batho', answer: 'ba', options: ['ba', 'di', 'e', 'a'], tail: 'le babedi', hint: 'people — class 2' }, note: 'The number takes the class prefix too: ba + ba-bedi.' },
-            { id: 'u4l4-03', kind: 'phrase', tsw: 'Dikgomo di le pedi', eng: 'Two cows', src: 'pc-comp-grammar-ch2', concordSlot: { head: 'Dikgomo', answer: 'di', options: ['di', 'ba', 'e', 'a'], tail: 'le pedi', hint: 'cows — class 10' }, note: 'Class 10 uses the bare strong number: di le pedi, not di le dipedi.' },
+            { id: 'u4l4-01', audio: 'items/u4l4-01.mp3', kind: 'phrase', tsw: 'Namune e le nngwe', eng: 'One orange', src: 'peace-corps-L20', concordSlot: { head: 'Namune', answer: 'e', options: ['e', 'di', 'ba', 'a'], tail: 'le nngwe', hint: 'orange — class 9' }, note: 'From the market: namune e le nngwe ke bokae? — how much is one orange?' },
+            { id: 'u4l4-02', audio: 'items/u4l4-02.mp3', kind: 'phrase', tsw: 'Batho ba le babedi', eng: 'Two people', src: 'pc-comp-grammar-ch2', concordSlot: { head: 'Batho', answer: 'ba', options: ['ba', 'di', 'e', 'a'], tail: 'le babedi', hint: 'people — class 2' }, note: 'The number takes the class prefix too: ba + ba-bedi.' },
+            { id: 'u4l4-03', audio: 'items/u4l4-03.mp3', kind: 'phrase', tsw: 'Dikgomo di le pedi', eng: 'Two cows', src: 'pc-comp-grammar-ch2', concordSlot: { head: 'Dikgomo', answer: 'di', options: ['di', 'ba', 'e', 'a'], tail: 'le pedi', hint: 'cows — class 10' }, note: 'Class 10 uses the bare strong number: di le pedi, not di le dipedi.' },
             { id: 'u4l4-04', kind: 'phrase', tsw: 'O na le bana ba le babedi', eng: 'She/he has two children', src: 'pc-comp-grammar-ch2', audio: 'items/u2l4-08.mp3', concordSlot: { head: 'O na le bana', answer: 'ba', options: ['ba', 'di', 'e', 'a'], tail: 'le babedi', hint: 'children — class 2' }, note: 'You met this in Unit 2 — here it is again as a counting sentence.' },
-            { id: 'u4l4-05', kind: 'phrase', tsw: 'Re na le baithuti ba le kae?', eng: 'How many students do we have?', src: 'pc-comp-grammar-interrog', note: 'ba le kae? = how many? kae here means "how many", not "where".' },
-            { id: 'u4l4-06', kind: 'phrase', tsw: 'Dikgomo tse pedi di a ja', eng: 'The two cows are eating', src: 'pc-comp-grammar-ch2', note: 'Another way to count: tse pedi ("those two") right after the noun. Ties back to go ja.' }
+            { id: 'u4l4-05', audio: 'items/u4l4-05.mp3', kind: 'phrase', tsw: 'Re na le baithuti ba le kae?', eng: 'How many students do we have?', src: 'pc-comp-grammar-interrog', note: 'ba le kae? = how many? kae here means "how many", not "where".' },
+            { id: 'u4l4-06', audio: 'items/u4l4-06.mp3', kind: 'phrase', tsw: 'Dikgomo tse pedi di a ja', eng: 'The two cows are eating', src: 'pc-comp-grammar-ch2', note: 'Another way to count: tse pedi ("those two") right after the noun. Ties back to go ja.' }
           ]
         },
         {
           id: 'u4l5', title: 'Le, mme, kgotsa', blurb: 'Joining words: and, but, or — and the sentences they live in.',
           items: [
             { id: 'u4l5-00', kind: 'rule', tsw: '', eng: '', src: 'peace-corps-L9', rule: 'Small words stitch sentences together: le (and / with), mme (but), kgotsa or kana (or), jaaka (like / as), ka gore (because), ka jalo (therefore). One warning about le: unlike English "and", it joins words and lists but NOT two whole sentences — for that, reach for mme. Everything below is about food, because Setswana grammar books, like everyone, would rather talk about meat.' },
-            { id: 'u4l5-01', kind: 'word', tsw: 'le', eng: 'and / with', src: 'peace-corps-L9', note: 'Joins words and lists: dijo le dino (food and drink). NOT for joining two sentences.' },
-            { id: 'u4l5-02', kind: 'phrase', tsw: 'Ke rata nama ya koko le nama ya kgomo', eng: 'I like chicken and beef', src: 'pc-comp-grammar-conj', note: 'nama ya koko = chicken meat; nama ya kgomo = beef. le links the two.' },
-            { id: 'u4l5-03', kind: 'word', tsw: 'mme', eng: 'but', src: 'peace-corps-L9', note: 'The one that DOES join two sentences, usually contrasting ones.' },
-            { id: 'u4l5-04', kind: 'word', tsw: 'kgotsa', eng: 'or', src: 'peace-corps-L9', note: 'kana works the same way.' },
-            { id: 'u4l5-05', kind: 'phrase', tsw: 'A o batla go ja nama ya kgomo kgotsa ya koko?', eng: 'Do you want to eat beef or chicken?', src: 'pc-comp-grammar-conj', note: 'A … ? makes it a yes/no question; kgotsa offers the choice.' },
-            { id: 'u4l5-06', kind: 'word', tsw: 'ka gore', eng: 'because', src: 'peace-corps-L9' },
-            { id: 'u4l5-07', kind: 'phrase', tsw: 'Ke rata seswaa, ka gore ke nama', eng: 'I like seswaa, because it is meat', src: 'pc-comp-grammar-conj', note: 'seswaa = pounded meat, a Botswana favourite.' },
-            { id: 'u4l5-08', kind: 'phrase', tsw: 'Seswaa ke nama. Ka jalo, ke a se rata', eng: 'Seswaa is meat. Therefore, I like it', src: 'pc-comp-grammar-conj', note: 'ka jalo = therefore — draws the conclusion.' }
+            { id: 'u4l5-01', audio: 'items/u4l5-01.mp3', kind: 'word', tsw: 'le', eng: 'and / with', src: 'peace-corps-L9', note: 'Joins words and lists: dijo le dino (food and drink). NOT for joining two sentences.' },
+            { id: 'u4l5-02', audio: 'items/u4l5-02.mp3', kind: 'phrase', tsw: 'Ke rata nama ya koko le nama ya kgomo', eng: 'I like chicken and beef', src: 'pc-comp-grammar-conj', note: 'nama ya koko = chicken meat; nama ya kgomo = beef. le links the two.' },
+            { id: 'u4l5-03', audio: 'items/u4l5-03.mp3', kind: 'word', tsw: 'mme', eng: 'but', src: 'peace-corps-L9', note: 'The one that DOES join two sentences, usually contrasting ones.' },
+            { id: 'u4l5-04', audio: 'items/u4l5-04.mp3', kind: 'word', tsw: 'kgotsa', eng: 'or', src: 'peace-corps-L9', note: 'kana works the same way.' },
+            { id: 'u4l5-05', audio: 'items/u4l5-05.mp3', kind: 'phrase', tsw: 'A o batla go ja nama ya kgomo kgotsa ya koko?', eng: 'Do you want to eat beef or chicken?', src: 'pc-comp-grammar-conj', note: 'A … ? makes it a yes/no question; kgotsa offers the choice.' },
+            { id: 'u4l5-06', audio: 'items/u4l5-06.mp3', kind: 'word', tsw: 'ka gore', eng: 'because', src: 'peace-corps-L9' },
+            { id: 'u4l5-07', audio: 'items/u4l5-07.mp3', kind: 'phrase', tsw: 'Ke rata seswaa, ka gore ke nama', eng: 'I like seswaa, because it is meat', src: 'pc-comp-grammar-conj', note: 'seswaa = pounded meat, a Botswana favourite.' },
+            { id: 'u4l5-08', audio: 'items/u4l5-08.mp3', kind: 'phrase', tsw: 'Seswaa ke nama. Ka jalo, ke a se rata', eng: 'Seswaa is meat. Therefore, I like it', src: 'pc-comp-grammar-conj', note: 'ka jalo = therefore — draws the conclusion.' }
           ]
         }
       ]
@@ -484,7 +484,7 @@ const RL_CONTENT = {
           id: 'u5l1', title: 'Diphologolo tsa kwa gae', blurb: 'The animals you live with — around the home and the kraal.',
           items: [
             { id: 'u5l1-00', kind: 'rule', tsw: '', eng: '', src: 'grammar-toolkit', rule: 'Almost every animal name is a class 9/10 word — the same class you met in Unit 1 for "animals and borrowed words". That means the singular has no visible prefix and the plural just adds di-: kgomo → dikgomo (cattle), nku → dinku (sheep), podi → dipodi (goats). This is the tidiest plural in Setswana — one rule covers the whole farmyard. The umbrella word for them all is phologolo (an animal) → diphologolo, which is the name of this unit.' },
-            { id: 'u5l1-01', kind: 'word', tsw: 'phologolo', eng: 'animal', src: 'beibele', cls: 9, plural: 'diphologolo', note: 'diphologolo (animals) is the unit\'s name. 52× in the Setswana Bible.' },
+            { id: 'u5l1-01', audio: 'items/u5l1-01.mp3', kind: 'word', tsw: 'phologolo', eng: 'animal', src: 'beibele', cls: 9, plural: 'diphologolo', note: 'diphologolo (animals) is the unit\'s name. 52× in the Setswana Bible.' },
             { id: 'u5l1-02', audio: 'items/u5l1-02.mp3', kind: 'word', tsw: 'kgomo', eng: 'cow / ox', src: 'pc-comp-grammar-ch2', cls: 9, plural: 'dikgomo', note: 'The grammar book\'s favourite example animal. You already met the plural, dikgomo, in Unit 2.' },
             { id: 'u5l1-03', audio: 'items/u5l1-03.mp3', kind: 'word', tsw: 'nku', eng: 'sheep', src: 'beibele', cls: 9, plural: 'dinku', note: 'Same shape singular and plural stem: nku → dinku. From the shepherd verses (Matthew 25).' },
             { id: 'u5l1-04', audio: 'items/u5l1-04.mp3', kind: 'word', tsw: 'podi', eng: 'goat', src: 'beibele', cls: 9, plural: 'dipodi', note: 'Sheep and goats together: dinku le dipodi (Matthew 25). The Bible itself spells it dipudi; podi/dipodi is the standard SA-Setswana form used here.' },
@@ -500,13 +500,13 @@ const RL_CONTENT = {
           id: 'u5l2', title: 'Diphologolo tsa naga', blurb: 'Out in the veld: the wild animals of Setswana story and Scripture.',
           items: [
             { id: 'u5l2-00', kind: 'rule', tsw: '', eng: '', src: 'grammar-toolkit', rule: 'Wild animals follow the same class-9/10 rule as the farm ones: tau → ditau (lions), noga → dinoga (snakes), tlhapi → ditlhapi (fish). Setswana loves an animal picture — the lion is a praise-name for a chief (Tau ya lotso, "the Lion of the tribe"), and being "wise as a snake" is a compliment. You\'ll meet those pictures in the idioms lesson.' },
-            { id: 'u5l2-01', kind: 'word', tsw: 'tau', eng: 'lion', src: 'beibele', cls: 9, plural: 'ditau', note: 'The praise-animal: "the Lion of the tribe of Judah" — Revelation 5.' },
-            { id: 'u5l2-02', kind: 'word', tsw: 'phiri', eng: 'wolf / hyena', src: 'beibele', cls: 9, plural: 'diphiri', note: 'The danger in "sheep among wolves" — Matthew 10. Setswana phiri covers wolf and hyena.' },
-            { id: 'u5l2-03', kind: 'word', tsw: 'noga', eng: 'snake', src: 'beibele', cls: 9, plural: 'dinoga', note: 'noga e e nang le botlhole = a venomous snake (Matthew 7).' },
-            { id: 'u5l2-04', kind: 'word', tsw: 'nonyane', eng: 'bird', src: 'beibele', cls: 9, plural: 'dinonyane', note: 'Bonang dinonyane! — "See the birds!" (Matthew 6).' },
-            { id: 'u5l2-05', kind: 'word', tsw: 'tlhapi', eng: 'fish', src: 'beibele', cls: 9, plural: 'ditlhapi', note: 'From "if he asks for a fish…" — Matthew 7.' },
-            { id: 'u5l2-06', kind: 'word', tsw: 'kammele', eng: 'camel', src: 'beibele', cls: 9, plural: 'dikammele', note: 'The one that can\'t fit through a needle\'s eye — Matthew 19.' },
-            { id: 'u5l2-07', kind: 'word', tsw: 'lephoi', eng: 'dove', src: 'beibele', cls: 5, plural: 'maphoi', note: 'A le-/ma- word, not class 9: lephoi → maphoi. "Harmless as doves" — Matthew 10.' }
+            { id: 'u5l2-01', audio: 'items/u5l2-01.mp3', kind: 'word', tsw: 'tau', eng: 'lion', src: 'beibele', cls: 9, plural: 'ditau', note: 'The praise-animal: "the Lion of the tribe of Judah" — Revelation 5.' },
+            { id: 'u5l2-02', audio: 'items/u5l2-02.mp3', kind: 'word', tsw: 'phiri', eng: 'wolf / hyena', src: 'beibele', cls: 9, plural: 'diphiri', note: 'The danger in "sheep among wolves" — Matthew 10. Setswana phiri covers wolf and hyena.' },
+            { id: 'u5l2-03', audio: 'items/u5l2-03.mp3', kind: 'word', tsw: 'noga', eng: 'snake', src: 'beibele', cls: 9, plural: 'dinoga', note: 'noga e e nang le botlhole = a venomous snake (Matthew 7).' },
+            { id: 'u5l2-04', audio: 'items/u5l2-04.mp3', kind: 'word', tsw: 'nonyane', eng: 'bird', src: 'beibele', cls: 9, plural: 'dinonyane', note: 'Bonang dinonyane! — "See the birds!" (Matthew 6).' },
+            { id: 'u5l2-05', audio: 'items/u5l2-05.mp3', kind: 'word', tsw: 'tlhapi', eng: 'fish', src: 'beibele', cls: 9, plural: 'ditlhapi', note: 'From "if he asks for a fish…" — Matthew 7.' },
+            { id: 'u5l2-06', audio: 'items/u5l2-06.mp3', kind: 'word', tsw: 'kammele', eng: 'camel', src: 'beibele', cls: 9, plural: 'dikammele', note: 'The one that can\'t fit through a needle\'s eye — Matthew 19.' },
+            { id: 'u5l2-07', audio: 'items/u5l2-07.mp3', kind: 'word', tsw: 'lephoi', eng: 'dove', src: 'beibele', cls: 5, plural: 'maphoi', note: 'A le-/ma- word, not class 9: lephoi → maphoi. "Harmless as doves" — Matthew 10.' }
           ]
         },
         {
@@ -518,32 +518,32 @@ const RL_CONTENT = {
             { id: 'u5l3-03', audio: 'items/u2l5-09.mp3', kind: 'phrase', tsw: 'Ke na le dikgomo tse dintle', eng: 'I have beautiful cows', src: 'pc-comp-grammar-ch4', note: 'Inside a phrase the adjective takes a linker: tse dintle.' },
             { id: 'u5l3-04', audio: 'items/u2l6-10.mp3', kind: 'phrase', tsw: 'Pitse e tshweu', eng: 'A white horse', src: 'beibele', concordSlot: { head: 'Pitse', answer: 'e', options: ['e', 'di', 'o', 'le'], tail: 'tshweu', hint: 'horse — class 9' }, note: 'Straight out of Revelation 6.' },
             { id: 'u5l3-05', audio: 'items/u2l6-11.mp3', kind: 'phrase', tsw: 'Pitse e ntsho', eng: 'A black horse', src: 'beibele', note: 'And Revelation 6\'s black horse.' },
-            { id: 'u5l3-06', kind: 'phrase', tsw: 'Bonang dinonyane!', eng: 'See the birds!', src: 'beibele', note: 'Verbatim, Matthew 6:26 — Bonang dinonyane! go bona = to see (Unit 1), now as a command to a group: Bonang.' },
-            { id: 'u5l3-07', kind: 'phrase', tsw: 'Ke na le dinku le dipodi', eng: 'I have sheep and goats', src: 'beibele+peace-corps-L11', note: 'Built from Ke na le (I have, Unit 1) + dinku le dipodi (sheep and goats, Matthew 25) — all sourced. le = and.' },
-            { id: 'u5l3-08', kind: 'phrase', tsw: 'Dikgomo di dintsi', eng: 'The cattle are many', src: 'pc-comp-grammar-ch2+beibele', note: 'dintsi = many (you met dilo tse dintsi in Unit 3). The cattle are many.' }
+            { id: 'u5l3-06', audio: 'items/u5l3-06.mp3', kind: 'phrase', tsw: 'Bonang dinonyane!', eng: 'See the birds!', src: 'beibele', note: 'Verbatim, Matthew 6:26 — Bonang dinonyane! go bona = to see (Unit 1), now as a command to a group: Bonang.' },
+            { id: 'u5l3-07', audio: 'items/u5l3-07.mp3', kind: 'phrase', tsw: 'Ke na le dinku le dipodi', eng: 'I have sheep and goats', src: 'beibele+peace-corps-L11', note: 'Built from Ke na le (I have, Unit 1) + dinku le dipodi (sheep and goats, Matthew 25) — all sourced. le = and.' },
+            { id: 'u5l3-08', audio: 'items/u5l3-08.mp3', kind: 'phrase', tsw: 'Dikgomo di dintsi', eng: 'The cattle are many', src: 'pc-comp-grammar-ch2+beibele', note: 'dintsi = many (you met dilo tse dintsi in Unit 3). The cattle are many.' }
           ]
         },
         {
           id: 'u5l4', title: 'Maele a diphologolo', blurb: 'Setswana paints with animals: wise as a snake, the Lion of the tribe. Figures of speech you can read.',
           items: [
             { id: 'u5l4-00', kind: 'rule', tsw: '', eng: '', src: 'grammar-toolkit', rule: 'A maele (idiom) says one thing to mean another — Setswana reaches for animals constantly, because cattle and the veld sit at the heart of the culture. What follows here is Biblical figurative animal language, not the module\'s own traditional maele: real figures of speech — to be "wise as a snake", to be sent out "as sheep among wolves", to call a leader "the Lion of the tribe" — each one honestly sourced, never invented. You can\'t work out an idiom\'s meaning from its words alone, so each card carries what it actually means. The module\'s real maele list — the traditional Setswana idioms this outcome is really asking for — will come from the Smart Guide once it lands.' },
-            { id: 'u5l4-01', kind: 'phrase', tsw: 'Nnang botlhale jaaka dinoga', eng: 'Be wise as snakes', src: 'beibele', note: 'Verbatim, Matthew 10:16 — Biblical figurative language, not a traditional maele. jaaka = like/as (Unit 4). The snake here is a picture of cleverness, not danger.' },
-            { id: 'u5l4-02', kind: 'phrase', tsw: 'bori jaaka maphoi', eng: 'harmless as doves', src: 'beibele', note: 'The other half of Matthew 10:16 — paired with the snake: clever, yet gentle. Biblical figurative language.' },
-            { id: 'u5l4-03', kind: 'phrase', tsw: 'Ke lo roma jaaka dinku mo gare ga diphiri', eng: 'I send you out as sheep among wolves', src: 'beibele', note: 'Verbatim, Matthew 10:16 — being sent somewhere risky, defenceless. dinku = sheep, diphiri = wolves. Biblical figurative language.' },
-            { id: 'u5l4-04', kind: 'phrase', tsw: 'Tau ya lotso lwa Juda', eng: 'The Lion of the tribe of Judah', src: 'beibele', note: 'Verbatim, Revelation 5:5. Calling someone tau (a lion) is the highest praise — strength and rule, the animal-praise-name pattern. Biblical figurative language.' },
-            { id: 'u5l4-05', kind: 'phrase', tsw: 'Ke Modisa yo o Molemo', eng: 'I am the good shepherd', src: 'beibele', note: 'Verbatim, John 10:11. modisa = shepherd (of dinku, sheep) — the caring-leader picture, the flip side of the wolf. Biblical figurative language.' }
+            { id: 'u5l4-01', audio: 'items/u5l4-01.mp3', kind: 'phrase', tsw: 'Nnang botlhale jaaka dinoga', eng: 'Be wise as snakes', src: 'beibele', note: 'Verbatim, Matthew 10:16 — Biblical figurative language, not a traditional maele. jaaka = like/as (Unit 4). The snake here is a picture of cleverness, not danger.' },
+            { id: 'u5l4-02', audio: 'items/u5l4-02.mp3', kind: 'phrase', tsw: 'bori jaaka maphoi', eng: 'harmless as doves', src: 'beibele', note: 'The other half of Matthew 10:16 — paired with the snake: clever, yet gentle. Biblical figurative language.' },
+            { id: 'u5l4-03', audio: 'items/u5l4-03.mp3', kind: 'phrase', tsw: 'Ke lo roma jaaka dinku mo gare ga diphiri', eng: 'I send you out as sheep among wolves', src: 'beibele', note: 'Verbatim, Matthew 10:16 — being sent somewhere risky, defenceless. dinku = sheep, diphiri = wolves. Biblical figurative language.' },
+            { id: 'u5l4-04', audio: 'items/u5l4-04.mp3', kind: 'phrase', tsw: 'Tau ya lotso lwa Juda', eng: 'The Lion of the tribe of Judah', src: 'beibele', note: 'Verbatim, Revelation 5:5. Calling someone tau (a lion) is the highest praise — strength and rule, the animal-praise-name pattern. Biblical figurative language.' },
+            { id: 'u5l4-05', audio: 'items/u5l4-05.mp3', kind: 'phrase', tsw: 'Ke Modisa yo o Molemo', eng: 'I am the good shepherd', src: 'beibele', note: 'Verbatim, John 10:11. modisa = shepherd (of dinku, sheep) — the caring-leader picture, the flip side of the wolf. Biblical figurative language.' }
           ]
         },
         {
           id: 'u5l5', title: 'Go ranola', blurb: 'Turn it around: Setswana into English and back. Read it, then write it out.',
           items: [
             { id: 'u5l5-00', kind: 'rule', tsw: '', eng: '', src: 'grammar-toolkit', rule: 'go ranola = to translate. There\'s nothing new to learn here — every word is one you know. The drills flip each sentence both ways (Setswana ⇄ English), and once a sentence is familiar the app will ask you to WRITE it out, not just tap it. That is your writing practice: small, correct sentences about animals.' },
-            { id: 'u5l5-01', kind: 'phrase', tsw: 'Ke na le podi', eng: 'I have a goat', src: 'peace-corps-L11+beibele', note: 'Ke na le (I have, Unit 1) + podi (goat). Your first sentence to write from memory.' },
-            { id: 'u5l5-02', kind: 'phrase', tsw: 'Ke na le ntša', eng: 'I have a dog', src: 'peace-corps-L11+beibele', note: 'Same frame, new animal: swap podi for ntša.' },
-            { id: 'u5l5-03', kind: 'phrase', tsw: 'Ke bona nonyane', eng: 'I see a bird', src: 'peace-corps-L4+beibele', note: 'go bona = to see (Ke tla go bona, Unit 1) + nonyane (bird).' },
-            { id: 'u5l5-04', kind: 'phrase', tsw: 'Nku e ntsho', eng: 'A black sheep', src: 'beibele', concordSlot: { head: 'Nku', answer: 'e', options: ['e', 'di', 'o', 'le'], tail: 'ntsho', hint: 'sheep — class 9' }, note: 'Same class-9 colour pattern as pitse e ntsho — the concord e + the stem ntsho.' },
-            { id: 'u5l5-05', kind: 'phrase', tsw: 'Dintša di bogale', eng: 'The dogs are fierce', src: 'pc-comp-grammar-ch2+beibele', note: 'The exact shape of Dikgomo di bogale, now with dogs: subject marker di + bogale.' },
-            { id: 'u5l5-06', kind: 'phrase', tsw: 'Ke rata diphologolo', eng: 'I like animals', src: 'peace-corps-L6+beibele', note: 'Ke rata (I like, Unit 1 — Ke rata nama) + diphologolo (animals). A sentence to close the unit on.' }
+            { id: 'u5l5-01', audio: 'items/u5l5-01.mp3', kind: 'phrase', tsw: 'Ke na le podi', eng: 'I have a goat', src: 'peace-corps-L11+beibele', note: 'Ke na le (I have, Unit 1) + podi (goat). Your first sentence to write from memory.' },
+            { id: 'u5l5-02', audio: 'items/u5l5-02.mp3', kind: 'phrase', tsw: 'Ke na le ntša', eng: 'I have a dog', src: 'peace-corps-L11+beibele', note: 'Same frame, new animal: swap podi for ntša.' },
+            { id: 'u5l5-03', audio: 'items/u5l5-03.mp3', kind: 'phrase', tsw: 'Ke bona nonyane', eng: 'I see a bird', src: 'peace-corps-L4+beibele', note: 'go bona = to see (Ke tla go bona, Unit 1) + nonyane (bird).' },
+            { id: 'u5l5-04', audio: 'items/u5l5-04.mp3', kind: 'phrase', tsw: 'Nku e ntsho', eng: 'A black sheep', src: 'beibele', concordSlot: { head: 'Nku', answer: 'e', options: ['e', 'di', 'o', 'le'], tail: 'ntsho', hint: 'sheep — class 9' }, note: 'Same class-9 colour pattern as pitse e ntsho — the concord e + the stem ntsho.' },
+            { id: 'u5l5-05', audio: 'items/u5l5-05.mp3', kind: 'phrase', tsw: 'Dintša di bogale', eng: 'The dogs are fierce', src: 'pc-comp-grammar-ch2+beibele', note: 'The exact shape of Dikgomo di bogale, now with dogs: subject marker di + bogale.' },
+            { id: 'u5l5-06', audio: 'items/u5l5-06.mp3', kind: 'phrase', tsw: 'Ke rata diphologolo', eng: 'I like animals', src: 'peace-corps-L6+beibele', note: 'Ke rata (I like, Unit 1 — Ke rata nama) + diphologolo (animals). A sentence to close the unit on.' }
           ]
         }
       ]

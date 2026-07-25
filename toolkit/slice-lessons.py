@@ -60,6 +60,11 @@ LESSONS = {
     # Split button. Do NOT lower the global thresholds to suit it: they would renumber every
     # Peace Corps lesson's segments and invalidate every committed tag.
     '★ Food (native)': 'Food.mp3',
+    # ★ Missing Words (native) added 2026-07-25: the outsourced Setswana L1 speaker's
+    # recording of the 132-word/phrase recording-sheet (68 silent + 64 flagged-for-redo),
+    # read in the same numbered order as toolkit/recording-list.json. A single combined
+    # take (not per-lesson), unlike the Peace Corps files — tag against that order.
+    '★ Missing Words (native)': 'Missing Words.wav',
 }
 
 NOISE_DB = '-30dB'
