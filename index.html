@@ -279,6 +279,7 @@ body.tutor-fab-on .exa-actions{padding-bottom:calc(64px + env(safe-area-inset-bo
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script src="content.js"></script>
 <script src="dialogues.js"></script>
+<script src="builder-bank.js"></script>
 <script>
 'use strict';
 /* ===== Re:Lefela engine ===== */
@@ -311,7 +312,7 @@ function persist(){ store.set('srs', state.srs); store.set('progress', state.pro
 // own by the caller. There are no app-scoped rl_ keys. Used by logout + the account-
 // switch guard in afterAuth so one learner's data can never bleed into another's.
 function clearLearnerState(){
-  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily']
+  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder']
     .forEach(k=>localStorage.removeItem(k));
 }
 
@@ -782,6 +783,13 @@ function screenHome(){
   const chatAllDone = chatSc && RL_DIALOGUES.filter(sc=>sc.requires.every(chatLearned)).every(sc=>chatStoreGet().done[sc.id]);
   const chatBtn = chatSc
     ? `<button class="btn ghost" id="b-chat" style="margin:10px 0">💬 Bua le Katse — chat with her in Setswana${chatAllDone ? ' ✓' : ''}</button>` : '';
+  // Sentence Builder — visible once ANY bank prompt is unlocked (same gate shape as chat)
+  const bldEntries = builderEntries();
+  const bldSt = builderStoreGet();
+  const bldAllDone = bldEntries.length > 0 && bldEntries.every(e=>bldSt.done[e.id]);
+  const builderBtn = bldEntries.length
+    ? `<button class="btn ghost" id="b-builder" style="margin:10px 0">🧩 Sentence Builder — type it yourself${bldAllDone ? ' ✓' : ''}<br>
+        <span class="tiny">${bldEntries.length} sentence${bldEntries.length===1?'':'s'} unlocked · English in, your Setswana out</span></button>` : '';
   render(`
     <div class="row spread">
       <div class="logo" style="font-size:1.3rem"><span class="re">Re:</span><span class="zero">Lefela</span></div>
@@ -800,6 +808,7 @@ function screenHome(){
     ${dailyBtn}
     ${gym}
     ${chatBtn}
+    ${builderBtn}
     ${unitsHtml}
     <div class="row" style="margin-top:16px">
       <button class="btn ghost" id="b-lb" style="flex:1">🏆 Scoreboard</button>
@@ -819,6 +828,7 @@ function screenHome(){
   const rv = document.getElementById('b-daily'); if (rv) rv.onclick = startDaily;
   const gy = document.getElementById('b-gym'); if (gy) gy.onclick = startGym;
   const cb = document.getElementById('b-chat'); if (cb) cb.onclick = screenChatPick;
+  const bd = document.getElementById('b-builder'); if (bd) bd.onclick = startBuilder;
   document.getElementById('b-lb').onclick = screenLeaderboard;
   document.getElementById('b-me').onclick = screenStats;
 }
@@ -1180,6 +1190,110 @@ function screenChatPick(){
   document.querySelectorAll('.lesson-node[data-id]').forEach(n=>{
     n.onclick = ()=> startChat(RL_DIALOGUES.find(sc=>sc.id===n.dataset.id));
   });
+}
+
+/* ---------- 🧩 Sentence Builder (SPEC-sentence-builder.md) ----------
+   Typed production drill over builder-bank.js (pre-checked sentences, same
+   no-unsourced-Setswana bar as content.js). Grading is norm()/answerMatches
+   against each entry's `accept` strings — never a live grammar check; a correct
+   reordering only passes if it is separately listed in `accept`. NO SRS writes
+   (spec §4): one sentence touches several ids at once, which would distort
+   srsGrade()'s per-card interval math — completion lives in device-local
+   rl_builder instead (rl_chat precedent). XP rides the normal queue as kind
+   'builder'. Own container id (sbArea, NOT exArea) so a stale lesson `session`
+   can never make currentContext() report a lesson she isn't in. */
+let builder = null;   // {order:[entryId], at, misses}
+function builderStoreGet(){ return store.get('builder', {done:{}, streak:0}); }
+function builderStoreSet(v){ store.set('builder', v); }
+// unlock = every content item the sentence draws on met for real (reps>=1) —
+// the same gate the chat scenarios put on `requires`
+function builderUnlocked(e){ return e.usesIds.every(chatLearned); }
+function builderEntries(){ return (typeof RL_BUILDER === 'undefined') ? [] : RL_BUILDER.filter(builderUnlocked); }
+function builderMatch(given, entry){
+  let close = false;
+  for (const a of entry.accept){
+    const m = answerMatches(given, a);
+    if (m === 'exact') return 'exact';
+    if (m === 'close') close = true;
+  }
+  return close ? 'close' : null;
+}
+function startBuilder(){
+  const un = builderEntries();
+  if (!un.length) return;
+  const st = builderStoreGet();
+  // fresh prompts first, then already-built ones as extra practice
+  const order = shuffle(un.filter(e=>!st.done[e.id])).concat(shuffle(un.filter(e=>st.done[e.id]))).map(e=>e.id);
+  builder = {order, at:0, misses:0};
+  runBuilder();
+}
+function runBuilder(){
+  if (!builder) return;
+  if (builder.at >= builder.order.length) return finishBuilder();
+  const entry = RL_BUILDER.find(e=>e.id===builder.order[builder.at]);
+  builder.misses = 0;
+  currentScreen = 'Sentence Builder — ' + entry.id;
+  render(`<div class="topbar">
+      <button class="quit" id="b-quit">✕</button>
+      <h2 style="margin:0; font-size:1.05rem">🧩 Sentence Builder</h2>
+      <span class="pill" style="margin-left:auto">${builder.at+1} / ${builder.order.length}</span>
+    </div>
+    <div id="sbArea" style="min-height:340px; display:flex; flex-direction:column">
+      <p class="muted">Build it in Setswana — type the whole sentence</p>
+      <div class="prompt">${esc(entry.eng)}</div>
+      <input id="sb-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Kwala mo…">
+      <div id="sb-fb"></div>
+      <button class="btn primary" id="sb-check" style="margin-top:auto">Check</button>
+      <button class="btn ghost" id="sb-skip" style="margin-top:8px">Skip for now</button>
+    </div>`);
+  document.getElementById('b-quit').onclick = ()=>{ builder = null; screenHome(); };
+  const inp = document.getElementById('sb-ans'); inp.focus();
+  const fb = document.getElementById('sb-fb');
+  let grading = false, solved = false;
+  const check = ()=>{
+    if (grading || solved || !builder) return;
+    grading = true;
+    const m = builderMatch(inp.value, entry);
+    const st = builderStoreGet();
+    if (m){
+      solved = true;
+      inp.blur();                     // close the mobile keyboard so the verdict is visible
+      st.done[entry.id] = true; st.streak = (st.streak||0)+1; builderStoreSet(st);
+      addXP(2, 'builder');
+      if (m === 'close') toast('Katse got it — but check the spelling.');
+      fb.innerHTML = `<div class="feedback good">${esc(pick(RL_CONTENT.flavour.correct))} ✓</div>`;
+      const atNow = builder.at;
+      setTimeout(()=>{ if (builder && builder.at === atNow){ builder.at++; runBuilder(); } }, m==='close' ? 1700 : 950);
+    } else {
+      builder.misses++;
+      st.streak = 0; builderStoreSet(st);
+      // after the 2nd miss the entry's own note becomes the hint — never the answer
+      const hint = (builder.misses >= 2 && entry.note) ? `<div class="chat-hint">🐾 ${esc(entry.note)}</div>` : '';
+      fb.innerHTML = `<div class="feedback bad">Not quite — try again.</div>${hint}`;
+      inp.focus();
+    }
+    grading = false;
+  };
+  document.getElementById('sb-check').onclick = check;
+  inp.addEventListener('keydown', e=>{ if (e.key==='Enter'){ e.preventDefault(); check(); } });
+  document.getElementById('sb-skip').onclick = ()=>{ if (!builder) return; builder.at++; runBuilder(); };
+}
+function finishBuilder(){
+  const st = builderStoreGet();
+  const un = builderEntries();
+  const builtN = un.filter(e=>st.done[e.id]).length;
+  builder = null;
+  currentScreen = 'Sentence Builder — done';
+  render(`<div class="center" style="margin-top:12vh">
+    <h1 style="font-size:2.2rem">${esc(RL_CONTENT.flavour.lessonDone)}</h1>
+    <p class="muted">Sentences you built yourself, from words you own.</p>
+    <div class="statgrid" style="margin-top:20px">
+      <div class="stat"><b>${builtN}/${un.length}</b>built</div>
+      <div class="stat"><b>${st.streak||0}</b>in a row</div>
+    </div>
+    <button class="btn primary" id="b-home" style="margin-top:16px">Back to the path</button>
+  </div>`);
+  document.getElementById('b-home').onclick = screenHome;
 }
 
 async function screenLeaderboard(){
