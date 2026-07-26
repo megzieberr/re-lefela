@@ -1,9 +1,11 @@
 ﻿# Re:Lefela — Project Status
 
-**Updated:** 2026-07-26 (session 29 — **spec-only**: `SPEC-sentence-builder.md` written for a new
-"build your own sentence" drill, per her real tutor-session discovery that she can't yet produce
-Setswana from scratch, only recognise/recall it; nothing built, spec awaits her ruling on 4 open
-questions) · previous: 2026-07-26 (session 28 — two confirmed content-bug fixes: the `u2l1-00` noun-class rule
+**Updated:** 2026-07-26 (session 30 — **the 🧩 Sentence Builder, SHIPPED as sw v33**: typed
+production drill over a pre-checked 57-sentence `builder-bank.js` spanning u1–u5, graded only
+against pre-checked `accept` strings, **NO SRS writes** (own `rl_builder` key); session 28's
+`4c76f84` content fixes rode the same push — everything live-verified, the standing push blocker
+is CLOSED) · previous: 2026-07-26 (session 29 — **spec-only**: `SPEC-sentence-builder.md` written;
+she ruled the same day: build it) · previous: 2026-07-26 (session 28 — two confirmed content-bug fixes: the `u2l1-00` noun-class rule
 typo and the bad `u1l7-08` native re-record reverted, sw **v32**/audio **v3**; committed locally,
 **push still pending her go-ahead**) · previous: 2026-07-25 (session 27 — the **native-speaker recording wave**, SHIPPED as sw **v31**:
 68 first-time-silent cards voiced + 63 re-recorded, content.js is **307/307, 0 silent, for the
@@ -39,6 +41,71 @@ drop + 65-clip wiring wave v21, L11 finale + export scope fix v22 — ALL SHIPPE
 card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14
 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button
 (sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 30 (2026-07-26, same day) — 🧩 Sentence Builder built + SHIPPED (sw v33)
+Her go-ahead on the session-29 spec, with two amendments delivered in-session: the 4 open §9
+questions were delegated to the supervisor to rule, and mid-session she extended the scope from
+"u1–u2 first" to **all five units, committed together**.
+
+**Rulings on §9 (delegated, then her scope extension):** (1) bank u1–u2 for v1 → extended same
+session to u1–u5 on her ask; (2) **one continuous pool**, no picker screen; (3) **spelling
+tolerance kept** — same small Levenshtein "close" as other typed cards, word order still exact;
+(4) **pipeline kept**, with v1 hand-curated directly from sources by the supervisor (Setswana
+never touched by an agent) and `gen-builder-candidates.py` kept as a DRAFTS-ONLY tool for future
+waves.
+
+- **`builder-bank.js` — 57 prompts** (u1 20 · u2 9 · u3 13 · u4 8 · u5 7), every `accept` string
+  traced to sentence-bank.tsv / GRAMMAR.md / the corpora or a documented combined-src precedent
+  (the u1l7-07 rule); provenance + a nudge-style `note` (doubles as the in-drill hint) per entry.
+  Multi-accept where genuinely valid (her own drill's *ga ke na buka / ga ke na le buka* pair;
+  the four attested orderings of "Tomorrow I will go to school"). u3 = full typed production of
+  the tense paradigm she's only ever slot-picked (incl. the o→a second-concord trap); u5 cashes
+  in u5l5-00's own "the app will ask you to WRITE it out" promise. `Ke nwa metsi` corpus-verified
+  (verbatim in Beibele, JHN 4) before inclusion.
+- **Engine in index.html** (~110 lines after the chat section): `🧩 Sentence Builder` home button
+  once ≥1 prompt unlocks (unlock = every `usesIds` id at `reps >= 1`, the chat's `chatLearned`
+  gate; both accounts + `?local=1`, not Megan-gated). Typed input (dictate-card pattern), graded
+  per-string via the existing `answerMatches` over `accept` — nothing inferred at grading time.
+  Fresh prompts first, done ones after as extra practice; wrong keeps the attempt and retries,
+  2nd miss adds the entry's `note` as a 🐾 hint (answer never revealed), Skip link so no dead
+  ends. +2 XP kind `'builder'`; `rl_builder` `{done, streak}` added to `clearLearnerState()`.
+  ⚠️ Deliberate detail: the drill screen uses container id `sbArea`, NOT `exArea` — a stale
+  lesson `session` + an `#exArea` match would make `currentContext()` (Ask-your-tutor) report a
+  lesson she isn't in.
+- **`toolkit/verify-builder-bank.py`** (ship-time checker: ids resolve, no dups, non-empty
+  accepts, LF/BOM by binary read — 57 entries all pass, exits 1 on a seeded-broken copy) and
+  **`toolkit/gen-builder-candidates.py`** (drafts-only generator, 296 candidates from 5 attested
+  frames, loud never-ship-directly banner, `newline='\n'` per the session-24 CRLF lesson).
+- **sw.js `relefela-v32 → v33`**, `builder-bank.js` added to CORE. `AUDIO_CACHE` untouched
+  (`relefela-audio-v3`) — no audio referenced, correct.
+- **Verified:** node harness (17 assertions — unlock gating incl. reps=0, exact/close/
+  reorder-rejected/empty-rejected, multi-accept, all 64 accept strings self-match, fresh-first
+  ordering) + full `?local=1` walkthrough (SW unregistered + caches/localStorage cleared, wiped
+  after): fresh learner sees no button; doctored full learner sees "57 sentences unlocked";
+  correct/typo-toast/two-miss-hint/skip/finish/quit all behave; diacritic-free `ntsa` typing
+  accepted (norm() strips the caron); **`state.srs` byte-identical after a full play session**;
+  375×812 no overflow; 0 console errors.
+- **Supervisor/agent note (Fable session):** the Sonnet engine agent did the recon then **refused
+  to write code — twice — on execution-gate grounds** (a subagent can't see her chat, so a relayed
+  go-ahead is unverifiable to it; exactly the [[never-auto-execute-fanouts]] posture). Not
+  overruled: the supervisor implemented the engine directly from the agent's grounded plan. The
+  scripts agent (new files only) delivered both toolkit scripts.
+- **Commits:** `8ad3b24` (feature, sw v33) + this wrap-up. **Pushed together with the 3 waiting
+  commits** (`4c76f84` fixes, `139c38b`, `b1fa04a` spec) on her "push it all". **Live-verified:**
+  sw serving `relefela-v33`/`relefela-audio-v3` with builder-bank.js precached; builder-bank.js
+  200 at byte-identical 16 949; engine present in live index.html; **`u1l7-08.mp3` now 37 293
+  bytes (the session-28 revert, finally live)**; content.js serving the `∅/di-` fix. The
+  session-28 "get the push go-ahead" blocker is closed. `toolkit/recording-sheet.docx` remains
+  deliberately uncommitted per the session-25 ruling.
+
+## Next up (agreed 2026-07-26, end of session 30)
+1. 📱 2 min: open the live app → tap 🧩 Sentence Builder → build a few [whenever] — first
+   real-use feedback: are prompts pitched right, do the 🐾 hints help, does a full run feel too
+   long (Skip exists)?
+2. Future bank waves: run `toolkit/gen-builder-candidates.py` for drafts → human source-check →
+   append to builder-bank.js → `verify-builder-bank.py` → ship (content-only, one sw bump).
+3. Carry-overs unchanged from sessions 27–29: `u2l1-07` "nko" re-record (low), ear-check the 131
+   native clips, Daily Quest first-use feedback, more chat scenarios spec-first, u5l4 Smart Guide.
 
 ## Session 29 (2026-07-26, same day) — Sentence Builder spec (nothing built)
 Mid-tutor-session today Megan hit a real gap: building her OWN Setswana sentences from known
