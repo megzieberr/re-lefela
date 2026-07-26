@@ -114,6 +114,20 @@ and shipped same hour:
   disabled, not-done, 0 XP; Continue advances; revealed prompt fresh next run; normal correct
   path unaffected; harness still 17/17; 0 console errors; test state wiped.
 
+### Session 30c (same day) — reveals auto-file to her tutor (sw v35, SHIPPED)
+Her ask while playing: track what she keeps getting wrong so the SECL121 tutor sees it ("I keep
+forgetting what go is"). Built on the reveal path: **a 3-miss reveal auto-inserts a
+`tutor_questions` row** — prompt, her three typed attempts verbatim (the diagnostic gold), and
+the accepted answer(s) — `context: 'builder-auto:<entry-id>'`. No schema change: reuses the
+session-22 table the tutor session already reads first thing. Gated exactly like the tutor fab
+(megzieberr only, never LOCAL_MODE, signed-in only); best-effort fire-and-forget (a failed
+insert drops silently — telemetry, not learner data); deduped one row per sentence per day via
+`rl_builder.filed`. sw v34 → **v35**. Verified: mocked-insert node tests (all three gates file
+nothing; her account files once, deduped, correct table/user_id/context; blanks kept as
+"(blank)"), local-mode reveal path unaffected with `sb` null, 0 console errors. ⚠️ For the next
+tutor session: rows with `context` starting `builder-auto:` are auto-filed struggle reports, not
+questions she typed — read the attempts for the pattern (e.g. which word is missing every time).
+
 ## Next up (agreed 2026-07-26, end of session 30)
 1. ~~📱 play the Sentence Builder~~ **DONE same day** — she played it on live: "it works nice."
    Then real play surfaced the difficulty wall → session 30b's scaffolding (above). Watch for:

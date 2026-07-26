@@ -1231,7 +1231,7 @@ function runBuilder(){
   if (!builder) return;
   if (builder.at >= builder.order.length) return finishBuilder();
   const entry = RL_BUILDER.find(e=>e.id===builder.order[builder.at]);
-  builder.misses = 0;
+  builder.misses = 0; builder.attempts = [];
   currentScreen = 'Sentence Builder — ' + entry.id;
   render(`<div class="topbar">
       <button class="quit" id="b-quit">✕</button>
@@ -1281,9 +1281,10 @@ function runBuilder(){
       const atNow = builder.at;
       setTimeout(()=>{ if (builder && builder.at === atNow){ builder.at++; runBuilder(); } }, m==='close' ? 1700 : 950);
     } else {
-      builder.misses++;
+      builder.misses++; builder.attempts.push(inp.value);
       st.streak = 0; builderStoreSet(st);
       if (builder.misses >= 3){
+        maybeFileBuilderMiss(entry, builder.attempts);
         // 3rd miss reveals (her ask — she sat on one sentence 10 tries). NOT
         // marked done and no XP, so it comes back fresh next run.
         solved = true; inp.disabled = true; inp.blur();
@@ -1305,6 +1306,26 @@ function runBuilder(){
   document.getElementById('sb-check').onclick = check;
   inp.addEventListener('keydown', e=>{ if (e.key==='Enter'){ e.preventDefault(); check(); } });
   document.getElementById('sb-skip').onclick = ()=>{ if (!builder) return; builder.at++; runBuilder(); };
+}
+/* Auto-file a revealed builder sentence for her SECL121 tutor (her ask,
+   2026-07-26): a reveal = three real misses, and the typed attempts are the
+   diagnostic gold (e.g. every attempt dropping "go"). Reuses tutor_questions —
+   no schema change; the tutor session reads that table first thing. Gated like
+   the tutor fab (her account only, never LOCAL_MODE). Best-effort fire-and-
+   forget: a failed insert is dropped silently — this is telemetry for the
+   tutor, not learner data, and a mid-drill error toast would just nag. One row
+   per sentence per day via rl_builder.filed. */
+function maybeFileBuilderMiss(entry, attempts){
+  if (LOCAL_MODE || !state.user || state.user.username !== TUTOR_USERNAME) return;
+  const st = builderStoreGet();
+  st.filed = st.filed || {};
+  if (st.filed[entry.id] === todayStr()) return;
+  st.filed[entry.id] = todayStr(); builderStoreSet(st);
+  const q = 'Sentence Builder: stuck on "' + entry.eng + '" — typed: ' +
+    attempts.map(a=>'"' + (a.trim() || '(blank)') + '"').join(' / ') +
+    '; answer: ' + entry.accept.join(' | ');
+  sb.from('tutor_questions').insert({user_id: state.user.id, question: q,
+    context: 'builder-auto:' + entry.id}).then(()=>{});
 }
 function finishBuilder(){
   const st = builderStoreGet();
