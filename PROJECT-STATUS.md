@@ -98,9 +98,27 @@ waves.
   session-28 "get the push go-ahead" blocker is closed. `toolkit/recording-sheet.docx` remains
   deliberately uncommitted per the session-25 ruling.
 
+### Session 30b (same day) — scaffolding after real play (sw v34, SHIPPED)
+She played more and hit the wall the no-reveal design built: one sentence, ~10 tries, no way
+out. Her ask, verbatim intent: reveal the answer after 3 misses, plus a help button that
+reviews the words. "This is extremely difficult, so I need some more scaffolding." Both built
+and shipped same hour:
+- **3rd miss reveals the sentence** (`accept[0]`, plus "also accepted" for multi-accept
+  entries) with a Continue button. Deliberately NOT marked done and no XP — a revealed prompt
+  comes back fresh next run, so the reveal is a ladder rung, not a completion.
+- **🛟 "Review the words" button** on every prompt (next to Skip): toggles a panel listing the
+  entry's `usesIds` cards — tsw, eng, 🔊 clip where voiced — existing content.js data only, no
+  new Setswana. No penalty for using it.
+- sw `relefela-v33 → v34`; AUDIO_CACHE untouched. Verified in `?local=1`: help panel lists the
+  right words with the right number of 🔊 buttons and toggles off; 3 misses → reveal with input
+  disabled, not-done, 0 XP; Continue advances; revealed prompt fresh next run; normal correct
+  path unaffected; harness still 17/17; 0 console errors; test state wiped.
+
 ## Next up (agreed 2026-07-26, end of session 30)
 1. ~~📱 play the Sentence Builder~~ **DONE same day** — she played it on live: "it works nice."
-   First-use verdict positive; no pitch/length complaints raised.
+   Then real play surfaced the difficulty wall → session 30b's scaffolding (above). Watch for:
+   is 3 misses the right reveal threshold, and is the 🛟 word list enough, or does she want the
+   model sentences (the `note` frames) in there too?
 2. Future bank waves: run `toolkit/gen-builder-candidates.py` for drafts → human source-check →
    append to builder-bank.js → `verify-builder-bank.py` → ship (content-only, one sw bump).
 3. Carry-overs unchanged from sessions 27–29: `u2l1-07` "nko" re-record (low), ear-check the 131

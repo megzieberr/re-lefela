@@ -1243,12 +1243,28 @@ function runBuilder(){
       <div class="prompt">${esc(entry.eng)}</div>
       <input id="sb-ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Kwala mo…">
       <div id="sb-fb"></div>
+      <div id="sb-helppanel" class="notecard" style="display:none"></div>
       <button class="btn primary" id="sb-check" style="margin-top:auto">Check</button>
-      <button class="btn ghost" id="sb-skip" style="margin-top:8px">Skip for now</button>
+      <div class="row" style="margin-top:8px">
+        <button class="btn ghost" id="sb-help" style="flex:1">🛟 Review the words</button>
+        <button class="btn ghost" id="sb-skip" style="flex:1">Skip for now</button>
+      </div>
     </div>`);
   document.getElementById('b-quit').onclick = ()=>{ builder = null; screenHome(); };
   const inp = document.getElementById('sb-ans'); inp.focus();
   const fb = document.getElementById('sb-fb');
+  // 🛟 scaffolding (her ask after first real play): the words the sentence is
+  // built from — existing content.js cards only, with their clips where voiced
+  const help = document.getElementById('sb-helppanel');
+  document.getElementById('sb-help').onclick = ()=>{
+    if (help.style.display === 'none'){
+      help.innerHTML = '<p class="tiny" style="margin:0 0 6px">The words this sentence is built from:</p>' +
+        entry.usesIds.map(chatItem).filter(it=>it && it.tsw).map(it=>
+          `<div class="row" style="justify-content:space-between; margin:4px 0"><span><b>${esc(it.tsw)}</b> — ${esc(it.eng)}</span>${it.audio?`<button class="cmode sb-play" data-a="${esc(it.audio)}">🔊</button>`:''}</div>`).join('');
+      help.style.display = 'block';
+      help.querySelectorAll('.sb-play').forEach(b=>{ b.onclick = ()=>playAudio(b.dataset.a); });
+    } else help.style.display = 'none';
+  };
   let grading = false, solved = false;
   const check = ()=>{
     if (grading || solved || !builder) return;
@@ -1267,10 +1283,22 @@ function runBuilder(){
     } else {
       builder.misses++;
       st.streak = 0; builderStoreSet(st);
-      // after the 2nd miss the entry's own note becomes the hint — never the answer
-      const hint = (builder.misses >= 2 && entry.note) ? `<div class="chat-hint">🐾 ${esc(entry.note)}</div>` : '';
-      fb.innerHTML = `<div class="feedback bad">Not quite — try again.</div>${hint}`;
-      inp.focus();
+      if (builder.misses >= 3){
+        // 3rd miss reveals (her ask — she sat on one sentence 10 tries). NOT
+        // marked done and no XP, so it comes back fresh next run.
+        solved = true; inp.disabled = true; inp.blur();
+        const others = entry.accept.slice(1);
+        fb.innerHTML = `<div class="feedback bad">The sentence: <b>${esc(entry.accept[0])}</b>${others.length?`<br><span class="tiny">also accepted: ${others.map(esc).join(' · ')}</span>`:''}</div>`;
+        const btn = document.createElement('button');
+        btn.className = 'btn primary'; btn.style.marginTop = '10px'; btn.textContent = 'Continue';
+        btn.onclick = ()=>{ if (builder){ builder.at++; runBuilder(); } };
+        fb.appendChild(btn); btn.focus();
+      } else {
+        // after the 2nd miss the entry's own note becomes the hint — never the answer
+        const hint = (builder.misses >= 2 && entry.note) ? `<div class="chat-hint">🐾 ${esc(entry.note)}</div>` : '';
+        fb.innerHTML = `<div class="feedback bad">Not quite — try again.</div>${hint}`;
+        inp.focus();
+      }
     }
     grading = false;
   };
