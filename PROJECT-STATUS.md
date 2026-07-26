@@ -1,6 +1,9 @@
 ﻿# Re:Lefela — Project Status
 
-**Updated:** 2026-07-26 (session 28 — two confirmed content-bug fixes: the `u2l1-00` noun-class rule
+**Updated:** 2026-07-26 (session 29 — **spec-only**: `SPEC-sentence-builder.md` written for a new
+"build your own sentence" drill, per her real tutor-session discovery that she can't yet produce
+Setswana from scratch, only recognise/recall it; nothing built, spec awaits her ruling on 4 open
+questions) · previous: 2026-07-26 (session 28 — two confirmed content-bug fixes: the `u2l1-00` noun-class rule
 typo and the bad `u1l7-08` native re-record reverted, sw **v32**/audio **v3**; committed locally,
 **push still pending her go-ahead**) · previous: 2026-07-25 (session 27 — the **native-speaker recording wave**, SHIPPED as sw **v31**:
 68 first-time-silent cards voiced + 63 re-recorded, content.js is **307/307, 0 silent, for the
@@ -36,6 +39,44 @@ drop + 65-clip wiring wave v21, L11 finale + export scope fix v22 — ALL SHIPPE
 card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14
 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button
 (sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 29 (2026-07-26, same day) — Sentence Builder spec (nothing built)
+Mid-tutor-session today Megan hit a real gap: building her OWN Setswana sentences from known
+vocab is far harder than the app currently drills, and barely practiced — every existing exercise
+either recognises an app-authored sentence or reproduces one from memory, never makes her produce
+a new combination herself.
+
+- **Her explicit ruling (unprompted, first pass):** NOT free-typed input graded by a live grammar
+  parser (false-negative risk on correct-but-unexpected phrasing) — a bank of pre-planned
+  sentences, each independently checked against source before it ships, graded by simple matching.
+- **`SPEC-sentence-builder.md` written** (root, sibling of `SPEC-katse-chat.md`): a new
+  `builder-bank.js` content file (script drafts candidate sentences from existing concord/verb/
+  noun combos, human checks each against `GRAMMAR.md`/`sentence-bank.tsv`/the corpus before it
+  ships, a verifier script cross-checks ids), a standalone entry point next to `💬 Bua le Katse`
+  gated the same way (`usesIds` learned via real SRS reps), **no SRS writes** (own local
+  `rl_builder` key — grading several ids at once would distort `srsGrade()`'s interval math for
+  common concords), and `accept` lists of pre-checked correct sentences per prompt (more than one
+  listed where more than one is genuinely valid — her own drill surfaced *ga ke na buka* vs
+  *ga ke na le madi* for "I don't have —").
+- **Revised same session:** first draft proposed word-tile tapping (reusing Bua le Katse's chip
+  UI). Megan's call: **tiles pose no real challenge — she wants to type the sentence herself.**
+  Spec rewritten — `accept` now stores full sentence strings (not tile sequences), input is a
+  typed text field (reusing the `dictate`/`typeTsw` card pattern), grading is `norm()` + the
+  existing small Levenshtein spelling tolerance against the pre-checked strings — word order still
+  has to match one of the listed `accept` strings exactly; nothing is inferred live. Tile pool and
+  distractor-authoring are gone from the design entirely.
+- **4 open questions left for her ruling** (spec §9): v1 bank size (u1–u2 only, recommended),
+  grouping (one continuous pool vs named sets — continuous recommended), spelling tolerance
+  (keep the same small typo allowance as other typed cards — recommended), and whether the
+  script-drafts/human-checks/verify-script pipeline in §2 is the process she wants.
+- No files besides the spec and this status file touched; no commit made this session (spec isn't
+  code — nothing to ship yet).
+
+## Next up (agreed 2026-07-26, end of session 29)
+1. 💻 Megan reads `SPEC-sentence-builder.md` and rules on its 4 open questions (§9) — first thing
+   next Re:Lefela session, before any building starts.
+2. Carry-overs unchanged from session 28 (below): the `4c76f84` push go-ahead is still the
+   standing blocker, unrelated to this session's spec work.
 
 ## Session 28 (2026-07-26) — two confirmed content bugs fixed (sw v32/audio v3, NOT YET PUSHED)
 Both bugs came in via the app's own 💬 Ask-your-tutor button — Megan flagged them mid-drill, they
