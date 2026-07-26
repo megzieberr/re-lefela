@@ -99,9 +99,8 @@ waves.
   deliberately uncommitted per the session-25 ruling.
 
 ## Next up (agreed 2026-07-26, end of session 30)
-1. 📱 2 min: open the live app → tap 🧩 Sentence Builder → build a few [whenever] — first
-   real-use feedback: are prompts pitched right, do the 🐾 hints help, does a full run feel too
-   long (Skip exists)?
+1. ~~📱 play the Sentence Builder~~ **DONE same day** — she played it on live: "it works nice."
+   First-use verdict positive; no pitch/length complaints raised.
 2. Future bank waves: run `toolkit/gen-builder-candidates.py` for drafts → human source-check →
    append to builder-bank.js → `verify-builder-bank.py` → ship (content-only, one sw bump).
 3. Carry-overs unchanged from sessions 27–29: `u2l1-07` "nko" re-record (low), ear-check the 131
