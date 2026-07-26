@@ -1,6 +1,8 @@
 ﻿# Re:Lefela — Project Status
 
-**Updated:** 2026-07-25 (session 27 — the **native-speaker recording wave**, SHIPPED as sw **v31**:
+**Updated:** 2026-07-26 (session 28 — two confirmed content-bug fixes: the `u2l1-00` noun-class rule
+typo and the bad `u1l7-08` native re-record reverted, sw **v32**/audio **v3**; committed locally,
+**push still pending her go-ahead**) · previous: 2026-07-25 (session 27 — the **native-speaker recording wave**, SHIPPED as sw **v31**:
 68 first-time-silent cards voiced + 63 re-recorded, content.js is **307/307, 0 silent, for the
 first time**; also a new tagger.html feature — trimming a merged clip now carves the leftover
 audio into its own taggable segment instead of discarding it) · previous: 2026-07-19 (session 26 — **the Daily Quest**, SHIPPED as sw **v30**: Review is gone,
@@ -34,6 +36,46 @@ drop + 65-clip wiring wave v21, L11 finale + export scope fix v22 — ALL SHIPPE
 card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14
 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button
 (sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 28 (2026-07-26) — two confirmed content bugs fixed (sw v32/audio v3, NOT YET PUSHED)
+Both bugs came in via the app's own 💬 Ask-your-tutor button — Megan flagged them mid-drill, they
+landed in `tutor_questions`, and this session found them independently confirmed (she'd described
+both precisely) before touching anything.
+
+- **`content.js` `u2l1-00` (body-parts noun-class rule card):** the fourth example read `9/di-
+  (tsebe → ditsebe)`, a stray class-number label — class 9 nouns take no visible singular prefix
+  (`tsebe` stays `tsebe`), unlike the other three examples which show a real prefix pair. Changed
+  to `∅/di-` so all four follow the same prefix/prefix pattern. One-line fix.
+- **`audio/items/u1l7-08.mp3` ("Ga ba bue Sekgoa" = "They don't speak English") reverted.** The
+  session-27 native-speaker wave (`aef9982`) overwrote this file with a bad take — Megan confirmed
+  by ear it doesn't say "ba" (sounds like "ki"/"kee" instead), checked against known-good "ke" clips
+  from the same speaker (`u1l7-06/07`). Reverted to the session-17 version (`7d3f447`, 37293 bytes,
+  the last known-good take) via `git checkout 7d3f447 -- audio/items/u1l7-08.mp3`. Confirmed via
+  `git diff --cached --stat` that only this one file changed (11949 → 37293 bytes back).
+- **`sw.js`: `relefela-v31 → v32`** (content.js changed) **and `AUDIO_CACHE relefela-audio-v2 → v3`**
+  (existing clip bytes changed under the same filename) — both bumps needed since this session
+  touched both an app-shell file and existing audio bytes.
+- **Verified in preview** (`?local=1`, SW unregistered + caches cleared): `content.js` serves the
+  `∅/di-` text; `u1l7-08.mp3` fetches 200 at 37293 bytes (matches the reverted file on disk); 0
+  console errors.
+- **Both matching `tutor_questions` rows marked `addressed_at`** (ids `02594c05…` "random 9 here?"
+  and `ab6c6910…` on `u1l7-08` — she'd filed both herself, independently confirming the diagnosis).
+- **Commit:** `4c76f84`, local only — **not pushed**, no go-ahead given yet this session (see Pending
+  below). `toolkit/recording-sheet.docx` remains its own unrelated uncommitted local edit, untouched,
+  per the standing session-25 ruling.
+- Session then moved into SECL121 tutor mode per her ask — briefly opened a drill round grounded in
+  her real SRS weak spots (`go nwa`, the `kae`/`kwa` cluster in `u1l2-06/07/08`, `Ga ke tlhaloganye`)
+  before she said she'd already started drilling in another session.
+
+## Next up (agreed 2026-07-26, end of session 28)
+1. 💻 **[blocking] Get her explicit go-ahead to push `4c76f84`** — it's committed locally but not
+   pushed; live app is still serving the buggy `9/di-` text and the bad `u1l7-08` recording until
+   this goes out. Once pushed, live-verify per the usual ritual (sw serving v32/audio-v3, u1l7-08
+   fetching the reverted byte size).
+2. Carry-overs unchanged from session 27: `u2l1-07` "nko" still the one un-re-recorded card
+   (low priority); the 131 new/re-recorded clips from the native-speaker wave still await an
+   ear-check pass; Daily Quest first real-use feedback; "Le kae?" (chat0) first real play; more
+   chat scenarios spec-first; the Smart Guide for u5l4's real maele.
 
 ## Session 27 (2026-07-25) — native-speaker recording wave: 68 voiced, 63 re-recorded (sw v31, SHIPPED)
 The outsourced Setswana L1 speaker's recording landed as `missing audio/Missing Words.wav`
