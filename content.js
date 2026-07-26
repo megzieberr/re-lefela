@@ -151,7 +151,7 @@ const RL_CONTENT = {
         {
           id: 'u2l1', title: 'Tlhogo ya me', blurb: 'The head and face — and the classes their names live in.',
           items: [
-            { id: 'u2l1-00', kind: 'rule', tsw: '', eng: '', src: 'grammar-toolkit', rule: 'Body parts are a noun-class safari: head words scatter across the classes, so their plurals differ. le-/ma- (leitlho → matlho), se-/di- (sefatlhego → difatlhego), mo-/me- (molomo → melomo), 9/di- (tsebe → ditsebe). Watch the prefix — it tells you the plural AND the concord.' },
+            { id: 'u2l1-00', kind: 'rule', tsw: '', eng: '', src: 'grammar-toolkit', rule: 'Body parts are a noun-class safari: head words scatter across the classes, so their plurals differ. le-/ma- (leitlho → matlho), se-/di- (sefatlhego → difatlhego), mo-/me- (molomo → melomo), ∅/di- (tsebe → ditsebe). Watch the prefix — it tells you the plural AND the concord.' },
             { id: 'u2l1-01', audio: 'items/u2l1-01.mp3', kind: 'word', tsw: 'mmele', eng: 'body', src: 'beibele+nt-parallel', cls: 3, plural: 'mebele' },
             { id: 'u2l1-02', audio: 'items/u2l1-02.mp3', kind: 'word', tsw: 'tlhogo', eng: 'head', src: 'peace-corps-L22', cls: 9, plural: 'ditlhogo' },
             { id: 'u2l1-03', audio: 'items/u2l1-03.mp3', kind: 'word', tsw: 'sefatlhego', eng: 'face', src: 'beibele+nt-parallel', cls: 7, plural: 'difatlhego' },
