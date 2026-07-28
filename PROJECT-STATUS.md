@@ -1,6 +1,10 @@
 ﻿# Re:Lefela — Project Status
 
-**Updated:** 2026-07-28 (session 31 — **the SRS interval-overflow bug, FIXED and SHIPPED as sw
+**Updated:** 2026-07-28 (session 32 — **the second learner's own Claude tutor, WIRED**: a read-only
+`tutor-progress` edge function lets a learner's tutor read her own progress holding no credential
+at all, the 💬 Ask-your-tutor button + 3-miss auto-file now work for **both** accounts (sw v37,
+committed locally, **NOT pushed** — awaiting her go), and a six-module tutor pack is assembled on
+her Desktop ready to hand over) · previous: 2026-07-28 (session 31 — **the SRS interval-overflow bug, FIXED and SHIPPED as sw
 v36**: the second learner's phone had saved nothing since 26 Jul because a card's next-review date had compounded
 into the year 22970, which Postgres rejects, and the outbox retried it forever; the interval is now
 capped at **30 days** on Megan's ruling, a repair pass heals values already stored/queued/pulled,
@@ -46,6 +50,86 @@ drop + 65-clip wiring wave v21, L11 finale + export scope fix v22 — ALL SHIPPE
 card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14
 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button
 (sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 32 (2026-07-28, same day) — the second learner's own Claude tutor: the read-only progress window (sw v37, COMMITTED NOT PUSHED)
+
+Her ask: the second learner wants her own SECL121 tutor (and tutors for all six shared modules) on her own Claude
+account, with her Re:Lefela progress visible to it. Planned by Fable earlier the same day
+(`nwu-hub/PLAN-tutor-pack.md`, private — it names a real learner), built here.
+
+### The shape, and why not the obvious routes
+the second learner's Claude holds **no credential of any kind**. The rejected options and why: Megan's Supabase
+access token is a master key even in read-only mode and exposes every project; the app's
+publishable key plus the second learner's login can write whatever the app can write, so it cannot be made
+weaker than "her"; a dedicated read-only database user means real database credentials sitting in
+a text file on another person's laptop. Instead **one URL + one random 43-char token**.
+
+- **`public.tutor_tokens`** — `token_sha256` (PK), `user_id`, `label`, `created_at`, `revoked_at`.
+  ⚠️ **Only the SHA-256 of a token is stored**, never the token, so a database leak cannot reveal a
+  live one. Two independent locks, deliberately both: RLS enabled with **zero policies**, *and*
+  `revoke all … from anon, authenticated` — because Supabase's default privileges hand new tables
+  to those roles, so RLS alone was doing the work and the revoke makes it explicit. service_role
+  (the function) bypasses RLS, which is how it still reads. Verified: the app's own publishable key
+  gets `42501 permission denied` on the table.
+- **`tutor-progress` edge function** (`supabase/functions/tutor-progress/index.ts`, committed —
+  no secrets in it). Hashes the presented token, looks it up, and pins **every** query to that one
+  `user_id`. **Deployed `verify_jwt = false` ON PURPOSE**: the caller presents a tutor token, not a
+  Supabase JWT, so the gateway has to let it through to the function's own check. A wrong token
+  costs one indexed PK lookup and 401s.
+- **The only write** is `delivered_at` on the questions it just handed over (her ruling this
+  session), so a tutor is not re-told the same thing every session. `addressed_at` is untouched —
+  that stays her own bookkeeping. Nothing else is ever written: not srs_items, xp_events, streaks
+  or unit_progress.
+- **Compact by default** (3.1 kB), `?full=1` for the 55 kB deep dive. First cut returned all 85
+  cards plus 300 raw XP events every call — an absurd context cost for a tutor that reads this at
+  the start of every session. Default now carries summary / due_now / weakest / units /
+  activity_by_day (daily XP rollup) / questions / warnings, and **says so when it truncates**
+  (`due_now_truncated`) rather than silently clipping.
+
+### The app change (sw v37)
+`TUTOR_USERNAME = 'megzieberr'` is **gone** — both the 💬 fab and `maybeFileBuilderMiss` now gate on
+"signed in" alone. **Her ruling:** only the two accounts exist and sign-up is not open, so an
+allowlist is more code for no gain. `tutor_questions` needed **no migration** — its policies were
+already `user_id = auth.uid()` for insert and select, so the second learner could always have filed rows; only the
+client gate was stopping her. ⚠️ Note for future columns: this project uses **table-level** grants
+(`relacl` shows `authenticated=arwdDxtm`), unlike WhenWorks, so a new column does NOT need its own
+grant here — the standing WhenWorks gotcha does not apply to re-lefela.
+`sw.js relefela-v36 → v37`; **AUDIO_CACHE untouched** (`relefela-audio-v3`) — no audio byte changed.
+
+### Verification
+- **42-assertion node harness** (`…\scratchpad\test-tutor-gates.js`) running the **real** gate
+  functions brace-sliced out of index.html: both accounts file; LOCAL_MODE (with a **null** sb
+  client, as the real app has it) and signed-out file nothing and do not throw; one row per
+  sentence per day, and again the next day; fab mounts once across renders and is torn down on
+  logout; LF-only/no-BOM by binary read. One early failure was the *test rig*, not the app —
+  it recorded a removal on the wrong rig object; fixed to flip the user on one rig, which is what
+  logout actually does.
+- **Real browser DOM check** (preview, non-local): fab mounts for username `the second learner` and for
+  `megzieberr`, absent signed-out, exactly one element after three mounts, removed on logout.
+  0 console errors. SW + caches + localStorage wiped after (the non-local load registers a SW —
+  it created `relefela-v37`, confirming the bump).
+- **Live endpoint**: valid token 200 with **only** the second learner's rows (85 words, 9 due — matching session
+  31's repair); Megan's uuid and username appear **nowhere**; token not echoed; `?full=1` 55 kB;
+  no token 401; wrong token 401; **revoked token 401 while the second learner's still worked**; POST 405;
+  delivered_at dedupe confirmed (`first_time_seen` true then false on a temp row). A throwaway
+  token pointed at **Megan's** account returned Megan's 108 words and no trace of the second learner — proving
+  isolation follows the token rather than being accidentally pinned. Every test row and the
+  throwaway token deleted afterwards; database confirmed back to 1 token, 11 questions, 0 stamped.
+- **Commit `3b0cf74`, local only — NOT pushed** (no push go-ahead this session).
+  `toolkit/recording-sheet.docx` still deliberately uncommitted per the session-25 ruling.
+
+### The tutor pack (on her Desktop, not in any repo)
+`C:\Users\megzi\Desktop\TUTOR-PACK\` — a **folder, never a git repo**, so there is nothing to
+accidentally publish. Router `CLAUDE.md` (say a module code → it reads that spec), plain-language
+`README.md`, `NOTES.md` (the tutors' only memory — no hub, by design), and six adapted
+`modules/<CODE>/TUTOR.md`. ~995 MB of shared material copied in; **SECL121/Corpus (6.2 GB, 58k
+files) deliberately excluded** — app tooling, not study material. The re-lefela `toolkit/` reference
+files rode along as `SECL121/materials/reference/` because ⚠️ **toolkit/ and corpus/ are NOT tracked
+in the public repo** — only content.js / builder-bank.js / dialogues.js are fetchable by URL.
+⚠️ **Megan's personal history was stripped from every spec** (her marks, her tutoring business, her
+bursary, her error patterns) — SECL's leaky-items list was rekept as "common trip-ups in this
+material, NOT the second learner's history". Her own `Project_Instructions.md` files were kept for the module maps
+but each TUTOR.md tells the tutor to ignore their personal sections.
 
 ## Session 31 (2026-07-28) — SRS interval overflow: the second learner's sync unwedged (sw v36, SHIPPED)
 Debugging session, opened with the second learner's screenshot: a toast reading `Save failed — will retry. (time
