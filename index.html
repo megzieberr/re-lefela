@@ -303,24 +303,51 @@ let state = {
   progress: store.get('progress', {}), // unitId -> {lessonIdx, completed}
   xpTotal: store.get('xpTotal', 0),
   streak: store.get('streak', {current:0, best:0, last:null}),
-  queue: store.get('queue', [])      // pending sync ops
+  queue: store.get('queue', []),     // pending sync ops
+  parked: store.get('parked', [])    // ops the server will never accept — kept, not deleted (see flushQueue)
 };
 function persist(){ store.set('srs', state.srs); store.set('progress', state.progress);
-  store.set('xpTotal', state.xpTotal); store.set('streak', state.streak); store.set('queue', state.queue); }
+  store.set('xpTotal', state.xpTotal); store.set('streak', state.streak); store.set('queue', state.queue);
+  store.set('parked', state.parked); }
 // Learner-scoped keys — everything tied to WHO is signed in (state, progress, outbox,
 // the device-local replay cursor). rl_lastUser (the identity marker) is handled on its
 // own by the caller. There are no app-scoped rl_ keys. Used by logout + the account-
 // switch guard in afterAuth so one learner's data can never bleed into another's.
 function clearLearnerState(){
-  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder']
+  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_parked','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder']
     .forEach(k=>localStorage.removeItem(k));
 }
 
 function enqueue(op){ state.queue.push(op); persist(); flushQueue(); }
+
+/* "Move it aside" (Megan's ruling, 2026-07-28) — flushQueue used to keep a failed op at
+   the HEAD of the outbox and retry it forever. That is right for a network blip and
+   fatal for a row the server will never accept: one bad due_at stranded two days of
+   the second learner's progress behind it, re-toasting every 30 s.
+   The distinction that matters is WHY the save failed:
+     - offline, a 5xx, or the project auto-paused (it does — there is a keep-alive pinger
+       for exactly that reason) => transient. Keep the old behaviour and retry forever.
+       Parking these would throw away real progress during a routine outage.
+     - a Postgres data exception (22xxx) or integrity violation (23xxx) => this row is
+       malformed and will be rejected every time, no matter how long we wait.
+   Only the second kind is parked, and only after a few tries in case of a fluke. Parking
+   is NOT deleting: the op moves to state.parked so nothing is silently lost, and the
+   queue behind it drains. If err.code is absent we treat it as transient — the safe
+   default is to keep retrying, never to discard a learner's work on a guess.
+   Deliberately NOT parked: 42501 (insufficient_privilege). A missing column GRANT is a
+   recurring hazard in these projects, and there the retry-forever-and-toast behaviour is
+   exactly right — it stays loud and keeps the data until the grant is added. */
+const PARK_AFTER_TRIES = 3;
+const PARKED_MAX = 50;
+function permanentSaveError(err){
+  return /^2[23]\d{3}$/.test(String((err && err.code) || ''));
+}
+
 let flushing = false;
 async function flushQueue(){
   if (LOCAL_MODE || flushing || !state.user || !navigator.onLine || state.queue.length===0) return;
   flushing = true;
+  let parkedThisPass = 0;
   try{
     while(state.queue.length){
       const op = state.queue[0];
@@ -332,10 +359,28 @@ async function flushQueue(){
         current:op.current, best:op.best, last_active_date:op.last}));
       else if (op.t==='unit') ({error:err} = await sb.from('unit_progress').upsert({user_id:state.user.id,
         unit_id:op.unit_id, lesson_idx:op.lesson_idx, completed:op.completed, updated_at:new Date().toISOString()}));
-      if (err){ toast('Save failed — will retry. ('+ (err.message||err.code||'network') +')'); break; }
+      if (err){
+        op.fails = (op.fails||0) + 1;
+        if (permanentSaveError(err) && op.fails >= PARK_AFTER_TRIES){
+          state.parked.push({op, code:err.code||null, message:err.message||null, at:new Date().toISOString()});
+          while (state.parked.length > PARKED_MAX) state.parked.shift();
+          state.queue.shift(); persist();
+          console.warn('[re-lefela] parked a save the server will never accept:', err.code, err.message, op);
+          parkedThisPass++;
+          continue;                 // the rest of the outbox is not this op's hostage
+        }
+        persist();                  // remember the attempt count across reloads
+        toast('Save failed — will retry. ('+ (err.message||err.code||'network') +')');
+        break;
+      }
       state.queue.shift(); persist();
     }
-  } finally { flushing = false; }
+  } finally {
+    flushing = false;
+    if (parkedThisPass) toast(parkedThisPass===1
+      ? 'One save could not go through — everything else is saved.'
+      : parkedThisPass+' saves could not go through — everything else is saved.');
+  }
 }
 window.addEventListener('online', flushQueue);
 setInterval(flushQueue, 30000);
@@ -363,12 +408,83 @@ function touchStreak(){
   s.last = today; persist();
   enqueue({t:'streak', current:s.current, best:s.best, last:today});
 }
+/* ---------- Interval ceiling + repair (2026-07-28) ----------
+   srsGrade multiplied `interval` by `ease` (up to 3.0) with NO upper bound, so a
+   heavily-drilled card compounds without limit: the second learner reached 2 549 900 days on
+   u1l1-04 (due year 9008), and one more correct answer crossed ~8 000 years — the
+   point where toISOString() switches to the ISO expanded-year form
+   ("+022970-09-07T12:01:47.431Z"). Postgres reads that leading "+022970" as a time-
+   zone offset and rejects the row ("time zone displacement out of range"). Because
+   flushQueue leaves a failed op at the HEAD of the outbox to retry (right for a
+   network blip, fatal for a permanent error), that single row wedged her entire sync
+   for two days and re-toasted every 30 s.
+   Two guards, because the cap alone cannot heal state already written to disk:
+     1. MAX_INTERVAL_DAYS caps every new interval at grade time.
+     2. repairIntervals() clamps oversized values already in state.srs, in the pending
+        outbox, and anything pullRemote() merges back in from the server.
+   NB a further ×3 would have passed 8.64e15 ms, where `new Date(ms).toISOString()`
+   throws RangeError — that would have broken grading outright, not just syncing.
+
+   Why 30 and not a textbook SRS ceiling (Megan's ruling, 2026-07-28): a year was still
+   too long for how this app is actually used. These are beginners a few months into a
+   single semester, not people maintaining a mature deck for years — "we get a word right
+   today and next week we've completely forgotten it," her words. 30 days means every
+   learned word is asked again within a month at worst. The ladder stays a real spacing
+   curve — 1 → 3 → 7.8 → 20.7 → 30, i.e. five correct answers to reach the ceiling
+   (ease climbs 2.5 → 2.7 over those steps, it is not a flat ×3) — and the Daily Quest's
+   weakest-first top-up surfaces
+   known words sooner than their due date anyway, so the ceiling is a floor on exposure,
+   not a schedule. One number to change if she wants it tighter. */
+const MAX_INTERVAL_DAYS = 30;
+const MAX_INTERVAL_MS = MAX_INTERVAL_DAYS * 86400000;
+
+/* Clamps state.srs + queued 'srs' ops. Anything clamped is re-stamped `touched` and
+   re-enqueued so the SERVER converges too — otherwise pullRemote() (remote wins when
+   its updated_at is newer than local `touched`) would keep pulling the bad value back
+   every session and the repair would never stick. Safe to run repeatedly: it only acts
+   on out-of-range values, and 'srs' ops are upserts keyed on (user_id, item_id), so a
+   corrective op simply supersedes an older queued one. */
+function repairIntervals(){
+  const now = Date.now();
+  let fixed = 0;
+  for (const id of Object.keys(state.srs)){
+    const it = state.srs[id];
+    if (!it || typeof it !== 'object') continue;
+    const badInterval = !(typeof it.interval === 'number' && isFinite(it.interval) && it.interval <= MAX_INTERVAL_DAYS);
+    const badDue = !(typeof it.due === 'number' && isFinite(it.due) && it.due <= now + MAX_INTERVAL_MS);
+    if (!badInterval && !badDue) continue;
+    if (badInterval) it.interval = MAX_INTERVAL_DAYS;
+    // Keep an already-sane earlier due date; only pull an out-of-range one back in.
+    it.due = Math.min(isFinite(it.due) ? it.due : Infinity, now + it.interval*86400000);
+    it.touched = now;
+    fixed++;
+    enqueue({t:'srs', item_id:id, ease:it.ease, interval_days:it.interval,
+      due_at:new Date(it.due).toISOString(), reps:it.reps, lapses:it.lapses});
+  }
+  // Ops queued BEFORE this fix shipped still carry the unsendable values; clamp in
+  // place so the head of the outbox can finally flush instead of erroring forever.
+  let opsFixed = 0;
+  for (const op of state.queue){
+    if (op.t !== 'srs') continue;
+    const t = Date.parse(op.due_at);
+    const badInterval = !(typeof op.interval_days === 'number' && isFinite(op.interval_days) && op.interval_days <= MAX_INTERVAL_DAYS);
+    const badDue = !(isFinite(t) && t <= now + MAX_INTERVAL_MS);
+    if (!badInterval && !badDue) continue;
+    if (badInterval) op.interval_days = MAX_INTERVAL_DAYS;
+    op.due_at = new Date(Math.min(isFinite(t) ? t : Infinity, now + op.interval_days*86400000)).toISOString();
+    opsFixed++;
+  }
+  if (fixed || opsFixed) persist();
+  return {fixed, opsFixed};
+}
+
 function srsGrade(itemId, ok){
   const now = Date.now();
   const it = state.srs[itemId] || {ease:2.5, interval:0, due:now, reps:0, lapses:0};
   if (ok){
     it.reps++;
-    it.interval = it.reps===1 ? 1 : it.reps===2 ? 3 : Math.round(it.interval * it.ease * 10)/10;
+    it.interval = Math.min(MAX_INTERVAL_DAYS,
+      it.reps===1 ? 1 : it.reps===2 ? 3 : Math.round(it.interval * it.ease * 10)/10);
     it.ease = Math.min(3.0, it.ease + 0.05);
   } else {
     it.lapses++; it.reps = 0; it.interval = 0;
@@ -664,11 +780,14 @@ async function afterAuth(user){
   if (lastUser && lastUser.id && lastUser.id !== user.id){
     clearLearnerState();
     state.srs = {}; state.progress = {}; state.xpTotal = 0;
-    state.streak = {current:0, best:0, last:null}; state.queue = [];
+    state.streak = {current:0, best:0, last:null}; state.queue = []; state.parked = [];
   }
   state.user = {id:user.id, username:prof.username, display:prof.display_name};
   store.set('lastUser', state.user);
   await pullRemote();
+  // AFTER the merge, BEFORE the flush: pullRemote copies interval_days/due_at straight
+  // from the server, so a row still carrying a pre-fix value would come back in here.
+  repairIntervals();
   flushQueue();
   screenHome();
   maybeShowWeeklyChampion(); // fire-and-forget — never blocks/delays home render
@@ -2289,6 +2408,9 @@ function finishSession(){
 
 /* ---------- boot ---------- */
 async function boot(){
+  // First thing, ahead of the 30 s flush timer and any auth: heal what is already on
+  // disk so a wedged outbox (see MAX_INTERVAL_DAYS) drains on this very load.
+  repairIntervals();
   /* SW update flow — installed Android PWAs usually resume from memory instead of
      cold-starting, so the browser's on-navigation SW update check rarely fires.
      We poll update() ourselves and reload once a new SW takes control, but never
