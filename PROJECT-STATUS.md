@@ -1,6 +1,13 @@
 # Re:Lefela — Project Status
 
-**Updated:** 2026-07-28 (session 32 — **the second learner's own Claude tutor, WIRED**: a read-only
+**Updated:** 2026-07-28 (session 33 — **full fresh audit: CLEAN, one bug found and fixed same
+session.** Live == repo byte-for-byte at sw v37 (the s32 "NOT pushed" note was stale — see the
+correction in s32 below), scrub holding (0 name hits at HEAD, 0 forks, 0 PRs), server SRS data all
+under the 30-day cap. The bug: `tutor-progress` summed `xp_events` client-side, which silently
+clips at PostgREST's 1000-row cap (both accounts already past 600 events) — `xp_total` is now
+summed in the database (`public.xp_total(uid)`, service-role-only) and the function is redeployed
+as **v4**, live-verified equal to the direct sum; the `delivered_at` stamp is now also uid-pinned;
+`main`'s upstream tracking re-linked after the filter-repo rewrite dropped it) · previous: 2026-07-28 (session 32 — **the second learner's own Claude tutor, WIRED**: a read-only
 `tutor-progress` edge function lets a learner's tutor read her own progress holding no credential
 at all, the 💬 Ask-your-tutor button + 3-miss auto-file now work for **both** accounts (**sw v37
 SHIPPED and live-verified**), and a six-module tutor pack is assembled on her Desktop, which she is
@@ -73,6 +80,40 @@ hashes moved. New HEAD at the time of the rewrite: `1ec63a8`.
   `PROJECT-STATUS.md` included. Never write a real learner's name, username or account id into any
   tracked file. "The second learner" is the established stand-in.
 
+## Session 33 (2026-07-28, same day, Fable audit) — full fresh audit: clean; xp_total bug fixed (function v4)
+
+Her ask: full fresh audit of this repo + the NWU hub after the morning's sessions 31–32.
+Verdict: **clean** — no security holes, no data damage, no drift. Findings and the one fix:
+
+- **Live == repo, byte-for-byte** (sw.js / index.html / content.js md5-identical, `relefela-v37`,
+  `relefela-audio-v3`). The s32 "commit not pushed" worry was a stale note, corrected in place below.
+- **Scrub verified from here too:** 0 name hits in any tracked blob at HEAD, 0 forks, 0 PRs ever,
+  Pages building. `tutor_tokens` lockdown confirmed live (RLS on / zero policies / ACL only
+  postgres + service_role); function logs show Bearer-only calls — no token has ever been in a URL.
+- **Server data:** 0 rows over the 30-day cap, 0 far-future due dates. The second learner's last
+  save is still 26 Jul — the "she opens the app once" item genuinely still stands.
+- **THE BUG (found in review, fixed + shipped this session):** `tutor-progress` fetched every
+  `xp_events` row and summed client-side. PostgREST silently caps un-limited selects at 1000 rows,
+  so `summary.xp_total` would have silently undercounted within weeks (accounts at 603/575 events
+  already). Fix: **`public.xp_total(uid)`** (SQL sum, `stable`, EXECUTE revoked from
+  public/anon/authenticated, granted only to service_role — applied via MCP as migration
+  `xp_total_sum_function`; this repo keeps no migrations dir, the SQL lives in the MCP history and
+  here). Function now calls `admin.rpc("xp_total", {uid})`; redeployed via MCP as **version 4**
+  (verify_jwt still false, by design). Also hardened while in there: the `delivered_at` stamp now
+  carries `.eq("user_id", uid)` so the "every query pinned" rule is literal, not by-construction.
+- **Live-verified the fix** the s32 way: throwaway token → Megan's account returned
+  `xp_total: 5600` == the direct SQL sum (words 108, username right, warnings empty); wrong token
+  401; throwaway token deleted, table confirmed back to the 1 real token. No open questions were
+  stamped (there were 0 open — no real rows touched).
+- **Housekeeping:** `main` upstream tracking re-linked (`git branch --set-upstream-to=origin/main`)
+  — filter-repo had dropped it, which is why the portfolio sweep misread this repo as
+  "no remote". `recording-sheet.docx` left uncommitted per the standing s25 ruling.
+- **Known + accepted (watch, don't fix):** the weekly-champion query in index.html has the same
+  1000-row shape but is week-bounded — only misbehaves if the two accounts ever log 1000+ XP events
+  in a single week (currently ~half that pace). The parked-pile cap (50) silently drops the oldest
+  beyond 50 — irrelevant in practice. `?token=` query-param support still exists on the function;
+  fine while unused, since edge logs print full URLs the pack must keep using the Bearer header.
+
 ## Session 32 (2026-07-28, same day) — the second learner's own Claude tutor: the read-only progress window (sw v37, SHIPPED)
 
 Her ask: the second learner wants her own SECL121 tutor (and tutors for all six shared modules) on her own Claude
@@ -139,6 +180,10 @@ grant here — the standing WhenWorks gotcha does not apply to re-lefela.
   throwaway token deleted afterwards; database confirmed back to 1 token, 11 questions, 0 stamped.
 - **Commit `3b0cf74`, local only — NOT pushed** (no push go-ahead this session).
   `toolkit/recording-sheet.docx` still deliberately uncommitted per the session-25 ruling.
+  **[Correction, s33 audit: this note went stale the same hour it was written — the history
+  rewrite renamed the commit to `e07ab3e` and the force-push that published the rewrite carried
+  it out with everything else. Verified live: sw.js/index.html/content.js byte-identical to the
+  repo, serving `relefela-v37`.]**
 
 ### The tutor pack (on her Desktop, not in any repo)
 A tutor-pack **folder on Megan's Desktop, never a git repo** (exact path in the private plan), so

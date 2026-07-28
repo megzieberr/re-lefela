@@ -97,7 +97,7 @@ Deno.serve(async (req: Request) => {
      for facts it almost never needs. ?full=1 adds them back for a deep dive. */
   const full = new URL(req.url).searchParams.get("full") === "1";
 
-  const [profileRes, srsRes, streakRes, unitRes, xpAllRes, xpRecentRes, qRes] =
+  const [profileRes, srsRes, streakRes, unitRes, xpTotalRes, xpRecentRes, qRes] =
     await Promise.all([
       admin.from("profiles").select("username,display_name")
         .eq("id", uid).maybeSingle(),
@@ -108,7 +108,10 @@ Deno.serve(async (req: Request) => {
         .eq("user_id", uid).maybeSingle(),
       admin.from("unit_progress").select("unit_id,lesson_idx,completed,updated_at")
         .eq("user_id", uid).order("unit_id"),
-      admin.from("xp_events").select("amount").eq("user_id", uid),
+      /* Summed in the database (public.xp_total, service-role-only). Selecting every
+         row and adding here silently undercounts once a learner passes PostgREST's
+         1000-row cap — both accounts were already past 600 when this was caught. */
+      admin.rpc("xp_total", { uid }),
       admin.from("xp_events").select("amount,kind,created_at").eq("user_id", uid)
         .gte("created_at", new Date(now - RECENT_XP_DAYS * 864e5).toISOString())
         .order("created_at", { ascending: false }).limit(300),
@@ -118,7 +121,7 @@ Deno.serve(async (req: Request) => {
         .order("created_at", { ascending: true }),
     ]);
 
-  const firstErr = [profileRes, srsRes, streakRes, unitRes, xpAllRes, xpRecentRes, qRes]
+  const firstErr = [profileRes, srsRes, streakRes, unitRes, xpTotalRes, xpRecentRes, qRes]
     .find((r) => r.error);
   if (firstErr?.error) {
     console.error("read failed", firstErr.error.message);
@@ -136,7 +139,7 @@ Deno.serve(async (req: Request) => {
     .slice(0, TOP_N)
     .map((r) => ({ item_id: r.item_id, lapses: r.lapses, reps: r.reps }));
 
-  const xpTotal = (xpAllRes.data ?? []).reduce((n, e) => n + (e.amount ?? 0), 0);
+  const xpTotal = Number(xpTotalRes.data ?? 0);
   const lastActivity = srs.reduce<string | null>(
     (acc, r) => (!acc || r.updated_at > acc ? r.updated_at : acc),
     null,
@@ -170,7 +173,8 @@ Deno.serve(async (req: Request) => {
   if (undelivered.length) {
     const { error: stampErr } = await admin.from("tutor_questions")
       .update({ delivered_at: new Date().toISOString() })
-      .in("id", undelivered).is("delivered_at", null);
+      .in("id", undelivered).is("delivered_at", null)
+      .eq("user_id", uid); // ids already come from a uid-pinned select; this keeps the "every query pinned" rule literal
     if (stampErr) console.error("delivered_at stamp failed", stampErr.message);
   }
 
