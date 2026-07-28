@@ -1,6 +1,11 @@
 ﻿# Re:Lefela — Project Status
 
-**Updated:** 2026-07-26 (session 30 — **the 🧩 Sentence Builder, SHIPPED as sw v33**: typed
+**Updated:** 2026-07-28 (session 31 — **the SRS interval-overflow bug, FIXED and SHIPPED as sw
+v36**: the second learner's phone had saved nothing since 26 Jul because a card's next-review date had compounded
+into the year 22970, which Postgres rejects, and the outbox retried it forever; the interval is now
+capped at **30 days** on Megan's ruling, a repair pass heals values already stored/queued/pulled,
+and a save the server will never accept is moved aside instead of blocking everything behind it)
+· previous: 2026-07-26 (session 30 — **the 🧩 Sentence Builder, SHIPPED as sw v33**: typed
 production drill over a pre-checked 57-sentence `builder-bank.js` spanning u1–u5, graded only
 against pre-checked `accept` strings, **NO SRS writes** (own `rl_builder` key); session 28's
 `4c76f84` content fixes rode the same push — everything live-verified, the standing push blocker
@@ -41,6 +46,115 @@ drop + 65-clip wiring wave v21, L11 finale + export scope fix v22 — ALL SHIPPE
 card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lessons (sw v18), session 14
 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button
 (sw v15), session 11 SW cache overhaul (sw v14)
+
+## Session 31 (2026-07-28) — SRS interval overflow: the second learner's sync unwedged (sw v36, SHIPPED)
+Debugging session, opened with the second learner's screenshot: a toast reading `Save failed — will retry. (time
+zone displacement out of range: "+022970-09-07T12:01:47.431Z")`, over and over.
+
+### The bug, end to end
+1. **`srsGrade` multiplied `interval` by `ease` with no upper bound.** Every correct answer stretches
+   the wait; a heavily-drilled card compounds. the second learner reached **2 549 900 days** on `u1l1-04` (due year
+   9008) at 15 reps — that value synced fine, since a 4-digit year is legal.
+2. **One more correct answer crossed ~8 000 years**, and that is where
+   `new Date(ms).toISOString()` switches to the ISO **expanded-year** form,
+   `"+022970-09-07T12:01:47.431Z"`. Postgres parses that leading `+022970` as a **time-zone offset**
+   and rejects the row (SQLSTATE 22009).
+3. **`flushQueue` left the failed op at the HEAD of the outbox and retried forever** — correct for a
+   network blip, fatal for a permanently-invalid row. Everything queued behind it waited. **Nothing
+   from her account synced from 2026-07-26 15:17 until this fix**, and the toast re-fired every 30 s.
+4. ⚠️ **Three further correct answers would have passed 8.64e15 ms**, where `toISOString()` throws
+   `RangeError` — that would have broken **grading itself**, not just syncing. The cap prevents a
+   strictly worse future failure, not only the observed one.
+
+### Why Megan's account was 81× behind the second learner's (her question, answered with data)
+Only one number matters: how many times in a row a single card has been right. the second learner's best card was
+at **15**, Megan's at **11**. Four fewer answers, each roughly tripling, = **3⁴ = 81× smaller** —
+and the values matched that exactly (2 549 900 vs 31 480 days). Megan actually plays *more* (108
+words vs 85, 231 XP events since the 26th vs 34) but **spreads it wider**: her average card has 4.9
+reps and only 4 cards passed 10, against the second learner's 6.4 average and 15 cards past 10, from re-drilling
+the early lessons. Megan was ~5 correct answers from the identical crash.
+⚠️ **Lesson replays are NOT the cause** — replay mode deliberately never calls `srsGrade`. The
+**Daily Quest** does the counting, including on filler cards (see "left open" below).
+
+### The fix (three parts)
+- **`MAX_INTERVAL_DAYS = 30`**, clamped inside `srsGrade`. **Megan's ruling this session**, having
+  first seen a 365-day cap: a year is still too long for beginners a few months into one semester —
+  "we get a word right today and next week we've completely forgotten it." Ladder is now
+  **1 → 3 → 7.8 → 20.7 → 30** (five correct answers to the ceiling; ease climbs 2.5 → 2.7, so it is
+  *not* a flat ×3 — an earlier draft comment said 1→3→9→27 and was wrong, corrected in the file).
+- **New `repairIntervals()`** — a cap alone cannot heal what is already on disk. Clamps oversized
+  values in `state.srs`, in the pending outbox, and anything `pullRemote()` merges back from the
+  server. Runs at the top of `boot()` (ahead of the 30 s flush timer) **and again straight after
+  every `pullRemote()`** — that second call site is what stops the server re-supplying the bad value
+  every session. It repairs the stuck op **in place**, so the second learner's queued `reps:16` survived rather
+  than being discarded to unblock the queue. Re-stamps `touched` and re-enqueues, so the server
+  converges too. Idempotent.
+- **"Move it aside" in `flushQueue`** (her ruling, chosen from three options offered). A save the
+  server will **never** accept is moved to a new `state.parked` pile after 3 tries, so the queue
+  behind it drains. ⚠️ **The distinction that makes this safe:** only Postgres **data exceptions
+  (22xxx)** and **integrity violations (23xxx)** park. Offline, 5xx, **the project auto-pausing**
+  (it does — there is a keep-alive pinger for exactly that) and **42501 missing-column GRANT** are
+  treated as transient and retry forever, unchanged. Parking those would destroy real progress
+  during a routine outage, and 42501 specifically *should* stay loud until the grant is added.
+  A missing `err.code` is treated as transient — never discard a learner's work on a guess.
+  `parked` added to `persist()`, `clearLearnerState()` (`rl_parked`) and the account-switch reset.
+- **sw.js `relefela-v35 → v36`. `AUDIO_CACHE` untouched** (`relefela-audio-v3`) — no audio byte
+  changed, so bumping it would have been wrong.
+
+### Server data repaired
+**42 rows** across both accounts (34 the second learner / 8 Megan) had `interval_days > 30`; all clamped, along
+with their `due_at`. `reps`/`ease`/`lapses` untouched — only the schedule moved. **`updated_at`
+deliberately preserved** so each device's own state and pending queue stay authoritative and cannot
+be clobbered by the next pull. Reversible snapshot of every pre-clamp row saved **outside the repo**
+(learner rows) at `…\scratchpad\srs-backup-2026-07-28.json` — note the scratchpad is session-scoped,
+so copy it somewhere durable if it is ever wanted. the second learner now has **9 words genuinely due**, which
+will front her next Daily Quest.
+⚠️ Correction to an in-session claim: those far-future cards were **not** fully retired from
+practice — the Daily Quest's weakest-first top-up draws on every word ever met regardless of due
+date, so they lost *due priority*, not exposure. Verified, not assumed.
+
+### Verification
+- **63-assertion Node harness** (`…\scratchpad\test-intervals.js`) running the **real** `srsGrade` /
+  `repairIntervals` / `permanentSaveError` source text sliced out of `index.html`, seeded with
+  the second learner's **actual server values**. It is ceiling-agnostic — every expectation is derived from
+  `MAX_INTERVAL_DAYS` as read from the file, so changing the ceiling cannot silently invalidate the
+  tests. Section F **reproduces `+022970…` from the old formula** (diagnosis demonstrated, not
+  assumed) and confirms the `RangeError` cliff. Section G pins the park/retry decision for 15 error
+  shapes.
+- **Browser test of the park path with `sb.from` stubbed out entirely** (so nothing could reach the
+  live database, and no auth needed): **6 consecutive transient failures parked nothing** and held
+  the whole queue; a `22009` was retried twice then parked on the 3rd try, after which the `xp` and
+  `streak` ops behind it went through; the parked entry kept `reps:16`, its code and a timestamp;
+  survives reload; `rl_parked` is in the wipe list.
+- **Full `?local=1` walkthrough** (SW unregistered + caches + localStorage cleared first, wiped
+  after): seeded with the 365-day values the server held at that point, all pulled back to 30;
+  healthy and lapsed cards untouched; the from-scratch ladder measured as **1, 3, 7.8, 20.7, 30, 30,
+  30, 30**, matching the documented comment; a real UI round graded normally (6 → 15 days) while a
+  card at the ceiling regraded correct held at 30 with reps still advancing; **0 console errors**.
+- LF-only / no BOM confirmed by **binary** read on both files (Git Bash `grep` strips CR and lies).
+- **Commit `ba92199`, pushed to `main`. Live-verified:** live `sw.js` and `index.html` are
+  **byte-identical to local** (3 617 / 134 602 B), `CACHE = relefela-v36`, `AUDIO_CACHE` still
+  `relefela-audio-v3`, all new symbols present, and the old uncapped line is gone.
+  `toolkit/recording-sheet.docx` left uncommitted per the standing session-25 ruling.
+
+### Left open (her call, deliberately not built)
+**The Daily Quest re-grades cards that were not due.** It always serves 10 cards and tops up with
+already-known words; getting a filler card right still stretches its wait. That is the *engine* of
+the rep inflation — the same few words appearing as filler day after day. Offered and **she chose to
+leave it for now**, since the 30-day ceiling removes the harm; the alternative is to only advance the
+schedule when a card was genuinely due. Worth revisiting on a day she can play afterwards and say
+whether it feels right.
+
+## Next up (agreed 2026-07-28, end of session 31)
+1. 📱 **[blocking] 2 min:** open Re:Lefela on **the second learner's** phone, play one Daily Quest round, check the
+   "Save failed" popup is gone and her ⭐ XP jumps (two days of saves flush on first load).
+2. 📱 **[whenever] 1 min:** same on your own phone — a few words that were parked in the future are
+   due again now.
+3. 💻 **[whenever]** The parked pile has **no screen** — it lives in `rl_parked` on the phone and I
+   read it on request. Say the word if you want a line on the stats screen instead.
+4. Carry-overs unchanged from session 30: Sentence Builder reveal-threshold feedback, future bank
+   waves, `u2l1-07` "nko" re-record (low), ear-check the 131 native clips, Daily Quest first-use
+   feedback, more chat scenarios spec-first, u5l4 Smart Guide.
 
 ## Session 30 (2026-07-26, same day) — 🧩 Sentence Builder built + SHIPPED (sw v33)
 Her go-ahead on the session-29 spec, with two amendments delivered in-session: the 4 open §9
