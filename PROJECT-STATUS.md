@@ -2,9 +2,11 @@
 
 **Updated:** 2026-07-28 (session 32 — **the second learner's own Claude tutor, WIRED**: a read-only
 `tutor-progress` edge function lets a learner's tutor read her own progress holding no credential
-at all, the 💬 Ask-your-tutor button + 3-miss auto-file now work for **both** accounts (sw v37,
-committed locally, **NOT pushed** — awaiting her go), and a six-module tutor pack is assembled on
-her Desktop ready to hand over) · previous: 2026-07-28 (session 31 — **the SRS interval-overflow bug, FIXED and SHIPPED as sw
+at all, the 💬 Ask-your-tutor button + 3-miss auto-file now work for **both** accounts (**sw v37
+SHIPPED and live-verified**), and a six-module tutor pack is assembled on her Desktop, which she is
+sending across today. Also this session, on her go-ahead: the second learner's name AND username
+scrubbed from every tracked file **and from the entire git history** — ⚠️ **all pre-2026-07-28 SHAs
+for this repo are now stale**, see the HISTORY REWRITE note below) · previous: 2026-07-28 (session 31 — **the SRS interval-overflow bug, FIXED and SHIPPED as sw
 v36**: the second learner's phone had saved nothing since 26 Jul because a card's next-review date had compounded
 into the year 22970, which Postgres rejects, and the outbox retried it forever; the interval is now
 capped at **30 days** on Megan's ruling, a repair pass heals values already stored/queued/pulled,
@@ -51,7 +53,27 @@ card fix + 🐢 slow-audio button (sw v19), session 15 Unit 3 conjugation lesson
 enhance bot + Katse bubble (sw v17), session 13 colour stem cards (sw v16), session 12 reset button
 (sw v15), session 11 SW cache overhaul (sw v14)
 
-## Session 32 (2026-07-28, same day) — the second learner's own Claude tutor: the read-only progress window (sw v37, COMMITTED NOT PUSHED)
+## ⚠️ HISTORY REWRITE 2026-07-28 — every SHA before today is STALE
+The second learner's first name and username were scrubbed from the **entire git history**
+(`git filter-repo --replace-text --replace-message`, on her explicit go-ahead), then force-pushed.
+**All 86 commits were rewritten, so every commit SHA quoted anywhere earlier in this file — and in
+any older session note, memory or chat — no longer exists.** The content is unchanged; only the
+hashes moved. New HEAD at the time of the rewrite: `1ec63a8`.
+- Replacements applied to blobs **and** commit messages: `(?i)\blize\b` → "the second learner", plus
+  the two paths that carried the name (the private plan file, and the tutor-pack folder).
+  Word-boundary regex deliberately, so `normalize`/`capitalize` and friends were untouched — verified.
+- **Verified from a FRESH CLONE off GitHub, not just locally:** 0 hits for the name in any blob of
+  any revision, 0 in any commit message, 86 commits and 415 files (348 audio) all intact.
+- Reversible: full pre-rewrite bundle at
+  `C:\Users\megzi\Desktop\re-lefela-BACKUP-before-history-rewrite-2026-07-28.bundle` (18.1 MB).
+- ⚠️ Residual risk, small and known: GitHub can still serve an orphaned pre-rewrite commit by its old
+  SHA until it garbage-collects. There are **no forks and no PRs** on this repo, so nothing else is
+  holding those objects. If she wants that closed for certain, GitHub Support can force a GC.
+- ⚠️ **Standing rule for this repo, restated:** it is PUBLIC and GitHub Pages serves every file in it,
+  `PROJECT-STATUS.md` included. Never write a real learner's name, username or account id into any
+  tracked file. "The second learner" is the established stand-in.
+
+## Session 32 (2026-07-28, same day) — the second learner's own Claude tutor: the read-only progress window (sw v37, SHIPPED)
 
 Her ask: the second learner wants her own SECL121 tutor (and tutors for all six shared modules) on her own Claude
 account, with her Re:Lefela progress visible to it. Planned by Fable earlier the same day
