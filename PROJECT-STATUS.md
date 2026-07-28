@@ -104,8 +104,8 @@ grant here — the standing WhenWorks gotcha does not apply to re-lefela.
   logout; LF-only/no-BOM by binary read. One early failure was the *test rig*, not the app —
   it recorded a removal on the wrong rig object; fixed to flip the user on one rig, which is what
   logout actually does.
-- **Real browser DOM check** (preview, non-local): fab mounts for username `the second learner` and for
-  `megzieberr`, absent signed-out, exactly one element after three mounts, removed on logout.
+- **Real browser DOM check** (preview, non-local): fab mounts for the second learner's username and
+  for `megzieberr`, absent signed-out, exactly one element after three mounts, removed on logout.
   0 console errors. SW + caches + localStorage wiped after (the non-local load registers a SW —
   it created `relefela-v37`, confirming the bump).
 - **Live endpoint**: valid token 200 with **only** the second learner's rows (85 words, 9 due — matching session
@@ -119,8 +119,8 @@ grant here — the standing WhenWorks gotcha does not apply to re-lefela.
   `toolkit/recording-sheet.docx` still deliberately uncommitted per the session-25 ruling.
 
 ### The tutor pack (on her Desktop, not in any repo)
-`C:\Users\megzi\Desktop\TUTOR-PACK\` — a **folder, never a git repo**, so there is nothing to
-accidentally publish. Router `CLAUDE.md` (say a module code → it reads that spec), plain-language
+A tutor-pack **folder on Megan's Desktop, never a git repo** (exact path in the private plan), so
+there is nothing to accidentally publish. Router `CLAUDE.md` (say a module code → it reads that spec), plain-language
 `README.md`, `NOTES.md` (the tutors' only memory — no hub, by design), and six adapted
 `modules/<CODE>/TUTOR.md`. ~995 MB of shared material copied in; **SECL121/Corpus (6.2 GB, 58k
 files) deliberately excluded** — app tooling, not study material. The re-lefela `toolkit/` reference
@@ -872,9 +872,8 @@ session sees it immediately.
 - **Seeded her real question:** `'Where do I use wena?'`, context `'seeded 2026-07-17 from chat — came
   up during today's lessons, she parked it in WhatsApp'`, row id `153243a3-4fc3-4f2a-8326-b12a62836c82`.
 - **Her user id disambiguated with zero ambiguity:** `select id, username, display_name from profiles`
-  returned exactly 2 rows — `megzieberr` / "Megan" (id `0b6fd25f-10ad-4d74-9dd5-0e67e31629f2`) and
-  `the second learner` / "the second learner". Matches her known locked username from other apps (Budget App). Gated the client on
-  `username === 'megzieberr'`.
+  returned exactly 2 rows — `megzieberr` / "Megan", and the second learner's account. Gated the
+  client on `username === 'megzieberr'`.
 - **Client (`index.html`):** small 💬 button, 44px, `position:fixed` bottom-LEFT (Katse owns
   bottom-right), appended to `document.body` — NOT inside `#app`, so it survives every `render()`/
   `renderFill()` screen swap and stays visible mid-lesson, which is the whole point (that's when
