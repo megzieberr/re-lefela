@@ -1430,12 +1430,12 @@ function runBuilder(){
    2026-07-26): a reveal = three real misses, and the typed attempts are the
    diagnostic gold (e.g. every attempt dropping "go"). Reuses tutor_questions —
    no schema change; the tutor session reads that table first thing. Gated like
-   the tutor fab (her account only, never LOCAL_MODE). Best-effort fire-and-
+   the tutor fab (any signed-in learner, never LOCAL_MODE). Best-effort fire-and-
    forget: a failed insert is dropped silently — this is telemetry for the
    tutor, not learner data, and a mid-drill error toast would just nag. One row
    per sentence per day via rl_builder.filed. */
 function maybeFileBuilderMiss(entry, attempts){
-  if (LOCAL_MODE || !state.user || state.user.username !== TUTOR_USERNAME) return;
+  if (LOCAL_MODE || !state.user) return;
   const st = builderStoreGet();
   st.filed = st.filed || {};
   if (st.filed[entry.id] === todayStr()) return;
@@ -1585,15 +1585,18 @@ async function maybeShowWeeklyChampion(){
   showChampionPopup(champ.display);
 }
 
-/* ----- "Ask your tutor" — Megan-only, 2026-07-17 ------------------------------
+/* ----- "Ask your tutor" — any signed-in learner, 2026-07-17 -------------------
    A hovering help button like a site's AI-help bot, but it just parks a question
-   for her real SECL121 tutor to see at the start of her next tutoring session
+   for a real SECL121 tutor to see at the start of the next tutoring session
    (mid-app confusion, e.g. "where do I use wena", used to get stuck in WhatsApp).
-   Useless on the second learner's account (she has no NWU tutor session), so gated hard on
-   username. LOCAL_MODE is offline-only by design and never reaches afterAuth,
-   so it never sees this feature either — no extra guard needed beyond the ones
-   already on mountTutorFab/sendTutorQuestion. */
-const TUTOR_USERNAME = 'megzieberr';
+   2026-07-28: this was gated to one username, on the assumption only Megan had a
+   tutor to park a question for. Both learners now have their own Claude tutor
+   reading their own progress (the tutor-progress edge function), so the gate is
+   simply "signed in" — the only two accounts that exist are theirs, and sign-up
+   is not open to anyone else. An allowlist would be more code for no gain.
+   LOCAL_MODE is offline-only by design and never reaches afterAuth, so it never
+   sees this feature either — no extra guard needed beyond the ones already on
+   mountTutorFab/sendTutorQuestion. */
 // Tracks which non-lesson screen is on-screen, for the question's auto-captured
 // context. Lesson/review/gym context is read live off `session` instead (richer:
 // unit/lesson id + the exact card she's stuck on) — see currentContext() below.
@@ -1679,7 +1682,7 @@ async function flushTutorQuestions(){
 }
 function mountTutorFab(){
   const existing = document.getElementById('tutor-fab');
-  if (LOCAL_MODE || !state.user || state.user.username !== TUTOR_USERNAME){
+  if (LOCAL_MODE || !state.user){
     if (existing) existing.remove();
     document.body.classList.remove('tutor-fab-on');
     return;
