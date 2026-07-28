@@ -155,6 +155,23 @@ bursary, her error patterns) — SECL's leaky-items list was rekept as "common t
 material, NOT the second learner's history". Her own `Project_Instructions.md` files were kept for the module maps
 but each TUTOR.md tells the tutor to ignore their personal sections.
 
+## Next up (agreed 2026-07-28, end of session 32)
+1. 📱 **[blocking] 2 min:** the second learner opens Re:Lefela and plays one round. Two days of saves
+   flush on first load, and she sees the 💬 button for the first time. (Carried from session 31 — the
+   progress window shows her last save is still 26 Jul, so this genuinely has not happened yet.)
+2. 💻 **[whenever] 5 min:** skim the pack's PDFs and Word files for Megan's name/student number —
+   147 of them could not be text-searched, and submitted assignments carry her details. EDDC125 and
+   ENGV121 `Resources/` are the likely spots.
+3. 💻 **[whenever]** first tutor session on the SECOND LEARNER'S OWN laptop: confirm the progress
+   window actually runs there. ⚠️ It was only ever tested from Megan's machine — different
+   PowerShell version, different network. If it fails, her tutor is told to say so plainly and teach
+   from the material instead, so it degrades safely rather than hunting for a workaround.
+4. Carry-overs unchanged from session 31: the parked pile still has no screen (lives in `rl_parked`,
+   readable on request); the Daily Quest still re-grades not-yet-due cards (her deliberate "leave it
+   for now" — the 30-day ceiling removes the harm); Sentence Builder reveal-threshold feedback;
+   future bank waves; `u2l1-07` "nko" re-record (low); ear-check the 131 native clips; more chat
+   scenarios spec-first; u5l4 Smart Guide.
+
 ## Session 31 (2026-07-28) — SRS interval overflow: the second learner's sync unwedged (sw v36, SHIPPED)
 Debugging session, opened with the second learner's screenshot: a toast reading `Save failed — will retry. (time
 zone displacement out of range: "+022970-09-07T12:01:47.431Z")`, over and over.
