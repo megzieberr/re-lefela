@@ -1,4 +1,4 @@
-﻿# Re:Lefela — Project Status
+# Re:Lefela — Project Status
 
 **Updated:** 2026-07-28 (session 32 — **the second learner's own Claude tutor, WIRED**: a read-only
 `tutor-progress` edge function lets a learner's tutor read her own progress holding no credential
@@ -124,8 +124,10 @@ accidentally publish. Router `CLAUDE.md` (say a module code → it reads that sp
 `README.md`, `NOTES.md` (the tutors' only memory — no hub, by design), and six adapted
 `modules/<CODE>/TUTOR.md`. ~995 MB of shared material copied in; **SECL121/Corpus (6.2 GB, 58k
 files) deliberately excluded** — app tooling, not study material. The re-lefela `toolkit/` reference
-files rode along as `SECL121/materials/reference/` because ⚠️ **toolkit/ and corpus/ are NOT tracked
-in the public repo** — only content.js / builder-bank.js / dialogues.js are fetchable by URL.
+files (GRAMMAR.md, sentence-bank.tsv, SOURCES.md, course-glossary.js) rode along as
+`SECL121/materials/reference/` so they work offline and cannot drift mid-session.
+⚠️ **Correction to an in-session claim:** `toolkit/` **IS** tracked (30 files) and so is fetchable by
+URL after all — the check that said otherwise used a broken regex. `corpus/` genuinely is untracked.
 ⚠️ **Megan's personal history was stripped from every spec** (her marks, her tutoring business, her
 bursary, her error patterns) — SECL's leaky-items list was rekept as "common trip-ups in this
 material, NOT the second learner's history". Her own `Project_Instructions.md` files were kept for the module maps
@@ -186,7 +188,7 @@ the early lessons. Megan was ~5 correct answers from the identical crash.
   changed, so bumping it would have been wrong.
 
 ### Server data repaired
-**42 rows** across both accounts (34 the second learner / 8 Megan) had `interval_days > 30`; all clamped, along
+**42 rows** across both accounts (34 hers / 8 Megan's) had `interval_days > 30`; all clamped, along
 with their `due_at`. `reps`/`ease`/`lapses` untouched — only the schedule moved. **`updated_at`
 deliberately preserved** so each device's own state and pending queue stay authoritative and cannot
 be clobbered by the next pull. Reversible snapshot of every pre-clamp row saved **outside the repo**
