@@ -1,4 +1,9 @@
-# Re:Lefela — Project Status
+# Re:Lefela — Project Status — updated 2026-08-02
+
+**2026-08-02 (housekeeping, Megan's calls):** recording toolkit CLOSED — the recording
+sheet (`toolkit/recording-sheet.docx`) is deleted from the repo ("we are done with it";
+git history still has it if ever needed). The 696 MB `corpus/tn_za.tar.gz` duplicate was
+deleted from disk (its extracted folder stays until the December laptop clean).
 
 **Updated:** 2026-07-28 (session 33 — **full fresh audit: CLEAN, one bug found and fixed same
 session.** Live == repo byte-for-byte at sw v37 (the s32 "NOT pushed" note was stale — see the
