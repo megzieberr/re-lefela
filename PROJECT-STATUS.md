@@ -43,8 +43,18 @@ SPEC §8), built on her go-ahead, code-reviewed on her interrupt before the push
 ## Next up (agreed 2026-08-04, end of session 34)
 1. 📱 **[whenever] 2 min:** open the live app, tap 📖 Dictionary, look up a word or two
    (try *ema*) — close-and-reopen the PWA twice first so sw v38 takes.
-2. 📱 **[blocking, carried from s31/s32] 2 min:** the second learner opens Re:Lefela and
-   plays one round — her last save is still 26 Jul; her queued saves flush on first load.
+2. ~~📱 the second learner opens Re:Lefela and plays one round~~ **DONE — and it was already
+   done before session 34 even started. Queried live 2026-08-04 (she asked me to re-check
+   rather than trust the note): she has played 28, 29, 30, 31 Jul and 1, 2 Aug. Last save
+   2026-08-02 19:44, 112 words, streak 4 (best 9), 20 words due. The 28 Jul session shows
+   154 XP events / 1 661 XP — the two days of queued saves flushing on first load, exactly
+   as session 31 predicted. Sync is healthy: 0 rows over the 30-day cap, 0 far-future due
+   dates, 0 unanswered tutor questions.**
+   ⚠️ **Why this sat here wrongly for three sessions:** the "last save is still 26 Jul" line
+   was true when the session-33 audit ran on 28 Jul — *before* she opened the app later that
+   same day. It was then carried forward as "[blocking]" by copying, never by re-querying,
+   and repeated to Megan again in session 34. **A pending item that one SQL query can settle
+   must be re-queried at every catchup, not inherited.**
 3. 💻 **HER DECISION, end of session 34: wave 2 is PARKED — she is testing the dictionary
    for a few days first, and the next dictionary session should be driven by what she
    actually hits, not by adding more entries speculatively.** So the next session's job is:
