@@ -1,6 +1,59 @@
-# Re:Lefela — Project Status — updated 2026-08-02
+# Re:Lefela — Project Status — updated 2026-08-04
 
-**2026-08-02 (housekeeping, Megan's calls):** recording toolkit CLOSED — the recording
+**Updated:** 2026-08-04 (session 34 — **the 📖 Dictionary panel, SHIPPED as sw v38** after a
+five-reviewer pre-ship code review she called for. 747-word Setswana↔English lookup with real
+example sentences, built ONLY from open sources — the commercial desk dictionaries she
+downloaded are gitignored in `dictionaries/` and feed a gap-fill loop instead
+(`dict-miss:` rows in tutor_questions). Full record in `SPEC-dictionary-panel.md` §9–§12.)
+
+## Session 34 (2026-08-04) — 📖 Dictionary panel (sw v38, SHIPPED, commit 9d1d9b7)
+
+Her ask: "translate this word" panel — single words, both directions, massive database,
+definition + example each time. Planned in the morning session (spec + her 6 rulings in
+SPEC §8), built on her go-ahead, code-reviewed on her interrupt before the push.
+
+- **dict-bank.js** (generated, 194 kB, in the SW CORE precache — her "preload" ruling):
+  747 entries from the app's own checked cards (298, `k:1`) + Peace Corps course (public
+  domain) + Wiktionary's 350 Tswana lemmas (CC BY-SA). 1 052 examples on 394 entries (52%),
+  mined mostly from the **Autshumato parallel corpora** (CC BY 2.5 ZA, already in corpus/) —
+  the Bible pair turned out NOT to be reliably aligned (97/261 chapters equal line counts)
+  and contributes only 2 corroboration-gated verses. Attribution footer in the panel.
+- **Panel**: 📖 button on home (ungated), one search box, both directions via the shared
+  `norm()`; entry cards show meanings/POS/noun class/examples with per-item source labels;
+  298 entries reuse existing native audio; misses show closest-prefix suggestions + a manual
+  "💬 Ask for this word" (files `dict-miss:<q>` to tutor_questions, one row per word per day
+  via `rl_dictasked`, wiped in clearLearnerState). **No SRS writes, no XP** — measured
+  byte-identical state before/after a full session.
+- **Pipeline in toolkit/** (all rerunnable, deterministic): dict-fetch-wiktionary,
+  dict-extract-sources, dict-mine-examples, dict-build, verify-dict-bank (ship gate),
+  dict_common/dict_lang helpers; dict-src/*.json is the tracked audit trail.
+- **The pre-ship code review (her call) found 9 real problems, all fixed before push** —
+  headline items: Peace Corps ToC/pronunciation-table junk had shipped as headwords
+  ("Alphabet", "ch", "ph"…); *batla* carried Setswana "Re ne re" as an English meaning
+  (lexicon blind spot); the build was PYTHONHASHSEED-dependent (rona's provenance differed
+  run to run, invisible to the gate); the ask button could double-file; two ship-gate holes.
+  Fixes + regression pins in SPEC §12; node harness now 57 assertions, all green.
+- ⚠️ **Standing rules for this feature:** dict-bank.js is GENERATED — never hand-edit,
+  rebuild via the four toolkit scripts; `dictionaries/` (desk PDFs) must never be
+  un-gitignored; desk-sourced gap-fill entries arrive as `src:["desk"], chk:true` typed in
+  by Megan during a session, never bulk-imported.
+- **For the next tutor session:** rows with context starting `dict-miss:` are dictionary
+  gap requests — look the word up in Matumo together, add the entry, rebuild, ship.
+
+## Next up (agreed 2026-08-04, end of session 34)
+1. 📱 **[whenever] 2 min:** open the live app, tap 📖 Dictionary, look up a word or two
+   (try *ema*) — close-and-reopen the PWA twice first so sw v38 takes.
+2. 📱 **[blocking, carried from s31/s32] 2 min:** the second learner opens Re:Lefela and
+   plays one round — her last save is still 26 Jul; her queued saves flush on first load.
+3. 💻 **[whenever]** Wave 2 when she wants it: DBE maths dictionary terms (extractor not
+   yet written; source tag `dbe-maths` is already reserved everywhere) + deeper example
+   mining + her first desk gap-fill entries.
+4. Carry-overs unchanged from session 33: pack-PDF name check, tutor session from the
+   second learner's own laptop, `u2l1-07` "nko" re-record (low), ear-check the 131 native
+   clips, more chat scenarios spec-first, u5l4 Smart Guide.
+
+
+**Previous — 2026-08-02 (housekeeping, Megan's calls):** recording toolkit CLOSED — the recording
 sheet (`toolkit/recording-sheet.docx`) is deleted from the repo ("we are done with it";
 git history still has it if ever needed). The 696 MB `corpus/tn_za.tar.gz` duplicate was
 deleted from disk (its extracted folder stays until the December laptop clean).
