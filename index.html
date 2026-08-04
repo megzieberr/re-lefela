@@ -122,6 +122,23 @@ input:focus{outline:none; border-color:var(--pink)}
   border:2px solid var(--line); background:#fff; color:var(--ink); font:inherit;
   font-size:1rem; margin:10px 0; resize:vertical}
 .tutor-card textarea:focus{outline:none; border-color:var(--pink)}
+/* 📖 Dictionary panel (SPEC-dictionary-panel.md) */
+.dict-search{width:100%; padding:13px 15px; border-radius:12px; border:2px solid var(--line);
+  background:#fff; color:var(--ink); font:inherit; font-size:1.05rem}
+.dict-search:focus{outline:none; border-color:var(--pink)}
+.dict-entry{background:var(--card); border:2px solid var(--line); border-radius:var(--radius);
+  padding:13px 15px; margin:9px 0}
+.dict-entry .head{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap}
+.dict-entry .word{font-size:1.25rem; font-weight:800; color:var(--pink-deep)}
+.dict-entry .mean{margin:5px 0 0; font-size:1.02rem}
+.dict-ex{background:var(--card2); border-left:4px solid var(--pink); padding:8px 12px;
+  border-radius:8px; margin:8px 0 0}
+.dict-ex .t{font-weight:600}
+.dict-ex .e{color:var(--ink-dim); font-size:.92rem; margin-top:2px}
+.dict-chip{display:inline-block; padding:2px 9px; border-radius:99px; background:var(--bg2);
+  font-size:.72rem; color:var(--ink-dim); font-weight:600}
+.dict-play{width:34px; height:34px; border-radius:50%; background:var(--pink); font-size:.95rem;
+  display:inline-flex; align-items:center; justify-content:center; padding:0; flex:none}
 /* "Bua le Katse" chat 💬 */
 .chat-wrap{display:flex; flex-direction:column; flex:1; min-height:0}
 .chat-log{flex:1; overflow-y:auto; padding:6px 2px 12px; min-height:0}
@@ -280,6 +297,7 @@ body.tutor-fab-on .exa-actions{padding-bottom:calc(64px + env(safe-area-inset-bo
 <script src="content.js"></script>
 <script src="dialogues.js"></script>
 <script src="builder-bank.js"></script>
+<script src="dict-bank.js"></script>
 <script>
 'use strict';
 /* ===== Re:Lefela engine ===== */
@@ -314,7 +332,7 @@ function persist(){ store.set('srs', state.srs); store.set('progress', state.pro
 // own by the caller. There are no app-scoped rl_ keys. Used by logout + the account-
 // switch guard in afterAuth so one learner's data can never bleed into another's.
 function clearLearnerState(){
-  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_parked','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder']
+  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_parked','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder','rl_dictasked']
     .forEach(k=>localStorage.removeItem(k));
 }
 
@@ -909,6 +927,12 @@ function screenHome(){
   const builderBtn = bldEntries.length
     ? `<button class="btn ghost" id="b-builder" style="margin:10px 0">🧩 Sentence Builder — type it yourself${bldAllDone ? ' ✓' : ''}<br>
         <span class="tiny">${bldEntries.length} sentence${bldEntries.length===1?'':'s'} unlocked · English in, your Setswana out</span></button>` : '';
+  // Dictionary — deliberately ungated (a reference she cannot open is no use), and
+  // shown even if dict-bank.js somehow failed to load, in which case DICT is empty
+  // and the button stays hidden rather than opening an empty screen.
+  const dictBtn = DICT.length
+    ? `<button class="btn ghost" id="b-dict" style="margin:10px 0">📖 Dictionary — look a word up<br>
+        <span class="tiny">${DICT.length} words · Setswana ↔ English, with examples</span></button>` : '';
   render(`
     <div class="row spread">
       <div class="logo" style="font-size:1.3rem"><span class="re">Re:</span><span class="zero">Lefela</span></div>
@@ -929,6 +953,7 @@ function screenHome(){
     ${chatBtn}
     ${builderBtn}
     ${unitsHtml}
+    ${dictBtn}
     <div class="row" style="margin-top:16px">
       <button class="btn ghost" id="b-lb" style="flex:1">🏆 Scoreboard</button>
       <button class="btn ghost" id="b-me" style="flex:1">📊 My stats</button>
@@ -948,6 +973,7 @@ function screenHome(){
   const gy = document.getElementById('b-gym'); if (gy) gy.onclick = startGym;
   const cb = document.getElementById('b-chat'); if (cb) cb.onclick = screenChatPick;
   const bd = document.getElementById('b-builder'); if (bd) bd.onclick = startBuilder;
+  const dc = document.getElementById('b-dict'); if (dc) dc.onclick = screenDictionary;
   document.getElementById('b-lb').onclick = screenLeaderboard;
   document.getElementById('b-me').onclick = screenStats;
 }
@@ -1462,6 +1488,164 @@ function finishBuilder(){
     <button class="btn primary" id="b-home" style="margin-top:16px">Back to the path</button>
   </div>`);
   document.getElementById('b-home').onclick = screenHome;
+}
+
+/* ---------- 📖 Dictionary (SPEC-dictionary-panel.md) ----------
+   Single-word lookup, both directions, from dict-bank.js. A reference tool, not
+   a drill: NO SRS writes and NO XP — looking a word up must never move a card's
+   schedule (that is what let interval inflation build up in the first place).
+   Ungated everywhere the app itself is reachable — every signed-in learner and
+   ?local=1 — with no unlock condition: a dictionary you have to unlock is not a
+   dictionary. (There is no signed-out browsing mode in this app at all; the
+   auth screen is the only thing a signed-out visitor ever sees.) */
+const DICT = (typeof RL_DICT !== 'undefined' && Array.isArray(RL_DICT)) ? RL_DICT : [];
+const DICT_SRC_LABEL = {app:'Re:Lefela course', pc:'Peace Corps', wikt:'Wiktionary',
+  autshumato:'Autshumato corpus', 'bible-nt':'Tswana NT',
+  'dbe-maths':'DBE maths dictionary', desk:'dictionary'};
+const DICT_POS_LABEL = {v:'verb', n:'noun', adj:'adjective', adv:'adverb', pron:'pronoun',
+  num:'number', pref:'prefix', suf:'suffix', propn:'name', conj:'conjunction',
+  interj:'interjection', part:'particle', prep:'preposition', det:'determiner',
+  phrase:'phrase'};
+let dictIndex = null;
+
+/* Built once, on first open — 761 entries is small, but doing it at boot would
+   slow every cold start for a screen she may not visit. */
+function dictBuildIndex(){
+  if (dictIndex) return dictIndex;
+  dictIndex = DICT.map((e, i)=>{
+    const forms = [norm(e.t)].concat((e.f||[]).map(norm)).filter(Boolean);
+    return {i, e, forms, means:(e.e||[]).map(norm).filter(Boolean)};
+  });
+  return dictIndex;
+}
+
+/* Rank: whole-word hits first, then starts-with, then contains — and a hit on the
+   Setswana headword outranks the same quality of hit on an English meaning, so
+   typing a Setswana word does not bury it under English glosses that contain it. */
+function dictSearch(q){
+  const n = norm(q);
+  if (!n) return [];
+  const out = [];
+  for (const row of dictBuildIndex()){
+    let rank = 99;
+    for (const f of row.forms){
+      if (f === n) rank = Math.min(rank, 0);
+      else if (f.startsWith(n)) rank = Math.min(rank, 2);
+      else if (f.indexOf(n) >= 0) rank = Math.min(rank, 4);
+    }
+    for (const m of row.means){
+      const words = m.split(' ');
+      if (m === n || words.indexOf(n) >= 0) rank = Math.min(rank, 1);
+      else if (m.startsWith(n) || words.some(w=>w.startsWith(n))) rank = Math.min(rank, 3);
+      else if (m.indexOf(n) >= 0) rank = Math.min(rank, 5);
+    }
+    if (rank < 99) out.push({rank, row});
+  }
+  out.sort((a,b)=> a.rank - b.rank
+    || a.row.e.t.length - b.row.e.t.length
+    || a.row.e.t.localeCompare(b.row.e.t));
+  return out.slice(0, 40).map(o=>o.row.e);
+}
+
+function dictEntryHTML(e){
+  const chips = [];
+  if (e.p && DICT_POS_LABEL[e.p]) chips.push(`<span class="dict-chip">${esc(DICT_POS_LABEL[e.p])}</span>`);
+  if (e.c) chips.push(`<span class="dict-chip">class ${esc(String(e.c))}</span>`);
+  const play = e.a ? `<button class="dict-play" data-audio="${esc(e.a)}" aria-label="Play ${esc(e.t)}">🔊</button>` : '';
+  const forms = (e.f||[]).length ? `<p class="tiny" style="margin:4px 0 0">also: ${e.f.map(esc).join(', ')}</p>` : '';
+  const note = e.n ? `<p class="tiny" style="margin:6px 0 0">${esc(e.n)}</p>` : '';
+  const ex = (e.x||[]).map(x=>`<div class="dict-ex"><div class="t">${esc(x.t)}</div>
+      <div class="e">${esc(x.e)} <span class="dict-chip">${esc(DICT_SRC_LABEL[x.s]||x.s)}</span></div></div>`).join('');
+  const noEx = (e.x||[]).length ? '' : `<p class="tiny" style="margin:8px 0 0">No example sentence yet for this word.</p>`;
+  const from = (e.s||[]).map(s=>DICT_SRC_LABEL[s]||s).join(', ');
+  return `<div class="dict-entry">
+    <div class="head"><span class="word">${esc(e.t)}</span>${chips.join('')}${play}</div>
+    <p class="mean">${esc((e.e||[]).join(' · '))}</p>
+    ${forms}${note}${ex}${noEx}
+    <p class="tiny" style="margin:8px 0 0; opacity:.75">from: ${esc(from)}${e.k ? ' · checked' : ''}</p>
+  </div>`;
+}
+
+function screenDictionary(){
+  currentScreen = 'Dictionary';
+  render(`<div class="topbar"><button class="quit" id="b-back">←</button><h2>📖 Dictionary</h2></div>
+    <input class="dict-search" id="dq" type="search" autocomplete="off" autocapitalize="none"
+      spellcheck="false" placeholder="A word in Setswana or English…">
+    <p class="tiny" style="margin:8px 2px 0">${DICT.length} words · type either language</p>
+    <div id="dres"></div>
+    <p class="tiny center" style="margin-top:18px; opacity:.8">
+      Includes material from Wiktionary and the Tswana New Testament (CC BY-SA 4.0),
+      the Autshumato English–Setswana Parallel Corpora (CC BY 2.5 ZA) and the
+      US Peace Corps Setswana course (public domain).
+      The original work by Biblica, Inc. is available for free at www.biblica.com and open.bible.</p>`);
+  document.getElementById('b-back').onclick = screenHome;
+  const inp = document.getElementById('dq'), res = document.getElementById('dres');
+  const run = ()=>{
+    const q = inp.value.trim();
+    if (!q){ res.innerHTML = ''; return; }
+    const hits = dictSearch(q);
+    if (!hits.length){ res.innerHTML = dictMissHTML(q); wireDictMiss(q, inp, run); return; }
+    res.innerHTML = hits.map(dictEntryHTML).join('');
+    res.querySelectorAll('.dict-play').forEach(b=>{ b.onclick = ()=>playAudio(b.dataset.audio); });
+  };
+  inp.addEventListener('input', run);
+  inp.focus();
+}
+
+/* Progressively shorten the query until something matches — "batlile" walks back
+   to "batl" and finds batla. Honest closest-prefix help (SPEC §4), not morphology. */
+function dictClosest(q){
+  let n = norm(q);
+  while (n.length > 2){
+    n = n.slice(0, -1);
+    const hits = dictSearch(n);
+    if (hits.length) return hits.slice(0, 3);
+  }
+  return [];
+}
+
+/* A miss is a to-do, not a dead end: the desk dictionaries fill gaps one
+   hand-checked entry at a time (SPEC §6). Her ruling: a BUTTON, never filed on
+   its own — a lookup is often idle curiosity, and filing every miss would bury
+   the real questions in her tutor's queue. One row per word per day (SPEC §6,
+   same dedupe shape as the Sentence Builder's reveal path): the rl_dictasked
+   mark is written BEFORE the network call, so re-typing while a send is in
+   flight re-renders an already-asked card instead of a second live button. */
+function dictAskedToday(q){ return store.get('dictasked', {})[norm(q)] === todayStr(); }
+function dictMissHTML(q){
+  const canAsk = !LOCAL_MODE && state.user;
+  const near = dictClosest(q);
+  const nearHtml = near.length
+    ? `<p class="tiny" style="margin:8px 0 4px">Closest matches:</p>
+       ${near.map(e=>`<button class="dict-chip dict-near" data-w="${esc(e.t)}" style="margin-right:6px">${esc(e.t)}</button>`).join('')}`
+    : '';
+  const askHtml = !canAsk ? ''
+    : dictAskedToday(q)
+      ? `<p class="tiny" style="margin-top:10px">Asked ✓ — it'll be waiting for your tutor.</p>`
+      : `<button class="btn ghost small" id="d-ask" style="margin-top:10px">💬 Ask for this word</button>`;
+  return `<div class="dict-entry">
+    <p style="margin:0"><b>${esc(q)}</b> isn't in the dictionary yet.</p>
+    <p class="tiny" style="margin:6px 0 0">Only whole words are listed, so a conjugated
+      form (o batla) may need its stem (batla).</p>
+    ${nearHtml}${askHtml}
+  </div>`;
+}
+function wireDictMiss(q, inp, rerun){
+  document.querySelectorAll('.dict-near').forEach(ch=>{
+    ch.onclick = ()=>{ inp.value = ch.dataset.w; rerun(); };
+  });
+  const b = document.getElementById('d-ask');
+  if (!b) return;
+  b.onclick = async ()=>{
+    if (dictAskedToday(q)) return;
+    const marks = store.get('dictasked', {});
+    marks[norm(q)] = todayStr();
+    store.set('dictasked', marks);
+    b.disabled = true; b.textContent = 'Sending…';
+    await sendTutorQuestion('Dictionary: please add "' + q + '" — I looked it up and it isn\'t there.',
+      'dict-miss:' + q);
+    b.textContent = 'Asked ✓';
+  };
 }
 
 async function screenLeaderboard(){

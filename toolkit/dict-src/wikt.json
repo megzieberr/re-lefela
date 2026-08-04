@@ -1,0 +1,4690 @@
+[
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "avocado"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "afokato"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to build"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "aga"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to think"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "akanya"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "(transitive) to deprive, to take something from someone"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "amoga"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to receive"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "amogêla"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to answer"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "araba"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to gape"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "atlhama"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to be",
+   "to become"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ba"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "(intransitive) to taste hot, spicy",
+   "(intransitive) to taste bitter",
+   "(intransitive) to itch"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "baba"
+ },
+ {
+  "chk": false,
+  "cls": "2",
+  "eng": [
+   "spirits, ancestors (as a focus for religious beliefs)"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "badimo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to count"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bala"
+ },
+ {
+  "chk": false,
+  "cls": "2",
+  "eng": [
+   "people"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "batho"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to boil"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bela"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to sing"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bina"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to call"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bitsa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "brain"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bobôkô"
+ },
+ {
+  "chk": false,
+  "cls": "14",
+  "eng": [
+   "(type of local) porridge, stiff porridge"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bogobe"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "proud"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "adj",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "boipelo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "entertainment"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "boitumediso"
+ },
+ {
+  "chk": false,
+  "cls": "14",
+  "eng": [
+   "beer"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bojalwa"
+ },
+ {
+  "chk": false,
+  "cls": "14",
+  "eng": [
+   "bed"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bolao"
+ },
+ {
+  "chk": false,
+  "cls": "2a",
+  "eng": [
+   "mothers",
+   "madams, ladies"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bomma"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to see"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bona"
+ },
+ {
+  "chk": false,
+  "cls": "14",
+  "eng": [
+   "multitudes"
+  ],
+  "ex": [
+   {
+    "e": "People arrived in their multitudes to see the president",
+    "src": "wikt",
+    "t": "Batho ba gorogile ka bontsi jwa bônê go bôna tautona"
+   }
+  ],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bontsi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to mould"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bopa"
+ },
+ {
+  "chk": false,
+  "cls": "14",
+  "eng": [
+   "bow"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bora"
+ },
+ {
+  "chk": false,
+  "cls": "14",
+  "eng": [
+   "resin"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "borekhu"
+ },
+ {
+  "chk": false,
+  "cls": "14",
+  "eng": [
+   "south"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "borwa"
+ },
+ {
+  "chk": false,
+  "cls": "14",
+  "eng": [
+   "night"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bosigo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "humanity, mankind"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "botho"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to ask"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "botsa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to speak"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bua"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to skin an animal"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bua"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to cover"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bupa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to tie, to bind"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "bôfa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to delay"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "dia"
+ },
+ {
+  "chk": false,
+  "cls": "8",
+  "eng": [
+   "food"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "dijo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "tears"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "dikeledi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to look after"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "disa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "shame"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ditlhong"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "hello"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "interj",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "dumela"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "yes"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "interj",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ee"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to stand"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ema"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to go",
+   "to visit"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "eta"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "country"
+  ],
+  "ex": [
+   {
+    "e": "We should protect our country against invaders.",
+    "src": "wikt",
+    "t": "Re tshwanetse ra sireletsa fatshe la rona kgatlhanong le batlhasedi."
+   }
+  ],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "fatshe"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to feed"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "fepa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to fly"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "fofa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to graze"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "fula"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to shine"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "galalela"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to pull",
+   "to smoke"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "goga"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "(intransitive) to grow, to increase",
+   "(intransitive) to mature"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "gola"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "big, large",
+   "main, most important"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "adj",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "golo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "shirt"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "hempe"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "history"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "hisetori"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to shoot"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "hula"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to graze"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "hula"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to become rich"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "huma"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to know"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "itsi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to eat"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ja"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to plant, to sow"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "jwala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "where"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "adv",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kae"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "how many, how much"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "det",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kae"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "peace (absence of conflict)"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kagiso"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "part, portion"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "karolo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to abuse, revile",
+   "to tell off, scold",
+   "to become thirsty",
+   "to dry up (of river etc.)"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kgala"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "distance"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kgala"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "hartebeest"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kgama"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to choke, throttle"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kgama"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "nap"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kgofe"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "chicken",
+   "fowl"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kgogo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "cow"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kgomo"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "chief, chieftain; king"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kgosi"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "queen; chieftainess"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kgosigadi"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "emperor, supreme chief"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kgosikgolo"
+ },
+ {
+  "chk": false,
+  "cls": "9/10",
+  "eng": [
+   "tribal assembly, kgotla"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kgotla"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "mist"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "khawa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "coconut"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "khokhonute"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "tortoise"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "khudu"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to knock"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "khwanya"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "pig"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kolobe"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "wagon; vehicle"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "koloi"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "contribution"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kolêkê"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to share"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kopanela"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "meeting"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kopano"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "danger"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kotsi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "hippopotamus"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kubu"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "gemsbok"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kukama"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to write"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kwala"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "(pejorative) Bushman"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "Lesarwa"
+ },
+ {
+  "chk": false,
+  "cls": "9/10",
+  "eng": [
+   "crocodile"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "kwena"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "library"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "laeborari"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to sleep",
+   "to spend the night"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to follow"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "latela"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to throw away",
+   "to abandon",
+   "to lose"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "latlha"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to lick"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "latswa"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "breast"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lebele"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "a single head or panicle of sorghum"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lebele"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "lamp"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lebone"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "egg"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lee"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "twin"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lefatlha"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "word"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lefoko"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "charcoal"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "legala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "sky, heaven"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "legodimo"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "armpit"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "legwafa"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "cartilage"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lehihiri"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "name",
+   "noun"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "leina"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "tooth"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "leino"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "eye"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "leitlho"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "(non-sweet variety of) melon, (reticulated) cantaloupe; watermelon"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lekatane"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "synonym"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lekaêlagongwe"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "hundred"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "num",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lekgolo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to farm, to cultivate",
+   "to plough"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lema"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "cheetah"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lengau"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "ankle"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lenginana"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "knee"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lengole"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "a vulture"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lenong"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "marriage",
+   "wedding"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lenyalo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "A type of thatched shelter, often part of a kgotla."
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "leobo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "buttock"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lerago"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "cloud"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "leru"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "whale"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "leruarua"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "bone"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lesapo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "ten"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "num",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lesomê"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "sun"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "letsatsi"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "flea"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "letsetse"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "lake"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "letsha"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "hand"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "letsogo"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "air vent of an anthill"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "letsolo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "salt"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "letswai"
+ },
+ {
+  "chk": false,
+  "cls": "5",
+  "eng": [
+   "sea"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lewatle"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to bewitch"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "loa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "open space",
+   "sports field",
+   "emptiness"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lobala"
+ },
+ {
+  "chk": false,
+  "cls": "11",
+  "eng": [
+   "long stay in one place",
+   "contentment, calm, peace"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lodule"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "feather"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lofofa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "big",
+   "large"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "adj",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "logolo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "newspaper"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lokwalodikgang"
+ },
+ {
+  "chk": false,
+  "cls": "11",
+  "eng": [
+   "tongue"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "loleme"
+ },
+ {
+  "chk": false,
+  "cls": "1",
+  "eng": [
+   "Bushman"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "Mosarwa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to bite"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "loma"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "love"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lorato"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to fight, to struggle"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "lwa"
+ },
+ {
+  "chk": false,
+  "cls": "6",
+  "eng": [
+   "sorghum"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mabele"
+ },
+ {
+  "chk": false,
+  "cls": "6",
+  "eng": [
+   "blood"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "madi"
+ },
+ {
+  "chk": false,
+  "cls": "6",
+  "eng": [
+   "money"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "madi"
+ },
+ {
+  "chk": false,
+  "cls": "6",
+  "eng": [
+   "oil",
+   "fuel",
+   "lotion, cream"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mafura"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "magazine"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "makasine"
+ },
+ {
+  "chk": false,
+  "cls": "1a",
+  "eng": [
+   "maternal uncle"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "malome"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "saliva"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mathe"
+ },
+ {
+  "chk": false,
+  "cls": "6",
+  "eng": [
+   "milk"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "maši"
+ },
+ {
+  "chk": false,
+  "cls": "6",
+  "eng": [
+   "water"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "metsi"
+ },
+ {
+  "chk": false,
+  "cls": "1a",
+  "eng": [
+   "mother",
+   "madam, Mrs"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mma"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "color"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mmala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "mother"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mme"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "music"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mmino"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "hare"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mmutla"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "recipient"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "moabêlwa"
+ },
+ {
+  "chk": false,
+  "cls": "1",
+  "eng": [
+   "god"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "modimo"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "pollen"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "modula"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "rope"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mogala"
+ },
+ {
+  "chk": false,
+  "cls": "1",
+  "eng": [
+   "son-in-law"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mogwe"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "door"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mojako"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "klipspringer"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mokabaowane"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "canoe, mokoro, boat",
+   "water"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mokoro"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "fire"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "molelo"
+ },
+ {
+  "chk": false,
+  "cls": "1",
+  "eng": [
+   "farmer",
+   "gardener"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "molemi"
+ },
+ {
+  "chk": false,
+  "cls": "1",
+  "eng": [
+   "witch, wizard"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "moloi"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "mouth"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "molomo"
+ },
+ {
+  "chk": false,
+  "cls": "1",
+  "eng": [
+   "man (human male)"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "monna"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "finger"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "monwana"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "snowberry, simpleleaf bushweed, Flueggea virosa"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "monwane"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "mopane"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mophane"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "tribe, or community"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "morafe"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "tree",
+   "medicine"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "more"
+ },
+ {
+  "chk": false,
+  "cls": "1",
+  "eng": [
+   "lord, chief, master King"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "morena"
+ },
+ {
+  "chk": false,
+  "cls": "1",
+  "eng": [
+   "woman",
+   "wife"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mosadi"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "tail"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mosela"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "soot"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mosidi"
+ },
+ {
+  "chk": false,
+  "cls": "1/2",
+  "eng": [
+   "person"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "motho"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "electricity",
+   "electric"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "motlakase"
+ },
+ {
+  "chk": false,
+  "cls": "1/2",
+  "eng": [
+   "parent"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "motsadi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "cross-cousin"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "motswala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "fountain, spring"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "motswedi"
+ },
+ {
+  "chk": false,
+  "cls": "3",
+  "eng": [
+   "flame"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "motuka"
+ },
+ {
+  "chk": false,
+  "cls": "1",
+  "eng": [
+   "foreigner",
+   "stranger",
+   "guest, visitor"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "moêng"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "belly, stomach"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mpa"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "gift"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "mpho"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "meat, flesh"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "nama"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "calf"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "namane"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "buffalo"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "nare"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "bean, pea",
+   "(anatomy) clitoris"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "nawa"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "doctor, physician",
+   "traditional healer, witch doctor"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ngaka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to dispute, to argue"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "nganga"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "year",
+   "age"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ngwaga"
+ },
+ {
+  "chk": false,
+  "cls": "1",
+  "eng": [
+   "child"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ngwana"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "one"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "num",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ngwe"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "daughter-in-law"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ngwetsi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "bird of prey, hawk"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "nkgodi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "nose"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "nko"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "sheep"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "nku"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "leopard"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "nkwe"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "four"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "num",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "nne"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "snake"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "noga"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "river"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "noka"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "a big bird",
+   "a vulture"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "nong"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "a small bird",
+   "a bird"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "nonyane"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "bee"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "notshe"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "bee"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "notshi"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "louse"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "nta"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "house"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ntlo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "cousin"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ntsala"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "riverbank, shore",
+   "eyebrow; eyelash"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ntshi"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "fight"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ntwa"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "dog"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ntša"
+ },
+ {
+  "chk": false,
+  "cls": "1a",
+  "eng": [
+   "ostrich"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ntšhe"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to drink"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "nwa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to marry"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "nyala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to be dry"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "oma"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to feed"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "otla"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "paper"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "pampiri"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "father"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "papa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "hyrax"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "pela"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "seed"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "peo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "foal"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "petsana"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "impala"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "phala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "transmission"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "phetiso"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "kidney"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "philo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "hyena"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "phiri"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "eland"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "phofu"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "animal"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "phologolo"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "duiker"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "phuti"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "cooking pot"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "pitsa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "goat"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "podi"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "the Pleiades"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "Selemela"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Tswana (language)"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "propn",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "Setswana"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "bull"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "poo"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "question"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "potso"
+ },
+ {
+  "chk": false,
+  "cls": "9/10",
+  "eng": [
+   "rain",
+   "(currency)",
+   "a popular toast"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "pula"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "two; 2"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "num",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "pêdi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to love",
+   "to like"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "rata"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to buy"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "reka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "us"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "pron",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "rona"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "father",
+   "sir; gentleman"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "rra"
+ },
+ {
+  "chk": false,
+  "cls": "1a",
+  "eng": [
+   "father"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "rre"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to carry"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "rwala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to sleep"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "rôbala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to remain"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "sala"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "hand"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "seatla"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "liver",
+   "clitoris",
+   "type of senna plant"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "sebete"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "chest"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "sefuba"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to cut"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "sega"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "reptile"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "segagabi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to bless"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "segofatsa"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "spider"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "segokgo"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "frog"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "segwagwa"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "chest"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "sehuba"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "mirror"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "seipone"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "(diminutive) plate"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "sejana"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "forest, thicket"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "sekgwa"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "wallet"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "sekgwama"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "chin"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "seledu"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "summer"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "selemo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "axe"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "selepe"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to spoil"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "senya"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "enemy"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "sera"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "trap, snare"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "serai"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "clay, mud",
+   "sediment (in liquids)"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "seretse"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "tripe"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "serobe"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "butterfly; moth"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "serurubele"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "soap"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "sesepa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "flower"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "sethunya"
+ },
+ {
+  "chk": false,
+  "cls": "7",
+  "eng": [
+   "motorcycle, motorbike"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "sethuthuthu"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "season"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "setlha"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "tree"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "setlhare"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "new",
+   "young"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "adj",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "sha"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to burn"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "sha"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to begin"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "simolola"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to die"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "swa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "white"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "adj",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "sweu"
+ },
+ {
+  "chk": false,
+  "cls": "9/10",
+  "eng": [
+   "lion"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tau"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "beard"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tedu"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "mountain"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "thaba"
+ },
+ {
+  "chk": false,
+  "cls": "9/10",
+  "eng": [
+   "aardvark"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "thakadu"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "three"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "num",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tharo"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "love"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "thato"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "shield"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "thebe"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "television"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "thelebishene"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "knife"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "thipa"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "greater kudu"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tholo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "geography"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "thutafatshe"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "giraffe"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "thutlwa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to find"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "thwala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to come"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tla"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "hunger"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tlala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to fill"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tlatsa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to chew"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tlhafuna"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "hoof"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tlhako"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to invent"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tlhama"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "five"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "num",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tlhano"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "fish"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tlhapi"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "python"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tlhware"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to jump"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tlola"
+ },
+ {
+  "chk": false,
+  "cls": "9/10",
+  "eng": [
+   "elephant"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tlou"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "town"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "toropo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to bear"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tsala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to walk"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tsamaya"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "ear"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tsebe"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "path",
+   "manner",
+   "method"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tsela"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "tsetse fly"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tsetse"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to fear"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tshaba"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to laugh"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tshega"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "blessing"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tshegofatso"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "insect"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tshenekegi"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "springbok"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tshepe"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "iron",
+   "bell"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tshipi"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "baboon"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tshwene"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "locust"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tsie"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to wake up"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tsoga"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to emerge, go out"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tswa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to separate"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tswaana"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "tsetse; tsetse fly"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tsêtsê"
+ },
+ {
+  "chk": false,
+  "cls": "9",
+  "eng": [
+   "faith",
+   "religion"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tumelo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to set alight"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tšhuba"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to hunt"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "tšoma"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to hear, to listen"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "utlwa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to fall"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "wa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to go"
+  ],
+  "ex": [
+   {
+    "e": "I'm going home.",
+    "src": "wikt",
+    "t": "Ke ya lapeng."
+   }
+  ],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ya"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "university"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "n",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "yunivesithi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "(intransitive) to burn"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "ša"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to swim"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "šapa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "to twist"
+  ],
+  "ex": [],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "wikt"
+  ],
+  "tsw": "šoka"
+ }
+]

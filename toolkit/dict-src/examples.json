@@ -1,0 +1,5844 @@
+{
+ "adima": [
+  {
+   "e": "This brings me to the point of borrowing money.",
+   "src": "autshumato",
+   "t": "Go ntlisetsa mo ntlheng ya go adima madi."
+  },
+  {
+   "e": "Why do producers need to borrow money at all?",
+   "src": "autshumato",
+   "t": "Tota go reng bantshakuno ba tlhoka go adima madi?"
+  },
+  {
+   "e": "First of all, the question: Do I need to borrow money?",
+   "src": "autshumato",
+   "t": "Pele ga tsotlhe, potso ke: A o tlhoka go adima madi?"
+  }
+ ],
+ "aga": [
+  {
+   "e": "Build the box.",
+   "src": "autshumato",
+   "t": "Aga lebokose."
+  },
+  {
+   "e": "The time to build has arrived.",
+   "src": "autshumato",
+   "t": "Nako ya go aga e gorogile."
+  },
+  {
+   "e": "Building community participation.",
+   "src": "autshumato",
+   "t": "Go aga botsayakarolo jwa baagi."
+  }
+ ],
+ "akanya": [
+  {
+   "e": "I think you are!",
+   "src": "autshumato",
+   "t": "Ke akanya gore o jalo!"
+  },
+  {
+   "e": "Who think they are.",
+   "src": "autshumato",
+   "t": "Ba akanya gore ke bona."
+  },
+  {
+   "e": "Just think about that.",
+   "src": "autshumato",
+   "t": "Akanya fela ka ga yona."
+  }
+ ],
+ "amoga": [
+  {
+   "e": "This robs them of an opportunity for development.",
+   "src": "autshumato",
+   "t": "Se se ba amoga tshono ya ya go tlhabologa."
+  },
+  {
+   "e": "That is the reason why he wants to confiscate their weapons.",
+   "src": "autshumato",
+   "t": "Ke lebaka leo a batlang go ba amoga dibetsa tsa bona."
+  }
+ ],
+ "amogela": [
+  {
+   "e": "She receives it.",
+   "src": "autshumato",
+   "t": "O a e amogela."
+  },
+  {
+   "e": "They did not receive the 1%.",
+   "src": "autshumato",
+   "t": "Ga ba amogela 1%."
+  },
+  {
+   "e": "We would love to receive you.",
+   "src": "autshumato",
+   "t": "Re ka rata go go amogela."
+  }
+ ],
+ "apaya": [
+  {
+   "e": "We are cooking vegetables",
+   "src": "app",
+   "t": "Re apaya merogo"
+  },
+  {
+   "e": "Open the windows when you are cooking, bathing or showering.",
+   "src": "autshumato",
+   "t": "Bula matlhabaphefo fa o apeile, o tlhapa kgotsa o dirisa šawara."
+  },
+  {
+   "e": "Half the inhabitants of the earth cook over wood fires.",
+   "src": "autshumato",
+   "t": "Halofo ya banni mo lefatsheng ba apaya ka dikgong tse di tshubang molelo."
+  }
+ ],
+ "araba": [
+  {
+   "e": "Could you answer this?",
+   "src": "autshumato",
+   "t": "A o ka araba se?"
+  },
+  {
+   "e": "Answer ONE question.",
+   "src": "autshumato",
+   "t": "Araba potso e le NNGWE."
+  },
+  {
+   "e": "Answer THREE questions.",
+   "src": "autshumato",
+   "t": "Araba dipotso tse THARO."
+  }
+ ],
+ "atlhama": [
+  {
+   "e": "Should not be too wide.",
+   "src": "autshumato",
+   "t": "Ga go a tshwanela go atlhama thata."
+  }
+ ],
+ "ba": [
+  {
+   "e": "They are reading",
+   "src": "app",
+   "t": "Ba a bala"
+  },
+  {
+   "e": "They want",
+   "src": "app",
+   "t": "Ba a batla"
+  },
+  {
+   "e": "They do not want",
+   "src": "app",
+   "t": "Ga ba batle"
+  }
+ ],
+ "baakanya": [
+  {
+   "e": "Prepare and produce food.",
+   "src": "autshumato",
+   "t": "Baakanya le go ntsha dijo."
+  },
+  {
+   "e": "Prepare the report and the presentation.",
+   "src": "autshumato",
+   "t": "Baakanya pegelo le tlhagiso."
+  },
+  {
+   "e": "You prepare a seedbed, why?",
+   "src": "autshumato",
+   "t": "O baakanya boalopeo, go reng?"
+  }
+ ],
+ "baba": [
+  {
+   "e": "They are your enemies.",
+   "src": "autshumato",
+   "t": "Ke baba ba gago."
+  },
+  {
+   "e": "Are academics and the media friends or foes?",
+   "src": "autshumato",
+   "t": "A ba-akatemi le metswedi ya dikgang ke ditsala kgotsa baba?"
+  },
+  {
+   "e": "Irritation / watering of the eyes and nose",
+   "src": "autshumato",
+   "t": "Go baba / matlho a a tletseng metsi le nko e e tletseng metsi"
+  }
+ ],
+ "badimo": [
+  {
+   "e": "The history of Afrikan ancestry is carried in poetry.",
+   "src": "autshumato",
+   "t": "Hisetori ya badimo ba Afrikan e rwelwe ke poko."
+  },
+  {
+   "e": "It is here where our ancestors built a settlement of which we can be proud.",
+   "src": "autshumato",
+   "t": "Ke fana fa badimo ba rona ba dirileng kago e re ka nnang motlotlo."
+  }
+ ],
+ "bala": [
+  {
+   "e": "You are reading",
+   "src": "app",
+   "t": "O a bala"
+  },
+  {
+   "e": "I am reading",
+   "src": "app",
+   "t": "Ke a bala"
+  },
+  {
+   "e": "They are reading",
+   "src": "app",
+   "t": "Ba a bala"
+  }
+ ],
+ "banka": [
+  {
+   "e": "African Reserve Bank.",
+   "src": "autshumato",
+   "t": "Banka ya Rasefe ya Aforika."
+  },
+  {
+   "e": "The Land Bank is not performing.",
+   "src": "autshumato",
+   "t": "Banka ya Mafatshe ga e dire sepe."
+  },
+  {
+   "e": "The bank manager approved the request.",
+   "src": "autshumato",
+   "t": "Motsamaisi wa banka o rebotse kopo."
+  }
+ ],
+ "batho": [
+  {
+   "e": "Two people",
+   "src": "app",
+   "t": "Batho ba le babedi"
+  },
+  {
+   "e": "Who are those people?",
+   "src": "autshumato",
+   "t": "Batho bao ke bomang?"
+  },
+  {
+   "e": "Health is about people.",
+   "src": "autshumato",
+   "t": "Pholo e ka ga batho."
+  }
+ ],
+ "batla": [
+  {
+   "e": "You want",
+   "src": "app",
+   "t": "O a batla"
+  },
+  {
+   "e": "I want",
+   "src": "app",
+   "t": "Ke a batla"
+  },
+  {
+   "e": "They want",
+   "src": "app",
+   "t": "Ba a batla"
+  }
+ ],
+ "batsadi": [
+  {
+   "e": "Proud parents!",
+   "src": "autshumato",
+   "t": "Batsadi ba ba kgatlhegileng!"
+  },
+  {
+   "e": "No, the parents did not request it.",
+   "src": "autshumato",
+   "t": "Nnyaya, batsadi ga ba e kopa."
+  },
+  {
+   "e": "Do their parents read?",
+   "src": "autshumato",
+   "t": "A batsadi ba bona ba a buisa?"
+  }
+ ],
+ "baya": [
+  {
+   "e": "Place the base plate on the floor.",
+   "src": "autshumato",
+   "t": "Baya letlase fa fatshe."
+  },
+  {
+   "e": "How much can you put?",
+   "src": "autshumato",
+   "t": "Lo ka baya mo bokana kang?"
+  },
+  {
+   "e": "It places any person in danger.",
+   "src": "autshumato",
+   "t": "E baya mongwe le mongwe mo kotsing."
+  }
+ ],
+ "beke": [
+  {
+   "e": "this week",
+   "src": "app",
+   "t": "beke e"
+  },
+  {
+   "e": "next week",
+   "src": "app",
+   "t": "beke e e tlang"
+  },
+  {
+   "e": "last week",
+   "src": "app",
+   "t": "beke e e fetileng"
+  }
+ ],
+ "bela": [
+  {
+   "e": "Immediately the creativity started bubbling.",
+   "src": "autshumato",
+   "t": "Ka yone nako eo re bone poposešwa e simolola go bela ka mo mading."
+  }
+ ],
+ "bereka": [
+  {
+   "e": "As human beings we can only acquire money by working to earn an income.",
+   "src": "autshumato",
+   "t": "Jaaka batho re ka bona madi fela ka go bereka go bona lotseno."
+  },
+  {
+   "e": "That everyone who wants to work can work.",
+   "src": "autshumato",
+   "t": "Gore mongwe le mongwe yo o batlang go bereka a kgone go bereka."
+  },
+  {
+   "e": "Are my tractors adequate to work the area that I am working?",
+   "src": "autshumato",
+   "t": "A diterekere tsa me di lekane go bereka kgaolo e ke e berekang?"
+  }
+ ],
+ "bina": [
+  {
+   "e": "We dance when we are agitated and when we want to fight.",
+   "src": "autshumato",
+   "t": "Re a bina fa re etsaetsega le fa re batla go lwa."
+  },
+  {
+   "e": "We will have an opportunity to rejoice in music and dance.",
+   "src": "autshumato",
+   "t": "Re ile go nna le tšhono ya go itumelela mmino le go bina."
+  },
+  {
+   "e": "Dance serves many different functions in society.",
+   "src": "autshumato",
+   "t": "Go bina go dirafatsa ditiro tse di farologaneng mo baaging."
+  }
+ ],
+ "bitsa": [
+  {
+   "e": "I call it giving in too easily.",
+   "src": "autshumato",
+   "t": "Ke e bitsa go ineela ka bonako."
+  },
+  {
+   "e": "We call this process sequencing.",
+   "src": "autshumato",
+   "t": "Tiragatso e re e bitsa tatelanyo."
+  },
+  {
+   "e": "We call it the birth of this event.",
+   "src": "autshumato",
+   "t": "Re e bitsa botsalo jwa tiragalo e."
+  }
+ ],
+ "boa": [
+  {
+   "e": "Mr Rwasa has expressed the intention to return at a later stage.",
+   "src": "autshumato",
+   "t": "Rre Rwasa o tlhagisitse maikaelelo a gagwe a go boa moragonyana."
+  },
+  {
+   "e": "I have just returned from the 93rd session of the Labour Conference in Geneva.",
+   "src": "autshumato",
+   "t": "Ke boile go tswa kokoanong ya bo-93 ya Khonferense ya Ditiro kwa Geneva."
+  },
+  {
+   "e": "Welcome back!",
+   "src": "autshumato",
+   "t": "Re boa re lo amogela gape!"
+  }
+ ],
+ "boboko": [
+  {
+   "e": "Do you eat food that is good for the brain?",
+   "src": "autshumato",
+   "t": "A o ja dijo tse di siametseng boboko?"
+  },
+  {
+   "e": "Do you give your brain enough time to rest?",
+   "src": "autshumato",
+   "t": "A o neela boboko jwa gago boikhutso jo bo maleba?"
+  },
+  {
+   "e": "brain damage",
+   "src": "autshumato",
+   "t": "kgobalo ya boboko"
+  }
+ ],
+ "bofa": [
+  {
+   "e": "We are happy, Mr Chairman, to commit South Africa to the achievement of these goals.",
+   "src": "autshumato",
+   "t": "Modulasetilo, re motlotlo, go bofa Aforikaborwa malebana le phitlhelelo ya maikaelelo a."
+  }
+ ],
+ "bogobe": [
+  {
+   "e": "I still have to eat my porridge.",
+   "src": "autshumato",
+   "t": "Ke sa ntse ke tshwanelwa ke go ja bogobe jwa me."
+  }
+ ],
+ "bohibidu": [
+  {
+   "e": "on the red light",
+   "src": "autshumato",
+   "t": "ka bohibidu"
+  },
+  {
+   "e": "yellow mealie meal",
+   "src": "autshumato",
+   "t": "bopi jo bohibidu"
+  }
+ ],
+ "boipelo": [
+  {
+   "e": "Since that lofty proclamation, what is the reality today?",
+   "src": "autshumato",
+   "t": "Fa e sale kgoeletso e e boipelo e, gompieno boammaaruri ke bofe?"
+  },
+  {
+   "e": "Human beings who can walk the world with pride.",
+   "src": "autshumato",
+   "t": "Batho ba ba ka tsamayang mo lefatsheng ka boipelo."
+  },
+  {
+   "e": "This is an image that gives us pride and brings us benefits.",
+   "src": "autshumato",
+   "t": "Se ke setshwantsho se se re neelang boipelo le go re tlisetsa ditshiamelo."
+  }
+ ],
+ "boitumediso": [
+  {
+   "e": "Beaches and amusement facilities",
+   "src": "autshumato",
+   "t": "Mabopo le mafelo a boitumediso"
+  }
+ ],
+ "bojalwa": [
+  {
+   "e": "The NWU team's beer is known as Wernicken - liquid enlightenment.",
+   "src": "autshumato",
+   "t": "Bojalwa jwa setlhopha sa YBB se itsiwa e le Wernicken - liquid enlightenment."
+  },
+  {
+   "e": "draught beer",
+   "src": "autshumato",
+   "t": "bojalwa jwa faki"
+  },
+  {
+   "e": "ginger beer",
+   "src": "autshumato",
+   "t": "bojalwa jwa gemere"
+  }
+ ],
+ "bolao": [
+  {
+   "e": "bed-ridden patient",
+   "src": "autshumato",
+   "t": "molwetse wa bolao"
+  },
+  {
+   "e": "You've made your bed now lie in it",
+   "src": "autshumato",
+   "t": "O adile bolao mme jaanong o tshwanetse go robala mo go bona"
+  }
+ ],
+ "bolaya": [
+  {
+   "e": "Moving parts which are not protected can easily injure an employee.",
+   "src": "autshumato",
+   "t": "Dikarolotsamaiso tsa didiriswa tse di sa khurumelwang di kgona go bolaya modiredi ka bonolo."
+  },
+  {
+   "e": "Culpable homicide.",
+   "src": "autshumato",
+   "t": "Go bolaya e se ka maikemisetso."
+  },
+  {
+   "e": "You could end up killing someone.",
+   "src": "autshumato",
+   "t": "O ka feleletsa o bolaile mongwe."
+  }
+ ],
+ "bolela": [
+  {
+   "e": "Some are more loyal to their hostels than to the university, \" he tells us.",
+   "src": "autshumato",
+   "t": "Bangwe ba rata dihosetele tsa bone thata go feta yunibesiti, \" o bolela jalo."
+  },
+  {
+   "e": "The budget must tell a story of the values a society eschews.",
+   "src": "autshumato",
+   "t": "Tekanyetsokabo e tshwanetse go bolela kgang ya meono e setšhaba se e tlotlang."
+  },
+  {
+   "e": "State the functions of DNA.",
+   "src": "autshumato",
+   "t": "Bolela ditiro tsa DNA."
+  }
+ ],
+ "boloka": [
+  {
+   "e": "What records do I have to keep?",
+   "src": "autshumato",
+   "t": "Ke direkoto dife tse ke tshwanetseng go di boloka?"
+  }
+ ],
+ "bomma": [
+  {
+   "e": "Good day, ladies and gentlemen",
+   "src": "app",
+   "t": "Dumelang borra le bomma"
+  },
+  {
+   "e": "Ladies and gentlemen, let's mobilize!",
+   "src": "autshumato",
+   "t": "Bomma le borra, a re susumetseng!"
+  },
+  {
+   "e": "Ladies and gentlemen, the importance of partnerships cannot be underestimated.",
+   "src": "autshumato",
+   "t": "Borra le bomma, botlhokwa jwa tirisano mmogo bo ka se tseelwe kwa tlase."
+  }
+ ],
+ "bona": [
+  {
+   "e": "See you",
+   "src": "app",
+   "t": "Ke tla go bona"
+  },
+  {
+   "e": "I see a bird",
+   "src": "app",
+   "t": "Ke bona nonyane"
+  },
+  {
+   "e": "See you tomorrow",
+   "src": "app",
+   "t": "Ke tla go bona kamoso"
+  }
+ ],
+ "bontsho": [
+  {
+   "e": "It may only be used in upper case and in black.",
+   "src": "autshumato",
+   "t": "E ka dirisiwa fela ka ditlhakakgolo le ka bontsho."
+  },
+  {
+   "e": "Supply two black and white ID photos.",
+   "src": "autshumato",
+   "t": "Tlaya le ditshwantsho tse pedi tsa ID tsa bontsho le bosweu."
+  },
+  {
+   "e": "All the most relevant parts of the report had been blacked out.",
+   "src": "autshumato",
+   "t": "Bontsi jwa dikarolo tsotlhe tse di maleba tsa pego di tshasitswe bontsho."
+  }
+ ],
+ "bontsi": [
+  {
+   "e": "People arrived in their multitudes to see the president",
+   "src": "wikt",
+   "t": "Batho ba gorogile ka bontsi jwa bônê go bôna tautona"
+  },
+  {
+   "e": "We are the majority.",
+   "src": "autshumato",
+   "t": "Re bontsi."
+  },
+  {
+   "e": "Most of the time.",
+   "src": "autshumato",
+   "t": "Bontsi ba nako."
+  }
+ ],
+ "bopa": [
+  {
+   "e": "How would you formulate questions?",
+   "src": "autshumato",
+   "t": "O ne o ka bopa jang dipotso?"
+  },
+  {
+   "e": "Formulate a treatment management plan.",
+   "src": "autshumato",
+   "t": "Bopa leano la taolo ya kalafi."
+  },
+  {
+   "e": "Does it form a ribbon when pressed between your thumb and forefinger?",
+   "src": "autshumato",
+   "t": "O bopa seedi fa o o sidila ka mengwana?"
+  }
+ ],
+ "borekhu": [
+  {
+   "e": "acrylic resin",
+   "src": "autshumato",
+   "t": "borekhu jwa akereliki"
+  },
+  {
+   "e": "polyester resin",
+   "src": "autshumato",
+   "t": "borekhu jwa pholesetara"
+  }
+ ],
+ "boroko": [
+  {
+   "e": "The current situation in Somalia was also noted with concern.",
+   "src": "autshumato",
+   "t": "Seemo sa gajaana kwa Somalia le sone ke tlhoba boroko."
+  }
+ ],
+ "borokwa": [
+  {
+   "e": "Noticeable long lesions will be evident that are grey brown in colour.",
+   "src": "autshumato",
+   "t": "Go bonala mabadi a malele a a leng bosetlha go ya borokwa."
+  },
+  {
+   "e": "The hind wings are white to grey-brown.",
+   "src": "autshumato",
+   "t": "Mmala wa mafuka ka fa morago o sweu go ya bosetlha go fetogela borokwa."
+  }
+ ],
+ "borotho": [
+  {
+   "e": "Mounting can be done on bread board.",
+   "src": "autshumato",
+   "t": "Letlhomeso le ka diriwa mo botong ya borotho."
+  },
+  {
+   "e": "Compare the energy value of the two bread rolls.",
+   "src": "autshumato",
+   "t": "Bapisa boleng ba maatla a dirolo tse pedi tsa borotho."
+  },
+  {
+   "e": "This could add 10c to the price of the loaf of bread.",
+   "src": "autshumato",
+   "t": "Se se ka tlaleletsa ka 10c mo tlhotlhweng ya llofo ya borotho."
+  }
+ ],
+ "borwa": [
+  {
+   "e": "I mean north working with south.",
+   "src": "autshumato",
+   "t": "Ke kaya bokone bo dira le borwa."
+  },
+  {
+   "e": "But the configuration of the south will also change.",
+   "src": "autshumato",
+   "t": "Fela sebopego sa borwa se tlaa fetoga."
+  },
+  {
+   "e": "The entrance to the building must be south-facing.",
+   "src": "autshumato",
+   "t": "Botseno mo kagong bo tshwanetse go leba kwa borwa."
+  }
+ ],
+ "bosetlha": [
+  {
+   "e": "Yellow: 40% to 60% chance (average / normal)",
+   "src": "autshumato",
+   "t": "Bosetlha: 40% - 60% ya pula ya palogare / tlwaelo."
+  },
+  {
+   "e": "The leaves turn a pale green.",
+   "src": "autshumato",
+   "t": "Mmala wa matlhare o fetoga go nna botala bo bosetlha."
+  },
+  {
+   "e": "Noticeable long lesions will be evident that are grey brown in colour.",
+   "src": "autshumato",
+   "t": "Go bonala mabadi a malele a a leng bosetlha go ya borokwa."
+  }
+ ],
+ "bosigo": [
+  {
+   "e": "It’s becoming late (night fall)",
+   "src": "pc",
+   "t": "go nna bosigo"
+  },
+  {
+   "e": "Studying late at night.",
+   "src": "autshumato",
+   "t": "Go ithuta gare ga mpa ya bosigo."
+  },
+  {
+   "e": "Soon the sun will set for the night.",
+   "src": "autshumato",
+   "t": "Gaufi letsatsi le ile go tikela bosigo."
+  }
+ ],
+ "bosweu": [
+  {
+   "e": "It is a black and white etching.",
+   "src": "autshumato",
+   "t": "Ke mosetlho o montsho le bosweu."
+  },
+  {
+   "e": "Supply two black and white ID photos.",
+   "src": "autshumato",
+   "t": "Tlaya le ditshwantsho tse pedi tsa ID tsa bontsho le bosweu."
+  },
+  {
+   "e": "Graph 3: White bread (700 g)",
+   "src": "autshumato",
+   "t": "Kerafo 3: Borotho jo bosweu (700g)"
+  }
+ ],
+ "botala": [
+  {
+   "e": "green (grue of the grass)",
+   "src": "app",
+   "t": "botala jwa tlhaga"
+  },
+  {
+   "e": "blue (grue of the sky)",
+   "src": "app",
+   "t": "botala jwa legodimo"
+  },
+  {
+   "e": "What does the blue refer to?",
+   "src": "autshumato",
+   "t": "Botala jwa legodimo bo kaya eng?"
+  }
+ ],
+ "botho": [
+  {
+   "e": "Humanity is indivisible.",
+   "src": "autshumato",
+   "t": "Botho ga bo fetoge."
+  },
+  {
+   "e": "And they destroy our humanity.",
+   "src": "autshumato",
+   "t": "Mme di senya botho ba rona."
+  },
+  {
+   "e": "The right to human dignity.",
+   "src": "autshumato",
+   "t": "Tshiamelo ya serite sa botho."
+  }
+ ],
+ "botlhoko": [
+  {
+   "e": "My stomach hurts",
+   "src": "app",
+   "t": "Mala ame a botlhoko"
+  },
+  {
+   "e": "His/her eyes are sore",
+   "src": "app",
+   "t": "Matlho a gagwe a botlhoko"
+  },
+  {
+   "e": "This was indeed a sorry sight.",
+   "src": "autshumato",
+   "t": "Ruri e ne e le pono e e utlwisang botlhoko."
+  }
+ ],
+ "botsa": [
+  {
+   "e": "Are you going to ask them?",
+   "src": "autshumato",
+   "t": "A o ile go ba botsa?"
+  },
+  {
+   "e": "Asks questions of sources.",
+   "src": "autshumato",
+   "t": "Botsa dipotso ka ga metswedi."
+  },
+  {
+   "e": "He asked if this was correct.",
+   "src": "autshumato",
+   "t": "O boditse gore a e ne e nepagetse."
+  }
+ ],
+ "bua": [
+  {
+   "e": "Speak slowly",
+   "src": "app",
+   "t": "Bua ka bonya"
+  },
+  {
+   "e": "Speak quickly",
+   "src": "app",
+   "t": "Bua ka bonako"
+  },
+  {
+   "e": "Speak about elections.",
+   "src": "autshumato",
+   "t": "Bua ka ga ditlhopho."
+  }
+ ],
+ "buka": [
+  {
+   "e": "You have a book",
+   "src": "app",
+   "t": "O na le buka"
+  },
+  {
+   "e": "I have a book",
+   "src": "app",
+   "t": "Ke na le buka"
+  },
+  {
+   "e": "We have a book",
+   "src": "app",
+   "t": "Re na le buka"
+  }
+ ],
+ "bula": [
+  {
+   "e": "Open the door",
+   "src": "app",
+   "t": "Bula lebati"
+  },
+  {
+   "e": "Open the file GovBody.doc.",
+   "src": "autshumato",
+   "t": "Bula faele GovBody.doc."
+  },
+  {
+   "e": "They then forced the door open.",
+   "src": "autshumato",
+   "t": "Mme ba kgarametsa lebati go le bula."
+  }
+ ],
+ "dia": [
+  {
+   "e": "This in turn can set back developments or progress in terms of the IDP or other projects.",
+   "src": "autshumato",
+   "t": "Mo bofelong seno se ka dia tswelelopele ya diIDP le diporojeke tse dingwe."
+  }
+ ],
+ "diaparo": [
+  {
+   "e": "She needs to buy food and",
+   "src": "pc",
+   "t": "o tlhôka go reka dijo le diaparo"
+  },
+  {
+   "e": "The word is associated with clothing.",
+   "src": "autshumato",
+   "t": "Lefoko le amana le diaparo."
+  },
+  {
+   "e": "The clothing and textile sector:",
+   "src": "autshumato",
+   "t": "Karolo tsa diaparo le dikhai."
+  }
+ ],
+ "didimala": [
+  {
+   "e": "to listen",
+   "src": "app",
+   "t": "go reetsa"
+  },
+  {
+   "e": "Listen to others.",
+   "src": "autshumato",
+   "t": "Reetsa ba bangwe."
+  },
+  {
+   "e": "Try using empathetic listening.",
+   "src": "autshumato",
+   "t": "Leka go reetsa ka thata."
+  }
+ ],
+ "diega": [
+  {
+   "e": "Yes, there is a delay in payment.",
+   "src": "autshumato",
+   "t": "Ee, tuelo e diegile."
+  },
+  {
+   "e": "Let us do so without further delay.",
+   "src": "autshumato",
+   "t": "A re direng jalo kwa ntle ga go diega."
+  },
+  {
+   "e": "However, their deployment has been delayed due to lack of funds.",
+   "src": "autshumato",
+   "t": "Le gale, tshutiso ya bona e diegile ka ntlha ya tlhokego ya matlole."
+  }
+ ],
+ "dijo": [
+  {
+   "e": "She needs to buy food and",
+   "src": "pc",
+   "t": "o tlhôka go reka dijo le diaparo"
+  },
+  {
+   "e": "Prepare and produce food.",
+   "src": "autshumato",
+   "t": "Baakanya le go ntsha dijo."
+  },
+  {
+   "e": "Does that involve food aid?",
+   "src": "autshumato",
+   "t": "A e akaretsa thuso ya dijo?"
+  }
+ ],
+ "dikeledi": [
+  {
+   "e": "But they must not worry; these are tears of joy.",
+   "src": "autshumato",
+   "t": "Fela ga ba a tshwanela go tshwenyega; tse ke dikeledi tsa boitumelo."
+  }
+ ],
+ "dikgomo": [
+  {
+   "e": "The cows are fierce",
+   "src": "app",
+   "t": "Dikgomo di bogale"
+  },
+  {
+   "e": "The cows are beautiful",
+   "src": "app",
+   "t": "Dikgomo di dintle"
+  },
+  {
+   "e": "The cattle are many",
+   "src": "app",
+   "t": "Dikgomo di dintsi"
+  }
+ ],
+ "dinawa": [
+  {
+   "e": "We are not bean-counting.",
+   "src": "autshumato",
+   "t": "Ga re bale dinawa."
+  },
+  {
+   "e": "Jason had 16 jelly beans.",
+   "src": "autshumato",
+   "t": "Moemedi o na le dinawa di le 16."
+  },
+  {
+   "e": "I also plant sugar beans.",
+   "src": "autshumato",
+   "t": "Gape ke jwala dinawa tsa sesukiri."
+  }
+ ],
+ "dino": [
+  {
+   "e": "Food and drink",
+   "src": "autshumato",
+   "t": "Dijo le dino"
+  },
+  {
+   "e": "in food and drink",
+   "src": "autshumato",
+   "t": "a dijo le dino."
+  },
+  {
+   "e": "Food and drink manufacture",
+   "src": "autshumato",
+   "t": "Bodirelo jwa dijo le dino"
+  }
+ ],
+ "dirisa": [
+  {
+   "e": "Use the concept",
+   "src": "autshumato",
+   "t": "Dirisa kgopolo."
+  },
+  {
+   "e": "Use your own words.",
+   "src": "autshumato",
+   "t": "Dirisa mafoko a gago."
+  },
+  {
+   "e": "Use their expertise.",
+   "src": "autshumato",
+   "t": "Dirisa kgono ya bona."
+  }
+ ],
+ "disa": [
+  {
+   "e": "While growing up he also looked after his parent's livestock.",
+   "src": "autshumato",
+   "t": "Fa a ntse a gola, o ne a disa loruo lwa batsadi ba gagwe."
+  },
+  {
+   "e": "Monitor system resources.",
+   "src": "autshumato",
+   "t": "Disa ditlamelwa tsa thulaganyo."
+  },
+  {
+   "e": "Can monitor the progress of the learner.",
+   "src": "autshumato",
+   "t": "Ka disa tswelelopele ya moithuti."
+  }
+ ],
+ "ditamati": [
+  {
+   "e": "You have been given a piece of land on which you produced tomatoes.",
+   "src": "autshumato",
+   "t": "O neeletswe karolo ya lefatshe le o ntshitseng ditamati."
+  },
+  {
+   "e": "With their meals, tomatoes and olive oil were very popular.",
+   "src": "autshumato",
+   "t": "Dijo tsa bone di ne gantsi di na le ditamati le oli ya lotlhware."
+  }
+ ],
+ "ditapole": [
+  {
+   "e": "They were in the potato boycotts.",
+   "src": "autshumato",
+   "t": "Ba ne ba dira dikhuduego ka ditapole."
+  },
+  {
+   "e": "He currently produces maize, beans and potatoes on five hectares of land.",
+   "src": "autshumato",
+   "t": "Gajaana o ntsha mmidi, dinawa le ditapole mo tshimong ya diheketara tse tlhano."
+  },
+  {
+   "e": "In total I own 14 hectares, where I plant maize, beans and potatoes.",
+   "src": "autshumato",
+   "t": "Ka botlalo nka dirisa diheketara tse 14, mo nka jwalang mmidi, dinawa le ditapole."
+  }
+ ],
+ "ditlhako": [
+  {
+   "e": "How many pairs of shoes will these cartoons need?",
+   "src": "autshumato",
+   "t": "Dipopae tseno di tla tlhoka dipara tse kae tsa ditlhako?"
+  },
+  {
+   "e": "These activities included Frisbee-golf, shoe sort and name by name.",
+   "src": "autshumato",
+   "t": "Ditiro tse di ne di akaretsa Frisbee-golf, tlhaolo ya ditlhako le leina ka leina."
+  },
+  {
+   "e": "Prof Harry puts on his blue suede shoes",
+   "src": "autshumato",
+   "t": "Mop Harry o rwala ditlhako tsa gagwe tse di pududu tsa suweiti"
+  }
+ ],
+ "ditlhong": [
+  {
+   "e": "This was very embarrassing.",
+   "src": "autshumato",
+   "t": "Se se ne se tlhabisa ditlhong tota."
+  },
+  {
+   "e": "Let me make no bones about it.",
+   "src": "autshumato",
+   "t": "A ke se tlhabiwe ke ditlhong ka ga sone."
+  },
+  {
+   "e": "Some are probably even a little embarrassed by the attention.",
+   "src": "autshumato",
+   "t": "Bangwe e bile ba ditlhong go sekae ka ntlha ya go newa tlhokomelo."
+  }
+ ],
+ "duela": [
+  {
+   "e": "Pay the deposit.",
+   "src": "autshumato",
+   "t": "Duela diposite."
+  },
+  {
+   "e": "Pay the application fee.",
+   "src": "autshumato",
+   "t": "Duela madi a kopo."
+  },
+  {
+   "e": "How can one make payments?",
+   "src": "autshumato",
+   "t": "Motho a ka duela jang?"
+  }
+ ],
+ "dumedisa": [
+  {
+   "e": "I greet you all.",
+   "src": "autshumato",
+   "t": "Ke lo dumedisa lotlhe."
+  },
+  {
+   "e": "I greet you all this evening.",
+   "src": "autshumato",
+   "t": "Ke le dumedisa botlhe mo maitseboeng a."
+  },
+  {
+   "e": "I salute all of you here today.",
+   "src": "autshumato",
+   "t": "Ke a le dumedisa botlhe ba lo leng fano gompieno."
+  }
+ ],
+ "dumela": [
+  {
+   "e": "Hello / good day, sir",
+   "src": "app",
+   "t": "Dumela rra"
+  },
+  {
+   "e": "Hello / good day, madam",
+   "src": "app",
+   "t": "Dumela mma"
+  },
+  {
+   "e": "Do you agree?",
+   "src": "autshumato",
+   "t": "A o a dumela?"
+  }
+ ],
+ "ee": [
+  {
+   "e": "Yes, I have a problem",
+   "src": "pc",
+   "t": "Ee ke na le mathata"
+  },
+  {
+   "e": "A slowdown, yes.",
+   "src": "autshumato",
+   "t": "Ee, tiego."
+  },
+  {
+   "e": "Yes / No.",
+   "src": "autshumato",
+   "t": "Ee / Nnyaa."
+  }
+ ],
+ "ema": [
+  {
+   "e": "Stand up and speak",
+   "src": "app",
+   "t": "Ema o bue"
+  },
+  {
+   "e": "Stand up",
+   "src": "app",
+   "t": "Ema ka dinao"
+  },
+  {
+   "e": "The country will come to a standstill.",
+   "src": "autshumato",
+   "t": "Naga e tlaa ema tsi."
+  }
+ ],
+ "eta": [
+  {
+   "e": "to visit",
+   "src": "app",
+   "t": "go etela"
+  },
+  {
+   "e": "Would you like to visit Parliament?",
+   "src": "autshumato",
+   "t": "A o eletsa go etela Palamente?"
+  },
+  {
+   "e": "We also visited their homes.",
+   "src": "autshumato",
+   "t": "Gape re ne ra etela magae a bone."
+  }
+ ],
+ "fa": [
+  {
+   "e": "Can you give us a hint?",
+   "src": "autshumato",
+   "t": "A o ka re fa kumako?"
+  },
+  {
+   "e": "If I give them that?",
+   "src": "autshumato",
+   "t": "Fa nka ba neela sona?"
+  },
+  {
+   "e": "I will give you on Tuesday.",
+   "src": "autshumato",
+   "t": "Ke tlaa go fa ka Labobedi."
+  }
+ ],
+ "fatshe": [
+  {
+   "e": "Sit down",
+   "src": "app",
+   "t": "Nna fatshe"
+  },
+  {
+   "e": "We should protect our country against invaders.",
+   "src": "wikt",
+   "t": "Re tshwanetse ra sireletsa fatshe la rona kgatlhanong le batlhasedi."
+  },
+  {
+   "e": "mother-country",
+   "src": "autshumato",
+   "t": "fatshe la borraetsho"
+  }
+ ],
+ "fensetere": [
+  {
+   "e": "Let us kick race out of the window and give everybody a chance.",
+   "src": "autshumato",
+   "t": "A re rageleng botšhaba kwantle ka fensetere mme re neyeng mongwe le mongwe tšhono."
+  },
+  {
+   "e": "arched window",
+   "src": "autshumato",
+   "t": "fensetere e e seobo"
+  },
+  {
+   "e": "sash window",
+   "src": "autshumato",
+   "t": "fensetere e e tsholetswang"
+  }
+ ],
+ "fepa": [
+  {
+   "e": "Do you know that you feed the world?",
+   "src": "autshumato",
+   "t": "A o itse gore o fepa setšhaba?"
+  },
+  {
+   "e": "They cannot feed their children.",
+   "src": "autshumato",
+   "t": "Ga ba kgone go fepa bana ba bona."
+  },
+  {
+   "e": "The feeding of wildlife is prohibited.",
+   "src": "autshumato",
+   "t": "Go fepa diphologolo tsa naga ga go letlwe."
+  }
+ ],
+ "feta": [
+  {
+   "e": "You pass through all those people?",
+   "src": "autshumato",
+   "t": "O feta ka batho bao botlhe?"
+  },
+  {
+   "e": "I move that it is the past.",
+   "src": "autshumato",
+   "t": "Ke tshikhinya gore e fetile."
+  },
+  {
+   "e": "It goes way past the administrative burden.",
+   "src": "autshumato",
+   "t": "E feta mokgweleo wa botsamaisi."
+  }
+ ],
+ "fetsa": [
+  {
+   "e": "We finish on time.",
+   "src": "autshumato",
+   "t": "Re fetsa ka nako."
+  },
+  {
+   "e": "Wait for the person to finish what they are saying.",
+   "src": "autshumato",
+   "t": "Leta motho go fetsa se a se buang."
+  },
+  {
+   "e": "I also finish what I start.",
+   "src": "autshumato",
+   "t": "Gape ke fetsa se ke se simololang."
+  }
+ ],
+ "fitlha": [
+  {
+   "e": "I did not hide it.",
+   "src": "autshumato",
+   "t": "Ga ke a e fitlha."
+  },
+  {
+   "e": "None thus far.",
+   "src": "autshumato",
+   "t": "E seng go fitlha fa."
+  },
+  {
+   "e": "How will we get there?",
+   "src": "autshumato",
+   "t": "Re fitlha jang teng?"
+  }
+ ],
+ "fitlhela": [
+  {
+   "e": "Find the length of PT.",
+   "src": "autshumato",
+   "t": "Fitlhela boleele jwa PT."
+  },
+  {
+   "e": "Click here to find out.",
+   "src": "autshumato",
+   "t": "Tobetsa fa go e fitlhela."
+  },
+  {
+   "e": "I'm sure you'll be able to find it.",
+   "src": "autshumato",
+   "t": "Ke netefatsa gore o tlaa kgona go e fitlhela."
+  }
+ ],
+ "fofa": [
+  {
+   "e": "The bird is seen in flight, the natural consequence of growth and speed.",
+   "src": "autshumato",
+   "t": "Nonyane e bonwa e fofa, dipholo tsa tlhago tsa kgolo le lebelo."
+  }
+ ],
+ "fula": [
+  {
+   "e": "The animals can also graze freely in the two countries.",
+   "src": "autshumato",
+   "t": "Diphologolo di kgona le go fula mo dinageng ka bobedi ka phuthologo."
+  },
+  {
+   "e": "We have all seen lands where the animals can hardly move through to be able to graze the maize residues.",
+   "src": "autshumato",
+   "t": "Re bone masimo mo diruiwa di sa kgoneng go tswelela go fula disalela."
+  },
+  {
+   "e": "This is especially common where animals are placed on the lands to graze the stover after harvest time.",
+   "src": "autshumato",
+   "t": "Go bonagala gantsi fa diruiwa di tlogetswe go fula mo masimong morago ga thobo."
+  }
+ ],
+ "gakolola": [
+  {
+   "e": "Farming is costly and it is better to take advice and be cautious rather than to make expensive mistakes.",
+   "src": "autshumato",
+   "t": "Batho ba ba ka thusang ba a thusa e bile ba a mo gakolola."
+  },
+  {
+   "e": "It also advises and supports the Web Support Structure.",
+   "src": "autshumato",
+   "t": "Gape e gakolola mme e thusa Thulaganyo ya Tshegetso ya Wepe."
+  },
+  {
+   "e": "Eish! would like to remind its readers of the ups and downs of 2011.",
+   "src": "autshumato",
+   "t": "Eish! e batla go gakolola babadi ba yone ka dikgwetlho tseo tsa 2011."
+  }
+ ],
+ "gana": [
+  {
+   "e": "She refused to move.",
+   "src": "autshumato",
+   "t": "O ganne go suta."
+  },
+  {
+   "e": "He refused to talk to anyone.",
+   "src": "autshumato",
+   "t": "O ganne go bua le ope fela."
+  },
+  {
+   "e": "However, he refused to take any payment.",
+   "src": "autshumato",
+   "t": "Le fa go le jalo, o ganne go tsaya tuelo efe fela."
+  }
+ ],
+ "gape": [
+  {
+   "e": "Thank you once again.",
+   "src": "autshumato",
+   "t": "Ke a leboga gape."
+  },
+  {
+   "e": "Again thank you.",
+   "src": "autshumato",
+   "t": "Gape ke a go leboga."
+  },
+  {
+   "e": "The NWU has done it again!",
+   "src": "autshumato",
+   "t": "YBB ke mampodi gape!"
+  }
+ ],
+ "go": [
+  {
+   "e": "to eat",
+   "src": "app",
+   "t": "go ja"
+  },
+  {
+   "e": "to give",
+   "src": "app",
+   "t": "go fa"
+  },
+  {
+   "e": "to go",
+   "src": "app",
+   "t": "go ya"
+  }
+ ],
+ "goga": [
+  {
+   "e": "Pull on wrenches - don't push.",
+   "src": "autshumato",
+   "t": "Goga dipannere - se di kgorometse."
+  },
+  {
+   "e": "Avoid smoking in bed - it is dangerous.",
+   "src": "autshumato",
+   "t": "Efoga go goga mo bolaong - go kotsi."
+  },
+  {
+   "e": "Pull the implement to see if the tractor has power.",
+   "src": "autshumato",
+   "t": "Goga sediriso, o bone gore a terekere e na le maatla."
+  }
+ ],
+ "gola": [
+  {
+   "e": "It is steadily growing stronger.",
+   "src": "autshumato",
+   "t": "E gola thata."
+  },
+  {
+   "e": "Growing up is not easy.",
+   "src": "autshumato",
+   "t": "Go gola ga go bonolo."
+  },
+  {
+   "e": "It means to grow and share the Cape.",
+   "src": "autshumato",
+   "t": "E kaya go gola le go refosana Kapa."
+  }
+ ],
+ "golo": [
+  {
+   "e": "They can ultimately make a big difference to the success of your farming operations.",
+   "src": "autshumato",
+   "t": "Kutlwano e ka tlhoma pharologano e golo go kgonisa kgwebo ya gago."
+  },
+  {
+   "e": "I think there was a breakdown somewhere.",
+   "src": "autshumato",
+   "t": "Ke akanya gore go nnile le kgaogo golo gongwe."
+  },
+  {
+   "e": "We all, for various reasons, have lost ground.",
+   "src": "autshumato",
+   "t": "Rotlhe, go ya ka mabaka a a farologaneng, re tlhaetse golo gongwe."
+  }
+ ],
+ "gompieno": [
+  {
+   "e": "Today it is cold",
+   "src": "app",
+   "t": "Gompieno go serame"
+  },
+  {
+   "e": "Today it is hot",
+   "src": "app",
+   "t": "Gompieno go mogote"
+  },
+  {
+   "e": "Today it is better",
+   "src": "pc",
+   "t": "Gompieno go botoka"
+  }
+ ],
+ "goroga": [
+  {
+   "e": "The time to build has arrived.",
+   "src": "autshumato",
+   "t": "Nako ya go aga e gorogile."
+  },
+  {
+   "e": "The time for negotiation has arrived.",
+   "src": "autshumato",
+   "t": "Nako ya ditherisano e gorogile."
+  },
+  {
+   "e": "We must arrive alive.",
+   "src": "autshumato",
+   "t": "Re tshwanetse go goroga re tshela."
+  }
+ ],
+ "hisetori": [
+  {
+   "e": "Let's look at the history.",
+   "src": "autshumato",
+   "t": "Tlaa re lebe hisetori."
+  },
+  {
+   "e": "It is a record of history.",
+   "src": "autshumato",
+   "t": "Ke rekoto ya hisetori."
+  },
+  {
+   "e": "Again a historic day.",
+   "src": "autshumato",
+   "t": "Letsatsi gape la hisetori."
+  }
+ ],
+ "huma": [
+  {
+   "e": "We are not a water-rich country.",
+   "src": "autshumato",
+   "t": "Naga ya rona ga e a huma ka metsi."
+  }
+ ],
+ "ithuta": [
+  {
+   "e": "I will learn",
+   "src": "app",
+   "t": "Ke tla ithuta"
+  },
+  {
+   "e": "I am learning Setswana",
+   "src": "app",
+   "t": "Ke ithuta Setswana"
+  },
+  {
+   "e": "They will learn Setswana",
+   "src": "app",
+   "t": "Ba tla ithuta Setswana"
+  }
+ ],
+ "itse": [
+  {
+   "e": "I do not know",
+   "src": "app",
+   "t": "Ga ke itse"
+  },
+  {
+   "e": "Did you know?",
+   "src": "autshumato",
+   "t": "O itse?"
+  },
+  {
+   "e": "We know that.",
+   "src": "autshumato",
+   "t": "Re itse seo."
+  }
+ ],
+ "itshwarela": [
+  {
+   "e": "When do you find it most difficult to forgive?",
+   "src": "autshumato",
+   "t": "O nna le bothata jwa go itshwarela leng?"
+  },
+  {
+   "e": "Share situations in which you were able to forgive someone.",
+   "src": "autshumato",
+   "t": "Neelana ka maemo a o kgonneng go itshwarela mongwe."
+  },
+  {
+   "e": "They must learn to \" catch the fish \" themselves.",
+   "src": "autshumato",
+   "t": "Ba tshwanetse ba ithute \" go itshwarela tlhapi \"."
+  }
+ ],
+ "itsi": [
+  {
+   "e": "I wondered if you could comment on that.",
+   "src": "autshumato",
+   "t": "Ga ke itsi gore a o ka tshwaela mo go seo."
+  }
+ ],
+ "ja": [
+  {
+   "e": "I am eating",
+   "src": "app",
+   "t": "Ke a ja"
+  },
+  {
+   "e": "And then I eat",
+   "src": "app",
+   "t": "Ke bo ke ja"
+  },
+  {
+   "e": "The two cows are eating",
+   "src": "app",
+   "t": "Dikgomo tse pedi di a ja"
+  }
+ ],
+ "jaaka": [
+  {
+   "e": "harmless as doves",
+   "src": "app",
+   "t": "bori jaaka maphoi"
+  },
+  {
+   "e": "Be wise as snakes",
+   "src": "app",
+   "t": "Nnang botlhale jaaka dinoga"
+  },
+  {
+   "e": "I send you out as sheep among wolves",
+   "src": "app",
+   "t": "Ke lo roma jaaka dinku mo gare ga diphiri"
+  }
+ ],
+ "jwala": [
+  {
+   "e": "How do I decide what crop to plant?",
+   "src": "autshumato",
+   "t": "Ke swetsa jang go jwala kumo efe?"
+  },
+  {
+   "e": "I also plant sugar beans.",
+   "src": "autshumato",
+   "t": "Gape ke jwala dinawa tsa sesukiri."
+  },
+  {
+   "e": "We can plant sunflowers.",
+   "src": "autshumato",
+   "t": "Re ka simolola go jwala disonobolomo."
+  }
+ ],
+ "kae": [
+  {
+   "e": "How are you? (informal)",
+   "src": "app",
+   "t": "Le kae?"
+  },
+  {
+   "e": "Where are you going?",
+   "src": "app",
+   "t": "O ya kae?"
+  },
+  {
+   "e": "Where do you live?",
+   "src": "app",
+   "t": "O nna kae?"
+  }
+ ],
+ "kagiso": [
+  {
+   "e": "Peace in the region.",
+   "src": "autshumato",
+   "t": "Kagiso mo karolong."
+  },
+  {
+   "e": "May she rest in peace.",
+   "src": "autshumato",
+   "t": "A a robale ka kagiso."
+  },
+  {
+   "e": "Reconciliation and peace in Verona.",
+   "src": "autshumato",
+   "t": "Poelano le kagiso kwa Verona."
+  }
+ ],
+ "kamoso": [
+  {
+   "e": "Where are you going tomorrow?",
+   "src": "pc",
+   "t": "o ya kae kamoso"
+  },
+  {
+   "e": "Where are you going tomorrow?",
+   "src": "app",
+   "t": "Kamoso o ya kae?"
+  },
+  {
+   "e": "See you tomorrow",
+   "src": "app",
+   "t": "Ke tla go bona kamoso"
+  }
+ ],
+ "karolo": [
+  {
+   "e": "Does not participate.",
+   "src": "autshumato",
+   "t": "Ga a tseye karolo."
+  },
+  {
+   "e": "Become part of education.",
+   "src": "autshumato",
+   "t": "Nna karolo ya thuto."
+  },
+  {
+   "e": "Part B of the Register.",
+   "src": "autshumato",
+   "t": "Karolo B ya Rejisetara."
+  }
+ ],
+ "kereke": [
+  {
+   "e": "The Church supports the state.",
+   "src": "autshumato",
+   "t": "Kereke e tshegetsa puso."
+  },
+  {
+   "e": "The church does not allow for this.",
+   "src": "autshumato",
+   "t": "Kereke ga e letlelele ka ga se."
+  },
+  {
+   "e": "It advocates the separation of church and state.",
+   "src": "autshumato",
+   "t": "E gatelela kgaoganyo ya kereke le naga."
+  }
+ ],
+ "kgaitsadi": [
+  {
+   "e": "Brother / sister",
+   "src": "autshumato",
+   "t": "Mogolole / kgaitsadi"
+  }
+ ],
+ "kgala": [
+  {
+   "e": "Condemn all acts of terror.",
+   "src": "autshumato",
+   "t": "Kgala ditiro tsotlhe tsa borukhutlhi."
+  },
+  {
+   "e": "Phase 1 of the web redevelopment project finalised!",
+   "src": "autshumato",
+   "t": "Kgala 1 ya porojeke ya go bopa sešwa wepe e feditswe!"
+  },
+  {
+   "e": "They have no qualms about hurting innocent civilians.",
+   "src": "autshumato",
+   "t": "Ga ba na kgala mo go utlwiseng baagi ba ba siameng botlhoko."
+  }
+ ],
+ "kgama": [
+  {
+   "e": "Drown crop root systems, depleting air and encouraging disease;",
+   "src": "autshumato",
+   "t": "Kgama thulaganyomedi ya dijalo kago e tlhokisa mowa le go rotloetsa malwetse;"
+  }
+ ],
+ "kgantele": [
+  {
+   "e": "See you later",
+   "src": "app",
+   "t": "Ke tla go bona kgantele"
+  },
+  {
+   "e": "I gave the figures earlier.",
+   "src": "autshumato",
+   "t": "Ke neile dipalo kgantele."
+  },
+  {
+   "e": "Ill return to this later.",
+   "src": "autshumato",
+   "t": "Ke tlaa boela go se kgantele."
+  }
+ ],
+ "kgogo": [
+  {
+   "e": "The first deduction will be on 25 June.",
+   "src": "autshumato",
+   "t": "Kgogo ya pele e tla nna ka la 25 Seetebosigo."
+  },
+  {
+   "e": "The generation of power does not fall within the line function of my department.",
+   "src": "autshumato",
+   "t": "Kgogo ya motlakase ga e wele mo tirisong ya lefapha la me."
+  },
+  {
+   "e": "Smoking is the leading cause of oral cancer.",
+   "src": "autshumato",
+   "t": "Kgogo ya motsoko e isa kwa bolwetseng jwa kankere ya mometso."
+  }
+ ],
+ "kgomo": [
+  {
+   "e": "I like chicken and beef",
+   "src": "app",
+   "t": "Ke rata nama ya koko le nama ya kgomo"
+  },
+  {
+   "e": "Do you want to eat beef or chicken?",
+   "src": "app",
+   "t": "A o batla go ja nama ya kgomo kgotsa ya koko?"
+  },
+  {
+   "e": "The oldest cow is always the leader.",
+   "src": "autshumato",
+   "t": "Kgomo ya motsofe gantsi ke yona moeteledipele."
+  }
+ ],
+ "kgona": [
+  {
+   "e": "We will be able to do it.",
+   "src": "autshumato",
+   "t": "Re tlaa kgona go e dira."
+  },
+  {
+   "e": "She used to be able to understand.",
+   "src": "autshumato",
+   "t": "O ne a kgona go tlhaloganya."
+  },
+  {
+   "e": "I will be able to push it.",
+   "src": "autshumato",
+   "t": "Ke tla kgona go e kgorometsa."
+  }
+ ],
+ "kgosi": [
+  {
+   "e": "Chief, among these is the provision of infrastructure.",
+   "src": "autshumato",
+   "t": "Kgosi, gareng ga tse go na le tlamelo ya mafaratlhatlha."
+  },
+  {
+   "e": "The King expressed his appreciation of his appointment as Chancellor.",
+   "src": "autshumato",
+   "t": "Kgosi e ile ya ipolelela tebogo ka thapo ya gagwe go nna Mokhanseleri."
+  },
+  {
+   "e": "That's the King's domain! \"",
+   "src": "autshumato",
+   "t": "Ke bonno jwa kgosi! \""
+  }
+ ],
+ "kgotla": [
+  {
+   "e": "You can read the decisions of the court here.",
+   "src": "autshumato",
+   "t": "O ka buisa ditshwetso tsa kgotla mo."
+  },
+  {
+   "e": "He appeared in Court on 19 September.",
+   "src": "autshumato",
+   "t": "O tlhageletse kwa kgotla ka 19 Lwetse."
+  },
+  {
+   "e": "Any court of a division shall be a court of record.",
+   "src": "autshumato",
+   "t": "Kgotla nngwe fela ya karogano e tlaa nna kgotla ya rekoto."
+  }
+ ],
+ "khutshwane": [
+  {
+   "e": "The road is becoming shorter and shorter.",
+   "src": "autshumato",
+   "t": "Tsela e nna khutshwane le khutshwane."
+  },
+  {
+   "e": "Discuss these short-term goals.",
+   "src": "autshumato",
+   "t": "Sekaseka maikaelelo ano a paka khutshwane."
+  },
+  {
+   "e": "Short description of property and its situation:",
+   "src": "autshumato",
+   "t": "Tlhaloso e khutshwane ya thoto le maemo a yona."
+  }
+ ],
+ "kobo": [
+  {
+   "e": "It must be a blanket, but which pattern?",
+   "src": "autshumato",
+   "t": "E tshwanetse go nna kobo, mme paterone efe?"
+  },
+  {
+   "e": "joint",
+   "src": "autshumato",
+   "t": "kobo ya ga Josefa"
+  },
+  {
+   "e": "Engine water jacket.",
+   "src": "autshumato",
+   "t": "Kobo (jacket) ya metsi ya enjene;"
+  }
+ ],
+ "kofi": [
+  {
+   "e": "Do you like coffee?",
+   "src": "app",
+   "t": "O rata kofi?"
+  },
+  {
+   "e": "I want coffee",
+   "src": "app",
+   "t": "Ke batla kofi"
+  },
+  {
+   "e": "I don't like coffee",
+   "src": "app",
+   "t": "Ga ke rate kofi"
+  }
+ ],
+ "koko": [
+  {
+   "e": "I like chicken and beef",
+   "src": "app",
+   "t": "Ke rata nama ya koko le nama ya kgomo"
+  },
+  {
+   "e": "Do you want to eat beef or chicken?",
+   "src": "app",
+   "t": "A o batla go ja nama ya kgomo kgotsa ya koko?"
+  },
+  {
+   "e": "after touching raw meat, fish or poultry.",
+   "src": "autshumato",
+   "t": "morago ga go tshwara nama, tlhapi kgotsa koko e tala (sa butswang)."
+  }
+ ],
+ "koleke": [
+  {
+   "e": "Every contribution makes a difference",
+   "src": "autshumato",
+   "t": "Koleke nngwe le nngwe e thusa fela thata"
+  }
+ ],
+ "kolobe": [
+  {
+   "e": "Bush pig: These swine do large amounts of damage, especially in KwaZulu-Natal.",
+   "src": "autshumato",
+   "t": "Kolobetopo: Mofuta o wa kolobe o senya thata, tota kwa KwaZulu-Natal."
+  },
+  {
+   "e": "The structure must be safe and weatherproof.",
+   "src": "autshumato",
+   "t": "Popego e tshwanetse go sireletswa le go sa kolobe."
+  },
+  {
+   "e": "pork",
+   "src": "autshumato",
+   "t": "nama ya kolobe"
+  }
+ ],
+ "koloi": [
+  {
+   "e": "This is not a stolen vehicle.",
+   "src": "autshumato",
+   "t": "E ga se koloi e e utswitsweng."
+  },
+  {
+   "e": "The purpose for which the vehicle is used.",
+   "src": "autshumato",
+   "t": "Koloi e dirisiwa go dira tiro efe."
+  },
+  {
+   "e": "The old vehicle will be sold to K.",
+   "src": "autshumato",
+   "t": "Koloi ya bogologolo e tla rekisediwa K."
+  }
+ ],
+ "kopa": [
+  {
+   "e": "I need help",
+   "src": "app",
+   "t": "Ke kopa thuso"
+  },
+  {
+   "e": "You asked how much.",
+   "src": "autshumato",
+   "t": "O kopile bokae."
+  },
+  {
+   "e": "Ask for comments and feedback.",
+   "src": "autshumato",
+   "t": "Go kopa dikakanyo le dikarabo."
+  }
+ ],
+ "kopanela": [
+  {
+   "e": "I trust you will join me in this campaign.",
+   "src": "autshumato",
+   "t": "ke solofela gore lo tla kopanela le nna mo letsholong leno."
+  },
+  {
+   "e": "In January, SATI joined the Professional Editors ' Group,",
+   "src": "autshumato",
+   "t": "Ka Ferikgong, SATI e ne ya kopanela le Professional Editors ' Group,"
+  }
+ ],
+ "kopano": [
+  {
+   "e": "The meeting was adjourned.",
+   "src": "autshumato",
+   "t": "Kopano e emisitswe nakwana."
+  },
+  {
+   "e": "Inform the delegates about the meeting.",
+   "src": "autshumato",
+   "t": "Itsise baemedi ka ga kopano."
+  },
+  {
+   "e": "So, the meeting has gone very well.",
+   "src": "autshumato",
+   "t": "Ka jalo, kopano e tsamaile sentle."
+  }
+ ],
+ "kopi": [
+  {
+   "e": "Loosen the oil cup and remove it from the air cleaner body.",
+   "src": "autshumato",
+   "t": "Repisa kopi ya oli le go e tlosa mo setlhatswamoweng."
+  },
+  {
+   "e": "It weighs no more than a large cup of coffee.",
+   "src": "autshumato",
+   "t": "E bokete bo bo seng kwa godimo ga kopi e kgolo ya kofi."
+  },
+  {
+   "e": "a pair of socks, environment-friendly soap, a cup and saucer (for morning tea),",
+   "src": "autshumato",
+   "t": "dikausu, sesepa se se siametseng tlholego, kopi le pirinki (go dira teye phakela),"
+  }
+ ],
+ "kotsi": [
+  {
+   "e": "Avoid smoking in bed - it is dangerous.",
+   "src": "autshumato",
+   "t": "Efoga go goga mo bolaong - go kotsi."
+  },
+  {
+   "e": "This could be a dangerous path.",
+   "src": "autshumato",
+   "t": "E ka nna tsela e e ka tlisang kotsi."
+  },
+  {
+   "e": "Not giving inmates things to do is dangerous.",
+   "src": "autshumato",
+   "t": "Go se neele batshwarwa tiro go kotsi."
+  }
+ ],
+ "kwala": [
+  {
+   "e": "Write down the instructions.",
+   "src": "autshumato",
+   "t": "Kwala ditaelo."
+  },
+  {
+   "e": "Write out in full.",
+   "src": "autshumato",
+   "t": "Kwala ka botlalo."
+  },
+  {
+   "e": "Good writing skills.",
+   "src": "autshumato",
+   "t": "Bokgoni jwa go kwala."
+  }
+ ],
+ "laeborari": [
+  {
+   "e": "Library for the Blind.",
+   "src": "autshumato",
+   "t": "Laeborari ya Difofu."
+  },
+  {
+   "e": "Does the child belong to a library?",
+   "src": "autshumato",
+   "t": "A ngwana yo ke tokololo ya laeborari?"
+  },
+  {
+   "e": "As a young student he spent a lot of time in the school library.",
+   "src": "autshumato",
+   "t": "Jaaka moithuti wa moša o ne a fetsa nako e le ntsi kwa laeborari."
+  }
+ ],
+ "lala": [
+  {
+   "e": "The children of tomorrow should not go to bed hungry.",
+   "src": "autshumato",
+   "t": "Bana ba isago ga ba a tshwanela go lala ka tlala."
+  },
+  {
+   "e": "So the answer is largely in the economy, but not solely in the economy.",
+   "src": "autshumato",
+   "t": "Ka jalo karabo e letse mo ikonoming, fela seng mo go yona."
+  },
+  {
+   "e": "The Department of Labour's field of responsibility primarily covers the",
+   "src": "autshumato",
+   "t": "Maikarabelomagolo a Lefapha la Badiri a letse mo"
+  }
+ ],
+ "lapa": [
+  {
+   "e": "I am tired",
+   "src": "app",
+   "t": "Ke lapile"
+  },
+  {
+   "e": "And tired and frustrated as well.",
+   "src": "autshumato",
+   "t": "Lapile le go etsaetsega."
+  },
+  {
+   "e": "I am not going to work I am too tired.",
+   "src": "autshumato",
+   "t": "Ga ke ye tirong ke lapile thata."
+  }
+ ],
+ "latela": [
+  {
+   "e": "Follow the instructions carefully.",
+   "src": "autshumato",
+   "t": "Latela ditaelo ka kelotlhoko."
+  },
+  {
+   "e": "Again, follow the manufacturer's instructions.",
+   "src": "autshumato",
+   "t": "Gape latela ditaelo tsa modiri."
+  },
+  {
+   "e": "Part 2 of this article follows.",
+   "src": "autshumato",
+   "t": "Karolo 2 ya kgannyana e e a latela."
+  }
+ ],
+ "latlha": [
+  {
+   "e": "Dispose of waste or trash promptly.",
+   "src": "autshumato",
+   "t": "Latlha letsirolo le matlakala ka bonako."
+  },
+  {
+   "e": "If it becomes a liability, we should shed it.",
+   "src": "autshumato",
+   "t": "Fa e ka nna molato, re tshwanetse go e latlha."
+  },
+  {
+   "e": "This could result in having to discard the entire tank contents.",
+   "src": "autshumato",
+   "t": "Go ka tlisetsa go latlha mateng a tanka yotlhe."
+  }
+ ],
+ "leba": [
+  {
+   "e": "The first two cycles will focus on water and energy.",
+   "src": "autshumato",
+   "t": "Ditshekeletsa tsa ntlha tse pedi di tla leba metsi le maatla."
+  },
+  {
+   "e": "It entitles members of the community to watch local government decision-making in action.",
+   "src": "autshumato",
+   "t": "O letla baagi go leba go diriwa ga go tsaya dithswetso ga pusoselagae."
+  },
+  {
+   "e": "Watch this space! \"",
+   "src": "autshumato",
+   "t": "Nnang lo lebile sebaka se! \""
+  }
+ ],
+ "lebati": [
+  {
+   "e": "Open the door",
+   "src": "app",
+   "t": "Bula lebati"
+  },
+  {
+   "e": "Close the door",
+   "src": "app",
+   "t": "Tswala lebati"
+  },
+  {
+   "e": "They then forced the door open.",
+   "src": "autshumato",
+   "t": "Mme ba kgarametsa lebati go le bula."
+  }
+ ],
+ "lebone": [
+  {
+   "e": "lamp, globe",
+   "src": "autshumato",
+   "t": "tsekedi ya lebone"
+  },
+  {
+   "e": "Infect the world with your light.",
+   "src": "autshumato",
+   "t": "Tshwaetsa lefatshe ka lebone la gago."
+  },
+  {
+   "e": "No emergency lighting",
+   "src": "autshumato",
+   "t": "Go se nne teng ga lebone la tshoganyetso"
+  }
+ ],
+ "lee": [
+  {
+   "e": "fertilised egg cell",
+   "src": "autshumato",
+   "t": "lee le le umisitsweng"
+  },
+  {
+   "e": "ovulation",
+   "src": "autshumato",
+   "t": "go ntsha lee"
+  },
+  {
+   "e": "ovulation",
+   "src": "autshumato",
+   "t": "go ntsha lee, popomae"
+  }
+ ],
+ "lefela": [
+  {
+   "e": "The department has adopted zero tolerance to fraud.",
+   "src": "autshumato",
+   "t": "Lefapha le tsere itshokelano ya lefela mo tsietsong."
+  },
+  {
+   "e": "However, in some instances the zero rate will apply.",
+   "src": "autshumato",
+   "t": "Le gale, mo mabakeng a mangwe go tlaa dira kelo ya lefela."
+  },
+  {
+   "e": "What are you going to do to explain the position of zero on the number line?",
+   "src": "autshumato",
+   "t": "O tlile go dirang gore o tlhalose boemo jwa lefela mo mola-palong?"
+  }
+ ],
+ "lefoko": [
+  {
+   "e": "A word of advice?",
+   "src": "autshumato",
+   "t": "Lefoko la kgakololo?"
+  },
+  {
+   "e": "The word is associated with clothing.",
+   "src": "autshumato",
+   "t": "Lefoko le amana le diaparo."
+  },
+  {
+   "e": "Are we as good as our word?",
+   "src": "autshumato",
+   "t": "A re diragatsa lefoko la rona?"
+  }
+ ],
+ "legodimo": [
+  {
+   "e": "blue (grue of the sky)",
+   "src": "app",
+   "t": "botala jwa legodimo"
+  },
+  {
+   "e": "What does the blue refer to?",
+   "src": "autshumato",
+   "t": "Botala jwa legodimo bo kaya eng?"
+  },
+  {
+   "e": "blue lips, tongue or other parts of the body",
+   "src": "autshumato",
+   "t": "dipounama tse di mmala wa legodimo, loleme kgotsa dikarolo dingwe tsa mmele"
+  }
+ ],
+ "lehihiri": [
+  {
+   "e": "costal cartilage",
+   "src": "autshumato",
+   "t": "lehihiri la logopo"
+  },
+  {
+   "e": "articular cartilage",
+   "src": "autshumato",
+   "t": "lehihiri la lekololo"
+  },
+  {
+   "e": "articular cartilage",
+   "src": "autshumato",
+   "t": "lehihiri la lelokololo"
+  }
+ ],
+ "leina": [
+  {
+   "e": "What is your name?",
+   "src": "app",
+   "t": "Leina la gago ke mang?"
+  },
+  {
+   "e": "My name is Itumeleng",
+   "src": "app",
+   "t": "Leina lame ke Itumeleng"
+  },
+  {
+   "e": "His/her name is Thabo",
+   "src": "app",
+   "t": "Leina la gagwe ke Thabo"
+  }
+ ],
+ "leino": [
+  {
+   "e": "tooth extraction",
+   "src": "autshumato",
+   "t": "go ntsha leino"
+  },
+  {
+   "e": "wisdom tooth",
+   "src": "autshumato",
+   "t": "leino la bogolo"
+  }
+ ],
+ "leitlho": [
+  {
+   "e": "This is the upper eyelid.",
+   "src": "autshumato",
+   "t": "Se ke letlalo le le tswalang leitlho."
+  },
+  {
+   "e": "Look again at your eye in the mirror.",
+   "src": "autshumato",
+   "t": "Lebelela leitlho la gago gape mo seiponeng."
+  },
+  {
+   "e": "What do you see from the inside corner of your eye?",
+   "src": "autshumato",
+   "t": "O bona eng go tswa nnyong ya gago ya leitlho?"
+  }
+ ],
+ "leka": [
+  {
+   "e": "Yes I will try.",
+   "src": "autshumato",
+   "t": "Ee ke tla leka."
+  },
+  {
+   "e": "Try using empathetic listening.",
+   "src": "autshumato",
+   "t": "Leka go reetsa ka thata."
+  },
+  {
+   "e": "Try NOT to deviate from it.",
+   "src": "autshumato",
+   "t": "Leka GO SE tswe mo go yone."
+  }
+ ],
+ "lekaelagongwe": [
+  {
+   "e": "The name LJ Grobler is synonymous with energy.",
+   "src": "autshumato",
+   "t": "Leina LJ Grobler ke lekaelagongwe la maatla a motlakase."
+  }
+ ],
+ "lekgolo": [
+  {
+   "e": "3. Patterns on the hundred chart.",
+   "src": "autshumato",
+   "t": "Dipaterone tsa tšhate ya dinomore tse di felelang ka lekgolo."
+  },
+  {
+   "e": "thousand and one hunderd",
+   "src": "autshumato",
+   "t": "kete le lekgolo"
+  }
+ ],
+ "lela": [
+  {
+   "e": "I was crying, on this side.",
+   "src": "autshumato",
+   "t": "Ke ne ke lela, mo ntlheng eno."
+  },
+  {
+   "e": "When people are crying they need to be attended to.",
+   "src": "autshumato",
+   "t": "Fa batho ba lela ba tshwanetse go tsewa tsia."
+  },
+  {
+   "e": "It includes greasing the part before it begins to squeak.",
+   "src": "autshumato",
+   "t": "E akaretsa go logetsa karolo le pele e simolola go lela."
+  }
+ ],
+ "lelapa": [
+  {
+   "e": "How does the family make a living?",
+   "src": "autshumato",
+   "t": "Lelapa leo le tshela jang?"
+  },
+  {
+   "e": "Who are the members of your family?",
+   "src": "autshumato",
+   "t": "Lelapa la gago ke bo mang?"
+  },
+  {
+   "e": "Promotion of family relationships.",
+   "src": "autshumato",
+   "t": "Thotloetso ya dikamano tsa lelapa."
+  }
+ ],
+ "lema": [
+  {
+   "e": "You rip or plough the land, why?",
+   "src": "autshumato",
+   "t": "O nepa kgotsa go lema tshimo, go yeng?"
+  },
+  {
+   "e": "I farm with sheep, cattle and maize.",
+   "src": "autshumato",
+   "t": "Ke rua dinku le dikgomo mme ke lema mmidid."
+  },
+  {
+   "e": "This germination is often triggered by the cultivation of the soil.",
+   "src": "autshumato",
+   "t": "Tlhogo e, fa gongwe e rumolwa ke go lema mmu."
+  }
+ ],
+ "lengole": [
+  {
+   "e": "Treatment for an injured knee.",
+   "src": "autshumato",
+   "t": "Kalafo ya lengole le le gobetseng."
+  }
+ ],
+ "lenyalo": [
+  {
+   "e": "Your opinion of marriage.",
+   "src": "autshumato",
+   "t": "Kgopolo ya gago ka lenyalo."
+  },
+  {
+   "e": "Consent to the marriage of the child.",
+   "src": "autshumato",
+   "t": "Tumelelo ya lenyalo la ngwana."
+  },
+  {
+   "e": "Submit a copy of your marriage certificate if you are married or have been married before.",
+   "src": "autshumato",
+   "t": "Isa khopi ya setefikeiti tsa lenyalo."
+  }
+ ],
+ "leoto": [
+  {
+   "e": "His/her leg is swollen",
+   "src": "app",
+   "t": "O rurugile leoto"
+  },
+  {
+   "e": "Study of structure of the foot.",
+   "src": "autshumato",
+   "t": "Thuto ya kagego ya leoto."
+  }
+ ],
+ "leru": [
+  {
+   "e": "dark cloud",
+   "src": "autshumato",
+   "t": "leru le lentsho"
+  },
+  {
+   "e": "The HIV epidemic has led to an enormous increase in the number of TB cases.",
+   "src": "autshumato",
+   "t": "Leru la HIV le tlhodile tlhatlogo e kgolo ya palo ya dikgetsi tsa TB."
+  }
+ ],
+ "lesome": [
+  {
+   "e": "Ten countries attended.",
+   "src": "autshumato",
+   "t": "Go tlile dinaga di le lesome."
+  },
+  {
+   "e": "And you've been tested for ten years.",
+   "src": "autshumato",
+   "t": "Gape o lekilwe dingwaga di le lesome."
+  },
+  {
+   "e": "It is an organisation made of ten members.",
+   "src": "autshumato",
+   "t": "Ke mokgatlo o o nang le ditokololo tse lesome."
+  }
+ ],
+ "letsatsi": [
+  {
+   "e": "Soon the sun will set for the night.",
+   "src": "autshumato",
+   "t": "Gaufi letsatsi le ile go tikela bosigo."
+  },
+  {
+   "e": "The sun provides enormous amounts of energy.",
+   "src": "autshumato",
+   "t": "Letsatsi le tlamela maatla a mantsi tota."
+  },
+  {
+   "e": "We all just wanted a place in the sun.",
+   "src": "autshumato",
+   "t": "Rotlhe re ne re ipatlela felo ga letsatsi."
+  }
+ ],
+ "letsetse": [
+  {
+   "e": "You said I should call.",
+   "src": "autshumato",
+   "t": "O rile ke go letsetse."
+  }
+ ],
+ "letsha": [
+  {
+   "e": "That makes today an oasis for us all.",
+   "src": "autshumato",
+   "t": "Se, se dira letsatsi la rona rotlhe letsha mo sekakeng."
+  }
+ ],
+ "letsogo": [
+  {
+   "e": "I see the hand of the Deputy Minister.",
+   "src": "autshumato",
+   "t": "Ke bona letsogo la Motlatsa Tona."
+  },
+  {
+   "e": "These bearings are usually packed with grease by either using a grease packer or by hand packing.",
+   "src": "autshumato",
+   "t": "Dibering tse gantsi di katelwa kirisi ka go dirisa sekatelakirisi kgotsa ka letsogo."
+  },
+  {
+   "e": "hand-arm vibration syndrome from work with chainsaws,",
+   "src": "autshumato",
+   "t": "senteromo ya thoromo ya letsogo go tswa mo tirong ya disaga tsa"
+  }
+ ],
+ "letswai": [
+  {
+   "e": "Easy on the salt, Robert!!",
+   "src": "autshumato",
+   "t": "Iketle ka letswai le lentsi Robert!!"
+  },
+  {
+   "e": "Let there be work, bread, water and salt for all.",
+   "src": "autshumato",
+   "t": "A go nne le tiro, dijo, metsi le letswai go botlhe."
+  },
+  {
+   "e": "The salt should not stick to the sides of the jar when it is rolled.",
+   "src": "autshumato",
+   "t": "Letswai le se kgomarele ka mo morufeng fa o fidikiwa."
+  }
+ ],
+ "lewatle": [
+  {
+   "e": "Across the bitter sea.",
+   "src": "autshumato",
+   "t": "Go kgabaganya lewatle le le galakang."
+  },
+  {
+   "e": "Range: Air, rail, road and sea.",
+   "src": "autshumato",
+   "t": "Mofuta: Lefaufau, seporo, tsela le lewatle."
+  },
+  {
+   "e": "Why does the poet mention the sea, the moon and the winds?",
+   "src": "autshumato",
+   "t": "Goreng mmoki a umaka lewatle, ngwedi le diphefo?"
+  }
+ ],
+ "loa": [
+  {
+   "e": "Calculate concentration of solutions.",
+   "src": "autshumato",
+   "t": "Badisa go loa ga ditswakwa."
+  }
+ ],
+ "lofofa": [
+  {
+   "e": "tail feather",
+   "src": "autshumato",
+   "t": "lofofa lwa mogatla"
+  }
+ ],
+ "logolo": [
+  {
+   "e": "Large stock",
+   "src": "autshumato",
+   "t": "Loruo lo logolo"
+  },
+  {
+   "e": "You can be that great generation.",
+   "src": "autshumato",
+   "t": "Lo ka nna lotso lo logolo loo."
+  },
+  {
+   "e": "Monica attributes her success to having a passion and by working hard.",
+   "src": "autshumato",
+   "t": "Monica a re o newa katlego ke Lorato lo logolo le go semelela."
+  }
+ ],
+ "loleme": [
+  {
+   "e": "tip of tongue",
+   "src": "autshumato",
+   "t": "ntlha ya loleme"
+  },
+  {
+   "e": "blue lips, tongue or other parts of the body",
+   "src": "autshumato",
+   "t": "dipounama tse di mmala wa legodimo, loleme kgotsa dikarolo dingwe tsa mmele"
+  }
+ ],
+ "lona": [
+  {
+   "e": "We are fine — are you all well?",
+   "src": "app",
+   "t": "Re teng, a lona le teng?"
+  },
+  {
+   "e": "Follow these instructions in your small groups.",
+   "src": "autshumato",
+   "t": "Latelang ditaelo tseno mo ditlhopheng tsa lona tse di nnye."
+  },
+  {
+   "e": "Keep your group structure as simple as possible.",
+   "src": "autshumato",
+   "t": "Tshola popego ya setlhopha sa lona e le bonolo bo bo kgonegang."
+  }
+ ],
+ "lonao": [
+  {
+   "e": "Whenever his right foot got too tired, he used his mouth.",
+   "src": "autshumato",
+   "t": "Fa a lapa lonao lwa moja, o ne a dirisa molomo."
+  }
+ ],
+ "lorato": [
+  {
+   "e": "They have been left without a home and love.",
+   "src": "autshumato",
+   "t": "Ba tlogetswe ba sena legae le lorato."
+  },
+  {
+   "e": "They do not know a mothers touch nor love.",
+   "src": "autshumato",
+   "t": "Ba ne ba sa itse tshwaro kgotsa lorato lwa bomme."
+  },
+  {
+   "e": "Most of the great stories are love stories.",
+   "src": "autshumato",
+   "t": "Bontsi jwa dikgang tse dikgolo ke dikgang tsa lorato."
+  }
+ ],
+ "lwa": [
+  {
+   "e": "The Lion of the tribe of Judah",
+   "src": "app",
+   "t": "Tau ya lotso lwa Juda"
+  },
+  {
+   "e": "The struggle against poverty continues.",
+   "src": "autshumato",
+   "t": "Go lwa kgatlhanong le lehuma go a tswelela."
+  },
+  {
+   "e": "We have to either submit or fight, he said.",
+   "src": "autshumato",
+   "t": "Re tshwanetse go ineela kgotsa go lwa, a rialo."
+  }
+ ],
+ "lwala": [
+  {
+   "e": "I am sick",
+   "src": "app",
+   "t": "Ke a lwala"
+  },
+  {
+   "e": "You are sick.",
+   "src": "autshumato",
+   "t": "O a lwala."
+  },
+  {
+   "e": "No I am sick to today.",
+   "src": "autshumato",
+   "t": "Nnyaa ke a lwala gompieno."
+  }
+ ],
+ "maabane": [
+  {
+   "e": "The day before yesterday",
+   "src": "pc",
+   "t": "maloba a maabane"
+  },
+  {
+   "e": "He called me yesterday.",
+   "src": "autshumato",
+   "t": "O nteleditse maabane."
+  },
+  {
+   "e": "I was so rude yesterday, you should have seen me.",
+   "src": "autshumato",
+   "t": "Ke ne ke le tala maabane, fa o ka bo o mpone."
+  }
+ ],
+ "mabele": [
+  {
+   "e": "These may include maize, sunflowers, soybeans, sorghum and groundnuts.",
+   "src": "autshumato",
+   "t": "Di ka nna mmidi, disonobolomo, disoya, mabele le matonkomane."
+  },
+  {
+   "e": "I would love to get more training on soya and sorghum production.",
+   "src": "autshumato",
+   "t": "Ke tlaa rata go oketsa kitso ya me ya go uma disoya le mabele."
+  },
+  {
+   "e": "Sorghum production producers",
+   "src": "autshumato",
+   "t": "Ntshodikuno ya mabele - Balemirui"
+  }
+ ],
+ "madi": [
+  {
+   "e": "I need money",
+   "src": "app",
+   "t": "Ke tlhoka madi"
+  },
+  {
+   "e": "What's the total price?",
+   "src": "app",
+   "t": "Madi otlhe ke bokae?"
+  },
+  {
+   "e": "Why does she need a lot of money?",
+   "src": "app",
+   "t": "Ke eng a tlhoka madi a mantsi?"
+  }
+ ],
+ "mae": [
+  {
+   "e": "How many eggs were left?",
+   "src": "autshumato",
+   "t": "Go ne go setse mae a le kae?"
+  },
+  {
+   "e": "Cedric had 1 dozen eggs.",
+   "src": "autshumato",
+   "t": "Moalosi o na le mae a le 12."
+  },
+  {
+   "e": "He used 7 eggs to bake a cake.",
+   "src": "autshumato",
+   "t": "O dirisitse mae a le 7 go baka kuku."
+  }
+ ],
+ "mafura": [
+  {
+   "e": "Fuel is a good example where this does not apply.",
+   "src": "autshumato",
+   "t": "Mafura ke sengwe se se sa bontsheng ntlha e."
+  },
+  {
+   "e": "Skipping breakfast deprives the body of the fuel needed for energy.",
+   "src": "autshumato",
+   "t": "Go tlola phitlholo ke go tlhokisa mafura a mmele maatla."
+  },
+  {
+   "e": "Groundnut is the sixth most important oilseed crop in the world.",
+   "src": "autshumato",
+   "t": "Matonkomane ke semela sa mafura sa maemo a borataro mo lefatsheng."
+  }
+ ],
+ "maitseboa": [
+  {
+   "e": "In the evening at nine yes, that is correct.",
+   "src": "autshumato",
+   "t": "Maitseboa ka ura ya borobongwe, go ntse jalo."
+  },
+  {
+   "e": "Congratulations, and enjoy the evening.",
+   "src": "autshumato",
+   "t": "Re a lo lebogisa, mme lo itumelele maitseboa a."
+  },
+  {
+   "e": "I trust you will enjoy the rest of the evening.",
+   "src": "autshumato",
+   "t": "Ke tshepa gore o tlaa itumelela maitseboa otlhe."
+  }
+ ],
+ "makasine": [
+  {
+   "e": "He is especially known for his i-jusi magazine.",
+   "src": "autshumato",
+   "t": "O itsege thata ka makasine wa gagwe wa i-jusi magazine."
+  },
+  {
+   "e": "You are a member of the editorial team of a teen magazine.",
+   "src": "autshumato",
+   "t": "O tokololo ya setlhopha sa batseleganyi ba makasine wa bašwa."
+  }
+ ],
+ "mala": [
+  {
+   "e": "My stomach hurts",
+   "src": "app",
+   "t": "Mala ame a botlhoko"
+  },
+  {
+   "e": "The small intestine is where absorption takes place.",
+   "src": "autshumato",
+   "t": "Mala a masesane ke gona kwa monyelo e diragalang gona."
+  },
+  {
+   "e": "enteric fever",
+   "src": "autshumato",
+   "t": "letshoroma la mala"
+  }
+ ],
+ "maloba": [
+  {
+   "e": "The day before yesterday",
+   "src": "pc",
+   "t": "maloba a maabane"
+  },
+  {
+   "e": "Not to change the past.",
+   "src": "autshumato",
+   "t": "Ga go phetogo ya maloba."
+  },
+  {
+   "e": "Just yesterday we visited Ireland.",
+   "src": "autshumato",
+   "t": "Maloba jaana re etetse Ireland."
+  }
+ ],
+ "malome": [
+  {
+   "e": "My uncle raised me on his communal land.",
+   "src": "autshumato",
+   "t": "Malome o nkgodisitse kwa legaeng la gagwe."
+  },
+  {
+   "e": "My uncle kindly bought me a packet of chips and cream soda.",
+   "src": "autshumato",
+   "t": "Malome o ne a nthekela di-Chips le senotsididi sa Cream Soda."
+  }
+ ],
+ "mariga": [
+  {
+   "e": "Does your area get frost in the winter?",
+   "src": "autshumato",
+   "t": "A kgaolo ya gago e amogela serame mariga?"
+  },
+  {
+   "e": "To plant winter cereal crops after harvest time.",
+   "src": "autshumato",
+   "t": "Go jwala letlhoro la mariga morago ga go roba."
+  },
+  {
+   "e": "Canola production takes place during the winter under rain-fed conditions.",
+   "src": "autshumato",
+   "t": "Go uma kanola go diragala ka mariga fa dipula di na."
+  }
+ ],
+ "masi": [
+  {
+   "e": "Labour is a crucial component of a dairy production unit.",
+   "src": "autshumato",
+   "t": "Tiro ke ntlha ee botlhokwa mo yuniting ya tlhamo ya maši."
+  },
+  {
+   "e": "A cash flow budget is part of the financial budget on a dairy farm.",
+   "src": "autshumato",
+   "t": "Tekanyetsokabo ya thologelo ya madi ke karolo ya tekanyetsokabo ya masimo a maši."
+  }
+ ],
+ "mathe": [
+  {
+   "e": "blood test results, sputum results, x-ray reports, etc.",
+   "src": "autshumato",
+   "t": "dipegelo tsa diteko tsa madi, dipegelo tsa mathe dipegelo tsa ekeserei, jj."
+  }
+ ],
+ "merogo": [
+  {
+   "e": "We are cooking vegetables",
+   "src": "app",
+   "t": "Re apaya merogo"
+  },
+  {
+   "e": "Your wife grows vegetables.",
+   "src": "autshumato",
+   "t": "Mogatso o jala merogo."
+  },
+  {
+   "e": "It is easy to grow your own vegetables.",
+   "src": "autshumato",
+   "t": "Go bonolo go jala merogo ya gago."
+  }
+ ],
+ "metsi": [
+  {
+   "e": "Water utilisation.",
+   "src": "autshumato",
+   "t": "Tiriso metsi."
+  },
+  {
+   "e": "Let the water flow!",
+   "src": "autshumato",
+   "t": "A metsi a elele!"
+  },
+  {
+   "e": "Water is life!",
+   "src": "autshumato",
+   "t": "Metsi ke botshelo!"
+  }
+ ],
+ "mma": [
+  {
+   "e": "Hello / good day, madam",
+   "src": "app",
+   "t": "Dumela mma"
+  },
+  {
+   "e": "Madam Chairperson, I thank you.",
+   "src": "autshumato",
+   "t": "Mma Sebui, ke a go leboga."
+  },
+  {
+   "e": "foster-mother",
+   "src": "autshumato",
+   "t": "mma to o fatlhosang"
+  }
+ ],
+ "mmala": [
+  {
+   "e": "What colour is it?",
+   "src": "autshumato",
+   "t": "Ke mmala ofe?"
+  },
+  {
+   "e": "Colour is used.",
+   "src": "autshumato",
+   "t": "Go dirisitswe mmala."
+  },
+  {
+   "e": "Comment on the use of colour.",
+   "src": "autshumato",
+   "t": "Tshwaelo ka tiriso ya mmala."
+  }
+ ],
+ "mmane": [
+  {
+   "e": "I used to live with my auntie.",
+   "src": "autshumato",
+   "t": "Ke ne ke nna le mmane."
+  }
+ ],
+ "mme": [
+  {
+   "e": "As a mother",
+   "src": "autshumato",
+   "t": "Jaaka mme."
+  },
+  {
+   "e": "But the Practice?",
+   "src": "autshumato",
+   "t": "Mme Mokgwa?"
+  },
+  {
+   "e": "But you did!",
+   "src": "autshumato",
+   "t": "Mme o dirile!"
+  }
+ ],
+ "mmele": [
+  {
+   "e": "Be conscious of body language.",
+   "src": "autshumato",
+   "t": "Tlhokomela puo ya mmele."
+  },
+  {
+   "e": "It is a symbolic language of the body.",
+   "src": "autshumato",
+   "t": "Ke puo ya tshwantshetso ya mmele."
+  },
+  {
+   "e": "Revealing and concealing the human body.",
+   "src": "autshumato",
+   "t": "Go bontsha le go fitlha mmele wa motho."
+  }
+ ],
+ "mmino": [
+  {
+   "e": "Put music on.",
+   "src": "autshumato",
+   "t": "Go letsa mmino."
+  },
+  {
+   "e": "Listen to the following music extract.",
+   "src": "autshumato",
+   "t": "Reetsa nopolo e e latelang ya mmino."
+  },
+  {
+   "e": "It could lead to musical performances too.",
+   "src": "autshumato",
+   "t": "E ka baka gape ditiragatso tsa mmino."
+  }
+ ],
+ "mmutla": [
+  {
+   "e": "What I love doing for relaxation: Sports",
+   "src": "autshumato",
+   "t": "Se ke se dirang fa ke tlhabile kgobe ka mmutla: Metshameko"
+  }
+ ],
+ "modimo": [
+  {
+   "e": "God bless you all.",
+   "src": "autshumato",
+   "t": "Modimo a le tshegofatse lotlhe."
+  },
+  {
+   "e": "God on behalf of the living.",
+   "src": "autshumato",
+   "t": "Modimo mo boemong jwa batshedi."
+  },
+  {
+   "e": "They were, indeed, a godsend.",
+   "src": "autshumato",
+   "t": "Di ne, ka nnete, di rometswe ke modimo."
+  }
+ ],
+ "modiri": [
+  {
+   "e": "Every workers vote is important.",
+   "src": "autshumato",
+   "t": "Bouto ya modiri mongwe le mongwe e botlhokwa."
+  },
+  {
+   "e": "A labourer is not doing her work as instructed.",
+   "src": "autshumato",
+   "t": "Modiri ga a dire tiro ya gagwe jaaka a laetswe."
+  },
+  {
+   "e": "He then worked as a labourer at Ngodwana.",
+   "src": "autshumato",
+   "t": "O ne a ya go dira jaaka modiri fela kwa Ngodwana."
+  }
+ ],
+ "modula": [
+  {
+   "e": "Ensuring perfect conditions for pollination to take place;",
+   "src": "autshumato",
+   "t": "Netefatsa maemo a a siameng go kgonisa go dula ga modula mo dimeleng;"
+  },
+  {
+   "e": "(a) the Director-General: Justice and Constitutional Development, who is the chairperson of the Committee;",
+   "src": "autshumato",
+   "t": "(a) Molaodi-Kakaretso: Bosiamisi le Tlhabololo ya Molaotheo, yo e leng modula-setulo wa Komiti;"
+  }
+ ],
+ "moeng": [
+  {
+   "e": "My surname is Moeng",
+   "src": "app",
+   "t": "Sefane same ke Moeng"
+  },
+  {
+   "e": "Visitor consumption",
+   "src": "autshumato",
+   "t": "Bodirisi jwa moeng"
+  },
+  {
+   "e": "He will be a guest for as long as is necessary.",
+   "src": "autshumato",
+   "t": "O tlaa nna moeng mo sebakeng se se kgonagalang"
+  }
+ ],
+ "mogala": [
+  {
+   "e": "Enter Telephone No.",
+   "src": "autshumato",
+   "t": "Tsenya No. ya mogala."
+  },
+  {
+   "e": "Thanks for the call.",
+   "src": "autshumato",
+   "t": "Ke lebogela mogala wa gago."
+  },
+  {
+   "e": "Office telephone No.",
+   "src": "autshumato",
+   "t": "Nomoro ya mogala wa kantoro."
+  }
+ ],
+ "mogolo": [
+  {
+   "e": "grandfather",
+   "src": "app",
+   "t": "ntate mogolo"
+  },
+  {
+   "e": "Education is the great engine of personal development.",
+   "src": "autshumato",
+   "t": "Thuto ke mokgweetsi yo mogolo wa tlhabolo ya sebele."
+  },
+  {
+   "e": "The biggest source of information remains the producers.",
+   "src": "autshumato",
+   "t": "Motswedi o mogolo wa tshedimosetso e sala go nna bantshakuno."
+  }
+ ],
+ "mogwe": [
+  {
+   "e": "Recreation is the basis of a person's sports involvement.",
+   "src": "autshumato",
+   "t": "Itapoloso ke motheo wa go tsaya karolo ga mogwe mo metshamekong."
+  }
+ ],
+ "moithuti": [
+  {
+   "e": "The learner may work at home.",
+   "src": "autshumato",
+   "t": "Moithuti a dira kwa gae."
+  },
+  {
+   "e": "Can monitor the progress of the learner.",
+   "src": "autshumato",
+   "t": "Ka disa tswelelopele ya moithuti."
+  },
+  {
+   "e": "I was never a full-time student.",
+   "src": "autshumato",
+   "t": "Ga ke ise ke nne moithuti wa leruri."
+  }
+ ],
+ "mojako": [
+  {
+   "e": "Our foot in the door.",
+   "src": "autshumato",
+   "t": "Maoto a rona mo teng ga mojako."
+  }
+ ],
+ "mokoro": [
+  {
+   "e": "motor boat",
+   "src": "autshumato",
+   "t": "mokoro wa lefetlho"
+  },
+  {
+   "e": "The cost varies according to length of the vessel.",
+   "src": "autshumato",
+   "t": "Tlhotlhwa e tla laolwa ke boleele jwa mokoro."
+  },
+  {
+   "e": "the fishing sector in which a vessel is intended to be deployed",
+   "src": "autshumato",
+   "t": "nomoro kwadiso ya mokoro"
+  }
+ ],
+ "molala": [
+  {
+   "e": "neck exercises",
+   "src": "autshumato",
+   "t": "ditshidilo tsa molala"
+  },
+  {
+   "e": "whiplash injury",
+   "src": "autshumato",
+   "t": "kgobalo ya ditshika tsa molala"
+  },
+  {
+   "e": "whiplash injury",
+   "src": "autshumato",
+   "t": "kgobalo ya ditshika tsamolala, kgobalo ya molala"
+  }
+ ],
+ "moleele": [
+  {
+   "e": "When she arrives she sees a long queue and takes her place in the queue.",
+   "src": "autshumato",
+   "t": "Fa a goroga o fitlhela molao o moleele e bile tsena mo moleng."
+  },
+  {
+   "e": "The leaf blade is long, narrow and tapers towards the tip.",
+   "src": "autshumato",
+   "t": "Mogwang o moleele, o mosesane mme o nna motšhotšho go ya kwa nkong."
+  },
+  {
+   "e": "The production cycle is long (from soil preparation to harvesting);",
+   "src": "autshumato",
+   "t": "Modiko wa ntshodikuno o moleele (go tswa paakanyong ya mmu go ya thobong)."
+  }
+ ],
+ "molelo": [
+  {
+   "e": "The fire was successfully extinguished.",
+   "src": "autshumato",
+   "t": "Molelo o ne wa kgona go tingwa."
+  },
+  {
+   "e": "Identify measures to prevent a fire.",
+   "src": "autshumato",
+   "t": "Lemoga maano a go thibela molelo."
+  },
+  {
+   "e": "Two men were killed in the fire.",
+   "src": "autshumato",
+   "t": "Banna ba le babedi ba bolailwe ke molelo."
+  }
+ ],
+ "molemi": [
+  {
+   "e": "Are you a full time farmer?",
+   "src": "autshumato",
+   "t": "A o molemi wa leruri (nako yotlhe)?"
+  },
+  {
+   "e": "Weeds remain the number one enemy of the crop farmer!",
+   "src": "autshumato",
+   "t": "Mefero e sala e le maaba wa ntlha wa molemi!"
+  },
+  {
+   "e": "The farmer came out and asked what they were doing there.",
+   "src": "autshumato",
+   "t": "Molemi o ne a tswa mme a botsa gore ba dirang foo."
+  }
+ ],
+ "molomo": [
+  {
+   "e": "Whenever his right foot got too tired, he used his mouth.",
+   "src": "autshumato",
+   "t": "Fa a lapa lonao lwa moja, o ne a dirisa molomo."
+  },
+  {
+   "e": "Is used as a way to keep the hands and mouth busy.",
+   "src": "autshumato",
+   "t": "E dirisiwa gore diatla le molomo di nne di dira."
+  },
+  {
+   "e": "The mouth forms the start of the entire process as food has to be taken in.",
+   "src": "autshumato",
+   "t": "Molomo o dira tshimologo ya tirego yotlhe ka gore dijo di tshwanetse go jewa."
+  }
+ ],
+ "monate": [
+  {
+   "e": "So it is my very pleasant task to welcome you home.",
+   "src": "autshumato",
+   "t": "Ka jalo ke tiro e e monate go lo amogela go tla gae."
+  },
+  {
+   "e": "Wow, what a celebration we had!",
+   "src": "autshumato",
+   "t": "Hee, re jele monate!"
+  },
+  {
+   "e": "What a wonderful experience!",
+   "src": "autshumato",
+   "t": "Go ne go le monate jang!"
+  }
+ ],
+ "monna": [
+  {
+   "e": "I am not that man.",
+   "src": "autshumato",
+   "t": "Ga ke monna yoo."
+  },
+  {
+   "e": "The man was arrested by the police.",
+   "src": "autshumato",
+   "t": "Monna o tshwere ke mapodisa."
+  },
+  {
+   "e": "Man is made by his belief.",
+   "src": "autshumato",
+   "t": "Monna o dirwa ke tumelo ya gagwe."
+  }
+ ],
+ "monnye": [
+  {
+   "e": "Very young, very old.",
+   "src": "autshumato",
+   "t": "Monnye thata, mogolo thata."
+  },
+  {
+   "e": "The driver can be young.",
+   "src": "autshumato",
+   "t": "Mokgweetsi a ka nna monnye."
+  },
+  {
+   "e": "By implication, it follows that you are personally less or inferior.",
+   "src": "autshumato",
+   "t": "Ke sesupo, se se kayang gore wena o kwa tlase kgotsa o monnye."
+  }
+ ],
+ "monwana": [
+  {
+   "e": "Just as every fingerprint in the world is unique, so are you.",
+   "src": "autshumato",
+   "t": "O kgethegile, fela jaaka letshwao la monwana lengwe le lengwe mo lefatsheng le kgethegile."
+  },
+  {
+   "e": "fourth finger",
+   "src": "autshumato",
+   "t": "monwana wa bone"
+  },
+  {
+   "e": "finger-tip",
+   "src": "autshumato",
+   "t": "ntlha ya monwana"
+  }
+ ],
+ "morafe": [
+  {
+   "e": "What is your community?",
+   "src": "autshumato",
+   "t": "Morafe wa gago ke ofe?"
+  },
+  {
+   "e": "Raise the dignity of communities.",
+   "src": "autshumato",
+   "t": "Oketsa boikgantsho jwa morafe."
+  },
+  {
+   "e": "Schools and communities mirror each other.",
+   "src": "autshumato",
+   "t": "Dikolo le morafe di lebelelane."
+  }
+ ],
+ "morena": [
+  {
+   "e": "The Lord Almighty is a wonderful teacher and he gives the producer wisdom.",
+   "src": "autshumato",
+   "t": "Morena Mothatiyotlhe ke morutabana yo o gakgamatsang mme o abela montshakuno botlhale."
+  },
+  {
+   "e": "Mr President, you are a hard taskmaster.",
+   "src": "autshumato",
+   "t": "Morena Moporesidente, o moeteledipele wa tiro e e thata."
+  },
+  {
+   "e": "For, “Whoever will call on the name of the Lord will be saved.”",
+   "src": "bible-nt",
+   "t": "Le fa e le mang yo o bitsang leina la Morena o tlaa bolokwa."
+  }
+ ],
+ "moriri": [
+  {
+   "e": "Before we see the hair type, we must see the divinity.",
+   "src": "autshumato",
+   "t": "Pele re bona mofuta wa moriri, re tshwanetse go bona boitshepo."
+  },
+  {
+   "e": "hair follicle",
+   "src": "autshumato",
+   "t": "kgetsana ya moriri"
+  },
+  {
+   "e": "hair follicle",
+   "src": "autshumato",
+   "t": "motswedi wa moriri"
+  }
+ ],
+ "morutabana": [
+  {
+   "e": "I am a teacher",
+   "src": "app",
+   "t": "Ke morutabana"
+  },
+  {
+   "e": "What is the role of the teacher?",
+   "src": "autshumato",
+   "t": "Seabe sa morutabana ke eng?"
+  },
+  {
+   "e": "Teacher will assess.",
+   "src": "autshumato",
+   "t": "Morutabana o tlaa tlhatlhoba."
+  }
+ ],
+ "moruti": [
+  {
+   "e": "music lecturer",
+   "src": "autshumato",
+   "t": "moruti wa mmino"
+  },
+  {
+   "e": "(iii) chosen religious counsellor; and",
+   "src": "autshumato",
+   "t": "(iii) moruti yo a mo itlhophetseng wa mokgopolodi; le"
+  }
+ ],
+ "mosadi": [
+  {
+   "e": "Is it for this woman?",
+   "src": "autshumato",
+   "t": "A ke ya mosadi yono?"
+  },
+  {
+   "e": "How is his wife?",
+   "src": "autshumato",
+   "t": "Mosadi wa gagwe o ntse jang?"
+  },
+  {
+   "e": "His wife, Marianne, is also a VTC.",
+   "src": "autshumato",
+   "t": "Mosadi wa gagwe le ene ke moalumni."
+  }
+ ],
+ "mosidi": [
+  {
+   "e": "Remember that when a miller wants to buy wheat, he looks at the quality and the price.",
+   "src": "autshumato",
+   "t": "Gakologelwa gore fa mosidi a batla go reka korong, o lebelela boleng le tlhotlhwa."
+  },
+  {
+   "e": "gunpowder",
+   "src": "autshumato",
+   "t": "mosidi wa tlhobolo"
+  }
+ ],
+ "motho": [
+  {
+   "e": "Tell the person personally.",
+   "src": "autshumato",
+   "t": "Bolelela motho ka namana."
+  },
+  {
+   "e": "He has a quiet personality.",
+   "src": "autshumato",
+   "t": "Ke motho yo o didimetseng."
+  },
+  {
+   "e": "The one he took from this person?",
+   "src": "autshumato",
+   "t": "E a e tsereng go motho yo?"
+  }
+ ],
+ "motlakase": [
+  {
+   "e": "Bulk supply of electricity.",
+   "src": "autshumato",
+   "t": "Kabo e kgolo ya motlakase."
+  },
+  {
+   "e": "Discuss the dangers of electricity.",
+   "src": "autshumato",
+   "t": "Tlhalosa dikotsi tsa motlakase."
+  },
+  {
+   "e": "Describe the principles of electricity.",
+   "src": "autshumato",
+   "t": "Tlhalosa melawana ya motlakase."
+  }
+ ],
+ "motsadi": [
+  {
+   "e": "How do you apply to be a foster parent?",
+   "src": "autshumato",
+   "t": "O kopa jang go nna motsadi ka go thopa?"
+  },
+  {
+   "e": "Who qualifies to be a foster parent?",
+   "src": "autshumato",
+   "t": "Ke mang yo o tshwanelang go nna motsadi wa mofatlhosi?"
+  }
+ ],
+ "motshegare": [
+  {
+   "e": "Good afternoon to all of you.",
+   "src": "autshumato",
+   "t": "Motshegare o o itumedisang go lona lotlhe."
+  },
+  {
+   "e": "Morning, afternoon, evening - and then the night.",
+   "src": "autshumato",
+   "t": "Mo mosong, motshegare, bosigo le bosigogare."
+  },
+  {
+   "e": "I will be visiting some of the affected areas this afternoon.",
+   "src": "autshumato",
+   "t": "Ke tlaa etela mangwe a mafelo a a amegileng motshegare wa gompieno."
+  }
+ ],
+ "motswedi": [
+  {
+   "e": "mineral spring",
+   "src": "autshumato",
+   "t": "motswedi wa minerale"
+  },
+  {
+   "e": "Only source of income.",
+   "src": "autshumato",
+   "t": "Ke ona fela motswedi wa lotseno."
+  },
+  {
+   "e": "Who created the source?",
+   "src": "autshumato",
+   "t": "Ke mang yo o tlhodileng motswedi?"
+  }
+ ],
+ "mpa": [
+  {
+   "e": "Studying late at night.",
+   "src": "autshumato",
+   "t": "Go ithuta gare ga mpa ya bosigo."
+  },
+  {
+   "e": "Into the burning bowels of this earth.",
+   "src": "autshumato",
+   "t": "Mo teng ga mpa e e belang ya lefatshe."
+  },
+  {
+   "e": "We are merely at the end of the beginning.",
+   "src": "autshumato",
+   "t": "Re mpa re le kwa bokhutlong jwa tshimologo."
+  }
+ ],
+ "mpho": [
+  {
+   "e": "Mpho is a doctor",
+   "src": "app",
+   "t": "Mpho ke ngaka"
+  },
+  {
+   "e": "Mpho is beautiful",
+   "src": "app",
+   "t": "Mpho o montle"
+  },
+  {
+   "e": "Mpho is in the house",
+   "src": "app",
+   "t": "Mpho o mo ntlong"
+  }
+ ],
+ "nama": [
+  {
+   "e": "I like meat a lot",
+   "src": "app",
+   "t": "Ke rata nama thata"
+  },
+  {
+   "e": "I like seswaa, because it is meat",
+   "src": "app",
+   "t": "Ke rata seswaa, ka gore ke nama"
+  },
+  {
+   "e": "I like chicken and beef",
+   "src": "app",
+   "t": "Ke rata nama ya koko le nama ya kgomo"
+  }
+ ],
+ "namane": [
+  {
+   "e": "You have extraordinary tasks before you.",
+   "src": "autshumato",
+   "t": "O na le namane e tona ya tiro fa pele ga gago."
+  }
+ ],
+ "namune": [
+  {
+   "e": "One orange",
+   "src": "app",
+   "t": "Namune e le nngwe"
+  },
+  {
+   "e": "Fruit, for example citrus - oranges, lemons and naartjies;",
+   "src": "autshumato",
+   "t": "Maungo, sekao monamune, namune, ratsuru le nnareki;"
+  }
+ ],
+ "ngaka": [
+  {
+   "e": "He/she is not a doctor",
+   "src": "app",
+   "t": "Ga se ngaka"
+  },
+  {
+   "e": "Mpho is a doctor",
+   "src": "app",
+   "t": "Mpho ke ngaka"
+  },
+  {
+   "e": "Definitely not - she wanted to become a medical doctor.",
+   "src": "autshumato",
+   "t": "Nnyaa - o ne a batla go nna ngaka."
+  }
+ ],
+ "nganga": [
+  {
+   "e": "That there might be something more to the strike action?",
+   "src": "autshumato",
+   "t": "Gore go ka nna le sengwe gape mo tiragatsong ya go nganga?"
+  }
+ ],
+ "ngogola": [
+  {
+   "e": "Last year, they suffered a similar fate.",
+   "src": "autshumato",
+   "t": "Ngogola ba tlhagetswe ke kotsi e e jalo."
+  },
+  {
+   "e": "She passed on in October last year.",
+   "src": "autshumato",
+   "t": "O tlhokafetse ngogola ka kgwedi ya Diphalane."
+  },
+  {
+   "e": "Did we do justice to the amount entrusted to us last year?",
+   "src": "autshumato",
+   "t": "A re kgonne bokana jo re bo abetsweng ngogola?"
+  }
+ ],
+ "ngwaga": [
+  {
+   "e": "This year",
+   "src": "pc",
+   "t": "ngwaga e"
+  },
+  {
+   "e": "next year",
+   "src": "app",
+   "t": "ngwaga e e tlang"
+  },
+  {
+   "e": "Happy New Year!",
+   "src": "autshumato",
+   "t": "Ngwaga o moswa!"
+  }
+ ],
+ "ngwana": [
+  {
+   "e": "Can educate the child.",
+   "src": "autshumato",
+   "t": "E ka ruta ngwana."
+  },
+  {
+   "e": "You are a child of God.",
+   "src": "autshumato",
+   "t": "O ngwana wa Modimo."
+  },
+  {
+   "e": "What the child did.",
+   "src": "autshumato",
+   "t": "Se ngwana a se dirileng."
+  }
+ ],
+ "ngwe": [
+  {
+   "e": "One member was not found guilty.",
+   "src": "autshumato",
+   "t": "Tokololo e le ngwe ga e a bonwa molato."
+  },
+  {
+   "e": "each",
+   "src": "autshumato",
+   "t": "-ngwe le -ngwe"
+  },
+  {
+   "e": "Other (specify)",
+   "src": "autshumato",
+   "t": "E ngwe (tlhalosa)"
+  }
+ ],
+ "ngwetsi": [
+  {
+   "e": "Brother / sister-in-law",
+   "src": "autshumato",
+   "t": "Morwa / ngwetsi"
+  },
+  {
+   "e": "For I came to set a man at odds against his father, and a daughter against her mother, and a daughter-in-law against her mother-in-law.",
+   "src": "bible-nt",
+   "t": "Ke tletse go lotlhanya motho le rraagwe, mosetsana le mmaagwe, ngwetsi le matsalaa yone."
+  }
+ ],
+ "nko": [
+  {
+   "e": "Blocked stuffy nose",
+   "src": "autshumato",
+   "t": "Nko e e thibaneng e e hupetsang mowa"
+  },
+  {
+   "e": "Irritation / watering of the eyes and nose",
+   "src": "autshumato",
+   "t": "Go baba / matlho a a tletseng metsi le nko e e tletseng metsi"
+  },
+  {
+   "e": "\" Diesel exhaust is inhaled through the nose and can move into the lungs.",
+   "src": "autshumato",
+   "t": "\" Gase ya disele e hemiwa ka nko mme e ka fetela kwa makgwafong."
+  }
+ ],
+ "nku": [
+  {
+   "e": "A black sheep",
+   "src": "app",
+   "t": "Nku e ntsho"
+  },
+  {
+   "e": "My favourite dish: Sheep offal",
+   "src": "autshumato",
+   "t": "Dijo tse ke di ratang go feta tse dingwe: Mateng a nku"
+  },
+  {
+   "e": "Labour plays an important role in a mutton enterprise.",
+   "src": "autshumato",
+   "t": "Tiro e tsaya karolo e e botlhokwa mo kgwebong ya nama ya nku."
+  }
+ ],
+ "nna": [
+  {
+   "e": "Where do you live?",
+   "src": "app",
+   "t": "O nna kae?"
+  },
+  {
+   "e": "Sit down",
+   "src": "app",
+   "t": "Nna fatshe"
+  },
+  {
+   "e": "It’s becoming late (night fall)",
+   "src": "pc",
+   "t": "go nna bosigo"
+  }
+ ],
+ "nne": [
+  {
+   "e": "It will take up to four weeks to process your application.",
+   "src": "autshumato",
+   "t": "Go ka tsaya dibeke di le nne."
+  },
+  {
+   "e": "There are four Learning Outcomes.",
+   "src": "autshumato",
+   "t": "Go na le Dipoelothuto tse nne."
+  }
+ ],
+ "nngwe": [
+  {
+   "e": "One orange",
+   "src": "app",
+   "t": "Namune e le nngwe"
+  },
+  {
+   "e": "The one with speed?",
+   "src": "autshumato",
+   "t": "E nngwe ya lebelo?"
+  },
+  {
+   "e": "They gave me one.",
+   "src": "autshumato",
+   "t": "Ba mphile e le nngwe."
+  }
+ ],
+ "noga": [
+  {
+   "e": "snake-poison",
+   "src": "autshumato",
+   "t": "botlhole jwa noga"
+  },
+  {
+   "e": "antivenomous serum",
+   "src": "autshumato",
+   "t": "selwantsha-botlhole ba go longwa ke noga"
+  }
+ ],
+ "noka": [
+  {
+   "e": "What is the condition of the river?",
+   "src": "autshumato",
+   "t": "Maemo a noka eo ke afe?"
+  },
+  {
+   "e": "How do people use the river?",
+   "src": "autshumato",
+   "t": "Batho ba dirisa noka jang?"
+  },
+  {
+   "e": "Where does the name of the river come from?",
+   "src": "autshumato",
+   "t": "Leina la noka eno le tswa kae?"
+  }
+ ],
+ "nong": [
+  {
+   "e": "bird of prey",
+   "src": "autshumato",
+   "t": "nong sejanama"
+  },
+  {
+   "e": "a seed eating bird",
+   "src": "autshumato",
+   "t": "nong e e jang peo"
+  },
+  {
+   "e": "bird of prey",
+   "src": "autshumato",
+   "t": "nong e e jang nama"
+  }
+ ],
+ "nonyane": [
+  {
+   "e": "I see a bird",
+   "src": "app",
+   "t": "Ke bona nonyane"
+  },
+  {
+   "e": "Was it a bird?",
+   "src": "autshumato",
+   "t": "A e ne e le nonyane?"
+  },
+  {
+   "e": "The bird is seen in flight, the natural consequence of growth and speed.",
+   "src": "autshumato",
+   "t": "Nonyane e bonwa e fofa, dipholo tsa tlhago tsa kgolo le lebelo."
+  }
+ ],
+ "nta": [
+  {
+   "e": "Let me reinforce this message.",
+   "src": "autshumato",
+   "t": "Nta ke gatelele molaetsa o."
+  },
+  {
+   "e": "Let us look at the example below and how it can be applied practically.",
+   "src": "autshumato",
+   "t": "Nta re lebe sekao fa tlase fa re bone gore se ka diriswa jang."
+  },
+  {
+   "e": "As stated before, let me reiterate that my conscience is clear.",
+   "src": "autshumato",
+   "t": "Jaaka go kailwe pejana, nta ke boeletse gore letswalo la me le phepa."
+  }
+ ],
+ "ntate": [
+  {
+   "e": "grandfather",
+   "src": "app",
+   "t": "ntate mogolo"
+  },
+  {
+   "e": "My father died two weeks ago.",
+   "src": "autshumato",
+   "t": "Ntate wa me o tlhokofetse dibeke tse pedi tse di fetileng."
+  },
+  {
+   "e": "I started to do mechanics in 1995 when I was taught by my father.",
+   "src": "autshumato",
+   "t": "Ke simolotse go dira bomakheneke ka 1995 ke bo rutiwa ke ntate."
+  }
+ ],
+ "nthuse": [
+  {
+   "e": "Please help me - I want to farm!",
+   "src": "autshumato",
+   "t": "Nthuse tsweetswee - ke batla go dira temothuo!"
+  },
+  {
+   "e": "(In the case of an oath: So help me God.)",
+   "src": "autshumato",
+   "t": "(Fa ele maikano: A Modimo a nthuse jalo.)"
+  },
+  {
+   "e": "(In the case of an oath: So help me God.)",
+   "src": "autshumato",
+   "t": "(Fa e le maikano: A Modimo o nthuse jalo.)"
+  }
+ ],
+ "ntlo": [
+  {
+   "e": "House one and two.",
+   "src": "autshumato",
+   "t": "Ntlo 1 le 2."
+  },
+  {
+   "e": "House and home",
+   "src": "autshumato",
+   "t": "Legae le ntlo."
+  },
+  {
+   "e": "House prepared.",
+   "src": "autshumato",
+   "t": "Ntlo e baakantswe."
+  }
+ ],
+ "ntsa": [
+  {
+   "e": "I have a dog",
+   "src": "app",
+   "t": "Ke na le ntša"
+  }
+ ],
+ "ntshe": [
+  {
+   "e": "How much to produce?",
+   "src": "autshumato",
+   "t": "Ke ntshe go le kana kang?"
+  },
+  {
+   "e": "Should I not produce other or alternative products?",
+   "src": "autshumato",
+   "t": "A e seng gore ke ntshe dikuno tse dingwe?"
+  },
+  {
+   "e": "Do not produce a product if you do not have a market.",
+   "src": "autshumato",
+   "t": "Se ntshe kuno epe fa o se na mmaraka wa yona."
+  }
+ ],
+ "ntwa": [
+  {
+   "e": "We shall keep up the fight!",
+   "src": "autshumato",
+   "t": "Re tlaa tsweletsa ntwa!"
+  },
+  {
+   "e": "It is essential to end the fighting.",
+   "src": "autshumato",
+   "t": "Go botlhokwa go khutlisa ntwa."
+  },
+  {
+   "e": "The fight against corruption also continues.",
+   "src": "autshumato",
+   "t": "Ntwa kgatlhong le bobodu le yona e a tswelela."
+  }
+ ],
+ "nwa": [
+  {
+   "e": "Do not drink and drive.",
+   "src": "autshumato",
+   "t": "O se ke wa nwa o kgweetsa."
+  },
+  {
+   "e": "The time of drinking alcohol during pregnancy.",
+   "src": "autshumato",
+   "t": "Nako ya go nwa nnotagi e le moimana."
+  },
+  {
+   "e": "This is the time to eat, drink and be merry.",
+   "src": "autshumato",
+   "t": "E ke nako ya go ja, nwa le go itumela."
+  }
+ ],
+ "nyala": [
+  {
+   "e": "In 2007 he married Nonhlanhla Mavuso and they have no children.",
+   "src": "autshumato",
+   "t": "Ka 2007 o ne a nyala Nonhlanhla Mavuso, mme ga ba na bana."
+  },
+  {
+   "e": "Application to get married under customary law",
+   "src": "autshumato",
+   "t": "Kopo ya nyala ka fa tlase ga molao wa lenyalo la setso"
+  },
+  {
+   "e": "Tell me once for all, are you engaged to him?",
+   "src": "autshumato",
+   "t": "Mpolele jaanong, a o mo tshepisitse go mo nyala?"
+  }
+ ],
+ "oma": [
+  {
+   "e": "The early summer season has been very difficult and dry.",
+   "src": "autshumato",
+   "t": "Tshimologo ya setlha sa selemo e ntse bokete thata le go oma."
+  },
+  {
+   "e": "This will coat the hose linings to prevent drying out and cracking.",
+   "src": "autshumato",
+   "t": "Se se tlaa silega legare la lethompo go thibela go oma le go phanyega."
+  },
+  {
+   "e": "This will coat the hose linings to prevent drying out and cracking.",
+   "src": "autshumato",
+   "t": "Se se tlaa simega boteng jwa lethompo go thibela go oma le go phanyega."
+  }
+ ],
+ "otla": [
+  {
+   "e": "If you can't feed it, don't keep it!",
+   "src": "autshumato",
+   "t": "Fa o sa kgone go e otla se nne le yona!"
+  },
+  {
+   "e": "This land does not produce sufficient feed to maintain animals.",
+   "src": "autshumato",
+   "t": "Tshimo e ga e ume dijo ka tshwanelo go otla diruiwa."
+  },
+  {
+   "e": "That R8 000 from the sale of one cow can feed 20 cows for a month.",
+   "src": "autshumato",
+   "t": "Go rekisa kgomo ka R8 000 go ka otla dikgomo tse 20 ka kgwedi."
+  }
+ ],
+ "palama": [
+  {
+   "e": "I climbed a rock and I think this is an island.",
+   "src": "autshumato",
+   "t": "Ke palame letlapa mme ke nagana se ke setlhakatlhake."
+  },
+  {
+   "e": "riding stunts",
+   "src": "autshumato",
+   "t": "matsetseleko a go palama"
+  },
+  {
+   "e": "Dr Eloff and President Zuma share a stage",
+   "src": "autshumato",
+   "t": "Ngk Eloff le Moporesitente Zuma ba palama serala mmogo"
+  }
+ ],
+ "pampiri": [
+  {
+   "e": "Folded paper.",
+   "src": "autshumato",
+   "t": "Pampiri e e mennweng."
+  },
+  {
+   "e": "Do NOT use graph paper.",
+   "src": "autshumato",
+   "t": "SE dirise pampiri ya kerafo."
+  },
+  {
+   "e": "The duration of the paper is 3 hours.",
+   "src": "autshumato",
+   "t": "Paka ya pampiri e ke diura tse 3."
+  }
+ ],
+ "pedi": [
+  {
+   "e": "Two cows",
+   "src": "app",
+   "t": "Dikgomo di le pedi"
+  },
+  {
+   "e": "The two cows are eating",
+   "src": "app",
+   "t": "Dikgomo tse pedi di a ja"
+  },
+  {
+   "e": "Married with two children.",
+   "src": "autshumato",
+   "t": "E nyetswe ka bana ba le pedi."
+  }
+ ],
+ "pelo": [
+  {
+   "e": "The effects are heartbreaking.",
+   "src": "autshumato",
+   "t": "Go tlhomole pelo tota."
+  },
+  {
+   "e": "It strikes at the heart of freedom.",
+   "src": "autshumato",
+   "t": "E tlhaba pelo ya kgololosego."
+  },
+  {
+   "e": "Frikkie spoke the language of the heart which is agriculture.",
+   "src": "autshumato",
+   "t": "Frikkie o ne a bua puo ya pelo, e leng temo."
+  }
+ ],
+ "pene": [
+  {
+   "e": "It is a pen-and-paper test.",
+   "src": "autshumato",
+   "t": "Ke teko ya pene-le-letlhare."
+  },
+  {
+   "e": "Will you use a pen and paper, laptop computer, or tape recorder?",
+   "src": "autshumato",
+   "t": "A o dirisa pene le pampiri, khomphiutha ya lepothopo, kgotsa segatisi?"
+  }
+ ],
+ "peo": [
+  {
+   "e": "Check the seed.",
+   "src": "autshumato",
+   "t": "Tlhatlhoba peo."
+  },
+  {
+   "e": "The seed starts to harden.",
+   "src": "autshumato",
+   "t": "Peo e simolola go oma."
+  },
+  {
+   "e": "Where will you buy your seed?",
+   "src": "autshumato",
+   "t": "O tlaa reka kae peo ya gago?"
+  }
+ ],
+ "petsana": [
+  {
+   "e": "The greater the demand for a specific yearling, the higher the price will be.",
+   "src": "autshumato",
+   "t": "Fa topo ya petsana nngwe e le ntsi tlhotlhwa e tla nna e oketsega."
+  }
+ ],
+ "phakela": [
+  {
+   "e": "I bathe in the morning",
+   "src": "app",
+   "t": "Ke tlhapa phakela"
+  },
+  {
+   "e": "I wake up at 6 in the morning",
+   "src": "app",
+   "t": "Ke tsoga ka 6 phakela"
+  },
+  {
+   "e": "I want to go to the shops in the",
+   "src": "pc",
+   "t": "ke batla go ya shopong phakela"
+  }
+ ],
+ "phala": [
+  {
+   "e": "There are people who know better.",
+   "src": "autshumato",
+   "t": "Go na le batho ba ba nang kitso go go phala."
+  },
+  {
+   "e": "It has always been proven that new elite genetics will outperform the old ones.",
+   "src": "autshumato",
+   "t": "Go setse go supilwe gore tse dintšha di phala tsa kgale ka kumo."
+  },
+  {
+   "e": "Cowpeas can usually tolerate drought better than maize.",
+   "src": "autshumato",
+   "t": "Dinawa gantsi di kgona go tswelela fa go omeletse go phala mmidi."
+  }
+ ],
+ "phaletshe": [
+  {
+   "e": "A farmer exchanging his mealies for maize meal.",
+   "src": "autshumato",
+   "t": "Molemirui o ananya mmidi wa gagwe le phaletšhe."
+  },
+  {
+   "e": "Cost of 1 ton of maize meal",
+   "src": "autshumato",
+   "t": "Tlhotlhwa ya tono e le nngwe ya phaletšhe"
+  },
+  {
+   "e": "Cost of home grown maize meal milled",
+   "src": "autshumato",
+   "t": "Tlhotlhwa ya mmidi wa mo gae o sidilwe e le phaletšhe"
+  }
+ ],
+ "phetiso": [
+  {
+   "e": "Handles of planting tools should be designed to minimize the transmission",
+   "src": "autshumato",
+   "t": "Matshwaro a dithulusu tsa go jala a tshwanetse go diriwa go fokotsa phetiso"
+  },
+  {
+   "e": "Information transfer.",
+   "src": "autshumato",
+   "t": "Phetiso ya tshedimosetso."
+  }
+ ],
+ "philo": [
+  {
+   "e": "artificial kidney",
+   "src": "autshumato",
+   "t": "philo ya maitirelo"
+  }
+ ],
+ "phologolo": [
+  {
+   "e": "Size of animal",
+   "src": "autshumato",
+   "t": "Bogolo jwa phologolo."
+  },
+  {
+   "e": "Usually, the larger the animal, the more it will eat.",
+   "src": "autshumato",
+   "t": "Gantsi fa phologolo e le kgolo e tlaa ja thata."
+  },
+  {
+   "e": "Every stage is on a different animal.",
+   "src": "autshumato",
+   "t": "Kgato nngwe le nngwe e ka ga phologolo e e farologaneng."
+  }
+ ],
+ "pitsa": [
+  {
+   "e": "pressure-cooker",
+   "src": "autshumato",
+   "t": "pitsa ya setimi"
+  }
+ ],
+ "pitse": [
+  {
+   "e": "A black horse",
+   "src": "app",
+   "t": "Pitse e ntsho"
+  },
+  {
+   "e": "A white horse",
+   "src": "app",
+   "t": "Pitse e tshweu"
+  },
+  {
+   "e": "Horse, record book.",
+   "src": "autshumato",
+   "t": "Pitse, buka ya direkoto."
+  }
+ ],
+ "podi": [
+  {
+   "e": "I have a goat",
+   "src": "app",
+   "t": "Ke na le podi"
+  },
+  {
+   "e": "The goat does not think of the consequences.",
+   "src": "autshumato",
+   "t": "Podi ga e nagane ka ditlamorago."
+  },
+  {
+   "e": "Favourite food: Goat stew",
+   "src": "autshumato",
+   "t": "Dijo tse ke di ratang thata: Setšhuu sa podi"
+  }
+ ],
+ "poo": [
+  {
+   "e": "Then again, it might have been an act of robbery.",
+   "src": "autshumato",
+   "t": "Mme gape, e ka tswa e ne e le tiro ya go tshwarwa poo."
+  },
+  {
+   "e": "He also robbed her of a small amount of cash.",
+   "src": "autshumato",
+   "t": "Gape o ne a mo tseela madinyana fa a ne a mo tshwara poo."
+  },
+  {
+   "e": "Getting down to business with the Programme for Emerging Managers",
+   "src": "autshumato",
+   "t": "Tshwara poo ka manaka mo Porokerameng ya Balaodi ba Bokamoso"
+  }
+ ],
+ "poso": [
+  {
+   "e": "The Post Corporate World.",
+   "src": "autshumato",
+   "t": "Poso ya Lefatshe la Tiro."
+  },
+  {
+   "e": "The outcome of the application will be posted to the applicant.",
+   "src": "autshumato",
+   "t": "Dipoelo tsa kopo di tla romelelwa modirakopo ka poso."
+  },
+  {
+   "e": "Provide the member's residential as well as postal address.",
+   "src": "autshumato",
+   "t": "Neela ka aterese ya poso le ya lefelo la bonno ya tokololo."
+  }
+ ],
+ "potso": [
+  {
+   "e": "The question remains.",
+   "src": "autshumato",
+   "t": "Potso e a sala."
+  },
+  {
+   "e": "Last question.",
+   "src": "autshumato",
+   "t": "Potso ya bofelo."
+  },
+  {
+   "e": "The nature of the question.",
+   "src": "autshumato",
+   "t": "Mofuta wa potso."
+  }
+ ],
+ "pula": [
+  {
+   "e": "The expected rainfall;",
+   "src": "autshumato",
+   "t": "Pula e e solofetsweng."
+  },
+  {
+   "e": "When do you expect to get the rain?",
+   "src": "autshumato",
+   "t": "O solofela go bona pula leng?"
+  },
+  {
+   "e": "What is your expected annual rainfall?",
+   "src": "autshumato",
+   "t": "O solofela pula ya ngwaga ya bokae?"
+  }
+ ],
+ "rata": [
+  {
+   "e": "Do you like coffee?",
+   "src": "app",
+   "t": "O rata kofi?"
+  },
+  {
+   "e": "I like meat a lot",
+   "src": "app",
+   "t": "Ke rata nama thata"
+  },
+  {
+   "e": "I like animals",
+   "src": "app",
+   "t": "Ke rata diphologolo"
+  }
+ ],
+ "raya": [
+  {
+   "e": "Say what to whom?",
+   "src": "autshumato",
+   "t": "O raya mang o reng?"
+  },
+  {
+   "e": "We want to say to them agriculture is Cool.",
+   "src": "autshumato",
+   "t": "Re batla go ba raya re re temothuo e Siame."
+  },
+  {
+   "e": "When I say that your time has expired, it means it has expired.",
+   "src": "autshumato",
+   "t": "Fa ke re nako ya gago e fedile, ke raya gore e fedile."
+  }
+ ],
+ "reetsa": [
+  {
+   "e": "Listen to others.",
+   "src": "autshumato",
+   "t": "Reetsa ba bangwe."
+  },
+  {
+   "e": "Try using empathetic listening.",
+   "src": "autshumato",
+   "t": "Leka go reetsa ka thata."
+  },
+  {
+   "e": "We are listening closely.",
+   "src": "autshumato",
+   "t": "Re reeditse ka tlhoafalo."
+  }
+ ],
+ "reka": [
+  {
+   "e": "She needs to buy food and",
+   "src": "pc",
+   "t": "o tlhôka go reka dijo le diaparo"
+  },
+  {
+   "e": "Buy the grain.",
+   "src": "autshumato",
+   "t": "Reka dithoro."
+  },
+  {
+   "e": "Where will you buy your seed?",
+   "src": "autshumato",
+   "t": "O tlaa reka kae peo ya gago?"
+  }
+ ],
+ "rekisa": [
+  {
+   "e": "Will I sell on a forward contract?",
+   "src": "autshumato",
+   "t": "A ke tlaa rekisa ka konteraka?"
+  },
+  {
+   "e": "Start by selling the unproductive animals.",
+   "src": "autshumato",
+   "t": "Simolola ka go rekisa loruo lo lo sa tsaleng."
+  },
+  {
+   "e": "I will sell it for at least 19.",
+   "src": "autshumato",
+   "t": "Ke tla e rekisa ka selekanyo se se kana ka 19."
+  }
+ ],
+ "robala": [
+  {
+   "e": "Good night (sleep well)",
+   "src": "app",
+   "t": "Robala sentle"
+  },
+  {
+   "e": "She used to sleep inside the house.",
+   "src": "autshumato",
+   "t": "O ne a robala mo tlung ka gale."
+  },
+  {
+   "e": "Changes in sleeping and eating patterns.",
+   "src": "autshumato",
+   "t": "Phetogo ka ntlha ya go ja le go robala."
+  }
+ ],
+ "robedi": [
+  {
+   "e": "What did the zero say to the eight?",
+   "src": "autshumato",
+   "t": "Nnoto e rileng go robedi?"
+  },
+  {
+   "e": "Eight of these are registered in the USA.",
+   "src": "autshumato",
+   "t": "Di le robedi di kwadisitswe ka kwa USA."
+  },
+  {
+   "e": "Answer TWO of the eight questions.",
+   "src": "autshumato",
+   "t": "Ara dipotso di le PEDI tsa di le robedi."
+  }
+ ],
+ "robongwe": [
+  {
+   "e": "The training lasts up to nine months.",
+   "src": "autshumato",
+   "t": "Katiso e fitlha go dikgwedi di le robongwe."
+  },
+  {
+   "e": "There were only nine pharmacists.",
+   "src": "autshumato",
+   "t": "Go ne go na le badiri ba melemo ba le robongwe."
+  },
+  {
+   "e": "Nine out of 10 households have access to water.",
+   "src": "autshumato",
+   "t": "Magae a le robongwe mo go a le 10 a fitlhelela metsi."
+  }
+ ],
+ "rra": [
+  {
+   "e": "Hello / good day, sir",
+   "src": "app",
+   "t": "Dumela rra"
+  },
+  {
+   "e": "There is no hatred, sir.",
+   "src": "autshumato",
+   "t": "Ga go letlhoo, rra."
+  },
+  {
+   "e": "I would urge you, sir, to allow him to finish.",
+   "src": "autshumato",
+   "t": "Ke batla go go rotloetsa go mo letla gore a fetse rra."
+  }
+ ],
+ "rre": [
+  {
+   "e": "The next moment my father came in the room and gave both of us a hiding.",
+   "src": "autshumato",
+   "t": "Go se kgale rre o tlabo a tsena mo phaposing mme a re itaye."
+  },
+  {
+   "e": "It can be the father, married people, a single person or family.",
+   "src": "autshumato",
+   "t": "E ka nna rre, batho ba ba nyalaneng, mongwe yo o nyalang kgotsa lelapa."
+  },
+  {
+   "e": "New father to head NWU family",
+   "src": "autshumato",
+   "t": "Rre yo moša yo e tlileng go nna tlhogo ya lelapa la YBB"
+  }
+ ],
+ "ruta": [
+  {
+   "e": "I taught",
+   "src": "app",
+   "t": "Ke rutile"
+  },
+  {
+   "e": "She",
+   "src": "app",
+   "t": "O ne a ruta"
+  },
+  {
+   "e": "I will teach",
+   "src": "app",
+   "t": "Ke tla ruta"
+  }
+ ],
+ "rwala": [
+  {
+   "e": "It carries in excess of 12 million passengers per annum.",
+   "src": "autshumato",
+   "t": "E rwala bapalami ba feta dimilione tse 12 ka ngwaga."
+  },
+  {
+   "e": "Strong wind can carry sparks as far as one kilometre.",
+   "src": "autshumato",
+   "t": "Phefo e e maatla e ka rwala ditlhase bokgakala jwa khilomitara e le nngwe."
+  },
+  {
+   "e": "Be socially responsible.",
+   "src": "autshumato",
+   "t": "Rwala boikarabelo jaaka moagi."
+  }
+ ],
+ "sa": [
+  {
+   "e": "I did not",
+   "src": "pc",
+   "t": "sa batle"
+  },
+  {
+   "e": "You did not want",
+   "src": "app",
+   "t": "O ne o sa batle"
+  },
+  {
+   "e": "She",
+   "src": "app",
+   "t": "O ne a sa batle"
+  }
+ ],
+ "sala": [
+  {
+   "e": "The question remains.",
+   "src": "autshumato",
+   "t": "Potso e a sala."
+  },
+  {
+   "e": "They must remain.",
+   "src": "autshumato",
+   "t": "Ba tshwanetse go sala."
+  },
+  {
+   "e": "Various challenges remain.",
+   "src": "autshumato",
+   "t": "Go setse dikgwetlho dingwe."
+  }
+ ],
+ "seatla": [
+  {
+   "e": "I remember to raise my hand.",
+   "src": "autshumato",
+   "t": "Ke gakologelwa go emisa seatla sa me."
+  },
+  {
+   "e": "Where he stumbles we will hold out a hand.",
+   "src": "autshumato",
+   "t": "Fa a kgopiwa re tla mo tshwara ka seatla."
+  },
+  {
+   "e": "Loose hand tools.",
+   "src": "autshumato",
+   "t": "Dithulusu tsa seatla tse di sa tshwaraganang."
+  }
+ ],
+ "sebete": [
+  {
+   "e": "liver transplant",
+   "src": "autshumato",
+   "t": "jalolo ya sebete"
+  },
+  {
+   "e": "liver salt",
+   "src": "autshumato",
+   "t": "letswai la sebete"
+  },
+  {
+   "e": "Performs with confidence and enthusiasm.",
+   "src": "autshumato",
+   "t": "Diragatsa ka sebete le maikemisetso."
+  }
+ ],
+ "sefatlhego": [
+  {
+   "e": "This is a facial challenge.",
+   "src": "autshumato",
+   "t": "Se ke kgwetlo ya tsa sefatlhego."
+  },
+  {
+   "e": "O is the centre of the clock face.",
+   "src": "autshumato",
+   "t": "O ke bogare ba sefatlhego sa tshupanako."
+  },
+  {
+   "e": "I do not do this because I like my own face.",
+   "src": "autshumato",
+   "t": "Ga ke dire se gonne ke rata sefatlhego sa me."
+  }
+ ],
+ "sega": [
+  {
+   "e": "The delegation advised the municipality to cut the grass in the area.",
+   "src": "autshumato",
+   "t": "Baemedi ba laetse mmasepala go sega tlhaga mo lefelong leo."
+  },
+  {
+   "e": "The head of a tool for cutting and splitting should be fixed",
+   "src": "autshumato",
+   "t": "Tlhogo ya thulusu ya go sega le go kgaola e tshwanetse go diriwa ka"
+  },
+  {
+   "e": "A knife blade is then used to slice gently through the exposed soil in the profile hole.",
+   "src": "autshumato",
+   "t": "Thipa e ka dirisiwa go sega mmu o o bonwang mo mosimeng wa thalotlhakore."
+  }
+ ],
+ "sehuba": [
+  {
+   "e": "chest cavity",
+   "src": "autshumato",
+   "t": "logapa lwa sehuba"
+  },
+  {
+   "e": "Government is serious and committed to the fight against corruption.",
+   "src": "autshumato",
+   "t": "Puso e ikemiseditse le go itittaya sehuba go lwantsha bonweenwee."
+  },
+  {
+   "e": "breast",
+   "src": "autshumato",
+   "t": "sehuba, letsele"
+  }
+ ],
+ "sejana": [
+  {
+   "e": "Check the pre-cleaner bowl.",
+   "src": "autshumato",
+   "t": "Tšheka sejana sa setlhatswapele."
+  },
+  {
+   "e": "Check the fuel sediment bowl.",
+   "src": "autshumato",
+   "t": "Tšheka sejana sa magweregwere a lookwane."
+  },
+  {
+   "e": "And we are determined to make a success of it.",
+   "src": "autshumato",
+   "t": "Re itomile sesino gore sejana se se atlege."
+  }
+ ],
+ "sekgwa": [
+  {
+   "e": "This will subsequently create a thick plantation.",
+   "src": "autshumato",
+   "t": "Ntlha e e tla tlhogisa sekgwa se se pila tota."
+  },
+  {
+   "e": "State forest land or parts of it may be closed.",
+   "src": "autshumato",
+   "t": "Setsha sa sekgwa sa puso kgotsa dikarolo tsa sone di ka nna tsa tswalwa."
+  },
+  {
+   "e": "tropical forest",
+   "src": "autshumato",
+   "t": "sekgwa sa boboatsatsi"
+  }
+ ],
+ "sekgwama": [
+  {
+   "e": "There needs to be a more clearly defined and specialized public purse for older people.",
+   "src": "autshumato",
+   "t": "Go tlhokega tlhaloso e e bonagalang thata le go itebaganya le sekgwama sa bagodi."
+  }
+ ],
+ "sekolo": [
+  {
+   "e": "School of Theology.",
+   "src": "autshumato",
+   "t": "Sekolo sa Bodumedi."
+  },
+  {
+   "e": "But school is not what it has always been.",
+   "src": "autshumato",
+   "t": "Fela sekolo se fetogile."
+  },
+  {
+   "e": "Language that the school offers.",
+   "src": "autshumato",
+   "t": "Puo e sekolo se e rutang."
+  }
+ ],
+ "sela": [
+  {
+   "e": "Pick up header",
+   "src": "autshumato",
+   "t": "Tlhogwana ya go sela"
+  },
+  {
+   "e": "We have had enough.",
+   "src": "autshumato",
+   "t": "Re setse re utlwile."
+  },
+  {
+   "e": "How you are at home already?",
+   "src": "autshumato",
+   "t": "O setse o gorogile gae?"
+  }
+ ],
+ "selaole": [
+  {
+   "e": "Possible purple coloration on some part of the plant.",
+   "src": "autshumato",
+   "t": "Mmala o o kgonegang wa selaole mo dikarolong dingwe tsa semela."
+  },
+  {
+   "e": "Mainly annual grasses, yellow and purple nutsedge.",
+   "src": "autshumato",
+   "t": "Bogolosegolo ditlhaga tsa sengwaga, tlhorungwe e tshetlha le e selaole."
+  }
+ ],
+ "selemo": [
+  {
+   "e": "Enjoy the breather that is the summer vacation.",
+   "src": "autshumato",
+   "t": "Itumeleleng boikhutso jwa paka ya selemo."
+  },
+  {
+   "e": "Summer weed control is also very important.",
+   "src": "autshumato",
+   "t": "Go laola mefero ka nako ya selemo go botlhokwa thata."
+  },
+  {
+   "e": "This summer season has been very challenging.",
+   "src": "autshumato",
+   "t": "Setlha seno sa selemo se ntse le dikgwetlho tse dintsi."
+  }
+ ],
+ "senya": [
+  {
+   "e": "And to destroy it.",
+   "src": "autshumato",
+   "t": "Le go e senya."
+  },
+  {
+   "e": "And they destroy our humanity.",
+   "src": "autshumato",
+   "t": "Mme di senya botho ba rona."
+  },
+  {
+   "e": "These conflicts destroy life.",
+   "src": "autshumato",
+   "t": "Dikgotlhang tse di senya matshelo."
+  }
+ ],
+ "sera": [
+  {
+   "e": "It is a common enemy affecting us equally.",
+   "src": "autshumato",
+   "t": "Ke sera se tlwaelegileng se se re amang ka go lekana."
+  },
+  {
+   "e": "Predators - friend or foe?",
+   "src": "autshumato",
+   "t": "Dibatana - thaka kgotsa sera?"
+  },
+  {
+   "e": "Friend or foe",
+   "src": "autshumato",
+   "t": "Tsala kgotsa sera"
+  }
+ ],
+ "serai": [
+  {
+   "e": "Check sand trap to make sure sand is not building up.",
+   "src": "autshumato",
+   "t": "Tlhola serai sa motlhaba go bona gore motlhaba ga o a tlala moo."
+  }
+ ],
+ "seretse": [
+  {
+   "e": "It comes away with a piece of mud.",
+   "src": "autshumato",
+   "t": "E a tswa ka go dirisa karolo ya seretse."
+  },
+  {
+   "e": "The work of the world is as common as mud.",
+   "src": "autshumato",
+   "t": "Tiro ya lefatshe e gotlhe jaaka seretse."
+  },
+  {
+   "e": "This causes the area to be very muddy and encourages mosquitoes.",
+   "src": "autshumato",
+   "t": "Seno se dira gore tikologo eo e nne seretse e bile e bitsa monang."
+  }
+ ],
+ "serurubele": [
+  {
+   "e": "Butterfly specie named after a NWU lecturer",
+   "src": "autshumato",
+   "t": "Mofuta wa serurubele o teeletswe ka motlhatlheledi wa YBB"
+  },
+  {
+   "e": "Diamond Back Moth (Plutella xylostella) (Add photo 1 here)",
+   "src": "autshumato",
+   "t": "Serurubele sa Teemane e Ntsho (Plutella xylostella) (Add photo 1 here)"
+  }
+ ],
+ "sesepa": [
+  {
+   "e": "This is also a good time to clean the tyres with mild soapy water.",
+   "src": "autshumato",
+   "t": "Ke nako gape ya go di tlhatswa ka sesepa le metsi."
+  },
+  {
+   "e": "wash hands with soap frequently",
+   "src": "autshumato",
+   "t": "tlhapa diatla ka sesepa kgapetsakgapetsa"
+  }
+ ],
+ "sethunya": [
+  {
+   "e": "The middle design must therefore also be a vase with a flower.",
+   "src": "autshumato",
+   "t": "Ka mo gare ga popo gape go tshwanetse go nne le morufašeše ka sethunya."
+  },
+  {
+   "e": "But you had a gun.",
+   "src": "autshumato",
+   "t": "Fela o ne o na le sethunya."
+  },
+  {
+   "e": "All players teed off at 05: 15 with a shotgun start.",
+   "src": "autshumato",
+   "t": "Batshameki botlhe ba simolotse ka 05: 15 morago ga go thuntsha ga sethunya."
+  }
+ ],
+ "setilo": [
+  {
+   "e": "Speaker's Chair",
+   "src": "autshumato",
+   "t": "Setilo sa Mmusakgotla"
+  },
+  {
+   "e": "It is still used as the seat of the Provincial Legislature.",
+   "src": "autshumato",
+   "t": "E santse e dirisiwa jaaka setilo sa Peomolao ya Porofense."
+  },
+  {
+   "e": "The presiding officer of a legislative assembly.",
+   "src": "autshumato",
+   "t": "Motlhankedi yo o kotameng setilo sa tsamaiso ya kokoanotheramelao."
+  }
+ ],
+ "setlha": [
+  {
+   "e": "Length of season.",
+   "src": "autshumato",
+   "t": "Boleele jwa setlha."
+  },
+  {
+   "e": "Good luck for this season!",
+   "src": "autshumato",
+   "t": "Tsela tshweu ka setlha se!"
+  },
+  {
+   "e": "The season of violence is over.",
+   "src": "autshumato",
+   "t": "Setlha sa tirisodikgoka se fedile."
+  }
+ ],
+ "setlhare": [
+  {
+   "e": "Natural forest tree",
+   "src": "autshumato",
+   "t": "Setlhare sa naga"
+  },
+  {
+   "e": "peach tree",
+   "src": "autshumato",
+   "t": "setlhare sa perekisi"
+  },
+  {
+   "e": "Most of the plant nutrients are absorbed.",
+   "src": "autshumato",
+   "t": "Bontsi jwa dikotlo tsa setlhare bo monnwe."
+  }
+ ],
+ "setswana": [
+  {
+   "e": "I am learning Setswana",
+   "src": "app",
+   "t": "Ke ithuta Setswana"
+  },
+  {
+   "e": "They will learn Setswana",
+   "src": "app",
+   "t": "Ba tla ithuta Setswana"
+  },
+  {
+   "e": "I was learning Setswana",
+   "src": "app",
+   "t": "Ke ne ke ithuta Setswana"
+  }
+ ],
+ "siama": [
+  {
+   "e": "Goodbye / it's fine / OK",
+   "src": "app",
+   "t": "Go siame"
+  },
+  {
+   "e": "I'm all right.",
+   "src": "autshumato",
+   "t": "Ke siame."
+  },
+  {
+   "e": "Is she fine?",
+   "src": "autshumato",
+   "t": "A o siame?"
+  }
+ ],
+ "simolola": [
+  {
+   "e": "It all starts here",
+   "src": "app",
+   "t": "Gotlhe go simolola fano"
+  },
+  {
+   "e": "Where do we begin?",
+   "src": "autshumato",
+   "t": "Re simolola kae?"
+  },
+  {
+   "e": "Why begin here?",
+   "src": "autshumato",
+   "t": "Goreng re simolola fa?"
+  }
+ ],
+ "soka": [
+  {
+   "e": "Adjust the tool rest.",
+   "src": "autshumato",
+   "t": "Soka moikaego wa sedirisiwa."
+  },
+  {
+   "e": "Use calculations to manipulate the data to show explanations.",
+   "src": "autshumato",
+   "t": "Dirisa dipalelo go soka datha go supa ditlhaloso."
+  },
+  {
+   "e": "Explain, giving examples, the need for adjustments to schedules.",
+   "src": "autshumato",
+   "t": "Tlhalosa, o neela dikao, tlhokego ya go soka dithulaganyo."
+  }
+ ],
+ "sukiri": [
+  {
+   "e": "The producer manufactures maize, sunflower and sugar from sunshine!",
+   "src": "autshumato",
+   "t": "Montshakuno o dira mmidi, sonobolomo le sukiri go tswa kgalalelong ya letsatsi!"
+  },
+  {
+   "e": "sugar mill",
+   "src": "autshumato",
+   "t": "tshilo ya sukiri"
+  },
+  {
+   "e": "sugar crystal",
+   "src": "autshumato",
+   "t": "kgaragana ya sukiri"
+  }
+ ],
+ "supa": [
+  {
+   "e": "It consists of a cluster of seven villages.",
+   "src": "autshumato",
+   "t": "E akaretsa setlhopha sa metse e le supa."
+  },
+  {
+   "e": "Write only the seven questions in your answer book.",
+   "src": "autshumato",
+   "t": "Kwala fela dipotso di le supa mo bukeng ya gago ya dikarabo."
+  },
+  {
+   "e": "He was not paid during his first seven months.",
+   "src": "autshumato",
+   "t": "O ne a sa duelwe mo dikgweding tsa gagwe tsa ntlha tse supa."
+  }
+ ],
+ "swa": [
+  {
+   "e": "Lower leaves on the plant also die off.",
+   "src": "autshumato",
+   "t": "Matlhare a a kwa tlase e e swa."
+  },
+  {
+   "e": "We are all going to die and that is what we came for.",
+   "src": "autshumato",
+   "t": "Rotlhe re ile go swa mme ke seo re se tletseng."
+  },
+  {
+   "e": "Infected plants eventually die.",
+   "src": "autshumato",
+   "t": "Dimela tse di tshwaetsegileng kwa bofelong di a swa."
+  }
+ ],
+ "sweu": [
+  {
+   "e": "The hind wings are white to grey-brown.",
+   "src": "autshumato",
+   "t": "Mmala wa mafuka ka fa morago o sweu go ya bosetlha go fetogela borokwa."
+  }
+ ],
+ "tafole": [
+  {
+   "e": "Split the table.",
+   "src": "autshumato",
+   "t": "Arola tafole."
+  },
+  {
+   "e": "Complete the table with the information.",
+   "src": "autshumato",
+   "t": "Tlatsa tafole ka tshedimosetso."
+  },
+  {
+   "e": "Call the table Party Themes.",
+   "src": "autshumato",
+   "t": "Bitsa tafole Dintlhakgolo tsa Moletlo."
+  }
+ ],
+ "tau": [
+  {
+   "e": "The Lion of the tribe of Judah",
+   "src": "app",
+   "t": "Tau ya lotso lwa Juda"
+  }
+ ],
+ "tee": [
+  {
+   "e": "I don't want tea",
+   "src": "app",
+   "t": "Ga ke batle tee"
+  },
+  {
+   "e": "The staff at the municipality are reading the newspaper and having tea.",
+   "src": "autshumato",
+   "t": "Badiri ba kwa mmasepaleng ba buisa lekwalodikgang le go nwa tee."
+  }
+ ],
+ "thaba": [
+  {
+   "e": "Situated in a small town, with a beautiful view of the mountain.",
+   "src": "autshumato",
+   "t": "E kwa toropong e nnye, ka pono e e ntle ya thaba."
+  }
+ ],
+ "thakadu": [
+  {
+   "e": "The secretive Aardvark",
+   "src": "autshumato",
+   "t": "Thakadu e e bofitlha"
+  }
+ ],
+ "tharo": [
+  {
+   "e": "But there are three components.",
+   "src": "autshumato",
+   "t": "Mme go diagi tse tharo."
+  },
+  {
+   "e": "More than three weeks.",
+   "src": "autshumato",
+   "t": "Go feta dibeke tse tharo."
+  },
+  {
+   "e": "Then we can keep three.",
+   "src": "autshumato",
+   "t": "Gone re ka tshola tse tharo."
+  }
+ ],
+ "thataro": [
+  {
+   "e": "It may take up to six weeks.",
+   "src": "autshumato",
+   "t": "Go ka tsaya dibeke tse thataro."
+  },
+  {
+   "e": "The other was dismissed, suspended for six months.",
+   "src": "autshumato",
+   "t": "O mongwe o kobile, emiswa dikgwedi le thataro."
+  },
+  {
+   "e": "They are given six months to show the results.",
+   "src": "autshumato",
+   "t": "Ba filwe dikgwedi di le thataro go tlhagisa dipoelo."
+  }
+ ],
+ "thato": [
+  {
+   "e": "My love of the land and farming motivates me.",
+   "src": "autshumato",
+   "t": "Thato ya me go lefatshe le bolemirui e a ntlhotlheletsa."
+  },
+  {
+   "e": "The outcome of these elections is the will of the voters.",
+   "src": "autshumato",
+   "t": "Dipholo tsa ditlhopho tseno ke thato ya batlhophi."
+  },
+  {
+   "e": "We have to live with this, as it is the will of the voters.",
+   "src": "autshumato",
+   "t": "Re tshwanetse go tshela ka se jaaka e le thato ya batlhophi."
+  }
+ ],
+ "thebe": [
+  {
+   "e": "eye shields",
+   "src": "autshumato",
+   "t": "thebe ya matlho"
+  },
+  {
+   "e": "pattern making",
+   "src": "autshumato",
+   "t": "go tlhama thebe"
+  }
+ ],
+ "thipa": [
+  {
+   "e": "Use a pen knife and cut the nodules open.",
+   "src": "autshumato",
+   "t": "Dirisa thipa ya mokopelo go bula dithompola."
+  },
+  {
+   "e": "One of them was armed with a firearm and the other with a knife.",
+   "src": "autshumato",
+   "t": "Mongwe wa bona o ne a tlhometse ka tlhobolo mme yo mongwe ka thipa."
+  },
+  {
+   "e": "A knife blade is then used to slice gently through the exposed soil in the profile hole.",
+   "src": "autshumato",
+   "t": "Thipa e ka dirisiwa go sega mmu o o bonwang mo mosimeng wa thalotlhakore."
+  }
+ ],
+ "thusa": [
+  {
+   "e": "How Can You Help?",
+   "src": "autshumato",
+   "t": "Re ka thusa jang?"
+  },
+  {
+   "e": "To help establish 1.",
+   "src": "autshumato",
+   "t": "Go thusa go tlhama 1."
+  },
+  {
+   "e": "How can the NCPS help?",
+   "src": "autshumato",
+   "t": "NCPS e ka go thusa jang?"
+  }
+ ],
+ "thutafatshe": [
+  {
+   "e": "Geography to include a number of lessons.",
+   "src": "autshumato",
+   "t": "Thutafatshe e akaretsa dithuto di le dintsi."
+  },
+  {
+   "e": "geographical",
+   "src": "autshumato",
+   "t": "ya thutafatshe"
+  },
+  {
+   "e": "Geography type",
+   "src": "autshumato",
+   "t": "Mofuta wa thutafatshe"
+  }
+ ],
+ "thutlwa": [
+  {
+   "e": "The emblem of the Longfellow residence is a giraffe.",
+   "src": "autshumato",
+   "t": "Letshwao la kago ya bonno ya Longfellow ke thutlwa."
+  }
+ ],
+ "tla": [
+  {
+   "e": "Come here",
+   "src": "app",
+   "t": "Tla kwano"
+  },
+  {
+   "e": "When are you coming?",
+   "src": "app",
+   "t": "O tla leng?"
+  },
+  {
+   "e": "You will want",
+   "src": "app",
+   "t": "O tla batla"
+  }
+ ],
+ "tlala": [
+  {
+   "e": "I am hungry",
+   "src": "app",
+   "t": "Ke tshwerwe ke tlala"
+  },
+  {
+   "e": "I am not hungry",
+   "src": "pc",
+   "t": "ga ke a tshwarwa ke tlala"
+  },
+  {
+   "e": "Hunger is not a scourge but a scandal.",
+   "src": "autshumato",
+   "t": "Tlala ga se petso fela ke kgopiso."
+  }
+ ],
+ "tlatsa": [
+  {
+   "e": "Fill in an application form.",
+   "src": "autshumato",
+   "t": "Tlatsa foromo ya kopo."
+  },
+  {
+   "e": "How do I fill in a PAIA request form?",
+   "src": "autshumato",
+   "t": "Nka tlatsa jang foromo ya kopo ya PAIA?"
+  },
+  {
+   "e": "Fill in the class in the field 51 of form TM1.",
+   "src": "autshumato",
+   "t": "Tlatsa mo karoganyetsong 51 ya foromo TM1."
+  }
+ ],
+ "tlelase": [
+  {
+   "e": "I have not attended a class in economics for some time now.",
+   "src": "autshumato",
+   "t": "Ke feditse nakonyana ke sa tsene tlelase ya dithuto tsa ikonomi."
+  },
+  {
+   "e": "Important activities for the drama class:",
+   "src": "autshumato",
+   "t": "Ditiro tse di botlhokwa tsa tlelase ya terama:"
+  }
+ ],
+ "tlhaloganya": [
+  {
+   "e": "Do you understand UIF?",
+   "src": "autshumato",
+   "t": "O tlhaloganya UIF?"
+  },
+  {
+   "e": "Understand the requirements.",
+   "src": "autshumato",
+   "t": "Tlhaloganya ditlhokego."
+  },
+  {
+   "e": "What do we understand by theory?",
+   "src": "autshumato",
+   "t": "O tlhaloganya eng ka tiori?"
+  }
+ ],
+ "tlhalosa": [
+  {
+   "e": "Could you explain?",
+   "src": "autshumato",
+   "t": "A o ka tlhalosa?"
+  },
+  {
+   "e": "Explain these circumstances.",
+   "src": "autshumato",
+   "t": "Tlhalosa maemo ano."
+  },
+  {
+   "e": "Explain the formulae.",
+   "src": "autshumato",
+   "t": "Tlhalosa dikaelo tse."
+  }
+ ],
+ "tlhama": [
+  {
+   "e": "We will continue to invest in infrastructure even as we develop a plan.",
+   "src": "autshumato",
+   "t": "Re tla tswelela pele go dirisetsa madi ditirelo fa re tlhama polane."
+  },
+  {
+   "e": "We invest in the process of creating and developing municipal infrastructure.",
+   "src": "autshumato",
+   "t": "Re beeletsa mo tsamaisong ya go tlhama le go tlhabolola dithulaganyetso tsa mmasepala."
+  },
+  {
+   "e": "They will develop",
+   "src": "autshumato",
+   "t": "Ba tla tlhama."
+  }
+ ],
+ "tlhano": [
+  {
+   "e": "List five.",
+   "src": "autshumato",
+   "t": "Kwala di le tlhano."
+  },
+  {
+   "e": "Mention at least five.",
+   "src": "autshumato",
+   "t": "Umaka bobotlana di le tlhano."
+  },
+  {
+   "e": "He employs five workers, in all.",
+   "src": "autshumato",
+   "t": "O thapa badiri ba ba tlhano, ka palo."
+  }
+ ],
+ "tlhapa": [
+  {
+   "e": "I bathe",
+   "src": "app",
+   "t": "Ke a tlhapa"
+  },
+  {
+   "e": "I bathe in the morning",
+   "src": "app",
+   "t": "Ke tlhapa phakela"
+  },
+  {
+   "e": "He is in the bath.",
+   "src": "autshumato",
+   "t": "O sa tlhapa."
+  }
+ ],
+ "tlhapi": [
+  {
+   "e": "An example of a shell fish is.",
+   "src": "autshumato",
+   "t": "Sekao sa tlhapi ya legapa ke."
+  },
+  {
+   "e": "The quality of fresh fish is observed visually.",
+   "src": "autshumato",
+   "t": "Boleng jwa tlhapi e e foreše bo lemogwa ka pono."
+  },
+  {
+   "e": "They must learn to \" catch the fish \" themselves.",
+   "src": "autshumato",
+   "t": "Ba tshwanetse ba ithute \" go itshwarela tlhapi \"."
+  }
+ ],
+ "tlhatswa": [
+  {
+   "e": "Thoroughly wash all the equipment used.",
+   "src": "autshumato",
+   "t": "Tlhatswa didiriso tsotlhe ka kelotlhoko."
+  },
+  {
+   "e": "Clean the tractor.",
+   "src": "autshumato",
+   "t": "Tlhatswa terekere."
+  },
+  {
+   "e": "Spray machines down and clean out all remaining seed;",
+   "src": "autshumato",
+   "t": "Tlhatswa metšhene mme o tlose peo e e setseng."
+  }
+ ],
+ "tlhogo": [
+  {
+   "e": "I have a headache",
+   "src": "app",
+   "t": "Ke opiwa ke tlhogo"
+  },
+  {
+   "e": "My head still aches",
+   "src": "app",
+   "t": "Tlhogo yame e santse e opa"
+  },
+  {
+   "e": "The head of the penis is exposed.",
+   "src": "autshumato",
+   "t": "Tlhogo ya pipi e ne e tlhagile."
+  }
+ ],
+ "tlhoka": [
+  {
+   "e": "What do you need?",
+   "src": "app",
+   "t": "O tlhoka eng?"
+  },
+  {
+   "e": "I need money",
+   "src": "app",
+   "t": "Ke tlhoka madi"
+  },
+  {
+   "e": "Why does she need a lot of money?",
+   "src": "app",
+   "t": "Ke eng a tlhoka madi a mantsi?"
+  }
+ ],
+ "tlhware": [
+  {
+   "e": "It is not yet known when and how the python escaped from his owner.",
+   "src": "autshumato",
+   "t": "Ga go ise go itsiwe gore tlhware e tšhwamogile leng kgotsa jang go mongayona."
+  }
+ ],
+ "tlisa": [
+  {
+   "e": "How many people do we bring in?",
+   "src": "autshumato",
+   "t": "Re tlisa batho ba ba kae?"
+  },
+  {
+   "e": "It brings unity and closure.",
+   "src": "autshumato",
+   "t": "E tlisa kopano le tswalelo."
+  },
+  {
+   "e": "This brings us to a close.",
+   "src": "autshumato",
+   "t": "Se se re tlisa kwa bokhutlong."
+  }
+ ],
+ "tlola": [
+  {
+   "e": "Leave a line after each answer.",
+   "src": "autshumato",
+   "t": "Tlola mola morago ga karabo nngwe le nngwe."
+  },
+  {
+   "e": "So they will be arrested when they cross our border.",
+   "src": "autshumato",
+   "t": "Ka jalo ba tlaa tshwarwa fa ba tlola melelwane ya rona."
+  },
+  {
+   "e": "Skipping breakfast deprives the body of the fuel needed for energy.",
+   "src": "autshumato",
+   "t": "Go tlola phitlholo ke go tlhokisa mafura a mmele maatla."
+  }
+ ],
+ "tlou": [
+  {
+   "e": "And it has been in gestation for almost as long as an elephant.",
+   "src": "autshumato",
+   "t": "Mme e ntse e dusa sebaka se se tshwanang le sa tlou."
+  },
+  {
+   "e": "elephant grass",
+   "src": "autshumato",
+   "t": "bojang jwa tlou"
+  }
+ ],
+ "tonki": [
+  {
+   "e": "It has donkey like ears and a long round snout.",
+   "src": "autshumato",
+   "t": "E na le ditsebe jaaka tonki le nko e telele e e sediko."
+  }
+ ],
+ "toropo": [
+  {
+   "e": "They say there is a council meeting today at the town hall.",
+   "src": "autshumato",
+   "t": "Ba re go na le kopano ya khansele gompieno kwa holong ya toropo."
+  },
+  {
+   "e": "Please select a town:",
+   "src": "autshumato",
+   "t": "Tlhopha toropo"
+  }
+ ],
+ "tsala": [
+  {
+   "e": "It's his friend.",
+   "src": "autshumato",
+   "t": "Ke tsala ya gagwe."
+  },
+  {
+   "e": "Ask a friend or the lecturer.",
+   "src": "autshumato",
+   "t": "Botsa tsala kgotsa motlhatlheledi."
+  },
+  {
+   "e": "Success breeds its own responsibilities.",
+   "src": "autshumato",
+   "t": "Katlego e tsala maikarabelo a yona."
+  }
+ ],
+ "tsamaya": [
+  {
+   "e": "It’s time up",
+   "src": "pc",
+   "t": "nako e tsamaile"
+  },
+  {
+   "e": "To walk along with him?",
+   "src": "autshumato",
+   "t": "Go tsamaya mmogo le ena?"
+  },
+  {
+   "e": "You are definitely traveling in the right direction.",
+   "src": "autshumato",
+   "t": "Tota o tsamaya mo tseleng e e siameng."
+  }
+ ],
+ "tsaya": [
+  {
+   "e": "May we take it?",
+   "src": "autshumato",
+   "t": "A re ka e tsaya?"
+  },
+  {
+   "e": "Have you taken soil samples?",
+   "src": "autshumato",
+   "t": "A o tsere dikaommu?"
+  },
+  {
+   "e": "Well take a decision.",
+   "src": "autshumato",
+   "t": "Re tla tsaya tshwetso."
+  }
+ ],
+ "tsebe": [
+  {
+   "e": "Who pays for the page?",
+   "src": "autshumato",
+   "t": "Ke mang yo o duelelang tsebe?"
+  },
+  {
+   "e": "Use the next page for your answer.",
+   "src": "autshumato",
+   "t": "Dirisetsa tsebe e e latelang karabo ya gago."
+  },
+  {
+   "e": "The resolution minimises disruption to the user.",
+   "src": "autshumato",
+   "t": "Resolušene e fokotsa go iteega tsebe ga modirisi."
+  }
+ ],
+ "tsela": [
+  {
+   "e": "Method of calculating the price of a product.",
+   "src": "autshumato",
+   "t": "Tsela ya go bala tlhwatlhwa ya kuno."
+  },
+  {
+   "e": "This could be a dangerous path.",
+   "src": "autshumato",
+   "t": "E ka nna tsela e e ka tlisang kotsi."
+  },
+  {
+   "e": "Work in an organised and efficient manner.",
+   "src": "autshumato",
+   "t": "Dira ka thulaganyo le ka tsela e e mosola."
+  }
+ ],
+ "tsena": [
+  {
+   "e": "Come inside",
+   "src": "app",
+   "t": "Tsena mo teng"
+  },
+  {
+   "e": "Did you enter?",
+   "src": "autshumato",
+   "t": "A o tsene?"
+  },
+  {
+   "e": "Entrance is free to the public.",
+   "src": "autshumato",
+   "t": "Botlhe ba tsena mahala."
+  }
+ ],
+ "tsetse": [
+  {
+   "e": "This has given rise to a permanent investment gap.",
+   "src": "autshumato",
+   "t": "Se se tsetse phatlha ya leruri mo peeletsong."
+  }
+ ],
+ "tshaba": [
+  {
+   "e": "I am afraid I have to clear the air here first.",
+   "src": "autshumato",
+   "t": "Ke tshaba gore ke tshwanetse go ntsha se se mo sehubeng."
+  },
+  {
+   "e": "We must not be afraid to tackle new challenges head-on.",
+   "src": "autshumato",
+   "t": "Ga re a tshwanela go tshaba go dira dikgwetlo tse dišwa tse di tlang."
+  },
+  {
+   "e": "work-related health problems because of fears about their job or the",
+   "src": "autshumato",
+   "t": "mathata a pholo, ka go tshaba go ntshiwa mo tirong kgotsa"
+  }
+ ],
+ "tshega": [
+  {
+   "e": "Again I wanted to laugh.",
+   "src": "autshumato",
+   "t": "Gape ke ne ke batla go tshega."
+  },
+  {
+   "e": "People laughed in the house.",
+   "src": "autshumato",
+   "t": "Batho ba ne ba tshega ka mo ntlong."
+  }
+ ],
+ "tshegofatso": [
+  {
+   "e": "What are the benefits of displaying grace?",
+   "src": "autshumato",
+   "t": "Dipoelo tsa go bontsha tshegofatso ke dife?"
+  }
+ ],
+ "tshenekegi": [
+  {
+   "e": "This varies depending on the insect and the stage of development of the plant.",
+   "src": "autshumato",
+   "t": "Se se farologana go ya ka tshenekegi le ka kgatokgolo ya semela."
+  },
+  {
+   "e": "insect bite",
+   "src": "autshumato",
+   "t": "go longwa ke tshenekegi"
+  },
+  {
+   "e": "insect bite",
+   "src": "autshumato",
+   "t": "ntho ya go longwa ke tshenekegi"
+  }
+ ],
+ "tshepe": [
+  {
+   "e": "We're asking you not simply to trust the government to do the running.",
+   "src": "autshumato",
+   "t": "Re lo kopa gore le se tshepe fela puso gore e tla itlhaganela."
+  }
+ ],
+ "tshimo": [
+  {
+   "e": "Imagine that you are going to plant a field of maize.",
+   "src": "autshumato",
+   "t": "Ipone o ya go lema tshimo ya mmidi."
+  },
+  {
+   "e": "A wheat field just outside Caledon.",
+   "src": "autshumato",
+   "t": "Tshimo ya korong fela ka fa ntle ga kwa Caledon."
+  },
+  {
+   "e": "You should harvest from the middle of the field to minimize pollen contamination.",
+   "src": "autshumato",
+   "t": "O tshwanetse go roba go tswa bogareng jwa tshimo go fokotsa kgotlelego ka mmudula."
+  }
+ ],
+ "tshipi": [
+  {
+   "e": "Maize meal is also a rich source of iron especially when it has not been sifted.",
+   "src": "autshumato",
+   "t": "Boupi ba mmidi gape ke motswedi wa tshipi tota fa bo ise bo sefiwe."
+  },
+  {
+   "e": "wrought iron",
+   "src": "autshumato",
+   "t": "tshipi e e obegang"
+  },
+  {
+   "e": "Discuss the advantages of steel construction.",
+   "src": "autshumato",
+   "t": "Tlhalosa mesola ya kago ya tshipi."
+  }
+ ],
+ "tshuba": [
+  {
+   "e": "Overheating could burn up engine parts in a short time.",
+   "src": "autshumato",
+   "t": "Kgotelo e e fetisang e ka tshuba dikarolo tsa enjene ka ponyo ya leitlho."
+  },
+  {
+   "e": "So, go ahead and turn on the light!",
+   "src": "autshumato",
+   "t": "Ka jalo, o ka tshuba dipone jaanong!"
+  },
+  {
+   "e": "Check that all lights are in good working order.",
+   "src": "autshumato",
+   "t": "Tlhokomela gore mabone otlhe a sa tshuba."
+  }
+ ],
+ "tshwara": [
+  {
+   "e": "I am thirsty",
+   "src": "pc",
+   "t": "Ke tshwere ke lenyora"
+  },
+  {
+   "e": "Where he stumbles we will hold out a hand.",
+   "src": "autshumato",
+   "t": "Fa a kgopiwa re tla mo tshwara ka seatla."
+  },
+  {
+   "e": "Hold a meeting with all the personal involved.",
+   "src": "autshumato",
+   "t": "Tshwara kopano le badiri botlhe ba ba amegang."
+  }
+ ],
+ "tshwene": [
+  {
+   "e": "Eish! we're doing well!",
+   "src": "autshumato",
+   "t": "Eish! re ntshitse ga tshwene!"
+  },
+  {
+   "e": "Staff members from the \" InGryp \" Centre are at it again!",
+   "src": "autshumato",
+   "t": "Maloko a badiri a Senthara ya \" InGryp \" a ntshitse ga tshwene gape!"
+  },
+  {
+   "e": "For him, the sky is the limit",
+   "src": "autshumato",
+   "t": "Ene o ntsha ga tshwene"
+  }
+ ],
+ "tsie": [
+  {
+   "e": "19 Joining hands to benefit province",
+   "src": "autshumato",
+   "t": "19 Go tshwaraganela kgetsi ya tsie go thusa porofense"
+  }
+ ],
+ "tsoga": [
+  {
+   "e": "I am not well",
+   "src": "app",
+   "t": "Ga ke a tsoga"
+  },
+  {
+   "e": "I wake up very early",
+   "src": "pc",
+   "t": "ke tsoga makuku"
+  },
+  {
+   "e": "How are you? (sg)",
+   "src": "app",
+   "t": "O tsogile jang?"
+  }
+ ],
+ "tsoma": [
+  {
+   "e": "We can build perches to assist their hunting in the lands.",
+   "src": "autshumato",
+   "t": "Re ka aga mo di ka kotamang go kgona go tsoma mo masimong."
+  },
+  {
+   "e": "Birds like kites, smaller eagles, secretary birds and kestrels all hunt rodents.",
+   "src": "autshumato",
+   "t": "Dinonyane jaaka bophakalane, dintsu, botlhangwe, digootsane tsotlhe di tsoma magotlo."
+  },
+  {
+   "e": "Statements were made to the police who are still looking for the perpetrator.",
+   "src": "autshumato",
+   "t": "Go neetswe dipolelo go mapodisi a a sa ntseng a tsoma mosenyi."
+  }
+ ],
+ "tswa": [
+  {
+   "e": "Where are you from?",
+   "src": "app",
+   "t": "O tswa kae?"
+  },
+  {
+   "e": "I am from…",
+   "src": "app",
+   "t": "Ke tswa kwa…"
+  },
+  {
+   "e": "I am from Botswana",
+   "src": "app",
+   "t": "Ke tswa kwa Botswana"
+  }
+ ],
+ "tswala": [
+  {
+   "e": "Close the door",
+   "src": "app",
+   "t": "Tswala lebati"
+  },
+  {
+   "e": "Close the database application.",
+   "src": "autshumato",
+   "t": "Tswala kopo ya dathabeise."
+  },
+  {
+   "e": "Extension of closing date.",
+   "src": "autshumato",
+   "t": "Katoloso ya letlha la go tswala."
+  }
+ ],
+ "tsweetswee": [
+  {
+   "e": "Please introduce yourself.",
+   "src": "autshumato",
+   "t": "Ipue tsweetswee."
+  },
+  {
+   "e": "Please describe it.",
+   "src": "autshumato",
+   "t": "E tlhalose tsweetswee."
+  },
+  {
+   "e": "Could you please elaborate?",
+   "src": "autshumato",
+   "t": "A o ka tlhalosa tsweetswee?"
+  }
+ ],
+ "tumelo": [
+  {
+   "e": "Religion is very important.",
+   "src": "autshumato",
+   "t": "Tumelo e botlhokwa thata."
+  },
+  {
+   "e": "If you should ask me, I would say it is faith!",
+   "src": "autshumato",
+   "t": "Fa o ka botsa nna, ke tlaa re ke tumelo!"
+  },
+  {
+   "e": "Therefore I wish you lots of faith for 2016.",
+   "src": "autshumato",
+   "t": "Jalo ke le eletsa tumelo ka bontsi ka 2016."
+  }
+ ],
+ "utlwa": [
+  {
+   "e": "I have heard this story as well.",
+   "src": "autshumato",
+   "t": "Le nna ke utlwile kgang e."
+  },
+  {
+   "e": "I have heard that argument as well.",
+   "src": "autshumato",
+   "t": "Le nna ke utlwile ngangisano eo."
+  },
+  {
+   "e": "They feel that they are there to stay.",
+   "src": "autshumato",
+   "t": "Ba utlwa gore ba fao go nnela ruri."
+  }
+ ],
+ "wa": [
+  {
+   "e": "You will not want",
+   "src": "app",
+   "t": "Ga o kake wa batla"
+  },
+  {
+   "e": "He too is a Peace Corps volunteer",
+   "src": "app",
+   "t": "Le ene ke moithaopi wa Peace Corps"
+  },
+  {
+   "e": "The only times you fail is when you fall down and stay down.",
+   "src": "autshumato",
+   "t": "O wela fatshe fela fa o wa mme o sa tsoge."
+  }
+ ],
+ "wena": [
+  {
+   "e": "And how are you?",
+   "src": "app",
+   "t": "Wena o tsogile jang?"
+  },
+  {
+   "e": "I am well — and how are you?",
+   "src": "app",
+   "t": "Ke tsogile sentle, wena o tsogile jang?"
+  },
+  {
+   "e": "We are well — and how are you?",
+   "src": "app",
+   "t": "Re tsogile sentle, wena o tsogile jang?"
+  }
+ ]
+}

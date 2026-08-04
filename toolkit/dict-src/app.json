@@ -1,0 +1,4655 @@
+[
+ {
+  "audio": "items/u1l1-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Hello, sir"
+  ],
+  "itemId": "u1l1-01",
+  "note": "\"Dumela\" works any time of day. rra = sir.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Dumela rra"
+ },
+ {
+  "audio": "items/u1l1-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Hello, madam"
+  ],
+  "itemId": "u1l1-02",
+  "note": "mma = madam. You greet a woman with mma, a man with rra.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Dumela mma"
+ },
+ {
+  "audio": "items/u1l1-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Good day, ladies and gentlemen"
+  ],
+  "itemId": "u1l1-03",
+  "note": "Dumela → Dumelang when greeting more than one person.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Dumelang borra le bomma"
+ },
+ {
+  "audio": "items/u1l1-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "How are you?"
+  ],
+  "itemId": "u1l1-04",
+  "note": "Literally \"how have you risen?\" — a morning-flavoured how-are-you.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O tsogile jang?"
+ },
+ {
+  "audio": "items/u1l1-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I am well"
+  ],
+  "itemId": "u1l1-05",
+  "note": "sentle = well/nicely. Lit. \"I have risen well.\"",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke tsogile sentle"
+ },
+ {
+  "audio": "items/u1l1-13.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I am well — and how are you?"
+  ],
+  "itemId": "u1l1-13",
+  "note": "The natural reply chain: answer, then bounce the question back with wena (you).",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke tsogile sentle, wena o tsogile jang?"
+ },
+ {
+  "audio": "items/u1l1-18.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "And how are you?"
+  ],
+  "itemId": "u1l1-18",
+  "note": "wena = you (emphatic) — bounces the question back.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Wena o tsogile jang?"
+ },
+ {
+  "audio": "items/u1l1-14.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "How are you? (to a group)"
+  ],
+  "itemId": "u1l1-14",
+  "note": "O → Le when asking more than one person.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Le tsogile jang?"
+ },
+ {
+  "audio": "items/u1l1-17.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "We are well"
+  ],
+  "itemId": "u1l1-17",
+  "note": "The group answers with re (we).",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Re tsogile sentle"
+ },
+ {
+  "audio": "items/u1l1-15.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "We are well — and how are you?"
+  ],
+  "itemId": "u1l1-15",
+  "note": "Answer for the group, then bounce the question back.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Re tsogile sentle, wena o tsogile jang?"
+ },
+ {
+  "audio": "items/u1l1-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "How are you? (informal)"
+  ],
+  "itemId": "u1l1-06",
+  "note": "Literally \"where are you (all)?\" — the casual greeting.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Le kae?"
+ },
+ {
+  "audio": "items/u1l1-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I am fine"
+  ],
+  "itemId": "u1l1-07",
+  "note": "teng = present/there. \"I am around\" = I'm fine.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke teng"
+ },
+ {
+  "audio": "items/u1l1-16.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "We are fine — are you all well?"
+  ],
+  "itemId": "u1l1-16",
+  "note": "Informal reply to Le kae?. Lit. \"we are there — are you (all) there?\"",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Re teng, a lona le teng?"
+ },
+ {
+  "audio": "items/u1l1-20.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "We are fine"
+  ],
+  "itemId": "u1l1-20",
+  "note": "Ke teng = I'm fine, Re teng = we're fine — same teng, different concord.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Re teng"
+ },
+ {
+  "audio": "items/u1l1-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Thank you (we thank)"
+  ],
+  "itemId": "u1l1-08",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Re a leboga"
+ },
+ {
+  "audio": "items/u1l1-19.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Thank you (I thank)"
+  ],
+  "itemId": "u1l1-19",
+  "note": "ke = I, re = we — same thanks, different thanker.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke a leboga"
+ },
+ {
+  "audio": "items/u1l1-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Thank you",
+   "I am glad"
+  ],
+  "itemId": "u1l1-09",
+  "note": "From go itumela, to be happy.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke itumetse"
+ },
+ {
+  "audio": "items/u1l1-10.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Please"
+  ],
+  "itemId": "u1l1-10",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "Tsweetswee"
+ },
+ {
+  "audio": "items/u1l1-11.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Yes"
+  ],
+  "itemId": "u1l1-11",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ee"
+ },
+ {
+  "audio": "items/u1l1-12.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "No"
+  ],
+  "itemId": "u1l1-12",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "Nnyaa"
+ },
+ {
+  "audio": "items/u1l2-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "My name is Itumeleng"
+  ],
+  "itemId": "u1l2-01",
+  "note": "leina = name (class 5), lame = my, ke = is. Swap in your own name — the frame is what matters.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Leina lame ke Itumeleng"
+ },
+ {
+  "audio": "items/u1l2-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "What is your name?"
+  ],
+  "itemId": "u1l2-02",
+  "note": "mang = who — Setswana asks \"your name is who?\"",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Leina la gago ke mang?"
+ },
+ {
+  "audio": "items/u1l2-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "My surname is Moeng"
+  ],
+  "itemId": "u1l2-03",
+  "note": "sefane = surname (class 7).",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Sefane same ke Moeng"
+ },
+ {
+  "audio": "items/u1l2-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Who are you?"
+  ],
+  "itemId": "u1l2-04",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O mang?"
+ },
+ {
+  "audio": "items/u1l2-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I am from Botswana"
+  ],
+  "itemId": "u1l2-05",
+  "note": "go tswa = to come from; kwa points to a place.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke tswa kwa Botswana"
+ },
+ {
+  "audio": "items/u1l2-10.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I am from…"
+  ],
+  "itemId": "u1l2-10",
+  "note": "The frame — drop in any place: kwa Amerika, kwa Potchefstroom.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke tswa kwa…"
+ },
+ {
+  "audio": "items/u1l2-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Where are you from?"
+  ],
+  "itemId": "u1l2-06",
+  "note": "kae = where.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O tswa kae?"
+ },
+ {
+  "audio": "items/u1l2-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Are you from America?"
+  ],
+  "itemId": "u1l2-07",
+  "note": "Starting a sentence with \"A\" turns it into a yes/no question.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "A o tswa kwa Amerika?"
+ },
+ {
+  "audio": "items/u1l2-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "His",
+   "her name is Thabo"
+  ],
+  "itemId": "u1l2-08",
+  "note": "gago = your, gagwe = his/her.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Leina la gagwe ke Thabo"
+ },
+ {
+  "audio": "items/u1l2-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I am learning Setswana"
+  ],
+  "itemId": "u1l2-09",
+  "note": "go ithuta = to learn. The sentence you'll say most this semester.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke ithuta Setswana"
+ },
+ {
+  "audio": "items/u1l3-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Goodbye",
+   "OK, fine"
+  ],
+  "itemId": "u1l3-01",
+  "note": "Lit. \"it is fine\" — doubles as \"alright then\" and \"bye\".",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Go siame"
+ },
+ {
+  "audio": "items/u1l3-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "See you"
+  ],
+  "itemId": "u1l3-02",
+  "note": "Lit. \"I will see you\" — tla marks the future.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke tla go bona"
+ },
+ {
+  "audio": "items/u1l3-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "See you tomorrow"
+  ],
+  "itemId": "u1l3-03",
+  "note": "kamoso = tomorrow.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke tla go bona kamoso"
+ },
+ {
+  "audio": "items/u1l3-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "See you later"
+  ],
+  "itemId": "u1l3-04",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke tla go bona kgantele"
+ },
+ {
+  "audio": "items/u1l3-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Have a good day"
+  ],
+  "itemId": "u1l3-05",
+  "note": "Lit. \"spend the day well\".",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Tlhola sentle"
+ },
+ {
+  "audio": "items/u1l3-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Good night (sleep well)"
+  ],
+  "itemId": "u1l3-06",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Robala sentle"
+ },
+ {
+  "audio": "items/u1l3-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Good night"
+  ],
+  "itemId": "u1l3-07",
+  "note": "Short version — just \"sleep\".",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "Boroko"
+ },
+ {
+  "audio": "items/u1l3-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Excuse me",
+   "forgive me"
+  ],
+  "itemId": "u1l3-08",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "Intshwarele"
+ },
+ {
+  "audio": "items/u1l3-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Speak slowly"
+  ],
+  "itemId": "u1l3-09",
+  "note": "Your survival phrase for the whole semester.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Bua ka bonya"
+ },
+ {
+  "audio": "items/u1l4-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I",
+   "me"
+  ],
+  "itemId": "u1l4-01",
+  "note": "Emphatic pronoun. The concord is ke: (nna) ke a bereka = I work.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "nna"
+ },
+ {
+  "audio": "items/u1l4-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "you (one person)"
+  ],
+  "itemId": "u1l4-02",
+  "note": "Concord: o.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "wena"
+ },
+ {
+  "audio": "items/u1l4-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "he",
+   "she"
+  ],
+  "itemId": "u1l4-03",
+  "note": "Concord: o (or a). Setswana has no he/she split — ene covers both.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "ene"
+ },
+ {
+  "audio": "items/u1l4-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "we",
+   "us"
+  ],
+  "itemId": "u1l4-04",
+  "note": "Concord: re.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "rona"
+ },
+ {
+  "audio": "items/u1l4-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "you (a group)"
+  ],
+  "itemId": "u1l4-05",
+  "note": "Concord: le (or lo).",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "lona"
+ },
+ {
+  "audio": "items/u1l4-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "they",
+   "them"
+  ],
+  "itemId": "u1l4-06",
+  "note": "Concord: ba.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "bone"
+ },
+ {
+  "audio": "items/u1l4-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I am reading"
+  ],
+  "itemId": "u1l4-07",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke a bala"
+ },
+ {
+  "audio": "items/u1l4-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "We are reading"
+  ],
+  "itemId": "u1l4-08",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Re a bala"
+ },
+ {
+  "audio": "items/u1l4-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "They are reading"
+  ],
+  "itemId": "u1l4-09",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ba a bala"
+ },
+ {
+  "audio": "items/u1l4-10.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I have a book"
+  ],
+  "itemId": "u1l4-10",
+  "note": "na le = have (lit. \"be with\").",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke na le buka"
+ },
+ {
+  "audio": "items/u1l4-11.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You have a book",
+   "He-she has a book"
+  ],
+  "itemId": "u1l4-11",
+  "note": "One o for both — Setswana doesn't split \"you\" and \"he/she\" here. Context decides.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O na le buka"
+ },
+ {
+  "audio": "items/u1l4-12.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You are reading",
+   "He-she is reading"
+  ],
+  "itemId": "u1l4-12",
+  "note": "One o for both — Setswana doesn't split \"you\" and \"he/she\" here. Context decides.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O a bala"
+ },
+ {
+  "audio": "items/u1l4-13.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You are reading (a group)"
+  ],
+  "itemId": "u1l4-13",
+  "note": "The book's table uses lo for \"you (pl)\" here — le works too, as lona's card says.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Lo a bala"
+ },
+ {
+  "audio": "items/u1l4-14.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You have a book (a group)"
+  ],
+  "itemId": "u1l4-14",
+  "note": "The book's table uses lo for \"you (pl)\" here — le works too, as lona's card says.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Lo na le buka"
+ },
+ {
+  "audio": "items/u1l5-01.mp3",
+  "chk": true,
+  "cls": "1",
+  "eng": [
+   "person"
+  ],
+  "itemId": "u1l5-01",
+  "note": "mo- (person, singular) → ba- (plural): batho = people.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "motho"
+ },
+ {
+  "audio": "items/u1l5-02.mp3",
+  "chk": true,
+  "cls": "2",
+  "eng": [
+   "people"
+  ],
+  "itemId": "u1l5-02",
+  "note": "Plural of motho.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "batho"
+ },
+ {
+  "audio": "items/u1l5-03.mp3",
+  "chk": true,
+  "cls": "7",
+  "eng": [
+   "the Setswana language"
+  ],
+  "itemId": "u1l5-03",
+  "note": "se- marks languages and cultures: Setswana, Sekgoa (English)…",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "Setswana"
+ },
+ {
+  "audio": "items/u1l5-04.mp3",
+  "chk": true,
+  "cls": "7",
+  "eng": [
+   "chair"
+  ],
+  "itemId": "u1l5-04",
+  "note": "se- → di-: ditilo = chairs.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "setilo"
+ },
+ {
+  "audio": "items/u1l5-05.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "book"
+  ],
+  "itemId": "u1l5-05",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "buka"
+ },
+ {
+  "audio": "items/u1l5-06.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "house"
+  ],
+  "itemId": "u1l5-06",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "ntlo"
+ },
+ {
+  "audio": "items/u1l5-07.mp3",
+  "chk": true,
+  "cls": "5",
+  "eng": [
+   "name"
+  ],
+  "itemId": "u1l5-07",
+  "note": "le- → ma-: maina = names.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "leina"
+ },
+ {
+  "audio": "items/u1l5-08.mp3",
+  "chk": true,
+  "cls": "5",
+  "eng": [
+   "door"
+  ],
+  "itemId": "u1l5-08",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "lebati"
+ },
+ {
+  "audio": "items/u1l5-09.mp3",
+  "chk": true,
+  "cls": "7",
+  "eng": [
+   "school"
+  ],
+  "itemId": "u1l5-09",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "sekolo"
+ },
+ {
+  "audio": "items/u1l5-10.mp3",
+  "chk": true,
+  "cls": "5",
+  "eng": [
+   "family",
+   "home"
+  ],
+  "itemId": "u1l5-10",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "lelapa"
+ },
+ {
+  "audio": "items/u1l6-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "to eat"
+  ],
+  "itemId": "u1l6-01",
+  "note": "",
+  "pos": "v",
+  "src": [
+   "app"
+  ],
+  "tsw": "go ja"
+ },
+ {
+  "audio": "items/u1l6-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "to drink"
+  ],
+  "itemId": "u1l6-02",
+  "note": "",
+  "pos": "v",
+  "src": [
+   "app"
+  ],
+  "tsw": "go nwa"
+ },
+ {
+  "audio": "items/u1l6-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "to speak"
+  ],
+  "itemId": "u1l6-03",
+  "note": "",
+  "pos": "v",
+  "src": [
+   "app"
+  ],
+  "tsw": "go bua"
+ },
+ {
+  "audio": "items/u1l6-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "to go"
+  ],
+  "itemId": "u1l6-04",
+  "note": "",
+  "pos": "v",
+  "src": [
+   "app"
+  ],
+  "tsw": "go ya"
+ },
+ {
+  "audio": "items/u1l6-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "to want"
+  ],
+  "itemId": "u1l6-05",
+  "note": "",
+  "pos": "v",
+  "src": [
+   "app"
+  ],
+  "tsw": "go batla"
+ },
+ {
+  "audio": "items/u1l6-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "to buy"
+  ],
+  "itemId": "u1l6-06",
+  "note": "",
+  "pos": "v",
+  "src": [
+   "app"
+  ],
+  "tsw": "go reka"
+ },
+ {
+  "audio": "items/u1l6-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "to learn",
+   "study"
+  ],
+  "itemId": "u1l6-07",
+  "note": "",
+  "pos": "v",
+  "src": [
+   "app"
+  ],
+  "tsw": "go ithuta"
+ },
+ {
+  "audio": "items/u1l6-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I am eating"
+  ],
+  "itemId": "u1l6-08",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke a ja"
+ },
+ {
+  "audio": "items/u1l6-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I want coffee"
+  ],
+  "itemId": "u1l6-09",
+  "note": "Object follows, so no \"a\": not \"ke a batla kofi\".",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke batla kofi"
+ },
+ {
+  "audio": "items/u1l6-10.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Where are you going?"
+  ],
+  "itemId": "u1l6-10",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O ya kae?"
+ },
+ {
+  "audio": "items/u1l6-11.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I am going home"
+  ],
+  "itemId": "u1l6-11",
+  "note": "lelapa (home) + -eng = lapeng, \"to/at home\".",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke ya lapeng"
+ },
+ {
+  "audio": "items/u1l6-12.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I need money"
+  ],
+  "itemId": "u1l6-12",
+  "note": "go tlhoka = to need; madi = money.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke tlhoka madi"
+ },
+ {
+  "audio": "items/u1l7-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I do not want"
+  ],
+  "itemId": "u1l7-01",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga ke batle"
+ },
+ {
+  "audio": "items/u1l7-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "He",
+   "she does not eat"
+  ],
+  "itemId": "u1l7-02",
+  "note": "Note the concord: o becomes a in the negative.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga a je"
+ },
+ {
+  "audio": "items/u1l7-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I don't like coffee"
+  ],
+  "itemId": "u1l7-03",
+  "note": "go rata = to like/love; rata → rate.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga ke rate kofi"
+ },
+ {
+  "audio": "items/u1l7-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I do not know"
+  ],
+  "itemId": "u1l7-04",
+  "note": "The most useful sentence in any language.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga ke itse"
+ },
+ {
+  "audio": "items/u1l7-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I don't understand"
+  ],
+  "itemId": "u1l7-05",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga ke tlhaloganye"
+ },
+ {
+  "audio": "items/u1l7-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "No, I don't have a problem"
+  ],
+  "itemId": "u1l7-06",
+  "note": "ga ke na = I don't have.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Nnyaa, ga ke na mathata"
+ },
+ {
+  "audio": "items/u1l7-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I don't want tea"
+  ],
+  "itemId": "u1l7-07",
+  "note": "Built from Ga ke batle + tee (both sourced).",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga ke batle tee"
+ },
+ {
+  "audio": "items/u1l7-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "They don't speak English"
+  ],
+  "itemId": "u1l7-08",
+  "note": "Sekgoa = English. bua → bue in the negative.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga ba bue Sekgoa"
+ },
+ {
+  "audio": "items/u2l1-01.mp3",
+  "chk": true,
+  "cls": "3",
+  "eng": [
+   "body"
+  ],
+  "itemId": "u2l1-01",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "mmele"
+ },
+ {
+  "audio": "items/u2l1-02.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "head"
+  ],
+  "itemId": "u2l1-02",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "tlhogo"
+ },
+ {
+  "audio": "items/u2l1-03.mp3",
+  "chk": true,
+  "cls": "7",
+  "eng": [
+   "face"
+  ],
+  "itemId": "u2l1-03",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "sefatlhego"
+ },
+ {
+  "audio": "items/u2l1-04.mp3",
+  "chk": true,
+  "cls": "3",
+  "eng": [
+   "hair"
+  ],
+  "itemId": "u2l1-04",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "moriri"
+ },
+ {
+  "audio": "items/u2l1-05.mp3",
+  "chk": true,
+  "cls": "5",
+  "eng": [
+   "eye"
+  ],
+  "itemId": "u2l1-05",
+  "note": "le- → ma-: matlho = eyes.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "leitlho"
+ },
+ {
+  "audio": "items/u2l1-06.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "ear"
+  ],
+  "itemId": "u2l1-06",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "tsebe"
+ },
+ {
+  "audio": "items/u2l1-07.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "nose"
+  ],
+  "itemId": "u2l1-07",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "nko"
+ },
+ {
+  "audio": "items/u2l1-08.mp3",
+  "chk": true,
+  "cls": "3",
+  "eng": [
+   "mouth"
+  ],
+  "itemId": "u2l1-08",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "molomo"
+ },
+ {
+  "audio": "items/u2l1-09.mp3",
+  "chk": true,
+  "cls": "5",
+  "eng": [
+   "tooth"
+  ],
+  "itemId": "u2l1-09",
+  "note": "le- → ma-… almost: meno, not maino. Old class quirk.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "leino"
+ },
+ {
+  "audio": "items/u2l1-10.mp3",
+  "chk": true,
+  "cls": "11",
+  "eng": [
+   "tongue"
+  ],
+  "itemId": "u2l1-10",
+  "note": "Class 11 lo-; plural jumps to di-: diteme.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "loleme"
+ },
+ {
+  "audio": "items/u2l1-11.mp3",
+  "chk": true,
+  "cls": "3",
+  "eng": [
+   "neck"
+  ],
+  "itemId": "u2l1-11",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "molala"
+ },
+ {
+  "audio": "items/u2l2-01.mp3",
+  "chk": true,
+  "cls": "5",
+  "eng": [
+   "arm",
+   "hand"
+  ],
+  "itemId": "u2l2-01",
+  "note": "Irregular plural: mabogo, not matsogo.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "letsogo"
+ },
+ {
+  "audio": "items/u2l2-02.mp3",
+  "chk": true,
+  "cls": "7",
+  "eng": [
+   "hand"
+  ],
+  "itemId": "u2l2-02",
+  "note": "The palm-and-fingers hand; letsogo is the whole arm.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "seatla"
+ },
+ {
+  "audio": "items/u2l2-03.mp3",
+  "chk": true,
+  "cls": "3",
+  "eng": [
+   "finger"
+  ],
+  "itemId": "u2l2-03",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "monwana"
+ },
+ {
+  "audio": "items/u2l2-04.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "stomach",
+   "belly"
+  ],
+  "itemId": "u2l2-04",
+  "note": "Careful: mpa is also a little word meaning \"rather/merely\". Context decides.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "mpa"
+ },
+ {
+  "audio": "items/u2l2-05.mp3",
+  "chk": true,
+  "cls": "6",
+  "eng": [
+   "stomach",
+   "insides"
+  ],
+  "itemId": "u2l2-05",
+  "note": "The word the Peace Corps health lesson uses: mala ame a botlhoko.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "mala"
+ },
+ {
+  "audio": "items/u2l2-06.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "heart"
+  ],
+  "itemId": "u2l2-06",
+  "note": "Pelo-khutshwane, \"short heart\" = short-tempered. Setswana anatomy has opinions.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "pelo"
+ },
+ {
+  "audio": "items/u2l2-07.mp3",
+  "chk": true,
+  "cls": "5",
+  "eng": [
+   "leg"
+  ],
+  "itemId": "u2l2-07",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "leoto"
+ },
+ {
+  "audio": "items/u2l2-08.mp3",
+  "chk": true,
+  "cls": "11",
+  "eng": [
+   "foot"
+  ],
+  "itemId": "u2l2-08",
+  "note": "You met dinao in Unit 1: Ema ka dinao — stand on your feet.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "lonao"
+ },
+ {
+  "audio": "items/u2l2-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Stand up"
+  ],
+  "itemId": "u2l2-09",
+  "note": "Lit. \"stand on feet\" — now you know why.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ema ka dinao"
+ },
+ {
+  "audio": "items/u2l3-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "What is it?"
+  ],
+  "itemId": "u2l3-01",
+  "note": "eng = what.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke eng?"
+ },
+ {
+  "audio": "items/u2l3-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "When did you come?"
+  ],
+  "itemId": "u2l3-02",
+  "note": "leng = when.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O tsile leng?"
+ },
+ {
+  "audio": "items/u2l3-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Why?"
+  ],
+  "itemId": "u2l3-03",
+  "note": "Also ka go reng — lit. \"for saying what?\"",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Go reng?"
+ },
+ {
+  "audio": "items/u2l3-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Which one do you want?"
+  ],
+  "itemId": "u2l3-04",
+  "note": "efe = which (one thing).",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O batla efe?"
+ },
+ {
+  "audio": "items/u2l3-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Which ones do you want?"
+  ],
+  "itemId": "u2l3-05",
+  "note": "dife = which (plural).",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O batla dife?"
+ },
+ {
+  "audio": "items/u2l3-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "What do you want?"
+  ],
+  "itemId": "u2l3-06",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O batla eng?"
+ },
+ {
+  "audio": "items/u2l3-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "How much is it?"
+  ],
+  "itemId": "u2l3-07",
+  "note": "bokae = how much/many.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke bokae?"
+ },
+ {
+  "audio": "items/u2l3-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Do you have any questions?"
+  ],
+  "itemId": "u2l3-08",
+  "note": "A + statement = yes/no question. dipotso = questions.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "A o na le dipotso?"
+ },
+ {
+  "audio": "items/u2l3-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "What do you want to do now?"
+  ],
+  "itemId": "u2l3-09",
+  "note": "jaanong = now.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O batla go dira eng jaanong?"
+ },
+ {
+  "audio": "items/u2l4-01.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "doctor"
+  ],
+  "itemId": "u2l4-01",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "ngaka"
+ },
+ {
+  "audio": "items/u2l4-02.mp3",
+  "chk": true,
+  "cls": "1",
+  "eng": [
+   "teacher"
+  ],
+  "itemId": "u2l4-02",
+  "note": "mo-/ba-, a person word — your job title, soon.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "morutabana"
+ },
+ {
+  "audio": "items/u2l4-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Mpho is a doctor"
+  ],
+  "itemId": "u2l4-03",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Mpho ke ngaka"
+ },
+ {
+  "audio": "items/u2l4-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I am a teacher"
+  ],
+  "itemId": "u2l4-04",
+  "note": "That ke is the I-marker doing copula duty — not the same ke as in Mpho ke ngaka.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke morutabana"
+ },
+ {
+  "audio": "items/u2l4-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "He",
+   "she is not a doctor"
+  ],
+  "itemId": "u2l4-05",
+  "note": "ga se = is not (identity).",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga se ngaka"
+ },
+ {
+  "audio": "items/u2l4-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Mpho is in the house"
+  ],
+  "itemId": "u2l4-06",
+  "note": "Location: mo + noun + -ng. ntlo → mo ntlong.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Mpho o mo ntlong"
+ },
+ {
+  "audio": "items/u2l4-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "He too is a Peace Corps volunteer"
+  ],
+  "itemId": "u2l4-07",
+  "note": "le ene = him/her too.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Le ene ke moithaopi wa Peace Corps"
+ },
+ {
+  "audio": "items/u2l4-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "He",
+   "she has two children"
+  ],
+  "itemId": "u2l4-08",
+  "note": "Counting people: ba le babedi — the concord counts along.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O na le bana ba le babedi"
+ },
+ {
+  "audio": "items/u2l5-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "big",
+   "great",
+   "elder"
+  ],
+  "itemId": "u2l5-01",
+  "note": "You met it in ntate mogolo — grandfather, the \"great father\". Class 9 form: kgolo.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "mogolo"
+ },
+ {
+  "audio": "items/u2l5-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "small",
+   "young"
+  ],
+  "itemId": "u2l5-02",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "monnye"
+ },
+ {
+  "audio": "items/u2l5-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "tall",
+   "long"
+  ],
+  "itemId": "u2l5-03",
+  "note": "Class 9 form: telele (tsela e telele — a long road).",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "moleele"
+ },
+ {
+  "audio": "items/u2l5-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "short"
+  ],
+  "itemId": "u2l5-04",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "khutshwane"
+ },
+ {
+  "audio": "items/u2l5-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "nice",
+   "tasty",
+   "sweet"
+  ],
+  "itemId": "u2l5-05",
+  "note": "Dijo di monate — the food is delicious. You will use this one.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "monate"
+ },
+ {
+  "audio": "items/u2l5-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Mpho is beautiful"
+  ],
+  "itemId": "u2l5-06",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Mpho o montle"
+ },
+ {
+  "audio": "items/u2l5-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "The cows are fierce"
+  ],
+  "itemId": "u2l5-07",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Dikgomo di bogale"
+ },
+ {
+  "audio": "items/u2l5-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "The cows are beautiful"
+  ],
+  "itemId": "u2l5-08",
+  "note": "Weak adjective repeats the prefix: di + di-ntle.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Dikgomo di dintle"
+ },
+ {
+  "audio": "items/u2l5-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I have beautiful cows"
+  ],
+  "itemId": "u2l5-09",
+  "note": "Inside a phrase the adjective takes a linker: tse dintle.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke na le dikgomo tse dintle"
+ },
+ {
+  "audio": "items/u2l5-10.mp3",
+  "chk": true,
+  "cls": "10",
+  "eng": [
+   "cows",
+   "cattle"
+  ],
+  "itemId": "u2l5-10",
+  "note": "Singular: kgomo. The grammar book's favourite example animal.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "dikgomo"
+ },
+ {
+  "audio": "items/u2l5-11.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You sing well"
+  ],
+  "itemId": "u2l5-11",
+  "note": "go opela = to sing; sentle after the verb = well.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O opela sentle"
+ },
+ {
+  "audio": "items/u2l5-12.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I like meat a lot"
+  ],
+  "itemId": "u2l5-12",
+  "note": "thata = very / a lot; nama = meat.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke rata nama thata"
+ },
+ {
+  "audio": "items/u2l6-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "black"
+  ],
+  "itemId": "u2l6-01",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "bontsho"
+ },
+ {
+  "audio": "items/u2l6-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "white"
+  ],
+  "itemId": "u2l6-02",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "bosweu"
+ },
+ {
+  "audio": "items/u2l6-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "red"
+  ],
+  "itemId": "u2l6-03",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "bohibidu"
+ },
+ {
+  "audio": "items/u2l6-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "green",
+   "blue"
+  ],
+  "itemId": "u2l6-04",
+  "note": "One word, two English colours — \"grue\". Linguists study Setswana for this.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "botala"
+ },
+ {
+  "audio": "items/u2l6-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "green (grass-colour)"
+  ],
+  "itemId": "u2l6-05",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "botala jwa tlhaga"
+ },
+ {
+  "audio": "items/u2l6-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "blue (sky-colour)"
+  ],
+  "itemId": "u2l6-06",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "botala jwa legodimo"
+ },
+ {
+  "audio": "items/u2l6-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "yellow"
+  ],
+  "itemId": "u2l6-07",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "bosetlha"
+ },
+ {
+  "audio": "items/u2l6-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "brown"
+  ],
+  "itemId": "u2l6-08",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "borokwa"
+ },
+ {
+  "audio": "items/u2l6-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "purple"
+  ],
+  "itemId": "u2l6-09",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "selaole"
+ },
+ {
+  "audio": "items/u2l6-10.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "A white horse"
+  ],
+  "itemId": "u2l6-10",
+  "note": "-sweu hardens to tshweu after class 9's hidden N. Straight out of Revelation 6.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Pitse e tshweu"
+ },
+ {
+  "audio": "items/u2l6-11.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "A black horse"
+  ],
+  "itemId": "u2l6-11",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Pitse e ntsho"
+ },
+ {
+  "audio": "items/u2l6-12.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "A red thread"
+  ],
+  "itemId": "u2l6-12",
+  "note": "-hibidu hardens to khibidu the same way.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Tlhale e khibidu"
+ },
+ {
+  "audio": "items/u2l7-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "How do you feel?"
+  ],
+  "itemId": "u2l7-01",
+  "note": "go ikutlwa = to feel (yourself). The doctor's first question.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O ikutlwa jang?"
+ },
+ {
+  "audio": "items/u2l7-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I am sick"
+  ],
+  "itemId": "u2l7-02",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke a lwala"
+ },
+ {
+  "audio": "items/u2l7-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I am not well"
+  ],
+  "itemId": "u2l7-03",
+  "note": "Lit. \"I have not risen\" — the flip side of o tsogile jang?",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga ke a tsoga"
+ },
+ {
+  "audio": "items/u2l7-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I have a headache"
+  ],
+  "itemId": "u2l7-04",
+  "note": "Lit. \"I am being hit by the head\".",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke opiwa ke tlhogo"
+ },
+ {
+  "audio": "items/u2l7-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "My head still aches"
+  ],
+  "itemId": "u2l7-05",
+  "note": "santse = still.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Tlhogo yame e santse e opa"
+ },
+ {
+  "audio": "items/u2l7-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "My stomach hurts"
+  ],
+  "itemId": "u2l7-06",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Mala ame a botlhoko"
+ },
+ {
+  "audio": "items/u2l7-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "His",
+   "her eyes are sore"
+  ],
+  "itemId": "u2l7-07",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Matlho a gagwe a botlhoko"
+ },
+ {
+  "audio": "items/u2l7-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "sore",
+   "painful"
+  ],
+  "itemId": "u2l7-08",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "botlhoko"
+ },
+ {
+  "audio": "items/u2l7-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "His",
+   "her leg is swollen"
+  ],
+  "itemId": "u2l7-09",
+  "note": "go ruruga = to swell.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O rurugile leoto"
+ },
+ {
+  "audio": "items/u2l7-10.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "He",
+   "she went to the doctor"
+  ],
+  "itemId": "u2l7-10",
+  "note": "ngaka + -ng = ngakeng, \"to the doctor's\".",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O ile ngakeng"
+ },
+ {
+  "audio": "items/u2l7-11.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I need help"
+  ],
+  "itemId": "u2l7-11",
+  "note": "Lit. \"I ask for help\" — polite and useful everywhere.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke kopa thuso"
+ },
+ {
+  "audio": "items/u3l1-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I want"
+  ],
+  "itemId": "u3l1-01",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke a batla"
+ },
+ {
+  "audio": "items/u3l1-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You want",
+   "He-she wants"
+  ],
+  "itemId": "u3l1-02",
+  "note": "The book prints this row twice — once for \"you\", once for \"she/he\". Same three words both times.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O a batla"
+ },
+ {
+  "audio": "items/u3l1-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "We want"
+  ],
+  "itemId": "u3l1-03",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Re a batla"
+ },
+ {
+  "audio": "items/u3l1-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You want (a group)"
+  ],
+  "itemId": "u3l1-04",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Le a batla"
+ },
+ {
+  "audio": "items/u3l1-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "They want"
+  ],
+  "itemId": "u3l1-05",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ba a batla"
+ },
+ {
+  "audio": "items/u3l1-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I do not want"
+  ],
+  "itemId": "u3l1-06",
+  "note": "You meet this one again in Unit 1 lesson 7 — here it is as the first cell of the whole table.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga ke batle"
+ },
+ {
+  "audio": "items/u3l1-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You do not want"
+  ],
+  "itemId": "u3l1-07",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga o batle"
+ },
+ {
+  "audio": "items/u3l1-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "She",
+   "he does not want"
+  ],
+  "itemId": "u3l1-08",
+  "note": "Here o finally splits: \"you\" stays o, but \"she/he\" becomes a in the negative.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga a batle"
+ },
+ {
+  "audio": "items/u3l1-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "We do not want"
+  ],
+  "itemId": "u3l1-09",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga re batle"
+ },
+ {
+  "audio": "items/u3l1-10.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You do not want (a group)"
+  ],
+  "itemId": "u3l1-10",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga le batle"
+ },
+ {
+  "audio": "items/u3l1-11.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "They do not want"
+  ],
+  "itemId": "u3l1-11",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga ba batle"
+ },
+ {
+  "audio": "items/u3l2-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I wanted"
+  ],
+  "itemId": "u3l2-01",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke ne ke batla"
+ },
+ {
+  "audio": "items/u3l2-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You wanted"
+  ],
+  "itemId": "u3l2-02",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O ne o batla"
+ },
+ {
+  "audio": "items/u3l2-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "She",
+   "he wanted"
+  ],
+  "itemId": "u3l2-03",
+  "note": "Same opening as \"You wanted\" — the second concord is the only thing that tells them apart.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O ne a batla"
+ },
+ {
+  "audio": "items/u3l2-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "We wanted"
+  ],
+  "itemId": "u3l2-04",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Re ne re batla"
+ },
+ {
+  "audio": "items/u3l2-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You wanted (a group)"
+  ],
+  "itemId": "u3l2-05",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Le ne le batla"
+ },
+ {
+  "audio": "items/u3l2-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "They wanted"
+  ],
+  "itemId": "u3l2-06",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ba ne ba batla"
+ },
+ {
+  "audio": "items/u3l2-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I did not want"
+  ],
+  "itemId": "u3l2-07",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke ne ke sa batle"
+ },
+ {
+  "audio": "items/u3l2-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You did not want"
+  ],
+  "itemId": "u3l2-08",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O ne o sa batle"
+ },
+ {
+  "audio": "items/u3l2-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "She",
+   "he did not want"
+  ],
+  "itemId": "u3l2-09",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O ne a sa batle"
+ },
+ {
+  "audio": "items/u3l2-10.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "We did not want"
+  ],
+  "itemId": "u3l2-10",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Re ne re sa batle"
+ },
+ {
+  "audio": "items/u3l2-11.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You did not want (a group)"
+  ],
+  "itemId": "u3l2-11",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Le ne le sa batle"
+ },
+ {
+  "audio": "items/u3l2-12.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "They did not want"
+  ],
+  "itemId": "u3l2-12",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ba ne ba sa batle"
+ },
+ {
+  "audio": "items/u3l3-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I will want"
+  ],
+  "itemId": "u3l3-01",
+  "note": "tla marks the future — the same tla as Ke tla go bona, \"see you\".",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke tla batla"
+ },
+ {
+  "audio": "items/u3l3-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You will want",
+   "He-she will want"
+  ],
+  "itemId": "u3l3-02",
+  "note": "Like the present, one form covers both.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O tla batla"
+ },
+ {
+  "audio": "items/u3l3-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "We will want"
+  ],
+  "itemId": "u3l3-03",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Re tla batla"
+ },
+ {
+  "audio": "items/u3l3-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You will want (a group)"
+  ],
+  "itemId": "u3l3-04",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Le tla batla"
+ },
+ {
+  "audio": "items/u3l3-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "They will want"
+  ],
+  "itemId": "u3l3-05",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ba tla batla"
+ },
+ {
+  "audio": "items/u3l3-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I will not want"
+  ],
+  "itemId": "u3l3-06",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga ke kake ka batla"
+ },
+ {
+  "audio": "items/u3l3-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You will not want"
+  ],
+  "itemId": "u3l3-07",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga o kake wa batla"
+ },
+ {
+  "audio": "items/u3l3-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "She",
+   "he will not want"
+  ],
+  "itemId": "u3l3-08",
+  "note": "she/he is the lazy one: a stays a.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga a kake a batla"
+ },
+ {
+  "audio": "items/u3l3-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "We will not want"
+  ],
+  "itemId": "u3l3-09",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga re kake ra batla"
+ },
+ {
+  "audio": "items/u3l3-10.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You will not want (a group)"
+  ],
+  "itemId": "u3l3-10",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga le kake la batla"
+ },
+ {
+  "audio": "items/u3l3-11.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "They will not want"
+  ],
+  "itemId": "u3l3-11",
+  "note": "they is lazy too: ba stays ba.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ga ba kake ba batla"
+ },
+ {
+  "audio": "items/u3l4-01.mp3",
+  "chk": true,
+  "cls": "1",
+  "eng": [
+   "learner",
+   "student"
+  ],
+  "itemId": "u3l4-01",
+  "note": "mo-/ba-: baithuti = learners. From go ithuta, to learn — the person who learns.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "moithuti"
+ },
+ {
+  "audio": "items/u3l4-02.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "classroom"
+  ],
+  "itemId": "u3l4-02",
+  "note": "A borrowed word (from \"class\"), so class 9: plural ditlelase.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "tlelase"
+ },
+ {
+  "audio": "items/u3l4-03.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "table"
+  ],
+  "itemId": "u3l4-03",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "tafole"
+ },
+ {
+  "audio": "items/u3l4-04.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "window"
+  ],
+  "itemId": "u3l4-04",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "fensetere"
+ },
+ {
+  "audio": "items/u3l4-05.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "pen"
+  ],
+  "itemId": "u3l4-05",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "pene"
+ },
+ {
+  "audio": "items/u3l4-06.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "pencil"
+  ],
+  "itemId": "u3l4-06",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "pensele"
+ },
+ {
+  "audio": "items/u3l4-07.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "bag"
+  ],
+  "itemId": "u3l4-07",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "beke"
+ },
+ {
+  "audio": "items/u3l5-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Listen"
+  ],
+  "itemId": "u3l5-01",
+  "note": "To a group: Reetsang. Also means \"pay attention\".",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Reetsa"
+ },
+ {
+  "audio": "items/u3l5-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Sit down"
+  ],
+  "itemId": "u3l5-02",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Nna fatshe"
+ },
+ {
+  "audio": "items/u2l2-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Stand up"
+  ],
+  "itemId": "u3l5-03",
+  "note": "You met this in Unit 2 — \"stand on your feet\". Here it is as a classroom command.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ema ka dinao"
+ },
+ {
+  "audio": "items/u3l5-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Stand up and speak"
+  ],
+  "itemId": "u3l5-04",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ema o bue"
+ },
+ {
+  "audio": "items/u3l5-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Come here"
+  ],
+  "itemId": "u3l5-05",
+  "note": "Book spells it \"tlaa\"; we write tla, matching Ke tla go bona.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Tla kwano"
+ },
+ {
+  "audio": "items/u3l5-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Come to the front"
+  ],
+  "itemId": "u3l5-06",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Tla kwa pele"
+ },
+ {
+  "audio": "items/u3l5-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Go back"
+  ],
+  "itemId": "u3l5-07",
+  "note": "Lit. \"return to the back\".",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Boela kwa morago"
+ },
+ {
+  "audio": "items/u3l5-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Come inside"
+  ],
+  "itemId": "u3l5-08",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Tsena mo teng"
+ },
+ {
+  "audio": "items/u3l5-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Open the door"
+  ],
+  "itemId": "u3l5-09",
+  "note": "lebati = door (Unit 1). Close it: Tswala lebati.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Bula lebati"
+ },
+ {
+  "audio": "items/u3l5-10.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Close the door"
+  ],
+  "itemId": "u3l5-10",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Tswala lebati"
+ },
+ {
+  "audio": "items/u3l6-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "today"
+  ],
+  "itemId": "u3l6-01",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "gompieno"
+ },
+ {
+  "audio": "items/u3l6-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "yesterday"
+  ],
+  "itemId": "u3l6-02",
+  "note": "Your cue for the past tense.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "maabane"
+ },
+ {
+  "audio": "items/u3l6-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "tomorrow"
+  ],
+  "itemId": "u3l6-03",
+  "note": "Your cue for the future. You met it in Ke tla go bona kamoso.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "kamoso"
+ },
+ {
+  "audio": "items/u3l6-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "in the morning",
+   "early"
+  ],
+  "itemId": "u3l6-04",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "phakela"
+ },
+ {
+  "audio": "items/u3l6-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "at midday",
+   "in the afternoon"
+  ],
+  "itemId": "u3l6-05",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "motshegare"
+ },
+ {
+  "audio": "items/u3l6-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "in the evening"
+  ],
+  "itemId": "u3l6-06",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "maitseboa"
+ },
+ {
+  "audio": "items/u3l6-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "at night"
+  ],
+  "itemId": "u3l6-07",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "bosigo"
+ },
+ {
+  "audio": "items/u3l6-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "right now",
+   "at the moment"
+  ],
+  "itemId": "u3l6-08",
+  "note": "jaanong = now (you saw it in O batla go dira eng jaanong?).",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "gone jaanong"
+ },
+ {
+  "audio": "items/u3l6-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "later on"
+  ],
+  "itemId": "u3l6-09",
+  "note": "The word inside Ke tla go bona kgantele, on its own.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "kgantele"
+ },
+ {
+  "audio": "items/u3l7-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I went to school"
+  ],
+  "itemId": "u3l7-01",
+  "note": "go ya → ile is the \"finished\" past of \"go\".",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke ile kwa sekolong"
+ },
+ {
+  "audio": "items/u3l7-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Mpho went to school"
+  ],
+  "itemId": "u3l7-02",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Mpho o ile kwa sekolong"
+ },
+ {
+  "audio": "items/u3l7-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I spent the day at school"
+  ],
+  "itemId": "u3l7-03",
+  "note": "go tlhola → tlhotse — to spend the day.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke tlhotse kwa sekolong"
+ },
+ {
+  "audio": "items/u3l7-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I was learning Setswana"
+  ],
+  "itemId": "u3l7-04",
+  "note": "The same ne-past as Ke ne ke batla, now with a school verb.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke ne ke ithuta Setswana"
+ },
+ {
+  "audio": "items/u3l7-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "She",
+   "he was teaching"
+  ],
+  "itemId": "u3l7-05",
+  "note": "go ruta = to teach. Watch the o → a for she/he.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O ne a ruta"
+ },
+ {
+  "audio": "items/u3l7-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "We were doing many things"
+  ],
+  "itemId": "u3l7-06",
+  "note": "dilo tse dintsi = many things.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Re ne re dira dilo tse dintsi"
+ },
+ {
+  "audio": "items/u3l7-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I was happy"
+  ],
+  "itemId": "u3l7-07",
+  "note": "From the school-day text: Ke ne ke itumetse gompieno — I was happy today.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke ne ke itumetse"
+ },
+ {
+  "audio": "items/u3l7-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I taught"
+  ],
+  "itemId": "u3l7-08",
+  "note": "go ruta → rutile, the \"finished\" past. This is the tense you'll use to tell someone how your lesson went.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke rutile"
+ },
+ {
+  "audio": "items/u3l8-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I will go to school"
+  ],
+  "itemId": "u3l8-01",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke tla ya kwa sekolong"
+ },
+ {
+  "audio": "items/u1l3-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "See you tomorrow"
+  ],
+  "itemId": "u3l8-02",
+  "note": "You already knew a future sentence — here it is again, as proof tla is easy.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke tla go bona kamoso"
+ },
+ {
+  "audio": "items/u3l8-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I will learn",
+   "study"
+  ],
+  "itemId": "u3l8-03",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke tla ithuta"
+ },
+ {
+  "audio": "items/u3l8-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I will teach"
+  ],
+  "itemId": "u3l8-04",
+  "note": "go ruta = to teach — your future job in one sentence.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke tla ruta"
+ },
+ {
+  "audio": "items/u3l8-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "We will read a book"
+  ],
+  "itemId": "u3l8-05",
+  "note": "go bala = to read (Unit 1); buka = book.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Re tla bala buka"
+ },
+ {
+  "audio": "items/u3l8-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "You will go to school tomorrow"
+  ],
+  "itemId": "u3l8-06",
+  "note": "Adverb + future: kamoso pins it to tomorrow.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O tla ya kwa sekolong kamoso"
+ },
+ {
+  "audio": "items/u3l8-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "They will learn Setswana"
+  ],
+  "itemId": "u3l8-07",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ba tla ithuta Setswana"
+ },
+ {
+  "audio": "items/u4l1-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "food"
+  ],
+  "itemId": "u4l1-01",
+  "note": "Only ever \"plural\" in shape, like \"groceries\". Built from go ja, to eat.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "dijo"
+ },
+ {
+  "audio": "items/u4l1-02.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "meat"
+  ],
+  "itemId": "u4l1-02",
+  "note": "You met it in Ke rata nama thata — I like meat a lot.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "nama"
+ },
+ {
+  "audio": "items/u4l1-03.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "bread"
+  ],
+  "itemId": "u4l1-03",
+  "note": "A borrowed word (from Afrikaans \"brood\").",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "borotho"
+ },
+ {
+  "audio": "items/u4l1-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "water"
+  ],
+  "itemId": "u4l1-04",
+  "note": "A mass word — no singular. Always metsi.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "metsi"
+ },
+ {
+  "audio": "items/u4l1-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "milk"
+  ],
+  "itemId": "u4l1-05",
+  "note": "Also a mass word.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "mashi"
+ },
+ {
+  "audio": "items/u4l1-06.mp3",
+  "chk": true,
+  "cls": "6",
+  "eng": [
+   "eggs"
+  ],
+  "itemId": "u4l1-06",
+  "note": "One egg = lee (class 5); mae = the plural.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "mae"
+ },
+ {
+  "audio": "items/u4l1-07.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "orange"
+  ],
+  "itemId": "u4l1-07",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "namune"
+ },
+ {
+  "audio": "items/u4l1-08.mp3",
+  "chk": true,
+  "cls": "4",
+  "eng": [
+   "vegetables"
+  ],
+  "itemId": "u4l1-08",
+  "note": "One vegetable = morogo (mo-); merogo (me-) = vegetables.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "merogo"
+ },
+ {
+  "audio": "items/u4l1-09.mp3",
+  "chk": true,
+  "cls": "10",
+  "eng": [
+   "beans"
+  ],
+  "itemId": "u4l1-09",
+  "note": "One bean = nawa; dinawa = beans.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "dinawa"
+ },
+ {
+  "audio": "items/u4l1-10.mp3",
+  "chk": true,
+  "cls": "5",
+  "eng": [
+   "salt"
+  ],
+  "itemId": "u4l1-10",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "letswai"
+ },
+ {
+  "audio": "items/u4l2-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "to cook"
+  ],
+  "itemId": "u4l2-01",
+  "note": "",
+  "pos": "v",
+  "src": [
+   "app"
+  ],
+  "tsw": "go apaya"
+ },
+ {
+  "audio": "items/u4l2-02.mp3",
+  "chk": true,
+  "cls": "1",
+  "eng": [
+   "a cook"
+  ],
+  "itemId": "u4l2-02",
+  "note": "go apaya → moapei: the mo- prefix makes \"the one who cooks\".",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "moapei"
+ },
+ {
+  "audio": "items/u4l2-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "drinks"
+  ],
+  "itemId": "u4l2-03",
+  "note": "go nwa (to drink) → dino, the di- pair to dijo. Food and drink: dijo le dino.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "dino"
+ },
+ {
+  "audio": "items/u4l2-04.mp3",
+  "chk": true,
+  "cls": "1",
+  "eng": [
+   "teacher",
+   "preacher"
+  ],
+  "itemId": "u4l2-04",
+  "note": "go ruta (to teach) → moruti. Same family as morutabana, the schoolteacher you met in Unit 2.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "moruti"
+ },
+ {
+  "audio": "items/u4l2-05.mp3",
+  "chk": true,
+  "cls": "1",
+  "eng": [
+   "a worker"
+  ],
+  "itemId": "u4l2-05",
+  "note": "go dira (to do / work) → modiri: the one who does.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "modiri"
+ },
+ {
+  "audio": "items/u4l2-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "We are cooking vegetables"
+  ],
+  "itemId": "u4l2-06",
+  "note": "Answer to Re apaya eng? — \"what are we cooking?\"",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Re apaya merogo"
+ },
+ {
+  "audio": "items/u4l3-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "zero"
+  ],
+  "itemId": "u4l3-01",
+  "note": "The app's name: Re:Lefela = \"we are (at) zero\" — everyone starts here.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "lefela"
+ },
+ {
+  "audio": "items/u4l3-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "one"
+  ],
+  "itemId": "u4l3-02",
+  "note": "You'll hear it as \"e le nngwe\" — a single one — when counting things.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "nngwe"
+ },
+ {
+  "audio": "items/u4l3-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "two"
+  ],
+  "itemId": "u4l3-03",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "pedi"
+ },
+ {
+  "audio": "items/u4l3-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "three"
+  ],
+  "itemId": "u4l3-04",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "tharo"
+ },
+ {
+  "audio": "items/u4l3-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "four"
+  ],
+  "itemId": "u4l3-05",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "nne"
+ },
+ {
+  "audio": "items/u4l3-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "five"
+  ],
+  "itemId": "u4l3-06",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "tlhano"
+ },
+ {
+  "audio": "items/u4l3-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "six"
+  ],
+  "itemId": "u4l3-07",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "thataro"
+ },
+ {
+  "audio": "items/u4l3-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "seven"
+  ],
+  "itemId": "u4l3-08",
+  "note": "Same word as \"point at\" — you point out seven.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "supa"
+ },
+ {
+  "audio": "items/u4l3-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "eight"
+  ],
+  "itemId": "u4l3-09",
+  "note": "ro-bedi: a fold onto two.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "robedi"
+ },
+ {
+  "audio": "items/u4l3-10.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "nine"
+  ],
+  "itemId": "u4l3-10",
+  "note": "ro-bongwe: a fold onto one — the last finger.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "robongwe"
+ },
+ {
+  "audio": "items/u4l3-11.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "ten"
+  ],
+  "itemId": "u4l3-11",
+  "note": "",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "lesome"
+ },
+ {
+  "audio": "items/u4l4-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "One orange"
+  ],
+  "itemId": "u4l4-01",
+  "note": "From the market: namune e le nngwe ke bokae? — how much is one orange?",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Namune e le nngwe"
+ },
+ {
+  "audio": "items/u4l4-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Two people"
+  ],
+  "itemId": "u4l4-02",
+  "note": "The number takes the class prefix too: ba + ba-bedi.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Batho ba le babedi"
+ },
+ {
+  "audio": "items/u4l4-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Two cows"
+  ],
+  "itemId": "u4l4-03",
+  "note": "Class 10 uses the bare strong number: di le pedi, not di le dipedi.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Dikgomo di le pedi"
+ },
+ {
+  "audio": "items/u2l4-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "She",
+   "he has two children"
+  ],
+  "itemId": "u4l4-04",
+  "note": "You met this in Unit 2 — here it is again as a counting sentence.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "O na le bana ba le babedi"
+ },
+ {
+  "audio": "items/u4l4-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "How many students do we have?"
+  ],
+  "itemId": "u4l4-05",
+  "note": "ba le kae? = how many? kae here means \"how many\", not \"where\".",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Re na le baithuti ba le kae?"
+ },
+ {
+  "audio": "items/u4l4-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "The two cows are eating"
+  ],
+  "itemId": "u4l4-06",
+  "note": "Another way to count: tse pedi (\"those two\") right after the noun. Ties back to go ja.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Dikgomo tse pedi di a ja"
+ },
+ {
+  "audio": "items/u4l5-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "and",
+   "with"
+  ],
+  "itemId": "u4l5-01",
+  "note": "Joins words and lists: dijo le dino (food and drink). NOT for joining two sentences.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "le"
+ },
+ {
+  "audio": "items/u4l5-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I like chicken and beef"
+  ],
+  "itemId": "u4l5-02",
+  "note": "nama ya koko = chicken meat; nama ya kgomo = beef. le links the two.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke rata nama ya koko le nama ya kgomo"
+ },
+ {
+  "audio": "items/u4l5-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "but"
+  ],
+  "itemId": "u4l5-03",
+  "note": "The one that DOES join two sentences, usually contrasting ones.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "mme"
+ },
+ {
+  "audio": "items/u4l5-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "or"
+  ],
+  "itemId": "u4l5-04",
+  "note": "kana works the same way.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "kgotsa"
+ },
+ {
+  "audio": "items/u4l5-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Do you want to eat beef or chicken?"
+  ],
+  "itemId": "u4l5-05",
+  "note": "A … ? makes it a yes/no question; kgotsa offers the choice.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "A o batla go ja nama ya kgomo kgotsa ya koko?"
+ },
+ {
+  "audio": "items/u4l5-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "because"
+  ],
+  "itemId": "u4l5-06",
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "ka gore"
+ },
+ {
+  "audio": "items/u4l5-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I like seswaa, because it is meat"
+  ],
+  "itemId": "u4l5-07",
+  "note": "seswaa = pounded meat, a Botswana favourite.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke rata seswaa, ka gore ke nama"
+ },
+ {
+  "audio": "items/u4l5-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Seswaa is meat. Therefore, I like it"
+  ],
+  "itemId": "u4l5-08",
+  "note": "ka jalo = therefore — draws the conclusion.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Seswaa ke nama. Ka jalo, ke a se rata"
+ },
+ {
+  "audio": "items/u5l1-01.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "animal"
+  ],
+  "itemId": "u5l1-01",
+  "note": "diphologolo (animals) is the unit's name. 52× in the Setswana Bible.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "phologolo"
+ },
+ {
+  "audio": "items/u5l1-02.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "cow",
+   "ox"
+  ],
+  "itemId": "u5l1-02",
+  "note": "The grammar book's favourite example animal. You already met the plural, dikgomo, in Unit 2.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "kgomo"
+ },
+ {
+  "audio": "items/u5l1-03.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "sheep"
+  ],
+  "itemId": "u5l1-03",
+  "note": "Same shape singular and plural stem: nku → dinku. From the shepherd verses (Matthew 25).",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "nku"
+ },
+ {
+  "audio": "items/u5l1-04.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "goat"
+  ],
+  "itemId": "u5l1-04",
+  "note": "Sheep and goats together: dinku le dipodi (Matthew 25). The Bible itself spells it dipudi; podi/dipodi is the standard SA-Setswana form used here.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "podi"
+ },
+ {
+  "audio": "items/u5l1-05.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "chicken",
+   "hen"
+  ],
+  "itemId": "u5l1-05",
+  "note": "The hen that gathers her chicks — Matthew 23.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "koko"
+ },
+ {
+  "audio": "items/u5l1-06.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "pig"
+  ],
+  "itemId": "u5l1-06",
+  "note": "From \"don't throw pearls before the pigs\" — Matthew 7.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "kolobe"
+ },
+ {
+  "audio": "items/u5l1-07.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "horse"
+  ],
+  "itemId": "u5l1-07",
+  "note": "You met it dressed in colours in Unit 2: pitse e tshweu (a white horse).",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "pitse"
+ },
+ {
+  "audio": "items/u5l1-08.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "donkey"
+  ],
+  "itemId": "u5l1-08",
+  "note": "A borrowed word (from \"donkey\"). The one Jesus rode into Jerusalem — Matthew 21. Older word: esele.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "tonki"
+ },
+ {
+  "audio": "items/u5l1-09.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "cat"
+  ],
+  "itemId": "u5l1-09",
+  "note": "You know one already — Katse, the app's own cat and mascot. A real word (Otlogetswe rhyming dictionary), not yet Bible-attested.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "katse"
+ },
+ {
+  "audio": "items/u5l1-10.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "dog"
+  ],
+  "itemId": "u5l1-10",
+  "note": "The dogs that licked the beggar's sores — Luke 16. The Bible itself spells it dintsa (no caron); ntša/dintša is the standard SA-Setswana form used here.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "ntša"
+ },
+ {
+  "audio": "items/u5l2-01.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "lion"
+  ],
+  "itemId": "u5l2-01",
+  "note": "The praise-animal: \"the Lion of the tribe of Judah\" — Revelation 5.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "tau"
+ },
+ {
+  "audio": "items/u5l2-02.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "wolf",
+   "hyena"
+  ],
+  "itemId": "u5l2-02",
+  "note": "The danger in \"sheep among wolves\" — Matthew 10. Setswana phiri covers wolf and hyena.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "phiri"
+ },
+ {
+  "audio": "items/u5l2-03.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "snake"
+  ],
+  "itemId": "u5l2-03",
+  "note": "noga e e nang le botlhole = a venomous snake (Matthew 7).",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "noga"
+ },
+ {
+  "audio": "items/u5l2-04.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "bird"
+  ],
+  "itemId": "u5l2-04",
+  "note": "Bonang dinonyane! — \"See the birds!\" (Matthew 6).",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "nonyane"
+ },
+ {
+  "audio": "items/u5l2-05.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "fish"
+  ],
+  "itemId": "u5l2-05",
+  "note": "From \"if he asks for a fish…\" — Matthew 7.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "tlhapi"
+ },
+ {
+  "audio": "items/u5l2-06.mp3",
+  "chk": true,
+  "cls": "9",
+  "eng": [
+   "camel"
+  ],
+  "itemId": "u5l2-06",
+  "note": "The one that can't fit through a needle's eye — Matthew 19.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "kammele"
+ },
+ {
+  "audio": "items/u5l2-07.mp3",
+  "chk": true,
+  "cls": "5",
+  "eng": [
+   "dove"
+  ],
+  "itemId": "u5l2-07",
+  "note": "A le-/ma- word, not class 9: lephoi → maphoi. \"Harmless as doves\" — Matthew 10.",
+  "pos": "n",
+  "src": [
+   "app"
+  ],
+  "tsw": "lephoi"
+ },
+ {
+  "audio": "items/u2l5-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "The cows are fierce"
+  ],
+  "itemId": "u5l3-01",
+  "note": "You read this in Unit 2 — here it is again, as reading practice.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Dikgomo di bogale"
+ },
+ {
+  "audio": "items/u2l5-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "The cows are beautiful"
+  ],
+  "itemId": "u5l3-02",
+  "note": "The weak adjective repeats the prefix: di + di-ntle.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Dikgomo di dintle"
+ },
+ {
+  "audio": "items/u2l5-09.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I have beautiful cows"
+  ],
+  "itemId": "u5l3-03",
+  "note": "Inside a phrase the adjective takes a linker: tse dintle.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke na le dikgomo tse dintle"
+ },
+ {
+  "audio": "items/u2l6-10.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "A white horse"
+  ],
+  "itemId": "u5l3-04",
+  "note": "Straight out of Revelation 6.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Pitse e tshweu"
+ },
+ {
+  "audio": "items/u2l6-11.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "A black horse"
+  ],
+  "itemId": "u5l3-05",
+  "note": "And Revelation 6's black horse.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Pitse e ntsho"
+ },
+ {
+  "audio": "items/u5l3-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "See the birds!"
+  ],
+  "itemId": "u5l3-06",
+  "note": "Verbatim, Matthew 6:26 — Bonang dinonyane! go bona = to see (Unit 1), now as a command to a group: Bonang.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Bonang dinonyane!"
+ },
+ {
+  "audio": "items/u5l3-07.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I have sheep and goats"
+  ],
+  "itemId": "u5l3-07",
+  "note": "Built from Ke na le (I have, Unit 1) + dinku le dipodi (sheep and goats, Matthew 25) — all sourced. le = and.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke na le dinku le dipodi"
+ },
+ {
+  "audio": "items/u5l3-08.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "The cattle are many"
+  ],
+  "itemId": "u5l3-08",
+  "note": "dintsi = many (you met dilo tse dintsi in Unit 3). The cattle are many.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Dikgomo di dintsi"
+ },
+ {
+  "audio": "items/u5l4-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "Be wise as snakes"
+  ],
+  "itemId": "u5l4-01",
+  "note": "Verbatim, Matthew 10:16 — Biblical figurative language, not a traditional maele. jaaka = like/as (Unit 4). The snake here is a picture of cleverness, not danger.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Nnang botlhale jaaka dinoga"
+ },
+ {
+  "audio": "items/u5l4-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "harmless as doves"
+  ],
+  "itemId": "u5l4-02",
+  "note": "The other half of Matthew 10:16 — paired with the snake: clever, yet gentle. Biblical figurative language.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "bori jaaka maphoi"
+ },
+ {
+  "audio": "items/u5l4-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I send you out as sheep among wolves"
+  ],
+  "itemId": "u5l4-03",
+  "note": "Verbatim, Matthew 10:16 — being sent somewhere risky, defenceless. dinku = sheep, diphiri = wolves. Biblical figurative language.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke lo roma jaaka dinku mo gare ga diphiri"
+ },
+ {
+  "audio": "items/u5l4-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "The Lion of the tribe of Judah"
+  ],
+  "itemId": "u5l4-04",
+  "note": "Verbatim, Revelation 5:5. Calling someone tau (a lion) is the highest praise — strength and rule, the animal-praise-name pattern. Biblical figurative language.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Tau ya lotso lwa Juda"
+ },
+ {
+  "audio": "items/u5l4-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I am the good shepherd"
+  ],
+  "itemId": "u5l4-05",
+  "note": "Verbatim, John 10:11. modisa = shepherd (of dinku, sheep) — the caring-leader picture, the flip side of the wolf. Biblical figurative language.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke Modisa yo o Molemo"
+ },
+ {
+  "audio": "items/u5l5-01.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I have a goat"
+  ],
+  "itemId": "u5l5-01",
+  "note": "Ke na le (I have, Unit 1) + podi (goat). Your first sentence to write from memory.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke na le podi"
+ },
+ {
+  "audio": "items/u5l5-02.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I have a dog"
+  ],
+  "itemId": "u5l5-02",
+  "note": "Same frame, new animal: swap podi for ntša.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke na le ntša"
+ },
+ {
+  "audio": "items/u5l5-03.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I see a bird"
+  ],
+  "itemId": "u5l5-03",
+  "note": "go bona = to see (Ke tla go bona, Unit 1) + nonyane (bird).",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke bona nonyane"
+ },
+ {
+  "audio": "items/u5l5-04.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "A black sheep"
+  ],
+  "itemId": "u5l5-04",
+  "note": "Same class-9 colour pattern as pitse e ntsho — the concord e + the stem ntsho.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Nku e ntsho"
+ },
+ {
+  "audio": "items/u5l5-05.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "The dogs are fierce"
+  ],
+  "itemId": "u5l5-05",
+  "note": "The exact shape of Dikgomo di bogale, now with dogs: subject marker di + bogale.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Dintša di bogale"
+ },
+ {
+  "audio": "items/u5l5-06.mp3",
+  "chk": true,
+  "cls": null,
+  "eng": [
+   "I like animals"
+  ],
+  "itemId": "u5l5-06",
+  "note": "Ke rata (I like, Unit 1 — Ke rata nama) + diphologolo (animals). A sentence to close the unit on.",
+  "pos": "phrase",
+  "src": [
+   "app"
+  ],
+  "tsw": "Ke rata diphologolo"
+ }
+]

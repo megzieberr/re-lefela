@@ -1,0 +1,3788 @@
+[
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Good morning",
+   "day",
+   "evening sir"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "dumêla rra"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Good morning",
+   "day",
+   "evening madam"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "dumêla mma"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I am well"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Ke tsogile sentle"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Good day ladies and gentlemen"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Dumêlang borra le bomma"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Good day madam"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Dumela mma"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I am well"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Ke tsogile sentle"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Thank you"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Re a leboga"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Good day sir"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Dumêla rra"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Good day madam"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Dumêla mma"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I am fine"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Re teng"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "My name is Itumeleng"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "leina lame ke Itumeleng"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "My Last name is Moeng"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "sefane same ke Moeng"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I am from Botswana"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke tswa kwa Botswana"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "His name is Thabo"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "leina la gagwe ke Thabo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "His last name is Thuto"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "sefane sa gagwe ke Thuto"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I am a volunteer"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke moithaopi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Good-bye"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "go siame"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "See you"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke tla go bona"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Have a good day"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tlhôla sentle"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Good night"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "robala sentle"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "See you tomorrow"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke tla go bôna kamoso"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "See you later"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke tla go bôna kgantele"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Able, be",
+   "be able"
+  ],
+  "note": "past tense: kgônnê",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "kgôna"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Advise",
+   "remind"
+  ],
+  "note": "past tense: gakolotsê",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "gakolola"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Afraid of, be",
+   "be afraid of"
+  ],
+  "note": "past tense: tshabile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tshaba"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Answer"
+  ],
+  "note": "past tense: arabile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "araba"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Arrive"
+  ],
+  "note": "past tense: gôrôgile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "gôrôga"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Ask"
+  ],
+  "note": "past tense: boditse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "botsa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Ask for (polite way)"
+  ],
+  "note": "past tense: kopile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "kopa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Away, go",
+   "travel",
+   "go away"
+  ],
+  "note": "past tense: tsamaile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tsamaya"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Begin"
+  ],
+  "note": "past tense: simolotse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "simolola"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Believe, agree"
+  ],
+  "note": "past tense: dumetse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "dumêla"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Boil"
+  ],
+  "note": "past tense: bedisitse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "bedisa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Borrow"
+  ],
+  "note": "past tense: adimile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "adima"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Bring"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "tlisa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Burn"
+  ],
+  "note": "past tense: tshubile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tshuba"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Bury"
+  ],
+  "note": "past tense: fitlhile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "fitlha"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Buy"
+  ],
+  "note": "past tense: rêkile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "rêka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Call another person"
+  ],
+  "note": "past tense: biditse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "bitsa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "sb. carry)"
+  ],
+  "note": "past tense: kukile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "kuka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Climb"
+  ],
+  "note": "past tense: palame",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "palama"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Close"
+  ],
+  "note": "past tense: tswetse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tswala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Come"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "tla"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Come in"
+  ],
+  "note": "past tense: tsenye",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tsêna"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Come out (emerge)"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "tswa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Cook"
+  ],
+  "note": "past tense: apeile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "apaya"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Cry"
+  ],
+  "note": "past tense: ledile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "lela"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Dance"
+  ],
+  "note": "past tense: binnê",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "bina"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Delay"
+  ],
+  "note": "past tense: diêgile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "diêga"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Destroy"
+  ],
+  "note": "past tense: sentse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "senya"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Do"
+  ],
+  "note": "past tense: dirile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "dira"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Drink"
+  ],
+  "note": "past tense: nolê",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "nwa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Early, to be"
+  ],
+  "note": "past tense: phaketse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "phakêla"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Eat"
+  ],
+  "note": "past tense: jele",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ja"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Enter"
+  ],
+  "note": "past tense: tsene",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tsêna"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Explain"
+  ],
+  "note": "past tense: tlhalositse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tlhalosa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Feel",
+   "Hear",
+   "Taste"
+  ],
+  "note": "past tense: utlwile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "utlwa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Finish"
+  ],
+  "note": "past tense: feditse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "fetsa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Find"
+  ],
+  "note": "past tense: fitlhetse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "fitlhêla"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Fix, prepare"
+  ],
+  "note": "past tense: baakantsê",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "baakanya"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Forgive"
+  ],
+  "note": "past tense: itshwarêtse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "itshwarêla"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "To see"
+  ],
+  "note": "past tense: bonye",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "bôna"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Get up",
+   "wake up"
+  ],
+  "note": "past tense: tsogile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tsoga"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Give"
+  ],
+  "note": "past tense: file",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "fa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "itumêla",
+   "itumêtse"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "Go"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Help"
+  ],
+  "note": "past tense: thusitse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "thusa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Hold"
+  ],
+  "note": "past tense: tshwere",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tshwara"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Injure"
+  ],
+  "note": "past tense: bolaile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "bolaya"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Keep"
+  ],
+  "note": "past tense: bolokile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "boloka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Kind, be",
+   "be kind"
+  ],
+  "note": "past tense: siame",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "siama"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Know"
+  ],
+  "note": "past tense: itsile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "itse"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Laugh"
+  ],
+  "note": "past tense: tshegile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tshêga"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Learn",
+   "study"
+  ],
+  "note": "past tense: ithutile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ithuta"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Listen"
+  ],
+  "note": "past tense: reeditse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "reetsa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Like",
+   "love"
+  ],
+  "note": "past tense: ratile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "rata"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Live"
+  ],
+  "note": "past tense: ntse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "nna"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Need"
+  ],
+  "note": "past tense: tlhôkile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tlhôka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Open"
+  ],
+  "note": "past tense: butsê",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "bula"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Pass"
+  ],
+  "note": "past tense: fetile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "feta"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Pay"
+  ],
+  "note": "past tense: duetse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "duêla"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Pick up"
+  ],
+  "note": "past tense: setse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "sêla"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Place",
+   "put"
+  ],
+  "note": "past tense: beile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "baya"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Refuse"
+  ],
+  "note": "past tense: gannê",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "gana"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Return"
+  ],
+  "note": "past tense: boile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "boa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Say"
+  ],
+  "note": "past tense: reile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "raya"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Sell"
+  ],
+  "note": "past tense: rekisitse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "rekisa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Sick, to be"
+  ],
+  "note": "past tense: lwetse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "lwala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Sleep"
+  ],
+  "note": "past tense: robetse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "robala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Smoke",
+   "pull"
+  ],
+  "note": "past tense: gogile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "gôga"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Speak"
+  ],
+  "note": "past tense: buile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "bua"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Spend the night"
+  ],
+  "note": "past tense: letse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "lala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Stay behind"
+  ],
+  "note": "past tense: setse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "sala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Take"
+  ],
+  "note": "past tense: tsere",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tsaya"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Teach"
+  ],
+  "note": "past tense: rutile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ruta"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Tell"
+  ],
+  "note": "past tense: boletse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "bolêla"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Tired, become"
+  ],
+  "note": "past tense: lapile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "lapa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Try"
+  ],
+  "note": "past tense: lekile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "leka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Understand"
+  ],
+  "note": "past tense: tlhalogantse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tlhaloganya"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Use"
+  ],
+  "note": "past tense: dirisitse",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "dirisa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Visit"
+  ],
+  "note": "past tense: êtela",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "êta"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Want"
+  ],
+  "note": "past tense: batlile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "batla"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Wash (clothes)"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "Tlhatswa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "bathe"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "Tlhapa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Watch"
+  ],
+  "note": "past tense: lebile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "leba"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Work"
+  ],
+  "note": "past tense: berekile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "bêrêka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Write"
+  ],
+  "note": "past tense: kwadile",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "kwala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I am tired"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke lapile"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I am sleepy"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke a otsêla"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I am hungry"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke tshwerwe ke tlala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I am not hungry"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ga ke a tshwarwa ke tlala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I am going home"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke ya lapeng"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Edward is going to the post office"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Edward o ya posong"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I don’t go to the shop"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ga ke ye shopong"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I am learning Setswana",
+   "I study"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke ithuta Setswana"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I don’t take coffee"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ga ke rate kofi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I need some rest"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke batla go ikhutsa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I eat",
+   "I am eating"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke a ja"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "He doesn’t eat"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ga a je"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "She doesn’t study"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ga a ithute"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I bathe in the morning"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke tlhapa phakela"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I wake up very early"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke tsoga makuku"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "It’s becoming late (night fall)"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "go nna bosigo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "It’s time up"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "nako e tsamaile"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I am thirsty"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Ke tshwere ke lenyora"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I don’t understand"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ga ke tlhaloganye"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Speak slowly"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Bua ka bonya"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Again"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "gape"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Excuse me"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "intshwarele"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Speak quickly"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Bua ka bonako"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Yes, I have a problem"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Ee ke na le mathata"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Listen"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "reetsa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Ask"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "botsa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Greet"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "dumêdisa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Thank you"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Ke itumetse"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Table"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "tafole"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Chair"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "setilô"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Plate"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "sejana"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Cup"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "kopi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Spoon"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "leswana"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Knife"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "thipa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Broom"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "lefeêlô"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Bed"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "bolao"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Blanket"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "kobô"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Clothes"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "diaparô"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Pants"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "borokgwe"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Shoes"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "ditlhako"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Pencil"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "pensele"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Book"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "buka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Bag"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "bêkê"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Pen"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "pênê"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Window"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "fensetere"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Door"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "lebati"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Them"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "bônê"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "and"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "le"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "But"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "mme"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Or"
+  ],
+  "note": "past tense: kana",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Kgotsa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Is"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "As",
+   "like"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "jaaka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "therefore"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Ka jalo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "because"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Ka gore"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I did not"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "sa batle"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I am a reading"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke a bala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "You are (sing) reading"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "o a bala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "You are (pl) reading"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Lo a bala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "She",
+   "he is reading"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "o a bala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "They are reading"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Ba a bala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "We are reading"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Re a bala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I have a book"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke na le buka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "You have (sing) a book"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "O na le buka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "You have (pl) a book"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Lo na le buka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "She",
+   "he has a book"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "O na le buka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "They have a book"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Ba na le buka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "We have a book"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Re na le buka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Open the door"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "bula lebati"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Close the door"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tswala lebati"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Stand and talk"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "êma o buê"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Stand"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "êma ka dinao"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Get inside"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tsêna mo teng"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Come here"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tlaa kwano"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Keep quiet",
+   "Listen"
+  ],
+  "note": "past tense: reetsa",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "didimala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Come to the front"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tlaa kwa pele"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Sit down"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "nna fatshe"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I want a candle"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke batla kêrêsê"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I need money"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke tlhoka madi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I want to go home"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke batla go ya kwa lapeng"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I do not know"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ga ke itse"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "My head still aches"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "tlhogo yame e santse e opa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "She needs to buy food and"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "o tlhôka go reka dijo le diaparo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Where are you going tomorrow?"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "o ya kae kamoso"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I want to go to the shops in the"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke batla go ya shopong phakela"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Food"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "dijô"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Sorghum"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "mabêlê"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Mealie-meal"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "phaletshê"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Sugar"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "sukiri"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Salt"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "letswai"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Water"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "metsi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Milk"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "mashi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Tomatoes"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "ditamati"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Potatoes"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "ditapole"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Eggs"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "mae"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Bread"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "borotho"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Coffee"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "kofi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Tea"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "tee"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Soft porridge (made from sorghum",
+   "mealie-meal)"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "motôgô"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Onions"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "anyense"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Orange"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "namunê"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Apple"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "apole"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Peanuts"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "manôkô"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Beans"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "dinawa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Grand father"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ntate mogolo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Grand mother"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "nkuku"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Father"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "ntate"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Mother"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "mmê"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Sister",
+   "Brother"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "kgaitsadi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Older sibling"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "nkgonne"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Younger sibling"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "nnake"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Uncle (paternal)"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "rangwane"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Uncle (maternal)"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "malome"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Aunt (paternal)"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "rakgadi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Aunt (maternal)"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "mmane"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "cousin"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "ntsalake"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Parents"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "batsadi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Child",
+   "Children"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "ngwana"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Today"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "gompieno"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Yesterday"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "maabane"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Tomorrow"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "kamoso"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "The day before yesterday"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "maloba a maabane"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Few days ago"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "maloba"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "This week"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "beke e"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Last week"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "beke e e fitileng"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Next week"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "beke e e tlang"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "This year"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ngwaga e"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Last year"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "ngogola"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Next year"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ngwaga e e tlang"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "This month"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "kgwedi e"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "At the moment"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "gone jaanong"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Later on",
+   "earlier on (depending on"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "kgantele"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "At night"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "bosigo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "In the morning"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "phakêla"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "At noon (till sunset)"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "motshegare"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Around sunset"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "maitseboa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I bathe"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Ke a tlhapa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I spent the day at school"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Ke tlhôtse kwa sekolong"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "we were doing a lot of things today"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Re ne re dira dilo tse dintsi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "there were visitors from the Police"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Gone go na le baeng ba mapodisi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I was excited today"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Ke ne ke itumetse gompieno"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "House"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "Ntlo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Classroom"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "Tlelase"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Toilet"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "Thoelêtê"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "School"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "sekolo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Hospital"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "Sepatela"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Clinic"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "kokelwana"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Shop"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "shopo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Post office"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "Poso"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "River"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "noka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Field"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "Tshimo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Church"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "Kêrêkê"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Bank"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "Banka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Customary court"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "Kgotla"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "mabêlê"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "mabêlê"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Human breasts"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "Sorghum"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "To be tired"
+  ],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "lapa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "gôga"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "gôga"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "To feel"
+  ],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "utlwa"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Me"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "nna"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "To bury"
+  ],
+  "note": "",
+  "pos": "v",
+  "src": [
+   "pc"
+  ],
+  "tsw": "go fitlha"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Today it is cold"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Gompieno go serame"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Today it is hot"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Gompieno go mogôte"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "It is warm"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Go bothithô"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "It is sunny"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Go letsatsi"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "It is windy"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Go diphefô"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Today it is better"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Gompieno go botoka"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Summer"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "Selemô"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Winter"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "mariga"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I am not well"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke a lwala"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I have a head ache"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke opiwa ke tlhogo"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "My tummy hurts"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "mala ame a botlhoko"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "His eyes are sore"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "matlho a gagwe a botlhoko"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Franco is going to the clinic"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Franco o ya tliliniking"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "She",
+   "he went to see the doctor"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "o ile ngakeng"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Her leg is swollen"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "o rurugile leoto"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Seema ate something bad"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Seema o jêle sengwe se se sa siamang"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "They want to go to the clinic"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ba batla go ya tliliniking"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "Help me"
+  ],
+  "note": "",
+  "pos": null,
+  "src": [
+   "pc"
+  ],
+  "tsw": "nthuse"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I need help"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke kopa thuso"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I have been attacked, I am being attacked."
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke tlhasetswe"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "My house has been broken into."
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "go thubilwe kwa lwapeng"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "There has been theft in my house."
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "Ke  utswetswe"
+ },
+ {
+  "chk": false,
+  "cls": null,
+  "eng": [
+   "I have been robbed"
+  ],
+  "note": "",
+  "pos": "phrase",
+  "src": [
+   "pc"
+  ],
+  "tsw": "ke thukuthilwe"
+ }
+]

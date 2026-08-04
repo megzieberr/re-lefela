@@ -1,4 +1,10 @@
 corpus/
+# Desk-reference dictionaries (Matumo, the CASAS rhyming dictionary, the DBE maths
+# dictionary, the Lexikos review) plus the raw Wiktionary dump. This repo is PUBLIC and
+# GitHub Pages serves every tracked file, so the commercial books must never land in it —
+# they are consulted locally, one entry at a time, to fill gaps in dict-bank.js
+# (see SPEC-dictionary-panel.md §6). Megan's ruling, 2026-08-04.
+dictionaries/
 # local-only tagging tool (references gitignored corpus audio; never deploy)
 tagger.html
 toolkit/segments.json
