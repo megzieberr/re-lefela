@@ -45,9 +45,17 @@ SPEC §8), built on her go-ahead, code-reviewed on her interrupt before the push
    (try *ema*) — close-and-reopen the PWA twice first so sw v38 takes.
 2. 📱 **[blocking, carried from s31/s32] 2 min:** the second learner opens Re:Lefela and
    plays one round — her last save is still 26 Jul; her queued saves flush on first load.
-3. 💻 **[whenever]** Wave 2 when she wants it: DBE maths dictionary terms (extractor not
-   yet written; source tag `dbe-maths` is already reserved everywhere) + deeper example
-   mining + her first desk gap-fill entries.
+3. 💻 **HER DECISION, end of session 34: wave 2 is PARKED — she is testing the dictionary
+   for a few days first, and the next dictionary session should be driven by what she
+   actually hits, not by adding more entries speculatively.** So the next session's job is:
+   read the `tutor_questions` rows whose context starts `dict-miss:`, look those words up in
+   Matumo *with her*, add them as `src:["desk"], chk:true`, rebuild, ship. Precedent for
+   this call: the Sentence Builder was "finished" until she played it, and real play — not
+   planning — produced the 3-miss reveal and the 🛟 button.
+   Wave 2 as specced stays available but unstarted: DBE maths terms (extractor not written;
+   the `dbe-maths` source tag is already reserved in all three places that must agree),
+   deeper example mining to lift the 52% example coverage.
+   ⚠️ Don't open the next dictionary session by building — ask her how it felt first.
 4. Carry-overs unchanged from session 33: pack-PDF name check, tutor session from the
    second learner's own laptop, `u2l1-07` "nko" re-record (low), ear-check the 131 native
    clips, more chat scenarios spec-first, u5l4 Smart Guide.
