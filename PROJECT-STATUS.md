@@ -1,12 +1,11 @@
 # Re:Lefela — Project Status — updated 2026-08-04
 
-**Updated:** 2026-08-04 (session 35 — **dictionary wave 2: the African Wordnet, BUILT and
-verified but deliberately NOT committed or deployed**, on her instruction while she was in
-class. 747 → 9 177 entries from a newly-found open source. Two decisions wait on her: an
-unresolved licence discrepancy, and whether a 1.6 MB precache is acceptable. Full record in
-`SPEC-dictionary-panel.md` §13.)
+**Updated:** 2026-08-04 (session 35 — **dictionary wave 2: the African Wordnet, SHIPPED as
+sw v39**, commit `01befa1`. 747 → **9 177 entries** from a newly-found open source, live-
+verified byte-identical. The licence question was settled the same day by the author herself,
+by email. Full record in `SPEC-dictionary-panel.md` §13.)
 
-## Session 35 (2026-08-04) — dictionary wave 2: African Wordnet (built, NOT shipped)
+## Session 35 (2026-08-04) — dictionary wave 2: African Wordnet (sw v39, SHIPPED, commit 01befa1)
 
 She loved the panel ("an absolute save", the examples "helped SO much"), filed her first
 three `dict-miss:` words, then asked for wave 2 — believing we had skipped words in the
@@ -37,8 +36,22 @@ looking for a **new open source** and found one.
   `water` puts checked `metsi` first with audio, no "undefined", miss path intact);
   **localStorage byte-identical before and after a full dictionary session** — no SRS writes,
   no XP; 0 console errors; test state wiped.
-- ⚠️ **Nothing committed, nothing pushed, nothing deployed** — her explicit instruction.
-  Working tree holds the changes; `git status` shows 7 modified + 2 new files.
+- ✅ **Licence settled the same day, by the author.** The 2017 Readme and the `license=`
+  attribute inside its own XML both said CC BY 4.0; the SADiLaR catalogue page said
+  CC BY-NC-SA 4.0. Megan emailed **Marissa Griesel** (African Wordnet author) and was told
+  plainly it is "no problem". Recorded in `toolkit/SOURCES.md` — ⚠️ don't let the stale
+  catalogue field re-open it; the email is the record and Megan holds it.
+- ✅ **Her ruling on the source books, restated and holding:** owning the Matumo hard copy
+  does not license republishing it, and a private repo would not help, because the app hands
+  `dict-bank.js` to every browser that loads it. `dictionaries/` (77 MB of desk books) stays
+  gitignored — verified at ship time that **not one file in it is tracked**. What ships is the
+  openly-licensed wordnet data, credited in the panel footer.
+- **SHIPPED and live-verified:** `sw.js`, `index.html` and `dict-bank.js` all byte-identical
+  live vs local; live serving `relefela-v39` / `relefela-audio-v3`; 8 791 afwn-tagged entries
+  on the live bank. Size 194 kB → 1 575 kB raw, but **435 kB gzipped**, which is what actually
+  crosses the wire on each deploy.
+- The `dict-miss:baby` row is marked `addressed_at` — genuinely solved. `alone` and `tissue`
+  are deliberately **left open**: this wave did not answer them.
 
 ### Honest limits — read these before deciding to ship
 - **It is a wordnet, not a beginner's dictionary.** 6 876 nouns, 2 750 verbs, only 262
@@ -50,19 +63,21 @@ looking for a **new open source** and found one.
   Unchecked wordnet content, labelled by source in the panel.
 
 ## Next up (end of session 35, 2026-08-04)
-1. 💻 **[blocking] HER DECISION: ship this or not.** It is built and green but unshipped.
-   Three things to weigh: (a) 1.6 MB precached on her phone, up from 194 kB; (b) 8 790
-   unchecked entries beside 298 checked ones — the panel labels them and search now favours
-   the checked, but it changes the tool's character; (c) the licence question below.
-2. 💻 **[blocking] 5 min: one email settles the licence.** The 2017 AfWN Readme *and* the
-   licence attribute inside its own XML both say CC BY 4.0; the SADiLaR catalogue page says
-   CC BY-NC-SA 4.0. Two creator statements against one catalogue field — but share-alike
-   would also clash with the CC BY-SA Wiktionary material already in the bank.
-   Ask griesel.marissa@gmail.com which applies. (She is already emailing Macmillan today
-   about Matumo — `bw.info@macmillaneducation.co.bw` and `rightsandpermissions@macmillan.com`.)
-3. 📱 **[whenever] 2 min:** her three missed words — `baby` is now answered; `alone` and
-   `tissue` still need the Matumo gap-fill loop, hand-typed with her.
-4. Carry-overs unchanged from session 34: pack-PDF name check, tutor session from the second
+1. 📱 **[whenever] 2 min:** open the live app, close-and-reopen the PWA twice so sw v39 takes,
+   then look up a few words — it is 9 177 now. Worth trying one you'd never have found before.
+2. 💻 **[whenever] 15 min, WITH her:** the gap-fill loop for `alone` and `tissue` — still
+   genuinely missing, still open in `tutor_questions`. Look them up in Matumo together, add as
+   `src:["desk"], chk:true`, rebuild, ship. ⚠️ This wave did **not** replace that loop: the
+   wordnet is strong on nouns and verbs, weak on adjectives (262) and has no function words.
+3. 💻 **[whenever]** Macmillan may reply about Matumo (she emailed
+   `bw.info@macmillaneducation.co.bw` and `rightsandpermissions@macmillan.com` on 2026-08-04).
+   If they license it, that is a far bigger and more beginner-suited source than the wordnet.
+   If they decline or never answer, nothing changes — the hand-typed loop continues.
+4. 💻 **[whenever] worth watching, not fixing yet:** does the bigger dictionary actually feel
+   better in use, or does wordnet noise (`rota` = "stale, make") get in the way? Real use
+   decides, as it did for the Sentence Builder. The cheapest lever if it is too noisy is
+   dropping AfWN entries whose glosses come from one-word synsets.
+5. Carry-overs unchanged from session 34: pack-PDF name check, tutor session from the second
    learner's own laptop, `u2l1-07` "nko" re-record (low), ear-check the 131 native clips,
    more chat scenarios spec-first, u5l4 Smart Guide.
 
