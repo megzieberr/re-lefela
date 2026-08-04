@@ -65,19 +65,26 @@ looking for a **new open source** and found one.
 ## Next up (end of session 35, 2026-08-04)
 1. 📱 **[whenever] 2 min:** open the live app, close-and-reopen the PWA twice so sw v39 takes,
    then look up a few words — it is 9 177 now. Worth trying one you'd never have found before.
-2. 💻 **[whenever] 15 min, WITH her:** the gap-fill loop for `alone` and `tissue` — still
+2. 📱 **[whenever] 1 min, ask the second learner:** have her look up a word she knows is
+   missing and tap 💬 Ask for this word. **Verified in code + database this session that she
+   CAN** — the button gates on "signed in" (not on Megan) since v37, the RLS insert policy is
+   `user_id = auth.uid()`, and Megan's tutor reads every row with the username joined on. But
+   she has filed **0 rows** to date, so the path is untested in practice. ⚠️ Her own tutor sees
+   her question too and may say it is noted — only Megan can actually add a word (Matumo +
+   rebuild), so a request from her still routes through Megan.
+3. 💻 **[whenever] 15 min, WITH her:** the gap-fill loop for `alone` and `tissue` — still
    genuinely missing, still open in `tutor_questions`. Look them up in Matumo together, add as
    `src:["desk"], chk:true`, rebuild, ship. ⚠️ This wave did **not** replace that loop: the
    wordnet is strong on nouns and verbs, weak on adjectives (262) and has no function words.
-3. 💻 **[whenever]** Macmillan may reply about Matumo (she emailed
+4. 💻 **[whenever]** Macmillan may reply about Matumo (she emailed
    `bw.info@macmillaneducation.co.bw` and `rightsandpermissions@macmillan.com` on 2026-08-04).
    If they license it, that is a far bigger and more beginner-suited source than the wordnet.
    If they decline or never answer, nothing changes — the hand-typed loop continues.
-4. 💻 **[whenever] worth watching, not fixing yet:** does the bigger dictionary actually feel
+5. 💻 **[whenever] worth watching, not fixing yet:** does the bigger dictionary actually feel
    better in use, or does wordnet noise (`rota` = "stale, make") get in the way? Real use
    decides, as it did for the Sentence Builder. The cheapest lever if it is too noisy is
    dropping AfWN entries whose glosses come from one-word synsets.
-5. Carry-overs unchanged from session 34: pack-PDF name check, tutor session from the second
+6. Carry-overs unchanged from session 34: pack-PDF name check, tutor session from the second
    learner's own laptop, `u2l1-07` "nko" re-record (low), ear-check the 131 native clips,
    more chat scenarios spec-first, u5l4 Smart Guide.
 
