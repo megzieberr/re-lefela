@@ -1501,7 +1501,7 @@ function finishBuilder(){
 const DICT = (typeof RL_DICT !== 'undefined' && Array.isArray(RL_DICT)) ? RL_DICT : [];
 const DICT_SRC_LABEL = {app:'Re:Lefela course', pc:'Peace Corps', wikt:'Wiktionary',
   autshumato:'Autshumato corpus', 'bible-nt':'Tswana NT',
-  'dbe-maths':'DBE maths dictionary', desk:'dictionary'};
+  'dbe-maths':'DBE maths dictionary', desk:'dictionary', afwn:'African Wordnet'};
 const DICT_POS_LABEL = {v:'verb', n:'noun', adj:'adjective', adv:'adverb', pron:'pronoun',
   num:'number', pref:'prefix', suf:'suffix', propn:'name', conj:'conjunction',
   interj:'interjection', part:'particle', prep:'preposition', det:'determiner',
@@ -1541,7 +1541,13 @@ function dictSearch(q){
     }
     if (rank < 99) out.push({rank, row});
   }
+  /* Human-checked entries win ties. The African Wordnet wave took the bank from
+     747 entries to several thousand, nearly all of them unchecked, so without this
+     a course word she has actually been taught can sit below a wordnet homonym of
+     the same rank and length. Checked-ness is a tie-break, never a rank override:
+     an exact hit still beats a checked partial one. */
   out.sort((a,b)=> a.rank - b.rank
+    || (b.row.e.k?1:0) - (a.row.e.k?1:0)
     || a.row.e.t.length - b.row.e.t.length
     || a.row.e.t.localeCompare(b.row.e.t));
   return out.slice(0, 40).map(o=>o.row.e);
@@ -1554,8 +1560,11 @@ function dictEntryHTML(e){
   const play = e.a ? `<button class="dict-play" data-audio="${esc(e.a)}" aria-label="Play ${esc(e.t)}">🔊</button>` : '';
   const forms = (e.f||[]).length ? `<p class="tiny" style="margin:4px 0 0">also: ${e.f.map(esc).join(', ')}</p>` : '';
   const note = e.n ? `<p class="tiny" style="margin:6px 0 0">${esc(e.n)}</p>` : '';
+  /* x.e is absent on African Wordnet examples — that source ships Setswana
+     sentences with no translation. Render the source chip on its own rather than
+     printing "undefined" where the English line would be. */
   const ex = (e.x||[]).map(x=>`<div class="dict-ex"><div class="t">${esc(x.t)}</div>
-      <div class="e">${esc(x.e)} <span class="dict-chip">${esc(DICT_SRC_LABEL[x.s]||x.s)}</span></div></div>`).join('');
+      <div class="e">${x.e ? esc(x.e) + ' ' : ''}<span class="dict-chip">${esc(DICT_SRC_LABEL[x.s]||x.s)}</span></div></div>`).join('');
   const noEx = (e.x||[]).length ? '' : `<p class="tiny" style="margin:8px 0 0">No example sentence yet for this word.</p>`;
   const from = (e.s||[]).map(s=>DICT_SRC_LABEL[s]||s).join(', ');
   return `<div class="dict-entry">
@@ -1577,6 +1586,8 @@ function screenDictionary(){
       Includes material from Wiktionary and the Tswana New Testament (CC BY-SA 4.0),
       the Autshumato English–Setswana Parallel Corpora (CC BY 2.5 ZA) and the
       US Peace Corps Setswana course (public domain).
+      Setswana headwords from the African Wordnet (Bosch &amp; Griesel 2017), glossed
+      through the Open English Wordnet 2025 — both CC BY 4.0.
       The original work by Biblica, Inc. is available for free at www.biblica.com and open.bible.</p>`);
   document.getElementById('b-back').onclick = screenHome;
   const inp = document.getElementById('dq'), res = document.getElementById('dres');

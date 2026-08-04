@@ -32,8 +32,10 @@ INDEX = ROOT / 'index.html'
 # ⚠️ Three places must agree on the source-tag set: this pair, dict_common.py's
 # SOURCE_LABELS, and DICT_SRC_LABEL in index.html. dbe-maths is reserved for the
 # wave-2 DBE maths dictionary import.
-KNOWN_SRC = {'app', 'pc', 'wikt', 'dbe-maths', 'desk'}
-KNOWN_EX_SRC = {'app', 'pc', 'wikt', 'dbe-maths', 'autshumato', 'bible-nt', 'desk'}
+KNOWN_SRC = {'app', 'pc', 'wikt', 'dbe-maths', 'desk', 'afwn'}
+KNOWN_EX_SRC = {'app', 'pc', 'wikt', 'dbe-maths', 'autshumato', 'bible-nt', 'desk', 'afwn'}
+# Sources whose example sentences ship WITHOUT an English translation.
+UNTRANSLATED_EX_SRC = {'afwn'}
 
 fails = []
 
@@ -123,8 +125,17 @@ def main():
         check(e.get('s'), where + ': no source tag')
         for x in e.get('x', []):
             check(isinstance(x.get('t'), str) and x['t'].strip(), where + ': example with no Setswana')
-            check(isinstance(x.get('e'), str) and x['e'].strip(),
-                  f'{where}: example {x.get("t")!r} has no English translation')
+            # Most sources are parallel corpora, so a missing translation there means
+            # the miner dropped one and the check must stay loud. The African Wordnet
+            # publishes Setswana usage sentences with no translation at all, so it is
+            # exempt BY NAME — never by relaxing the rule for everyone.
+            if x.get('s') in UNTRANSLATED_EX_SRC:
+                check(not x.get('e'),
+                      f'{where}: example {x.get("t")!r} from {x.get("s")} carries a '
+                      'translation, but that source has none — check where it came from')
+            else:
+                check(isinstance(x.get('e'), str) and x['e'].strip(),
+                      f'{where}: example {x.get("t")!r} has no English translation')
             check(x.get('s') in KNOWN_EX_SRC,
                   f'{where}: example has unknown source {x.get("s")!r}')
             # the example must actually show the word — allowing only the

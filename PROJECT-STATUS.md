@@ -1,6 +1,72 @@
 # Re:Lefela — Project Status — updated 2026-08-04
 
-**Updated:** 2026-08-04 (session 34 — **the 📖 Dictionary panel, SHIPPED as sw v38** after a
+**Updated:** 2026-08-04 (session 35 — **dictionary wave 2: the African Wordnet, BUILT and
+verified but deliberately NOT committed or deployed**, on her instruction while she was in
+class. 747 → 9 177 entries from a newly-found open source. Two decisions wait on her: an
+unresolved licence discrepancy, and whether a 1.6 MB precache is acceptable. Full record in
+`SPEC-dictionary-panel.md` §13.)
+
+## Session 35 (2026-08-04) — dictionary wave 2: African Wordnet (built, NOT shipped)
+
+She loved the panel ("an absolute save", the examples "helped SO much"), filed her first
+three `dict-miss:` words, then asked for wave 2 — believing we had skipped words in the
+morning. **We had not**: the free sources were fully harvested in wave 1. The only large
+untapped pool was Matumo's ~20 000 entries, which stays out by her own ruling (commercial
+book, public repo — and owning the hard copy does not change that, nor would a private repo,
+because the app hands `dict-bank.js` to every browser that loads it). So this session went
+looking for a **new open source** and found one.
+
+- **African Wordnet (Setswana, 2017) + Open English Wordnet 2025, both CC BY 4.0.** AfWN
+  holds 12 182 Setswana lemmas but **no English at all** — it names each meaning by ILI
+  number. OEWN carries the same ILI numbers *with* English words and definitions. Joining
+  on ILI works on **98%** of entries. ⚠️ The 2022 AfWN release is useless for this: it
+  replaced the ids with UUIDs and dropped every definition.
+- **747 → 9 177 entries** (8 790 new, all `chk:false`). `dict-bank.js` 194 kB → **1 575 kB**.
+- **Four quality gates, each earned by a bug caught in build** — full detail in SPEC §13.
+  The two that matter most: examples are gated on whole-token containment (4 215 of 7 917
+  synset examples never contain their headword), and meanings are ranked by wordnet's own
+  commonest-first sense order, without which `lesea` shipped glossed *baby/babe/infant* but
+  **defined as "a project of personal concern to someone"**.
+- **App changes:** search now ranks human-checked entries above unchecked ones on a tie (8 790
+  new words could otherwise bury a course word); untranslated examples render without an
+  English line; the ship gate exempts named translation-free sources rather than relaxing the
+  rule; attribution footer credits both wordnets. `sw.js` bumped **v38 → v39**, AUDIO_CACHE
+  untouched (no audio byte changed).
+- **Verified, build only:** ship gate green; extractor and build byte-identical under
+  different `PYTHONHASHSEED`; `?local=1` DOM pass (9 177 words, `baby`→`lesea` correct,
+  `water` puts checked `metsi` first with audio, no "undefined", miss path intact);
+  **localStorage byte-identical before and after a full dictionary session** — no SRS writes,
+  no XP; 0 console errors; test state wiped.
+- ⚠️ **Nothing committed, nothing pushed, nothing deployed** — her explicit instruction.
+  Working tree holds the changes; `git status` shows 7 modified + 2 new files.
+
+### Honest limits — read these before deciding to ship
+- **It is a wordnet, not a beginner's dictionary.** 6 876 nouns, 2 750 verbs, only 262
+  adjectives, and no common function words. Of her three real misses: **baby is solved**
+  (`lesea`), **alone is still missing**, and **tissue matches only the archaic verb "to
+  tissue"** (weaving), not the paper hankie. The gap-fill loop is still the answer for
+  everyday words — this wave does not replace it.
+- Some entries read oddly (`rota` = "stale, make"; `ngwana` defined as "any immature animal").
+  Unchecked wordnet content, labelled by source in the panel.
+
+## Next up (end of session 35, 2026-08-04)
+1. 💻 **[blocking] HER DECISION: ship this or not.** It is built and green but unshipped.
+   Three things to weigh: (a) 1.6 MB precached on her phone, up from 194 kB; (b) 8 790
+   unchecked entries beside 298 checked ones — the panel labels them and search now favours
+   the checked, but it changes the tool's character; (c) the licence question below.
+2. 💻 **[blocking] 5 min: one email settles the licence.** The 2017 AfWN Readme *and* the
+   licence attribute inside its own XML both say CC BY 4.0; the SADiLaR catalogue page says
+   CC BY-NC-SA 4.0. Two creator statements against one catalogue field — but share-alike
+   would also clash with the CC BY-SA Wiktionary material already in the bank.
+   Ask griesel.marissa@gmail.com which applies. (She is already emailing Macmillan today
+   about Matumo — `bw.info@macmillaneducation.co.bw` and `rightsandpermissions@macmillan.com`.)
+3. 📱 **[whenever] 2 min:** her three missed words — `baby` is now answered; `alone` and
+   `tissue` still need the Matumo gap-fill loop, hand-typed with her.
+4. Carry-overs unchanged from session 34: pack-PDF name check, tutor session from the second
+   learner's own laptop, `u2l1-07` "nko" re-record (low), ear-check the 131 native clips,
+   more chat scenarios spec-first, u5l4 Smart Guide.
+
+**Previous —** 2026-08-04 (session 34 — **the 📖 Dictionary panel, SHIPPED as sw v38** after a
 five-reviewer pre-ship code review she called for. 747-word Setswana↔English lookup with real
 example sentences, built ONLY from open sources — the commercial desk dictionaries she
 downloaded are gitignored in `dictionaries/` and feed a gap-fill loop instead

@@ -19,7 +19,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from dict_common import ROOT, SRC_DIR, norm, sense_words, GUARD_MIN_LEN
 
 OUT = ROOT / 'dict-bank.js'
-SOURCE_ORDER = ['app', 'pc', 'wikt']      # best-checked first; drives spelling + meaning order
+# best-checked first; drives spelling + meaning order. afwn is last on purpose: it
+# is wordnet-derived and unchecked, so where it meets a word the course already
+# teaches, the course's spelling and its meanings lead.
+SOURCE_ORDER = ['app', 'pc', 'wikt', 'afwn']
 
 HEADER = """// Re:Lefela — dictionary bank (SPEC-dictionary-panel.md). GENERATED FILE.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -34,6 +37,9 @@ HEADER = """// Re:Lefela — dictionary bank (SPEC-dictionary-panel.md). GENERAT
 //   wikt  English Wiktionary Tswana lemmas — CC BY-SA 4.0
 //   autshumato  Autshumato English-Setswana Parallel Corpora — CC BY 2.5 ZA
 //   bible-nt    Tswana Living New Testament (Biblica) — CC BY-SA 4.0
+//   afwn        African Wordnet, Setswana (Bosch & Griesel 2017) — CC BY 4.0, with
+//               its English glosses joined in from the Open English Wordnet 2025
+//               (CC BY 4.0) on the shared ILI meaning ids. NOT human-checked.
 // The commercial desk dictionaries in dictionaries/ are NEVER bulk-imported: they
 // are consulted one entry at a time to fill gaps she actually hits, and those
 // entries arrive tagged src:['desk'] chk:true. dictionaries/ is gitignored.
@@ -50,6 +56,40 @@ HEADER = """// Re:Lefela — dictionary bank (SPEC-dictionary-panel.md). GENERAT
 def load(name):
     p = SRC_DIR / (name + '.json')
     return json.load(open(p, encoding='utf-8')) if p.exists() else []
+
+
+MAX_EXAMPLES = 3
+
+
+def build_examples(key, grp, meanings, examples):
+    """Examples for one entry: mined bilingual ones first, then AfWN's Setswana-only.
+
+    Mined examples lead because they carry an English translation, which is what
+    Megan said helped most. AfWN's only fill the remaining slots.
+
+    Two different gates, deliberately, because the two sources fail differently:
+
+    * Mined examples were matched on ENGLISH relevance, so they inherit the homonym
+      problem — hence sense_words(), re-applied per entry (nna the pronoun must not
+      borrow nna the verb's sentences).
+    * AfWN examples were gated at extraction on the Setswana sentence actually
+      containing the headword, and they ride with a record whose part of speech
+      already put it in this group. They carry no English, so `e` is omitted and
+      the panel renders the Setswana line alone.
+    """
+    out = []
+    if sense_words(meanings, GUARD_MIN_LEN):
+        out += [{'t': x['t'], 'e': x['e'], 's': x['src']}
+                for x in examples.get(key, [])[:MAX_EXAMPLES]]
+    if len(out) < MAX_EXAMPLES:
+        have = {norm(x['t']) for x in out}
+        for r in grp:
+            for sent in r.get('examples_tsn') or []:
+                if len(out) >= MAX_EXAMPLES or norm(sent) in have:
+                    continue
+                have.add(norm(sent))
+                out.append({'t': sent, 's': r['_src']})
+    return out
 
 
 def main():
@@ -133,9 +173,7 @@ def main():
                 # illustrated with "O nna kae?" ("Where do you live?"). Judge each
                 # entry on its OWN meanings: if there is nothing to check relevance
                 # against, that entry shows no example.
-                'x': ([{'t': x['t'], 'e': x['e'], 's': x['src']}
-                       for x in examples.get(key, [])[:3]]
-                      if sense_words(meanings, GUARD_MIN_LEN) else []),
+                'x': build_examples(key, grp, meanings, examples),
                 'f': forms,
                 's': sorted({r['_src'] for r in grp}),
                 'k': 1 if any(r.get('chk') for r in grp) else 0,

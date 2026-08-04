@@ -26,6 +26,7 @@ SOURCE_LABELS = {
     'dbe-maths':  'DBE maths dictionary',
     'bible-nt':   'Tswana NT',
     'desk':       'desk dictionary',
+    'afwn':       'African Wordnet',
 }
 
 # Part-of-speech codes. Wiktionary's headers map into these; the app's own `kind`

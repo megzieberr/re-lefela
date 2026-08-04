@@ -335,3 +335,95 @@ After the fixes: full pipeline re-run deterministic, ship gate green (with its t
 checks), node harness extended to **57 assertions** including regression pins for every
 class above (junk headwords, Setswana-as-meaning, dedupe-before-await, closest matches,
 label-map completeness), browser walkthrough of the new miss path green, test state wiped.
+
+## 13. Wave 2 — the African Wordnet (2026-08-04, built, NOT shipped)
+
+Megan asked for "more words" and thought we had skipped some this morning. We had not:
+the free sources were essentially fully harvested in wave 1. The only large untapped pool
+was Matumo's ~20 000-entry desk dictionary, which stays out by her own standing ruling
+(commercial book, public repo). So wave 2 went looking for a **new open source** instead,
+and found one.
+
+### The source, and the join that makes it usable
+
+**African Wordnet (AfWN), Setswana, 2017 release** — 12 182 Setswana lemmas, CC BY 4.0.
+AfWN was built on the "expand" model: Setswana words attached to Princeton Wordnet
+meanings. So each synset names a meaning by **ILI number** but contains **no English at
+all**. The **Open English Wordnet 2025** (CC BY 4.0) carries the same ILI numbers *with*
+English words and definitions. Joining on ILI is the whole trick, and it works on **98%**
+of AfWN entries.
+
+⚠️ **Use the 2017 release, not the 2022 one.** The 2022 export (handle 684) replaced the
+ILI/Princeton ids with internal UUIDs and dropped every definition — it cannot be joined
+to English at all. Recheck if a newer release appears.
+
+⚠️ **Licence discrepancy, open.** The 2017 Readme *and* the `license=` attribute inside
+`wntsn-lmf.xml` both say CC BY 4.0; the SADiLaR catalogue page for the same item says
+CC BY-NC-SA 4.0. Two creator statements against one catalogue field. Share-alike would
+also clash with the CC BY-SA Wiktionary material already in the bank, so this is worth
+settling before shipping — griesel.marissa@gmail.com. Recorded in `toolkit/SOURCES.md`.
+
+### Result
+
+747 → **9 177 entries** (8 790 from AfWN), `dict-bank.js` 194 kB → **1 575 kB**.
+298 human-checked entries unchanged; everything new ships `chk:false`.
+
+### The four quality gates, and why each exists
+
+1. **Example containment.** AfWN attaches examples to the *synset*, so a sentence
+   illustrates whichever synonym its author picked. Measured: **4 215 of 7 917**
+   (word, example) pairs never contain the headword at all. Gate = whole-token match,
+   **identical to the rule in `verify-dict-bank.py`** — a first attempt matched any token
+   sharing a stem and the ship gate caught it, because that accepts different words
+   (`kata`/`katakata`, `katisô`/`katisa`).
+2. **Sense-ranked meanings.** Wordnet lists a word's senses commonest-first and WN-LMF
+   preserves that order; a synset's rank is the best position it holds among its member
+   words. Without this, `lesea` shipped glossed *baby/babe/infant* but **defined as "a
+   project of personal concern to someone"** — the figurative sense — because its two
+   synsets tied on every other signal and an arbitrary id decided it.
+3. **Examples locked to the winning sense.** Containment cannot catch a *sense* mismatch:
+   `lesea`'s figurative example really does contain "lesea". Examples now come only from
+   the top-ranked synset — the one whose definition the entry carries. Cost: examples fell
+   3 630 → 2 607 (25% → 20% coverage). Correct, and the same principle as the homonym
+   guard: with nothing to check the sense against, show no example.
+4. **Gloss usability**, mirroring the ship gate so failures are dropped here rather than
+   blocking the build: one-letter meanings (wordnet is full of "C" for carbon) and the
+   handful of real English phrases the Setswana-vs-English heuristic rejects ("let go",
+   "tee shirt").
+
+### App changes
+
+- **Search ranks human-checked entries above unchecked ones on a tie** — new, and needed:
+  8 790 unchecked words could otherwise bury a course word of the same rank and length.
+  A tie-break only; an exact hit still beats a checked partial one.
+- **Examples with no translation render without an English line.** AfWN publishes Setswana
+  usage sentences with no translation; the panel previously would have printed "undefined".
+- The ship gate's "every example has a translation" rule now exempts **named** sources
+  (`UNTRANSLATED_EX_SRC`) and asserts the *inverse* for them — a translation appearing on
+  an AfWN example means something went wrong. The rule was not weakened for everyone.
+- Attribution footer credits AfWN and OEWN (CC BY 4.0 requires it).
+
+### Verification (build only — NOT committed, NOT deployed)
+
+Ship gate green: `9177 entries, 2607 examples, 298 human-checked, 1575 kB, LF-only, no BOM`.
+Both `dict-extract-afwn.py` and `dict-build.py` byte-identical under different
+`PYTHONHASHSEED` values (the 2026-08-04 determinism lesson). Browser pass at `?local=1`
+reading the DOM: 9 177 words; `lesea`/`baby` resolve with the correct definition; `water`
+puts her checked `metsi` first with its audio; an AfWN example renders with no English line
+and no "undefined"; the miss path still explains itself; **localStorage byte-identical
+before and after a full session** (no SRS writes, no XP); 0 console errors; service worker,
+caches and localStorage wiped after.
+
+### Known limits — say these plainly rather than letting her find them
+
+- **It is a wordnet, not a beginner's dictionary.** Strong on nouns (6 876) and verbs
+  (2 750), weak on adjectives (262), and missing common function words entirely. Of her
+  three real misses: **baby is now solved** (`lesea`), **alone is still absent**, and
+  **tissue matches only the archaic verb "to tissue"** (weaving) — not the paper hankie.
+  The gap-fill loop remains the answer for everyday words.
+- **Some entries still read oddly.** `ngwana` ties two equally-ranked senses and takes
+  "any immature animal"; `rota` glosses as "stale, make" (wordnet's euphemism for
+  urinating). Unchecked wordnet content, labelled as such in the panel.
+- **Size**: 1.6 MB precached on her phone, up from 194 kB, per her wave-1 "preload" ruling.
+  If that is too heavy, the cheapest lever is dropping AfWN entries whose glosses are
+  bulk-imported one-word synsets.

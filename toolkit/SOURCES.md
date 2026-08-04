@@ -26,6 +26,37 @@
   `toolkit/nchlt-item-audio.py`; OpenSLR 32 exact matches (CC BY-SA 4.0) via the same pipeline.
 - Rule: an item only gets audio when a real native clip says exactly that text — no TTS, no guessing.
 
+## African Wordnet + Open English Wordnet (dictionary wave 2, 2026-08-04)
+
+Both live in gitignored `dictionaries/` and are re-fetchable; `toolkit/dict-extract-afwn.py`
+turns them into `toolkit/dict-src/afwn.json`.
+
+- **African Wordnet, Setswana — 2017 release** (Bosch & Griesel). 12 182 Setswana lemmas
+  in 12 960 synsets, with 3 462 Setswana definitions and 4 316 Setswana usage sentences.
+  Download: <https://hdl.handle.net/20.500.12185/390>
+- **Open English Wordnet 2025**, CC BY 4.0.
+  Download: <https://github.com/globalwordnet/english-wordnet/releases>
+- **How they join.** AfWN was built on the "expand" model — Setswana words attached to
+  Princeton Wordnet meanings — so every synset carries an ILI (Interlingual Index) number
+  naming the meaning, but **no English words at all**. OEWN carries the same ILI numbers
+  *with* English words and definitions. Joining on ILI is what produces English glosses.
+  98% of AfWN entries join.
+- ⚠️ **Use the 2017 release, not the 2022 one.** The 2022 export (handle 684) replaced the
+  ILI/Princeton ids with internal UUIDs and dropped every definition, so it cannot be joined
+  to English at all — 0 usable pairs. Re-check this if a later release appears.
+- ✅ **Licence discrepancy — SETTLED 2026-08-04 by the author, in writing.** The 2017
+  release's own Readme and the `license=` attribute inside `wntsn-lmf.xml` both state
+  **CC BY 4.0**; the SADiLaR catalogue page for the same item says CC BY-NC-SA 4.0.
+  Megan emailed **Marissa Griesel** (African Wordnet author, griesel.marissa@gmail.com)
+  and was told plainly that using it is "no problem". **Treat CC BY 4.0 as the licence** —
+  the catalogue field is stale, and the data's own two statements plus the author's
+  confirmation outrank it. ⚠️ Do NOT re-open this from the catalogue page alone; if it ever
+  matters again, the email is the record and Megan holds it.
+  (Why it mattered: share-alike would have clashed with the CC BY-SA Wiktionary material
+  already in the same file, since one permits commercial use and the other forbids it.)
+- **Not human-checked.** These entries ship `chk:false`, so the panel labels them by source and
+  search ranks Megan's checked course words above them on a tie.
+
 ## Usage-checking corpus greps
 
 ```bash
