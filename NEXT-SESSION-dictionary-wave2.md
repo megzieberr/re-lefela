@@ -8,6 +8,15 @@ that day (747 entries, sw v38); she then took the app away to use for a few days
 > /catchup re-lefela — then read `NEXT-SESSION-dictionary-wave2.md` in the repo root and
 > follow it. Dictionary wave 2.
 
+**Model: Sonnet** (her call, 2026-08-04). Everything in steps 0–3(a) is pattern-following —
+the pipeline, the record shapes and three worked extractors already exist, and there is no
+schema change, no migration and nothing touching auth or learner data beyond reading
+`tutor_questions`. **The one exception is step 3(b), deeper example mining:** raising
+example coverage without loosening the safety rules is subtle-correctness work, and it is
+precisely where the session-34 review found real bugs (the homonym guard, the Bible
+alignment, the corroboration thresholds). If she wants that, plan it on Opus first and hand
+the implementation back to Sonnet.
+
 ---
 
 ## Step 0 — ASK FIRST. Do not open by building.
