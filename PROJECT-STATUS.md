@@ -1,9 +1,11 @@
 # Re:Lefela — Project Status — updated 2026-08-05
 
-**Updated:** 2026-08-05 (session 37 — **Katse is animated, SHIPPED as sw v41**, commit
-`4783d8c`. Seven still PNGs became twelve looping WebP poses, plus a walk-in entrance. Built
-from sprite sheets Megan generated the same day. Earlier that day, session 36 shipped the
-word-bank fix as sw v40, commit `b06f11e`.)
+**Updated:** 2026-08-05 (session 37 — **Katse is animated, SHIPPED as sw v41 then v42**, commits
+`4783d8c` and `d2dc015`. Seven still PNGs became twelve looping WebP poses: a walk-in entrance,
+she talks when audio plays, she goes cross on a wrong answer, and revision rounds sign off with a
+stretch. Built from sprite sheets Megan generated the same day; the sheets and the pipeline that
+slices them are now backed up in `Katse/`. Earlier that day, session 36 shipped the word-bank fix
+as sw v40, commit `b06f11e`.)
 
 ## Session 37 (2026-08-05) — Katse is alive: 12 animated poses (sw v41, SHIPPED, commit 4783d8c)
 
@@ -23,9 +25,23 @@ She picked twelve keepers off a preview page and they went live the same session
   `.kv-walk`'s width (214px) is **measured**, not guessed: it makes the seated cat exactly as
   tall (147px) as the sitting cat it becomes, so the handover is invisible. ⚠️ Re-measure if
   either file is ever replaced.
-- **Five poses are drawn, precached and NOT placed:** `talk`, `tilt`, `angry`, `stretch`,
-  `slide`. Each is one line to use. They were left unplaced on purpose — where an angry or
-  sliding cat belongs is a design call, not a technical one.
+- **All five spare poses were placed the same session** (commit `d2dc015`, sw v42), on her
+  instruction:
+  - **`talk` = when Katse talks.** While a clip plays, a **sitting** Katse switches to the
+    talking animation instead of only swaying. Peeking / draped / belly-up poses keep the sway
+    alone — swapping one of those for a sitting cat mid-sentence reads as a teleport. `curious`
+    already talks. ⚠️ `home`, `talk` and `tilt` are built onto **one shared canvas and
+    baseline** so the swap changes the cat and nothing else; keep that if a sitting pose is
+    ever added or rebuilt.
+  - **`angry` = a wrong answer.** Replaces the sympathetic `oops` peek at that moment. Her
+    call. If it reads as harsh on a bad run, the softer version is to show it only on a second
+    miss in a row — one line in `grade()`.
+  - **`stretch` / `slide` = revision rounds.** A review or Daily Quest now signs off
+    differently from a first lesson: a satisfied stretch, or Katse sliding down the glass when
+    it was rough (accuracy under 60%). A plain lesson still ends on the celebrating belly-up
+    cat. `slide` is a tall portrait drawing and needs its own width wherever it appears.
+  - `tilt` remains available but unplaced — it is the quieter sitting idle, an alternative to
+    `home`.
 - ⚠️ **A live bug was found and fixed on the way.** The `.kv-*` `aspect-ratio` rules (which
   reserve each pose's box before the image decodes, so the layout does not jump) still
   described the **old** artwork. The home cat reserved a 270×340 box for a 331×340 image and
@@ -53,9 +69,13 @@ them out if this is worth repeating). The lasting knowledge:
   image, not a new drawing"*, plus naming the parts that must not change. Tripo3D with those
   prompts beat ChatGPT clearly.
 
-**Working files, laptop only, NOT in git:** `Katse/new/` (7.7 MB source sheets), `Katse/frames/`
-(4.3 MB sliced frames), `Katse/gifs/` (1.1 MB previews), `Katse/preview.html` (the picker page,
-still works — open it any time to re-watch all sixteen).
+**Backed up on her instruction (commit `d2dc015`):** `Katse/new/` — all 20 source sprite sheets,
+which cost generator credits and existed only on the laptop — and `Katse/tools/`, the five
+scripts that turn a sheet into an app asset, with a **README covering every trap** (slice by the
+cat's body not the alpha box; frame numbers hide *outside* the silhouette so a bounding-box test
+misses them; some sheets carry a dark glow in transparent RGB; the `.kv-*` aspect-ratio rules go
+stale silently). `Katse/frames/`, `Katse/gifs/` and `Katse/preview.html` are **derived** from
+those two and are gitignored — delete them freely, `Katse/tools/` rebuilds them.
 
 ## Session 36 (2026-08-05) — the word bank now comes from the same lesson (sw v40, SHIPPED, commit b06f11e)
 
@@ -163,17 +183,15 @@ top of each chat, then one prompt per drawing, plus what to reply with when a sh
   body**, not the transparent box — the trap that bit the Blipwork sheet.
 
 ## Pending on Megan (end of session 37, 2026-08-05)
-1. 📱 **[blocking] 2 min:** close and reopen the PWA twice so v41 takes, then look at the home
-   screen. Katse should **walk in and sit down**, then keep swishing her tail. Tell me if the
-   walk-in is too slow, too fast, or gets annoying on every open.
-2. 📱 **[whenever] 2 min, same sitting:** play any body-part lesson to check v40 as well — the
-   four answers should all be body parts. **It is genuinely harder on purpose.** Say if it went
-   too far.
-3. 💻 **[whenever] a decision, no work:** the 13 MB of Katse working files on your laptop
-   (`Katse/new`, `frames`, `gifs`) are **not backed up anywhere**. Into the repo, onto a drive,
-   or accept the risk?
-4. 💻 **[whenever] a decision, no work:** where should the five spare poses go — `talk`, `tilt`,
-   `angry`, `stretch`, `slide`? One line each once you say.
+1. 📱 **[blocking] 3 min:** close and reopen the PWA twice so **v42** takes, then on the home
+   screen watch her **walk in and sit down**, and **tap her** — she should open her mouth and
+   talk. Tell me if the walk-in gets annoying on every open.
+2. 📱 **[blocking] 2 min, same sitting:** get one answer **wrong** on purpose. Katse goes
+   **cross**. Say if that reads as too harsh — the softer version is to save it for a second
+   miss in a row.
+3. 📱 **[whenever] 2 min:** finish a Daily Quest to see the new sign-off — a stretch, or her
+   sliding down the glass if it went badly. Also checks v40's harder word bank while you are
+   there.
 
 ## Next up (agreed 2026-08-05, end of session 37)
 1. 📝 **[whenever] a few minutes at break:** the register phrases. Five short lines each — the
