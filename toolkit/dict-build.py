@@ -22,7 +22,7 @@ OUT = ROOT / 'dict-bank.js'
 # best-checked first; drives spelling + meaning order. afwn is last on purpose: it
 # is wordnet-derived and unchecked, so where it meets a word the course already
 # teaches, the course's spelling and its meanings lead.
-SOURCE_ORDER = ['app', 'pc', 'wikt', 'afwn']
+SOURCE_ORDER = ['app', 'pc', 'desk', 'wikt', 'afwn']
 
 HEADER = """// Re:Lefela — dictionary bank (SPEC-dictionary-panel.md). GENERATED FILE.
 // ─────────────────────────────────────────────────────────────────────────────

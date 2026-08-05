@@ -1,11 +1,34 @@
 # Re:Lefela — Project Status — updated 2026-08-05
 
-**Updated:** 2026-08-05 (session 37 — **Katse is animated, SHIPPED as sw v41 then v42**, commits
-`4783d8c` and `d2dc015`. Seven still PNGs became twelve looping WebP poses: a walk-in entrance,
-she talks when audio plays, she goes cross on a wrong answer, and revision rounds sign off with a
-stretch. Built from sprite sheets Megan generated the same day; the sheets and the pipeline that
-slices them are now backed up in `Katse/`. Earlier that day, session 36 shipped the word-bank fix
-as sw v40, commit `b06f11e`.)
+**Updated:** 2026-08-05 (session 38 — dictionary gap-fill from three `dict-miss:` flags, built as
+sw v43, **NOT YET SHIPPED** — needs commit + push. Earlier that day, session 37 shipped Katse's
+animated poses as sw v41 then v42, commits `4783d8c` and `d2dc015`.)
+
+## Session 38 (2026-08-05) — dictionary gap-fill: nosi, moma/tumola molomo (sw v43, built, not shipped)
+
+Small ad-hoc gap-fill triggered by a WhatsApp tutoring correction, not a planned wave. Read the
+5 open `dict-miss:` rows from `tutor_questions` and resolved them with Megan in the room:
+
+- **alone → nosi** — confirmed by her Setswana friend directly; matches the Matumo desk
+  dictionary's concord pattern (ke le nosi / o le esi / ba le bosi).
+- **shut up → moma molomo / tumola molomo** — both looked up in the Matumo desk dictionary
+  under the "mouth" entry's collocations (no dedicated "shut up" headword existed).
+- **tissue → confirmed absent.** Not in the Matumo desk dictionary, and Megan's Setswana-speaking
+  friend couldn't produce a word either. Left unadded — no unsourced Setswana. All 5 `dict-miss:`
+  rows (tissue, alone ×2, Alone, shut up) marked `addressed_at`.
+
+Added `toolkit/dict-src/desk.json` (3 entries, first use of the `desk` source tag — added `'desk'`
+to `SOURCE_ORDER` in `dict-build.py`; `verify-dict-bank.py` and `index.html`'s `DICT_SRC_LABEL`
+already had it reserved). Rebuilt `dict-bank.js` (9179 entries, ship gate OK). `nosi` merged with
+an existing African Wordnet entry rather than creating a duplicate. Bumped `sw.js` CACHE to v43
+(dict-bank.js is precached). Verified live in a `?local=1` browser pass via `RL_DICT` lookup —
+all three entries present with correct meanings, notes and source tags.
+
+Also folded a related correction into `SECL121/CLAUDE.md`'s leaky-items list: "he bato" (many
+spellings) is an informal filler exclamation (~"ag nee man"), not a mangled "batho" — got
+mis-flagged as a spelling error this session before Megan corrected it.
+
+**Not done:** commit + push (needs her go-ahead per the ship ritual).
 
 ## Session 37 (2026-08-05) — Katse is alive: 12 animated poses (sw v41, SHIPPED, commit 4783d8c)
 

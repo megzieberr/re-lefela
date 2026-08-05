@@ -1,0 +1,29 @@
+[
+ {
+  "tsw": "nosi",
+  "eng": ["alone", "by oneself"],
+  "pos": "adj",
+  "cls": null,
+  "note": "Marked with concord + le + nosi/esi/bosi depending on who: ke le nosi = I'm alone, o le esi = he/she alone, ba le bosi = they alone.",
+  "src": ["desk"],
+  "chk": true
+ },
+ {
+  "tsw": "moma molomo",
+  "eng": ["shut the mouth", "shut up", "be quiet"],
+  "pos": "phrase",
+  "cls": null,
+  "note": "Literally \"close the mouth\" — the desk dictionary's collocation for telling someone to shut up.",
+  "src": ["desk"],
+  "chk": true
+ },
+ {
+  "tsw": "tumola molomo",
+  "eng": ["shut the mouth", "shut up", "be quiet"],
+  "pos": "phrase",
+  "cls": null,
+  "note": "Alternate form the desk dictionary gives alongside \"moma molomo\" for the same meaning.",
+  "src": ["desk"],
+  "chk": true
+ }
+]
