@@ -14,6 +14,12 @@ toolkit/wordlist.js
 toolkit/__pycache__/
 # Katse v2 design WIP (pinned 2026-07-16; approve before wiring into the app)
 katse-preview.html
+# Katse animation pipeline (2026-08-05): Katse/new/ IS tracked — those sprite
+# sheets cost real generator credits and exist nowhere else. frames/ and gifs/
+# are DERIVED from them by Katse/tools/, so they stay out of the repo.
+Katse/frames/
+Katse/gifs/
+Katse/preview.html
 *.zip
 *.wav
 # missing-audio recordings: source audio stays out of git (same as corpus/)

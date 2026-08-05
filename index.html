@@ -192,7 +192,9 @@ a{color:var(--pink-deep)}
 .kv-home{aspect-ratio:331/340} .kv-awake{aspect-ratio:340/210} .kv-rest{aspect-ratio:340/217}
 .kv-happy{aspect-ratio:340/176} .kv-curious{aspect-ratio:339/340}
 .kv-oops{aspect-ratio:340/238} .kv-sleep{aspect-ratio:340/182}
-.kv-talk{aspect-ratio:276/340} .kv-tilt{aspect-ratio:257/340} .kv-walk{aspect-ratio:340/250}
+/* home, talk and tilt deliberately share one canvas and baseline so she can
+   start talking mid-screen without the <img> changing shape — see build notes. */
+.kv-talk{aspect-ratio:331/340} .kv-tilt{aspect-ratio:331/340} .kv-walk{aspect-ratio:340/250}
 .kv-angry{aspect-ratio:340/289} .kv-stretch{aspect-ratio:322/340} .kv-slide{aspect-ratio:112/340}
 /* persistent companion in the bottom-right corner of every lesson card */
 .katse-corner{position:absolute; right:8px; bottom:calc(10px + env(safe-area-inset-bottom)); z-index:4; margin:0}
@@ -621,15 +623,10 @@ function playAudio(file, rate){
   }
   currentAudio.play().catch(()=>{});
   // whatever plays, Katse is the one saying it — sway while the clip runs
-  const wrapEl = katseWrapEl();
-  const img = wrapEl && wrapEl.querySelector('.katse');
-  if (img){
-    img.classList.add('talking');
-    const stop = ()=>img.classList.remove('talking');
-    currentAudio.addEventListener('ended', stop);
-    currentAudio.addEventListener('pause', stop);
-    setTimeout(stop, 8000); // safety net if neither event fires
-  }
+  katseTalkStart();
+  currentAudio.addEventListener('ended', katseTalkStop);
+  currentAudio.addEventListener('pause', katseTalkStop);
+  setTimeout(katseTalkStop, 8000); // safety net if neither event fires
   return currentAudio;
 }
 
@@ -688,6 +685,39 @@ function katseSetPose(pose){
   const el = katseWrapEl(); const img = el && el.querySelector('.katse');
   if (!img) return;
   img.src = KATSE_POSES[pose]; img.className = 'katse kv-'+pose;
+}
+/* While a clip plays she sways (the `.talking` class, unchanged). If she is
+   SITTING she also switches to the talking animation, so her mouth actually
+   moves. Poses where she is peeking over the wall, draped or belly-up are left
+   swaying only — swapping one of those for a sitting cat mid-sentence reads as
+   a teleport. `curious` is excluded because that pose already talks. */
+const KATSE_TALKS_FROM = {home:1, tilt:1};
+let katsePoseBeforeTalk = null;
+function katseCurrentPose(img){
+  const m = /\bkv-(\w+)/.exec(img.className);
+  return m ? m[1] : null;
+}
+function katseTalkStart(){
+  const el = katseWrapEl(); const img = el && el.querySelector('.katse');
+  if (!img) return;
+  img.classList.add('talking');
+  const cur = katseCurrentPose(img);
+  if (cur && KATSE_TALKS_FROM[cur]){
+    katsePoseBeforeTalk = cur;
+    img.src = KATSE_POSES.talk;
+    img.className = 'katse kv-talk talking';
+  }
+}
+function katseTalkStop(){
+  const el = katseWrapEl(); const img = el && el.querySelector('.katse');
+  if (!img) return;
+  img.classList.remove('talking');
+  // only undo our own swap, and only if nothing else has moved her since
+  if (katsePoseBeforeTalk && katseCurrentPose(img) === 'talk'){
+    img.src = KATSE_POSES[katsePoseBeforeTalk];
+    img.className = 'katse kv-' + katsePoseBeforeTalk;
+  }
+  katsePoseBeforeTalk = null;
 }
 /* Katse walks in once per app load and settles into the sitting idle.
    katse-walk.webp stops itself on the seated frame (loop count 1); this only
@@ -2621,7 +2651,7 @@ function grade(ok, it, given, silent, close){
     if (session.combo % 3 === 0){ katseSetPose('happy'); katseAnim('celebrate'); katseBubble('✨ '+session.combo+' in a row!'); }
     else katseAnim('bounce');
   } else {
-    katseSetPose('oops'); katseAnim('tilt');
+    katseSetPose('angry'); katseAnim('tilt');   // her call: cross, not sympathetic
     const cur = session.ex[session.at];
     if (cur && cur.item && !cur.retry){
       const pos = Math.min(session.ex.length, session.at + 3 + Math.floor(Math.random()*3));
@@ -2672,8 +2702,14 @@ function finishSession(){
     }
   }
   const acc = session.right + session.wrong === 0 ? 100 : Math.round(100*session.right/(session.right+session.wrong));
+  /* Revision rounds get their own sign-off so they feel different from a first
+     lesson: a satisfied stretch, or — when it was a rough one — Katse sliding
+     down the glass. Widths are per pose because `slide` is a tall portrait
+     drawing and would be three times the height of the others at one width. */
+  const endPose = !session.isReview ? 'happy' : (acc < 60 ? 'slide' : 'stretch');
+  const endWidth = {happy:190, stretch:190, slide:66}[endPose];
   const kat = `<div style="display:flex; justify-content:center; margin-bottom:8px">
-    <img class="katse kv-happy celebrate" src="${KATSE_POSES.happy}" style="width:190px" alt="Katse celebrating" draggable="false"></div>`;
+    <img class="katse kv-${endPose}${endPose==='happy'?' celebrate':''}" src="${KATSE_POSES[endPose]}" style="width:${endWidth}px" alt="Katse" draggable="false"></div>`;
   if (!lastPart){
     // a part in the middle of a big lesson — checkpoint map: Katse hops to the next circle
     render(`<div class="center" style="margin-top:8vh">
