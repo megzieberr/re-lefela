@@ -61,6 +61,26 @@ guess."* She was right, and it was worse than it looked.
   was rude), so a two-way formal↔casual switch is wrong; each phrase carries **who** and **when**.
   **Blocked on content**: ten checked phrases and it can be built.
 
+### Katse avatars — she sent the art, prompts written (late in the session)
+She supplied **11 new drawings** in `C:\Users\megzi\Downloads\Katse Designs\` (the animation she
+wants is in each filename) and asked for prompts to give to GPT to build sprite sheets. Written for
+her: **`SPRITE-SHEET-PROMPTS.md` in that same folder** — one reusable style block to paste at the
+top of each chat, then one prompt per drawing, plus what to reply with when a sheet comes back wrong.
+- **`Extend Body.png` is a draw-the-rest job, not a sprite sheet.** It is the lean-around-the-corner
+  pose with the body cut off by a straight vertical edge and no back half. Its prompt asks only for
+  the missing back/legs/tail, with everything already drawn left untouched. **Do that one first** —
+  it can be animated later, once she is happy with the finished cat.
+- ⚠️ **Two of the 11 are in a different art style** and will read as a different cat next to the
+  others: *Tail waving 2* (draped over a ledge, winking) and *Tail Waving and Paws Moving*
+  (belly-up) are hand-drawn line-art — thin white lines inside the black, **no pink ears**, smaller
+  eyes. *Sleeping* sits in between (pink ears, but white line work). Flagged for her decision; their
+  prompts explicitly tell the model to keep the line-art look rather than flatten it.
+- The style block's load-bearing instructions, all learned the hard way: **only the named part
+  moves**, same canvas and same body scale and position in every frame, transparent background, one
+  horizontal row, no frame numbers or borders, and the loop must close.
+- ⚠️ **When the sheets come back, frames get measured off the cat's BODY, not the transparent box**
+  — the trap that made the Blipwork sprites jump around.
+
 ## Decisions (2026-08-05)
 - **Distractors come from the card's own lesson first.** The lesson is the topic unit in this app;
   no new "topic" field was added or is needed.
@@ -82,8 +102,12 @@ guess."* She was right, and it was worse than it looked.
 1. 📱 **[whenever] 2 min:** close and reopen the PWA twice so v40 takes, then play any body-part
    lesson. The four answers should all be body parts now. **It is genuinely harder — that is the
    change, not a fault.** Say if it went too far.
-2. 💻 **[whenever]** send the Katse images, and for each one say whether it is a **new mood** or a
-   **movement** — those are two different builds.
+2. 💻 **[whenever] ~10 min in GPT:** run the **Extend Body** prompt from
+   `Downloads\Katse Designs\SPRITE-SHEET-PROMPTS.md` first and check you like the finished cat,
+   then work through the sprite-sheet prompts one drawing per chat. Send the sheets back here to
+   be sliced and wired in.
+2b. 💻 **[whenever] a decision, no work:** are the two line-art drawings (*Tail waving 2*, *Tail
+   Waving and Paws Moving*) meant for this app? They will not match the other nine.
 3. 📝 **[whenever] a few minutes at break:** the register phrases. Five short lines each — the
    Setswana (her friend's spelling), the English, who you'd say it to, when, and whether it
    replaces something the app already teaches. **Ten is enough to build on.**
