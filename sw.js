@@ -9,14 +9,21 @@
 //   - precache uses {cache:'reload'} so install never reads a stale HTTP-cached
 //     index.html (GitHub Pages serves max-age=600).
 //   - non-GET and cross-origin (Supabase, CDN) requests pass straight through.
-const CACHE = 'relefela-v40';
+const CACHE = 'relefela-v41';
 // Bump AUDIO_CACHE's version suffix ONLY when an existing audio file's content
 // changes (re-record/re-splice under the same filename). App version bumps
 // (CACHE above) must never evict audio.
 const AUDIO_CACHE = 'relefela-audio-v3';
 const CORE = ['./', 'index.html', 'content.js', 'dialogues.js', 'builder-bank.js', 'dict-bank.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png',
-  'img/katse-home.png', 'img/katse-awake.png', 'img/katse-rest.png',
-  'img/katse-happy.png', 'img/katse-curious.png', 'img/katse-oops.png', 'img/katse-sleep.png'];
+  // Katse is animated WebP now (see KATSE_POSES in index.html). `oops` is the
+  // one pose with no animation drawn, so it stays a PNG.
+  'img/katse-home.webp', 'img/katse-awake.webp', 'img/katse-rest.webp',
+  'img/katse-happy.webp', 'img/katse-curious.webp', 'img/katse-sleep.webp',
+  'img/katse-walk.webp', 'img/katse-oops.png',
+  // drawn and available, not yet placed in the app — precached so that placing
+  // one later is a one-line change with nothing new to download
+  'img/katse-talk.webp', 'img/katse-tilt.webp', 'img/katse-angry.webp',
+  'img/katse-stretch.webp', 'img/katse-slide.webp'];
 
 self.addEventListener('install', e => {
   e.waitUntil(

@@ -186,9 +186,14 @@ a{color:var(--pink-deep)}
   background:none; padding:0; border:none}
 .katse-wrap.tappable{cursor:pointer}
 .katse{width:120px; height:auto; display:block; transform-origin:50% 100%}
-.kv-home{aspect-ratio:270/340} .kv-awake{aspect-ratio:340/211} .kv-rest{aspect-ratio:340/239}
-.kv-happy{aspect-ratio:340/171} .kv-curious{aspect-ratio:340/533}
-.kv-oops{aspect-ratio:340/238} .kv-sleep{aspect-ratio:340/211}
+/* Each pose reserves its own box before the image decodes, so the layout never
+   jumps. These MUST match the real pixel size of the file in KATSE_POSES —
+   re-measure whenever a pose's artwork is replaced. */
+.kv-home{aspect-ratio:331/340} .kv-awake{aspect-ratio:340/210} .kv-rest{aspect-ratio:340/217}
+.kv-happy{aspect-ratio:340/176} .kv-curious{aspect-ratio:339/340}
+.kv-oops{aspect-ratio:340/238} .kv-sleep{aspect-ratio:340/182}
+.kv-talk{aspect-ratio:276/340} .kv-tilt{aspect-ratio:257/340} .kv-walk{aspect-ratio:340/250}
+.kv-angry{aspect-ratio:340/289} .kv-stretch{aspect-ratio:322/340} .kv-slide{aspect-ratio:112/340}
 /* persistent companion in the bottom-right corner of every lesson card */
 .katse-corner{position:absolute; right:8px; bottom:calc(10px + env(safe-area-inset-bottom)); z-index:4; margin:0}
 /* she sits hard against the right edge here, so grow the bubble leftward from
@@ -196,10 +201,18 @@ a{color:var(--pink-deep)}
 .katse-corner .kbubble{left:auto; right:0; transform:translateX(0) translateY(4px)}
 .katse-corner .kbubble.show{transform:translateX(0) translateY(0)}
 .katse-corner .katse{width:155px}
-.katse-corner .katse.kv-curious{width:110px}  /* tall lean-around pose */
-@media (max-height:640px){ .katse-corner .katse{width:115px} .katse-corner .katse.kv-curious{width:82px} }
+/* `slide` is a tall portrait pose (roughly 1:3) — everything else is squarer.
+   `curious` used to need a cap too; since it became a full-body cat it is
+   square like the rest and sizes normally. */
+.katse-corner .katse.kv-slide{width:70px}
+@media (max-height:640px){ .katse-corner .katse{width:115px} .katse-corner .katse.kv-slide{width:52px} }
 /* big Katse on the home screen — her house, we just live here */
 .katse-hero .katse{width:150px}
+/* The walk-in is drawn on a wider, shorter canvas than the sitting pose. This
+   width makes the SEATED CAT in its last frame exactly as tall as the sitting
+   Katse it hands over to (measured: 147px on screen either way), so the swap
+   at the end of the entrance is invisible. Re-measure if either file changes. */
+.katse-hero .katse.kv-walk{width:214px}
 .katse-hero .kbubble{left:8px; right:auto; transform:translateX(0) translateY(4px)}
 .katse-hero .kbubble.show{transform:translateX(0) translateY(0)}
 .katse-hero .kbubble::after{left:64px}
@@ -621,15 +634,28 @@ function playAudio(file, rate){
 }
 
 /* ---------- Katse the mascot 🐈‍⬛ ---------- */
+/* Animated WebP, one file per pose — the <img> plays them on its own, so there
+   is no timer here and nothing to start or stop. Frame timing is baked into
+   each file (built from the sprite sheets in Katse/, see Katse/preview.html).
+   `oops` is still a PNG: no animation was drawn for it. */
 const KATSE_POSES = {
-  home:'img/katse-home.png',       // sitting — her home screen
-  awake:'img/katse-awake.png',     // peeking over the wall — card has audio
-  rest:'img/katse-rest.png',       // draped, winking — no audio here
-  happy:'img/katse-happy.png',     // belly-up — celebration
-  curious:'img/katse-curious.png', // leaning around the corner — new word!
-  oops:'img/katse-oops.png',       // big peek with paws — sympathetic miss
-  sleep:'img/katse-sleep.png'      // curled up — today's streak is safe
+  home:'img/katse-home.webp',       // sitting, tail swishing — her home screen
+  awake:'img/katse-awake.webp',     // peeking over the wall — card has audio
+  rest:'img/katse-rest.webp',       // draped, tail swinging — no audio here
+  happy:'img/katse-happy.webp',     // belly-up, paws waving — celebration
+  curious:'img/katse-curious.webp', // full body, chattering — new word!
+  oops:'img/katse-oops.png',        // big peek with paws — sympathetic miss
+  sleep:'img/katse-sleep.webp',     // curled up — today's streak is safe
+  talk:'img/katse-talk.webp',       // sitting, mouth moving — she's saying something
+  tilt:'img/katse-tilt.webp',       // sitting, head tilting — a quieter idle
+  walk:'img/katse-walk.webp',       // walks in and sits — plays ONCE, then hand to `home`
+  angry:'img/katse-angry.webp',     // cross — drawn, not yet placed
+  stretch:'img/katse-stretch.webp', // a stretch — drawn, not yet placed
+  slide:'img/katse-slide.webp'      // sliding down the glass — drawn, not yet placed
 };
+/* katse-walk.webp is authored with a loop count of 1, so the browser stops on
+   the seated frame. This is how long it runs — keep the two in step. */
+const KATSE_WALK_MS = 8 * 350;
 function katseImg(variant){
   return `<img class="katse kv-${variant}" src="${KATSE_POSES[variant]}" alt="Katse the cat" draggable="false">`;
 }
@@ -662,6 +688,24 @@ function katseSetPose(pose){
   const el = katseWrapEl(); const img = el && el.querySelector('.katse');
   if (!img) return;
   img.src = KATSE_POSES[pose]; img.className = 'katse kv-'+pose;
+}
+/* Katse walks in once per app load and settles into the sitting idle.
+   katse-walk.webp stops itself on the seated frame (loop count 1); this only
+   hands the pose over afterwards. Skipped when she's already curled up asleep,
+   and it re-checks the element first in case you navigated away mid-walk. */
+let katseHasWalkedIn = false;
+function katseEntrance(){
+  if (katseHasWalkedIn) return;
+  katseHasWalkedIn = true;
+  const img = document.querySelector('#katse-home .katse');
+  if (!img || !img.classList.contains('kv-home')) return;  // asleep, or not home
+  img.src = KATSE_POSES.walk; img.className = 'katse kv-walk';
+  setTimeout(()=>{
+    const later = document.querySelector('#katse-home .katse');
+    if (later && later.classList.contains('kv-walk')){
+      later.src = KATSE_POSES.home; later.className = 'katse kv-home';
+    }
+  }, KATSE_WALK_MS);
 }
 function katseAnim(cls){
   const el = katseWrapEl(); const img = el && el.querySelector('.katse');
@@ -963,6 +1007,7 @@ function screenHome(){
     n.onclick = ()=> startLesson(RL_CONTENT.units.find(u=>u.id===n.dataset.u), parseInt(n.dataset.i,10));
   });
   hookKatse('katse-home', ()=>pick(voicedItems()));
+  katseEntrance();
   // she greets you when you walk in — a real course phrase, tap her to hear one.
   // The daily rivalry nudge takes priority when it's due: one bubble per load,
   // never two fighting — see maybeShowRivalryNudge for the coexistence rule.
