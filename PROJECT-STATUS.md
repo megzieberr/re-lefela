@@ -1,10 +1,61 @@
 # Re:Lefela — Project Status — updated 2026-08-05
 
-**Updated:** 2026-08-05 (session 36 — **the word bank is no longer guessable, SHIPPED as sw
-v40**, commit `b06f11e`. Multiple-choice wrong answers now come from the card's own lesson
-instead of the whole app, so a body-part card offers body parts. A Daily Quest bug fell out of
-it. Also written, nothing built: `SPEC-plurals-and-classes.md` (one merged round) and
-`SPEC-register.md` (formal vs everyday Setswana).)
+**Updated:** 2026-08-05 (session 37 — **Katse is animated, SHIPPED as sw v41**, commit
+`4783d8c`. Seven still PNGs became twelve looping WebP poses, plus a walk-in entrance. Built
+from sprite sheets Megan generated the same day. Earlier that day, session 36 shipped the
+word-bank fix as sw v40, commit `b06f11e`.)
+
+## Session 37 (2026-08-05) — Katse is alive: 12 animated poses (sw v41, SHIPPED, commit 4783d8c)
+
+Megan generated sprite sheets all day and fed them back in batches. Fourteen sheets from
+ChatGPT first, then four re-draws from **Tripo3D** using prompts written here, then two more.
+She picked twelve keepers off a preview page and they went live the same session.
+
+- **No animation code was written.** An animated WebP plays inside an ordinary `<img>`, so
+  `KATSE_POSES` just points at new files and every existing pose swap, class and helper works
+  untouched. Frame timing is baked into each file. This is why the whole feature is ~60 lines.
+- **The seven existing poses are now animated:** home (tail waving), awake (ears), rest (tail
+  swinging), happy (paws), curious (full body, chattering), sleep (breathing). `oops` is the
+  one pose nobody drew an animation for, so it stays a PNG — that is deliberate, not an
+  oversight.
+- **`walk` is a real entrance.** She walks in and sits down, once per app load, then hands over
+  to `home`. The file carries a loop count of 1 so the browser stops it on the seated frame.
+  `.kv-walk`'s width (214px) is **measured**, not guessed: it makes the seated cat exactly as
+  tall (147px) as the sitting cat it becomes, so the handover is invisible. ⚠️ Re-measure if
+  either file is ever replaced.
+- **Five poses are drawn, precached and NOT placed:** `talk`, `tilt`, `angry`, `stretch`,
+  `slide`. Each is one line to use. They were left unplaced on purpose — where an angry or
+  sliding cat belongs is a design call, not a technical one.
+- ⚠️ **A live bug was found and fixed on the way.** The `.kv-*` `aspect-ratio` rules (which
+  reserve each pose's box before the image decodes, so the layout does not jump) still
+  described the **old** artwork. The home cat reserved a 270×340 box for a 331×340 image and
+  rendered **35px too tall**. Every pose now declares its real pixel size. **These must be
+  updated whenever a pose's art changes** — nothing warns you.
+- `curious` was a tall lean-around pose capped to 110px in the corner. As a full-body cat it is
+  square and sizes normally, so the cap is gone. `slide` is the tall one now (roughly 1:3) and
+  has its own.
+- **Cost: 512 kB for twelve animations** (lossy WebP q90, longest side 340px to match the
+  existing stills). Checked against lossless at 3× zoom — no edge fringing. The app already
+  precaches 1.9 MB, most of it `dict-bank.js`.
+
+### How to make more of these
+The whole pipeline is three scripts, kept in the session scratchpad (**not** in the repo — copy
+them out if this is worth repeating). The lasting knowledge:
+- Slice by the **cat's body**, never the transparent box, and align frames by maximising
+  overlap with frame 0 so only the animated part moves.
+- Sheets arrive with **frame numbers drawn into them** (3 of 14 did). A stray blob is a number
+  when it sits clear of every cat's *silhouette* — testing against the bounding box is not
+  enough, a digit above the head is inside the box. Size-check too, or Sliding's motion lines
+  get deleted as numbers.
+- Two sheets had a **dark glow baked into the RGB of transparent pixels**; flooring alpha below
+  60 removes it.
+- The prompt wording that stopped ChatGPT redrawing Katse: *"this is an edit of the attached
+  image, not a new drawing"*, plus naming the parts that must not change. Tripo3D with those
+  prompts beat ChatGPT clearly.
+
+**Working files, laptop only, NOT in git:** `Katse/new/` (7.7 MB source sheets), `Katse/frames/`
+(4.3 MB sliced frames), `Katse/gifs/` (1.1 MB previews), `Katse/preview.html` (the picker page,
+still works — open it any time to re-watch all sixteen).
 
 ## Session 36 (2026-08-05) — the word bank now comes from the same lesson (sw v40, SHIPPED, commit b06f11e)
 
@@ -82,6 +133,19 @@ top of each chat, then one prompt per drawing, plus what to reply with when a sh
   — the trap that made the Blipwork sprites jump around.
 
 ## Decisions (2026-08-05)
+- **Katse animates as WebP inside the existing `<img>`, not as a sprite-sheet/CSS or JS frame
+  player.** Nothing to start, stop or keep in sync, and every pose helper already written keeps
+  working. The cost is that speed is baked into the file — changing it means rebuilding.
+- **The line-art question from session 36 (item 2b) is CLOSED, and the worry was wrong.**
+  `katse-rest` and `katse-happy`, both already live in the app, ARE that same thin-white-line
+  style. So *Tail Moving* and *Tails and Paws* do not clash — they animate those two poses
+  exactly. Nothing to decide.
+- **`oops` stays a still.** No animation was drawn for it; a mixed set is fine.
+- **Five drawn poses ship unplaced** (`talk`, `tilt`, `angry`, `stretch`, `slide`) rather than
+  being wired somewhere invented. Placing a cross cat or a sliding cat is Megan's design call.
+- **The head-turn and stretch sheets were regenerated rather than salvaged.** The first ChatGPT
+  head-turn had the cat facing different directions between frames and duplicated a frame
+  number — unfixable by slicing.
 - **Distractors come from the card's own lesson first.** The lesson is the topic unit in this app;
   no new "topic" field was added or is needed.
 - **The plurals round and the noun-class round are ONE round, not two.** Her call, reversing her
@@ -98,28 +162,32 @@ top of each chat, then one prompt per drawing, plus what to reply with when a sh
   width) or an *animation* (a real feature). ⚠️ If a sprite sheet arrives, measure the **cat's
   body**, not the transparent box — the trap that bit the Blipwork sheet.
 
-## Next up (agreed 2026-08-05, end of session 36)
-1. 📱 **[whenever] 2 min:** close and reopen the PWA twice so v40 takes, then play any body-part
-   lesson. The four answers should all be body parts now. **It is genuinely harder — that is the
-   change, not a fault.** Say if it went too far.
-2. 💻 **[whenever] ~10 min in GPT:** run the **Extend Body** prompt from
-   `Downloads\Katse Designs\SPRITE-SHEET-PROMPTS.md` first and check you like the finished cat,
-   then work through the sprite-sheet prompts one drawing per chat. Send the sheets back here to
-   be sliced and wired in.
-2b. 💻 **[whenever] a decision, no work:** are the two line-art drawings (*Tail waving 2*, *Tail
-   Waving and Paws Moving*) meant for this app? They will not match the other nine.
-3. 📝 **[whenever] a few minutes at break:** the register phrases. Five short lines each — the
+## Pending on Megan (end of session 37, 2026-08-05)
+1. 📱 **[blocking] 2 min:** close and reopen the PWA twice so v41 takes, then look at the home
+   screen. Katse should **walk in and sit down**, then keep swishing her tail. Tell me if the
+   walk-in is too slow, too fast, or gets annoying on every open.
+2. 📱 **[whenever] 2 min, same sitting:** play any body-part lesson to check v40 as well — the
+   four answers should all be body parts. **It is genuinely harder on purpose.** Say if it went
+   too far.
+3. 💻 **[whenever] a decision, no work:** the 13 MB of Katse working files on your laptop
+   (`Katse/new`, `frames`, `gifs`) are **not backed up anywhere**. Into the repo, onto a drive,
+   or accept the risk?
+4. 💻 **[whenever] a decision, no work:** where should the five spare poses go — `talk`, `tilt`,
+   `angry`, `stretch`, `slide`? One line each once you say.
+
+## Next up (agreed 2026-08-05, end of session 37)
+1. 📝 **[whenever] a few minutes at break:** the register phrases. Five short lines each — the
    Setswana (her friend's spelling), the English, who you'd say it to, when, and whether it
    replaces something the app already teaches. **Ten is enough to build on.**
-4. 💻 **[whenever] 15 min, WITH her:** *alone* and *tissue* are still missing from the dictionary —
+2. 💻 **[whenever] 15 min, WITH her:** *alone* and *tissue* are still missing from the dictionary —
    she looked up *alone* **again on 2026-08-05**, so it is still biting. Look them up in Matumo
    together, add as `src:["desk"], chk:true`, rebuild, ship.
-5. 💻 **[whenever]** build the merged plurals/classes round off `SPEC-plurals-and-classes.md`.
+3. 💻 **[whenever]** build the merged plurals/classes round off `SPEC-plurals-and-classes.md`.
    Three open questions in §5 need her word first (button name; is the class number shown from day
    one; does step 2 get skipped once a card is known).
-6. 📱 **[whenever] 1 min, ask the second learner:** have her look up a missing word and tap 💬 Ask
+4. 📱 **[whenever] 1 min, ask the second learner:** have her look up a missing word and tap 💬 Ask
    for this word. Verified she CAN; she has filed 0 rows, so the path is untested in practice.
-7. Carry-overs unchanged: Macmillan may reply about Matumo; is the bigger dictionary actually
+5. Carry-overs unchanged: Macmillan may reply about Matumo; is the bigger dictionary actually
    better in use or is wordnet noise in the way; pack-PDF name check; tutor session from the second
    learner's own laptop; `u2l1-07` "nko" re-record (low); ear-check the 131 native clips; more chat
    scenarios spec-first; u5l4 Smart Guide.
@@ -2063,6 +2131,10 @@ fixed. Latest download: `C:\Users\megzi\Downloads\relefela-audio-mapping-round2 
 copied into `toolkit/`).
 
 ## Katse redesign — DONE & WIRED (2026-07-16), pending /ship
+> ⚠️ **Superseded by session 37 (2026-08-05):** every pose below is now an **animated `.webp`**,
+> not a `.png` — see the session 37 entry at the top. The mapping and the `aspect-ratio`
+> mechanism described here still hold; only the file extensions and the numbers changed.
+
 She rejected the hand-drawn SVG attempts and supplied her own PNG art (7 poses in `Katse/`, transparent
 RGBA 1080×1350). Approved mapping, now live in `index.html`:
 - **home** mascot = `img/katse-home.png` (7.png, sitting cat) — top-right home corner, tappable
