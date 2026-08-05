@@ -1,9 +1,104 @@
-# Re:Lefela — Project Status — updated 2026-08-04
+# Re:Lefela — Project Status — updated 2026-08-05
 
-**Updated:** 2026-08-04 (session 35 — **dictionary wave 2: the African Wordnet, SHIPPED as
-sw v39**, commit `01befa1`. 747 → **9 177 entries** from a newly-found open source, live-
-verified byte-identical. The licence question was settled the same day by the author herself,
-by email. Full record in `SPEC-dictionary-panel.md` §13.)
+**Updated:** 2026-08-05 (session 36 — **the word bank is no longer guessable, SHIPPED as sw
+v40**, commit `b06f11e`. Multiple-choice wrong answers now come from the card's own lesson
+instead of the whole app, so a body-part card offers body parts. A Daily Quest bug fell out of
+it. Also written, nothing built: `SPEC-plurals-and-classes.md` (one merged round) and
+`SPEC-register.md` (formal vs everyday Setswana).)
+
+## Session 36 (2026-08-05) — the word bank now comes from the same lesson (sw v40, SHIPPED, commit b06f11e)
+
+Her ask, opening the session: *"Make the word bank more difficult. If we're doing for example
+body parts, then the word bank has to only be body part words, otherwise it's too easy to
+guess."* She was right, and it was worse than it looked.
+
+- **The bug:** all three multiple-choice cards drew their wrong answers from `allItemsExcept(it)`
+  — **every one of the 335 cards, across all five units.** So *tlhogo* sat next to chair, lion and
+  thank you, and could be answered without knowing the word at all.
+- **The fix needed no new content.** A lesson already IS the topic here (u2l1 is the head and
+  face, u5l1 the farm animals), so the pool is now a ladder: **same lesson → same unit → whole
+  app**, taken in that order, so the widest tier only fills what the nearer ones could not. A
+  small lesson still gets four options instead of a dead end. Applied to all three call sites —
+  "what does this mean?", "what did you hear?", and the loose words on build-the-sentence.
+- ⚠️ **A real second bug, found while in there:** the build-the-sentence card took its extra words
+  from `session.unit`, and **the Daily Quest has no unit** — so every Daily Quest tap card
+  silently fell back to Unit 1 vocabulary whatever the sentence was. The pool is now keyed off
+  the **item**, never the session.
+- **Options are deduped on the DISPLAYED field as well as on `tsw`.** Drawing from one lesson
+  makes two identically-worded buttons far likelier than it was app-wide, and two identical
+  buttons make a card unanswerable.
+- **⚠️ This makes the app noticeably harder overnight.** That is the point, but it is a real
+  change in feel, not a tweak.
+- **Verified:** 33-assertion node harness running the **real** functions brace-sliced out of
+  index.html against the real content.js — no leak outside the lesson over 20 draws per card, no
+  duplicate/self/rule options, tap words never overlap the sentence's own words, and the fallback
+  ladder tested against a **synthetic tiny content tree** because no real lesson is small enough
+  to reach it (two of the first failures were the harness, not the app: a fallback tier with no
+  real data to exercise it, and a regex matching the new code's own comment). Then a real browser
+  walk through u2l1 and u3l1 in `?local=1`: *tlhogo* → eye/mouth/**head**/ear, *moriri* →
+  nose/tongue/face/**hair**, and "We want" → the subject concords plus *batla*/*batle*. 0 console
+  errors, test state wiped.
+- **`sw.js` v39 → v40. `AUDIO_CACHE` untouched** — no audio byte changed. **Live-verified:**
+  `sw.js` (3 633 B) and `index.html` (148 447 B) byte-identical live vs local, serving
+  `relefela-v40` / `relefela-audio-v3`, and `allItemsExcept` returns 0 hits on the live file.
+
+### Written this session, nothing built from them
+- **`SPEC-plurals-and-classes.md` — ONE merged round.** She asked for separate rounds, saw the
+  numbers, and changed it to a merge. **That change removed a real blocker:** a standalone
+  noun-class round could not be built fairly, because classes 2, 4 and 6 have only one or two
+  words each, so "which word is in class 4?" had no honest answer set. A merged round never asks
+  that — it is driven by a word she knows and asks which *family* it is in, and the six families
+  are a fixed table, not a card pool. ⚠️ **The number that shapes the design: 54 cards carry a
+  plural and all 54 also carry a class, but 30 of them are class 9** — the easy ∅ → di- one. So
+  the round picks a **pattern** first and then a card from inside it, or it would be 55% "just add
+  di-". No SRS writes (own key `rl_forms`, Sentence Builder precedent), no audio, tap-not-type.
+- **`SPEC-register.md` — formal vs everyday Setswana.** She now sits with a first-language
+  Setswana speaker at break, whose verdict is that the app teaches very deep Setswana
+  (*Intshwarele* where people say *Askies*, *O tsogile jang?* where people say *O siame?*). Her
+  goal, verbatim: *"to teach me to start recognising those differences, so that O siame doesn't
+  throw me off as much as it did this morning."* ⚠️ **Her own Afrikaans example killed the obvious
+  design** — *Askuus* is not a politer *Jammer*, it is a different job (didn't hear you / someone
+  was rude), so a two-way formal↔casual switch is wrong; each phrase carries **who** and **when**.
+  **Blocked on content**: ten checked phrases and it can be built.
+
+## Decisions (2026-08-05)
+- **Distractors come from the card's own lesson first.** The lesson is the topic unit in this app;
+  no new "topic" field was added or is needed.
+- **The plurals round and the noun-class round are ONE round, not two.** Her call, reversing her
+  own earlier instinct in the same session, after seeing that classes 2/4/6 have one or two words
+  each. Merging sidesteps that entirely, and is the truer lesson anyway: in Setswana the class
+  **is** the plural.
+- **Her Setswana-speaking friend becomes a source**, tagged **`spoken-2026`**, on the same footing
+  as `peace-corps-L2` or `davies-1992`. ⚠️ **No name, ever** — the repo is public. Phrases are
+  written down by Megan and **checked in writing by the speaker** before entry. This does not bend
+  the no-unsourced-Setswana rule, it satisfies it: the rule was always "traceable", never "printed
+  in a book".
+- **Katse avatars: banked, not dropped.** She is making the images now. What decides the build is
+  whether each new picture is a new *emotion* (10 minutes — one line in `KATSE_POSES` plus a CSS
+  width) or an *animation* (a real feature). ⚠️ If a sprite sheet arrives, measure the **cat's
+  body**, not the transparent box — the trap that bit the Blipwork sheet.
+
+## Next up (agreed 2026-08-05, end of session 36)
+1. 📱 **[whenever] 2 min:** close and reopen the PWA twice so v40 takes, then play any body-part
+   lesson. The four answers should all be body parts now. **It is genuinely harder — that is the
+   change, not a fault.** Say if it went too far.
+2. 💻 **[whenever]** send the Katse images, and for each one say whether it is a **new mood** or a
+   **movement** — those are two different builds.
+3. 📝 **[whenever] a few minutes at break:** the register phrases. Five short lines each — the
+   Setswana (her friend's spelling), the English, who you'd say it to, when, and whether it
+   replaces something the app already teaches. **Ten is enough to build on.**
+4. 💻 **[whenever] 15 min, WITH her:** *alone* and *tissue* are still missing from the dictionary —
+   she looked up *alone* **again on 2026-08-05**, so it is still biting. Look them up in Matumo
+   together, add as `src:["desk"], chk:true`, rebuild, ship.
+5. 💻 **[whenever]** build the merged plurals/classes round off `SPEC-plurals-and-classes.md`.
+   Three open questions in §5 need her word first (button name; is the class number shown from day
+   one; does step 2 get skipped once a card is known).
+6. 📱 **[whenever] 1 min, ask the second learner:** have her look up a missing word and tap 💬 Ask
+   for this word. Verified she CAN; she has filed 0 rows, so the path is untested in practice.
+7. Carry-overs unchanged: Macmillan may reply about Matumo; is the bigger dictionary actually
+   better in use or is wordnet noise in the way; pack-PDF name check; tutor session from the second
+   learner's own laptop; `u2l1-07` "nko" re-record (low); ear-check the 131 native clips; more chat
+   scenarios spec-first; u5l4 Smart Guide.
 
 ## Session 35 (2026-08-04) — dictionary wave 2: African Wordnet (sw v39, SHIPPED, commit 01befa1)
 
