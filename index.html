@@ -2179,7 +2179,7 @@ function runExercise(){
   }
   else if (ex.type==='tap'){
     const words = it.tsw.split(/\s+/);
-    const distract = shuffle(unitWordPool(session.unit || RL_CONTENT.units[0]).filter(w=>!words.includes(w))).slice(0, Math.min(4, 8-words.length));
+    const distract = tapDistractWords(it, Math.min(4, 8-words.length));
     const poolWords = shuffle(words.concat(distract));
     render(H + `<div id="exArea">
       <p class="muted">Build the Setswana</p>
@@ -2205,7 +2205,7 @@ function runExercise(){
     };
   }
   else if (ex.type==='choose'){
-    const others = shuffle(allItemsExcept(it)).slice(0,3);
+    const others = distractors(it, 3, {field:'eng'});   // buttons show English
     const opts = shuffle([it, ...others]);
     render(H + `<div id="exArea">
       <p class="muted">What does this mean?</p>
@@ -2290,7 +2290,8 @@ function runExercise(){
     });
   }
   else if (ex.type==='listen'){
-    const others = shuffle(allItemsExcept(it).filter(o=>o.tsw.split(' ').length <= it.tsw.split(' ').length+2)).slice(0,3);
+    const others = distractors(it, 3, {field:'tsw',      // buttons show Setswana
+      filter: o => o.tsw.split(' ').length <= it.tsw.split(' ').length + 2});
     const opts = shuffle([it, ...others]);
     render(H + `<div id="exArea">
       <p class="muted">What did you hear?</p>
@@ -2469,14 +2470,82 @@ function runRecap(){
   document.getElementById('b-recap-next').onclick = ()=>{ session.at++; runExercise(); };
   mountKatseMid(ex.item);
 }
-/* Distractor pool. Excludes same-TEXT items, not just same-id: a phrase may
-   legitimately live on two cards (Ga ke batle is both u1l7-01 and u3l1-06), and a
-   distractor identical to the answer makes the card unanswerable. */
-function allItemsExcept(it){
+/* ---------- distractors: nearest-first ---------- */
+/* Her ruling 2026-08-05: a body-part card must offer body-part answers. Until now the
+   wrong answers came from the WHOLE app, so "tlhogo" sat next to chair, lion and thank
+   you — guessable without knowing the word. A lesson already IS the topic here (u2l1 is
+   the head and face, u5l1 the farm animals), so the ladder is:
+       same lesson  →  same unit  →  whole app
+   taken in that order, so the whole-app tier only fills what the lesson and unit could
+   not. Small lessons therefore still get four options instead of a dead end.
+   ⚠️ Keyed off the ITEM, never session.unit — the Daily Quest mixes units and carries
+   session.unit = null. */
+function allItems(){
   const all = [];
-  for (const u of RL_CONTENT.units) for (const l of u.lessons) for (const x of l.items)
-    if (x.kind!=='rule' && x.id!==it.id && x.tsw!==it.tsw) all.push(x);
+  for (const u of RL_CONTENT.units) for (const l of u.lessons) for (const x of l.items) all.push(x);
   return all;
+}
+/* which unit + lesson a card lives in (null if it came from somewhere else, e.g. the gym) */
+function homeOf(it){
+  for (const u of RL_CONTENT.units) for (const l of u.lessons)
+    if (l.items.some(x=>x.id===it.id)) return {unit:u, lesson:l};
+  return null;
+}
+/* n wrong-answer ITEMS for a multiple-choice card.
+   opts.field = the property the buttons will DISPLAY ('eng' or 'tsw'). Both that field
+   and tsw are deduped: same-TEXT items are excluded, not just same-id (a phrase may
+   legitimately live on two cards — Ga ke batle is both u1l7-01 and u3l1-06), and two
+   buttons reading the same thing make the card unanswerable. Drawing from one lesson
+   makes that collision far likelier than it was app-wide, so it is checked on the
+   displayed field too, not only on tsw.
+   opts.filter = extra per-item test (the listen card caps phrase length). */
+function distractors(it, n, opts){
+  const o = opts || {};
+  const field = o.field || 'tsw';
+  const usedTsw  = new Set([it.tsw]);
+  const usedFace = new Set([norm(it[field] || '')]);
+  const out = [];
+  const take = items => {
+    for (const x of shuffle(items)){
+      if (out.length >= n) break;
+      if (x.kind === 'rule' || x.id === it.id || !x.tsw || !x.eng) continue;
+      const face = norm(x[field] || '');
+      if (!face || usedTsw.has(x.tsw) || usedFace.has(face)) continue;
+      if (o.filter && !o.filter(x)) continue;
+      usedTsw.add(x.tsw); usedFace.add(face); out.push(x);
+    }
+  };
+  const h = homeOf(it);
+  if (h){
+    take(h.lesson.items);
+    if (out.length < n) take(h.unit.lessons.flatMap(l=>l.items));
+  }
+  if (out.length < n) take(allItems());
+  return out;
+}
+/* n loose words to hide the real ones among, for the build-the-sentence card. Same
+   ladder. Replaces unitWordPool(session.unit || units[0]) — that fallback quietly sent
+   every Daily Quest tap card to Unit 1's vocabulary whatever the sentence was. */
+function tapDistractWords(it, n){
+  const skip = new Set(it.tsw.split(/\s+/).map(w=>norm(w)));
+  const out = [];
+  const take = items => {
+    const words = new Set();
+    for (const x of items) if (x.kind!=='rule' && x.tsw) x.tsw.split(/\s+/).forEach(w=>words.add(w));
+    for (const w of shuffle([...words])){
+      if (out.length >= n) break;
+      const k = norm(w);
+      if (!k || skip.has(k)) continue;
+      skip.add(k); out.push(w);
+    }
+  };
+  const h = homeOf(it);
+  if (h){
+    take(h.lesson.items);
+    if (out.length < n) take(h.unit.lessons.flatMap(l=>l.items));
+  }
+  if (out.length < n) take(allItems());
+  return out;
 }
 function hookEyes(){
   document.querySelectorAll('.eye').forEach(b=>{
