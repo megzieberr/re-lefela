@@ -1,10 +1,122 @@
-# Re:Lefela — Project Status — updated 2026-08-05
+# Re:Lefela — Project Status — updated 2026-08-06
 
-**Updated:** 2026-08-05 (session 38 — dictionary gap-fill from three `dict-miss:` flags, built as
-sw v43, **NOT YET SHIPPED** — needs commit + push. Earlier that day, session 37 shipped Katse's
-animated poses as sw v41 then v42, commits `4783d8c` and `d2dc015`.)
+**Updated:** 2026-08-06 (session 39 — six clean-ups off her own morning list, **SHIPPED and
+live-verified as sw v44**, commit `e3c0d76`: the 📚 My words screen, the dictionary moved to the
+top, the Listening gym parked, Reset Lesson 1 removed, and both the sleeping and the cross Katse
+reverted to stills.)
 
-## Session 38 (2026-08-05) — dictionary gap-fill: nosi, moma/tumola molomo (sw v43, built, not shipped)
+## Session 39 (2026-08-06) — her six clean-ups (sw v44, SHIPPED, commit `e3c0d76`)
+
+She arrived with a numbered list of seven jobs and asked which fitted one session. Six did; the
+seventh (the merged plurals/noun-class round) was sized as its own session and left alone. **Five
+of the six were reversals of decisions made in the last three days** — this is what a night of
+real play does, and it is the same pattern as the Sentence Builder and the dictionary.
+
+- **Reset Lesson 1 is gone** from the stats screen — button, handler and the whole
+  `resetLesson1` function. It existed while the app was new; lesson replay covers it now. The
+  delete-server-rows-first ordering that made it safe is in `git show 730ae2d:index.html` if it
+  is ever wanted back.
+- **The Listening gym comes off the home screen and is NOT deleted.** Her exact framing: *"we
+  aren't using it at all yet, but we will much later on."* So `startGym`/`runGym`/`finishGym`, the
+  `session.gym` branches, `RL_CONTENT.nchlt` and `toolkit/nchlt-filter.py` are all untouched, and
+  the home button is gated on a new `SHOW_GYM` constant. **`?gym=1` still opens it** — that is
+  deliberate, it is how the gym can be proven to still run before it goes back on the home screen
+  (checked this session: a full round plays). ⚠️ The standing rule stays: re-run
+  `nchlt-filter.py` after adding a new unit, even while the gym is parked, or it silently rots.
+- **📖 Dictionary moved to the top**, into the gym's old slot directly under the Daily Quest. Her
+  reasoning is sound: it is a reference she reaches for mid-thought, not an exercise to work
+  through, so it should not sit below the lesson path.
+- **Sleeping Katse is a still again** and **a wrong answer is the sympathetic `oops` peek again.**
+  Both animations were her own ideas three days ago and both were reversed by use — the breathing
+  sleeper "looks weird", and the cross cat was *"honestly not"* funny by round five. ⚠️ **The
+  `.kv-sleep` box had to be re-measured**: the animation is 340×182 and the still is 340×211, so
+  leaving the rule alone would have rendered her squashed. This is the third time that trap has
+  come up — the aspect-ratio rules go stale silently, nothing warns you.
+- **📚 My words — the new screen, and the only real build of the six.** "words & phrases met" on
+  the stats page was a dead number; it is now a button. The screen lists every word she has met,
+  **grouped by unit and lesson in the order she met them**, showing Setswana, English, the class
+  number and the plural where the card carries them, and the existing audio clip. A filter box
+  takes either language.
+  - Built on **`content.js` cards, not on `DICT`**, deliberately. This is the list of words *she*
+    has met, and only content.js knows which lesson each came from. Presence in `state.srs` is
+    exactly what the stat already counted, so the number on the tile and the length of the list
+    can never disagree.
+  - ⚠️ **READ-ONLY**, same footing as the dictionary and the Sentence Builder: no `srsGrade`, no
+    XP, no store writes. **Measured, not asserted** — `state.srs` and the whole of `localStorage`
+    byte-identical before and after a full browse including playing a clip.
+  - Rule cards are skipped (as `dueItems()` skips them), and an SRS row whose id no longer exists
+    in content.js is dropped silently — ids have been renamed before (the mid-Katse rename) and a
+    stale row is not worth a scary message.
+
+**Verified** in a real browser at `?local=1`: 0 console errors; the seeded 6-word list renders,
+groups and filters in both languages; the no-match state is sane; back returns to stats; the sleep
+PNG loads 340×211 matching its CSS box; `resetLesson1` is `undefined`; the gym still runs behind
+`?gym=1`; the SW installs clean at **v44** with 23 files precached (`katse-sleep.png` added to
+CORE). LF-only, no BOM by binary read. Test state wiped after.
+**`sw.js` v43 → v44. `AUDIO_CACHE` untouched** — no audio byte changed.
+**Live-verified after the push:** `index.html` and `sw.js` md5-identical live vs local, live
+serving `relefela-v44`, `resetLesson1` absent from the live file, `img/katse-sleep.png` HTTP 200.
+
+### The plurals round is no longer blocked
+Her three answers from `SPEC-plurals-and-classes.md` §5, recorded in the spec this session:
+1. **Button: `Ditlhopha`, with "Plurals & classes" as the sub-heading** — the same two-line shape
+   the 🧩 and 📖 buttons already use.
+2. **The class number shows from day one**, always paired with the prefix pair.
+3. **Step 2 is skipped once a card is known** (3 correct), so the easy half is not filler.
+
+Nothing else is open on it. It is a whole session's work: a new round type, the pattern-first
+picker, `rl_forms`, the miss-1/2/3 ladder, a home button, plus the checker and node harness in §4.
+
+### Why it was not run in parallel
+She asked whether a second session could build the plurals round alongside this one. **No —**
+this is a single-file app: both jobs edit `index.html`, both add a home-screen button and CSS in
+the same region, and only one of them can bump `sw.js`. Sequential, always, in this repo.
+
+## Decisions (2026-08-06)
+- **Parked features are hidden, not deleted, and stay reachable behind a URL flag.** The gym is
+  the precedent: `SHOW_GYM` + `?gym=1`. Deleting it would have thrown away a working feature and
+  its corpus pipeline for a home-screen slot.
+- **The animated sleeping Katse and the cross Katse are OFF.** Both her calls, both reversed after
+  playing. The `.webp` files stay in `img/` and in the SW precache, so either is a one-line
+  restore — but `.kv-sleep` must go back to 340/182 if the animation ever returns.
+- **A stat you can tap should show you the thing it counted.** "words & phrases met" was a number
+  with nothing behind it. If another tile ever earns a screen, this is the shape.
+- **📚 My words is built from her own cards, never from the dictionary bank**, so the tile's number
+  and the list can never drift apart.
+- **One session at a time on this repo.** Single-file app; parallel sessions would conflict in
+  `index.html` and fight over the `sw.js` bump.
+
+## Pending on Megan (end of session 39, 2026-08-06)
+**Nothing.** She cleared the session-37 list herself — she played a good stretch on the night of
+2026-08-05, and items 4 and 5 of this session's list *were* her verdicts on the two Katse poses
+she was asked to eyeball. The one thing worth doing is not a task:
+
+1. 📱 **[whenever] 2 min:** close and reopen the PWA twice so **v44** takes, then tap
+   **words & phrases met** on the stats page and see whether the list is what she pictured.
+
+## Next up (agreed 2026-08-06, end of session 39)
+1. 💻 **the merged plurals/noun-class round** — `SPEC-plurals-and-classes.md`, all three open
+   questions now answered in §5. Its own session, start it whenever.
+2. 📝 **[whenever] a few minutes at break:** the register phrases — ten short lines, each with the
+   Setswana (her friend's spelling), the English, who you'd say it to, and when.
+   `SPEC-register.md` is blocked on nothing else.
+3. 💻 **[whenever]** the dictionary gap-fill loop continues as `dict-miss:` rows arrive.
+4. 📱 **[whenever] 1 min, ask the second learner:** have her look up a missing word and tap
+   💬 Ask for this word. Verified she CAN; she has filed 0 rows, so the path is untested in
+   practice.
+5. Carry-overs unchanged: Macmillan may reply about Matumo; is the bigger dictionary actually
+   better in use or is wordnet noise in the way; pack-PDF name check; tutor session from the
+   second learner's own laptop; `u2l1-07` "nko" re-record (low); ear-check the 131 native clips;
+   more chat scenarios spec-first; u5l4 Smart Guide. ⚠️ And while the gym is parked:
+   `nchlt-filter.py` still needs re-running when a unit is added.
+
+## Session 38 (2026-08-05) — dictionary gap-fill: nosi, moma/tumola molomo (sw v43, SHIPPED)
+
+**[Correction, session 39: the "NOT YET SHIPPED" note below went stale the same evening.** The
+work was committed as `730ae2d` and pushed; the portfolio sweep on 2026-08-06 showed nothing
+uncommitted and nothing unpushed for this repo, and v43 was live. **A "not shipped" line must be
+re-checked against `git log origin/main..HEAD`, never inherited** — same class of stale note as
+the session-33 one about the second learner's last save.]
 
 Small ad-hoc gap-fill triggered by a WhatsApp tutoring correction, not a planned wave. Read the
 5 open `dict-miss:` rows from `tutor_questions` and resolved them with Megan in the room:
