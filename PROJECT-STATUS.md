@@ -1,9 +1,127 @@
 # Re:Lefela — Project Status — updated 2026-08-06
 
-**Updated:** 2026-08-06 (session 39 — six clean-ups off her own morning list, **SHIPPED and
-live-verified as sw v44**, commit `e3c0d76`: the 📚 My words screen, the dictionary moved to the
-top, the Listening gym parked, Reset Lesson 1 removed, and both the sleeping and the cross Katse
-reverted to stills.)
+**Updated:** 2026-08-06 (session 40 — **🗂️ Ditlhopha, the merged plurals & noun-classes round, BUILT
+and fully verified as sw v45. NOT committed and NOT pushed — she asked to hold.** All four §4 ship
+gates run; the one that could not be, and why, is written down below.) · previous: session 39 —
+six clean-ups off her own morning list, **SHIPPED and live-verified as sw v44**, commit `e3c0d76`:
+the 📚 My words screen, the dictionary moved to the top, the Listening gym parked, Reset Lesson 1
+removed, and both the sleeping and the cross Katse reverted to stills.
+
+## Session 40 (2026-08-06) — 🗂️ Ditlhopha: plurals & noun classes (sw v45, BUILT, **not pushed**)
+
+Her ask from session 36, unblocked by her three §5 answers on 2026-08-06 and built the same day on
+her explicit go-ahead. **One merged round**, because in Setswana the class *is* the plural.
+
+- **The round.** A word she has met appears with its English. **Step 1: which family?** — four
+  buttons, each showing the prefix pair with the class number beside it (`se- / di- · class 7/8`).
+  **Step 2: which prefix makes the plural?** — all four prefixes, every time. Then the payoff:
+  the whole word, `setilo → ditilo`, with the family named again. Tap, not type. No audio.
+- **It picks a family first, then a card inside it** — the decision the whole design rests on.
+  30 of the 54 cards are class 9 (the easy ∅ → di-), so random picking gives **6.7 class-9 cards
+  out of 12, measured**. The round-robin gives **exactly 2**, measured over 40 rounds.
+- **A round is 12 cards, not all 54.** §2.8 read as if it plays the pool; it cannot — pattern-first
+  only bites if the round is *shorter* than the pool, or you get 30 class-9 cards whatever the
+  order. Twelve is two full passes of the six families, roughly five minutes.
+- **Step 2 drops once a card is known** (3 correct) — her §5 answer. Naming the family is the hard
+  half and it stays; the easy half is what goes. ⚠️ Spec §2.2 said the opposite in passing; that
+  paragraph is now corrected in the spec with a note saying which ruling won.
+- **NO SRS writes**, own `rl_forms` key, `clearLearnerState()` updated — the Sentence Builder
+  precedent, for her stated reason: getting *setilo → ditilo* wrong does not mean she has
+  forgotten what a chair is. XP +2 a card, kind `'forms'`.
+- **Miss ladder:** 1 retry → 2 a hint that shows the shape and never the answer (*"leina starts
+  with le-…"*, or on step 2 *"It ends …ina — which prefix goes in front?"*) → 3 reveal, **no XP,
+  not marked done**, back next run.
+- **Home button: `🗂️ Ditlhopha` with `Plurals & classes · 54 words unlocked` underneath**, the same
+  two-line shape as 🧩 and 📖, sitting **after the Sentence Builder** with the other drills — not
+  at the top, where the dictionary went yesterday for the opposite reason.
+
+### Two things the real data forced, both worth knowing
+- **`leino → meno` breaks its own family** — a le-/ma- word whose plural takes `me-`. Step 2 is
+  therefore graded off **the card's stored plural, never off the family table**; grading off the
+  table would have marked the true Setswana form wrong. The payoff screen says so out loud.
+- **Five cards change more than the prefix** (`mmele → mebele`, `leitlho → matlho`, `leino → meno`,
+  `loleme → diteme`, `letsogo → mabogo`). Tapping `ma-` and being shown *mabogo* reads as a marking
+  error unless the screen explains it, so it does. ⚠️ **Both are pinned in the checker** — a sixth
+  stem shift or a second irregular fails the gate rather than shipping quietly, because it far more
+  likely means a plural was typed wrong than that the language changed.
+
+### Verified (spec §4 — all four gates, plus one that could not run)
+- **`toolkit/verify-forms-data.py` green.** Evaluates the real content.js *in node* rather than
+  regexing it (a `[^{}]*` parser silently dropped 57 items in this repo once). 54 cards, 6 classes,
+  the split exactly as measured in session 36. Also checks index.html's three constants still
+  describe the data, that the block never calls `srsGrade` or plays audio, and LF/BOM by **binary**
+  read. It forces utf-8 stdout — cp1252 killed its own first run, the standing trap.
+- **`toolkit/test-forms.js` — 402 assertions green**, slicing the real functions out of index.html
+  with a quote-aware scanner and running them against the real content.js. It also `new Function()`s
+  the whole inline script, which is what would catch a `top`/`name` global collision.
+  ⚠️ **Mutation-tested, not merely passed:** breaking the family round-robin and re-pointing step 2
+  at the family table made **97 assertions fail**. The two things she asked not to be quietly
+  changed are genuinely guarded, not just asserted.
+- **`?local=1` walkthrough** — SW, caches and localStorage cleared first, wiped after. A full
+  12-card round with a deliberate 3-miss reveal on card 3: **11/12, 22 XP** (the revealed card
+  earned none and was not marked done), **0 console errors**. Both hint tiers, the reveal, the
+  irregular note, the stem-shift note and the known-card path all confirmed on screen.
+- **`state.srs` byte-identical before and after the full round — 27 324 bytes both sides**, and
+  `rl_srs` in localStorage identical too. The only keys that moved were `rl_forms`, `rl_queue`,
+  `rl_streak`, `rl_xpTotal` — exactly the XP path, same as the Sentence Builder. Measured, not
+  asserted, the house standard for that claim.
+- ⚠️ **The gate that could NOT be run: the SW install.** The Browser pane stubs service workers —
+  `register()` reports "activated" with no install phase and `caches.keys()` stays empty — so the
+  v45 precache could not be watched here. (Session 39 recorded watching v44 install; whatever
+  allowed that, this pane no longer does.) What was done instead: `sw.js` passes `node --check`,
+  its **entire diff is the single line `v44 → v45`**, `AUDIO_CACHE` is still `relefela-audio-v3`,
+  `CORE` is unchanged, and **all 23 CORE files fetch 200**. One phone check after the deploy closes it.
+- **`sw.js` v44 → v45. `AUDIO_CACHE` untouched** — this round adds no audio at all.
+- **`content.js` is unmodified.** The round needed no content pass: every card carrying a plural
+  already carried its class.
+
+### Not built, deliberately
+Spec §3's later tiers: reverse questions (plural → singular on the six already-plural cards),
+typed production, and the concord follow-on. §3 lists all three as "not v1" and none is started.
+⚠️ Note §1b *reads* as though the reverse question is in v1 — §3 is the ruling, and it is not.
+
+**Files touched:** `index.html`, `sw.js`, `SPEC-plurals-and-classes.md` (two corrections + a new
+§6 build record), plus two new files `toolkit/verify-forms-data.py` and `toolkit/test-forms.js`.
+**Nothing is committed** — she said hold until she says so.
+
+## Decisions (2026-08-06, session 40)
+- **A drill round has a fixed length; it does not play its whole pool.** Pattern-first picking is
+  meaningless otherwise. This is the general form of the class-9 problem and applies to any future
+  round built on a lopsided pool.
+- **Grade off the data, never off the rule table.** `leino → meno` disagrees with its own family,
+  and the table is a teaching aid, not the source of truth. The exception is *shown* to the learner
+  rather than hidden — the same instinct as labelling unchecked dictionary entries by source.
+- **Pin the known exceptions in the ship gate.** One irregular and five stem shifts are pinned by
+  name, so a sixth fails the gate. In a repo whose first rule is "no unsourced Setswana", a new
+  irregularity is much more likely a typo than a discovery.
+- **A verification claim that the tools cannot support is written down as unsupported**, not
+  quietly dropped. The SW-install gate is the one that could not run this session; what replaced
+  it is recorded, and it stays on her list until a phone confirms it.
+
+## Pending on Megan (end of session 40, 2026-08-06)
+1. 💻 **[blocking] 10 seconds:** say the word and I commit + push v45 — it is built and verified,
+   just held at your instruction.
+2. 📱 **[whenever] 3 min, after that push:** close and reopen the PWA twice so **v45** takes, then
+   tap **🗂️ Ditlhopha** and play one round of 12. Tell me if 12 is the right length.
+3. 📱 **[whenever] 1 min, same sitting:** on that first round, check the class number next to each
+   prefix pair is what you meant — it is on every screen now, and it is the thing that was
+   throwing you.
+
+## Next up (agreed 2026-08-06, end of session 40)
+1. 💻 **Ditlhopha v2, only after she has played it** — the spec's §3 tiers are reverse questions
+   (plural → singular, on the six cards that are already plurals), typed production, and the
+   concord follow-on. Real play decides which, as it did for the Sentence Builder.
+2. 📝 **[whenever] a few minutes at break:** the register phrases — ten short lines, each with the
+   Setswana (her friend's spelling), the English, who you'd say it to, and when. `SPEC-register.md`
+   is blocked on nothing else.
+3. 💻 **[whenever]** the dictionary gap-fill loop continues as `dict-miss:` rows arrive.
+4. 📱 **[whenever] 1 min, ask the second learner:** have her look up a missing word and tap
+   💬 Ask for this word. Verified she CAN; she has filed 0 rows, so the path is untested in practice.
+5. Carry-overs unchanged: Macmillan may reply about Matumo; is the bigger dictionary actually
+   better in use or is wordnet noise in the way; pack-PDF name check; tutor session from the second
+   learner's own laptop; `u2l1-07` "nko" re-record (low); ear-check the 131 native clips; more chat
+   scenarios spec-first; u5l4 Smart Guide. ⚠️ And while the gym is parked: `nchlt-filter.py` still
+   needs re-running when a unit is added.
 
 ## Session 39 (2026-08-06) — her six clean-ups (sw v44, SHIPPED, commit `e3c0d76`)
 

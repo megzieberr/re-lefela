@@ -360,7 +360,7 @@ function persist(){ store.set('srs', state.srs); store.set('progress', state.pro
 // own by the caller. There are no app-scoped rl_ keys. Used by logout + the account-
 // switch guard in afterAuth so one learner's data can never bleed into another's.
 function clearLearnerState(){
-  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_parked','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder','rl_dictasked']
+  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_parked','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder','rl_forms','rl_dictasked']
     .forEach(k=>localStorage.removeItem(k));
 }
 
@@ -996,6 +996,16 @@ function screenHome(){
   const dictBtn = DICT.length
     ? `<button class="btn ghost" id="b-dict" style="margin:10px 0">📖 Dictionary — look a word up<br>
         <span class="tiny">${DICT.length} words · Setswana ↔ English, with examples</span></button>` : '';
+  // 🗂️ Ditlhopha — same gate shape as the builder: visible once at least one word
+  // she has met carries a plural. Sits WITH the other drills, below the lesson path
+  // is wrong for a reference but right for an exercise (the dictionary's move up on
+  // 2026-08-06 was the other half of that same rule).
+  const fmPool = formsUnlocked();
+  const fmSt = formsStoreGet();
+  const fmAllKnown = fmPool.length > 0 && fmPool.every(it=>(fmSt.done[it.id] || 0) >= FORMS_KNOWN);
+  const formsBtn = fmPool.length
+    ? `<button class="btn ghost" id="b-forms" style="margin:10px 0">🗂️ Ditlhopha${fmAllKnown ? ' ✓' : ''}<br>
+        <span class="tiny">Plurals &amp; classes · ${fmPool.length} word${fmPool.length===1?'':'s'} unlocked</span></button>` : '';
   render(`
     <div class="row spread">
       <div class="logo" style="font-size:1.3rem"><span class="re">Re:</span><span class="zero">Lefela</span></div>
@@ -1016,6 +1026,7 @@ function screenHome(){
     ${gym}
     ${chatBtn}
     ${builderBtn}
+    ${formsBtn}
     ${unitsHtml}
     <div class="row" style="margin-top:16px">
       <button class="btn ghost" id="b-lb" style="flex:1">🏆 Scoreboard</button>
@@ -1037,6 +1048,7 @@ function screenHome(){
   const gy = document.getElementById('b-gym'); if (gy) gy.onclick = startGym;
   const cb = document.getElementById('b-chat'); if (cb) cb.onclick = screenChatPick;
   const bd = document.getElementById('b-builder'); if (bd) bd.onclick = startBuilder;
+  const fm = document.getElementById('b-forms'); if (fm) fm.onclick = startForms;
   const dc = document.getElementById('b-dict'); if (dc) dc.onclick = screenDictionary;
   document.getElementById('b-lb').onclick = screenLeaderboard;
   document.getElementById('b-me').onclick = screenStats;
@@ -1548,6 +1560,263 @@ function finishBuilder(){
     <div class="statgrid" style="margin-top:20px">
       <div class="stat"><b>${builtN}/${un.length}</b>built</div>
       <div class="stat"><b>${st.streak||0}</b>in a row</div>
+    </div>
+    <button class="btn primary" id="b-home" style="margin-top:16px">Back to the path</button>
+  </div>`);
+  document.getElementById('b-home').onclick = screenHome;
+}
+
+/* ---------- 🗂️ Ditlhopha — plurals & noun classes (SPEC-plurals-and-classes.md) ----------
+   ONE merged round, her ruling (spec §0): in Setswana the class IS the plural, so
+   se- becoming di- is one fact. Drilling them apart would teach the same fact twice
+   under two names — and a standalone class round could not be asked fairly anyway,
+   because classes 2, 4 and 6 hold one or two words each.
+
+   Four things shape every line below:
+   1. 30 of the 54 cards are class 9 — the easy ∅ → di- one. Random picking would
+      make the round 55% "just put di- in front", so it picks a FAMILY first and
+      then a card inside it (spec §1a). That only bites if a round is SHORTER than
+      the pool, which is why FORMS_ROUNDS is fixed rather than "play them all".
+   2. NO SRS writes (spec §2.4). Getting setilo → ditilo wrong does not mean she has
+      forgotten what a chair is, so it must never move that card's review date.
+      Completion lives in device-local rl_forms, exactly as rl_builder does; XP
+      rides the normal queue as kind 'forms' (xp_events.kind is free text — checked).
+   3. Tap, not type: a Setswana plural is a prefix swap, so typing would mostly test
+      her spelling of a word she already knows.
+   4. No audio at all — plural forms have no recordings and this round must not sit
+      behind a recording wave (spec §2.7). AUDIO_CACHE is never bumped for it. */
+const FORMS_ROUNDS = 12;   // two full passes of the six families
+const FORMS_KNOWN  = 3;    // correct answers before step 2 is dropped (her §5 answer 3)
+/* The six families are a FIXED table, not derived from the card pool — that is
+   exactly what makes the merged round askable. `pl` is what the family's plural
+   prefix SHOULD be; the card's own stored plural still wins at grading time. */
+const FORMS_FAMILIES = [
+  {id:'f1',  sg:'mo-', pl:'ba-', cls:'1/2',   eg:'motho → batho'},
+  {id:'f3',  sg:'mo-', pl:'me-', cls:'3/4',   eg:'molomo → melomo'},
+  {id:'f5',  sg:'le-', pl:'ma-', cls:'5/6',   eg:'leina → maina'},
+  {id:'f7',  sg:'se-', pl:'di-', cls:'7/8',   eg:'setilo → ditilo'},
+  {id:'f9',  sg:'',    pl:'di-', cls:'9/10',  eg:'ntlo → dintlo'},
+  {id:'f11', sg:'lo-', pl:'di-', cls:'11/10', eg:'loleme → diteme'}
+];
+const FORMS_BY_CLS = {1:'f1', 3:'f3', 5:'f5', 7:'f7', 9:'f9', 11:'f11'};
+// every plural prefix Setswana has — so step 2 can always show all four, honestly.
+// di- being right over half the time is the truth of the language, not a flaw.
+const FORMS_PREFIXES = ['ba-', 'me-', 'ma-', 'di-'];
+
+function formsFamily(it){ return FORMS_FAMILIES.find(f=>f.id === FORMS_BY_CLS[it.cls]) || null; }
+/* The prefix the card's REAL plural starts with — never the family's expected one.
+   leino → meno takes me-, not the le-/ma- family's ma-. Grading off the table
+   instead of off the data would mark the true form wrong. One card in 54 does
+   this; the payoff screen calls it out rather than hiding it. */
+function formsPlPrefix(it){ return FORMS_PREFIXES.find(p=>it.plural.startsWith(p.slice(0,2))) || null; }
+function formsIrregular(it){ const f = formsFamily(it); return !!(f && formsPlPrefix(it) !== f.pl); }
+function formsPlStem(it){ const p = formsPlPrefix(it); return p ? it.plural.slice(2) : it.plural; }
+function formsSgStem(it){
+  const f = formsFamily(it), s = (f && f.sg) ? f.sg.slice(0,2) : '';
+  return (s && it.tsw.startsWith(s)) ? it.tsw.slice(2) : it.tsw;
+}
+/* Five cards change more than the front (leitlho → matlho, letsogo → mabogo,
+   loleme → diteme…). Tapping "ma-" and being shown "mabogo" reads as a mistake
+   unless the screen says so, so it does. */
+function formsStemShift(it){ return formsSgStem(it) !== formsPlStem(it); }
+/* "one a cook → many" — two glosses carry an article ("a cook", "a worker") and the
+   payoff line supplies its own "one". Display only; the card's eng is never touched. */
+function formsGloss(it){ return it.eng.replace(/^(?:a|an|the) +/i, ''); }
+
+// the pool IS content.js — no bank file, because every card that carries a plural
+// already carries its class (measured: 54 of 54)
+function formsCards(){
+  return allItems().filter(it => it.kind !== 'rule' && it.plural && it.cls &&
+    formsFamily(it) && formsPlPrefix(it));
+}
+// same gate as the Sentence Builder and the chat: a word she has actually met
+function formsUnlocked(){ return formsCards().filter(it => chatLearned(it.id)); }
+function formsStoreGet(){ return store.get('forms', {done:{}, streak:0, missed:{}}); }
+function formsStoreSet(v){ store.set('forms', v); }
+
+/* Pattern-first (spec §1a). Round-robin over the families that have an unlocked
+   card, reshuffling the family order each pass so the round does not open the same
+   way every time. Inside a family: cards she has never got right first, then the
+   least-practised. A family that runs dry is skipped, so the round stays
+   FORMS_ROUNDS long while any card is left. */
+function formsBuildRound(pool, st, roundsWanted){
+  const byFam = {};
+  for (const it of pool){ const f = formsFamily(it).id; (byFam[f] = byFam[f] || []).push(it); }
+  for (const f of Object.keys(byFam))          // shuffle THEN stable-sort: ties stay random
+    byFam[f] = shuffle(byFam[f]).sort((a,b)=>((st.done[a.id]||0) - (st.done[b.id]||0)));
+  const out = [], target = Math.min(roundsWanted, pool.length);
+  while (out.length < target){
+    const fams = shuffle(Object.keys(byFam).filter(f=>byFam[f].length));
+    if (!fams.length) break;
+    for (const f of fams){ if (out.length >= target) break; out.push(byFam[f].shift()); }
+  }
+  return out;
+}
+/* Step 1's wrong answers are never random (spec §2.3): families that share the
+   singular's own prefix come first, so mo-/ba- and mo-/me- always compete for a
+   mo- word. Every option is a real mistake someone could make. */
+function formsFamilyDistractors(fam, n){
+  const others = FORMS_FAMILIES.filter(f=>f.id !== fam.id);
+  const siblings = shuffle(others.filter(f=>f.sg && f.sg === fam.sg));
+  const rest = shuffle(others.filter(f=>!(f.sg && f.sg === fam.sg)));
+  return siblings.concat(rest).slice(0, n);
+}
+
+let formsRound = null;   // {order:[item], at, right, wrong, card}
+function startForms(){
+  const pool = formsUnlocked();
+  if (!pool.length) return;
+  formsRound = {order: formsBuildRound(pool, formsStoreGet(), FORMS_ROUNDS), at:0, right:0, wrong:0, card:null};
+  runForms();
+}
+function runForms(){
+  if (!formsRound) return;
+  if (formsRound.at >= formsRound.order.length) return finishForms();
+  const it = formsRound.order[formsRound.at];
+  // her §5 answer 3: once a card is known the easy half is filler, so it goes
+  formsRound.card = {it, known:(formsStoreGet().done[it.id] || 0) >= FORMS_KNOWN, step:1, misses:0, locked:false};
+  formsStep();
+}
+function formsHead(){
+  return `<div class="topbar">
+      <button class="quit" id="b-quit">✕</button>
+      <h2 style="margin:0; font-size:1.05rem">🗂️ Ditlhopha</h2>
+      <span class="pill" style="margin-left:auto">${formsRound.at+1} / ${formsRound.order.length}</span>
+    </div>`;
+}
+function formsHookQuit(){
+  document.getElementById('b-quit').onclick = ()=>{ formsRound = null; screenHome(); };
+}
+/* One tap handler for both steps. The miss ladder (spec §2.6) lives here: 1st miss
+   retry, 2nd miss a hint that shows the SHAPE and never the answer, 3rd miss
+   reveals — and a revealed card is NOT marked done and earns no XP, so it comes
+   back fresh next run. Same ladder the Sentence Builder earned in real play. */
+function formsHookChoices(attr, correctKey, hint, onWin){
+  const fb = document.getElementById('fm-fb');
+  document.querySelectorAll('.choice').forEach(btn=>{
+    btn.onclick = ()=>{
+      const c = formsRound && formsRound.card;
+      if (!c || c.locked) return;
+      if (btn.dataset[attr] === correctKey){
+        c.locked = true;
+        document.querySelectorAll('.choice').forEach(e=>{ e.style.pointerEvents='none'; });
+        btn.classList.add('good');
+        setTimeout(()=>{ if (formsRound && formsRound.card === c) onWin(); }, 380);
+        return;
+      }
+      btn.classList.add('bad'); btn.style.pointerEvents = 'none';
+      c.misses++;
+      if (c.misses >= 3) return formsReveal();
+      fb.innerHTML = `<div class="feedback bad">${c.misses >= 2 ? 'Not that one.' : 'Not quite — try again.'}</div>` +
+        (c.misses >= 2 ? `<div class="chat-hint">🐾 ${hint}</div>` : '');
+    };
+  });
+}
+function formsStep(){
+  const c = formsRound && formsRound.card; if (!c) return;
+  const it = c.it, fam = formsFamily(it);
+  currentScreen = 'Ditlhopha — ' + it.id + ' step ' + c.step;
+  c.misses = 0; c.locked = false;
+  if (c.step === 1){
+    const opts = shuffle([fam, ...formsFamilyDistractors(fam, 3)]);
+    // the prefix pair leads and the class number rides along as a label — on every
+    // screen, from day one (her §5 answer 2). "Class 7" only stops being a code once
+    // it has been seen next to "se-/di-" enough times; that is the whole complaint.
+    render(formsHead() + `<div id="fmArea">
+      <p class="muted">Which family does this word belong to?</p>
+      <div class="bigtsw">${esc(it.tsw)}</div>
+      <p class="muted" style="margin:2px 0 12px">${esc(it.eng)}</p>
+      ${opts.map(o=>`<button class="choice" data-f="${o.id}"><b>${esc(o.sg || '∅')} / ${esc(o.pl)}</b><span class="tiny"> · class ${esc(o.cls)}</span></button>`).join('')}
+      <div id="fm-fb"></div></div>`);
+    formsHookQuit();
+    const hint = fam.sg
+      ? `<b>${esc(it.tsw)}</b> starts with <b>${esc(fam.sg)}</b>…`
+      : `<b>${esc(it.tsw)}</b> has no prefix on the front at all — that is itself the clue.`;
+    formsHookChoices('f', fam.id, hint, ()=>{
+      if (c.known) return formsWin();
+      c.step = 2; formsStep();
+    });
+  } else {
+    const opts = shuffle(FORMS_PREFIXES.slice());
+    const right = formsPlPrefix(it);
+    render(formsHead() + `<div id="fmArea">
+      <div class="notecard" style="margin-bottom:4px">✔ <b>${esc(fam.sg || '∅')} / ${esc(fam.pl)}</b> · class ${esc(fam.cls)}</div>
+      <p class="muted">So one is <b>${esc(it.tsw)}</b> — and many are…</p>
+      ${opts.map(p=>`<button class="choice" data-p="${esc(p)}"><b>${esc(p)}</b></button>`).join('')}
+      <div id="fm-fb"></div></div>`);
+    formsHookQuit();
+    // the hint shows the stem with the front blanked out — which also quietly
+    // warns her when the stem itself shifted (…bogo, not …tsogo)
+    formsHookChoices('p', right, `It ends <b>…${esc(formsPlStem(it))}</b> — which prefix goes in front?`, formsWin);
+  }
+}
+/* The payoff screen. This is where the round teaches: the whole plural word, the
+   family named again, and the two things that genuinely trip a learner up. */
+function formsWin(){
+  const c = formsRound && formsRound.card; if (!c) return;
+  const it = c.it, fam = formsFamily(it);
+  const st = formsStoreGet();
+  st.done[it.id] = (st.done[it.id] || 0) + 1;
+  st.streak = (st.streak || 0) + 1;
+  formsStoreSet(st);
+  addXP(2, 'forms');
+  formsRound.right++;
+  currentScreen = 'Ditlhopha — ' + it.id + ' done';
+  const notes = [];
+  if (formsIrregular(it)) notes.push(`⚠️ This one breaks its own pattern — a <b>${esc(fam.sg || '∅')}/${esc(fam.pl)}</b> word, but the plural takes <b>${esc(formsPlPrefix(it))}</b>.`);
+  if (formsStemShift(it)) notes.push(`Careful — the front is not the only thing that moves: <b>${esc(it.tsw)}</b> → <b>${esc(it.plural)}</b>.`);
+  render(formsHead() + `<div id="fmArea">
+    <div class="feedback good">${esc(pick(RL_CONTENT.flavour.correct))} ✓</div>
+    <div class="center" style="margin-top:18px">
+      <div class="bigtsw">${esc(it.tsw)} → ${esc(it.plural)}</div>
+      <p class="muted" style="margin:6px 0 0">one ${esc(formsGloss(it))} → many</p>
+      <p class="tiny" style="margin:10px 0 0"><b>${esc(fam.sg || '∅')} / ${esc(fam.pl)}</b> · class ${esc(fam.cls)}</p>
+    </div>
+    ${notes.map(n=>`<div class="chat-hint" style="margin-top:12px">${n}</div>`).join('')}
+    <button class="btn primary" id="fm-next" style="margin-top:auto">Continue</button></div>`);
+  formsHookQuit();
+  document.getElementById('fm-next').onclick = ()=>{ if (formsRound){ formsRound.at++; runForms(); } };
+}
+/* Three misses on either step. NOT marked done and no XP — it comes back fresh
+   next run, exactly like a revealed builder sentence. No auto-filing to
+   tutor_questions in v1 (spec §2.6): a wrong prefix tap is one bit of information,
+   where her TYPED builder attempts are diagnostic gold. rl_forms.missed holds the
+   pattern and can be read on request. */
+function formsReveal(){
+  const c = formsRound && formsRound.card; if (!c) return;
+  c.locked = true;
+  const it = c.it, fam = formsFamily(it);
+  const st = formsStoreGet();
+  st.streak = 0; st.missed = st.missed || {};
+  st.missed[it.id] = (st.missed[it.id] || 0) + 1;
+  formsStoreSet(st);
+  formsRound.wrong++;
+  currentScreen = 'Ditlhopha — ' + it.id + ' revealed';
+  render(formsHead() + `<div id="fmArea">
+    <div class="feedback bad"><b>${esc(it.tsw)}</b> is a <b>${esc(fam.sg || '∅')} / ${esc(fam.pl)}</b> word — class ${esc(fam.cls)}.</div>
+    <div class="center" style="margin-top:18px">
+      <div class="bigtsw">${esc(it.tsw)} → ${esc(it.plural)}</div>
+      <p class="muted" style="margin:6px 0 0">one ${esc(formsGloss(it))} → many</p>
+      <p class="tiny" style="margin:10px 0 0">Others in this family: ${esc(fam.eg)}</p>
+    </div>
+    <button class="btn primary" id="fm-next" style="margin-top:auto">Continue</button></div>`);
+  formsHookQuit();
+  document.getElementById('fm-next').onclick = ()=>{ if (formsRound){ formsRound.at++; runForms(); } };
+}
+function finishForms(){
+  const st = formsStoreGet();
+  const pool = formsUnlocked();
+  const knownN = pool.filter(it=>(st.done[it.id] || 0) >= FORMS_KNOWN).length;
+  const right = formsRound ? formsRound.right : 0, total = formsRound ? formsRound.order.length : 0;
+  formsRound = null;
+  currentScreen = 'Ditlhopha — done';
+  render(`<div class="center" style="margin-top:12vh">
+    <h1 style="font-size:2.2rem">${esc(RL_CONTENT.flavour.lessonDone)}</h1>
+    <p class="muted">One word, one family — that is how Setswana counts.</p>
+    <div class="statgrid" style="margin-top:20px">
+      <div class="stat"><b>${right}/${total}</b>this round</div>
+      <div class="stat"><b>${knownN}/${pool.length}</b>words solid</div>
+      <div class="stat"><b>${st.streak || 0}</b>in a row</div>
     </div>
     <button class="btn primary" id="b-home" style="margin-top:16px">Back to the path</button>
   </div>`);

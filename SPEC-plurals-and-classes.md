@@ -78,8 +78,12 @@ The whole round rests on one fixed table, not on the card pool:
    le- / ma-   ·  class 5/6     leitlho  → matlho
    se- / di-   ·  class 7/8     setilo   → ditilo
    ∅  / di-    ·  class 9/10    ntlo     → dintlo
-   lo- / di-   ·  class 11/10   loleme   → maleme
+   lo- / di-   ·  class 11/10   loleme   → diteme
 ```
+
+> **Corrected 2026-08-06 during the build:** this row read `loleme → maleme`, which is wrong
+> twice over — the row's own label says `di-`, and content.js has `diteme`. The app grades off
+> the card, never off this table, so nothing was ever built on the typo.
 
 **The prefix pair leads, the class number rides along as a label — always, on every screen.**
 Teaching "class 7" first is backwards: the number is a name for a pattern she has never been
@@ -102,8 +106,13 @@ merging:
 ```
 
 For most nouns, knowing the family **is** knowing the plural. Step 2 is deliberately easy right
-after a correct step 1 — that is the moment the connection lands. Once a card has been answered
-correctly a few times it skips straight to step 2 with no family shown, which is the real test.
+after a correct step 1 — that is the moment the connection lands.
+
+> ⚠️ **This paragraph used to end "once a card is well known it skips straight to step 2 with no
+> family shown".** That is the opposite of what §5.3 settles, and §5.3 is the later ruling — she
+> restated it again on 2026-08-06 ("step 2 is skipped once a card is known"). **A known card is
+> step 1 only:** naming the family is the hard half, and step 2 right after a correct step 1 is
+> deliberately the easy half, so the easy half is what goes. Built that way.
 
 **Tap, not type.** Setswana plurals are a prefix swap, not an ending, so what is worth drilling is
 which family the word is in. Typing would mostly test her spelling of a word she already knows.
@@ -201,3 +210,63 @@ All three are settled. Nothing is blocking the build.
    throwing her.
 3. **Yes — step 2 is skipped once a card is well known** (3 correct answers), so the easy half
    does not become filler.
+
+---
+
+## 6. BUILT 2026-08-06 (session 40) — what actually shipped, and the four calls the data forced
+
+Built on her go-ahead, as sw **v45**. `AUDIO_CACHE` untouched — no audio byte changed.
+Everything in §2 holds. Four things the spec did not settle had to be decided against the
+real data; none of them touch the four she named as not-to-be-changed (pattern-first picking,
+tap-not-type, no audio, no SRS writes).
+
+1. **A round is a fixed 12 cards, not "play the pool".** §2.8 read as if the round runs all 54.
+   It cannot: pattern-first only bites if a round is *shorter* than the pool. Play all 54 and
+   30 of them are class 9 again, whatever the order. At 12 the round-robin gives **exactly two
+   cards per family** — measured over 40 rounds in the harness. Random picking, measured over
+   2 000 rounds, gives **6.7 of 12 class 9**. Twelve is two full passes of the six families.
+2. **Step 2 is graded off the card's real plural, never off the family table.** One card in 54
+   disagrees with its own family: **leino → meno** takes `me-`, not the le-/ma- family's `ma-`.
+   Grading off the table would have marked the true Setswana form wrong. The payoff screen says
+   so out loud rather than hiding it: *"This one breaks its own pattern."*
+3. **Five cards change more than the prefix** — `mmele → mebele`, `leitlho → matlho`,
+   `leino → meno`, `loleme → diteme`, `letsogo → mabogo`. Tapping `ma-` and being shown
+   *mabogo* reads as a marking error unless the screen explains it, so the payoff adds one line:
+   *"the front is not the only thing that moves."* Both this and the irregular are **pinned in
+   the checker** — a sixth stem shift or a second irregular fails the gate rather than shipping
+   quietly, because it more likely means a plural was typed wrong than that Setswana changed.
+4. **The miss-2 hint on step 2 shows the stem with the front blanked** — *"It ends …tilo — which
+   prefix goes in front?"*. Asserted in the harness never to leak the prefix it is asking for.
+   For step 1 the hint is the singular's own prefix, or, for class 9, that it has none.
+
+**Reverse questions (§1b) and everything in §3 are NOT built** — §3 lists them as later tiers.
+The six already-plural cards (`batho`, `mala`, `dikgomo`, `mae`, `merogo`, `dinawa`) carry a
+class but no plural, so they are simply not in the pool.
+
+### Ship gates (§4) — results
+- `toolkit/verify-forms-data.py` — **green.** Evaluates the real content.js *in node* rather
+  than regexing it (a `[^{}]*` parser silently dropped 57 items in this repo once), then checks
+  every plural resolves to a family and a prefix, that none contradicts its class outside the
+  pinned exception, that index.html's `FORMS_FAMILIES` / `FORMS_PREFIXES` / `FORMS_BY_CLS` still
+  describe the data, that the block never calls `srsGrade` or plays audio, and LF/BOM by
+  **binary** read. Forces utf-8 stdout — cp1252 killed its own first run.
+- `toolkit/test-forms.js` — **402 assertions green.** Slices the real functions out of
+  index.html with a quote-aware scanner and runs them against the real content.js; also
+  `new Function()`s the whole inline script, which is what would catch a `top`/`name` global
+  collision. **Mutation-tested, not just passed:** breaking the family round-robin and
+  re-pointing step 2 at the family table made **97 assertions fail**, so the two things she
+  asked not to be quietly changed are genuinely guarded.
+- **`?local=1` walkthrough** — SW, caches and localStorage cleared first, wiped after. A full
+  12-card round with a deliberate 3-miss reveal on card 3: 11/12, **22 XP** (the revealed card
+  earned none and was not marked done), 0 console errors. Both hint tiers, the reveal, the
+  irregular note, the stem-shift note and the known-card path (step 2 skipped) all confirmed
+  on screen. Home button reads *"🗂️ Ditlhopha / Plurals & classes · 54 words unlocked"* and
+  sits after the Sentence Builder, with the drills.
+- **`state.srs` byte-identical before and after the full round** — 27 324 bytes both sides,
+  `rl_srs` in localStorage identical too. The only keys that moved were `rl_forms`, `rl_queue`,
+  `rl_streak`, `rl_xpTotal` — exactly the XP path, same as the Sentence Builder.
+- ⚠️ **The one gate that could NOT be run here:** the Browser pane stubs service workers —
+  `register()` reports "activated" with no install phase and `caches.keys()` stays empty, so the
+  v45 precache could not be watched. Instead: `sw.js` passes `node --check`, its **entire diff
+  is the one line `v44 → v45`**, `AUDIO_CACHE` is still `relefela-audio-v3`, `CORE` is unchanged,
+  and all **23 CORE files fetch 200**. Worth one look on her phone after the deploy.
