@@ -1,13 +1,13 @@
 # Re:Lefela — Project Status — updated 2026-08-06
 
-**Updated:** 2026-08-06 (session 40 — **🗂️ Ditlhopha, the merged plurals & noun-classes round, BUILT
-and fully verified as sw v45. NOT committed and NOT pushed — she asked to hold.** All four §4 ship
-gates run; the one that could not be, and why, is written down below.) · previous: session 39 —
+**Updated:** 2026-08-06 (session 40 — **🗂️ Ditlhopha, the merged plurals & noun-classes round,
+SHIPPED and live-verified as sw v45, commit `f922bd9`.** All four §4 ship gates run; the one that
+could not be, and why, is written down below.) · previous: session 39 —
 six clean-ups off her own morning list, **SHIPPED and live-verified as sw v44**, commit `e3c0d76`:
 the 📚 My words screen, the dictionary moved to the top, the Listening gym parked, Reset Lesson 1
 removed, and both the sleeping and the cross Katse reverted to stills.
 
-## Session 40 (2026-08-06) — 🗂️ Ditlhopha: plurals & noun classes (sw v45, BUILT, **not pushed**)
+## Session 40 (2026-08-06) — 🗂️ Ditlhopha: plurals & noun classes (sw v45, SHIPPED, commit `f922bd9`)
 
 Her ask from session 36, unblocked by her three §5 answers on 2026-08-06 and built the same day on
 her explicit go-ahead. **One merged round**, because in Setswana the class *is* the plural.
@@ -82,7 +82,22 @@ typed production, and the concord follow-on. §3 lists all three as "not v1" and
 
 **Files touched:** `index.html`, `sw.js`, `SPEC-plurals-and-classes.md` (two corrections + a new
 §6 build record), plus two new files `toolkit/verify-forms-data.py` and `toolkit/test-forms.js`.
-**Nothing is committed** — she said hold until she says so.
+`content.js` untouched.
+
+**SHIPPED as `f922bd9` on her go-ahead, and live-verified after the push:** `sw.js`, `index.html`
+and `content.js` all md5-identical live vs local; the live `sw.js` serves `relefela-v45` with
+`relefela-audio-v3` unchanged; and the live `index.html` carries the Ditlhopha button, its
+"Plurals & classes" sub-line, `FORMS_FAMILIES`, `rl_forms` in `clearLearnerState`, and **no
+`srsGrade` anywhere inside the round's block**.
+
+⚠️ **Two traps hit while shipping, both worth remembering:**
+- **An edit flipped `PROJECT-STATUS.md` to CRLF** and `core.autocrlf=true` hid it behind a clean
+  122/4 diff. Caught by a **binary** read. The standing rule was written for scripts that rewrite
+  `content.js`; it applies to *any* edit of *any* file in this repo. Check CR bytes after editing,
+  not only after running a script.
+- **`git push` failed with "Could not resolve host: github.com"** — the sandbox, not the network
+  and not credentials. It succeeded immediately once run with the sandbox off. Same for the live
+  `curl` verification, which had to be redone in PowerShell.
 
 ## Decisions (2026-08-06, session 40)
 - **A drill round has a fixed length; it does not play its whole pool.** Pattern-first picking is
@@ -99,13 +114,14 @@ typed production, and the concord follow-on. §3 lists all three as "not v1" and
   it is recorded, and it stays on her list until a phone confirms it.
 
 ## Pending on Megan (end of session 40, 2026-08-06)
-1. 💻 **[blocking] 10 seconds:** say the word and I commit + push v45 — it is built and verified,
-   just held at your instruction.
-2. 📱 **[whenever] 3 min, after that push:** close and reopen the PWA twice so **v45** takes, then
-   tap **🗂️ Ditlhopha** and play one round of 12. Tell me if 12 is the right length.
-3. 📱 **[whenever] 1 min, same sitting:** on that first round, check the class number next to each
-   prefix pair is what you meant — it is on every screen now, and it is the thing that was
+1. 📱 **[blocking] 3 min:** close and reopen the PWA twice so **v45** takes, then tap
+   **🗂️ Ditlhopha** and play one round of 12. Say whether 12 is the right length.
+2. 📱 **[whenever] 1 min, same sitting:** on that round, check the class number beside each prefix
+   pair reads the way you wanted — it is on every screen now, and it is the thing that was
    throwing you.
+3. 📱 **[whenever] 30 seconds, same sitting:** confirm the app updated itself to v45 without a
+   reinstall. This is the one ship gate that could not be checked here — the browser tooling now
+   fakes service workers, so nobody has watched v45 install.
 
 ## Next up (agreed 2026-08-06, end of session 40)
 1. 💻 **Ditlhopha v2, only after she has played it** — the spec's §3 tiers are reverse questions
