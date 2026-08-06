@@ -9,21 +9,23 @@
 //   - precache uses {cache:'reload'} so install never reads a stale HTTP-cached
 //     index.html (GitHub Pages serves max-age=600).
 //   - non-GET and cross-origin (Supabase, CDN) requests pass straight through.
-const CACHE = 'relefela-v43';
+const CACHE = 'relefela-v44';
 // Bump AUDIO_CACHE's version suffix ONLY when an existing audio file's content
 // changes (re-record/re-splice under the same filename). App version bumps
 // (CACHE above) must never evict audio.
 const AUDIO_CACHE = 'relefela-audio-v3';
 const CORE = ['./', 'index.html', 'content.js', 'dialogues.js', 'builder-bank.js', 'dict-bank.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png',
-  // Katse is animated WebP now (see KATSE_POSES in index.html). `oops` is the
-  // one pose with no animation drawn, so it stays a PNG.
+  // Katse is animated WebP now (see KATSE_POSES in index.html). `oops` and `sleep`
+  // are stills: no animation was ever drawn for oops, and the sleeping animation was
+  // reverted on 2026-08-06 (her call — it looked odd).
   'img/katse-home.webp', 'img/katse-awake.webp', 'img/katse-rest.webp',
-  'img/katse-happy.webp', 'img/katse-curious.webp', 'img/katse-sleep.webp',
-  'img/katse-walk.webp', 'img/katse-oops.png',
-  // drawn and available, not yet placed in the app — precached so that placing
-  // one later is a one-line change with nothing new to download
+  'img/katse-happy.webp', 'img/katse-curious.webp',
+  'img/katse-walk.webp', 'img/katse-oops.png', 'img/katse-sleep.png',
+  // drawn and available, not placed in the app — precached so that placing one
+  // later is a one-line change with nothing new to download. katse-sleep.webp and
+  // katse-angry.webp are here because they WERE placed and were taken back out.
   'img/katse-talk.webp', 'img/katse-tilt.webp', 'img/katse-angry.webp',
-  'img/katse-stretch.webp', 'img/katse-slide.webp'];
+  'img/katse-sleep.webp', 'img/katse-stretch.webp', 'img/katse-slide.webp'];
 
 self.addEventListener('install', e => {
   e.waitUntil(

@@ -188,13 +188,16 @@ class a word is in*. Keeping them separate is what lets tier 3 join them meaning
   measured, never asserted.
 - `sw.js` CACHE bumped, **`AUDIO_CACHE` untouched**.
 
-## 5. Open questions for her
+## 5. Open questions — ANSWERED 2026-08-06
 
-1. **Name for the home button.** Working title "🔢 Plurals & classes"; she may want a Setswana name
-   as with 🧩 — *Ditlhopha* ("groups/classes") is the obvious candidate.
-2. Should the **class number** show from day one alongside the prefix pair, or be held back until
-   she recognises the pairs? *(Recommendation: from day one, always paired — the number is the
-   thing she needs to stop being thrown by.)*
-3. After step 1 is right, should step 2 be **skippable** once a card is well known, or always
-   asked? *(Recommendation: skip it after 3 correct answers — otherwise the easy half becomes
-   filler.)*
+All three are settled. Nothing is blocking the build.
+
+1. **Button name: `Ditlhopha`, with "Plurals & classes" as a sub-heading underneath.** Her words:
+   *"Call it Ditlhopha but put plurals & classes and a sub-heading."* Same two-line shape the
+   🧩 Sentence Builder and 📖 Dictionary buttons already use — Setswana on the top line, plain
+   English on the `.tiny` line below it.
+2. **Yes — the class number shows from day one**, always paired with the prefix pair, on every
+   screen. That was the recommendation and it is the point of the round: the number is the thing
+   throwing her.
+3. **Yes — step 2 is skipped once a card is well known** (3 correct answers), so the easy half
+   does not become filler.

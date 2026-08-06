@@ -180,6 +180,16 @@ input:focus{outline:none; border-color:var(--pink)}
 .statgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0}
 .stat{background:#fff; border:2px solid var(--line); border-radius:var(--radius); padding:14px; text-align:center}
 .stat b{display:block; font-size:1.5rem; color:var(--pink-deep)}
+/* the one stat tile you can open (words & phrases met → the word list) */
+.stat-tap{display:block; width:100%; font:inherit; border-bottom-width:4px; transition:transform .06s}
+.stat-tap:active{transform:translateY(2px); border-bottom-width:2px}
+.stat-tap .go{display:block; font-size:.7rem; color:var(--ink-dim); margin-top:3px}
+/* 📚 My words — the word list behind that tile */
+.wl-lesson{font-weight:800; color:var(--pink-deep); margin:16px 0 6px; font-size:.95rem}
+.wl-row{display:flex; align-items:center; gap:10px; background:var(--card); border:2px solid var(--line);
+  border-radius:12px; padding:9px 12px; margin:6px 0}
+.wl-row .tsw{font-weight:700; flex:none}
+.wl-row .eng{color:var(--ink-dim); flex:1; font-size:.95rem}
 a{color:var(--pink-deep)}
 /* Katse the mascot 🐈‍⬛ */
 .katse-wrap{position:relative; display:inline-flex; flex-direction:column; align-items:center; flex:none;
@@ -191,7 +201,7 @@ a{color:var(--pink-deep)}
    re-measure whenever a pose's artwork is replaced. */
 .kv-home{aspect-ratio:331/340} .kv-awake{aspect-ratio:340/210} .kv-rest{aspect-ratio:340/217}
 .kv-happy{aspect-ratio:340/176} .kv-curious{aspect-ratio:339/340}
-.kv-oops{aspect-ratio:340/238} .kv-sleep{aspect-ratio:340/182}
+.kv-oops{aspect-ratio:340/238} .kv-sleep{aspect-ratio:340/211}
 /* home, talk and tilt deliberately share one canvas and baseline so she can
    start talking mid-screen without the <img> changing shape — see build notes. */
 .kv-talk{aspect-ratio:331/340} .kv-tilt{aspect-ratio:331/340} .kv-walk{aspect-ratio:340/250}
@@ -322,6 +332,9 @@ const RL_CFG = {
   emailDomain: 'relefela.app'
 };
 const LOCAL_MODE = new URLSearchParams(location.search).has('local');
+/* The Listening gym is built, working and parked (see screenHome). ?gym=1 puts its
+   button back for one visit — the way to check it still runs before un-parking it. */
+const SHOW_GYM = new URLSearchParams(location.search).has('gym');
 const sb = LOCAL_MODE ? null : supabase.createClient(RL_CFG.url, RL_CFG.key);
 const $app = document.getElementById('app');
 
@@ -642,7 +655,11 @@ const KATSE_POSES = {
   happy:'img/katse-happy.webp',     // belly-up, paws waving — celebration
   curious:'img/katse-curious.webp', // full body, chattering — new word!
   oops:'img/katse-oops.png',        // big peek with paws — sympathetic miss
-  sleep:'img/katse-sleep.webp',     // curled up — today's streak is safe
+  /* Both of these went back to stills on 2026-08-06, Megan's call after living with
+     them: the breathing sleeper "looks weird", and the cross cat stopped being funny
+     after a few real rounds. The .webp animations are still in img/ — swapping the
+     two lines below brings either back, but re-measure .kv-sleep (211 vs 182). */
+  sleep:'img/katse-sleep.png',      // curled up, still — today's streak is safe
   talk:'img/katse-talk.webp',       // sitting, mouth moving — she's saying something
   tilt:'img/katse-tilt.webp',       // sitting, head tilting — a quieter idle
   walk:'img/katse-walk.webp',       // walks in and sits — plays ONCE, then hand to `home`
@@ -913,47 +930,11 @@ async function pullRemote(){
   }catch(e){ /* offline is fine */ }
 }
 
-/* ---------- Reset Lesson 1 (session 12) ----------
-   Megan wants to relearn Lesson 1 from scratch on demand. Reset = clear ONLY the
-   u1l1-* SRS rows so teach cards come back; XP/streak are untouched by design
-   (2026-07-16 decision).
-   Must be a real DELETE, not a zeroed-out upsert: buildExercises() decides "already
-   know this word" (recap, no teach card) purely from `state.srs[it.id]` being PRESENT
-   — a reset-to-zero row would still be present and would still be treated as known,
-   so the teach cards would never come back. RLS on srs_items is `for all ... using
-   (user_id = auth.uid())`, so the signed-in user can delete her own rows.
-   lessonIdx is deliberately left untouched: unlock progression (prog.lessonIdx, drives
-   locked/done/next on the home path) and "known" state (state.srs presence) are
-   already independent in this app — startLesson()'s `known`/`allMet`/`firstOpenPart`
-   all read live SRS rows, so clearing them alone makes Lesson 1 open fresh (part 1,
-   real teach+grade, not replay mode) without relocking any later lesson.
-   Both sides of the sync must agree or the gotcha in PROJECT-STATUS.md bites: delete
-   the server rows FIRST (await it), and only clear local rl_srs / strip the outbox
-   once that succeeds — otherwise pullRemote() would merge the still-there server rows
-   straight back in, or a lingering queued 'srs' upsert would re-push them. */
-async function resetLesson1(){
-  if (!confirm('Reset Lesson 1? Your XP and streak stay.')) return;
-  const btn = document.getElementById('b-reset-l1');
-  if (btn) btn.disabled = true;
-  const clearLocal = ()=>{
-    state.queue = state.queue.filter(op => !(op.t==='srs' && typeof op.item_id==='string' && op.item_id.indexOf('u1l1-')===0));
-    Object.keys(state.srs).forEach(id=>{ if (id.indexOf('u1l1-')===0) delete state.srs[id]; });
-    const rm = store.get('replay', {}); delete rm[replayKey('u1', 0)]; store.set('replay', rm);
-    persist();
-  };
-  if (LOCAL_MODE){
-    clearLocal();
-    toast('Lesson 1 reset. Go siame!');
-    return screenStats();
-  }
-  if (!state.user){ if (btn) btn.disabled = false; return; }
-  if (!navigator.onLine){ if (btn) btn.disabled = false; return toast('You are offline — connect and try again.'); }
-  const {error} = await sb.from('srs_items').delete().eq('user_id', state.user.id).like('item_id', 'u1l1-%');
-  if (error){ if (btn) btn.disabled = false; return toast('Reset failed: ' + (error.message||error.code||'network')); }
-  clearLocal();
-  toast('Lesson 1 reset. Go siame!');
-  screenStats();
-}
+/* Reset Lesson 1 (session 12) was REMOVED from the stats screen 2026-08-06, her call.
+   It existed so she could relearn Lesson 1 from scratch while the app was new; the
+   lesson-replay path covers that now. The whole function went with the button —
+   `git show 730ae2d:index.html` has it if it is ever wanted back, along with the
+   delete-server-rows-first ordering that made it safe. */
 
 function screenHome(){
   currentScreen = 'Home';
@@ -986,7 +967,12 @@ function screenHome(){
   const dailyBtn = learnedN >= 4
     ? `<button class="btn ${qDone?'ghost':'primary'}" id="b-daily" style="margin:10px 0">🔁 ${esc(RL_CONTENT.flavour.review)} — Daily Quest${qDone?' ✓':''}<br>
         <span class="tiny">${Math.min(DAILY_ROUNDS, learnedN)} rounds${due>0?` · ${due} due for review`:''} · ${esc(RL_CONTENT.flavour.streak)}</span></button>` : '';
-  const gym = (RL_CONTENT.nchlt && RL_CONTENT.nchlt.length >= 4)
+  /* Listening gym — TAKEN OFF THE HOME SCREEN 2026-08-06, her call: "we aren't using
+     it yet, but we will much later on". Deliberately hidden, NOT deleted — the gym
+     code, the NCHLT clips and the toolkit/nchlt-filter.py pipeline are all untouched,
+     so bringing it back is this one condition. `?gym=1` still opens it, which is how
+     we can prove it still works before it goes back on the home screen. */
+  const gym = (SHOW_GYM && RL_CONTENT.nchlt && RL_CONTENT.nchlt.length >= 4)
     ? `<button class="btn ghost" id="b-gym" style="margin:10px 0">👂 Listening gym — real native voices</button>` : '';
   // visible once ANY scenario is unlocked; locked ones then show in the picker with their
   // unlock hint (revised from spec §4's fully-hidden rule — she couldn't find the feature)
@@ -1004,6 +990,9 @@ function screenHome(){
   // Dictionary — deliberately ungated (a reference she cannot open is no use), and
   // shown even if dict-bank.js somehow failed to load, in which case DICT is empty
   // and the button stays hidden rather than opening an empty screen.
+  // Sits at the TOP of the list since 2026-08-06 (her call) — it is a reference she
+  // reaches for mid-thought, not an exercise to work through, so it should not be
+  // below the lesson path.
   const dictBtn = DICT.length
     ? `<button class="btn ghost" id="b-dict" style="margin:10px 0">📖 Dictionary — look a word up<br>
         <span class="tiny">${DICT.length} words · Setswana ↔ English, with examples</span></button>` : '';
@@ -1023,11 +1012,11 @@ function screenHome(){
       </div>
     </div>
     ${dailyBtn}
+    ${dictBtn}
     ${gym}
     ${chatBtn}
     ${builderBtn}
     ${unitsHtml}
-    ${dictBtn}
     <div class="row" style="margin-top:16px">
       <button class="btn ghost" id="b-lb" style="flex:1">🏆 Scoreboard</button>
       <button class="btn ghost" id="b-me" style="flex:1">📊 My stats</button>
@@ -1978,7 +1967,7 @@ function screenStats(){
     <div class="statgrid">
       <div class="stat"><b>${state.xpTotal}</b>total XP</div>
       <div class="stat"><b>${state.streak.current}🔥</b>day streak (best ${state.streak.best})</div>
-      <div class="stat"><b>${learned}</b>words & phrases met</div>
+      <button class="stat stat-tap" id="b-met"><b>${learned}</b>words &amp; phrases met<span class="go">tap to see them ›</span></button>
       <div class="stat"><b>${due}</b>due for review</div>
     </div>
     <div class="card">
@@ -1995,10 +1984,7 @@ function screenStats(){
       </div>
       <button class="btn primary" id="b-chpass" style="margin-top:8px">Change password</button>
     </div>`}
-    <button class="btn ghost" id="b-logout" style="margin-top:8px">Log out</button>
-    <div class="center" style="margin-top:24px">
-      <button class="btn ghost small" id="b-reset-l1">Reset Lesson 1</button>
-    </div>`);
+    <button class="btn ghost" id="b-logout" style="margin-top:8px">Log out</button>`);
   hookEyes();
   document.getElementById('b-back').onclick = screenHome;
   const chp = document.getElementById('b-chpass');
@@ -2024,7 +2010,81 @@ function screenStats(){
     localStorage.removeItem('rl_lastUser');
     location.reload();
   };
-  document.getElementById('b-reset-l1').onclick = resetLesson1;
+  document.getElementById('b-met').onclick = screenMyWords;
+}
+
+/* ---------- 📚 My words (2026-08-06) ----------
+   Her ask: the "words & phrases met" number was a dead statistic — tapping it now
+   shows WHICH words, Setswana and English, "like the dictionary, but filtered".
+   Deliberately built on the app's own cards, not on DICT: this is the list of words
+   SHE has met, and only content.js knows which lesson each one came from. Reading
+   `state.srs` for presence is exactly what the stat already counted, so the number
+   on the tile and the length of this list can never disagree.
+   ⚠️ READ-ONLY, like the dictionary and the Sentence Builder: no srsGrade, no XP,
+   no store writes. Playing a clip from here must not tell the app she revised.
+   Rule cards are skipped for the same reason dueItems() skips them — they carry no
+   word, and they are not what the tile counts.
+   A row whose id is in state.srs but no longer exists in content.js is dropped
+   silently: ids have been renamed before (the mid-Katse rename), and a stale row is
+   not worth a scary message. */
+function myWordsList(){
+  const out = [];
+  for (const u of RL_CONTENT.units) for (const l of u.lessons) for (const it of l.items){
+    if (it.kind === 'rule' || !it.tsw) continue;
+    if (!state.srs[it.id]) continue;
+    out.push({it, unit:u, lesson:l});
+  }
+  return out;
+}
+function myWordRowHTML(w){
+  const it = w.it;
+  const cls = it.cls ? `<span class="dict-chip">class ${esc(String(it.cls))}</span>` : '';
+  const plural = it.plural ? `<span class="dict-chip">many: ${esc(it.plural)}</span>` : '';
+  const play = it.audio ? `<button class="dict-play wl-play" data-audio="${esc(it.audio)}" aria-label="Play ${esc(it.tsw)}">🔊</button>` : '';
+  return `<div class="wl-row">
+    <span class="tsw">${esc(it.tsw)}</span>
+    <span class="eng">${esc(it.eng)}</span>
+    ${cls}${plural}${play}
+  </div>`;
+}
+function screenMyWords(){
+  currentScreen = 'My words';
+  const all = myWordsList();
+  render(`<div class="topbar"><button class="quit" id="b-back">←</button><h2>📚 My words</h2></div>
+    <input class="dict-search" id="wq" type="search" autocomplete="off" autocapitalize="none"
+      spellcheck="false" placeholder="Filter — Setswana or English…">
+    <p class="tiny" style="margin:8px 2px 0" id="wcount"></p>
+    <div id="wres"></div>
+    <p class="tiny center" style="margin-top:18px; opacity:.8">Every word you have met, in the order you met it.
+      Looking here doesn't count as revision — your review dates stay exactly as they are.</p>`);
+  document.getElementById('b-back').onclick = screenStats;
+  const inp = document.getElementById('wq'), res = document.getElementById('wres'), cnt = document.getElementById('wcount');
+  const run = ()=>{
+    const q = norm(inp.value.trim());
+    const hits = q ? all.filter(w=> norm(w.it.tsw).indexOf(q) >= 0 || norm(w.it.eng).indexOf(q) >= 0) : all;
+    cnt.textContent = q
+      ? `${hits.length} of ${all.length} word${all.length===1?'':'s'}`
+      : `${all.length} word${all.length===1?'':'s'} · newest lessons at the bottom`;
+    if (!hits.length){
+      res.innerHTML = `<div class="dict-entry"><p style="margin:0">Nothing here matches that.</p>
+        <p class="tiny" style="margin:6px 0 0">It may still be in the 📖 Dictionary — this list only holds
+        words the app has taught you.</p></div>`;
+      return;
+    }
+    // headings only make sense unfiltered; a filtered list is short and jumps around
+    let html = '', lastLesson = null;
+    for (const w of hits){
+      if (!q && w.lesson !== lastLesson){
+        html += `<p class="wl-lesson">${esc(w.unit.title)} · ${esc(w.lesson.title)}</p>`;
+        lastLesson = w.lesson;
+      }
+      html += myWordRowHTML(w);
+    }
+    res.innerHTML = html;
+    res.querySelectorAll('.wl-play').forEach(b=>{ b.onclick = ()=>playAudio(b.dataset.audio); });
+  };
+  run();
+  inp.addEventListener('input', run);
 }
 
 /* ---------- lesson & exercise generation ----------
@@ -2651,7 +2711,9 @@ function grade(ok, it, given, silent, close){
     if (session.combo % 3 === 0){ katseSetPose('happy'); katseAnim('celebrate'); katseBubble('✨ '+session.combo+' in a row!'); }
     else katseAnim('bounce');
   } else {
-    katseSetPose('angry'); katseAnim('tilt');   // her call: cross, not sympathetic
+    // Back to the sympathetic peek (2026-08-06). The cross cat was her idea and
+    // she reversed it after playing with it: funny once, wearing by round five.
+    katseSetPose('oops'); katseAnim('tilt');
     const cur = session.ex[session.at];
     if (cur && cur.item && !cur.retry){
       const pos = Math.min(session.ex.length, session.at + 3 + Math.floor(Math.random()*3));
