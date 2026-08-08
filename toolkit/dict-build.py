@@ -47,7 +47,9 @@ HEADER = """// Re:Lefela — dictionary bank (SPEC-dictionary-panel.md). GENERAT
 // Entry shape: { t: headword (Setswana), e: [meanings], p: part of speech|null,
 // c: noun class|null, n: usage note|'', f: [alternate forms a source recorded],
 // x: [{t, e, s}] examples (s = source tag),
-// s: [source tags], k: 1 when a human has checked the entry, a: audio file|null }
+// s: [source tags], k: 1 when a human has checked this entry's leading
+// meaning(s), kc: how many of `e` are human-checked when the rest are not
+// (absent = all of them, or none), a: audio file|null }
 // Field names are short because this file is precached on her phone.
 // ─────────────────────────────────────────────────────────────────────────────
 """
@@ -132,13 +134,34 @@ def main():
 
         for pos, grp in groups.items():
             grp.sort(key=lambda r: SOURCE_ORDER.index(r['_src']))
-            meanings, seen = [], set()
+            # ⚠️ CHECKED IS PER MEANING, NOT PER ENTRY (audit 2026-08-06).
+            # When the African Wordnet wave merged into a human-checked entry, its
+            # extra meanings joined the same list and the entry still wore one
+            # "· checked" tag — so beke (week) advertised "briefcase" as vetted,
+            # and nna (I/me) advertised "male". 81 entries were doing this.
+            #
+            # So: remember which meanings a CHECKED source actually vouched for,
+            # put those first, and record how many there are (`kc`). The panel
+            # prints the rest under "also recorded (not checked)". A meaning that
+            # appears in both a checked and an unchecked source counts as checked,
+            # which is why this is a second pass rather than a first-one-wins
+            # append — `desk` is checked but sorts AFTER the unchecked `pc`.
+            bykey, order = {}, []
             for r in grp:
                 for m in r['eng']:
                     m = m.strip()
-                    if m and norm(m) not in seen:
-                        seen.add(norm(m))
-                        meanings.append(m)
+                    mk = norm(m)
+                    if not m or not mk:
+                        continue
+                    if mk not in bykey:
+                        bykey[mk] = {'text': m, 'chk': False}
+                        order.append(mk)
+                    if r.get('chk'):
+                        bykey[mk]['chk'] = True
+            vouched = [bykey[mk]['text'] for mk in order if bykey[mk]['chk']]
+            loose = [bykey[mk]['text'] for mk in order if not bykey[mk]['chk']]
+            meanings = (vouched + loose)[:6]
+            n_checked = min(len(vouched), len(meanings))
             if not meanings:
                 continue
             note = next((r['note'] for r in grp if r.get('note')), '')
@@ -176,7 +199,11 @@ def main():
                 'x': build_examples(key, grp, meanings, examples),
                 'f': forms,
                 's': sorted({r['_src'] for r in grp}),
-                'k': 1 if any(r.get('chk') for r in grp) else 0,
+                # k: a human vouched for at least the FIRST meaning.
+                # kc: how many of `e` they vouched for — emitted only when some
+                #     meaning rode in unchecked, so the panel can draw the line.
+                'k': 1 if n_checked else 0,
+                'kc': n_checked if 0 < n_checked < len(meanings) else 0,
                 'a': audio,
             })
 

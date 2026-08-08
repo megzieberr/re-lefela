@@ -1,4 +1,47 @@
-# Re:Lefela — Project Status — updated 2026-08-06
+# Re:Lefela — Project Status — updated 2026-08-07 (audit fix applied, NOT shipped)
+
+## 🔧 2026-08-07 — "checked" is now per MEANING, not per entry (sw v46, local only)
+
+Off `FABLE-AUDIT-2026-08-06.md`, finding 1. All four gates green after the rebuild:
+**verify-dict-bank OK (9179 entries, LF-only, no BOM)**, verify-forms-data,
+verify-builder-bank (57), test-forms (402 assertions).
+
+**The problem.** When the African Wordnet wave merged into a human-checked entry,
+its meanings joined the same list and the entry still wore one `· checked` tag. So
+`nna` (the checked I/me entry) advertised "male" as vetted, and `bone` (they/them)
+advertised "fourth". The checked flag is the whole promise of the dictionary — "this
+one you can trust outright" — and it had quietly stopped being true.
+
+**The fix.** `toolkit/dict-build.py` now tracks checked-ness **per meaning**: it
+records which meanings a checked source actually vouched for, puts those first, and
+emits `kc` = how many. ⚠️ It is a second pass, not first-one-wins, because `desk` is
+a checked source that sorts AFTER the unchecked `pc` — a meaning vouched for by any
+checked source counts as checked. `index.html`'s `dictEntryHTML` prints the vouched
+meanings as the meaning line and the rest under **"also recorded, not checked:"**.
+**98 entries carry `kc`.** Rebuilt via the toolkit (never hand-edited), sw v45 → **v46**.
+
+Verified in the browser across all three shapes: `nna` → "I · me" with "male" below;
+an all-checked entry unchanged with its badge; an unchecked entry unchanged with no
+badge. (`batho` is a good example of what this was hiding — "hoi polloi" used to ride
+under the checked tag.)
+
+### ❓ One content question for Megan — `beke` (needs her Setswana friend)
+
+The audit called `beke` = "briefcase" a wordnet error. **It is not** — the course
+itself teaches `beke` = **bag** (card `u3l4-07`, cited to Peace Corps L7, class 9,
+plural *dibeke*), so "bag" is correctly the checked meaning and the app is right.
+
+**But:** the Peace Corps source spells that word **bêkê**, with circumflexes, and the
+card dropped them — which collides with *beke* (week). So the question is whether the
+CARD should be respelled `bêkê`. ⚠️ It has a native recording attached
+(`items/u3l4-07.mp3`), so the audio mapping needs checking too. **Not changed —
+content.js is not touched without her ruling.**
+
+**Left open:** `xp_events` inserts still have no idempotency key, so a lost response
+can double-save XP (cosmetic in a two-person app; noted as the cause if weekly
+numbers ever look inflated). One sentence card is duplicated across u2l4/u4l4.
+
+
 
 **Updated:** 2026-08-06 (session 40 — **🗂️ Ditlhopha, the merged plurals & noun-classes round,
 SHIPPED and live-verified as sw v45, commit `f922bd9`.** All four §4 ship gates run; the one that

@@ -1900,10 +1900,22 @@ function dictEntryHTML(e){
       <div class="e">${x.e ? esc(x.e) + ' ' : ''}<span class="dict-chip">${esc(DICT_SRC_LABEL[x.s]||x.s)}</span></div></div>`).join('');
   const noEx = (e.x||[]).length ? '' : `<p class="tiny" style="margin:8px 0 0">No example sentence yet for this word.</p>`;
   const from = (e.s||[]).map(s=>DICT_SRC_LABEL[s]||s).join(', ');
+  /* "Checked" is per MEANING, not per entry (audit 2026-08-06). When a wordnet
+     meaning merged into a human-checked entry, the whole entry still wore one
+     "· checked" tag — so nna (I/me) advertised "male" as vetted. `kc` says how
+     many of the meanings a human actually vouched for; the rest are shown, but
+     shown honestly. No kc means all of them (k=1) or none (k=0). */
+  const all = e.e || [];
+  const kc = e.kc || 0;
+  const sure = kc ? all.slice(0, kc) : all;
+  const loose = kc ? all.slice(kc) : [];
+  const looseLine = loose.length
+    ? `<p class="tiny" style="margin:4px 0 0; opacity:.75">also recorded, not checked: ${esc(loose.join(' · '))}</p>`
+    : '';
   return `<div class="dict-entry">
     <div class="head"><span class="word">${esc(e.t)}</span>${chips.join('')}${play}</div>
-    <p class="mean">${esc((e.e||[]).join(' · '))}</p>
-    ${forms}${note}${ex}${noEx}
+    <p class="mean">${esc(sure.join(' · '))}</p>
+    ${looseLine}${forms}${note}${ex}${noEx}
     <p class="tiny" style="margin:8px 0 0; opacity:.75">from: ${esc(from)}${e.k ? ' · checked' : ''}</p>
   </div>`;
 }

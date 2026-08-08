@@ -1,4 +1,12 @@
-# Next session brief — Dictionary wave 2
+# Re:Lefela — superseded
+
+**Wave 2 SHIPPED in session 35** (African Wordnet, sw v39, 9 177 entries — the bank is
+at 9 179 today). This brief is done: do NOT paste it and re-run the job. Kept only for
+the git-history trail; `PROJECT-STATUS.md` is the live state.
+
+---
+
+## The original brief (historical)
 
 Written 2026-08-04 at the end of session 34, for whenever Megan is ready. Wave 1 shipped
 that day (747 entries, sw v38); she then took the app away to use for a few days.
