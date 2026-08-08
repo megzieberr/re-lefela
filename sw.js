@@ -9,11 +9,15 @@
 //   - precache uses {cache:'reload'} so install never reads a stale HTTP-cached
 //     index.html (GitHub Pages serves max-age=600).
 //   - non-GET and cross-origin (Supabase, CDN) requests pass straight through.
-const CACHE = 'relefela-v46';
+const CACHE = 'relefela-v47';
 // Bump AUDIO_CACHE's version suffix ONLY when an existing audio file's content
 // changes (re-record/re-splice under the same filename). App version bumps
 // (CACHE above) must never evict audio.
-const AUDIO_CACHE = 'relefela-audio-v3';
+// v3 -> v4 on 2026-08-08: audio/items/u3l1-11.mp3 was re-cut under the same
+// filename (the old window caught the tail of the English prompt). This is
+// exactly the case the rule above describes — without this bump every phone
+// that already has the clip would keep serving the broken one forever.
+const AUDIO_CACHE = 'relefela-audio-v4';
 const CORE = ['./', 'index.html', 'content.js', 'dialogues.js', 'builder-bank.js', 'dict-bank.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png',
   // Katse is animated WebP now (see KATSE_POSES in index.html). `oops` and `sleep`
   // are stills: no animation was ever drawn for oops, and the sleeping animation was

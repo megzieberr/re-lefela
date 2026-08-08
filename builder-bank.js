@@ -209,7 +209,7 @@ const RL_BUILDER = [
     accept: ['Maoto ame a botlhoko'],
     usesIds: ['u2l2-07', 'u2l7-06'],
     src: 'peace-corps-L22 pain pattern',
-    note: 'Model: Mala ame a botlhoko — maoto is class 6 like mala, so the concord is a.'
+    note: 'Legs, not leg — leoto is one leg, maoto is both of them. maoto is class 6 like mala, so the concord is a: model it on Mala ame a botlhoko.'
   },
   {
     id: 'sb-u2-08', eng: 'A white horse',

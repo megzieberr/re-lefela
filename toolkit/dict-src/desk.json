@@ -25,5 +25,14 @@
   "note": "Alternate form the desk dictionary gives alongside \"moma molomo\" for the same meaning.",
   "src": ["desk"],
   "chk": true
+ },
+ {
+  "tsw": "ntlê",
+  "eng": ["pretty", "beautiful"],
+  "pos": "adj",
+  "cls": null,
+  "note": "Takes the adjective concord: o montlê = she/he is pretty, mosadi yo montlê = a pretty woman.",
+  "src": ["desk"],
+  "chk": true
  }
 ]

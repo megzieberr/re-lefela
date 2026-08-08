@@ -1874,6 +1874,21 @@ function dictSearch(q){
     }
     if (rank < 99) out.push({rank, row});
   }
+  /* Drop the loose tiers once solid hits exist (her two reports, 2026-08-06:
+     "fat" returned 191 entries, and it offered rra = father).
+       rank 3 = an English meaning WORD starts with the query  -> fat/father
+       rank 4 = a Setswana headword CONTAINS the query anywhere -> fat/fatshe,
+                which alone was 154 of those 191.
+     Both tiers earn their keep only when nothing better matched — they are what
+     lets a half-typed word find anything at all. So they are a fallback, not a
+     result: an exact hit (rank 0/1) hides both, a headword-prefix hit (rank 2,
+     "batl" -> batla) hides only the substring tiers. Measured on the 9179-word
+     bank: fat 191 -> 12 with rra gone, batl 56 -> 5 with batla still first,
+     water 19 -> 12 with metsi still first. */
+  const best = out.reduce((b,o)=> Math.min(b, o.rank), 99);
+  const keep = best <= 1 ? 2 : best <= 2 ? 3 : 99;
+  const kept = out.filter(o=> o.rank <= keep);
+  out.length = 0; out.push(...kept);
   /* Human-checked entries win ties. The African Wordnet wave took the bank from
      747 entries to several thousand, nearly all of them unchecked, so without this
      a course word she has actually been taught can sit below a wordnet homonym of

@@ -1,6 +1,161 @@
-# Re:Lefela — Project Status — updated 2026-08-07 (audit fix applied, NOT shipped)
+# Re:Lefela — Project Status — updated 2026-08-08 (session 41: six bug fixes off her own reports, sw v47)
 
-## 🔧 2026-08-07 — "checked" is now per MEANING, not per entry (sw v46, local only)
+## 🐞 Session 41 (2026-08-08) — the six bugs she filed from inside the app (sw v47, AUDIO_CACHE v4)
+
+Everything here came from her own 💬 Ask-your-tutor taps between 2026-08-05 and 08-07, pulled
+out of `tutor_questions` into `NEXT-SESSION-bug-fixes-2026-08-08.md` and worked through in one
+pass. **Five were real. One was the app being right and the hint being useless.**
+
+### 1. 📖 "pretty" was a dead lookup → `ntlê`
+Her `dict-miss:pretty` row. Confirmed 0 hits. Matumo p.611: *pretty adj. ntlé; she is ~, o montlé;
+a pretty woman, mosadi yo montlé.* Added to `toolkit/dict-src/desk.json` as `src:["desk"],
+chk:true` and rebuilt — **it merged into the existing African Wordnet `ntlê` rather than making a
+duplicate**, and because `desk` outranks `afwn` in `SOURCE_ORDER` the entry now reads
+**"pretty · beautiful"** as the checked meanings with *attractive · external* under "also
+recorded, not checked" (`kc:2`). Bank stays 9179 entries. The `ntlê` NOUN entry (exterior/outside)
+is untouched — the pos split did its job.
+
+### 2 + 3. 📖 "fat" returned 191 entries, and offered `rra` (father) — one root cause
+Her two reports were the same bug seen from two angles. `dictSearch` ranks hits in six tiers, and
+the two loosest were doing the damage:
+- **rank 3** = an English meaning WORD *starts with* the query → `rra` = **fat**her, `rre` = **fat**her.
+- **rank 4** = a Setswana headword *contains* the query anywhere → **154 of the 191** (`sefatlhego`,
+  `befatsa`, `Nna fatshe`…).
+
+**The fix is a hierarchy, not a threshold.** Those tiers earn their keep only when nothing better
+matched — they are what lets a half-typed word find anything. So they are now a *fallback*: an
+exact hit (rank 0/1) hides both, and a headword-prefix hit (rank 2) hides only the substring tiers.
+Nothing was made stricter; the loose tiers still fire when they are all there is.
+
+| she types | before | after |
+|---|---|---|
+| `fat` | 191 hits, `rra`/`rre` at #13–14 | **12**, all genuinely "fat", both fathers gone |
+| `batl` | 56 | **5**, `batla` still first |
+| `water` | 19 | **12**, `metsi` still first |
+| `nna` | 25 | **9**, `nna` still first |
+
+⚠️ **`fata`, `fatshe`, `fatlhôgô`, `fatlhosa` DO survive "fat" and should** — they are rank 2,
+the same tier that makes `batl → batla` work. A first test asserted they should go; the assertion
+was wrong, not the code. Don't "fix" that later.
+
+### 4. 🔊 u3/l1 "Ga ba batle" had the English in it — the segment window started 0.7s early
+Confirmed from the tape without needing ears. Lesson 10 alternates *English prompt (junk, 1.15–1.45s)*
+→ *Setswana (item, 1.96–2.10s)*. `u3l1-11` was the **only item on the whole lesson over 2.10s — it was
+2.65s**, and it started just 0.21s after its junk segment ended where every sibling leaves 0.29–0.55s.
+So the segmenter cut late and the last word of the English rode into the clip. `silencedetect` put
+the Setswana's first syllable at 54.543, with a stray 0.41s of speech at 53.849 ahead of it.
+
+Retagged `toolkit/audio-mapping-round2.json` seg 25 from `53.769→56.419` to **`54.4→56.5`** and re-cut
+with the exporter's exact ffmpeg arguments (`-i` before `-ss`, `-ac 1 -b:a 64k`). Result versus its
+sibling `u3l1-10` "Ga le batle": **2.10s vs 2.07s**, three speech chunks vs three, within 0.03s at every
+boundary. Was 21 794 B, now 17 406 B (siblings are 16–17 kB).
+
+⚠️ **This is the first AUDIO_CACHE bump in the project's life** — `relefela-audio-v3 → v4`. A clip
+changed content under the same filename, which is exactly and only what that cache version is for.
+Without it every phone that already had the clip would serve the broken one forever.
+
+### 5. 📘 The u3/l3 intro — "I understand nothing, and I reread it 5 times"
+She was right; it was a formula, not a sentence, and it used "concord" to mean two different words
+in one breath: *"ga + concord + kake + a SECOND, changed concord + batla."* Rewritten to name the
+four pieces, then say the thing that was actually confusing out loud — **your little word says
+itself twice, in two shapes**. English explanation only; **not one byte of Setswana changed**, so
+the no-unsourced-Setswana rule is not in play.
+
+### 6. 🧩 "My legs are sore" — the checker was RIGHT, the hint was the bug
+The one that looked like a fuzzy-match gap and wasn't. All three of her attempts used **`leoto`**
+(one leg); the answer needs **`maoto`** (legs). Measured against the real `builderMatch`:
+
+| she typed | distance | verdict |
+|---|---|---|
+| `Leoto ame a bothloko` | 4 | rejected — correctly, it is the singular |
+| `Leoto ame e bothloko` | 5 | rejected |
+| **`Maoto ame a bothloko`** (right word, her misspelling) | 2 | **accepted as "close"** |
+
+So the tolerance is already exactly right and **loosening it would have been the wrong fix** — it
+would start accepting the singular for the plural. What failed her was the hint, which said
+*"maoto is class 6 like mala"* and assumed she already knew `maoto`. It now leads with the missing
+piece: **"Legs, not leg — leoto is one leg, maoto is both of them."** ⚠️ This is a `builder-auto:`
+row, which the app files by itself after 3 misses — it is a *log of a reveal*, not always a bug
+report. Read the attempts before believing the checker is broken.
+
+### 7. ✅ The old "moti"/"madi" bug is genuinely fixed
+Carried forward as "confirm it actually landed". It did: `lev(moti, madi) = 2` against a tolerance
+of 1 for a 4-letter answer, so it is rejected. Nothing to do. Row closed.
+
+### Verified
+- **`toolkit/test-dictsearch.js` — 36 assertions green**, and it is new: it slices the REAL
+  `norm`/`dictBuildIndex`/`dictSearch` out of `index.html` with a quote-aware brace scanner and runs
+  them against the real `dict-bank.js` (a reimplementation would only prove my copy of the algorithm
+  works — the `test-forms.js` precedent). ⚠️ **Mutation-tested, not merely passed:** disabling the
+  one-line tier cut makes **20+ assertions fail**, and the mutant reproduces her exact complaint —
+  40 results with `rra` and `rre` sitting at #13–14.
+- **`verify-dict-bank.py` OK** — 9179 entries, 2607 examples, 302 human-checked, 1576 kB, LF-only, no BOM.
+- **`test-forms.js` — 402 assertions green.** **`verify-builder-bank.py` — 57 entries, all checks passed.**
+- **`verify-forms-data.py` green** — after moving its AUDIO_CACHE pin (see below).
+- **Real browser at `?local=1`:** typed into the actual dictionary box — `fat` renders 12 entries with
+  no `rra`, `pretty` renders **"pretty · beautiful"** with the unchecked pair below it and the desk note,
+  `batl` still leads with `batla`. The re-cut clip loads and reports **2.10s** against its sibling's
+  2.07s. `builderMatch` in the live page rejects the singular and accepts the plural-with-typo.
+  **0 console errors.** localStorage, caches and service workers wiped after.
+- **SW install still cannot be watched here** (the pane stubs service workers — same limitation as
+  session 40). Substitutes: `sw.js` passes `node --check`, its **entire diff is the two version lines
+  plus a comment**, `CORE` is unchanged and all **23 CORE entries exist**. One phone check closes it.
+
+### ⚠️ Two traps worth keeping
+- **The CRLF trap fired again, on a different file.** An edit flipped `toolkit/audio-mapping-round2.json`
+  to CRLF (11 523 CR bytes) and `core.autocrlf=true` hid it behind a clean 2-line diff. Caught by a
+  **binary** read, restored to LF. This is the second session running. **Binary-check every file you
+  edit, every time** — the diff will not tell you.
+- **`verify-forms-data.py` pinned `relefela-audio-v3` by name** with the message "this round adds no
+  audio". That was true when it was written and false today, so it failed a correct change. The pin is
+  now `v4` **and the comment says the pin is moved by hand, with the reason** — that is the point of it:
+  an AUDIO_CACHE bump should be a decision, never a side effect, in either direction.
+
+**Files touched:** `index.html`, `content.js`, `builder-bank.js`, `sw.js`, `dict-bank.js` (rebuilt, never
+hand-edited), `audio/items/u3l1-11.mp3`, `toolkit/dict-src/desk.json`, `toolkit/audio-mapping-round2.json`,
+`toolkit/verify-forms-data.py`, plus one new file `toolkit/test-dictsearch.js`.
+
+## Decisions (2026-08-08, session 41)
+- **Loose search tiers are a fallback, not a result.** When a solid hit exists, the "starts with" and
+  "contains anywhere" tiers are hidden entirely. A 9179-word bank makes generous matching actively
+  harmful — the tier that found `rra` for "fat" is the same tier that finds a half-typed Setswana word,
+  so the answer is ordering, not deletion.
+- **A rejected answer is not automatically a checker bug.** Read what she typed first. Here the app was
+  right three times over and the real defect was a hint that assumed the very word she was missing.
+- **AUDIO_CACHE is pinned by name in the ship gate, in both directions.** Bumping it needlessly
+  re-downloads every clip; not bumping it when bytes changed strands every phone on the old file.
+- **An "audio has English in it" report can be settled from the mapping, without ears** — compare the
+  clip's length against its siblings on the same tape, then check the junk→item gap. The tagger cutting
+  late is a recurring, measurable failure.
+
+## Pending on Megan (end of session 41, 2026-08-08)
+1. 📱 **[blocking] 2 min:** close and reopen the PWA twice so **v47** takes, then play
+   **u3/l1 → "Ga ba batle"**. The English should be gone. This is the only fix nobody could check by ear here.
+2. 📱 **[whenever] 1 min, same sitting:** look up **fat** and **pretty** in 📖. `fat` should be a short
+   list with no "father" in it; `pretty` should give **ntlê**.
+3. 📱 **[whenever] 1 min:** read the **u3/l3** intro again and say whether it makes sense now.
+
+## Next up (agreed 2026-08-08, end of session 41)
+1. 📝 **the plurals teaching session** — her `Ditlhopha — u2l2-02` row, deliberately NOT fixed as code:
+   *"I haven't been paying attention to the plurals, so I know none of these answers."* She asked for a
+   teach-me-this round then drill. That is a SECL121 tutor session first, and possibly a Ditlhopha v2
+   after it — real play decides, as it did for the Sentence Builder.
+2. 💻 **Ditlhopha v2** — the spec's §3 tiers (reverse questions, typed production, the concord follow-on),
+   still waiting on her having played it.
+3. 📝 **[whenever] a few minutes at break:** the register phrases — ten short lines. `SPEC-register.md`
+   is blocked on nothing else.
+4. 💻 **[whenever]** the dictionary gap-fill loop continues as `dict-miss:` rows arrive.
+5. Carry-overs unchanged: the `beke`/`bêkê` spelling question below (needs her Setswana friend);
+   Macmillan may reply about Matumo; is the bigger dictionary better in use or is wordnet noise in the
+   way; pack-PDF name check; tutor session from the second learner's own laptop; `u2l1-07` "nko"
+   re-record (low); ear-check the 131 native clips; more chat scenarios spec-first; u5l4 Smart Guide.
+   ⚠️ And while the gym is parked: `nchlt-filter.py` still needs re-running when a unit is added.
+
+## 🔧 2026-08-07 — "checked" is now per MEANING, not per entry (sw v46, SHIPPED as `3dbf23e`)
+
+**[Correction, session 41: the header said "NOT shipped" and had gone stale — the same class of
+inherited-note error this file warned about after session 38.** Re-checked against
+`git log origin/main..HEAD`: empty, and `3dbf23e` is `origin/main`. It shipped on 2026-08-08.]
 
 Off `FABLE-AUDIT-2026-08-06.md`, finding 1. All four gates green after the rebuild:
 **verify-dict-bank OK (9179 entries, LF-only, no BOM)**, verify-forms-data,

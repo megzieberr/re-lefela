@@ -5418,7 +5418,7 @@ const RL_DICT = [
 {"e": ["Help me"], "s": ["pc"], "t": "nthuse", "x": [{"e": "Please help me - I want to farm!", "s": "autshumato", "t": "Nthuse tsweetswee - ke batla go dira temothuo!"}, {"e": "(In the case of an oath: So help me God.)", "s": "autshumato", "t": "(Fa ele maikano: A Modimo a nthuse jalo.)"}, {"e": "(In the case of an oath: So help me God.)", "s": "autshumato", "t": "(Fa e le maikano: A Modimo o nthuse jalo.)"}]},
 {"e": ["clean", "cleanse", "beautify", "embellish", "fancify", "clean up"], "n": "clean one's body or parts thereof, as by washing", "p": "v", "s": ["afwn"], "t": "ntlafatsa"},
 {"e": ["clean", "clean and jerk"], "n": "a weightlift in which the barbell is lifted to shoulder height and then jerked overhead", "p": "n", "s": ["afwn"], "t": "ntlafatsô"},
-{"e": ["attractive", "beautiful", "external"], "n": "pleasing to the eye or mind especially through beauty or charm", "p": "adj", "s": ["afwn"], "t": "ntlê"},
+{"e": ["pretty", "beautiful", "attractive", "external"], "k": 1, "kc": 2, "n": "Takes the adjective concord: o montlê = she/he is pretty, mosadi yo montlê = a pretty woman.", "p": "adj", "s": ["afwn", "desk"], "t": "ntlê"},
 {"e": ["exterior", "outside"], "n": "the region that is outside of something", "p": "n", "s": ["afwn"], "t": "ntlê"},
 {"e": ["trim", "trimness"], "n": "a state of arrangement or appearance", "p": "n", "s": ["afwn"], "t": "ntlêfalô"},
 {"e": ["groom", "neaten", "beautify", "embellish", "fancify", "affect"], "n": "care for one's external appearance", "p": "v", "s": ["afwn"], "t": "ntlefatsa"},

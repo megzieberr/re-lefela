@@ -198,8 +198,15 @@ def check_sw():
         fail("could not read CACHE from sw.js")
     else:
         NOTE.append(f"sw.js CACHE is relefela-v{m.group(1)} — must be higher than the last shipped one")
-    if "relefela-audio-v3" not in sw:
-        fail("AUDIO_CACHE changed — this round adds no audio, so it must stay untouched (spec §2.7)")
+    # Spec §2.7: an AUDIO_CACHE bump must be a decision, never a side effect — bumping
+    # it needlessly re-downloads every clip, and NOT bumping it when a clip's bytes
+    # changed leaves every phone serving the old one forever. So the value is pinned
+    # here by name and the pin is moved by hand, with the reason, when a clip really
+    # does change. v3 -> v4 on 2026-08-08: audio/items/u3l1-11.mp3 re-cut (its window
+    # caught the tail of the English prompt — her report, u3/l1 "Ga ba batle").
+    if "relefela-audio-v4" not in sw:
+        fail("AUDIO_CACHE is not the pinned relefela-audio-v4 — bump the pin here too, "
+             "with the reason, or you have changed it by accident (spec §2.7)")
 
 
 def check_bytes():
