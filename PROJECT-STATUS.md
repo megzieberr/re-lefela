@@ -129,11 +129,14 @@ hand-edited), `audio/items/u3l1-11.mp3`, `toolkit/dict-src/desk.json`, `toolkit/
   late is a recurring, measurable failure.
 
 ## Pending on Megan (end of session 41, 2026-08-08)
-1. 📱 **[blocking] 2 min:** close and reopen the PWA twice so **v47** takes, then play
-   **u3/l1 → "Ga ba batle"**. The English should be gone. This is the only fix nobody could check by ear here.
-2. 📱 **[whenever] 1 min, same sitting:** look up **fat** and **pretty** in 📖. `fat` should be a short
-   list with no "father" in it; `pretty` should give **ntlê**.
-3. 📱 **[whenever] 1 min:** read the **u3/l3** intro again and say whether it makes sense now.
+**Nothing.** She closed the session with *"Great, all fixed"* — her verdict on the three checks that
+were on this list (the "Ga ba batle" clip, the `fat`/`pretty` lookups, the u3/l3 intro).
+
+⚠️ **One honest caveat for whoever reads this next:** the audio fix is the one that was measured
+rather than heard here — the numbers say the English is out (2.65s → 2.10s, matching its sibling to
+0.03s at every word boundary), and her "all fixed" is the only ear that has confirmed it. If a clip
+ever sounds wrong again, re-read the session-41 audio section above before re-cutting: the method is
+written down and it is quick.
 
 ## Next up (agreed 2026-08-08, end of session 41)
 1. 📝 **the plurals teaching session** — her `Ditlhopha — u2l2-02` row, deliberately NOT fixed as code:
