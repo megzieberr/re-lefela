@@ -34,5 +34,14 @@
   "note": "Takes the adjective concord: o montlê = she/he is pretty, mosadi yo montlê = a pretty woman.",
   "src": ["desk"],
   "chk": true
+ },
+ {
+  "tsw": "boloka",
+  "eng": ["save", "keep", "preserve", "store"],
+  "pos": "v",
+  "cls": null,
+  "note": "Matumo p.629 (English–Setswana section): \"save v.t., boloka\". Corroborated elsewhere in the same dictionary: \"preserve ... or save, boloka\" and \"spare v.T., save, boloka\".",
+  "src": ["desk"],
+  "chk": true
  }
 ]
