@@ -1,4 +1,18 @@
-# Re:Lefela — Project Status — updated 2026-08-08 (session 41: six bug fixes off her own reports, sw v47)
+# Re:Lefela — Project Status — updated 2026-08-28 (repo cleanup + the stranded boloka entry pushed)
+
+## 🧹 2026-08-28 (Fable) — cleanup pass + push; NO app-behaviour change, sw stays v47
+
+- **The `boloka` dict commit (`974e198`, made 08-13) had been sitting unpushed for 15 days — now
+  pushed.** No sw bump needed: app files are fetched network-first (the v-comment at the top of
+  `sw.js` is the receipt), so the entry reaches phones on their next online visit.
+- **12 dead files deleted (`daf02e6`):** 5 static `img/katse-*.png` superseded by the animated
+  .webp poses (zero references anywhere incl. the sw cache list — `katse-oops.png` and
+  `katse-sleep.png` STAY, still used); 2 byte-identical dupes + 2 proof screenshots in `Katse/`;
+  the two closed NEXT-SESSION notes (bug-fixes 08-08, dictionary wave 2) and
+  `FABLE-AUDIT-2026-08-06.md` — all explicitly done/superseded, git history keeps them.
+- ⚖ **Deliberately untouched:** her sprite-sheet sources in `Katse/new/`, `Katse/tools/`, the
+  toolkit JSONs, and the gitignored `Katse/preview.html`. Her art and its pipeline are not
+  "dead code" and never will be. `Katse/katse-sleep.png` differs from `img/`'s copy — left alone.
 
 ## 🐞 Session 41 (2026-08-08) — the six bugs she filed from inside the app (sw v47, AUDIO_CACHE v4)
 
