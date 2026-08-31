@@ -1,4 +1,123 @@
-# Re:Lefela — Project Status — updated 2026-08-28 (repo cleanup + the stranded boloka entry pushed)
+# Re:Lefela — Project Status — updated 2026-08-31 (☕ Warm-up + the comeback guard, sw v48 LIVE)
+
+## ☕ Session 42 (2026-08-31) — a door back in after time away (sw v48, SHIPPED `c574304`)
+
+She came back to the app after **18 days** away — three weeks lost to things outside the
+module — opened it, and could not do a Daily Quest at all. Her words: *"I could not even do my
+daily quest, I could not remember… I am panicking a bit now."*
+
+**It was the queue, not her memory, and the numbers say so.** `dailyPool()` picks
+most-overdue-first by design, so after 18 days every card she had ever learned was due at once
+and the Quest handed her the ten hardest, cold, with no warm-up. Worse, `srsGrade` charged
+**0.25 ease per miss against only 0.05 per correct answer** — one miss undoes five right
+answers, five misses put a card on the 1.3 floor where its interval barely grows again. A
+single cold session would have dragged a whole collection to that floor and kept the app
+punishing for months. She was told to stop before doing more Quests, which was the right call.
+
+### What shipped
+
+1. **☕ Warm-up** — a 12-card recognition round drawn from words already met (`learnedItems()`),
+   round-robined **across lessons** so one lesson cannot fill a round. Setswana + audio in, tap
+   the English; distractors come from `distractors(it, 3, {field:'eng'})` so they are
+   same-lesson-first. One retry, then it simply shows her with *"no harm done, nothing counted
+   against you."* **Zero SRS writes** — own `rl_warmup` key, the `rl_forms` / `rl_builder`
+   precedent — but XP rides the queue as kind `'warmup'`, so a comeback still feeds the streak.
+   Picks **least-recapped first, never most-overdue**: overdue-first is exactly what made the
+   Quest brutal, and repeating it here would have rebuilt the same wall one screen to the left.
+2. **The comeback guard** — in `srsGrade`, a miss on a card more than `COMEBACK_DAYS` (14)
+   overdue no longer takes the ease penalty. The card still comes straight back (reps 0,
+   interval 0, due now); it is simply not permanently slowed as a punishment for time away.
+   **The ordinary penalty is completely untouched** for normal use.
+3. **A welcome-back note** on the home screen after 7+ days away, carrying its own copy of the
+   button so the thing she needs first is under her thumb. It disappears once she has practised
+   that day (`touchStreak` stamps `last`), which is correct — it is a comeback prompt, not a nag.
+   The permanent ☕ button sits **with the drills**, after 🧩 and 🗂️, per the Ditlhopha rule.
+
+### ⚠️ The trap worth remembering: a silent function-name collision
+
+The first draft called itself `recap*`. **This file already had a `runRecap()`** — the read-only
+view of a finished card, ~900 lines further down — and an `ex.type==='recap'`. Two `function
+foo(){}` declarations in one script is legal JS: **the later one silently wins for the whole
+file**, so `startRecap()` was calling the OTHER `runRecap`, which threw on `session.ex` being null.
+
+**Every gate passed.** 402 forms assertions, 36 dictsearch, all three Python gates, `node
+--check` — all green, because they slice functions and regex blocks rather than run the app.
+It broke the instant a button was pressed in a real browser. The whole feature was renamed to
+**warm-up** (`startWarmup` / `runWarmup` / `warmupStep` / `rl_warmup` / XP kind `'warmup'`), and
+`toolkit/test-comeback.js` now **fails if any two functions in index.html share a name**
+(allowlist: the pre-existing `upd` pair). Do not rename these back — the block header says why.
+
+### Also fixed while verifying
+`daysSincePractice()` measured `Date.now()` against midnight, so the hours already elapsed today
+counted as a whole extra day: practising this morning read as **1 day**, and an 18-day gap read
+as **19**. That number sits in a sentence meant to reassure her, so being one out is not
+cosmetic. Now midnight-to-midnight, pinned at 0 / 1 / 7 / 18 / 30.
+
+### Verified
+- **`toolkit/test-comeback.js` — 31 assertions, and mutation-tested in BOTH directions:**
+  removing the guard fails 3 (and reproduces her exact scenario — 40 cards all losing ease);
+  never penalising fails 4. A green run that cannot fail proves nothing.
+- **`test-forms.js` 402 · `test-dictsearch.js` 36 · `verify-forms-data.py` ·
+  `verify-builder-bank.py` (57) · `verify-dict-bank.py` (9179) — all green.**
+  ⚠️ test-forms.js caught the warm-up block sitting **inside Ditlhopha's audit window** (which
+  asserts "no audio, no srsGrade"); the block was moved below the Dictionary section rather than
+  weakening their assertion. `test-comeback.js` now pins that it stays outside.
+- **Real browser at `?local=1`, seeded with 96 cards across 32 lessons, 18 days stale:**
+  `rl_srs` **byte-identical** before and after a correct answer, a miss-then-retry, and a
+  two-miss reveal. A card 18 days overdue kept ease 2.5; one 1 day overdue still dropped to
+  2.25; **40 cards missed after an 18-day gap lost ease on zero of them.** A round drew 12 cards
+  from 12 distinct lessons. At a true 375px viewport `scrollWidth === innerWidth`. 0 console errors.
+- **LIVE checked, not just pushed:** `index.html` HTTP 200, live `sw.js` serves `relefela-v48`,
+  all six new markers present in the deployed file, and exactly **one** `runRecap` declaration
+  in the live source. `AUDIO_CACHE` correctly still **v4** — no clip content changed.
+- ⚠️ **SW install still cannot be watched here** (the pane stubs service workers — same as
+  sessions 39/40). Substitutes: `node --check sw.js`, the diff being one version line, the live
+  file serving v48. One phone check closes it.
+
+### Files
+`index.html`, `sw.js`, new `toolkit/test-comeback.js`. Also added a `re-lefela` preview entry
+(port 8821) to `C:\Users\megzi\.claude\.claude\launch.json` — the repo had none, and it is how
+the collision was caught. Line endings binary-checked: 0 CR bytes in all three.
+
+## Decisions (2026-08-31, session 42)
+- **Being away is not the same as forgetting, and must not cost the same.** The ease penalty is
+  the right price for missing a word you saw yesterday and the wrong price for a gap in life.
+  The guard draws that line at 14 days; the card still comes straight back either way.
+- **A comeback needs a room where being rusty is free.** Warm-up writes nothing to the SRS, by
+  the same reasoning that keeps Ditlhopha and the Sentence Builder out of it — getting a rusty
+  word wrong is not evidence about when that card should next appear.
+- **Never overdue-first in a low-stakes round.** Least-practised-first, spread across lessons.
+- **Check for name collisions before adding functions to a 3000-line single-file app.** Now
+  enforced by a gate rather than by remembering.
+- **The unit gates cannot see a hoisting collision, and they never will.** They slice and regex;
+  they do not execute the page. Pressing the button in a real browser is not optional here.
+
+## Pending on Megan (end of session 42, 2026-08-31)
+**Nothing.** She opened the app before the session closed and confirmed it: *"All looks good in
+the app."* That also closes the one gap this session could not check itself — the service worker
+install, which the Browser pane stubs. v48 is confirmed live on a real device, by her.
+
+## Next up (agreed 2026-08-31, end of session 42)
+1. ✅ **The plurals teaching session is DONE** — session 41's Next up item 1 is stale. Checked
+   against `tutor_questions`: the `Ditlhopha — u2l2-02` row was **addressed 2026-08-13**, and the
+   SECL121 tutor notes record the prefix pairs re-tested clean (`monwana → menwana`,
+   `mmele → mebele`, `moithuti → baithuti`). Nothing to do; **Ditlhopha v2 is now the open half.**
+2. 💻 **Ditlhopha v2** — the spec's §3 tiers (reverse questions, typed production, the concord
+   follow-on), still waiting on her having played it.
+3. 💻 **Warm-up, after real play.** Two questions only her use can answer: is 12 cards the right
+   length coming back cold, and should it offer English → Setswana once recognition is solid?
+   Do not guess these — the Sentence Builder's scaffolding ladder came from her real play.
+4. 📝 **[whenever]** the register phrases — ten short lines; `SPEC-register.md` is blocked on nothing else.
+5. 💻 **[whenever]** the dictionary gap-fill loop continues as `dict-miss:` rows arrive.
+6. 🧹 **For the cleanup pass:** `PROJECT-STATUS.md` is 258 KB / 3130 lines — the file that exists
+   to make catch-up cheap is now too big to open in one read. Old sessions want archiving out.
+   While in there: line ~620 carries a full `C:\Users\megzi\...` path, an account identifier in a
+   public repo.
+7. Carry-overs unchanged: the `beke`/`bêkê` spelling question (needs her Setswana friend);
+   Macmillan may reply about Matumo; is the bigger dictionary better in use; pack-PDF name check;
+   tutor session from the second learner's own laptop; `u2l1-07` "nko" re-record (low); ear-check
+   the 131 native clips; more chat scenarios spec-first; u5l4 Smart Guide.
+   ⚠️ And while the gym is parked: `nchlt-filter.py` still needs re-running when a unit is added.
 
 ## 🧹 2026-08-28 (Fable) — cleanup pass + push; NO app-behaviour change, sw stays v47
 
