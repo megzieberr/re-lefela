@@ -360,7 +360,7 @@ function persist(){ store.set('srs', state.srs); store.set('progress', state.pro
 // own by the caller. There are no app-scoped rl_ keys. Used by logout + the account-
 // switch guard in afterAuth so one learner's data can never bleed into another's.
 function clearLearnerState(){
-  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_parked','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder','rl_forms','rl_dictasked']
+  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_parked','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder','rl_forms','rl_warmup','rl_dictasked']
     .forEach(k=>localStorage.removeItem(k));
 }
 
@@ -524,6 +524,20 @@ function repairIntervals(){
   return {fixed, opsFixed};
 }
 
+/* COMEBACK GUARD (added 2026-08-31, sw v48). A miss costs 0.25 ease and a correct
+   answer returns only 0.05 — so ONE miss undoes FIVE right answers, and five misses
+   put a card on the 1.3 floor where its interval barely grows again.
+
+   That is the right price for forgetting a word you were shown yesterday. It is the
+   wrong price for having been away: after a long gap EVERY card is overdue at once,
+   the Daily Quest serves them due-first, and a single cold session would drag a whole
+   collection to the floor and keep it slow for months afterwards. Coming back after
+   an 18-day gap lands on exactly that, and it reads as "I have lost all my Setswana".
+
+   Past COMEBACK_DAYS overdue the card still comes STRAIGHT back — reps 0, interval 0,
+   due now — it just is not permanently slowed as a punishment for her absence.
+   ⚠️ Deliberate. Pinned by toolkit/test-comeback.js; do not "tidy" it away. */
+const COMEBACK_DAYS = 14;
 function srsGrade(itemId, ok){
   const now = Date.now();
   const it = state.srs[itemId] || {ease:2.5, interval:0, due:now, reps:0, lapses:0};
@@ -533,8 +547,9 @@ function srsGrade(itemId, ok){
       it.reps===1 ? 1 : it.reps===2 ? 3 : Math.round(it.interval * it.ease * 10)/10);
     it.ease = Math.min(3.0, it.ease + 0.05);
   } else {
+    const overdueDays = (now - it.due) / 86400000;   // measured BEFORE the reset below
     it.lapses++; it.reps = 0; it.interval = 0;
-    it.ease = Math.max(1.3, it.ease - 0.25);
+    if (overdueDays < COMEBACK_DAYS) it.ease = Math.max(1.3, it.ease - 0.25);
   }
   it.due = now + it.interval*86400000;
   it.touched = now;                     // last local write, ms epoch — pullRemote compares against remote updated_at so local edits aren't clobbered
@@ -1006,6 +1021,25 @@ function screenHome(){
   const formsBtn = fmPool.length
     ? `<button class="btn ghost" id="b-forms" style="margin:10px 0">🗂️ Ditlhopha${fmAllKnown ? ' ✓' : ''}<br>
         <span class="tiny">Plurals &amp; classes · ${fmPool.length} word${fmPool.length===1?'':'s'} unlocked</span></button>` : '';
+  /* ☕ Recap — sits WITH the drills (after 🧩 and 🗂️), same rule the Ditlhopha button
+     follows: an exercise belongs below the lesson path, only a reference goes above it.
+     When she has actually been away the welcome-back note below carries its own copy of
+     the button, so the thing she needs first is under her thumb without breaking that. */
+  const wuPool = warmupPool();
+  const warmupBtn = wuPool.length >= 2
+    ? `<button class="btn ghost" id="b-warmup" style="margin:10px 0">☕ Warm-up — nothing at stake<br>
+        <span class="tiny">${Math.min(WARMUP_ROUNDS, wuPool.length)} words you already know · your review schedule is not touched</span></button>` : '';
+  /* The welcome-back note. Only when she has genuinely been away, because after a gap
+     the Daily Quest opens with her most-overdue cards and that is a demoralising first
+     screen — see the COMEBACK GUARD note on srsGrade. Says plainly that nothing here
+     counts against her, which is the fact that actually lowers the stakes. */
+  const awayDays = daysSincePractice();
+  const welcomeBack = (awayDays >= WARMUP_AWAY_DAYS && wuPool.length >= 2)
+    ? `<div class="notecard" style="margin:14px 0">
+        👋 <b>Welcome back — it has been ${awayDays} days.</b>
+        <p class="tiny" style="margin:6px 0 10px">Everything you had learned fell due while you were away, so the Daily Quest will open with your hardest cards. That is the queue, not your memory. Start here instead — nothing in Recap counts against you, and your review schedule stays exactly as it is.</p>
+        <button class="btn primary" id="b-warmup-top" style="margin:0">☕ Start a warm-up round</button>
+      </div>` : '';
   render(`
     <div class="row spread">
       <div class="logo" style="font-size:1.3rem"><span class="re">Re:</span><span class="zero">Lefela</span></div>
@@ -1021,12 +1055,14 @@ function screenHome(){
         <p class="muted" style="margin:4px 0 0">${doneToday ? 'Streak safe — Katse is napping happy.' : 'Katse has been waiting for you.'}</p>
       </div>
     </div>
+    ${welcomeBack}
     ${dailyBtn}
     ${dictBtn}
     ${gym}
     ${chatBtn}
     ${builderBtn}
     ${formsBtn}
+    ${warmupBtn}
     ${unitsHtml}
     <div class="row" style="margin-top:16px">
       <button class="btn ghost" id="b-lb" style="flex:1">🏆 Scoreboard</button>
@@ -1049,6 +1085,8 @@ function screenHome(){
   const cb = document.getElementById('b-chat'); if (cb) cb.onclick = screenChatPick;
   const bd = document.getElementById('b-builder'); if (bd) bd.onclick = startBuilder;
   const fm = document.getElementById('b-forms'); if (fm) fm.onclick = startForms;
+  const rc = document.getElementById('b-warmup'); if (rc) rc.onclick = startWarmup;
+  const rct = document.getElementById('b-warmup-top'); if (rct) rct.onclick = startWarmup;
   const dc = document.getElementById('b-dict'); if (dc) dc.onclick = screenDictionary;
   document.getElementById('b-lb').onclick = screenLeaderboard;
   document.getElementById('b-me').onclick = screenStats;
@@ -2042,6 +2080,193 @@ async function screenLeaderboard(){
     <p class="tiny center" style="margin-top:12px">Total: ${(rows||[]).map(r=>`${esc(r.display_name)} ${r.total_xp}`).join(' · ')}</p>`;
 }
 
+/* ---------- ☕ Warm-up — the way back in after time away (added 2026-08-31) ----------
+   ⚠️ NAMED "warm-up", not "recap", on purpose: this file already has a runRecap()
+   (the read-only view of a finished card) and an ex.type==='recap'. An earlier draft
+   called itself recap*, and function-declaration hoisting silently pointed startRecap()
+   at the OTHER runRecap, which then threw on session.ex being null. Every gate passed;
+   only running the app caught it. Do not rename these back.
+
+   Built for one real situation: three weeks with no practice, then opening the app and
+   not being able to do a Daily Quest at all. The Quest picks due-first by design, so
+   after 18 days away it serves ten of the most-overdue cards cold, with no warm-up.
+   That is a QUEUE problem, not a memory problem — but it reads as "I have lost all my
+   Setswana", and that is the feeling this round exists to head off.
+
+   Four rules, all deliberate:
+   1. NO SRS writes, ever. Missing a word here must not move its review date or its
+      ease. The whole point is a room where being rusty is free. Completion lives in
+      device-local rl_recap, exactly as rl_forms and rl_builder do. XP rides the normal
+      queue as kind 'recap' (xp_events.kind is free text — same call Ditlhopha makes),
+      so a comeback still feeds the streak she is trying to rebuild.
+   2. LEAST-RECAPPED first, never most-overdue. Overdue-first is precisely what made
+      the Daily Quest brutal; repeating that ordering here would rebuild the same wall
+      one screen to the left.
+   3. Recognition, not production — see and hear the Setswana, tap the English. The
+      module's tutor notes record that building a sentence is a far harder, separate
+      skill from recognising a phrase. The harder one is not where you restart.
+   4. Audio on every card that has a clip. Two of the module's four assignments are
+      video recordings of the learner SPEAKING, so hearing the word again is the most
+      useful thing this round can do. No new audio is added, so AUDIO_CACHE stays v4. */
+const WARMUP_ROUNDS = 12;      // the same fixed-round ruling Ditlhopha earned
+const WARMUP_AWAY_DAYS = 7;    // when the welcome-back note appears on the home screen
+function warmupStoreGet(){ return store.get('warmup', {done:{}, streak:0}); }
+function warmupStoreSet(v){ store.set('warmup', v); }
+// every word she has ever met — the same definition My words and the Daily Quest use
+function warmupPool(){ return learnedItems(); }
+/* Days since she last earned anything. touchStreak stamps state.streak.last on every
+   graded answer, so it is the honest "last practised" date rather than a guess. */
+function daysSincePractice(){
+  const last = state.streak && state.streak.last;
+  if (!last) return 0;
+  const p = String(last).split('-').map(Number);
+  if (p.length !== 3 || p.some(n=>!n)) return 0;
+  /* MIDNIGHT to MIDNIGHT, not "now minus midnight". Measuring from Date.now()
+     counts the hours already elapsed today as a whole extra day, so practising
+     this morning read as "1 day" and an 18-day gap read as 19 — a wrong number
+     in a sentence she is meant to trust. Math.round over whole dates absorbs
+     the ±1h a DST change puts into the difference. */
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+  return Math.max(0, Math.round((today - new Date(p[0], p[1]-1, p[2]).getTime()) / 86400000));
+}
+/* Round-robin over LESSONS, least-recapped card first inside each. The lesson is the
+   topic in this app, so spreading across lessons stops a round becoming fifteen minutes
+   of one lesson's vocabulary — the same reason Ditlhopha round-robins over families. */
+function warmupBuildRound(pool, st, roundsWanted){
+  const byLesson = {};
+  for (const it of pool){
+    const h = homeOf(it);
+    const k = h ? h.lesson.id : 'x';
+    (byLesson[k] = byLesson[k] || []).push(it);
+  }
+  for (const k of Object.keys(byLesson))   // shuffle THEN stable-sort: ties stay random
+    byLesson[k] = shuffle(byLesson[k]).sort((a,b)=>((st.done[a.id]||0) - (st.done[b.id]||0)));
+  const out = [], target = Math.min(roundsWanted, pool.length);
+  while (out.length < target){
+    const ks = shuffle(Object.keys(byLesson).filter(k=>byLesson[k].length));
+    if (!ks.length) break;
+    for (const k of ks){ if (out.length >= target) break; out.push(byLesson[k].shift()); }
+  }
+  return out;
+}
+
+let warmupRound = null;   // {order:[item], at, right, wrong, card}
+function startWarmup(){
+  const pool = warmupPool();
+  if (pool.length < 2) return;
+  warmupRound = {order: warmupBuildRound(pool, warmupStoreGet(), WARMUP_ROUNDS), at:0, right:0, wrong:0, card:null};
+  runWarmup();
+}
+function runWarmup(){
+  if (!warmupRound) return;
+  if (warmupRound.at >= warmupRound.order.length) return finishWarmup();
+  warmupRound.card = {it: warmupRound.order[warmupRound.at], misses:0, locked:false};
+  warmupStep();
+}
+function warmupHead(){
+  return `<div class="topbar">
+      <button class="quit" id="b-quit">✕</button>
+      <h2 style="margin:0; font-size:1.05rem">☕ Warm-up</h2>
+      <span class="pill" style="margin-left:auto">${warmupRound.at+1} / ${warmupRound.order.length}</span>
+    </div>`;
+}
+function warmupHookQuit(){
+  document.getElementById('b-quit').onclick = ()=>{ warmupRound = null; screenHome(); };
+}
+function warmupStep(){
+  const c = warmupRound && warmupRound.card; if (!c) return;
+  const it = c.it;
+  currentScreen = 'Warm-up — ' + it.id;
+  c.misses = 0; c.locked = false;
+  const opts = shuffle([it, ...distractors(it, 3, {field:'eng'})]);
+  render(warmupHead() + `<div id="wuArea">
+    <p class="muted">Do you remember this one?</p>
+    <div class="bigtsw">${esc(it.tsw)}</div>
+    ${it.audio ? `<div class="row" style="justify-content:center; margin:8px 0 14px">${playBtnsHTML()}</div>` : '<div style="height:10px"></div>'}
+    ${opts.map(o=>`<button class="choice" data-id="${esc(o.id)}">${esc(o.eng)}</button>`).join('')}
+    <div id="wu-fb"></div></div>`);
+  warmupHookQuit();
+  if (it.audio){ hookPlay(it); playAudio(it.audio); }
+  const fb = document.getElementById('wu-fb');
+  document.querySelectorAll('.choice').forEach(btn=>{
+    btn.onclick = ()=>{
+      if (!warmupRound || !warmupRound.card || warmupRound.card !== c || c.locked) return;
+      if (btn.dataset.id === it.id){
+        c.locked = true;
+        document.querySelectorAll('.choice').forEach(e=>{ e.style.pointerEvents='none'; });
+        btn.classList.add('good');
+        setTimeout(()=>{ if (warmupRound && warmupRound.card === c) warmupWin(); }, 380);
+        return;
+      }
+      btn.classList.add('bad'); btn.style.pointerEvents = 'none';
+      c.misses++;
+      // Gentler than Ditlhopha's three: one retry, then just show her. She is
+      // rebuilding recognition, not being tested — grinding a rusty card is the
+      // thing this whole round exists to avoid.
+      if (c.misses >= 2) return warmupReveal();
+      fb.innerHTML = `<div class="feedback bad">Not that one — have another go.</div>`;
+    };
+  });
+}
+/* NO srsGrade call anywhere in this file's recap path — that is the feature. */
+function warmupWin(){
+  const c = warmupRound && warmupRound.card; if (!c) return;
+  const it = c.it;
+  const st = warmupStoreGet();
+  st.done[it.id] = (st.done[it.id] || 0) + 1;
+  st.streak = (st.streak || 0) + 1;
+  warmupStoreSet(st);
+  addXP(2, 'warmup');
+  warmupRound.right++;
+  currentScreen = 'Warm-up — ' + it.id + ' done';
+  warmupPayoff(`<div class="feedback good">${esc(pick(RL_CONTENT.flavour.correct))} ✓</div>`);
+}
+function warmupReveal(){
+  const c = warmupRound && warmupRound.card; if (!c) return;
+  c.locked = true;
+  const st = warmupStoreGet();
+  st.streak = 0;
+  warmupStoreSet(st);
+  warmupRound.wrong++;
+  currentScreen = 'Warm-up — ' + c.it.id + ' shown';
+  warmupPayoff(`<div class="feedback bad">Here it is again — no harm done, nothing counted against you.</div>`);
+}
+function warmupPayoff(banner){
+  const c = warmupRound && warmupRound.card; if (!c) return;
+  const it = c.it;
+  render(warmupHead() + `<div id="wuArea">
+    ${banner}
+    <div class="center" style="margin-top:18px">
+      <div class="bigtsw">${esc(it.tsw)}</div>
+      <p class="muted" style="margin:6px 0 0">${esc(it.eng)}</p>
+      ${it.audio ? `<div class="row" style="justify-content:center; margin-top:12px">${playBtnsHTML()}</div>` : ''}
+    </div>
+    ${it.note ? `<div class="chat-hint" style="margin-top:14px">🐾 ${esc(it.note)}</div>` : ''}
+    <button class="btn primary" id="wu-next" style="margin-top:auto">Continue</button></div>`);
+  warmupHookQuit();
+  if (it.audio) hookPlay(it);
+  document.getElementById('wu-next').onclick = ()=>{ if (warmupRound){ warmupRound.at++; runWarmup(); } };
+}
+function finishWarmup(){
+  const right = warmupRound ? warmupRound.right : 0, total = warmupRound ? warmupRound.order.length : 0;
+  const st = warmupStoreGet();
+  warmupRound = null;
+  currentScreen = 'Recap — done';
+  render(`<div class="center" style="margin-top:12vh">
+    <h1 style="font-size:2.2rem">${esc(RL_CONTENT.flavour.lessonDone)}</h1>
+    <p class="muted">Still in there. Your review schedule is exactly where you left it.</p>
+    <div class="statgrid" style="margin-top:20px">
+      <div class="stat"><b>${right}/${total}</b>this round</div>
+      <div class="stat"><b>${st.streak || 0}</b>in a row</div>
+    </div>
+    <button class="btn primary" id="b-again" style="margin-top:16px">Another round</button>
+    <button class="btn ghost" id="b-home" style="margin-top:8px">Back to the path</button>
+  </div>`);
+  document.getElementById('b-again').onclick = startWarmup;
+  document.getElementById('b-home').onclick = screenHome;
+}
+
 /* ---------- rivalry nudge + weekly champion (light competitive touches) ----------
    Both gates below are device-local localStorage stamps, NEVER synced to Supabase —
    same rl_replay precedent (PROJECT-STATUS.md): cosmetic "have I shown this" state,
@@ -2441,10 +2666,10 @@ function pickAutoType(it){
   if (it.audio) types.push('dictate');   // dictation: hear the clip, type the Setswana
   return pick(types);
 }
-function buildExercises(items, isReview, tracks, recapPool, reteach){
+function buildExercises(items, isReview, tracks, warmupPool, reteach){
   // every sitting opens with a quick, skippable recap of words you already met
-  const recap = (recapPool && recapPool.length)
-    ? shuffle(recapPool).slice(0, 8).map(it=>({type:'recap', item:it})) : [];
+  const recap = (warmupPool && warmupPool.length)
+    ? shuffle(warmupPool).slice(0, 8).map(it=>({type:'recap', item:it})) : [];
   if (isReview) return recap.concat(shuffle(realOf(items)).map(it=>({type:'auto', item:it})));
   const seq = recap.slice();
   const earlier = [];   // words from batches already drilled this session
@@ -2531,7 +2756,7 @@ function dailyPool(){
 function startDaily(){
   const pool = dailyPool();
   if (!pool.length) return;
-  // no recapPool → buildExercises returns exactly one `auto` card per item, so
+  // no warmupPool → buildExercises returns exactly one `auto` card per item, so
   // "10 rounds" on the button is the 10 the progress counter shows.
   session = {unit:null, lessonIdx:null, ex:buildExercises(pool, true), at:0, maxAt:0,
     right:0, wrong:0, combo:0, isReview:true, daily:true, part:null};
