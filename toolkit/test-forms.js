@@ -70,7 +70,7 @@ const app = [
   sliceConst('FORMS_ROUNDS'), sliceConst('FORMS_KNOWN'),
   sliceConst('FORMS_FAMILIES'), sliceConst('FORMS_BY_CLS'), sliceConst('FORMS_PREFIXES'),
   sliceFn('formsFamily'), sliceFn('formsPlPrefix'), sliceFn('formsIrregular'),
-  sliceFn('formsPlStem'), sliceFn('formsSgStem'), sliceFn('formsStemShift'),
+  sliceFn('formsPlStem'), sliceFn('formsSgStem'), sliceFn('formsDeaccent'), sliceFn('formsStemShift'),
   sliceFn('formsCards'), sliceFn('formsUnlocked'),
   sliceFn('formsBuildRound'), sliceFn('formsFamilyDistractors'),
   // dependencies the round leans on, also taken from the real file
@@ -118,6 +118,11 @@ const irregular = pool.filter(formsIrregular).map(it => it.tsw);
 eq(irregular, ['leino'], 'exactly one card breaks its family pattern');
 const shifted = pool.filter(formsStemShift).map(it => it.tsw).sort();
 eq(shifted, ['leino','leitlho','letsogo','loleme','mmele'], 'exactly five cards change more than the prefix');
+// the four Zerwick-spelled cards are ordinary prefix swaps and must NOT read as stem shifts:
+// the hat is a vowel mark, not a moving stem (sekôlô → dikolo, tlhôgô → ditlhogo, …)
+['sekôlô','tlhôgô','tsêbê','phôlôgôlô'].forEach(t =>
+  ok(!formsStemShift(find(t)), `${t} → its plural is a prefix swap, not a stem shift`));
+ok(formsStemShift(find('leino')), 'a real stem shift is still caught with accents stripped');
 ok(pool.every(it => it.plural !== it.tsw), 'no card has a plural identical to its singular');
 ok(pool.every(it => FORMS_PREFIXES.includes(formsPlPrefix(it))), "step 2's answer is always one of the four buttons shown");
 // the miss-2 hint shows the stem — it must never accidentally be the whole answer

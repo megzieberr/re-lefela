@@ -322,6 +322,8 @@ body.tutor-fab-on .exa-actions{padding-bottom:calc(64px + env(safe-area-inset-bo
 <script src="content.js"></script>
 <script src="dialogues.js"></script>
 <script src="builder-bank.js"></script>
+<script src="medumo-bank.js"></script>
+<script src="lediri-bank.js"></script>
 <script src="dict-bank.js"></script>
 <script>
 'use strict';
@@ -360,7 +362,7 @@ function persist(){ store.set('srs', state.srs); store.set('progress', state.pro
 // own by the caller. There are no app-scoped rl_ keys. Used by logout + the account-
 // switch guard in afterAuth so one learner's data can never bleed into another's.
 function clearLearnerState(){
-  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_parked','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder','rl_forms','rl_warmup','rl_dictasked']
+  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_parked','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder','rl_forms','rl_warmup','rl_medumo','rl_lediri','rl_dictasked']
     .forEach(k=>localStorage.removeItem(k));
 }
 
@@ -1033,6 +1035,18 @@ function screenHome(){
      the Daily Quest opens with her most-overdue cards and that is a demoralising first
      screen — see the COMEBACK GUARD note on srsGrade. Says plainly that nothing here
      counts against her, which is the fact that actually lowers the stakes. */
+  /* 🔊 Medumo and 🗣️ Lediri — the lecturer's own material (2026-09-01). Both sit
+     WITH the drills, below the lesson path, same rule as ☕ and 🗂️. Neither writes
+     to the SRS, and both say so on the button: after the comeback panic that is the
+     fact worth leading with. */
+  const mdSt = medumoGet();
+  const mdDone = RL_MEDUMO.filter(x=>mdSt.sets[x.id]).length;
+  const medumoBtn = `<button class="btn ghost" id="b-medumo" style="margin:10px 0">🔊 Medumo — your lecturer's words<br>
+      <span class="tiny">${mdDone} of ${RL_MEDUMO.length} sets of five · nothing here touches your review schedule</span></button>`;
+  const ldSt = lediriGet();
+  const ldDone = RL_LEDIRI.filter(v=>ldSt.verbs[v.id]).length;
+  const lediriBtn = `<button class="btn ghost" id="b-lediri" style="margin:10px 0">🗣️ Lediri — one verb, every shape<br>
+      <span class="tiny">${ldDone} of ${RL_LEDIRI.length} verbs · commands and polite requests, built by you</span></button>`;
   const awayDays = daysSincePractice();
   const welcomeBack = (awayDays >= WARMUP_AWAY_DAYS && wuPool.length >= 2)
     ? `<div class="notecard" style="margin:14px 0">
@@ -1063,6 +1077,8 @@ function screenHome(){
     ${builderBtn}
     ${formsBtn}
     ${warmupBtn}
+    ${medumoBtn}
+    ${lediriBtn}
     ${unitsHtml}
     <div class="row" style="margin-top:16px">
       <button class="btn ghost" id="b-lb" style="flex:1">🏆 Scoreboard</button>
@@ -1086,6 +1102,8 @@ function screenHome(){
   const bd = document.getElementById('b-builder'); if (bd) bd.onclick = startBuilder;
   const fm = document.getElementById('b-forms'); if (fm) fm.onclick = startForms;
   const rc = document.getElementById('b-warmup'); if (rc) rc.onclick = startWarmup;
+  const md = document.getElementById('b-medumo'); if (md) md.onclick = screenMedumo;
+  const ld = document.getElementById('b-lediri'); if (ld) ld.onclick = screenLediri;
   const rct = document.getElementById('b-warmup-top'); if (rct) rct.onclick = startWarmup;
   const dc = document.getElementById('b-dict'); if (dc) dc.onclick = screenDictionary;
   document.getElementById('b-lb').onclick = screenLeaderboard;
@@ -1655,8 +1673,14 @@ function formsSgStem(it){
 }
 /* Five cards change more than the front (leitlho → matlho, letsogo → mabogo,
    loleme → diteme…). Tapping "ma-" and being shown "mabogo" reads as a mistake
-   unless the screen says so, so it does. */
-function formsStemShift(it){ return formsSgStem(it) !== formsPlStem(it); }
+   unless the screen says so, so it does.
+   Compared WITHOUT circumflexes. Since 2026-09-01 the singulars follow Zerwick's
+   handout where he marks the vowel (sekôlô, tlhôgô, tsêbê, phôlôgôlô) while the
+   plurals he never writes stay plain — so a raw compare called four ordinary
+   prefix swaps a stem shift and told her "the front is not the only thing that
+   moves" about words where nothing moved. The hat is a vowel mark, not a stem. */
+function formsDeaccent(w){ return w.normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+function formsStemShift(it){ return formsDeaccent(formsSgStem(it)) !== formsDeaccent(formsPlStem(it)); }
 /* "one a cook → many" — two glosses carry an article ("a cook", "a worker") and the
    payoff line supplies its own "one". Display only; the card's eng is never touched. */
 function formsGloss(it){ return it.eng.replace(/^(?:a|an|the) +/i, ''); }
@@ -2078,6 +2102,400 @@ async function screenLeaderboard(){
         <span class="pill xppill">${r.week_xp} XP</span>
       </div>`).join('')}
     <p class="tiny center" style="margin-top:12px">Total: ${(rows||[]).map(r=>`${esc(r.display_name)} ${r.total_xp}`).join(' · ')}</p>`;
+}
+
+/* ---------- 🔊 Medumo — the lecturer's sounds, five words at a time (2026-09-01) ------
+   Megan's spec, her words: "a separate tab just drilling those words… Like teaching me
+   5 at a time and then a few questions where I need to mix and match and translate, so
+   separate from the app rounds, for XP".
+
+   SEPARATE IS THE WHOLE DESIGN. Zerwick's handout carries 164 glossed words. As SRS
+   cards they would flood the Daily Quest queue — the exact failure the Warm-up round
+   exists to undo. As a self-paced tab they cost the schedule nothing.
+
+   Follows the Warm-up precedent exactly (session 42):
+     · NO SRS writes. Nothing here moves a card's ease, interval or due date.
+     · Its own device-local key, rl_medumo, as rl_warmup / rl_forms / rl_builder do.
+     · XP rides the normal queue as kind 'medumo' — xp_events.kind is free text — so
+       working through his handout still feeds the streak.
+   Grading goes through the app's own norm(), so his ê/ô spellings are accepted typed
+   plain on an ordinary keyboard. toolkit/test-medumo.js proves that word by word.
+
+   NO AUDIO. Almost none of these 164 have recordings, so this ships as a reading and
+   writing tab. That is acceptable here in a way it would not be for an SRS card: the
+   words are being LEARNED, not pronunciation-drilled. They are listed in
+   NATIVE-RECORDINGS-NEEDED.md for the next recording round. */
+const MEDUMO_TRANSLATE = 3;          // of the 5, how many she types back
+function medumoGet(){ return store.get('medumo', {sets:{}, pairs:{}}); }
+function medumoSet(v){ store.set('medumo', v); }
+function medumoDoneCount(){ const st = medumoGet(); return RL_MEDUMO.filter(s=>st.sets[s.id]).length; }
+/* Sequential unlock, one set ahead — "then the next set of 5 unlocks". A locked set is
+   still SHOWN with the reason, never hidden: hiding a locked thing is how the Katse chat
+   feature was lost on ship day (2026-07-18). */
+function medumoUnlocked(i){ const st = medumoGet(); return i === 0 || !!st.sets[RL_MEDUMO[i-1].id]; }
+
+let medumoRun = null;   // {set, phase, at, order, right, wrong}
+
+function screenMedumo(){
+  currentScreen = 'Medumo';
+  const st = medumoGet(), done = medumoDoneCount();
+  const rows = RL_MEDUMO.map((s, i)=>{
+    const isDone = !!st.sets[s.id], open = medumoUnlocked(i);
+    const words = s.words.map(w=>esc(w.t)).join(' · ');
+    return `<button class="choice" data-set="${esc(s.id)}" ${open?'':'disabled'}
+        style="text-align:left; ${open?'':'opacity:.55'}">
+      <b>${isDone?'✓ ':''}${esc(s.label)}</b>
+      <span class="tiny" style="display:block; margin-top:2px">${words}</span>
+      ${open?'':'<span class="tiny">finish the set before this one to open it</span>'}
+    </button>`;
+  }).join('');
+  const pairsDone = Object.keys(st.pairs || {}).length;
+  render(`<div class="topbar">
+      <button class="quit" id="b-quit">✕</button>
+      <h2 style="margin:0; font-size:1.05rem">🔊 Medumo</h2>
+      <span class="pill" style="margin-left:auto">${done} / ${RL_MEDUMO.length}</span>
+    </div>
+    <p class="muted" style="margin:10px 0 4px">Your lecturer's sound handout, five words at a time. Nothing here touches your review schedule.</p>
+    <button class="btn ghost" id="b-pairs" style="margin:12px 0; text-align:left">
+      🎩 The hat changes the word<br>
+      <span class="tiny">${RL_MEDUMO_PAIRS.length} pairs where one circumflex means a different word${pairsDone?` · ${pairsDone} met`:''}</span>
+    </button>
+    ${rows}`);
+  document.getElementById('b-quit').onclick = screenHome;
+  document.getElementById('b-pairs').onclick = startMedumoPairs;
+  document.querySelectorAll('[data-set]').forEach(b=>{
+    b.onclick = ()=> startMedumoSet(RL_MEDUMO.find(s=>s.id === b.dataset.set));
+  });
+}
+
+function medumoHead(label, right){
+  return `<div class="topbar">
+      <button class="quit" id="b-quit">✕</button>
+      <h2 style="margin:0; font-size:1.05rem">🔊 ${esc(label)}</h2>
+      <span class="pill" style="margin-left:auto">${esc(right)}</span>
+    </div>`;
+}
+function medumoQuit(){ document.getElementById('b-quit').onclick = ()=>{ medumoRun = null; screenMedumo(); }; }
+
+function startMedumoSet(set){
+  if (!set) return;
+  medumoRun = {set, phase: 'teach', at: 0, order: [], right: 0, wrong: 0};
+  medumoTeach();
+}
+/* Phase 1 — teach. Plain presentation, no quizzing. Words she already meets as app
+   cards are marked, so her attention goes to the new ones. */
+function medumoTeach(){
+  const s = medumoRun.set;
+  currentScreen = 'Medumo — ' + s.id + ' teach';
+  render(medumoHead(s.label, 'learn') + `<div id="mdArea">
+    <p class="muted">These five demonstrate <b>${esc(s.label)}</b>. Read them out loud once, then carry on.</p>
+    ${s.words.map(w=>`<div class="row spread" style="padding:9px 2px; border-bottom:1px solid var(--line)">
+        <span><b class="bigtsw" style="font-size:1.25rem">${esc(w.t)}</b>
+          <span class="tiny" style="display:block">${esc(w.e)}</span></span>
+        ${w.k ? '<span class="pill tiny">you know this one</span>' : ''}
+      </div>`).join('')}
+    <button class="btn primary" id="md-next" style="margin-top:18px">Mix and match →</button></div>`);
+  medumoQuit();
+  document.getElementById('md-next').onclick = ()=>{
+    medumoRun.phase = 'match'; medumoRun.at = 0;
+    medumoRun.order = shuffle(medumoRun.set.words.slice());
+    medumoMatch();
+  };
+}
+/* Phase 2 — mix and match. Setswana shown, tap the English, options are the other four
+   words of the same set (so the set really is the unit of study). */
+function medumoMatch(){
+  const r = medumoRun; if (!r) return;
+  if (r.at >= r.order.length){
+    r.phase = 'translate'; r.at = 0;
+    r.order = shuffle(r.set.words.slice()).slice(0, Math.min(MEDUMO_TRANSLATE, r.set.words.length));
+    return medumoTranslate();
+  }
+  const w = r.order[r.at];
+  currentScreen = 'Medumo — ' + r.set.id + ' match';
+  const opts = shuffle(r.set.words.slice());
+  render(medumoHead(r.set.label, `${r.at+1} / ${r.order.length}`) + `<div id="mdArea">
+    <p class="muted">Which one is this?</p>
+    <div class="bigtsw">${esc(w.t)}</div>
+    <div style="height:10px"></div>
+    ${opts.map(o=>`<button class="choice" data-t="${esc(o.t)}">${esc(o.e)}</button>`).join('')}
+    <div id="md-fb"></div></div>`);
+  medumoQuit();
+  const fb = document.getElementById('md-fb');
+  let locked = false;
+  document.querySelectorAll('.choice').forEach(btn=>{
+    btn.onclick = ()=>{
+      if (locked) return;
+      if (btn.dataset.t === w.t){
+        locked = true; btn.classList.add('good'); r.right++;
+        setTimeout(()=>{ if (medumoRun === r){ r.at++; medumoMatch(); } }, 340);
+      } else {
+        btn.classList.add('bad'); btn.disabled = true; r.wrong++;
+        fb.innerHTML = `<div class="feedback bad">Not that one — try again.</div>`;
+      }
+    };
+  });
+}
+/* Phase 3 — translate. English prompt, she types the Setswana. Graded through norm(),
+   so the hats are optional. Two misses reveals it (the Sentence Builder ladder): a
+   reveal costs nothing and marks nothing, because production on a word met four screens
+   ago is genuinely hard and this tab is not where she should feel stupid. */
+function medumoTranslate(){
+  const r = medumoRun; if (!r) return;
+  if (r.at >= r.order.length) return finishMedumoSet();
+  const w = r.order[r.at];
+  currentScreen = 'Medumo — ' + r.set.id + ' translate';
+  render(medumoHead(r.set.label, `${r.at+1} / ${r.order.length}`) + `<div id="mdArea">
+    <p class="muted">Write it in Setswana. The hats are optional — type it however your keyboard lets you.</p>
+    <div class="bigtsw" style="font-size:1.35rem">${esc(w.e)}</div>
+    <input id="md-in" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Setswana…">
+    <button class="btn primary" id="md-go" style="margin-top:10px">Check</button>
+    <div id="md-fb"></div></div>`);
+  medumoQuit();
+  const input = document.getElementById('md-in'), fb = document.getElementById('md-fb');
+  let misses = 0, locked = false;
+  input.focus();
+  const reveal = ()=>{
+    locked = true; r.wrong++;
+    fb.innerHTML = `<div class="feedback bad">It is <b>${esc(w.t)}</b> — ${esc(w.e)}.</div>
+      <button class="btn primary" id="md-on" style="margin-top:12px">Continue</button>`;
+    document.getElementById('md-on').onclick = ()=>{ if (medumoRun === r){ r.at++; medumoTranslate(); } };
+  };
+  const check = ()=>{
+    if (locked) return;
+    if (norm(input.value) === norm(w.t)){
+      locked = true; r.right++;
+      fb.innerHTML = `<div class="feedback good">${esc(pick(RL_CONTENT.flavour.correct))} ✓ <b>${esc(w.t)}</b></div>
+        <button class="btn primary" id="md-on" style="margin-top:12px">Continue</button>`;
+      document.getElementById('md-on').onclick = ()=>{ if (medumoRun === r){ r.at++; medumoTranslate(); } };
+      return;
+    }
+    misses++;
+    if (misses >= 2) return reveal();
+    fb.innerHTML = `<div class="feedback bad">Not quite — one more go. It starts with <b>${esc(w.t.slice(0,1))}</b>.</div>`;
+  };
+  document.getElementById('md-go').onclick = check;
+  input.onkeydown = e=>{ if (e.key === 'Enter') check(); };
+}
+function finishMedumoSet(){
+  const r = medumoRun; if (!r) return;
+  const st = medumoGet();
+  const first = !st.sets[r.set.id];
+  st.sets[r.set.id] = (st.sets[r.set.id] || 0) + 1;
+  medumoSet(st);
+  if (first) addXP(4, 'medumo');            // XP for new ground, not for replays
+  const total = r.right + r.wrong;
+  const nextIdx = RL_MEDUMO.findIndex(s=>s.id === r.set.id) + 1;
+  const next = RL_MEDUMO[nextIdx];
+  medumoRun = null;
+  currentScreen = 'Medumo — set done';
+  render(`<div class="center" style="margin-top:12vh">
+    <h1 style="font-size:2rem">${esc(RL_CONTENT.flavour.lessonDone)}</h1>
+    <p class="muted">${first ? '+4 XP · ' : ''}Five more of his words. Your review schedule is untouched.</p>
+    <div class="statgrid" style="margin-top:20px">
+      <div class="stat"><b>${r.right}/${total}</b>right first time</div>
+      <div class="stat"><b>${medumoDoneCount()}/${RL_MEDUMO.length}</b>sets done</div>
+    </div>
+    ${next ? `<button class="btn primary" id="b-next" style="margin-top:16px">Next five — ${esc(next.label)}</button>` : ''}
+    <button class="btn ghost" id="b-back" style="margin-top:8px">Back to the sets</button>
+  </div>`);
+  const nb = document.getElementById('b-next'); if (nb) nb.onclick = ()=> startMedumoSet(next);
+  document.getElementById('b-back').onclick = screenMedumo;
+}
+
+/* ---------- 🎩 the minimal-pair round ------------------------------------------------
+   Her ask, 2026-09-01: "add them as rounds to this tab where I need to distinguish
+   between the 2 different meanings, one with the hat and one without."
+   Deliberately NOT graded through norm() — norm strips the accent, which is the entire
+   thing under test here. This round compares the raw string, and it is the only place in
+   the app that does. Pinned by toolkit/test-medumo.js so nobody "fixes" it later. */
+let medumoPairRun = null;
+function startMedumoPairs(){
+  medumoPairRun = {order: shuffle(RL_MEDUMO_PAIRS.slice()), at: 0, right: 0, wrong: 0};
+  medumoPairStep();
+}
+function medumoPairStep(){
+  const r = medumoPairRun; if (!r) return;
+  if (r.at >= r.order.length) return finishMedumoPairs();
+  const p = r.order[r.at];
+  currentScreen = 'Medumo — pair ' + p.id;
+  const opts = shuffle(p.opts.slice());
+  render(medumoHead('The hat changes the word', `${r.at+1} / ${r.order.length}`) + `<div id="mdArea">
+    <p class="muted">Which spelling means this?</p>
+    <div class="bigtsw" style="font-size:1.3rem">${esc(p.ask)}</div>
+    <div style="height:12px"></div>
+    ${opts.map(o=>`<button class="choice" data-t="${esc(o.t)}" style="font-size:1.15rem">${esc(o.t)}</button>`).join('')}
+    <div id="md-fb"></div></div>`);
+  document.getElementById('b-quit').onclick = ()=>{ medumoPairRun = null; screenMedumo(); };
+  const fb = document.getElementById('md-fb');
+  let locked = false;
+  document.querySelectorAll('.choice').forEach(btn=>{
+    btn.onclick = ()=>{
+      if (locked) return;
+      locked = true;
+      const good = btn.dataset.t === p.opts[0].t;      // opts[0] is always the answer
+      if (good){ btn.classList.add('good'); r.right++; } else { btn.classList.add('bad'); r.wrong++; }
+      const st = medumoGet();
+      st.pairs = st.pairs || {};
+      st.pairs[p.id] = (st.pairs[p.id] || 0) + (good ? 1 : 0);
+      medumoSet(st);
+      fb.innerHTML =
+        `<div class="feedback ${good?'good':'bad'}">${good ? 'Yes — ' : 'It is '}<b>${esc(p.opts[0].t)}</b> = ${esc(p.opts[0].e)}.</div>
+         <div class="chat-hint" style="margin-top:10px">🐾 ${esc(p.note)}</div>
+         <div style="margin-top:10px">${p.opts.map(o=>`<div class="row spread" style="padding:5px 2px"><b>${esc(o.t)}</b><span class="tiny">${esc(o.e)}</span></div>`).join('')}</div>
+         <button class="btn primary" id="md-on" style="margin-top:12px">Continue</button>`;
+      document.getElementById('md-on').onclick = ()=>{ if (medumoPairRun === r){ r.at++; medumoPairStep(); } };
+    };
+  });
+}
+function finishMedumoPairs(){
+  const r = medumoPairRun; const right = r ? r.right : 0, total = r ? r.order.length : 0;
+  medumoPairRun = null;
+  if (right === total && total) addXP(3, 'medumo');
+  currentScreen = 'Medumo — pairs done';
+  render(`<div class="center" style="margin-top:12vh">
+    <h1 style="font-size:2rem">${esc(RL_CONTENT.flavour.lessonDone)}</h1>
+    <p class="muted">${right}/${total}. A hat is not decoration — it is a different vowel, and sometimes a different word.</p>
+    <button class="btn primary" id="b-again" style="margin-top:16px">Go again</button>
+    <button class="btn ghost" id="b-back" style="margin-top:8px">Back to Medumo</button>
+  </div>`);
+  document.getElementById('b-again').onclick = startMedumoPairs;
+  document.getElementById('b-back').onclick = screenMedumo;
+}
+
+/* ---------- 🗣️ Lediri — one verb, every shape (2026-09-01) ---------------------------
+   Her ask: "teach one verb at a time and run through every shape… teach it in the app
+   like he teaches it in his handouts."
+
+   GENERATIVE, not recognition. The teach step shows his whole grid; the drill then asks
+   her to MAKE a shape ("now say it to the whole class"), typed. Her tutor notes are
+   explicit that recognising a fixed phrase is much easier for her than building one, and
+   that the harder skill is the one worth drilling — recognition-only would waste this.
+
+   ⚠️ TWO VERBS ONLY, and that is deliberate. The handout paradigms SEGA and RAGA and
+   nothing else. Her ruling: "just ship what he wrote, I don't want to study something
+   off a pattern match and then the language decides to misbehave." See lediri-bank.js.
+
+   No SRS writes; own key rl_lediri; XP as kind 'lediri'. Same rules as everything else
+   in this half of the app. */
+function lediriGet(){ return store.get('lediri', {verbs:{}}); }
+function lediriSet(v){ store.set('lediri', v); }
+let lediriRun = null;
+
+function screenLediri(){
+  currentScreen = 'Lediri';
+  const st = lediriGet();
+  render(`<div class="topbar">
+      <button class="quit" id="b-quit">✕</button>
+      <h2 style="margin:0; font-size:1.05rem">🗣️ Lediri</h2>
+      <span class="pill" style="margin-left:auto">${RL_LEDIRI.filter(v=>st.verbs[v.id]).length} / ${RL_LEDIRI.length}</span>
+    </div>
+    <p class="muted" style="margin:10px 0 4px">One verb, every shape it takes — commands and polite requests, straight from your lecturer's handout.</p>
+    ${RL_LEDIRI.map(v=>`<button class="choice" data-verb="${esc(v.id)}" style="text-align:left">
+        <b>${st.verbs[v.id]?'✓ ':''}${esc(v.verb)}</b> — ${esc(v.eng)}
+        <span class="tiny" style="display:block; margin-top:2px">${v.grid.length} shapes · ${v.drills.length} to build yourself</span>
+      </button>`).join('')}
+    <p class="tiny" style="margin-top:14px">Only these two verbs are in the handout, so only these two are here. Making up the shapes for a third would be inventing Setswana.</p>`);
+  document.getElementById('b-quit').onclick = screenHome;
+  document.querySelectorAll('[data-verb]').forEach(b=>{
+    b.onclick = ()=> startLediri(RL_LEDIRI.find(v=>v.id === b.dataset.verb));
+  });
+}
+function lediriHead(v, right){
+  return `<div class="topbar">
+      <button class="quit" id="b-quit">✕</button>
+      <h2 style="margin:0; font-size:1.05rem">🗣️ ${esc(v.verb)}</h2>
+      <span class="pill" style="margin-left:auto">${esc(right)}</span>
+    </div>`;
+}
+function lediriQuit(){ document.getElementById('b-quit').onclick = ()=>{ lediriRun = null; screenLediri(); }; }
+
+function startLediri(v){
+  if (!v) return;
+  lediriRun = {v, at: 0, order: [], right: 0, wrong: 0};
+  lediriTeach();
+}
+function lediriTeach(){
+  const v = lediriRun.v;
+  currentScreen = 'Lediri — ' + v.id + ' teach';
+  const odd = v.grid.some(g=>g.handoutOdd);
+  render(lediriHead(v, 'the grid') + `<div id="ldArea">
+    <p class="muted">${esc(v.intro)}</p>
+    <div style="margin-top:12px">
+      ${v.grid.map(g=>`<div style="padding:8px 2px; border-bottom:1px solid var(--line)">
+        <b>${esc(g.tsw)}</b>${g.handoutOdd?' <span class="tiny">*</span>':''}
+        <span class="tiny" style="display:block">${esc(g.eng)} — <i>${esc(g.shape)}</i></span>
+      </div>`).join('')}
+    </div>
+    ${odd ? `<p class="tiny" style="margin-top:10px">* Printed exactly as your handout prints it. Every other negative in his table carries the circumflex and this one does not — copied rather than corrected, and it is on your list to ask him.</p>` : ''}
+    <button class="btn primary" id="ld-next" style="margin-top:18px">Now you build them →</button></div>`);
+  lediriQuit();
+  document.getElementById('ld-next').onclick = ()=>{
+    lediriRun.order = lediriRun.v.drills.slice();   // handout order — it builds up
+    lediriRun.at = 0;
+    lediriStep();
+  };
+}
+function lediriStep(){
+  const r = lediriRun; if (!r) return;
+  if (r.at >= r.order.length) return finishLediri();
+  const d = r.order[r.at];
+  currentScreen = 'Lediri — ' + d.id;
+  render(lediriHead(r.v, `${r.at+1} / ${r.order.length}`) + `<div id="ldArea">
+    <div class="notecard" style="margin-bottom:14px">
+      <b class="bigtsw" style="font-size:1.2rem">${esc(d.from)}</b>
+      <span class="tiny" style="display:block">${esc(d.fromEng)}</span>
+    </div>
+    <p class="muted">${esc(d.ask)}</p>
+    <input id="ld-in" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Setswana…">
+    <button class="btn primary" id="ld-go" style="margin-top:10px">Check</button>
+    <div id="ld-fb"></div></div>`);
+  lediriQuit();
+  const input = document.getElementById('ld-in'), fb = document.getElementById('ld-fb');
+  let misses = 0, locked = false;
+  input.focus();
+  const on = ()=>{ const b = document.getElementById('ld-on'); if (b) b.onclick = ()=>{ if (lediriRun === r){ r.at++; lediriStep(); } }; };
+  const check = ()=>{
+    if (locked) return;
+    const typed = norm(input.value);
+    if (d.accept.some(a=>norm(a) === typed)){
+      locked = true; r.right++;
+      fb.innerHTML = `<div class="feedback good">${esc(pick(RL_CONTENT.flavour.correct))} ✓ <b>${esc(d.answer)}</b></div>
+        <div class="chat-hint" style="margin-top:10px">🐾 ${esc(d.why)}</div>
+        <button class="btn primary" id="ld-on" style="margin-top:12px">Continue</button>`;
+      return on();
+    }
+    misses++;
+    if (misses >= 2){
+      locked = true; r.wrong++;
+      fb.innerHTML = `<div class="feedback bad">It is <b>${esc(d.answer)}</b>.</div>
+        <div class="chat-hint" style="margin-top:10px">🐾 ${esc(d.why)}</div>
+        <button class="btn primary" id="ld-on" style="margin-top:12px">Continue</button>`;
+      return on();
+    }
+    fb.innerHTML = `<div class="feedback bad">Not yet — one more go. ${d.answer.split(' ').length === 1 ? 'One word.' : esc(String(d.answer.split(' ').length)) + ' words.'}</div>`;
+  };
+  document.getElementById('ld-go').onclick = check;
+  input.onkeydown = e=>{ if (e.key === 'Enter') check(); };
+}
+function finishLediri(){
+  const r = lediriRun; if (!r) return;
+  const st = lediriGet();
+  const first = !st.verbs[r.v.id];
+  st.verbs[r.v.id] = (st.verbs[r.v.id] || 0) + 1;
+  lediriSet(st);
+  if (first) addXP(6, 'lediri');
+  const right = r.right, total = r.order.length, verb = r.v;
+  lediriRun = null;
+  currentScreen = 'Lediri — done';
+  render(`<div class="center" style="margin-top:12vh">
+    <h1 style="font-size:2rem">${esc(RL_CONTENT.flavour.lessonDone)}</h1>
+    <p class="muted">${first ? '+6 XP · ' : ''}You built ${right} of ${total} shapes of <b>${esc(verb.verb)}</b> yourself.</p>
+    <button class="btn primary" id="b-again" style="margin-top:16px">Run ${esc(verb.verb)} again</button>
+    <button class="btn ghost" id="b-back" style="margin-top:8px">Back to the verbs</button>
+  </div>`);
+  document.getElementById('b-again').onclick = ()=> startLediri(verb);
+  document.getElementById('b-back').onclick = screenLediri;
 }
 
 /* ---------- ☕ Warm-up — the way back in after time away (added 2026-08-31) ----------

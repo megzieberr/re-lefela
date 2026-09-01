@@ -155,7 +155,7 @@ const RL_BUILDER = [
   },
   {
     id: 'sb-u1-20', eng: 'I want to buy a book',
-    accept: ['Ke batla go reka buka'],
+    accept: ['Ke batla go rêka buka'],
     usesIds: ['u1l6-05', 'u1l6-06', 'u1l5-05'],
     src: 'peace-corps-L13+course(go reka dijo)',
     note: 'batla + go + verb, then the thing you\'re buying — same shape as go reka dijo (PC course).'
@@ -199,7 +199,7 @@ const RL_BUILDER = [
   },
   {
     id: 'sb-u2-06', eng: 'My head is sore',
-    accept: ['Tlhogo yame e botlhoko'],
+    accept: ['Tlhôgô yame e botlhoko'],
     usesIds: ['u2l1-02', 'u2l7-05', 'u2l7-08'],
     src: 'peace-corps-L22 pain pattern (Tlhogo yame attested L13)',
     note: 'Body part + my + its concord + botlhoko. Tlhogo is class 9 — its concord is e.'

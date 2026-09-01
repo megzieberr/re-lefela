@@ -56,6 +56,20 @@ EXCLUDE = set()
 # Never re-add the u2l6-13..19 cards from a tagger download. (2026-07-17, session 17)
 SKIP_LESSONS = {'★ Colours (native)'}
 
+# PERMANENT guard — do NOT remove. Items whose COMMITTED clip must never be re-cut from
+# its tag. The tag still counts as mapping-managed, so the item stays wired and the 2.5
+# un-wire guard still protects it; ONLY the ffmpeg cut is skipped, leaving the committed
+# mp3 byte-for-byte as it is.
+#   u1l7-08: the session-27 native re-record (bbaf316) was a bad take that doesn't say
+#   "ba". Megan reverted the clip by hand to the session-17 version in 9554f8e
+#   (2026-07-26) — but the TAG was left in place, so every export since has silently
+#   re-applied the bad take (4.61s/37KB back down to 1.43s/12KB). Nothing caught it
+#   because no session md5-ed audio/items/ around an export it did not expect to change
+#   anything. Caught 2026-09-01 (session 43) while re-cutting u3l7-04.
+#   THE RULE: reverting a clip by hand means freezing it here in the same commit,
+#   otherwise the next export quietly undoes the revert.
+FROZEN = {'u1l7-08'}
+
 # 1. winning Peace Corps tag per item.
 #    Step 1: per SEGMENT, the latest tag across all mapping files wins — a round-2
 #    re-tag/junk of a segment supersedes what round 1 said about that same segment
@@ -123,6 +137,12 @@ if would_unwire and not args.allow_unwire:
 # 3. export
 for item_id, src, start, end, origin in sorted(jobs):
     dst = OUT_DIR / f'{item_id}.mp3'
+    if item_id in FROZEN:
+        if not dst.exists():
+            sys.exit(f'FROZEN item {item_id} has no committed clip at {dst} — '
+                     'restore it from git before re-running.')
+        print(f'{item_id}.mp3  {dst.stat().st_size // 1024} KB  (FROZEN — kept, not re-cut)')
+        continue
     cmd = ['ffmpeg', '-y', '-hide_banner', '-loglevel', 'error', '-i', str(src)]
     if start is not None:
         cmd += ['-ss', f'{start}', '-to', f'{end}']

@@ -28,7 +28,7 @@ These point at another card's clip, so they are fixed automatically when the sou
 
 | card id | tsw | plays |
 |---|---|---|
-| `u3l5-03` | Ema ka dinao | `items/u2l2-09.mp3` |
+| `u3l5-03` | Êma ka dinao | `items/u2l2-09.mp3` |
 | `u3l8-02` | Ke tla go bona kamoso | `items/u1l3-03.mp3` |
 | `u4l4-04` | O na le bana ba le babedi | `items/u2l4-08.mp3` |
 | `u5l3-01` | Dikgomo di bogale | `items/u2l5-07.mp3` |
@@ -36,3 +36,54 @@ These point at another card's clip, so they are fixed automatically when the sou
 | `u5l3-03` | Ke na le dikgomo tse dintle | `items/u2l5-09.mp3` |
 | `u5l3-04` | Pitse e tshweu | `items/u2l6-10.mp3` |
 | `u5l3-05` | Pitse e ntsho | `items/u2l6-11.mp3` |
+
+---
+
+## 3. The lecturer's handout tabs — wanted, never recorded
+
+Not content.js cards, so section 1 cannot see them. Both tabs work silent; audio is an upgrade, not a gap. Ask one of the three Setswana speakers, hand them the sheet from `toolkit/recording-sheet.py`, then tag and export as usual.
+
+### 🔊 Medumo — 164 words from the sound-values handout
+
+| set | words |
+|---|---|
+| a · ê | rata · raga · tala · batla · rêka |
+| ê · ô | rêma · lêlêka · sêba · êma · ôtla |
+| ô · o | ôbola · ôra · rôba · Karabô · loma |
+| o · e | lona · rona · lema · leka · lela |
+| e · u | sega · senya · selô · ruruga · utlwa |
+| u · i | ura · utswa · modiri · moruti · itse |
+| i · a · e · ê | itaya · aga · araba · lenaka · kêrêkê |
+| i · ô · o · u | phiri · phôlôgôlô · tôrôpô · motho · khudu |
+| u · b | pududu · bala · bua · bitsa · botsa |
+| d | didiba · dira · dibuka · duêla · dumedisa |
+| f | sefôfu · fa · fitlha · fetsa · fora |
+| g · h | gana · gama · gômpiênô · gapê · huma |
+| h · j | hutse · haraka · jala · ja · jalo |
+| j · k | jaanong · jang · kutu · kala · koloi |
+| l · m | lôra · leba · lebôgô · lekau · mena |
+| m · n | monna · nama · nômôrô · namane · nalêdi |
+| p | palêla · pitsa · pitsô · potsô · pampiri |
+| r · s | roma · roka · sekôlô · setlharê · selemô |
+| š · t | mašwi · dišeše · taboga · tau · tamô |
+| t · w · kg | terena · wena · bolawa · kgalema · kgamêlô |
+| kg · ng | kgôrômêtsa · ngaka · nngapa · ngata · ngôngôrêga |
+| ny · tl | nyala · nyamêla · tla · tlola · tlisa |
+| tl · ts | tlatsa · tsoga · tsoma · tsamaya · tsididi |
+| kh · ph | khubama · khiba · sekhurumêlô · phimola · phamola |
+| ph · th | phirima · bophirima · thaba · thapô · thiba |
+| th · tlh | thunya · tlhagola · tlhôgô · tlhaloganya · tlhaba |
+| tlh · kg · ny · ph · th | tlhakanya · kgomo · lenyalo · phofu · thata |
+| tl · ts · šh | tlala · tlou · tsêbê · motse · lešhalaba |
+| tš · tlh · tsh | botšarara · tlhatloga · tlhase · tshipi · tshêkô |
+| tšh · gw · hw · jw | tšhelete · tšhotlho · gagwe · hwibidu · jwala |
+| kw · lw · nw · ngw · rw | kwala · lwala · nwa · ngwana · rwala |
+| sw · tsw · tšw · tw · kgw | swa · tswa · tshetšwa · twanya · kgweetsa |
+| thw · tlhw · tshw · tšhw | thwala · tlhwatlhwa · tshwaya · tšhwimola |
+
+### 🗣️ Lediri — every printed shape of the two verbs
+
+| verb | shapes to record |
+|---|---|
+| SEGA (cut) | Sega! · Segang! · Se segê! · Se segêng! · Sega borotho! · Se segê borotho! · Segang borotho! · Sega ka thipa! · Sega borotho ka thipa! · Sega sentle! · Se segê ka sekere! · Se segeng ka sekere! · Ako o segê? · Ako o se segê? · Ako lo segêng? · Ako o segê borotho ka thipa? · Ako o se segê borotho ka sekere? · Ako o segê sentle tswee-tswee? · Ako lo segêng sentle tswee-tswee? |
+| RAGA (kick) | Raga bolo! · Ragang bolo! · Se ragê bolo! · Se ragêng bolo! · Raga bolo mo lebaleng! · Ako o ragê bolo? |

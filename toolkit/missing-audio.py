@@ -129,6 +129,20 @@ def group(rows):
     return g
 
 
+import json as _json
+import subprocess as _sp
+
+
+def _bank(fname, var):
+    """Evaluate one of the generated banks IN NODE — never regex a JS literal."""
+    js = ("const fs=require('fs');"
+          f"const v=eval(fs.readFileSync(process.argv[1],'utf8')+'; {var}');"
+          'process.stdout.write(JSON.stringify(v));')
+    r = _sp.run(['node', '-e', js, str(ROOT / fname)],
+                capture_output=True, text=True, encoding='utf-8')
+    return _json.loads(r.stdout) if r.returncode == 0 else []
+
+
 def main():
     items = parse_content()
     managed = mapping_managed_ids()
@@ -174,6 +188,31 @@ def main():
         L.append('| card id | tsw | plays |\n|---|---|---|\n')
         for _, _, _, _, it in reuse:
             L.append(f"| `{it['id']}` | {it['tsw']} | `{it['audio']}` |\n")
+
+    # ── 3. the two handout tabs (session 43, 2026-09-01) ────────────────────────────
+    # 🔊 Medumo and 🗣️ Lediri teach from Zerwick's handouts, and almost none of those
+    # words have recordings. They are NOT content.js cards, so nothing above sees them —
+    # but Megan has three Setswana speakers she can ask, and two of her four SECL121
+    # assignments are videos of her SPEAKING, so this is the list that matters most for
+    # marks. Both tabs shipped silent on purpose; recording is a later pass, not a
+    # blocker. toolkit/recording-sheet.py makes the PDF a speaker reads from.
+    medumo = _bank('medumo-bank.js', 'RL_MEDUMO')
+    lediri = _bank('lediri-bank.js', 'RL_LEDIRI')
+    if medumo or lediri:
+        L.append('\n---\n')
+        L.append("\n## 3. The lecturer's handout tabs — wanted, never recorded\n")
+        L.append('\nNot content.js cards, so section 1 cannot see them. Both tabs work silent; '
+                 'audio is an upgrade, not a gap. Ask one of the three Setswana speakers, hand '
+                 'them the sheet from `toolkit/recording-sheet.py`, then tag and export as usual.\n')
+        n = sum(len(x['words']) for x in medumo)
+        L.append(f'\n### 🔊 Medumo — {n} words from the sound-values handout\n\n')
+        L.append('| set | words |\n|---|---|\n')
+        for x in medumo:
+            L.append(f"| {x['label']} | " + ' · '.join(w['t'] for w in x['words']) + ' |\n')
+        L.append('\n### 🗣️ Lediri — every printed shape of the two verbs\n\n')
+        L.append('| verb | shapes to record |\n|---|---|\n')
+        for v in lediri:
+            L.append(f"| {v['verb']} ({v['eng']}) | " + ' · '.join(g['tsw'] for g in v['grid']) + ' |\n')
 
     OUT.write_text(''.join(L), encoding='utf-8', newline='\n')
     print(f'silent: {len(silent)}   re-record: {len(own)}   reuse (free): {len(reuse)}')

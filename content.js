@@ -104,7 +104,7 @@ const RL_CONTENT = {
             { id: 'u1l5-06', audio: 'items/u1l5-06.mp3', kind: 'word', tsw: 'ntlo', eng: 'house', src: 'peace-corps-L18', cls: 9, plural: 'dintlo' },
             { id: 'u1l5-07', audio: 'items/u1l5-07.mp3', kind: 'word', tsw: 'leina', eng: 'name', src: 'peace-corps-L3', cls: 5, plural: 'maina', note: 'le- → ma-: maina = names.' },
             { id: 'u1l5-08', audio: 'items/u1l5-08.mp3', kind: 'word', tsw: 'lebati', eng: 'door', src: 'peace-corps-L7', cls: 5, plural: 'mabati' },
-            { id: 'u1l5-09', audio: 'items/u1l5-09.mp3', kind: 'word', tsw: 'sekolo', eng: 'school', src: 'peace-corps-L18', cls: 7, plural: 'dikolo' },
+            { id: 'u1l5-09', audio: 'items/u1l5-09.mp3', kind: 'word', tsw: 'sekôlô', eng: 'school', src: 'peace-corps-L18+zerwick-2024', cls: 7, plural: 'dikolo' },
             { id: 'u1l5-10', audio: 'items/u1l5-10.mp3', kind: 'word', tsw: 'lelapa', eng: 'family / home', src: 'peace-corps-L15', cls: 5 }
           ]
         },
@@ -117,7 +117,7 @@ const RL_CONTENT = {
             { id: 'u1l6-03', audio: 'items/u1l6-03.mp3', kind: 'verb', tsw: 'go bua', eng: 'to speak', src: 'peace-corps-L5' },
             { id: 'u1l6-04', audio: 'items/u1l6-04.mp3', kind: 'verb', tsw: 'go ya', eng: 'to go', src: 'peace-corps-L5' },
             { id: 'u1l6-05', audio: 'items/u1l6-05.mp3', kind: 'verb', tsw: 'go batla', eng: 'to want', src: 'peace-corps-L5' },
-            { id: 'u1l6-06', audio: 'items/u1l6-06.mp3', kind: 'verb', tsw: 'go reka', eng: 'to buy', src: 'peace-corps-L5' },
+            { id: 'u1l6-06', audio: 'items/u1l6-06.mp3', kind: 'verb', tsw: 'go rêka', eng: 'to buy', src: 'peace-corps-L5+zerwick-2024' },
             { id: 'u1l6-07', audio: 'items/u1l6-07.mp3', kind: 'verb', tsw: 'go ithuta', eng: 'to learn / study', src: 'peace-corps-L5' },
             { id: 'u1l6-08', audio: 'items/u1l6-08.mp3', kind: 'phrase', tsw: 'Ke a ja', eng: 'I am eating', src: 'peace-corps-L6' },
             { id: 'u1l6-09', audio: 'items/u1l6-09.mp3', kind: 'phrase', tsw: 'Ke batla kofi', eng: 'I want coffee', src: 'peace-corps-L13', note: 'Object follows, so no "a": not "ke a batla kofi".' },
@@ -153,11 +153,11 @@ const RL_CONTENT = {
           items: [
             { id: 'u2l1-00', kind: 'rule', tsw: '', eng: '', src: 'grammar-toolkit', rule: 'Body parts are a noun-class safari: head words scatter across the classes, so their plurals differ. le-/ma- (leitlho → matlho), se-/di- (sefatlhego → difatlhego), mo-/me- (molomo → melomo), ∅/di- (tsebe → ditsebe). Watch the prefix — it tells you the plural AND the concord.' },
             { id: 'u2l1-01', audio: 'items/u2l1-01.mp3', kind: 'word', tsw: 'mmele', eng: 'body', src: 'beibele+nt-parallel', cls: 3, plural: 'mebele' },
-            { id: 'u2l1-02', audio: 'items/u2l1-02.mp3', kind: 'word', tsw: 'tlhogo', eng: 'head', src: 'peace-corps-L22', cls: 9, plural: 'ditlhogo' },
+            { id: 'u2l1-02', audio: 'items/u2l1-02.mp3', kind: 'word', tsw: 'tlhôgô', eng: 'head', src: 'peace-corps-L22+zerwick-2024', cls: 9, plural: 'ditlhogo' },
             { id: 'u2l1-03', audio: 'items/u2l1-03.mp3', kind: 'word', tsw: 'sefatlhego', eng: 'face', src: 'beibele+nt-parallel', cls: 7, plural: 'difatlhego' },
             { id: 'u2l1-04', audio: 'items/u2l1-04.mp3', kind: 'word', tsw: 'moriri', eng: 'hair', src: 'beibele+nt-parallel', cls: 3, plural: 'meriri' },
             { id: 'u2l1-05', audio: 'items/u2l1-05.mp3', kind: 'word', tsw: 'leitlho', eng: 'eye', src: 'beibele+nt-parallel', cls: 5, plural: 'matlho', note: 'le- → ma-: matlho = eyes.' },
-            { id: 'u2l1-06', audio: 'items/u2l1-06.mp3', kind: 'word', tsw: 'tsebe', eng: 'ear', src: 'beibele+nt-parallel', cls: 9, plural: 'ditsebe' },
+            { id: 'u2l1-06', audio: 'items/u2l1-06.mp3', kind: 'word', tsw: 'tsêbê', eng: 'ear', src: 'beibele+nt-parallel+zerwick-2024', cls: 9, plural: 'ditsebe' },
             { id: 'u2l1-07', audio: 'items/u2l1-07.mp3', kind: 'word', tsw: 'nko', eng: 'nose', src: 'beibele', cls: 9, plural: 'dinko' },
             { id: 'u2l1-08', audio: 'items/u2l1-08.mp3', kind: 'word', tsw: 'molomo', eng: 'mouth', src: 'beibele+nt-parallel', cls: 3, plural: 'melomo' },
             { id: 'u2l1-09', audio: 'items/u2l1-09.mp3', kind: 'word', tsw: 'leino', eng: 'tooth', src: 'beibele', cls: 5, plural: 'meno', note: 'le- → ma-… almost: meno, not maino. Old class quirk.' },
@@ -176,7 +176,7 @@ const RL_CONTENT = {
             { id: 'u2l2-06', audio: 'items/u2l2-06.mp3', kind: 'word', tsw: 'pelo', eng: 'heart', src: 'beibele+nt-parallel', cls: 9, plural: 'dipelo', note: 'Pelo-khutshwane, "short heart" = short-tempered. Setswana anatomy has opinions.' },
             { id: 'u2l2-07', audio: 'items/u2l2-07.mp3', kind: 'word', tsw: 'leoto', eng: 'leg', src: 'peace-corps-L22', cls: 5, plural: 'maoto' },
             { id: 'u2l2-08', audio: 'items/u2l2-08.mp3', kind: 'word', tsw: 'lonao', eng: 'foot', src: 'beibele', cls: 11, plural: 'dinao', note: 'You met dinao in Unit 1: Ema ka dinao — stand on your feet.' },
-            { id: 'u2l2-09', audio: 'items/u2l2-09.mp3', kind: 'phrase', tsw: 'Ema ka dinao', eng: 'Stand up', src: 'peace-corps-L12', note: 'Lit. "stand on feet" — now you know why.' }
+            { id: 'u2l2-09', audio: 'items/u2l2-09.mp3', kind: 'phrase', tsw: 'Êma ka dinao', eng: 'Stand up', src: 'peace-corps-L12+zerwick-2024', note: 'Lit. "stand on feet" — now you know why.' }
           ]
         },
         {
@@ -254,8 +254,8 @@ const RL_CONTENT = {
             { id: 'u2l7-01', audio: 'items/u2l7-01.mp3', kind: 'phrase', tsw: 'O ikutlwa jang?', eng: 'How do you feel?', src: 'peace-corps-L13', note: 'go ikutlwa = to feel (yourself). The doctor\'s first question.' },
             { id: 'u2l7-02', audio: 'items/u2l7-02.mp3', kind: 'phrase', tsw: 'Ke a lwala', eng: 'I am sick', src: 'peace-corps-L22' },
             { id: 'u2l7-03', audio: 'items/u2l7-03.mp3', kind: 'phrase', tsw: 'Ga ke a tsoga', eng: 'I am not well', src: 'peace-corps-L22', note: 'Lit. "I have not risen" — the flip side of o tsogile jang?' },
-            { id: 'u2l7-04', audio: 'items/u2l7-04.mp3', kind: 'phrase', tsw: 'Ke opiwa ke tlhogo', eng: 'I have a headache', src: 'peace-corps-L22', note: 'Lit. "I am being hit by the head".' },
-            { id: 'u2l7-05', audio: 'items/u2l7-05.mp3', kind: 'phrase', tsw: 'Tlhogo yame e santse e opa', eng: 'My head still aches', src: 'peace-corps-L13', note: 'santse = still.' },
+            { id: 'u2l7-04', audio: 'items/u2l7-04.mp3', kind: 'phrase', tsw: 'Ke opiwa ke tlhôgô', eng: 'I have a headache', src: 'peace-corps-L22+zerwick-2024', note: 'Lit. "I am being hit by the head".' },
+            { id: 'u2l7-05', audio: 'items/u2l7-05.mp3', kind: 'phrase', tsw: 'Tlhôgô yame e santse e opa', eng: 'My head still aches', src: 'peace-corps-L13+zerwick-2024', note: 'santse = still.' },
             { id: 'u2l7-06', audio: 'items/u2l7-06.mp3', kind: 'phrase', tsw: 'Mala ame a botlhoko', eng: 'My stomach hurts', src: 'peace-corps-L22', concordSlot: { head: 'Mala ame', answer: 'a', options: ['a', 'e', 'di', 'o'], tail: 'botlhoko', hint: 'mala — class 6' } },
             { id: 'u2l7-07', audio: 'items/u2l7-07.mp3', kind: 'phrase', tsw: 'Matlho a gagwe a botlhoko', eng: 'His/her eyes are sore', src: 'peace-corps-L22' },
             { id: 'u2l7-08', audio: 'items/u2l7-08.mp3', kind: 'word', tsw: 'botlhoko', eng: 'sore / painful', src: 'peace-corps-L22' },
@@ -343,8 +343,8 @@ const RL_CONTENT = {
             { id: 'u3l5-00', kind: 'rule', tsw: '', eng: '', src: 'peace-corps-L12', rule: 'A command is just the bare verb — no concord in front: Reetsa! (Listen!), Nna fatshe (Sit down). Speaking to a group, add -ng: Reetsang! Dumela → Dumelang, which you already know. These are the words you\'ll run a classroom in.' },
             { id: 'u3l5-01', audio: 'items/u3l5-01.mp3', kind: 'phrase', tsw: 'Reetsa', eng: 'Listen', src: 'peace-corps-L12', note: 'To a group: Reetsang. Also means "pay attention".' },
             { id: 'u3l5-02', audio: 'items/u3l5-02.mp3', kind: 'phrase', tsw: 'Nna fatshe', eng: 'Sit down', src: 'peace-corps-L12' },
-            { id: 'u3l5-03', kind: 'phrase', tsw: 'Ema ka dinao', eng: 'Stand up', src: 'peace-corps-L12', audio: 'items/u2l2-09.mp3', note: 'You met this in Unit 2 — "stand on your feet". Here it is as a classroom command.' },
-            { id: 'u3l5-04', audio: 'items/u3l5-04.mp3', kind: 'phrase', tsw: 'Ema o bue', eng: 'Stand up and speak', src: 'peace-corps-L12' },
+            { id: 'u3l5-03', kind: 'phrase', tsw: 'Êma ka dinao', eng: 'Stand up', src: 'peace-corps-L12+zerwick-2024', audio: 'items/u2l2-09.mp3', note: 'You met this in Unit 2 — "stand on your feet". Here it is as a classroom command.' },
+            { id: 'u3l5-04', audio: 'items/u3l5-04.mp3', kind: 'phrase', tsw: 'Êma o bue', eng: 'Stand up and speak', src: 'peace-corps-L12+zerwick-2024' },
             { id: 'u3l5-05', audio: 'items/u3l5-05.mp3', kind: 'phrase', tsw: 'Tla kwano', eng: 'Come here', src: 'peace-corps-L12', note: 'Book spells it "tlaa"; we write tla, matching Ke tla go bona.' },
             { id: 'u3l5-06', audio: 'items/u3l5-06.mp3', kind: 'phrase', tsw: 'Tla kwa pele', eng: 'Come to the front', src: 'peace-corps-L12' },
             { id: 'u3l5-07', audio: 'items/u3l5-07.mp3', kind: 'phrase', tsw: 'Boela kwa morago', eng: 'Go back', src: 'peace-corps-L12', note: 'Lit. "return to the back".' },
@@ -357,7 +357,7 @@ const RL_CONTENT = {
           id: 'u3l6', title: 'Maabane le kamoso', blurb: 'When did it happen? The adverbs that set the time.',
           items: [
             { id: 'u3l6-00', kind: 'rule', tsw: '', eng: '', src: 'peace-corps-L16', rule: 'Time words tell you which tense to reach for. gompieno (today) goes with the present, maabane (yesterday) pulls the past, kamoso (tomorrow) pushes the future. They usually sit at the start or the very end of the sentence: Kamoso ke tla ya sekolong — tomorrow I will go to school.' },
-            { id: 'u3l6-01', audio: 'items/u3l6-01.mp3', kind: 'word', tsw: 'gompieno', eng: 'today', src: 'peace-corps-L16' },
+            { id: 'u3l6-01', audio: 'items/u3l6-01.mp3', kind: 'word', tsw: 'gômpiênô', eng: 'today', src: 'peace-corps-L16+zerwick-2024' },
             { id: 'u3l6-02', audio: 'items/u3l6-02.mp3', kind: 'word', tsw: 'maabane', eng: 'yesterday', src: 'peace-corps-L16', note: 'Your cue for the past tense.' },
             { id: 'u3l6-03', audio: 'items/u3l6-03.mp3', kind: 'word', tsw: 'kamoso', eng: 'tomorrow', src: 'peace-corps-L16', note: 'Your cue for the future. You met it in Ke tla go bona kamoso.' },
             { id: 'u3l6-04', audio: 'items/u3l6-04.mp3', kind: 'word', tsw: 'phakela', eng: 'in the morning / early', src: 'peace-corps-L16' },
@@ -484,7 +484,7 @@ const RL_CONTENT = {
           id: 'u5l1', title: 'Diphologolo tsa kwa gae', blurb: 'The animals you live with — around the home and the kraal.',
           items: [
             { id: 'u5l1-00', kind: 'rule', tsw: '', eng: '', src: 'grammar-toolkit', rule: 'Almost every animal name is a class 9/10 word — the same class you met in Unit 1 for "animals and borrowed words". That means the singular has no visible prefix and the plural just adds di-: kgomo → dikgomo (cattle), nku → dinku (sheep), podi → dipodi (goats). This is the tidiest plural in Setswana — one rule covers the whole farmyard. The umbrella word for them all is phologolo (an animal) → diphologolo, which is the name of this unit.' },
-            { id: 'u5l1-01', audio: 'items/u5l1-01.mp3', kind: 'word', tsw: 'phologolo', eng: 'animal', src: 'beibele', cls: 9, plural: 'diphologolo', note: 'diphologolo (animals) is the unit\'s name. 52× in the Setswana Bible.' },
+            { id: 'u5l1-01', audio: 'items/u5l1-01.mp3', kind: 'word', tsw: 'phôlôgôlô', eng: 'animal', src: 'beibele+zerwick-2024', cls: 9, plural: 'diphologolo', note: 'diphologolo (animals) is the unit\'s name. 52× in the Setswana Bible.' },
             { id: 'u5l1-02', audio: 'items/u5l1-02.mp3', kind: 'word', tsw: 'kgomo', eng: 'cow / ox', src: 'pc-comp-grammar-ch2', cls: 9, plural: 'dikgomo', note: 'The grammar book\'s favourite example animal. You already met the plural, dikgomo, in Unit 2.' },
             { id: 'u5l1-03', audio: 'items/u5l1-03.mp3', kind: 'word', tsw: 'nku', eng: 'sheep', src: 'beibele', cls: 9, plural: 'dinku', note: 'Same shape singular and plural stem: nku → dinku. From the shepherd verses (Matthew 25).' },
             { id: 'u5l1-04', audio: 'items/u5l1-04.mp3', kind: 'word', tsw: 'podi', eng: 'goat', src: 'beibele', cls: 9, plural: 'dipodi', note: 'Sheep and goats together: dinku le dipodi (Matthew 25). The Bible itself spells it dipudi; podi/dipodi is the standard SA-Setswana form used here.' },

@@ -56,6 +56,21 @@ KNOWN_IRREGULAR = {"leino": "me-"}          # leino -> meno, not *maino
 KNOWN_STEM_SHIFT = {"mmele", "leitlho", "leino", "loleme", "letsogo"}
 
 
+def deaccent(w):
+    """Strip circumflexes for STEM comparison only — never for display or grading data.
+
+    Since 2026-09-01 the cards follow Zerwick's handout, which marks e/o as ê/ô where he
+    marks them (sekôlô, tlhôgô, tsêbê, phôlôgôlô). He never writes the plurals, so those
+    stay plain, and a raw comparison then reads sekôlô -> dikolo as a stem shift when the
+    stem has not moved at all — only the accent marking. Comparing de-accented forms keeps
+    check 5 pointed at what it is actually for: a stem that really changes (leino -> meno).
+    Proven still sharp by removing each of the five KNOWN_STEM_SHIFT cards in turn — every
+    one is still caught with this in place.
+    """
+    return (w.replace("ê", "e").replace("È", "E")
+             .replace("ô", "o").replace("Ô", "O"))
+
+
 def load_content():
     """Evaluate the real content.js in node and return its cards as dicts."""
     js = (
@@ -118,7 +133,7 @@ def check_cards(cards):
         # 5. stem shifts are fine, but new ones should be looked at once
         sg_pre = FAMILIES[cls][0][:2]
         sg_stem = tsw[2:] if sg_pre and tsw.startswith(sg_pre) else tsw
-        if sg_stem != pl[2:] and tsw not in KNOWN_STEM_SHIFT:
+        if deaccent(sg_stem) != deaccent(pl[2:]) and tsw not in KNOWN_STEM_SHIFT:
             fail(f"{where}: the stem changes as well as the prefix ({tsw} -> {pl}). That is real "
                  f"Setswana in five known cards; if this is a sixth, add it to KNOWN_STEM_SHIFT.")
 
@@ -204,8 +219,10 @@ def check_sw():
     # here by name and the pin is moved by hand, with the reason, when a clip really
     # does change. v3 -> v4 on 2026-08-08: audio/items/u3l1-11.mp3 re-cut (its window
     # caught the tail of the English prompt — her report, u3/l1 "Ga ba batle").
-    if "relefela-audio-v4" not in sw:
-        fail("AUDIO_CACHE is not the pinned relefela-audio-v4 — bump the pin here too, "
+    # v4 -> v5 on 2026-09-01: audio/items/u3l7-04.mp3 re-cut — her report that the clip
+    # cut off the last letter of "Setswana". Measured: speech ran 0.19s past the cut.
+    if "relefela-audio-v5" not in sw:
+        fail("AUDIO_CACHE is not the pinned relefela-audio-v5 — bump the pin here too, "
              "with the reason, or you have changed it by accident (spec §2.7)")
 
 
