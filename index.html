@@ -2769,6 +2769,7 @@ function screenAss1Intro(){
     ${RL_ASS1.intro.map((c, i)=>`<div class="card" style="margin:8px 0; padding:12px">
         <div class="row" style="align-items:flex-start">
           <button class="audio-btn" data-line="${i}" aria-label="Play line ${i + 1}" style="width:44px; height:44px; font-size:1.15rem">🔊</button>
+          <button class="audio-btn slow-btn" data-slow="${i}" aria-label="Play line ${i + 1} slowly" title="Slowly">🐢</button>
           <div style="flex:1">
             <b style="font-size:1.1rem">${esc(c.tsw)}</b>
             <span class="tiny" style="display:block">${esc(c.eng)}</span>
@@ -2787,6 +2788,16 @@ function screenAss1Intro(){
       if (all) all.textContent = '▶ Play the whole intro';   // …so put its label back
       const c = RL_ASS1.intro[parseInt(b.dataset.line, 10)];
       playAudio(c.audio);
+      const s = ass1Get(); if (!s.i[c.id]){ s.i[c.id] = 1; ass1Set(s); }
+    };
+  });
+  document.querySelectorAll('[data-slow]').forEach(b=>{
+    b.onclick = ()=>{
+      ass1StopSeq();                       // same as 🔊: cancels a whole-intro run…
+      const all = document.getElementById('a1-all');
+      if (all) all.textContent = '▶ Play the whole intro';   // …so put its label back
+      const c = RL_ASS1.intro[parseInt(b.dataset.slow, 10)];
+      playAudio(c.audio, SLOW_RATE);
       const s = ass1Get(); if (!s.i[c.id]){ s.i[c.id] = 1; ass1Set(s); }
     };
   });

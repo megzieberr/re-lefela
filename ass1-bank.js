@@ -70,7 +70,7 @@ const RL_ASS1 = {
     {id: 'a1i-01', tsw: 'A re bueng!', eng: 'Let\'s talk!', af: 'Kom ons praat!', src: ['zerwick-ass1-2026'], audio: 'items/a1i-01.mp3', note: ''},
     {id: 'a1i-02', tsw: 'Leina la gago ke mang?', eng: 'What is your name?', af: 'Wat is jou naam?', src: ['zerwick-ass1-2026'], audio: 'items/u1l2-02.mp3', note: ''},
     {id: 'a1i-03', tsw: 'Dumela rra.', eng: 'Good day sir', af: 'Goeie dag meneer', src: ['zerwick-ass1-2026'], audio: 'items/u1l1-01.mp3', note: ''},
-    {id: 'a1i-04', tsw: 'Leina la me ke Megan.', eng: 'My name is Megan', af: 'My naam is Megan', src: ['zerwick-ass1-2026'], audio: 'items/a1i-04.mp3', note: 'the clip is a name-free cut of the app\'s own line, so no name is spoken'},
+    {id: 'a1i-04', tsw: 'Leina la me ke ...', eng: 'My name is ...', af: 'My naam is ...', src: ['zerwick-ass1-2026'], audio: 'items/a1i-04.mp3', note: 'the clip is a name-free cut of the app\'s own line — say your name yourself'},
     {id: 'a1i-05', tsw: 'Sefane sa me ke ...', eng: 'My surname is ...', af: 'My van is ...', src: ['zerwick-ass1-2026'], audio: 'items/a1i-05.mp3', note: 'the clip is a name-free cut of the app\'s own line — say your surname yourself'},
     {id: 'a1i-06', tsw: 'Ke ithuta Setswana.', eng: 'I am learning Setswana', af: 'Ek leer Setswana', src: ['zerwick-ass1-2026'], audio: 'items/u1l2-09.mp3', note: ''},
     {id: 'a1i-07', tsw: 'Ke dira mmojulu wa SECL 121.', eng: 'I am doing Module SECL 121', af: 'Ek doen Module SECL 121', src: ['zerwick-ass1-2026'], audio: 'items/a1i-07.mp3', note: 'the clip stops after "wa": the lecturer wants SECL 121 said in ENGLISH, so say "SECL 121" yourself right after the clip'},
