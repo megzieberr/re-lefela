@@ -4,6 +4,7 @@
  "answers": "answers-2026-09-11.json",
  "purpose": "SECL121 Assignment 1 drill tab: candidate clip windows from the Setswana friend's four voice notes. PENDING Megan's ear-check (ass1-earcheck.html). Windows are seconds into the .ogg; slices are the -35 dB / 0.30 s silence segments (toolkit-style, +0.08 s pad).",
  "made": "2026-09-11",
+ "audit": "2026-09-11 pm: six windows corrected against a measured silence map (a1s-00/-01, p01/p03/p05/p08 had a cut edge inside speech; the heading cut mid-Mokoko). Same re-cut moved the edge fades onto the clips and lifted levels +8 dB - see ass1-export.py.",
  "files": {
   "vn1": "Voice Note 1 - Intro Lines.ogg",
   "vn2": "Voice Note 2 - Single Words.ogg",
@@ -1058,7 +1059,7 @@
    "id": "a1s-00",
    "file": "vn4",
    "start": 1.27,
-   "end": 4.58,
+   "end": 5.15,
    "segs": [
     1,
     1
@@ -1124,7 +1125,7 @@
   {
    "id": "a1s-01",
    "file": "vn4",
-   "start": 4.68,
+   "start": 5.95,
    "end": 20.56,
    "segs": [
     2,
@@ -1981,7 +1982,7 @@
    "id": "a1s-p01",
    "file": "vn4",
    "start": 6,
-   "end": 10.3,
+   "end": 10.75,
    "segs": [
     2,
     2
@@ -2024,7 +2025,7 @@
    "id": "a1s-p03",
    "file": "vn4",
    "start": 33,
-   "end": 34.6,
+   "end": 35.1,
    "segs": [
     24,
     27
@@ -2068,7 +2069,7 @@
    "id": "a1s-p05",
    "file": "vn4",
    "start": 50.5,
-   "end": 51.2,
+   "end": 51.45,
    "segs": [
     28,
     31
@@ -2131,7 +2132,7 @@
    "id": "a1s-p08",
    "file": "vn4",
    "start": 58.7,
-   "end": 62.48,
+   "end": 62.95,
    "segs": [
     32,
     37

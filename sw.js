@@ -9,7 +9,7 @@
 //   - precache uses {cache:'reload'} so install never reads a stale HTTP-cached
 //     index.html (GitHub Pages serves max-age=600).
 //   - non-GET and cross-origin (Supabase, CDN) requests pass straight through.
-const CACHE = 'relefela-v50';
+const CACHE = 'relefela-v51';
 // Bump AUDIO_CACHE's version suffix ONLY when an existing audio file's content
 // changes (re-record/re-splice under the same filename). App version bumps
 // (CACHE above) must never evict audio.
@@ -26,7 +26,10 @@ const CACHE = 'relefela-v50';
 // clips are NEW filenames (audio/items/a1*.mp3), so no phone is holding a stale version
 // of any of them. toolkit/ass1-export.py md5s audio/items/ before and after the cut and
 // fails the run if one existing byte moves — that audit is what this line rests on.
-const AUDIO_CACHE = 'relefela-audio-v5';
+// v5 -> v6 on 2026-09-11 pm: the 40 Tiro 1 cut clips (a1*.mp3) re-cut under the same
+// filenames — audit fixes: edge fades now land on the clips, six windows corrected
+// (heading no longer cuts mid-Mokoko), levels +8 dB to match the rest of the app.
+const AUDIO_CACHE = 'relefela-audio-v6';
 const CORE = ['./', 'index.html', 'content.js', 'dialogues.js', 'builder-bank.js', 'dict-bank.js',
   'medumo-bank.js', 'lediri-bank.js', 'ass1-bank.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png',
   // Katse is animated WebP now (see KATSE_POSES in index.html). `oops` and `sleep`

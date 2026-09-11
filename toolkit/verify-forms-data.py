@@ -221,8 +221,12 @@ def check_sw():
     # caught the tail of the English prompt — her report, u3/l1 "Ga ba batle").
     # v4 -> v5 on 2026-09-01: audio/items/u3l7-04.mp3 re-cut — her report that the clip
     # cut off the last letter of "Setswana". Measured: speech ran 0.19s past the cut.
-    if "relefela-audio-v5" not in sw:
-        fail("AUDIO_CACHE is not the pinned relefela-audio-v5 — bump the pin here too, "
+    # v5 -> v6 on 2026-09-11 pm: all 42 Tiro 1 cut clips (a1*.mp3) re-cut under the same
+    # filenames — audit after her in-app reports: edge fades now land on the clips (the
+    # old output-side -ss left them on the tape ends), six windows had an edge inside
+    # speech (the heading cut mid-Mokoko), and levels came up +8 dB to match the app.
+    if "relefela-audio-v6" not in sw:
+        fail("AUDIO_CACHE is not the pinned relefela-audio-v6 — bump the pin here too, "
              "with the reason, or you have changed it by accident (spec §2.7)")
 
 

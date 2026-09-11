@@ -2810,9 +2810,11 @@ let ass1Story = null;
 function screenAss1Story(){
   currentScreen = 'Tiro 1 — story';
   ass1Story = {at: 0, open: -1};
-  ass1StoryCard();
+  ass1StoryCard(true);
 }
-function ass1StoryCard(){
+/* auto=true only when ARRIVING at a sentence (enter / next / back) — chunk taps
+   re-render this same screen and must not replay the clip mid-read. */
+function ass1StoryCard(auto){
   const s = ass1Story; if (!s) return;
   if (s.at >= RL_ASS1.story.length) return ass1StoryEnd();
   const c = RL_ASS1.story[s.at];
@@ -2842,17 +2844,17 @@ function ass1StoryCard(){
     ${s.at > 0 ? '<button class="btn ghost" id="a1-back" style="margin-top:8px">◀ The one before</button>' : ''}
     </div>`);
   document.getElementById('b-quit').onclick = ()=>{ ass1Story = null; screenAss1(); };
-  ass1HookPlay(c.audio, false);
+  ass1HookPlay(c.audio, auto === true);
   document.querySelectorAll('[data-chunk]').forEach(b=>{
     b.onclick = ()=>{ const i = parseInt(b.dataset.chunk, 10); s.open = (s.open === i ? -1 : i); ass1StoryCard(); };
   });
   document.getElementById('a1-on').onclick = ()=>{
     const st = ass1Get();
     if (!st.s[c.id]){ st.s[c.id] = 1; ass1Set(st); addXP(2, 'ass1'); }
-    s.at++; s.open = -1; ass1StoryCard();
+    s.at++; s.open = -1; ass1StoryCard(true);
   };
   const bk = document.getElementById('a1-back');
-  if (bk) bk.onclick = ()=>{ s.at--; s.open = -1; ass1StoryCard(); };
+  if (bk) bk.onclick = ()=>{ s.at--; s.open = -1; ass1StoryCard(true); };
 }
 function ass1StoryEnd(){
   currentScreen = 'Tiro 1 — story done';

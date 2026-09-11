@@ -17,23 +17,33 @@ WHAT IT SKIPS, AND WHY
     two NAME-FREE cuts in the slicing workbench, which are COPIED in under their own
     card ids (new filenames, so no AUDIO_CACHE bump — see below).
 
-THE CUT RECIPE IS NOT NEGOTIABLE (measured 2026-09-11)
+THE CUT RECIPE (measured 2026-09-11; reworked same day after the audit)
   WhatsApp voice notes decode up to +3.4 dB OVER full scale on loud consonants, so an
   unguarded MP3 hard-clips into a buzz on playback. Every cut therefore decodes to
-  float, drops 5 dB, soft-limits at 0.95 and fades 5 ms at each end. Voice note 4 also
-  carries a mic bump at 5.66–5.75 s that sits between two words; it is ducked in any
-  clip spanning it. These are gen_map.py's exact arguments — the clips Megan approved
-  BY EAR came out of them, so the cross-check below expects byte-identical output.
+  float, is trimmed IN THE FILTER GRAPH, gains +3 dB, soft-limits at 0.95 and fades
+  20 ms at each end. Voice note 4 also carries a mic bump at 5.66–5.75 s; it is ducked
+  in any clip spanning it (the enable window shifts with the trim).
 
-  `-q:a 2` rather than a fixed 64k: again, gen_map.py's setting. On this narrowband
-  source VBR q2 lands around 70 kbps, so the files are the size a 64k CBR export would
-  be anyway, and keeping the flag identical is what makes the ear-checked clips and
-  these shipped clips the same bytes.
+  Why the rework: gen_map.py's original arguments put -ss/-to AFTER -i (output-side
+  seeking), so the afade pair landed on the ends of the WHOLE tape, not the clip — no
+  clip edge was ever actually faded, and any window edge touching speech cut hard with
+  a click. atrim inside the filter graph fixes that: the fades now sit on the clip
+  itself. The gain moved from -5 dB to +3 dB in the same pass because the shipped
+  clips measured ~10 dB quieter than the rest of the app (mean -22 dB vs -11 dB), so
+  Megan cranked her phone to hear them. The alimiter is what makes +3 dB safe on this
+  over-full-scale source. The 2026-09-11 pm re-cut therefore SUPERSEDES the workbench
+  clips she ear-checked at ship time — the app itself is the ear-check surface now,
+  which is where she found these defects in the first place.
+
+  `-q:a 2` stays: on this narrowband source VBR q2 lands around 70 kbps, the size a
+  64k CBR export would be anyway.
 
 AUDIO CACHE
-  Every file written here is a NEW filename (a1*.mp3), so sw.js's AUDIO_CACHE stays
-  where it is. The md5 audit below is the proof: it lists every file in audio/items/
-  before and after and FAILS if any pre-existing file's bytes moved.
+  A normal run writes only NEW filenames (a1*.mp3), so sw.js's AUDIO_CACHE stays
+  where it is; the md5 audit FAILS if any pre-existing file's bytes moved. A
+  DELIBERATE re-cut (windows or recipe changed) is run with --recut: changed a1*.mp3
+  files are then expected and listed, and AUDIO_CACHE MUST bump in the same commit —
+  the run prints the reminder. Anything changed outside a1*.mp3 still fails, always.
 """
 import argparse, hashlib, json, shutil, subprocess, sys
 from pathlib import Path
@@ -53,13 +63,16 @@ def snapshot():
 
 
 def cut(src_ogg, vk, a, b, dst):
-    """gen_map.py's guarded window cut, argument for argument."""
-    af = ("aformat=sample_fmts=flt,"
-          "volume=enable='between(t,5.62,5.80)':volume=0.05," if vk == 'vn4' else "aformat=sample_fmts=flt,")
-    af += ("volume=-5dB,alimiter=limit=0.95:level=false,"
-           "afade=t=in:d=0.005,areverse,afade=t=in:d=0.005,areverse")
-    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(src_ogg),
-                    '-ss', f'{a:.2f}', '-to', f'{b:.2f}', '-af', af,
+    """The guarded window cut. Trim happens in the filter graph (atrim) so the fades
+    land on the clip's own edges — output-side -ss/-to left them on the tape's ends."""
+    af = (f"aformat=sample_fmts=flt,atrim=start={a:.2f}:end={b:.2f},asetpts=PTS-STARTPTS,")
+    if vk == 'vn4':
+        # the mic bump at 5.66-5.75s absolute; shifted into clip time, harmless when
+        # the window excludes it (the enable interval then sits outside the clip)
+        af += f"volume=enable='between(t,{5.62 - a:.2f},{5.80 - a:.2f})':volume=0.05,"
+    af += ("volume=3dB,alimiter=limit=0.95:level=false,"
+           "afade=t=in:d=0.02,areverse,afade=t=in:d=0.02,areverse")
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(src_ogg), '-af', af,
                     '-ac', '1', '-c:a', 'libmp3lame', '-q:a', '2', str(dst)], check=True)
 
 
@@ -69,6 +82,10 @@ def main():
                     help='folder holding the four .ogg voice notes (gitignored)')
     ap.add_argument('--clips', default=str(ROOT / 'Assignnment 1 Audio' / 'clips'),
                     help='the slicing workbench clips/ folder — source of the two name-free app cuts')
+    ap.add_argument('--recut', action='store_true',
+                    help='this run DELIBERATELY re-cuts existing a1*.mp3 files (windows or '
+                         'recipe changed): changed a1 clips are expected, and AUDIO_CACHE '
+                         'must bump in the same commit')
     args = ap.parse_args()
     src_dir, clips_dir = Path(args.src), Path(args.clips)
 
@@ -77,7 +94,7 @@ def main():
     ITEMS.mkdir(parents=True, exist_ok=True)
     before = snapshot()
 
-    made, copied, silent, reused, xcheck = [], [], [], [], []
+    made, copied, silent, reused = [], [], [], []
     for c in m['clips']:
         cid = c['id']
         dst = ITEMS / f'{cid}.mp3'
@@ -108,9 +125,6 @@ def main():
             sys.exit(f'MISSING: {ogg} — pass --src if the voice notes live elsewhere')
         cut(ogg, c['file'], c['start'], c['end'], dst)
         made.append(cid)
-        ear = clips_dir / c.get('clip', '')
-        if ear.exists():
-            xcheck.append((cid, md5(ear) == md5(dst), ear.stat().st_size, dst.stat().st_size))
 
     after = snapshot()
     new = sorted(set(after) - set(before))
@@ -121,21 +135,26 @@ def main():
     print(f'copied  : {len(copied)} app cuts' + (''.join('\n          ' + x for x in copied)))
     print(f'wired   : {len(reused)} existing files' + (''.join('\n          ' + x for x in reused)))
     print(f'silent  : {len(silent)} cards ship no audio ({", ".join(silent)})')
-    ok_x = [c for c, same, *_ in xcheck if same]
-    bad_x = [(c, s1, s2) for c, same, s1, s2 in xcheck if not same]
-    print(f'\near-check cross-check vs the workbench clips/: {len(ok_x)}/{len(xcheck)} byte-identical')
-    for c, s1, s2 in bad_x:
-        print(f'  ! {c}: ear-checked {s1} bytes, exported {s2} bytes — INVESTIGATE, she approved the ear-checked cut')
 
     print(f'\nmd5 audit of audio/items/ : {len(before)} files before, {len(after)} after')
     print(f'  new     : {len(new)}')
     print(f'  changed : {len(changed)}' + (''.join('\n            ' + k for k in changed)))
     print(f'  removed : {len(gone)}' + (''.join('\n            ' + k for k in gone)))
-    if changed or gone:
-        sys.exit('\nFAILED — an existing clip moved. AUDIO_CACHE would have to bump; the run is wrong.')
-    if bad_x:
-        sys.exit('\nFAILED — an exported cut does not match the clip Megan ear-checked.')
-    print('\nOK — new files only, every cut matches its ear-checked clip. AUDIO_CACHE stays put.')
+    if gone:
+        sys.exit('\nFAILED — a clip was REMOVED. This script never deletes; something is wrong.')
+    outside = [k for k in changed if not k.startswith('a1')]
+    if outside:
+        sys.exit('\nFAILED — a clip outside a1*.mp3 moved: ' + ', '.join(outside))
+    if changed and not args.recut:
+        sys.exit('\nFAILED — an existing clip moved and --recut was not passed. Either the '
+                 'run is wrong, or this is a deliberate re-cut: re-run with --recut and '
+                 'bump AUDIO_CACHE in the same commit.')
+    if changed:
+        print(f'\nRECUT — {len(changed)} existing a1 clips re-cut under the same filenames.'
+              '\n🚨 AUDIO_CACHE MUST BUMP (relefela-audio-vN+1) in sw.js IN THIS SAME COMMIT,'
+              '\n   or phones keep the old audio forever.')
+        return
+    print('\nOK — new files only. AUDIO_CACHE stays put.')
 
 
 if __name__ == '__main__':
