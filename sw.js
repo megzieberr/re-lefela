@@ -9,7 +9,7 @@
 //   - precache uses {cache:'reload'} so install never reads a stale HTTP-cached
 //     index.html (GitHub Pages serves max-age=600).
 //   - non-GET and cross-origin (Supabase, CDN) requests pass straight through.
-const CACHE = 'relefela-v49';
+const CACHE = 'relefela-v50';
 // Bump AUDIO_CACHE's version suffix ONLY when an existing audio file's content
 // changes (re-record/re-splice under the same filename). App version bumps
 // (CACHE above) must never evict audio.
@@ -22,9 +22,13 @@ const CACHE = 'relefela-v49';
 // guessed - the speech runs to 3.214s into that window and the cut sat at 3.028s, so a
 // final ~0.19s burst was being sliced away. Without this bump every phone that already
 // has the clip keeps serving the truncated one forever.
+// NOT bumped on 2026-09-11 (app v49 -> v50, the 📼 Tiro 1 tab): all 44 Assignment-1
+// clips are NEW filenames (audio/items/a1*.mp3), so no phone is holding a stale version
+// of any of them. toolkit/ass1-export.py md5s audio/items/ before and after the cut and
+// fails the run if one existing byte moves — that audit is what this line rests on.
 const AUDIO_CACHE = 'relefela-audio-v5';
 const CORE = ['./', 'index.html', 'content.js', 'dialogues.js', 'builder-bank.js', 'dict-bank.js',
-  'medumo-bank.js', 'lediri-bank.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png',
+  'medumo-bank.js', 'lediri-bank.js', 'ass1-bank.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png',
   // Katse is animated WebP now (see KATSE_POSES in index.html). `oops` and `sleep`
   // are stills: no animation was ever drawn for oops, and the sleeping animation was
   // reverted on 2026-08-06 (her call — it looked odd).

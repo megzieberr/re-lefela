@@ -324,6 +324,7 @@ body.tutor-fab-on .exa-actions{padding-bottom:calc(64px + env(safe-area-inset-bo
 <script src="builder-bank.js"></script>
 <script src="medumo-bank.js"></script>
 <script src="lediri-bank.js"></script>
+<script src="ass1-bank.js"></script>
 <script src="dict-bank.js"></script>
 <script>
 'use strict';
@@ -362,7 +363,7 @@ function persist(){ store.set('srs', state.srs); store.set('progress', state.pro
 // own by the caller. There are no app-scoped rl_ keys. Used by logout + the account-
 // switch guard in afterAuth so one learner's data can never bleed into another's.
 function clearLearnerState(){
-  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_parked','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder','rl_forms','rl_warmup','rl_medumo','rl_lediri','rl_dictasked']
+  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_parked','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder','rl_forms','rl_warmup','rl_medumo','rl_lediri','rl_ass1','rl_dictasked']
     .forEach(k=>localStorage.removeItem(k));
 }
 
@@ -1047,6 +1048,13 @@ function screenHome(){
   const ldDone = RL_LEDIRI.filter(v=>ldSt.verbs[v.id]).length;
   const lediriBtn = `<button class="btn ghost" id="b-lediri" style="margin:10px 0">🗣️ Lediri — one verb, every shape<br>
       <span class="tiny">${ldDone} of ${RL_LEDIRI.length} verbs · commands and polite requests, built by you</span></button>`;
+  /* 📼 Tiro 1 — the Assignment 1 drill tab. Temporary and flag-gated (SHOW_ASS1): the
+     assignment is due 14 Sep 2026, after which ASS1_LIVE flips false and ?ass1=1 brings
+     it back for a visit. Sits last of the drills because it is the newest and the one
+     with a deadline on it. */
+  const ass1Btn = SHOW_ASS1
+    ? `<button class="btn ghost" id="b-ass1" style="margin:10px 0">📼 Tiro 1: the assignment, word for word<br>
+        <span class="tiny">${RL_ASS1.words.length} words · ${RL_ASS1.intro.length} lines · the story · nothing here touches your review schedule</span></button>` : '';
   const awayDays = daysSincePractice();
   const welcomeBack = (awayDays >= WARMUP_AWAY_DAYS && wuPool.length >= 2)
     ? `<div class="notecard" style="margin:14px 0">
@@ -1079,6 +1087,7 @@ function screenHome(){
     ${warmupBtn}
     ${medumoBtn}
     ${lediriBtn}
+    ${ass1Btn}
     ${unitsHtml}
     <div class="row" style="margin-top:16px">
       <button class="btn ghost" id="b-lb" style="flex:1">🏆 Scoreboard</button>
@@ -1104,6 +1113,7 @@ function screenHome(){
   const rc = document.getElementById('b-warmup'); if (rc) rc.onclick = startWarmup;
   const md = document.getElementById('b-medumo'); if (md) md.onclick = screenMedumo;
   const ld = document.getElementById('b-lediri'); if (ld) ld.onclick = screenLediri;
+  const a1 = document.getElementById('b-ass1'); if (a1) a1.onclick = screenAss1;
   const rct = document.getElementById('b-warmup-top'); if (rct) rct.onclick = startWarmup;
   const dc = document.getElementById('b-dict'); if (dc) dc.onclick = screenDictionary;
   document.getElementById('b-lb').onclick = screenLeaderboard;
@@ -2496,6 +2506,515 @@ function finishLediri(){
   </div>`);
   document.getElementById('b-again').onclick = ()=> startLediri(verb);
   document.getElementById('b-back').onclick = screenLediri;
+}
+
+/* ---------- 📼 Tiro 1 — SECL121 Assignment 1, word for word (2026-09-11) -------------
+   Her ask, plainly: the assignment is a video of her reading his word list, his intro
+   lines and the Phakwe le Mokoko story out loud, due 14 September. Half the mark is her
+   pronunciation, so a Setswana speaker recorded the whole script and this tab is where
+   she drills against that voice — "and the round sommer teaches me what every word
+   means" was the other half of the ask, which is what the story chunks are for.
+
+   FOUR TILES, in the order the video runs: his 23 words · the 8 intro lines · the story
+   · record-and-compare. Data is ass1-bank.js (see its header for the sourcing rules and
+   for why one card ships silent).
+
+   NO SRS WRITES. Own device-local key rl_ass1, XP as kind 'ass1'. Same rule as Warm-up,
+   Medumo and Lediri: 47 assignment cards must not flood the review queue.
+
+   TEMPORARY, PARKED NOT DELETED. ASS1_LIVE is true until she has submitted; flip it to
+   false afterwards and ?ass1=1 still brings the tab back for a visit. The Listening gym
+   is parked exactly this way — nothing is ever deleted, because it always turns out to
+   be wanted again.
+
+   All names here start with ass1. That is not decoration: runRecap() collided with an
+   identically-named function once, hoisting quietly pointed the caller at the wrong
+   one, and every gate still passed. Grep before adding a name to this file. */
+const ASS1_LIVE = true;   // flip to false the day after she submits (14 Sep 2026)
+const SHOW_ASS1 = ASS1_LIVE || new URLSearchParams(location.search).has('ass1');
+const ASS1_QUIZ_ROUND = 12;      // the fixed-round-length ruling Ditlhopha earned
+
+function ass1Get(){ return store.get('ass1', {w:{}, i:{}, s:{}, q:0, r:{}}); }
+function ass1Set(v){ store.set('ass1', v); }
+/* Which beats a card owes. Read-only cards (the two surnames, yoo, yole) stop after
+   listening: he never glossed them, so there is no meaning to be quizzed on. A card
+   with no clip cannot be asked "which word did you hear". */
+function ass1Beats(c){
+  if (c.readOnly) return ['listen'];
+  return c.audio ? ['listen', 'which', 'meaning'] : ['listen', 'meaning'];
+}
+function ass1WordDone(c, st){
+  const got = (st || ass1Get()).w[c.id] || {};
+  return ass1Beats(c).every(b=>got[b]);
+}
+function ass1Counts(){
+  const st = ass1Get();
+  return {
+    words: RL_ASS1.words.filter(c=>ass1WordDone(c, st)).length,
+    intro: RL_ASS1.intro.filter(c=>st.i[c.id]).length,
+    story: RL_ASS1.story.filter(c=>st.s[c.id]).length,
+    quiz: st.q || 0,
+    rec: Object.keys(st.r || {}).length
+  };
+}
+function ass1Head(title, right){
+  return `<div class="topbar">
+      <button class="quit" id="b-quit">✕</button>
+      <h2 style="margin:0; font-size:1.05rem">📼 ${esc(title)}</h2>
+      <span class="pill" style="margin-left:auto">${esc(String(right))}</span>
+    </div>`;
+}
+function ass1Quit(){ document.getElementById('b-quit').onclick = ()=>{ ass1Run = null; screenAss1(); }; }
+/* One play/slow pair, wired to one file. Used on every card that has a clip. */
+function ass1PlayRow(file, label){
+  if (!file) return `<p class="tiny" style="margin:10px 0">${esc(label || 'No recording for this one — say it from the spelling.')}</p>`;
+  return `<div class="row" style="margin:12px 0; align-items:center">
+      <button class="audio-btn" id="a1-play" aria-label="Play">🔊</button>
+      <button class="audio-btn slow-btn" id="a1-slow" aria-label="Play slowly" title="Slowly">🐢</button>
+    </div>`;
+}
+function ass1HookPlay(file, autoplay){
+  const p = document.getElementById('a1-play'), s = document.getElementById('a1-slow');
+  if (!p || !file) return;
+  p.onclick = ()=>playAudio(file);
+  if (s) s.onclick = ()=>playAudio(file, SLOW_RATE);
+  if (autoplay) playAudio(file);
+}
+/* Play a list of clips back to back — the whole intro, the way she will say it on
+   camera. Chains on 'ended' rather than on timers, so a slow first byte cannot make
+   two clips overlap. */
+let ass1Seq = null;
+function ass1PlaySeq(files, onDone){
+  const token = {};
+  ass1Seq = token;
+  (function step(i){
+    if (ass1Seq !== token) return;                 // a newer play took over
+    if (i >= files.length){ ass1Seq = null; if (onDone) onDone(); return; }
+    const a = playAudio(files[i]);
+    if (!a){ step(i + 1); return; }
+    a.addEventListener('ended', ()=>step(i + 1), {once: true});
+  })(0);
+}
+function ass1StopSeq(){ ass1Seq = null; if (currentAudio) currentAudio.pause(); }
+
+/* ── the tab home ─────────────────────────────────────────────────────────────────── */
+function screenAss1(){
+  currentScreen = 'Tiro 1';
+  ass1StopSeq();
+  const n = ass1Counts();
+  const tile = (id, icon, title, sub, pill) => `<button class="choice" id="${id}" style="text-align:left">
+      <span class="row spread" style="align-items:flex-start">
+        <b>${icon} ${esc(title)}</b><span class="pill">${esc(pill)}</span>
+      </span>
+      <span class="tiny" style="display:block; margin-top:3px">${esc(sub)}</span>
+    </button>`;
+  render(ass1Head('Tiro 1', `${n.words + n.intro + n.story} / ${RL_ASS1.words.length + RL_ASS1.intro.length + RL_ASS1.story.length}`) + `
+    <p class="muted" style="margin:10px 0 4px">Everything you read out loud in the video, in the order you read it. Nothing here touches your review schedule.</p>
+    ${tile('a1-t1', '🔤', 'Mafoko', 'His 23 words — hear it, pick it, then say what it means', `${n.words} / ${RL_ASS1.words.length}`)}
+    ${tile('a1-t2', '👋', 'Intro lines', 'The 8 lines you say before you start reading', `${n.intro} / ${RL_ASS1.intro.length}`)}
+    ${tile('a1-t3', '📖', 'Phakwe le Mokoko', 'The story, chunk by chunk, every word glossed', `${n.story} / ${RL_ASS1.story.length}`)}
+    ${tile('a1-t4', '⏺', 'Record and compare', 'Say any line, then hear hers and yours back to back', n.rec ? `${n.rec} tried` : 'open')}
+    <p class="tiny" style="margin-top:14px">The voice is a Setswana speaker reading your assignment script. One word (<b>yô</b>) has no clip — that take was spoiled at the microphone, and a wrong sound is worse than none.</p>`);
+  document.getElementById('b-quit').onclick = screenHome;
+  document.getElementById('a1-t1').onclick = startAss1Words;
+  document.getElementById('a1-t2').onclick = screenAss1Intro;
+  document.getElementById('a1-t3').onclick = screenAss1Story;
+  document.getElementById('a1-t4').onclick = screenAss1Record;
+}
+
+/* ── tile 1: 🔤 Mafoko, three beats a card ────────────────────────────────────────── */
+let ass1Run = null;
+/* HIS order the first time — the video reads the list in that order, so the first pass
+   should sound like the list. Shuffled on every pass after that. */
+function startAss1Words(){
+  const st = ass1Get();
+  const fresh = Object.keys(st.w || {}).length === 0;
+  const order = fresh ? RL_ASS1.words.slice() : shuffle(RL_ASS1.words.slice());
+  ass1Run = {order, at: 0, beat: 0, right: 0, wrong: 0, fresh};
+  ass1WordStep();
+}
+/* Distractors: same sound family first, then the rest of his list. His list IS a set of
+   sound families, so the near-miss that teaches something is another ô word. */
+function ass1Distractors(card, n, pool){
+  const same = shuffle(pool.filter(c=>c.id !== card.id && c.sound === card.sound));
+  const other = shuffle(pool.filter(c=>c.id !== card.id && c.sound !== card.sound));
+  return same.concat(other).slice(0, n);
+}
+function ass1WordStep(){
+  const r = ass1Run; if (!r) return;
+  if (r.at >= r.order.length) return finishAss1Words();
+  const c = r.order[r.at];
+  const beats = ass1Beats(c);
+  if (r.beat >= beats.length){ r.at++; r.beat = 0; return ass1WordStep(); }
+  const which = beats[r.beat];
+  if (which === 'listen') return ass1BeatListen(c);
+  if (which === 'which') return ass1BeatWhich(c);
+  return ass1BeatMeaning(c);
+}
+function ass1MarkBeat(card, beat){
+  const st = ass1Get();
+  st.w[card.id] = st.w[card.id] || {};
+  if (!st.w[card.id][beat]){ st.w[card.id][beat] = 1; ass1Set(st); addXP(2, 'ass1'); return true; }
+  ass1Set(st);
+  return false;
+}
+function ass1NextBeat(){ const r = ass1Run; if (!r) return; r.beat++; ass1WordStep(); }
+function ass1BeatListen(c){
+  const r = ass1Run;
+  currentScreen = 'Tiro 1 — ' + c.id + ' listen';
+  render(ass1Head('Mafoko', `${r.at + 1} / ${r.order.length}`) + `<div id="a1Area">
+    <p class="muted">Listen, then say it out loud.</p>
+    <div class="bigtsw">${esc(c.tsw)}</div>
+    <span class="pill" style="margin-top:6px">sound: ${esc(c.sound)}</span>
+    ${ass1PlayRow(c.audio, 'No clip for this one — that take was spoiled at the microphone. Say it from the spelling.')}
+    <div class="notecard" style="margin:10px 0">
+      <b>${esc(c.eng)}</b>${c.af ? `<span class="tiny" style="display:block">Afrikaans: ${esc(c.af)}</span>` : ''}
+    </div>
+    ${c.note ? `<p class="tiny">${esc(c.note)}</p>` : ''}
+    <button class="btn primary" id="a1-on" style="margin-top:16px">${c.readOnly ? 'Said it — next word →' : 'Said it — now test me →'}</button>
+    </div>`);
+  ass1Quit();
+  ass1HookPlay(c.audio, true);
+  document.getElementById('a1-on').onclick = ()=>{ ass1MarkBeat(c, 'listen'); ass1NextBeat(); };
+}
+function ass1BeatWhich(c){
+  const r = ass1Run;
+  currentScreen = 'Tiro 1 — ' + c.id + ' which';
+  const opts = shuffle([c, ...ass1Distractors(c, 3, RL_ASS1.words.filter(x=>x.audio))]);
+  render(ass1Head('Mafoko', `${r.at + 1} / ${r.order.length}`) + `<div id="a1Area">
+    <p class="muted">Which word is that?</p>
+    ${ass1PlayRow(c.audio)}
+    ${opts.map(o=>`<button class="choice" data-id="${esc(o.id)}">${esc(o.tsw)}</button>`).join('')}
+    <div id="a1-fb"></div></div>`);
+  ass1Quit();
+  ass1HookPlay(c.audio, true);
+  const fb = document.getElementById('a1-fb');
+  let locked = false;
+  document.querySelectorAll('.choice').forEach(b=>{
+    b.onclick = ()=>{
+      if (locked) return;
+      if (b.dataset.id === c.id){
+        locked = true; r.right++; b.classList.add('good');
+        ass1MarkBeat(c, 'which');
+        setTimeout(()=>{ if (ass1Run === r) ass1NextBeat(); }, 340);
+      } else {
+        b.classList.add('bad'); b.disabled = true; r.wrong++;
+        fb.innerHTML = `<div class="feedback bad">Not that one — play it again and listen for the <b>${esc(c.sound)}</b>.</div>`;
+      }
+    };
+  });
+}
+function ass1BeatMeaning(c){
+  const r = ass1Run;
+  currentScreen = 'Tiro 1 — ' + c.id + ' meaning';
+  // never offer "(a surname)" or "(listed with yô…)" as a distractor — they are not meanings
+  const pool = RL_ASS1.words.filter(x=>!x.readOnly);
+  const opts = shuffle([c, ...ass1Distractors(c, 3, pool)]);
+  render(ass1Head('Mafoko', `${r.at + 1} / ${r.order.length}`) + `<div id="a1Area">
+    <p class="muted">What does it mean?</p>
+    <div class="bigtsw">${esc(c.tsw)}</div>
+    <div style="height:10px"></div>
+    ${opts.map(o=>`<button class="choice" data-id="${esc(o.id)}">${esc(o.eng)}</button>`).join('')}
+    <div id="a1-fb"></div></div>`);
+  ass1Quit();
+  const fb = document.getElementById('a1-fb');
+  let locked = false;
+  document.querySelectorAll('.choice').forEach(b=>{
+    b.onclick = ()=>{
+      if (locked) return;
+      if (b.dataset.id === c.id){
+        locked = true; r.right++; b.classList.add('good');
+        ass1MarkBeat(c, 'meaning');
+        setTimeout(()=>{ if (ass1Run === r) ass1NextBeat(); }, 340);
+      } else {
+        b.classList.add('bad'); b.disabled = true; r.wrong++;
+        fb.innerHTML = `<div class="feedback bad">Not quite — ${esc(c.tsw)} is <b>${esc(c.eng)}</b>.</div>`;
+      }
+    };
+  });
+}
+function finishAss1Words(){
+  const r = ass1Run; if (!r) return;
+  const right = r.right, total = r.right + r.wrong;
+  ass1Run = null;
+  const n = ass1Counts();
+  currentScreen = 'Tiro 1 — Mafoko done';
+  render(`<div class="center" style="margin-top:12vh">
+    <h1 style="font-size:2rem">${esc(RL_CONTENT.flavour.lessonDone)}</h1>
+    <p class="muted">All ${RL_ASS1.words.length} of his words, ${r.fresh ? 'in his order' : 'shuffled'}. Your review schedule is untouched.</p>
+    <div class="statgrid" style="margin-top:20px">
+      <div class="stat"><b>${right}/${total || 1}</b>right first time</div>
+      <div class="stat"><b>${n.words}/${RL_ASS1.words.length}</b>words finished</div>
+    </div>
+    <button class="btn primary" id="b-again" style="margin-top:16px">Run them again, shuffled</button>
+    <button class="btn ghost" id="b-back" style="margin-top:8px">Back to Tiro 1</button>
+  </div>`);
+  document.getElementById('b-again').onclick = startAss1Words;
+  document.getElementById('b-back').onclick = screenAss1;
+}
+
+/* ── tile 2: 👋 the intro lines ───────────────────────────────────────────────────── */
+/* Read-along, no drill — this is a script to learn to SAY, and every one of the eight
+   lines has a voice on it. Five of them reuse audio the app already ships (two of those
+   are name-free cuts), which is how a name stays out of a public repo. */
+function screenAss1Intro(){
+  currentScreen = 'Tiro 1 — intro';
+  const st = ass1Get();
+  render(ass1Head('Intro lines', `${RL_ASS1.intro.filter(c=>st.i[c.id]).length} / ${RL_ASS1.intro.length}`) + `<div id="a1Area">
+    <p class="muted">This is the intro you say before you start reading. Tap a line to hear it.</p>
+    <button class="btn primary" id="a1-all" style="margin:12px 0">▶ Play the whole intro</button>
+    ${RL_ASS1.intro.map((c, i)=>`<div class="card" style="margin:8px 0; padding:12px">
+        <div class="row" style="align-items:flex-start">
+          <button class="audio-btn" data-line="${i}" aria-label="Play line ${i + 1}" style="width:44px; height:44px; font-size:1.15rem">🔊</button>
+          <div style="flex:1">
+            <b style="font-size:1.1rem">${esc(c.tsw)}</b>
+            <span class="tiny" style="display:block">${esc(c.eng)}</span>
+            <span class="tiny" style="display:block">${esc(c.af)}</span>
+            ${c.note ? `<span class="tiny" style="display:block; margin-top:4px">🐾 ${esc(c.note)}</span>` : ''}
+          </div>
+        </div>
+      </div>`).join('')}
+    <p class="tiny" style="margin-top:12px">Line 4 and line 5 are your own name and surname — the clip says the line up to that point, then you say the rest. On line 7 the clip stops after <b>wa</b>: your lecturer wants <b>SECL 121</b> said in English, so you say that bit yourself.</p>
+    </div>`);
+  document.getElementById('b-quit').onclick = ()=>{ ass1StopSeq(); screenAss1(); };
+  document.querySelectorAll('[data-line]').forEach(b=>{
+    b.onclick = ()=>{
+      ass1StopSeq();                       // a single line cancels a whole-intro run…
+      const all = document.getElementById('a1-all');
+      if (all) all.textContent = '▶ Play the whole intro';   // …so put its label back
+      const c = RL_ASS1.intro[parseInt(b.dataset.line, 10)];
+      playAudio(c.audio);
+      const s = ass1Get(); if (!s.i[c.id]){ s.i[c.id] = 1; ass1Set(s); }
+    };
+  });
+  document.getElementById('a1-all').onclick = ()=>{
+    const btn = document.getElementById('a1-all');
+    btn.textContent = '⏸ Playing the whole intro…';
+    ass1PlaySeq(RL_ASS1.intro.map(c=>c.audio), ()=>{
+      const s = ass1Get();
+      const first = RL_ASS1.intro.some(c=>!s.i[c.id]);
+      RL_ASS1.intro.forEach(c=>{ s.i[c.id] = 1; });
+      ass1Set(s);
+      if (first) addXP(3, 'ass1');
+      if (currentScreen === 'Tiro 1 — intro') screenAss1Intro();
+    });
+  };
+}
+
+/* ── tile 3: 📖 Phakwe le Mokoko ──────────────────────────────────────────────────── */
+/* Sentence by sentence. The sentence is drawn as its teaching chunks; tapping a chunk
+   opens what it means AND every word inside it, one by one. That word-by-word layer is
+   the thing she actually asked for — "the round sommer teaches me what every word
+   means" — so it is a tap away on every chunk, not hidden behind a quiz. */
+let ass1Story = null;
+function screenAss1Story(){
+  currentScreen = 'Tiro 1 — story';
+  ass1Story = {at: 0, open: -1};
+  ass1StoryCard();
+}
+function ass1StoryCard(){
+  const s = ass1Story; if (!s) return;
+  if (s.at >= RL_ASS1.story.length) return ass1StoryEnd();
+  const c = RL_ASS1.story[s.at];
+  currentScreen = 'Tiro 1 — ' + c.id;
+  const open = s.open >= 0 ? c.chunks[s.open] : null;
+  render(ass1Head('Phakwe le Mokoko', `${s.at + 1} / ${RL_ASS1.story.length}`) + `<div id="a1Area">
+    <p class="muted">Tap a piece to see what it is doing.</p>
+    <div class="tokens" style="margin:10px 0">
+      ${c.chunks.map((ch, i)=>`<button class="tok" data-chunk="${i}"${i === s.open ? ' style="outline:3px solid var(--pink-deep)"' : ''}>${esc(ch.tsw)}</button>`).join('')}
+    </div>
+    ${ass1PlayRow(c.audio)}
+    ${open ? `<div class="notecard" style="margin:10px 0">
+        <b>${esc(open.tsw)}</b> — ${esc(open.eng)}
+        <div style="margin-top:8px">
+          ${open.words.map(w=>`<div style="padding:5px 0; border-top:1px solid var(--line)">
+              <b>${esc(w.w)}</b> <span class="tiny">${esc(w.g)}</span></div>`).join('')}
+        </div>
+        ${open.note ? `<p class="tiny" style="margin:8px 0 0">${esc(open.note)}</p>` : ''}
+      </div>` : ''}
+    <div class="card" style="margin-top:12px; padding:12px">
+      <span class="tiny">the whole sentence — read THIS line for the video (the pieces above drop his punctuation)</span>
+      <div style="font-weight:700">${esc(c.tsw)}</div>
+      <div>${esc(c.eng)}</div>
+      <div class="tiny">${esc(c.af)}</div>
+    </div>
+    <button class="btn primary" id="a1-on" style="margin-top:14px">${s.at + 1 === RL_ASS1.story.length ? 'That is the story →' : 'Next sentence →'}</button>
+    ${s.at > 0 ? '<button class="btn ghost" id="a1-back" style="margin-top:8px">◀ The one before</button>' : ''}
+    </div>`);
+  document.getElementById('b-quit').onclick = ()=>{ ass1Story = null; screenAss1(); };
+  ass1HookPlay(c.audio, false);
+  document.querySelectorAll('[data-chunk]').forEach(b=>{
+    b.onclick = ()=>{ const i = parseInt(b.dataset.chunk, 10); s.open = (s.open === i ? -1 : i); ass1StoryCard(); };
+  });
+  document.getElementById('a1-on').onclick = ()=>{
+    const st = ass1Get();
+    if (!st.s[c.id]){ st.s[c.id] = 1; ass1Set(st); addXP(2, 'ass1'); }
+    s.at++; s.open = -1; ass1StoryCard();
+  };
+  const bk = document.getElementById('a1-back');
+  if (bk) bk.onclick = ()=>{ s.at--; s.open = -1; ass1StoryCard(); };
+}
+function ass1StoryEnd(){
+  currentScreen = 'Tiro 1 — story done';
+  ass1Story = null;
+  render(ass1Head('Phakwe le Mokoko', 'done') + `<div id="a1Area">
+    <p class="muted">That is the whole story. Hear it read through, then see how much stuck.</p>
+    ${ass1PlayRow(RL_ASS1.whole.slow)}
+    <p class="tiny">One reading, slow and sentence by sentence — that is the whole tape. 🐢 slows it further if you want to shadow it.</p>
+    <button class="btn primary" id="a1-quiz" style="margin-top:16px">Now test me on the pieces →</button>
+    <button class="btn ghost" id="a1-again" style="margin-top:8px">Read it again from the start</button>
+    </div>`);
+  document.getElementById('b-quit').onclick = ()=>{ ass1StopSeq(); screenAss1(); };
+  ass1HookPlay(RL_ASS1.whole.slow, false);
+  document.getElementById('a1-quiz').onclick = startAss1Quiz;
+  document.getElementById('a1-again').onclick = screenAss1Story;
+}
+/* The second pass: chunk ↔ meaning, tap-not-type, options from the same story so the
+   choice is between real pieces of it and never between a piece and filler. The eight
+   phrase cards she asked to have cut out of the story join the same pool — they are the
+   same kind of question and they carry their own clip. */
+function ass1QuizPool(){
+  const pool = [];
+  RL_ASS1.story.forEach(c=>c.chunks.forEach(ch=>{
+    pool.push({key: c.id + '|' + ch.tsw, tsw: ch.tsw, eng: ch.eng, audio: c.audio, from: 'the story'});
+  }));
+  RL_ASS1.phrases.forEach(p=>{
+    pool.push({key: p.id, tsw: p.tsw, eng: p.eng, audio: p.audio, from: 'a phrase'});
+  });
+  return pool;
+}
+function startAss1Quiz(){
+  const pool = ass1QuizPool();
+  // one question per distinct meaning, so two options can never both be right
+  const seen = {};
+  const uniq = pool.filter(p=>{ const k = p.eng.toLowerCase(); if (seen[k]) return false; seen[k] = 1; return true; });
+  ass1Run = {quiz: true, pool: uniq, order: shuffle(uniq).slice(0, Math.min(ASS1_QUIZ_ROUND, uniq.length)),
+             at: 0, right: 0, wrong: 0};
+  ass1QuizStep();
+}
+function ass1QuizStep(){
+  const r = ass1Run; if (!r || !r.quiz) return;
+  if (r.at >= r.order.length) return finishAss1Quiz();
+  const q = r.order[r.at];
+  // alternate the direction: Setswana → meaning, then meaning → Setswana
+  const toEng = r.at % 2 === 0;
+  currentScreen = 'Tiro 1 — quiz ' + (r.at + 1);
+  const others = shuffle(r.pool.filter(p=>p.key !== q.key && p.eng.toLowerCase() !== q.eng.toLowerCase()
+                                          && p.tsw.toLowerCase() !== q.tsw.toLowerCase())).slice(0, 3);
+  const opts = shuffle([q, ...others]);
+  render(ass1Head('The pieces', `${r.at + 1} / ${r.order.length}`) + `<div id="a1Area">
+    <p class="muted">${toEng ? 'What does this piece mean?' : 'Which piece says this?'}</p>
+    <div class="bigtsw" style="font-size:1.35rem">${esc(toEng ? q.tsw : q.eng)}</div>
+    ${ass1PlayRow(q.audio, '')}
+    <div style="height:6px"></div>
+    ${opts.map(o=>`<button class="choice" data-key="${esc(o.key)}">${esc(toEng ? o.eng : o.tsw)}</button>`).join('')}
+    <div id="a1-fb"></div></div>`);
+  ass1Quit();
+  ass1HookPlay(q.audio, false);
+  const fb = document.getElementById('a1-fb');
+  let locked = false;
+  document.querySelectorAll('.choice').forEach(b=>{
+    b.onclick = ()=>{
+      if (locked) return;
+      if (b.dataset.key === q.key){
+        locked = true; r.right++; b.classList.add('good');
+        setTimeout(()=>{ if (ass1Run === r){ r.at++; ass1QuizStep(); } }, 340);
+      } else {
+        b.classList.add('bad'); b.disabled = true; r.wrong++;
+        fb.innerHTML = `<div class="feedback bad">Not that one — <b>${esc(q.tsw)}</b> is ${esc(q.eng)}.</div>`;
+      }
+    };
+  });
+}
+function finishAss1Quiz(){
+  const r = ass1Run; if (!r) return;
+  const right = r.right, total = r.order.length;
+  ass1Run = null;
+  const st = ass1Get();
+  st.q = (st.q || 0) + 1;
+  ass1Set(st);
+  if (st.q === 1) addXP(5, 'ass1');       // XP for new ground, not for replays (the Lediri rule)
+  currentScreen = 'Tiro 1 — quiz done';
+  render(`<div class="center" style="margin-top:12vh">
+    <h1 style="font-size:2rem">${esc(RL_CONTENT.flavour.lessonDone)}</h1>
+    <p class="muted">${right} of ${total} pieces first time. Nothing here moved a review date.</p>
+    <button class="btn primary" id="b-again" style="margin-top:16px">Another round of pieces</button>
+    <button class="btn ghost" id="b-story" style="margin-top:8px">Back through the story</button>
+    <button class="btn ghost" id="b-back" style="margin-top:8px">Back to Tiro 1</button>
+  </div>`);
+  document.getElementById('b-again').onclick = startAss1Quiz;
+  document.getElementById('b-story').onclick = screenAss1Story;
+  document.getElementById('b-back').onclick = screenAss1;
+}
+
+/* ── tile 4: ⏺ record and compare ─────────────────────────────────────────────────── */
+/* The same MediaRecorder the speak exercise uses. Nothing is uploaded and nothing is
+   stored: the recording lives in a blob URL for as long as the screen is open, and goes
+   when she leaves it. Half this assignment's mark is her pronunciation, so hearing
+   herself against the speaker straight after is the single most useful thing here. */
+function ass1VoicedCards(){
+  return [
+    {label: '🔤 His words', cards: RL_ASS1.words.filter(c=>c.audio)},
+    {label: '👋 Intro lines', cards: RL_ASS1.intro.filter(c=>c.audio)},
+    {label: '📖 Story sentences', cards: RL_ASS1.story.filter(c=>c.audio)},
+    {label: '📖 Phrases from the story', cards: RL_ASS1.phrases.filter(c=>c.audio)}
+  ];
+}
+function screenAss1Record(){
+  currentScreen = 'Tiro 1 — record picker';
+  const st = ass1Get();
+  render(ass1Head('Record and compare', `${Object.keys(st.r || {}).length} tried`) + `<div id="a1Area">
+    <p class="muted">Pick any line, say it, then play hers and yours back to back. Nothing is saved or sent anywhere.</p>
+    ${ass1VoicedCards().map(g=>`<h3 style="font-size:.95rem; margin:16px 0 4px">${esc(g.label)}</h3>
+      ${g.cards.map(c=>`<button class="choice" data-rec="${esc(c.id)}">${st.r[c.id] ? '✓ ' : ''}${esc(c.tsw)}</button>`).join('')}`).join('')}
+    </div>`);
+  document.getElementById('b-quit').onclick = screenAss1;
+  const all = {};
+  ass1VoicedCards().forEach(g=>g.cards.forEach(c=>{ all[c.id] = c; }));
+  document.querySelectorAll('[data-rec]').forEach(b=>{
+    b.onclick = ()=> ass1RecordCard(all[b.dataset.rec]);
+  });
+}
+function ass1RecordCard(c){
+  if (!c) return;
+  currentScreen = 'Tiro 1 — record ' + c.id;
+  render(ass1Head('Record and compare', c.id) + `<div id="a1Area">
+    <p class="muted">Listen first, then record yourself saying it.</p>
+    <div class="bigtsw" style="font-size:1.45rem">${esc(c.tsw)}</div>
+    <span class="tiny" style="display:block; margin-top:4px">${esc(c.eng)}</span>
+    ${ass1PlayRow(c.audio)}
+    <div class="card" style="margin-top:8px"><div class="row">
+      <button class="audio-btn rec-btn" id="a1-rec" aria-label="Record">🎙️</button>
+      <button class="audio-btn" id="a1-mine" disabled style="opacity:.4" aria-label="Play my recording">▶️</button>
+      <span class="muted" id="a1-recstat">Tap 🎙️ to record</span>
+    </div></div>
+    <button class="btn ghost" id="a1-back" style="margin-top:14px">◀ Pick another line</button>
+    </div>`);
+  document.getElementById('b-quit').onclick = screenAss1;
+  ass1HookPlay(c.audio, false);
+  document.getElementById('a1-back').onclick = screenAss1Record;
+  let rec = null, chunks = [], myUrl = null, recording = false;
+  const stat = document.getElementById('a1-recstat');
+  const bMine = document.getElementById('a1-mine');
+  document.getElementById('a1-rec').onclick = async ()=>{
+    if (recording){ rec.stop(); return; }
+    try{
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      rec = new MediaRecorder(stream); chunks = [];
+      rec.ondataavailable = e=>chunks.push(e.data);
+      rec.onstop = ()=>{
+        stream.getTracks().forEach(t=>t.stop());
+        myUrl = URL.createObjectURL(new Blob(chunks));
+        bMine.disabled = false; bMine.style.opacity = 1;
+        stat.textContent = 'Recorded! 🔊 = hers, ▶️ = you';
+        recording = false;
+        const st = ass1Get();
+        if (!st.r[c.id]){ st.r[c.id] = 1; ass1Set(st); addXP(2, 'ass1'); }
+      };
+      rec.start(); recording = true; stat.textContent = 'Recording… tap 🎙️ to stop';
+    }catch(e){ stat.textContent = 'Mic not available on this device.'; }
+  };
+  bMine.onclick = ()=>{ if (myUrl){ if (currentAudio) currentAudio.pause(); currentAudio = new Audio(myUrl); currentAudio.play().catch(()=>{}); } };
 }
 
 /* ---------- ☕ Warm-up — the way back in after time away (added 2026-08-31) ----------
