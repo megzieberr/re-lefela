@@ -8,23 +8,25 @@ card: audio/items/<card id>.mp3. It touches nothing else — not content.js, not
 existing clip, not any file outside audio/items/a1*.mp3.
 
 WHAT IT SKIPS, AND WHY
-  * `bad: true`  — the take is unusable and the card ships SILENT rather than wrong.
-    a1w-17 (yô) is clipped at source (mic overload measured through the vowel; a declip
-    rescue was rejected by her ear) and a1s-nat does not exist at all (the tape holds
+  * `bad: true`  — the card ships SILENT rather than wrong. a1w-17 (yô): the old
+    "clipped at source" diagnosis was decoder garbage (it measures clean under libopus);
+    it stays silent pending HER ear only. a1s-nat does not exist at all (the tape holds
     ONE reading, slow — her ruling 2026-09-11). Neither gets a file.
   * `skip: true` — the app already voices this line, so no new cut is made. Cards
     a1i-02/03/06 point at live app clips through `app_audio`; a1i-04/05 point at the
     two NAME-FREE cuts in the slicing workbench, which are COPIED in under their own
     card ids (new filenames, so no AUDIO_CACHE bump — see below).
 
-THE CUT RECIPE (measured 2026-09-11; reworked same day after the audit; decoder fixed
-  2026-09-12 per POSTMORTEM-tiro1-audio.md)
+THE CUT RECIPE (VERBATIM — her ruling 2026-09-12, after the whole repair saga)
   🚨 Decode with `-c:a libopus`, ALWAYS: ffmpeg's default native Opus decoder corrupts
-  these WhatsApp voice notes (squeals + phantom over-full-scale — the earlier "+3.4 dB
-  over full scale" and "mic bump at 5.66-5.75 s" findings were decoder artefacts, both
-  retired). Every cut decodes to float via libopus, is trimmed IN THE FILTER GRAPH,
-  gain-matched to the app norm, soft-limited at 0.95 (safety only) and faded 20 ms at
-  each end.
+  these WhatsApp voice notes (POSTMORTEM-tiro1-audio.md). Beyond that: TRIM AND FADE,
+  NOTHING ELSE. No squeal patches, no lowpass, no gain, no limiter — the assignment is
+  pronunciation, and every "repair" era of this pipeline damaged audible speech to fix
+  things nobody could hear. The clips ship sounding exactly like her WhatsApp playback,
+  just cut into pieces (20 ms edge fades only, so mid-speech cut points don't click).
+  The clips run a few dB quieter than the rest of the app; accepted — quieter-but-true
+  beats louder-but-tampered. ass1-scan-squeals.py remains as a DIAGNOSTIC only; its
+  json is no longer read by this exporter.
 
   Why the rework: gen_map.py's original arguments put -ss/-to AFTER -i (output-side
   seeking), so the afade pair landed on the ends of the WHOLE tape, not the clip — no
@@ -64,55 +66,12 @@ def snapshot():
     return {p.name: md5(p) for p in sorted(ITEMS.glob('*.mp3'))}
 
 
-def cut(src_ogg, vk, a, b, dst, defects=()):
-    """The guarded window cut. Trim happens in the filter graph (atrim) so the fades
+def cut(src_ogg, vk, a, b, dst):
+    """The verbatim window cut. Trim happens in the filter graph (atrim) so the fades
     land on the clip's own edges — output-side -ss/-to left them on the tape's ends.
-
-    vn4 (the story tape) additionally gets its measured defect repairs — the list
-    ass1-scan-squeals.py wrote to ass1-defects-vn4.json: squeals alone between words
-    are muted, squeals over a word get a narrow EQ notch at their measured pitch,
-    the three record-time overload moments get a 3.6 kHz lowpass for their fraction
-    of a second (muffled beats shrieking, her accepted trade-off), and the whole
-    tape is capped at 9 kHz — this narrowband voice note has no speech up there,
-    only Opus birdies. All region times are absolute tape seconds, shifted into
-    clip time here; a region outside the window contributes nothing."""
-    # asetnsamples: the decoder hands the graph ~120 ms frames, and a filter's
-    # enable='between(t,...)' is evaluated ONCE PER FRAME at the frame's start —
-    # so a repair window shorter than a frame can miss every evaluation point and
-    # silently do NOTHING (measured 2026-09-11: identical bytes with and without).
-    # 480-sample frames give the timeline 10 ms granularity; the 0.02 s pad below
-    # covers the remaining edge quantisation.
+    Nothing else touches the audio (her ruling 2026-09-12, see the recipe note above)."""
     af = (f"aformat=sample_fmts=flt,atrim=start={a:.2f}:end={b:.2f},asetpts=PTS-STARTPTS,"
-          "asetnsamples=n=480,")
-    if vk == 'vn4':
-        for d in defects:
-            s = max(d['t0'] - a - 0.02, 0.0)
-            e = min(d['t1'] - a + 0.02, b - a)
-            if e <= 0 or s >= b - a:
-                continue
-            en = f"enable='between(t,{s:.2f},{e:.2f})'"
-            if d['kind'] == 'mute':
-                af += f"volume={en}:volume=0.03,"
-            elif d['kind'] == 'clip':
-                # three passes (36 dB/oct): this tape's clean speech has NOTHING
-                # above 4.5 kHz (-89 dB measured), so everything up there in an
-                # overload moment is distortion hash — gentler shaves left it at
-                # -23 dB under a full-scale word, still audible as grit. The 0.7
-                # duck keeps the (full-scale) destroyed word from slamming the
-                # limiter, which is what made it deafen its neighbours.
-                af += (f"lowpass=f=3000:{en},lowpass=f=3000:{en},lowpass=f=3000:{en},"
-                       f"volume={en}:volume=0.7,")
-            else:
-                mid = (d['f0'] + d['f1']) / 2
-                width = max(900, d['f1'] - d['f0'] + 1000)
-                af += f"equalizer=f={mid:.0f}:t=h:w={width:.0f}:g=-30:{en},"
-        af += "lowpass=f=9000,lowpass=f=9000,"
-    # volume=6dB recalibrated 2026-09-12 against the CLEAN libopus decode, measured by
-    # EBU R128 against the app norm (u1l1-01 -10.8 / u1l1-05 -12.6 / u1l7-01 -15.9 LUFS;
-    # story clip lands -12.9, word clip -15.8). More gain only deepens limiting on the
-    # word peaks without getting louder — the alimiter is a safety, not a loudness tool.
-    af += ("volume=6dB,alimiter=limit=0.95:level=false,"
-           "afade=t=in:d=0.02,areverse,afade=t=in:d=0.02,areverse")
+          "afade=t=in:d=0.02,areverse,afade=t=in:d=0.02,areverse")
     # -c:a libopus BEFORE -i: forces the reference decoder for the input (the
     # native default corrupts these files — postmortem 2026-09-11)
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-c:a', 'libopus', '-i', str(src_ogg), '-af', af,
@@ -134,11 +93,6 @@ def main():
 
     m = json.loads(MAP.read_text(encoding='utf-8'))
     files = m['files']
-    defects_path = ROOT / 'toolkit' / 'ass1-defects-vn4.json'
-    if not defects_path.exists():
-        sys.exit(f'MISSING: {defects_path} — run toolkit/ass1-scan-squeals.py first; '
-                 'cutting vn4 without its defect repairs would ship the squeals back.')
-    defects = json.loads(defects_path.read_text(encoding='utf-8'))['regions']
     ITEMS.mkdir(parents=True, exist_ok=True)
     before = snapshot()
 
@@ -171,8 +125,7 @@ def main():
         ogg = src_dir / files[c['file']]
         if not ogg.exists():
             sys.exit(f'MISSING: {ogg} — pass --src if the voice notes live elsewhere')
-        cut(ogg, c['file'], c['start'], c['end'], dst,
-            defects if c['file'] == 'vn4' else ())
+        cut(ogg, c['file'], c['start'], c['end'], dst)
         made.append(cid)
 
     after = snapshot()

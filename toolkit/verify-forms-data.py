@@ -232,8 +232,12 @@ def check_sw():
     # (ffmpeg's native Opus decoder corrupted every earlier decode — squeals and
     # phantom overloads were decoder artefacts; POSTMORTEM-tiro1-audio.md). Defect
     # list regenerated from the clean decode, gain recalibrated +3 -> +6 dB.
-    if "relefela-audio-v8" not in sw:
-        fail("AUDIO_CACHE is not the pinned relefela-audio-v8 — bump the pin here too, "
+    # v8 -> v9 same day, HER RULING: the v8 repairs were still eating audible speech
+    # (mutes landing on soft consonants) to fix squeals nobody can hear. Recipe is
+    # now VERBATIM — trim + 20 ms edge fades, nothing else; clips sound exactly like
+    # her WhatsApp playback.
+    if "relefela-audio-v9" not in sw:
+        fail("AUDIO_CACHE is not the pinned relefela-audio-v9 — bump the pin here too, "
              "with the reason, or you have changed it by accident (spec §2.7)")
 
 
