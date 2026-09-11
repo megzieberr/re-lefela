@@ -1,5 +1,8 @@
 # Post-mortem: the Tiro 1 story audio (2026-09-11)
 
+> **Un-parked 2026-09-12 via the libopus recut** (`PLAN-tiro1-unpark.md`, sw v54 /
+> audio v8): all 42 clips recut through `-c:a libopus`, verified clean by measurement.
+
 The 📼 Tiro 1 tab shipped on the morning of 2026-09-11 (sw v50) with 44 clips cut
 from four voice-note recordings. By evening, after three repair passes (sw v51,
 audio v6 and v7), the story clips still carried ear-hurting artefacts in the app
