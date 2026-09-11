@@ -62,14 +62,52 @@ def snapshot():
     return {p.name: md5(p) for p in sorted(ITEMS.glob('*.mp3'))}
 
 
-def cut(src_ogg, vk, a, b, dst):
+def cut(src_ogg, vk, a, b, dst, defects=()):
     """The guarded window cut. Trim happens in the filter graph (atrim) so the fades
-    land on the clip's own edges — output-side -ss/-to left them on the tape's ends."""
-    af = (f"aformat=sample_fmts=flt,atrim=start={a:.2f}:end={b:.2f},asetpts=PTS-STARTPTS,")
+    land on the clip's own edges — output-side -ss/-to left them on the tape's ends.
+
+    vn4 (the story tape) additionally gets its measured defect repairs — the list
+    ass1-scan-squeals.py wrote to ass1-defects-vn4.json: squeals alone between words
+    are muted, squeals over a word get a narrow EQ notch at their measured pitch,
+    the three record-time overload moments get a 3.6 kHz lowpass for their fraction
+    of a second (muffled beats shrieking, her accepted trade-off), and the whole
+    tape is capped at 9 kHz — this narrowband voice note has no speech up there,
+    only Opus birdies. All region times are absolute tape seconds, shifted into
+    clip time here; a region outside the window contributes nothing."""
+    # asetnsamples: the decoder hands the graph ~120 ms frames, and a filter's
+    # enable='between(t,...)' is evaluated ONCE PER FRAME at the frame's start —
+    # so a repair window shorter than a frame can miss every evaluation point and
+    # silently do NOTHING (measured 2026-09-11: identical bytes with and without).
+    # 480-sample frames give the timeline 10 ms granularity; the 0.02 s pad below
+    # covers the remaining edge quantisation.
+    af = (f"aformat=sample_fmts=flt,atrim=start={a:.2f}:end={b:.2f},asetpts=PTS-STARTPTS,"
+          "asetnsamples=n=480,")
     if vk == 'vn4':
         # the mic bump at 5.66-5.75s absolute; shifted into clip time, harmless when
         # the window excludes it (the enable interval then sits outside the clip)
         af += f"volume=enable='between(t,{5.62 - a:.2f},{5.80 - a:.2f})':volume=0.05,"
+        for d in defects:
+            s = max(d['t0'] - a - 0.02, 0.0)
+            e = min(d['t1'] - a + 0.02, b - a)
+            if e <= 0 or s >= b - a:
+                continue
+            en = f"enable='between(t,{s:.2f},{e:.2f})'"
+            if d['kind'] == 'mute':
+                af += f"volume={en}:volume=0.03,"
+            elif d['kind'] == 'clip':
+                # three passes (36 dB/oct): this tape's clean speech has NOTHING
+                # above 4.5 kHz (-89 dB measured), so everything up there in an
+                # overload moment is distortion hash — gentler shaves left it at
+                # -23 dB under a full-scale word, still audible as grit. The 0.7
+                # duck keeps the (full-scale) destroyed word from slamming the
+                # limiter, which is what made it deafen its neighbours.
+                af += (f"lowpass=f=3000:{en},lowpass=f=3000:{en},lowpass=f=3000:{en},"
+                       f"volume={en}:volume=0.7,")
+            else:
+                mid = (d['f0'] + d['f1']) / 2
+                width = max(900, d['f1'] - d['f0'] + 1000)
+                af += f"equalizer=f={mid:.0f}:t=h:w={width:.0f}:g=-30:{en},"
+        af += "lowpass=f=9000,lowpass=f=9000,"
     af += ("volume=3dB,alimiter=limit=0.95:level=false,"
            "afade=t=in:d=0.02,areverse,afade=t=in:d=0.02,areverse")
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(src_ogg), '-af', af,
@@ -91,6 +129,11 @@ def main():
 
     m = json.loads(MAP.read_text(encoding='utf-8'))
     files = m['files']
+    defects_path = ROOT / 'toolkit' / 'ass1-defects-vn4.json'
+    if not defects_path.exists():
+        sys.exit(f'MISSING: {defects_path} — run toolkit/ass1-scan-squeals.py first; '
+                 'cutting vn4 without its defect repairs would ship the squeals back.')
+    defects = json.loads(defects_path.read_text(encoding='utf-8'))['regions']
     ITEMS.mkdir(parents=True, exist_ok=True)
     before = snapshot()
 
@@ -123,7 +166,8 @@ def main():
         ogg = src_dir / files[c['file']]
         if not ogg.exists():
             sys.exit(f'MISSING: {ogg} — pass --src if the voice notes live elsewhere')
-        cut(ogg, c['file'], c['start'], c['end'], dst)
+        cut(ogg, c['file'], c['start'], c['end'], dst,
+            defects if c['file'] == 'vn4' else ())
         made.append(cid)
 
     after = snapshot()

@@ -225,8 +225,11 @@ def check_sw():
     # filenames — audit after her in-app reports: edge fades now land on the clips (the
     # old output-side -ss left them on the tape ends), six windows had an edge inside
     # speech (the heading cut mid-Mokoko), and levels came up +8 dB to match the app.
-    if "relefela-audio-v6" not in sw:
-        fail("AUDIO_CACHE is not the pinned relefela-audio-v6 — bump the pin here too, "
+    # v6 -> v7 same evening: the story tape's measured squeals and overload moments
+    # repaired in the cut (ass1-scan-squeals.py / ass1-defects-vn4.json) — the vn4
+    # clips changed bytes again under the same filenames.
+    if "relefela-audio-v7" not in sw:
+        fail("AUDIO_CACHE is not the pinned relefela-audio-v7 — bump the pin here too, "
              "with the reason, or you have changed it by accident (spec §2.7)")
 
 
