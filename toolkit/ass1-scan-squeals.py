@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 """Measure the Tiro 1 story tape's defects and write toolkit/ass1-defects-vn4.json.
 
-Voice note 4 (the Phakwe le Mokoko reading) carries two artefact families that are
-IN the recording — her ear reports of 2026-09-11, confirmed by measurement:
-
-  * tonal squeals: short whistle-bursts, mostly 8-12 kHz with a family near 5 kHz,
-    classic low-bitrate Opus damage. Some sit alone in the gaps between words at
-    near speech loudness, some sit on top of words.
-  * three record-time overload moments (22.2s, 51.8s, 75.0s) where the take ran
-    hard over full scale: harsh broadband hash baked into the words themselves.
+Voice note 4 (the Phakwe le Mokoko reading) carries low-bitrate Opus squeals:
+short whistle-bursts, mostly 8-12 kHz with a family near 5 kHz. Under the
+reference libopus decoder (mandatory — see POSTMORTEM-tiro1-audio.md) only ~24
+quiet ones remain; the loud squeals and the three "record-time overload moments"
+of the 2026-09-11 scans were artefacts of ffmpeg's native decoder, retired.
+Overload (kind=clip) detection stays as a tripwire: the clean decode should
+produce ZERO clip regions — if any appear, the decoder flag did not take.
 
 This script finds both, filters the squeal list to what is actually AUDIBLE
 (tonal peak >= -52 dBFS on the raw tape — the raw scan also surfaces dozens of
@@ -21,9 +20,12 @@ pointless filter churn), and writes the defect list ass1-export.py applies:
                (muffled beats shrieking — her accepted trade-off, 2026-09-11)
 
 Detection: 46 ms Hann windows, half overlap. A window is squeal-flagged when its
-strongest bin above 4.5 kHz stands >= 8000x over the median HF bin (speech
-sibilants are broadband noise — their ratio stays in the tens) AND it is either
-HF-dominated (share > 0.30) or loud in absolute terms (peak bin > -34 dBFS).
+strongest bin above 4.5 kHz stands >= 2500x over the median HF bin (speech
+sibilants are broadband noise — their ratio stays in the tens, so 2500 keeps a
+100x margin; the old 8000 gate was tuned on the corrupted native decode and let
+libopus's quieter squeal family through at ratios 3800-7600, measured 2026-09-12
+on the shipped output clips) AND it is either HF-dominated (share > 0.25) or
+loud in absolute terms (peak bin > -34 dBFS).
 Overload: runs of >= 100 samples beyond |0.99| (the Opus decode reconstructs the
 overdriven wave above full scale), padded 30 ms. Windows within 80 ms merge.
 
@@ -46,7 +48,9 @@ AUDIBLE_DB = -52.0
 def main():
     if not SRC.exists():
         sys.exit(f'MISSING: {SRC}')
-    r = subprocess.run(['ffmpeg', '-v', 'error', '-i', str(SRC),
+    # -c:a libopus BEFORE -i: the native default decoder corrupts these files
+    # (POSTMORTEM-tiro1-audio.md) — the defect list must come from the clean decode
+    r = subprocess.run(['ffmpeg', '-v', 'error', '-c:a', 'libopus', '-i', str(SRC),
                         '-f', 'f32le', '-ac', '1', '-ar', str(SR), '-'],
                        capture_output=True, check=True)
     x = np.frombuffer(r.stdout, dtype=np.float32)
@@ -75,7 +79,7 @@ def main():
                 continue
             pk = hf.argmax()
             amp_db = 20 * np.log10(2 * hf[pk] / hs + 1e-12)
-            if hf[pk] / med > 8000 and (share > 0.30 or amp_db > -34):
+            if hf[pk] / med > 2500 and (share > 0.25 or amp_db > -34):
                 hit[bi] = (float(hfreqs[pk]), float(amp_db))
         if hit:
             flags.append((i / SR, hit, float(share)))

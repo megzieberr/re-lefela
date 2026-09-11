@@ -228,8 +228,12 @@ def check_sw():
     # v6 -> v7 same evening: the story tape's measured squeals and overload moments
     # repaired in the cut (ass1-scan-squeals.py / ass1-defects-vn4.json) — the vn4
     # clips changed bytes again under the same filenames.
-    if "relefela-audio-v7" not in sw:
-        fail("AUDIO_CACHE is not the pinned relefela-audio-v7 — bump the pin here too, "
+    # v7 -> v8 on 2026-09-12: ALL 42 Tiro 1 cut clips recut through -c:a libopus
+    # (ffmpeg's native Opus decoder corrupted every earlier decode — squeals and
+    # phantom overloads were decoder artefacts; POSTMORTEM-tiro1-audio.md). Defect
+    # list regenerated from the clean decode, gain recalibrated +3 -> +6 dB.
+    if "relefela-audio-v8" not in sw:
+        fail("AUDIO_CACHE is not the pinned relefela-audio-v8 — bump the pin here too, "
              "with the reason, or you have changed it by accident (spec §2.7)")
 
 

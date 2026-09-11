@@ -9,7 +9,7 @@
 //   - precache uses {cache:'reload'} so install never reads a stale HTTP-cached
 //     index.html (GitHub Pages serves max-age=600).
 //   - non-GET and cross-origin (Supabase, CDN) requests pass straight through.
-const CACHE = 'relefela-v53';
+const CACHE = 'relefela-v54';
 // Bump AUDIO_CACHE's version suffix ONLY when an existing audio file's content
 // changes (re-record/re-splice under the same filename). App version bumps
 // (CACHE above) must never evict audio.
@@ -32,7 +32,7 @@ const CACHE = 'relefela-v53';
 // v6 -> v7 same evening: the story tape's measured defects repaired in the cut
 // (squeals muted/notched, the three record-time overload moments treble-shaved,
 // tape capped at 9 kHz) — her ear reports; toolkit/ass1-defects-vn4.json is the list.
-const AUDIO_CACHE = 'relefela-audio-v7';
+const AUDIO_CACHE = 'relefela-audio-v8';
 const CORE = ['./', 'index.html', 'content.js', 'dialogues.js', 'builder-bank.js', 'dict-bank.js',
   'medumo-bank.js', 'lediri-bank.js', 'ass1-bank.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png',
   // Katse is animated WebP now (see KATSE_POSES in index.html). `oops` and `sleep`

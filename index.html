@@ -2530,11 +2530,10 @@ function finishLediri(){
    All names here start with ass1. That is not decoration: runRecap() collided with an
    identically-named function once, hoisting quietly pointed the caller at the wrong
    one, and every gate still passed. Grep before adding a name to this file. */
-const ASS1_LIVE = false;  // parked early, her ruling 2026-09-11: the story-tape audio
-                          // defeated three repair passes and she rehearses from the
-                          // WhatsApp original instead. ?ass1=1 still opens the tab
-                          // (gym precedent); nothing was deleted. POSTMORTEM-tiro1-audio.md
-                          // holds the full account.
+const ASS1_LIVE = true;   // un-parked 2026-09-12 via PLAN-tiro1-unpark.md: the story-tape
+                          // "damage" was ffmpeg's native Opus decoder, not the recording —
+                          // every clip recut through libopus, verified clean (audio v8).
+                          // POSTMORTEM-tiro1-audio.md holds the full account.
 const SHOW_ASS1 = ASS1_LIVE || new URLSearchParams(location.search).has('ass1');
 const ASS1_QUIZ_ROUND = 12;      // the fixed-round-length ruling Ditlhopha earned
 

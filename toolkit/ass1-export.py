@@ -17,12 +17,14 @@ WHAT IT SKIPS, AND WHY
     two NAME-FREE cuts in the slicing workbench, which are COPIED in under their own
     card ids (new filenames, so no AUDIO_CACHE bump — see below).
 
-THE CUT RECIPE (measured 2026-09-11; reworked same day after the audit)
-  WhatsApp voice notes decode up to +3.4 dB OVER full scale on loud consonants, so an
-  unguarded MP3 hard-clips into a buzz on playback. Every cut therefore decodes to
-  float, is trimmed IN THE FILTER GRAPH, gains +3 dB, soft-limits at 0.95 and fades
-  20 ms at each end. Voice note 4 also carries a mic bump at 5.66–5.75 s; it is ducked
-  in any clip spanning it (the enable window shifts with the trim).
+THE CUT RECIPE (measured 2026-09-11; reworked same day after the audit; decoder fixed
+  2026-09-12 per POSTMORTEM-tiro1-audio.md)
+  🚨 Decode with `-c:a libopus`, ALWAYS: ffmpeg's default native Opus decoder corrupts
+  these WhatsApp voice notes (squeals + phantom over-full-scale — the earlier "+3.4 dB
+  over full scale" and "mic bump at 5.66-5.75 s" findings were decoder artefacts, both
+  retired). Every cut decodes to float via libopus, is trimmed IN THE FILTER GRAPH,
+  gain-matched to the app norm, soft-limited at 0.95 (safety only) and faded 20 ms at
+  each end.
 
   Why the rework: gen_map.py's original arguments put -ss/-to AFTER -i (output-side
   seeking), so the afade pair landed on the ends of the WHOLE tape, not the clip — no
@@ -83,9 +85,6 @@ def cut(src_ogg, vk, a, b, dst, defects=()):
     af = (f"aformat=sample_fmts=flt,atrim=start={a:.2f}:end={b:.2f},asetpts=PTS-STARTPTS,"
           "asetnsamples=n=480,")
     if vk == 'vn4':
-        # the mic bump at 5.66-5.75s absolute; shifted into clip time, harmless when
-        # the window excludes it (the enable interval then sits outside the clip)
-        af += f"volume=enable='between(t,{5.62 - a:.2f},{5.80 - a:.2f})':volume=0.05,"
         for d in defects:
             s = max(d['t0'] - a - 0.02, 0.0)
             e = min(d['t1'] - a + 0.02, b - a)
@@ -108,9 +107,15 @@ def cut(src_ogg, vk, a, b, dst, defects=()):
                 width = max(900, d['f1'] - d['f0'] + 1000)
                 af += f"equalizer=f={mid:.0f}:t=h:w={width:.0f}:g=-30:{en},"
         af += "lowpass=f=9000,lowpass=f=9000,"
-    af += ("volume=3dB,alimiter=limit=0.95:level=false,"
+    # volume=6dB recalibrated 2026-09-12 against the CLEAN libopus decode, measured by
+    # EBU R128 against the app norm (u1l1-01 -10.8 / u1l1-05 -12.6 / u1l7-01 -15.9 LUFS;
+    # story clip lands -12.9, word clip -15.8). More gain only deepens limiting on the
+    # word peaks without getting louder — the alimiter is a safety, not a loudness tool.
+    af += ("volume=6dB,alimiter=limit=0.95:level=false,"
            "afade=t=in:d=0.02,areverse,afade=t=in:d=0.02,areverse")
-    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(src_ogg), '-af', af,
+    # -c:a libopus BEFORE -i: forces the reference decoder for the input (the
+    # native default corrupts these files — postmortem 2026-09-11)
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-c:a', 'libopus', '-i', str(src_ogg), '-af', af,
                     '-ac', '1', '-c:a', 'libmp3lame', '-q:a', '2', str(dst)], check=True)
 
 
