@@ -5,9 +5,23 @@
 > against the Bible corpus (`corpus/bible-tsn/`). This file summarises grammar for humans and
 > sessions; when it conflicts with the Smart Guide, the Smart Guide wins.
 >
-> **Orthography note:** didactic texts mark ê/ô; standard SA writing uses plain e/o.
-> We write plain e/o everywhere (matches SECL121 usage). Botswana sources (Peace Corps)
-> occasionally differ in vocab from SA Setswana — flag such items with `variant:bw` in content.
+> **Orthography note (rewritten 2026-09-12):** standard SA writing uses plain e/o, but SECL121
+> does not: Zerwick's handouts AND the 2021 Smart Guide both mark the open vowels ê/ô. The app
+> therefore SHOWS hats in two cases: (a) every word Zerwick himself writes hatted (`src`
+> contains `zerwick-2024`), and (b) words the Smart Guide confirms by hatting them at least
+> twice, on separate pages, with the same spelling and the same meaning (her twice-rule,
+> 2026-09-12; the guide is typo-prone, so one hat is never enough). Where the guide and
+> Zerwick disagree, **Zerwick wins** and the card is left as he writes it.
+>
+> Typing and grading are a separate question: `norm()` strips accents, so plain OR hatted input
+> is accepted everywhere — the ONE exception is the 🎩 minimal-pair round, where the accent is
+> the question being asked and the raw string is compared. Never "tidy" that into norm().
+> A guide hat seen only once is NOT applied; it goes to `QUESTIONS-FOR-ZERWICK.md` instead.
+> Never infer a hat from a pattern: an unhatted relative is left plain (`pêdi` is confirmed,
+> `babedi` and `dipedi` are not).
+>
+> Botswana sources (Peace Corps) occasionally differ in vocab from SA Setswana — flag such
+> items with `variant:bw` in content.
 
 ## 1. Sounds & pronunciation (Peace Corps L1, after Matumo 1993)
 
@@ -153,7 +167,10 @@ Davies wins until the Smart Guide rules.
 
 ## 10. Numbers & counting (SECL121 Unit 4 preview)
 
-0 **lefela** · 1 nngwe · 2 pedi · 3 tharo · 4 nne · 5 tlhano · 6 thataro · 7 supa
+0 **lefela** · 1 nngwê · 2 pêdi · 3 tharo · 4 nnê · 5 tlhano · 6 thataro · 7 supa
 8 robedi (lit. bend two) · 9 robongwe (bend one) · 10 lesome
-Counting people/things uses concords: batho ba babedi (two people), dintlo di le pedi (two houses).
-(Expand from Smart Guide when it lands — counting is a Unit 4 outcome.)
+Counting people/things uses concords: batho ba babedi (two people), dintlo di le pêdi (two houses).
+The hats on nngwê / pêdi / nnê are the Smart Guide's own, printed on both p.23 and p.70
+(twice-rule, applied 2026-09-12). The guide leaves tharo, tlhano, thataro, supa, robedi,
+robongwe and lesome plain, and it never hats the prefixed forms babedi / dipedi — so neither
+does the app. Do not "finish the pattern".

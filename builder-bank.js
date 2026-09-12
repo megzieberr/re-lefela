@@ -347,7 +347,7 @@ const RL_BUILDER = [
   },
   {
     id: 'sb-u4-04', eng: 'One orange',
-    accept: ['Namune e le nngwe'],
+    accept: ['Namune e le nngwê'],
     usesIds: ['u4l4-01'],
     src: 'peace-corps-L20',
     note: 'Counting: the noun\'s concord + le + the number. Namune is class 9.'
@@ -361,10 +361,10 @@ const RL_BUILDER = [
   },
   {
     id: 'sb-u4-06', eng: 'Two cows',
-    accept: ['Dikgomo di le pedi'],
+    accept: ['Dikgomo di le pêdi'],
     usesIds: ['u4l4-03'],
     src: 'pc-comp-grammar-ch2',
-    note: 'Class 10 uses the bare strong number — di le pedi, no extra prefix.'
+    note: 'Class 10 uses the bare strong number — di le pêdi, no extra prefix.'
   },
   {
     id: 'sb-u4-07', eng: 'food and drink',
@@ -429,7 +429,7 @@ const RL_BUILDER = [
   },
   {
     id: 'sb-u5-07', eng: 'Two goats',
-    accept: ['Dipodi di le pedi'],
+    accept: ['Dipodi di le pêdi'],
     usesIds: ['u4l4-03', 'u5l1-04'],
     src: 'pc-comp-grammar-ch2+beibele (Dikgomo di le pedi pattern)',
     note: 'Class 10 counting again — Unit 4\'s pattern meeting Unit 5\'s animals.'
