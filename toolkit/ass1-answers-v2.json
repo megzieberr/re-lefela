@@ -1,0 +1,23 @@
+{
+ "version": 2,
+ "note": "Megan's ear-check overlay for the V2 (second speaker) tapes. MERGE new pastes in, never overwrite (the s45 rule). Paste records: v2-answers-paste-*.json. Merged: 08:58 paste (6 cards) + 09:18 paste (8 cards).",
+ "edited": {
+  "a1w-03": {"start": 18.73, "end": 20.13},
+  "a1i-04": {"start": 15.11, "end": 16.81},
+  "a1i-07": {"start": 27.52, "end": 33.77},
+  "a1i-08": {"start": 34.2, "end": 40.92},
+  "a1s-04": {"start": 39.93, "end": 44.07},
+  "a1s-05": {"start": 44.6, "end": 55.66},
+  "a1s-06": {"start": 57.07, "end": 59.93},
+  "a1s-p01": {"start": 8.03, "end": 11.93},
+  "a1s-p02": {"start": 24.97, "end": 28.7},
+  "a1s-p03": {"start": 15.03, "end": 16.76},
+  "a1s-p04": {"start": 31.1, "end": 33.19},
+  "a1s-p05": {"start": 33.3, "end": 35.09},
+  "a1s-p06": {"start": 44.4, "end": 49.36},
+  "a1s-p07": {"start": 60.54, "end": 65.04}
+ },
+ "bad": [],
+ "skip": [],
+ "take1": []
+}

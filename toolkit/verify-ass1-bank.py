@@ -13,13 +13,22 @@ What it refuses to let ship:
     prints Llere / Monna / Rre / Phiri capitalised at the start of a table row while
     the cards carry the plain word. Three cards check a declared stem instead, because
     the assignment itself prints a placeholder there (see CORPUS_STEM).
-  * a card pointing at audio that is not on disk
-  * a duplicate id, a missing id, a card with no source
-  * a1w-17 carrying audio. Its take is clipped at source and the card ships SILENT;
-    wiring any file to it would mean shipping the buzz her ear rejected.
-  * a1s-nat appearing anywhere, or `whole.nat` existing. The tape holds ONE reading —
-    slow, sentence by sentence (her ruling 2026-09-11). A natural-pace button would
-    point at nothing.
+  * a card pointing at audio that is not on disk — `audio` (speaker one) or `audio2`
+    (the second speaker, added 2026-09-12). Every card must carry `audio2`: she
+    ear-checked all 48 v2 clips, so a card without one is a card that lost its file.
+  * a1w-17 carrying `audio`. The FIRST speaker's take is clipped at source and wiring
+    any v1 file to it would ship the buzz her ear rejected. It is no longer silent,
+    though: the second speaker's take was ear-checked and kept, so it must have
+    `audio2` — the card plays v2 whichever voice is selected.
+  * the natural-pace read-through going missing, or growing a v1 file. This rule is the
+    INVERSE of the 2026-09-11 one: the first speaker's tape holds one reading, slow, and
+    always will, but the second speaker recorded a natural-pace read-through too. So
+    `whole.nat` must EXIST, must carry `audio2`, and must never carry `audio`.
+  * a phrase card whose text changed but whose old v1 clip is still wired to it. Four of
+    the seven phrases were re-cut to different words on 2026-09-12; the mp3 sitting at
+    their old filename says the OLD phrase. They carry `audio2` only, and this gate pins
+    that — it is the one place in this bank where a wrong file would play a learner
+    something other than what the card shows.
   * an intro line that lost its app audio. Five of the eight reuse clips the app
     already ships (a1i-02/03/06) or name-free cuts of them (a1i-04/05) — that is what
     keeps a name out of this public repo, so it is checked, not assumed.
@@ -49,7 +58,20 @@ CORPUS_STEM = {
     'a1i-05': ('Sefane sa me ke', 'the .docx prints "Sefane sa me ke (YOUR SURNAME)"'),
 }
 READ_ONLY = {'a1w-08', 'a1w-10', 'a1w-18', 'a1w-19'}
-SILENT = {'a1w-17'}
+# no v1 take exists / may be used: yô was spoiled at the microphone. It still gets audio2.
+V1_SILENT = {'a1w-17'}
+# The seven phrase cards, after she practised against the first eight and picked again
+# (2026-09-12): id, her text, and whether the v1 clip at items/<id>.mp3 still says it.
+# The four False ones were re-cut to DIFFERENT words — their old mp3 is a wrong-clip trap.
+PHRASES = [
+    ('a1s-p01', 'Ga twe bogologolo', True),
+    ('a1s-p02', 'fa ba ya go sela tsie', True),
+    ('a1s-p03', 'e ne e le ditsala', False),
+    ('a1s-p04', 'Ka letsatsi le lengwe', False),
+    ('a1s-p05', 'fa ba ntse', False),
+    ('a1s-p06', 'Nna ke na le lemao', True),
+    ('a1s-p07', 'Nna ga ke na lemao', False),
+]
 # the five lines that must keep reusing audio the app already ships
 APP_WIRED = {'a1i-02': 'items/u1l2-02.mp3', 'a1i-03': 'items/u1l1-01.mp3',
              'a1i-06': 'items/u1l2-09.mp3',
@@ -108,9 +130,10 @@ allcards = words + intro + story + phrases
 
 # ── shape ────────────────────────────────────────────────────────────────────────────
 for name, got, want in (('words', len(words), 23), ('intro', len(intro), 8),
-                        ('story', len(story), 8), ('phrases', len(phrases), 8)):
+                        ('story', len(story), 8), ('phrases', len(phrases), 7)):
     if got != want:
-        fail(f'{name}: {got} cards, expected {want} — the mapping holds 49 cards in all')
+        fail(f'{name}: {got} cards, expected {want} — 46 cards in all since the phrase '
+             'set was re-picked (2026-09-12)')
 
 seen = {}
 for c in allcards:
@@ -126,34 +149,56 @@ for c in allcards:
     if not c.get('src'):
         fail(f'{cid}: no source — every string traces to one of his documents')
 
-if 'a1s-nat' in seen:
-    fail('a1s-nat is in the bank. There is no natural-pace reading; it ships nothing.')
-if 'nat' in (bank.get('whole') or {}):
-    fail('whole.nat exists — a natural-pace button would point at no file')
-if (bank.get('whole') or {}).get('slow') != 'items/a1s-slow.mp3':
-    fail('whole.slow must be items/a1s-slow.mp3 — the one reading on the tape')
+# ── the two whole-story read-throughs ────────────────────────────────────────────────
+# INVERTED 2026-09-12. `slow` exists in both voices. `nat` exists ONLY in v2 — the first
+# speaker's tape holds the slow reading and nothing else (her ruling 2026-09-11), so a v1
+# file on `nat` would mean someone wired a clip that does not exist.
+whole = bank.get('whole') or {}
+for key, want_v1, want_v2 in (('slow', 'items/a1s-slow.mp3', 'items/a1s-slow-v2.mp3'),
+                              ('nat', None, 'items/a1s-nat-v2.mp3')):
+    w = whole.get(key)
+    if not isinstance(w, dict):
+        fail(f'whole.{key} is missing or is not a {{audio, audio2}} object — found {w!r}')
+        continue
+    if w.get('audio') != want_v1:
+        fail(f'whole.{key}.audio must be {want_v1!r}, found {w.get("audio")!r}'
+             + (' — the first speaker never recorded a natural-pace reading'
+                if key == 'nat' else ''))
+    if w.get('audio2') != want_v2:
+        fail(f'whole.{key}.audio2 must be {want_v2!r}, found {w.get("audio2")!r}')
+    for f in (w.get('audio'), w.get('audio2')):
+        if f and not (ROOT / 'audio' / f).exists():
+            fail(f'whole.{key}: audio/{f} is not on disk')
 
-# ── audio ────────────────────────────────────────────────────────────────────────────
-voiced = 0
+# ── audio, both voices ───────────────────────────────────────────────────────────────
+# NO_V1 is the full list of cards allowed to have no `audio`: yô (spoiled take) plus the
+# four phrases whose words changed. Everything else must have both fields, on disk.
+NO_V1 = set(V1_SILENT) | {pid for pid, _t, keeps in PHRASES if not keeps}
+v1, v2 = 0, 0
 for c in allcards:
-    a = c.get('audio')
-    if c['id'] in SILENT:
-        if a:
-            fail(f"{c['id']}: ships SILENT (take clipped at source) but carries audio {a!r}")
+    a, a2 = c.get('audio'), c.get('audio2')
+    if a:
+        v1 += 1
+        if c['id'] in NO_V1:
+            fail(f"{c['id']}: must carry NO v1 audio, but is wired to {a!r} — "
+                 + ('that take was clipped at source' if c['id'] in V1_SILENT
+                    else 'the v1 clip at that filename says the OLD phrase'))
+        elif not (ROOT / 'audio' / a).exists():
+            fail(f"{c['id']}: audio/{a} is not on disk")
+    elif c['id'] not in NO_V1:
+        fail(f"{c['id']}: no v1 audio, and it is not one of the cards allowed none "
+             f"({', '.join(sorted(NO_V1))})")
+    if not a2:
+        fail(f"{c['id']}: no audio2 — all 48 second-speaker clips were ear-checked and kept, "
+             'so every card has one')
         continue
-    if not a:
-        fail(f"{c['id']}: no audio, and it is not one of the silent cards ({', '.join(sorted(SILENT))})")
-        continue
-    voiced += 1
-    if not (ROOT / 'audio' / a).exists():
-        fail(f"{c['id']}: audio/{a} is not on disk")
+    v2 += 1
+    if not (ROOT / 'audio' / a2).exists():
+        fail(f"{c['id']}: audio/{a2} is not on disk")
 for cid, want in APP_WIRED.items():
     got = (seen.get(cid) or {}).get('audio')
     if got != want:
         fail(f'{cid}: must reuse {want} (app audio / a name-free cut of it), found {got!r}')
-whole = (bank.get('whole') or {}).get('slow')
-if whole and not (ROOT / 'audio' / whole).exists():
-    fail(f'whole.slow: audio/{whole} is not on disk')
 
 # ── readOnly ─────────────────────────────────────────────────────────────────────────
 ro = {c['id'] for c in allcards if c.get('readOnly')}
@@ -165,6 +210,13 @@ for cid in READ_ONLY:
     if cid in ('a1w-18', 'a1w-19') and 'no separate gloss' not in (c.get('eng') or ''):
         fail(f'{cid}: its gloss was filled in. He glosses only yô — inventing one here '
              'is inventing Setswana.')
+
+# ── the phrase set she picked after practising (2026-09-12) ──────────────────────────
+got_ph = [(p.get('id'), p.get('tsw')) for p in phrases]
+want_ph = [(pid, tsw) for pid, tsw, _k in PHRASES]
+if got_ph != want_ph:
+    fail('the phrase set is not the one she picked on 2026-09-12.\n'
+         f'      found  : {got_ph}\n      expected: {want_ph}')
 
 # ── the lecturer's own words ─────────────────────────────────────────────────────────
 def in_corpus(cid, tsw):
@@ -215,9 +267,11 @@ for w in words:
 
 print(f'\U0001F4FC Tiro 1: {len(words)} words, {len(intro)} intro lines, '
       f'{len(story)} story sentences, {len(phrases)} phrases = {len(allcards)} cards')
-print(f'    voiced {voiced} / {len(allcards)} '
-      f"(silent: {', '.join(sorted(SILENT))} — take clipped at source)")
-print(f'    {chunks} teaching chunks, {glossed} words glossed one by one')
+print(f'    voice 1: {v1} / {len(allcards)} cards   voice 2: {v2} / {len(allcards)} cards')
+print(f"    no v1 take, plays voice 2 in both modes: {', '.join(sorted(NO_V1))}")
+print('    whole story: slow in both voices, natural pace in voice 2 only')
+print(f'    {chunks} teaching chunks + {len(phrases)} phrases = {chunks + len(phrases)} '
+      f'quiz pieces, {glossed} words glossed one by one')
 print(f'    every Setswana string found in corpus/zerwick-ass1-2026.txt '
       f'({len(CORPUS_TEXT)} chars of his two documents)')
 if problems:

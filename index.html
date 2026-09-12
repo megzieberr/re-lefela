@@ -44,6 +44,11 @@ input:focus{outline:none; border-color:var(--pink)}
 .logo{font-weight:800; font-size:1.9rem; letter-spacing:.5px}
 .logo .re{color:var(--ink)} .logo .zero{color:var(--pink-deep)}
 .pill{display:inline-block; padding:3px 12px; border-radius:99px; background:var(--bg2); font-size:.85rem; color:var(--ink-dim)}
+/* 📼 Tiro 1 only: the V1/V2 speaker pill in the top right of every screen on that tab */
+.a1voice{display:inline-flex; align-items:center; gap:3px; width:auto; padding:3px 7px; border-radius:99px;
+  background:var(--bg2); border:2px solid var(--line); font-size:.78rem; color:var(--ink-dim); cursor:pointer}
+.a1voice .a1v{padding:1px 6px; border-radius:99px; font-weight:700}
+.a1voice .a1v.on{background:var(--pink); color:var(--ink)}
 .xppill{background:var(--pink); color:var(--ink); font-weight:700}
 .streakpill{background:var(--ink); color:#fff; font-weight:700}
 /* home path */
@@ -363,7 +368,7 @@ function persist(){ store.set('srs', state.srs); store.set('progress', state.pro
 // own by the caller. There are no app-scoped rl_ keys. Used by logout + the account-
 // switch guard in afterAuth so one learner's data can never bleed into another's.
 function clearLearnerState(){
-  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_parked','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder','rl_forms','rl_warmup','rl_medumo','rl_lediri','rl_ass1','rl_dictasked']
+  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_parked','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder','rl_forms','rl_warmup','rl_medumo','rl_lediri','rl_ass1','rl_ass1_voice','rl_dictasked']
     .forEach(k=>localStorage.removeItem(k));
 }
 
@@ -2516,8 +2521,14 @@ function finishLediri(){
    means" was the other half of the ask, which is what the story chunks are for.
 
    FOUR TILES, in the order the video runs: his 23 words · the 8 intro lines · the story
-   · record-and-compare. Data is ass1-bank.js (see its header for the sourcing rules and
-   for why one card ships silent).
+   · record-and-compare. Data is ass1-bank.js (see its header for the sourcing rules).
+
+   TWO VOICES (2026-09-12). A second speaker recorded the same script, so every card can
+   carry `audio` (speaker one) and `audio2` (speaker two), and a 🎙 V1|V2 pill sits in the
+   top right of every screen on this tab. ass1Aud() is the ONE place that decides which
+   file plays; it runs at click time, so a switch lands on every surface at once with
+   nothing re-rendered. Add a new play button on this tab and you go through ass1Aud() —
+   reaching for `c.audio` directly is how one surface ends up stuck on one speaker.
 
    NO SRS WRITES. Own device-local key rl_ass1, XP as kind 'ass1'. Same rule as Warm-up,
    Medumo and Lediri: 47 assignment cards must not flood the review queue.
@@ -2539,12 +2550,49 @@ const ASS1_QUIZ_ROUND = 12;      // the fixed-round-length ruling Ditlhopha earn
 
 function ass1Get(){ return store.get('ass1', {w:{}, i:{}, s:{}, q:0, r:{}}); }
 function ass1Set(v){ store.set('ass1', v); }
+
+/* ── V1 / V2: which speaker you hear (2026-09-12) ─────────────────────────────────────
+   Two people recorded this whole script — see ass1-bank.js: `audio` is the first, `audio2`
+   the second. The pill in the top right of every Tiro 1 screen picks one and it sticks
+   (rl_ass1_voice, cleared on logout with the rest, so two people sharing a phone each
+   keep their own choice).
+
+   ONE resolver, used by every play on this tab, and it runs at CLICK time, not at render
+   time. That is the whole trick: switching voice takes effect on the next play on every
+   surface at once, with nothing re-rendered and no reload.
+
+   Either field can be missing, so both directions fall back to the other voice:
+     · a1w-17 (yô) has no v1 take — it was spoiled at the microphone.
+     · the four re-cut phrase cards have no v1 clip that says the right words.
+     · the natural-pace read-through exists only on the second speaker's tape.
+   Falling back to the wrong SPEAKER is fine. Playing the wrong WORDS never is — which is
+   exactly why those four phrase cards carry no v1 file to fall back to. */
+function ass1Voice(){ return store.get('ass1_voice', 'v1') === 'v2' ? 'v2' : 'v1'; }
+function ass1Aud(c){
+  if (!c) return null;
+  return ass1Voice() === 'v2' ? (c.audio2 || c.audio) : (c.audio || c.audio2);
+}
+function ass1Has(c){ return !!(c && (c.audio || c.audio2)); }
+function ass1SetVoice(v){
+  store.set('ass1_voice', v === 'v2' ? 'v2' : 'v1');
+  const now = ass1Voice();
+  document.querySelectorAll('#a1-voice .a1v').forEach(s=>s.classList.toggle('on', s.dataset.v === now));
+}
+/* ONE delegated listener for the pill. Every Tiro 1 screen re-renders it through
+   ass1Head(), so wiring it per screen would mean wiring it in a dozen places and
+   forgetting one — this way a new screen gets it for free. */
+document.addEventListener('click', e=>{
+  const hit = e.target && e.target.closest && e.target.closest('#a1-voice');
+  if (hit) ass1SetVoice(ass1Voice() === 'v2' ? 'v1' : 'v2');
+});
+
 /* Which beats a card owes. Read-only cards (the two surnames, yoo, yole) stop after
    listening: he never glossed them, so there is no meaning to be quizzed on. A card
-   with no clip cannot be asked "which word did you hear". */
+   with no clip in EITHER voice cannot be asked "which word did you hear" — since the
+   second speaker every card has one, yô included, so nothing hits that branch today. */
 function ass1Beats(c){
   if (c.readOnly) return ['listen'];
-  return c.audio ? ['listen', 'which', 'meaning'] : ['listen', 'meaning'];
+  return ass1Has(c) ? ['listen', 'which', 'meaning'] : ['listen', 'meaning'];
 }
 function ass1WordDone(c, st){
   const got = (st || ass1Get()).w[c.id] || {};
@@ -2560,28 +2608,35 @@ function ass1Counts(){
     rec: Object.keys(st.r || {}).length
   };
 }
+/* The speaker pill rides in the top right of EVERY Tiro 1 surface, which is why it lives
+   here and not on one screen: the switch is wanted mid-drill, wherever you happen to be,
+   not as a setting you have to go back to the tab home to change. */
 function ass1Head(title, right){
+  const v = ass1Voice();
+  const side = k => `<span class="a1v${v === k ? ' on' : ''}" data-v="${k}">${k.toUpperCase()}</span>`;
   return `<div class="topbar">
       <button class="quit" id="b-quit">✕</button>
       <h2 style="margin:0; font-size:1.05rem">📼 ${esc(title)}</h2>
       <span class="pill" style="margin-left:auto">${esc(String(right))}</span>
+      <button class="a1voice" id="a1-voice" title="Which speaker you hear" aria-label="Switch speaker">🎙${side('v1')}${side('v2')}</button>
     </div>`;
 }
 function ass1Quit(){ document.getElementById('b-quit').onclick = ()=>{ ass1Run = null; screenAss1(); }; }
-/* One play/slow pair, wired to one file. Used on every card that has a clip. */
-function ass1PlayRow(file, label){
-  if (!file) return `<p class="tiny" style="margin:10px 0">${esc(label || 'No recording for this one — say it from the spelling.')}</p>`;
+/* One play/slow pair for one CARD — the card, not a filename, so the click resolves the
+   voice at the moment it is tapped (see ass1Aud). Used on every card that has a clip. */
+function ass1PlayRow(c, label){
+  if (!ass1Has(c)) return `<p class="tiny" style="margin:10px 0">${esc(label || 'No recording for this one — say it from the spelling.')}</p>`;
   return `<div class="row" style="margin:12px 0; align-items:center">
       <button class="audio-btn" id="a1-play" aria-label="Play">🔊</button>
       <button class="audio-btn slow-btn" id="a1-slow" aria-label="Play slowly" title="Slowly">🐢</button>
     </div>`;
 }
-function ass1HookPlay(file, autoplay){
+function ass1HookPlay(c, autoplay){
   const p = document.getElementById('a1-play'), s = document.getElementById('a1-slow');
-  if (!p || !file) return;
-  p.onclick = ()=>playAudio(file);
-  if (s) s.onclick = ()=>playAudio(file, SLOW_RATE);
-  if (autoplay) playAudio(file);
+  if (!p || !ass1Has(c)) return;
+  p.onclick = ()=>playAudio(ass1Aud(c));
+  if (s) s.onclick = ()=>playAudio(ass1Aud(c), SLOW_RATE);
+  if (autoplay) playAudio(ass1Aud(c));
 }
 /* Play a list of clips back to back — the whole intro, the way she will say it on
    camera. Chains on 'ended' rather than on timers, so a slow first byte cannot make
@@ -2617,7 +2672,7 @@ function screenAss1(){
     ${tile('a1-t2', '👋', 'Intro lines', 'The 8 lines you say before you start reading', `${n.intro} / ${RL_ASS1.intro.length}`)}
     ${tile('a1-t3', '📖', 'Phakwe le Mokoko', 'The story, chunk by chunk, every word glossed', `${n.story} / ${RL_ASS1.story.length}`)}
     ${tile('a1-t4', '⏺', 'Record and compare', 'Say any line, then hear hers and yours back to back', n.rec ? `${n.rec} tried` : 'open')}
-    <p class="tiny" style="margin-top:14px">The voice is a Setswana speaker reading your assignment script. One word (<b>yô</b>) has no clip — that take was spoiled at the microphone, and a wrong sound is worse than none.</p>`);
+    <p class="tiny" style="margin-top:14px">Two Setswana speakers read your whole assignment script. The 🎙 pill in the top right switches between them, anywhere on this tab — the next thing you play is the voice you picked. Listening to both is the point: the same word said two ways is what tells you which bits of it actually matter.</p>`);
   document.getElementById('b-quit').onclick = screenHome;
   document.getElementById('a1-t1').onclick = startAss1Words;
   document.getElementById('a1-t2').onclick = screenAss1Intro;
@@ -2669,7 +2724,7 @@ function ass1BeatListen(c){
     <p class="muted">Listen, then say it out loud.</p>
     <div class="bigtsw">${esc(c.tsw)}</div>
     <span class="pill" style="margin-top:6px">sound: ${esc(c.sound)}</span>
-    ${ass1PlayRow(c.audio, 'No clip for this one — that take was spoiled at the microphone. Say it from the spelling.')}
+    ${ass1PlayRow(c, 'No clip for this one — that take was spoiled at the microphone. Say it from the spelling.')}
     <div class="notecard" style="margin:10px 0">
       <b>${esc(c.eng)}</b>${c.af ? `<span class="tiny" style="display:block">Afrikaans: ${esc(c.af)}</span>` : ''}
     </div>
@@ -2677,20 +2732,20 @@ function ass1BeatListen(c){
     <button class="btn primary" id="a1-on" style="margin-top:16px">${c.readOnly ? 'Said it — next word →' : 'Said it — now test me →'}</button>
     </div>`);
   ass1Quit();
-  ass1HookPlay(c.audio, true);
+  ass1HookPlay(c, true);
   document.getElementById('a1-on').onclick = ()=>{ ass1MarkBeat(c, 'listen'); ass1NextBeat(); };
 }
 function ass1BeatWhich(c){
   const r = ass1Run;
   currentScreen = 'Tiro 1 — ' + c.id + ' which';
-  const opts = shuffle([c, ...ass1Distractors(c, 3, RL_ASS1.words.filter(x=>x.audio))]);
+  const opts = shuffle([c, ...ass1Distractors(c, 3, RL_ASS1.words.filter(ass1Has))]);
   render(ass1Head('Mafoko', `${r.at + 1} / ${r.order.length}`) + `<div id="a1Area">
     <p class="muted">Which word is that?</p>
-    ${ass1PlayRow(c.audio)}
+    ${ass1PlayRow(c)}
     ${opts.map(o=>`<button class="choice" data-id="${esc(o.id)}">${esc(o.tsw)}</button>`).join('')}
     <div id="a1-fb"></div></div>`);
   ass1Quit();
-  ass1HookPlay(c.audio, true);
+  ass1HookPlay(c, true);
   const fb = document.getElementById('a1-fb');
   let locked = false;
   document.querySelectorAll('.choice').forEach(b=>{
@@ -2787,7 +2842,7 @@ function screenAss1Intro(){
       const all = document.getElementById('a1-all');
       if (all) all.textContent = '▶ Play the whole intro';   // …so put its label back
       const c = RL_ASS1.intro[parseInt(b.dataset.line, 10)];
-      playAudio(c.audio);
+      playAudio(ass1Aud(c));
       const s = ass1Get(); if (!s.i[c.id]){ s.i[c.id] = 1; ass1Set(s); }
     };
   });
@@ -2797,14 +2852,14 @@ function screenAss1Intro(){
       const all = document.getElementById('a1-all');
       if (all) all.textContent = '▶ Play the whole intro';   // …so put its label back
       const c = RL_ASS1.intro[parseInt(b.dataset.slow, 10)];
-      playAudio(c.audio, SLOW_RATE);
+      playAudio(ass1Aud(c), SLOW_RATE);
       const s = ass1Get(); if (!s.i[c.id]){ s.i[c.id] = 1; ass1Set(s); }
     };
   });
   document.getElementById('a1-all').onclick = ()=>{
     const btn = document.getElementById('a1-all');
     btn.textContent = '⏸ Playing the whole intro…';
-    ass1PlaySeq(RL_ASS1.intro.map(c=>c.audio), ()=>{
+    ass1PlaySeq(RL_ASS1.intro.map(ass1Aud), ()=>{
       const s = ass1Get();
       const first = RL_ASS1.intro.some(c=>!s.i[c.id]);
       RL_ASS1.intro.forEach(c=>{ s.i[c.id] = 1; });
@@ -2839,7 +2894,7 @@ function ass1StoryCard(auto){
     <div class="tokens" style="margin:10px 0">
       ${c.chunks.map((ch, i)=>`<button class="tok" data-chunk="${i}"${i === s.open ? ' style="outline:3px solid var(--pink-deep)"' : ''}>${esc(ch.tsw)}</button>`).join('')}
     </div>
-    ${ass1PlayRow(c.audio)}
+    ${ass1PlayRow(c)}
     ${open ? `<div class="notecard" style="margin:10px 0">
         <b>${esc(open.tsw)}</b> — ${esc(open.eng)}
         <div style="margin-top:8px">
@@ -2858,7 +2913,7 @@ function ass1StoryCard(auto){
     ${s.at > 0 ? '<button class="btn ghost" id="a1-back" style="margin-top:8px">◀ The one before</button>' : ''}
     </div>`);
   document.getElementById('b-quit').onclick = ()=>{ ass1Story = null; screenAss1(); };
-  ass1HookPlay(c.audio, auto === true);
+  ass1HookPlay(c, auto === true);
   document.querySelectorAll('[data-chunk]').forEach(b=>{
     b.onclick = ()=>{ const i = parseInt(b.dataset.chunk, 10); s.open = (s.open === i ? -1 : i); ass1StoryCard(); };
   });
@@ -2873,15 +2928,29 @@ function ass1StoryCard(auto){
 function ass1StoryEnd(){
   currentScreen = 'Tiro 1 — story done';
   ass1Story = null;
+  /* Two read-throughs now: slow, and at natural pace. The natural-pace one exists only on
+     the second speaker's tape, so in V1 it falls back to her — the resolver's job. */
+  const wrow = (id, label, obj) => !ass1Has(obj) ? '' : `<div class="row" style="margin:10px 0; align-items:center">
+      <button class="audio-btn" id="${id}" aria-label="Play ${esc(label)}">🔊</button>
+      <button class="audio-btn slow-btn" id="${id}-s" aria-label="Play ${esc(label)} slowly" title="Slowly">🐢</button>
+      <span class="tiny">${esc(label)}</span>
+    </div>`;
   render(ass1Head('Phakwe le Mokoko', 'done') + `<div id="a1Area">
     <p class="muted">That is the whole story. Hear it read through, then see how much stuck.</p>
-    ${ass1PlayRow(RL_ASS1.whole.slow)}
-    <p class="tiny">One reading, slow and sentence by sentence — that is the whole tape. 🐢 slows it further if you want to shadow it.</p>
+    ${wrow('a1-wslow', 'slowly, sentence by sentence', RL_ASS1.whole.slow)}
+    ${wrow('a1-wnat', 'at natural pace, the way it is spoken', RL_ASS1.whole.nat)}
+    <p class="tiny">Shadow the slow one first, then try to keep up with the natural one. 🐢 slows either of them further.</p>
     <button class="btn primary" id="a1-quiz" style="margin-top:16px">Now test me on the pieces →</button>
     <button class="btn ghost" id="a1-again" style="margin-top:8px">Read it again from the start</button>
     </div>`);
   document.getElementById('b-quit').onclick = ()=>{ ass1StopSeq(); screenAss1(); };
-  ass1HookPlay(RL_ASS1.whole.slow, false);
+  const hookw = (id, obj)=>{
+    const p = document.getElementById(id), s = document.getElementById(id + '-s');
+    if (p) p.onclick = ()=>playAudio(ass1Aud(obj));
+    if (s) s.onclick = ()=>playAudio(ass1Aud(obj), SLOW_RATE);
+  };
+  hookw('a1-wslow', RL_ASS1.whole.slow);
+  hookw('a1-wnat', RL_ASS1.whole.nat);
   document.getElementById('a1-quiz').onclick = startAss1Quiz;
   document.getElementById('a1-again').onclick = screenAss1Story;
 }
@@ -2891,11 +2960,12 @@ function ass1StoryEnd(){
    same kind of question and they carry their own clip. */
 function ass1QuizPool(){
   const pool = [];
+  // both voices ride along, so ass1Aud() resolves these exactly like a real card
   RL_ASS1.story.forEach(c=>c.chunks.forEach(ch=>{
-    pool.push({key: c.id + '|' + ch.tsw, tsw: ch.tsw, eng: ch.eng, audio: c.audio, from: 'the story'});
+    pool.push({key: c.id + '|' + ch.tsw, tsw: ch.tsw, eng: ch.eng, audio: c.audio, audio2: c.audio2, from: 'the story'});
   }));
   RL_ASS1.phrases.forEach(p=>{
-    pool.push({key: p.id, tsw: p.tsw, eng: p.eng, audio: p.audio, from: 'a phrase'});
+    pool.push({key: p.id, tsw: p.tsw, eng: p.eng, audio: p.audio, audio2: p.audio2, from: 'a phrase'});
   });
   return pool;
 }
@@ -2921,12 +2991,12 @@ function ass1QuizStep(){
   render(ass1Head('The pieces', `${r.at + 1} / ${r.order.length}`) + `<div id="a1Area">
     <p class="muted">${toEng ? 'What does this piece mean?' : 'Which piece says this?'}</p>
     <div class="bigtsw" style="font-size:1.35rem">${esc(toEng ? q.tsw : q.eng)}</div>
-    ${ass1PlayRow(q.audio, '')}
+    ${ass1PlayRow(q, '')}
     <div style="height:6px"></div>
     ${opts.map(o=>`<button class="choice" data-key="${esc(o.key)}">${esc(toEng ? o.eng : o.tsw)}</button>`).join('')}
     <div id="a1-fb"></div></div>`);
   ass1Quit();
-  ass1HookPlay(q.audio, false);
+  ass1HookPlay(q, false);
   const fb = document.getElementById('a1-fb');
   let locked = false;
   document.querySelectorAll('.choice').forEach(b=>{
@@ -2970,17 +3040,17 @@ function finishAss1Quiz(){
    herself against the speaker straight after is the single most useful thing here. */
 function ass1VoicedCards(){
   return [
-    {label: '🔤 His words', cards: RL_ASS1.words.filter(c=>c.audio)},
-    {label: '👋 Intro lines', cards: RL_ASS1.intro.filter(c=>c.audio)},
-    {label: '📖 Story sentences', cards: RL_ASS1.story.filter(c=>c.audio)},
-    {label: '📖 Phrases from the story', cards: RL_ASS1.phrases.filter(c=>c.audio)}
+    {label: '🔤 His words', cards: RL_ASS1.words.filter(ass1Has)},
+    {label: '👋 Intro lines', cards: RL_ASS1.intro.filter(ass1Has)},
+    {label: '📖 Story sentences', cards: RL_ASS1.story.filter(ass1Has)},
+    {label: '📖 Phrases from the story', cards: RL_ASS1.phrases.filter(ass1Has)}
   ];
 }
 function screenAss1Record(){
   currentScreen = 'Tiro 1 — record picker';
   const st = ass1Get();
   render(ass1Head('Record and compare', `${Object.keys(st.r || {}).length} tried`) + `<div id="a1Area">
-    <p class="muted">Pick any line, say it, then play hers and yours back to back. Nothing is saved or sent anywhere.</p>
+    <p class="muted">Pick any line, say it, then play the speaker and yourself back to back. 🎙 in the top right picks which speaker you are matching. Nothing is saved or sent anywhere.</p>
     ${ass1VoicedCards().map(g=>`<h3 style="font-size:.95rem; margin:16px 0 4px">${esc(g.label)}</h3>
       ${g.cards.map(c=>`<button class="choice" data-rec="${esc(c.id)}">${st.r[c.id] ? '✓ ' : ''}${esc(c.tsw)}</button>`).join('')}`).join('')}
     </div>`);
@@ -2998,7 +3068,7 @@ function ass1RecordCard(c){
     <p class="muted">Listen first, then record yourself saying it.</p>
     <div class="bigtsw" style="font-size:1.45rem">${esc(c.tsw)}</div>
     <span class="tiny" style="display:block; margin-top:4px">${esc(c.eng)}</span>
-    ${ass1PlayRow(c.audio)}
+    ${ass1PlayRow(c)}
     <div class="card" style="margin-top:8px"><div class="row">
       <button class="audio-btn rec-btn" id="a1-rec" aria-label="Record">🎙️</button>
       <button class="audio-btn" id="a1-mine" disabled style="opacity:.4" aria-label="Play my recording">▶️</button>
@@ -3007,7 +3077,7 @@ function ass1RecordCard(c){
     <button class="btn ghost" id="a1-back" style="margin-top:14px">◀ Pick another line</button>
     </div>`);
   document.getElementById('b-quit').onclick = screenAss1;
-  ass1HookPlay(c.audio, false);
+  ass1HookPlay(c, false);
   document.getElementById('a1-back').onclick = screenAss1Record;
   let rec = null, chunks = [], myUrl = null, recording = false;
   const stat = document.getElementById('a1-recstat');
@@ -3022,7 +3092,7 @@ function ass1RecordCard(c){
         stream.getTracks().forEach(t=>t.stop());
         myUrl = URL.createObjectURL(new Blob(chunks));
         bMine.disabled = false; bMine.style.opacity = 1;
-        stat.textContent = 'Recorded! 🔊 = hers, ▶️ = you';
+        stat.textContent = 'Recorded! 🔊 = the speaker, ▶️ = you';
         recording = false;
         const st = ass1Get();
         if (!st.r[c.id]){ st.r[c.id] = 1; ass1Set(st); addXP(2, 'ass1'); }

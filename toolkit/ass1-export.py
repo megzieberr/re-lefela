@@ -7,6 +7,23 @@ Reads toolkit/ass1-mapping.json (FINAL, ear-checked 2026-09-11) and writes ONE f
 card: audio/items/<card id>.mp3. It touches nothing else — not content.js, not any
 existing clip, not any file outside audio/items/a1*.mp3.
 
+TWO VOICES (added 2026-09-12)
+  V1 is the original four voice notes (.ogg). V2 is a SECOND speaker who recorded the
+  same script on five .wav tapes; toolkit/ass1-mapping-v2.json holds her 48 ear-checked
+  windows and the pass writes audio/items/<card id>-v2.mp3. The v2 pass has no bad/skip
+  cards: every one of the 48 was approved by ear, yô and the natural-pace read-through
+  included — both of which V1 simply does not have.
+
+  The v2 cut uses the SAME filter graph, minus the `-c:a libopus` input flag: that flag
+  exists for the v1 WhatsApp .ogg notes (see the recipe note below), and these are PCM
+  .wav files, which decode exactly with the default decoder.
+
+  🚨 BYTE-IDENTITY. What Megan's ear approved is the workbench clip, so the v2 pass
+  re-checks its output md5-for-md5 against "Assignnment 1 Audio/v2/clips/<id>-v2.mp3"
+  and REFUSES to finish if a single byte differs (the s46 precedent). Shipping a clip
+  that is merely "cut the same way" as the approved one is not the same as shipping the
+  approved one.
+
 WHAT IT SKIPS, AND WHY
   * `bad: true`  — the card ships SILENT rather than wrong. a1w-17 (yô): the old
     "clipped at source" diagnosis was decoder garbage (it measures clean under libopus);
@@ -56,6 +73,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 ROOT = Path(__file__).resolve().parent.parent
 ITEMS = ROOT / 'audio' / 'items'
 MAP = ROOT / 'toolkit' / 'ass1-mapping.json'
+MAP2 = ROOT / 'toolkit' / 'ass1-mapping-v2.json'
 
 
 def md5(p):
@@ -66,15 +84,27 @@ def snapshot():
     return {p.name: md5(p) for p in sorted(ITEMS.glob('*.mp3'))}
 
 
+AF = ("aformat=sample_fmts=flt,atrim=start={a:.2f}:end={b:.2f},asetpts=PTS-STARTPTS,"
+      "afade=t=in:d=0.02,areverse,afade=t=in:d=0.02,areverse")
+
+
 def cut(src_ogg, vk, a, b, dst):
     """The verbatim window cut. Trim happens in the filter graph (atrim) so the fades
     land on the clip's own edges — output-side -ss/-to left them on the tape's ends.
     Nothing else touches the audio (her ruling 2026-09-12, see the recipe note above)."""
-    af = (f"aformat=sample_fmts=flt,atrim=start={a:.2f}:end={b:.2f},asetpts=PTS-STARTPTS,"
-          "afade=t=in:d=0.02,areverse,afade=t=in:d=0.02,areverse")
     # -c:a libopus BEFORE -i: forces the reference decoder for the input (the
     # native default corrupts these files — postmortem 2026-09-11)
-    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-c:a', 'libopus', '-i', str(src_ogg), '-af', af,
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-c:a', 'libopus', '-i', str(src_ogg),
+                    '-af', AF.format(a=a, b=b),
+                    '-ac', '1', '-c:a', 'libmp3lame', '-q:a', '2', str(dst)], check=True)
+
+
+def cut_wav(src_wav, a, b, dst):
+    """The v2 cut: the SAME filter graph and the same encode, with no input decoder flag.
+    `-c:a libopus` is a v1-only fix for the WhatsApp .ogg notes; these tapes are PCM
+    .wav, which the default decoder reads exactly."""
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(src_wav),
+                    '-af', AF.format(a=a, b=b),
                     '-ac', '1', '-c:a', 'libmp3lame', '-q:a', '2', str(dst)], check=True)
 
 
@@ -84,12 +114,15 @@ def main():
                     help='folder holding the four .ogg voice notes (gitignored)')
     ap.add_argument('--clips', default=str(ROOT / 'Assignnment 1 Audio' / 'clips'),
                     help='the slicing workbench clips/ folder — source of the two name-free app cuts')
+    ap.add_argument('--clips2', default=str(ROOT / 'Assignnment 1 Audio' / 'v2' / 'clips'),
+                    help='the v2 workbench clips/ folder — the 48 clips her ear approved, which '
+                         'every -v2.mp3 written here must match byte for byte')
     ap.add_argument('--recut', action='store_true',
                     help='this run DELIBERATELY re-cuts existing a1*.mp3 files (windows or '
                          'recipe changed): changed a1 clips are expected, and AUDIO_CACHE '
                          'must bump in the same commit')
     args = ap.parse_args()
-    src_dir, clips_dir = Path(args.src), Path(args.clips)
+    src_dir, clips_dir, clips2_dir = Path(args.src), Path(args.clips), Path(args.clips2)
 
     m = json.loads(MAP.read_text(encoding='utf-8'))
     files = m['files']
@@ -128,15 +161,44 @@ def main():
         cut(ogg, c['file'], c['start'], c['end'], dst)
         made.append(cid)
 
+    # ── the second speaker ───────────────────────────────────────────────────────────
+    # Every one of the 48 was ear-checked: no bad, no skip, nothing to fall back on.
+    m2 = json.loads(MAP2.read_text(encoding='utf-8'))
+    files2 = m2['files']
+    made2, drift = [], []
+    for c in m2['clips']:
+        cid = c['id']
+        dst = ITEMS / f'{cid}-v2.mp3'
+        wav = src_dir / files2[c['file']]
+        if not wav.exists():
+            sys.exit(f'MISSING: {wav} — pass --src if the v2 tapes live elsewhere')
+        cut_wav(wav, c['start'], c['end'], dst)
+        made2.append(cid)
+        # byte-identity with what her ear approved (the s46 precedent)
+        ref = clips2_dir / f'{cid}-v2.mp3'
+        if not ref.exists():
+            drift.append(f'{cid}: no workbench clip at {ref} to check against')
+        elif md5(ref) != md5(dst):
+            drift.append(f'{cid}: {dst.name} does NOT match the ear-checked clip')
+
     after = snapshot()
     new = sorted(set(after) - set(before))
     gone = sorted(set(before) - set(after))
     changed = sorted(k for k in before if k in after and before[k] != after[k])
 
     print(f'cut     : {len(made)} clips')
+    print(f'cut v2  : {len(made2)} clips (the second speaker, -v2.mp3)')
     print(f'copied  : {len(copied)} app cuts' + (''.join('\n          ' + x for x in copied)))
     print(f'wired   : {len(reused)} existing files' + (''.join('\n          ' + x for x in reused)))
-    print(f'silent  : {len(silent)} cards ship no audio ({", ".join(silent)})')
+    print(f'silent  : {len(silent)} cards ship no audio in v1 ({", ".join(silent)})')
+
+    if drift:
+        print(f'\nBYTE-IDENTITY vs the ear-checked v2 clips : {len(drift)} MISMATCH(ES)')
+        for x in drift:
+            print('  ✗ ' + x)
+        sys.exit('\nFAILED — a -v2.mp3 differs from the clip her ear approved. Nothing ships '
+                 'until they match: "cut the same way" is not the same file.')
+    print(f'\nbyte-identity vs the ear-checked v2 clips : all {len(made2)} match')
 
     print(f'\nmd5 audit of audio/items/ : {len(before)} files before, {len(after)} after')
     print(f'  new     : {len(new)}')
