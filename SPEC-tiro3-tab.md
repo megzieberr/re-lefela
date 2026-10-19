@@ -280,3 +280,307 @@ file is LF, UTF-8, no BOM. Prints the count of cards whose audio resolves via th
 - `PROJECT-STATUS.md` "Where we are" updated (sw v59, Tiro 3 built, Tiro 1 parked), `PROJECT-HISTORY.md`
   gets the session write-up. Local commit, message starting "Tiro 3: the quiz-words drill tab (sw v59)".
   **No push.**
+
+## 6. ADDENDUM 2026-10-19 evening: the Smart Guide's own word lists (her yes, 19:00)
+
+Her words: "add them as well, then I will do the first 7 rounds first and make sure I know them by heart,
+and then after that I will work through the rest, bc Tiro 4 is also a quiz like this, so to have the whole
+smart guide's drills ready is smart". So: the first 7 rounds stay EXACTLY as built. Under them, a divider
+("📖 The Smart Guide's own lists, for Ass 3 and Ass 4") and nine more rounds, same three shapes, same
+`rl_tiro3` key, same XP kind, same 🔇 rule. Source id for every card: `smart-guide-2026:pNN` (page from
+the `===== PAGE n =====` markers of `smart-guide-full-text.md`; Fable read p64 to p91 in full on
+2026-10-19 and typed this table from them). Where the guide's printed spelling is on the extract's errata
+list, the card's MAIN spelling is the corpus-standard one and the guide's print goes in `alt` with a note,
+EXCEPT genuine variants (chukudu, lenau, tswene, ntsoshwane, lebodu, eie, peinapole, hambeka): there the
+guide's print is MAIN (he marks by his guide) and the standard spelling is `alt` with a note.
+`alt` always makes her typed answer pass either way.
+
+Tab-home counter becomes the new total. Progress on the first seven rounds is untouched (same ids).
+The verify gate's source list already covers the guide text, so every string below passes it; the gate
+must now also assert that the 7 original round ids and their card ids are unchanged (so a rebuild can
+never reset her progress), and fail on a duplicate `tsw` across rounds (one card per Setswana string
+within the bank). Rows marked SKIP below were considered and are NOT cards.
+
+### 8. 🍇 mau · Maungo le merogo (fruit and vegetables, p74 to 77, p83 to 84)
+| tsw | eng | alt | src | note |
+|---|---|---|---|---|
+| leungo | fruit (one) | | p74 | plural maungo (round 2) |
+| panana | banana | banana | p74,83 | |
+| namune | orange | | p75,83 | |
+| diterebe | grapes | morara | p75 | guide gives both |
+| pere | pear | | p75,83 | |
+| poreimi | plum | | p75 | guide glosses "prune"; the Afrikaans says pruim = plum |
+| menku | mango | | p75 | |
+| apolekose | apricot | | p76 | |
+| feie | fig | | p76 | |
+| peinapole | pineapple | peiniapole | p76,83 | guide prints both spellings |
+| suru | lemon | ratsuru | p76 | guide gives both |
+| tamati | tomato | | p76,83 | |
+| khabetshe | cabbage | | p76,84 | |
+| eie | onion | | p77,83 | |
+| segwete | carrot | | p77 | plural dikwete (p84) |
+| nawa | bean (one) | | p77 | plural dinawa (round 2) |
+| bete | beetroot | | p77 | |
+| dierekisi | peas | | p84 | |
+| mmidi | mealies / corn | | p84 | |
+| apole | SKIP | | | already round 2 |
+| lekwele | SKIP | | | already alt of tapole, round 2 |
+
+### 9. 🍳 kit · Dijo le kitšhini (the food list, kitchen verbs, restaurant lines; p83 to 84)
+| tsw | eng | alt | src | note |
+|---|---|---|---|---|
+| lee | egg | | p84 | plural mae (p83) |
+| mae | eggs | | p83 · app | |
+| kgogo | chicken (meat); also cock | | p84,91 | p91 lists koko = hen, kgogo = cock; the quiz's "chicken" answer is koko |
+| tlhapi | fish | thlapi | p83 (tlhapi); p84 prints thlapi | tlh, the sound-table spelling |
+| boroso | sausage | | p83 | |
+| hambeka | hamburger | | p84 | guide loanword |
+| kase | cheese | tshisi | p84 | guide gives both |
+| kuku | cake | | p84 | |
+| jeme | jam | | p84 | |
+| botoro | butter | | p84 | |
+| kofi | coffee | | p83,84 | |
+| teye | tea | | p84 · app (tee) | |
+| letswai | salt | | p84 | |
+| pepere | pepper | | p84 | |
+| seno sa maungo | fruit juice | | p83 | |
+| dilalelo | supper | | p86 (story) | |
+| moabadijo | waiter / waitress | | p83 | |
+| go bela | to boil (water) | | p84 | |
+| go apaya | to cook (food) | | p84 · app | |
+| go tshela | to pour (water, tea) | tsela | p84 prints tsela; p68 tshela = throw | tsela is also "road"; errata |
+| go faga | to stir (porridge) | | p84 | errata: thin in corpus; guide-only |
+| go borai | to braai / roast | | p84 | |
+| Ke tshwerwe ke tlala. | I am starving (hunger has me). | | p82,86 | phrase |
+| Ke tshwerwe ke lenyora. | I am thirsty. | | p83 | phrase |
+| Ke kolota bokae? | How much do I owe? | | p83 | phrase |
+| Menyu ke o. | Here is the menu. | | p83 | phrase |
+| Dijo di tlaa tla ka bonako. | The food will come soon. | | p83 | phrase |
+| go nwa | SKIP | | | already round 6 |
+
+### 10. 🦁 nag · Diphologolo tsa naga (wild animals, p90)
+| tsw | eng | alt | src | note |
+|---|---|---|---|---|
+| tswene | baboon | tshwene | p90 | standard spelling tshwene |
+| pitse e tilodi | zebra | | p90 | literally "striped horse" |
+| thutlwa | giraffe | | p90 | |
+| kubu | hippo | | p90 | |
+| nare | buffalo | | p90 | |
+| nkwe | leopard / tiger | | p90 | the guide prints nkwe under "tier" and lenau under "luiperd" |
+| lenau | leopard (guide) | lengau | p90 | standard lengau |
+| chukudu | rhino | tshukudu | p90 | standard tshukudu |
+| mmutla | hare / rabbit | | p90 | |
+| khudu | tortoise | kudu | p85 (story); p90 prints kudu | errata: "kudu" is the antelope elsewhere |
+| phokoje | jackal | | p90 | guide glosses "fox" |
+| phiri | wolf / hyena | | p90 | |
+| kwena | crocodile | | p90 | |
+| lebodu | chameleon (guide) | leobu | p90 | errata: lebodu usually = snail; chameleon = leobu. Quiz answer = his print |
+| noga | snake | | p90 | |
+| segwagwa | frog | | p90 | |
+| mmamanthwane | bat | | p89 | |
+| mogatla | tail | | p89 | |
+| Tau e duma. | The lion roars. | | p87 | phrase |
+
+### 11. 🐓 pol · Diphologolo tsa polasa (farm animals, small creatures, sounds; p87, p89, p91)
+| tsw | eng | alt | src | note |
+|---|---|---|---|---|
+| tonki | donkey | | p13,91 | |
+| ntsi | fly | | p91 | |
+| pidipidi | duck | | p91 | |
+| peba | mouse | | p91 | |
+| lekote | rat | | p91 | |
+| ntsoshwane | ant | tshoswane | p91 | standard tshoswane |
+| Nku e lela. | The sheep bleats. | | p87 | phrase |
+| Katse e lela. | The cat miaows. | | p87 | phrase |
+| Pitse e khinkhinyega. | The horse neighs. | | p87 | phrase; guide also prints kgwangkgwangyetsa |
+| Ke eng se? | What is this? | | p88 | phrase |
+| Nku e dirang? | What is the sheep doing? | | p88 | phrase |
+| Nku e ntle! | The sheep is beautiful! | | p88 | phrase |
+| Mmala wa yone o mosweu. | Its colour is white. | | p88 | phrase |
+| Ke nku ya ga mang? | Whose sheep is it? | | p88 | phrase |
+| Ga ke na nku. | I don't have a sheep. | | p88 | phrase |
+| A tau e na le mogatla? | Does the lion have a tail? | | p89 | phrase |
+| Tau e ja eng? | What does the lion eat? | | p89 | phrase |
+| A o tsoma tau? | Do you hunt lions? | | p89 | phrase; go tsoma = hunt (p91) |
+
+### 12. 🎒 dil · Mo sekolong: dilo (school things, clothes, transport, classroom, weather words; p67 to 68)
+| tsw | eng | alt | src | note |
+|---|---|---|---|---|
+| diaparo tsa sekolo | school clothes | | p67 | |
+| mosese | dress | | p67 | |
+| borokgwe | pants / trousers | | p67 | |
+| hempe | shirt | | p67 | |
+| ditlhako | shoes | | p67 | |
+| pene | pen | | p67 · app | |
+| pensele | pencil | phensele | p67 | Zerwick's handout spells phensele |
+| rulara | ruler | | p67 | |
+| rabara | eraser | tshoma | p67 | guide gives both |
+| tafole | table | | p67 · app | |
+| phaposi ya sekolo | classroom | | p67 | |
+| bese | bus | | p67 | |
+| thekisi | taxi | | p67 | |
+| sejanaga | car | | p67 | koloi is the other word (round 3) |
+| setimela | train | | p67 | |
+| baesekele | bicycle | | p67 | |
+| seketswana | boat | | p67 | |
+| sefofane | aeroplane | | p67 | |
+| sethuthuthu | motorbike | | p67 | |
+| lebati | door | | p68 · app | |
+| fenstere | window | | p68 | |
+| tlapakwalelo | blackboard | | p68 | the guide's word; the quiz's is letlapa la tshoko (round 3) |
+| motakalela | chalk | | p68 | guide-only |
+| lebone | light | | p68 | also round 16, from go bona: ONE card, put it here |
+| go tshuba | to switch on | | p68 | |
+| go tima | to switch off | | p68 | |
+| tsididi | cold | | p68 | |
+| bolelo | warm | | p68 | |
+| go omelela | to dry / dry | | p68 | |
+| mafuta | fat | | p68 | |
+| sesane | thin | | p68 | |
+| lolea | empty | | p68 | |
+| godimo | high / up | | p68 | |
+| tlase | low / down | | p68 | |
+| go baakanya | to get ready | | p68 | |
+| go tswala | to close | thswala | p68 prints thswala | errata: tswala (p72 agrees) |
+| go apara | to put on (clothes) | | p68 | |
+| go sitwa | to get cold / feel cold | | p68 | |
+| go kgotlhola | to cough | | p68 | |
+| go roroma | to shiver | | p68 | |
+| metsi (wet) | SKIP | | | metsi = water is round 2; one card per string |
+
+### 13. 🎨 meb · Mebala (colours, p69)
+| tsw | eng | alt | src | note |
+|---|---|---|---|---|
+| botala jwa legodimo | blue (sky-colour) | | p69 | pududu = blue in the p29 adjective table |
+| rokwa | brown | borokwa | p69 | |
+| tala | green | botala jwa tlhaga | p69 | |
+| kwebu | grey | | p69 | |
+| bonamune | orange (colour) | | p69 | from namune |
+| pinki | pink | | p69 | |
+| hibidu | red | khibidu | p69; p29 prints khibidu | |
+| bosweu | white | | p69 · app | |
+| setlha | yellow | tshetla | p69; p29 tshêtla | the NC friends' "botala = yellow" is pinned in CLAUDE.md; module answer = setlha |
+| ntsho | black | | p69 | |
+| phephole | purple | | p69 | |
+
+### 14. 📅 nak · Nako (time words, days, months, directions, seasons; p64 to 68)
+| tsw | eng | alt | src | note |
+|---|---|---|---|---|
+| mo mosong | in the morning | | p64 | |
+| bosigo | at night | | p64 · app | |
+| bosigogare | midnight | | p64 | |
+| mantsiboa | in the evening | | p64 | |
+| mathapama | in the afternoon | | p64 | |
+| motshegare | midday | | p64 | |
+| bogologolo | long ago | | p64 | |
+| gompieno | today | | p64 | |
+| jaanong | now | | p64 | |
+| ka letsatsi | during the day | | p64 | |
+| ka mmamoso | the day after tomorrow | | p64 | |
+| ka phirimana | at sunset | | p64 | guide glosses "at noon"; the Afrikaans says sononder = sunset |
+| maabane | yesterday | | p65 · app | |
+| maloba | the day before yesterday | | p65 | |
+| pele | before | | p65 | |
+| botlhabatsatsi | east | | p65 | |
+| bophirimatsatsi | west | | p65 | |
+| bokone | north | | p65 | |
+| borwa | south | | p65 | |
+| Masupologo | Monday | | p65 | |
+| Labobedi | Tuesday | | p65 | |
+| Laboraro | Wednesday | | p65 | |
+| Labone | Thursday | | p65 | |
+| Labotlhano | Friday | | p65 | |
+| Matlhatso | Saturday | | p65 | |
+| Latshipi | Sunday | | p65 | |
+| Firikgong | January | | p65 | |
+| Tlhakole | February | | p65 | |
+| Mopitlwe | March | | p65 | |
+| Moranang | April | Moragang | p65 prints Moragang | standard Moranang |
+| Motsheganong | May | | p65 | |
+| Seetebosigo | June | | p65 | |
+| Phukwi | July | | p65 | |
+| Phatwe | August | | p65 | |
+| Lwetse | September | | p66 | |
+| Diphalane | October | | p66 | |
+| Ngwanatsela | November | | p66 | |
+| Sedimonthole | December | | p66 | |
+| Leng? | When? | | p64 | goes at the END of the sentence |
+| dikgakologa | spring | | p67 | |
+| selemo | summer | | p68 | |
+| letlhafula | autumn | | p68 | |
+| mariga | winter | | p68 | |
+
+### 15. 🔢 dip · Dipalo (numbers, p78 to 79; app u4l3 has audio for several)
+| tsw | eng | alt | src | note |
+|---|---|---|---|---|
+| nngwê | one | nngwe | p78 · app | guide hat (Build A ruling) |
+| pêdi | two | pedi | p78 · app | |
+| tharo | three | | p78 · app | |
+| nnê | four | nne | p78 · app | |
+| tlhano | five | thlano | p78 prints thlano | errata (tlh) |
+| thataro | six | | p78 | |
+| supa | seven | | p78 | |
+| robedi | eight | | p78 | |
+| robongwe | nine | | p78 | |
+| lesome | ten | | p78 · app | |
+| lesomenngwe | eleven | | p79 | |
+| lesomepedi | twelve | | p79 | |
+| lesometharo | thirteen | | p79 | |
+| lesometlhano | fifteen | lesomethlano | p79 | |
+| masomamabedi | twenty | | p79 | |
+| masomamararo | thirty | | p79 | |
+| masomamatlhano | fifty | masomamathano | p79 prints masomamathano | |
+| lekgolo | hundred | | p79 | |
+| sekete | thousand | | p79 | |
+| gangwe | once | | p79 | ga- = times |
+| gabedi | twice | gabobedi | p79 prints gabobedi | |
+| gararo | three times | | p79 | |
+| galesome | ten times | | p79 | |
+| Bokae? | How many? / How much? | | p79,83 | |
+
+### 16. 🔧 bop · Go bopa mafoko (word-building: nouns from verbs, p70 to 74; the Ass 4 favourite)
+Pick-mode may show the verb and ask for the noun, or the reverse. Type-mode: eng → tsw as usual.
+| tsw | eng | alt | src | note |
+|---|---|---|---|---|
+| mokwadi | writer (from go kwala) | | p71 | -la → -di |
+| motsamai | walker (from go tsamaya) | | p71 | -ya → -i |
+| moapei | cook / chef (from go apaya) | | p71 | the exception |
+| mmini | dancer (from go bina) | mobini | p71 | mob- → mm- |
+| mmui | speaker (from go bua) | | p71 | |
+| mmolai | murderer (from go bolaya) | | p71 | |
+| moago | building (from go aga) | | p72 | mo-/me-: meago |
+| letagwa | alcoholic (from go tagwa) | | p72 | |
+| lebitso | name (from go bitsa) | | p72 | leina is the Unit 1 word |
+| sejo | a meal (from go ja) | | p72 | plural dijo = food |
+| segagabi | reptile (from go gagaba, to crawl) | | p72 | |
+| setswalo | lid (from go tswala) | | p72 | |
+| kitso | knowledge (from go itse) | | p73 | |
+| karabo | answer (from go araba) | | p73 | |
+| puo | language (from go bua) | | p73 | b → p |
+| pitso | meeting (from go bitsa) | | p73 | |
+| tiro | work, exercise (from go dira) | | p73 | d → t; "Tiro 3" is this word |
+| mpho | gift (from go fa) | | p73 | f → mph |
+| kgato | a step (from go gata) | | p73 | g → kg |
+| khumo | wealth (from go huma) | | p73 | h → kh |
+| teko | test (from go leka) | | p73 | l → t |
+| thato | will, love (from go rata) | | p73 | r → th |
+| thuto | lesson, education (from go ruta) | | p73 | |
+| tshebo | a whisper (from go seba) | | p73 | s → tsh |
+| tshupo | a sign (from go supa) | | p73 | |
+| lofetlho | mixer (from go fetlha) | | p74 | lo-/di- |
+| boitumelo | happiness (from go itumela) | | p74 | bo- |
+| go gagaba | to crawl | | p72 | |
+| go tagwa | to get drunk | | p72 | |
+| go bitsa | to call | | p72 | |
+| go itse | to know | | p73 | |
+| go fa | to give | | p73 | |
+| go gata | to step | | p73 | |
+| go huma | to become rich | | p73 | |
+| go leka | to try | | p73 | |
+| go seba | to whisper | | p73 | |
+| go supa | to show | | p73 | |
+| go fetlha | to mix / whisk | | p74 | |
+| go itumela | to be glad | | p74 | |
+| go opela | to sing | | p71 | |
+| go bolaya | to kill | | p71 | |
+| moagi, modiri, lebone | SKIP | | | already rounds 3 / 12 |
