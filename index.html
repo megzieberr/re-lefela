@@ -330,6 +330,7 @@ body.tutor-fab-on .exa-actions{padding-bottom:calc(64px + env(safe-area-inset-bo
 <script src="medumo-bank.js"></script>
 <script src="lediri-bank.js"></script>
 <script src="ass1-bank.js"></script>
+<script src="tiro3-bank.js"></script>
 <script src="dict-bank.js"></script>
 <script>
 'use strict';
@@ -368,7 +369,7 @@ function persist(){ store.set('srs', state.srs); store.set('progress', state.pro
 // own by the caller. There are no app-scoped rl_ keys. Used by logout + the account-
 // switch guard in afterAuth so one learner's data can never bleed into another's.
 function clearLearnerState(){
-  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_parked','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder','rl_forms','rl_warmup','rl_medumo','rl_lediri','rl_ass1','rl_ass1_voice','rl_dictasked']
+  ['rl_srs','rl_progress','rl_xpTotal','rl_streak','rl_queue','rl_parked','rl_replay','rl_rivalry','rl_champWeekSeen','rl_tutorq','rl_chat','rl_daily','rl_builder','rl_forms','rl_warmup','rl_medumo','rl_lediri','rl_ass1','rl_ass1_voice','rl_tiro3','rl_dictasked']
     .forEach(k=>localStorage.removeItem(k));
 }
 
@@ -1060,6 +1061,12 @@ function screenHome(){
   const ass1Btn = SHOW_ASS1
     ? `<button class="btn ghost" id="b-ass1" style="margin:10px 0">📼 Tiro 1: the assignment, word for word<br>
         <span class="tiny">${RL_ASS1.words.length} words · ${RL_ASS1.intro.length} lines · the story · nothing here touches your review schedule</span></button>` : '';
+  /* 📝 Tiro 3 — the Assignment 3 quiz words (2026-10-19). Sits where Tiro 1 sat, last of
+     the drills, because it is the newest and the one with a quiz coming. SRS-free like
+     the rest, and the button says so. */
+  const tiro3N = tiro3Words().length;
+  const tiro3Btn = `<button class="btn ghost" id="b-tiro3" style="margin:10px 0">📝 Tiro 3: the quiz words<br>
+      <span class="tiny">${tiro3N} words in ${RL_TIRO3.rounds.length} rounds · match, type, pick · nothing here touches your review schedule</span></button>`;
   const awayDays = daysSincePractice();
   const welcomeBack = (awayDays >= WARMUP_AWAY_DAYS && wuPool.length >= 2)
     ? `<div class="notecard" style="margin:14px 0">
@@ -1093,6 +1100,7 @@ function screenHome(){
     ${medumoBtn}
     ${lediriBtn}
     ${ass1Btn}
+    ${tiro3Btn}
     ${unitsHtml}
     <div class="row" style="margin-top:16px">
       <button class="btn ghost" id="b-lb" style="flex:1">🏆 Scoreboard</button>
@@ -1119,6 +1127,7 @@ function screenHome(){
   const md = document.getElementById('b-medumo'); if (md) md.onclick = screenMedumo;
   const ld = document.getElementById('b-lediri'); if (ld) ld.onclick = screenLediri;
   const a1 = document.getElementById('b-ass1'); if (a1) a1.onclick = screenAss1;
+  const t3 = document.getElementById('b-tiro3'); if (t3) t3.onclick = screenTiro3;
   const rct = document.getElementById('b-warmup-top'); if (rct) rct.onclick = startWarmup;
   const dc = document.getElementById('b-dict'); if (dc) dc.onclick = screenDictionary;
   document.getElementById('b-lb').onclick = screenLeaderboard;
@@ -2541,7 +2550,8 @@ function finishLediri(){
    All names here start with ass1. That is not decoration: runRecap() collided with an
    identically-named function once, hoisting quietly pointed the caller at the wrong
    one, and every gate still passed. Grep before adding a name to this file. */
-const ASS1_LIVE = true;   // un-parked 2026-09-12 via PLAN-tiro1-unpark.md: the story-tape
+const ASS1_LIVE = false;  // PARKED 2026-10-19: Ass 1 marked 40/50, Tiro 3 took its place; ?ass1=1 revisits.
+                          // History: un-parked 2026-09-12 via PLAN-tiro1-unpark.md: the story-tape
                           // "damage" was ffmpeg's native Opus decoder, not the recording —
                           // every clip recut through libopus, verified clean (audio v8).
                           // POSTMORTEM-tiro1-audio.md holds the full account.
@@ -3101,6 +3111,393 @@ function ass1RecordCard(c){
     }catch(e){ stat.textContent = 'Mic not available on this device.'; }
   };
   bMine.onclick = ()=>{ if (myUrl){ if (currentAudio) currentAudio.pause(); currentAudio = new Audio(myUrl); currentAudio.play().catch(()=>{}); } };
+}
+
+/* ---------- 📝 Tiro 3 — the quiz words (2026-10-19) ----------------------------------
+   Her ask, plainly: his practice quiz for Assignment 3 is up (last year's, 50 one-mark
+   items, nearly all vocabulary plus a run of grammar-label questions), and "the repetitive
+   matching and typing really works well" — so this tab is exactly those two shapes over
+   exactly that vocabulary, plus the quiz's own pick-one-of-four, grouped by topic. Plan =
+   SPEC-tiro3-tab.md; data = tiro3-bank.js (see its header for the sourcing rules).
+
+   SEVEN ROUNDS in the quiz's weight order (animals … grammar). A round is a fixed
+   12-item session (the ASS1_QUIZ_ROUND ruling), cards she has not mastered first, the
+   shapes rotating 🧩 match → ⌨️ type → 🔘 pick so each session is about a third of each.
+   The grammar round is pick-only: his question, his options in his order, and the `why`
+   line after she answers, right or wrong. Two of those carry `pending` and show the ⏳
+   line instead of a tick, because nothing on our side can settle them before his memo.
+
+   AUDIO is borrowed, never copied or invented: tiro3Aud() plays the clip of the first
+   lesson card with the same norm(tsw). Most quiz words have no lesson card yet, so 🔇
+   "no recording yet" is a normal state here, not an error.
+
+   NO SRS WRITES. Own key rl_tiro3 ({c: {cardId: {t, p, m}}} = clean typed passes, clean
+   picks, matches), XP as kind 'tiro3'. Mastered = 3 clean typed passes (3 clean picks in
+   the grammar round). A reveal and the retype after it pay nothing.
+
+   All names here start with tiro3 (the runRecap hoisting lesson). Grep before adding one. */
+const TIRO3_ROUND = 12;
+const TIRO3_MASTER = 3;
+const TIRO3_SHAPES = ['match', 'type', 'pick'];
+const TIRO3_PENDING_LINE = '⏳ his memo will settle this (after Fri 23 Oct)';
+let tiro3Run = null;
+
+function tiro3Get(){
+  const v = store.get('tiro3', {c:{}});
+  if (!v || typeof v !== 'object' || !v.c) return {c:{}};
+  return v;
+}
+function tiro3Set(v){ store.set('tiro3', v); }
+function tiro3Rec(st, id){ return st.c[id] || (st.c[id] = {t:0, p:0, m:0}); }
+function tiro3Mastered(card, st){
+  const r = (st || tiro3Get()).c[card.id] || {};
+  return card.kind === 'quiz' ? (r.p || 0) >= TIRO3_MASTER : (r.t || 0) >= TIRO3_MASTER;
+}
+function tiro3Words(){
+  const out = [];
+  RL_TIRO3.rounds.forEach(r=>r.cards.forEach(c=>{ if (c.kind !== 'quiz') out.push(c); }));
+  return out;
+}
+/* The one audio rule (SPEC §1): the first lesson card whose norm(tsw) matches AND has a
+   clip. Built once into a map, because every render asks. */
+let tiro3AudMap = null;
+function tiro3Aud(card){
+  if (!card || !card.tsw) return null;
+  if (!tiro3AudMap){
+    tiro3AudMap = {};
+    for (const u of RL_CONTENT.units) for (const l of u.lessons) for (const it of l.items){
+      if (!it.tsw || !it.audio) continue;
+      const k = norm(it.tsw);
+      if (!(k in tiro3AudMap)) tiro3AudMap[k] = it.audio;
+    }
+  }
+  return tiro3AudMap[norm(card.tsw)] || null;
+}
+/* ▶ + 🐢 for one card, or the quiet 🔇 when no lesson card has a clip for it. */
+function tiro3PlayRow(card){
+  if (!tiro3Aud(card)) return `<p class="tiny" style="margin:10px 0">🔇 no recording yet</p>`;
+  return `<div class="row" style="margin:12px 0; align-items:center">
+      <button class="audio-btn" id="t3-play" aria-label="Play">▶</button>
+      <button class="audio-btn slow-btn" id="t3-slow" aria-label="Play slowly" title="Slowly">🐢</button>
+    </div>`;
+}
+function tiro3HookPlay(card){
+  const f = tiro3Aud(card); if (!f) return;
+  const p = document.getElementById('t3-play'), s = document.getElementById('t3-slow');
+  if (p) p.onclick = ()=>playAudio(f);
+  if (s) s.onclick = ()=>playAudio(f, SLOW_RATE);
+}
+function tiro3Head(title, right){
+  return `<div class="topbar">
+      <button class="quit" id="b-quit">✕</button>
+      <h2 style="margin:0; font-size:1.05rem">📝 ${esc(title)}</h2>
+      <span class="pill" style="margin-left:auto">${esc(String(right))}</span>
+    </div>`;
+}
+function tiro3Quit(){ document.getElementById('b-quit').onclick = ()=>{ tiro3Run = null; screenTiro3(); }; }
+function tiro3Accepts(card, typed){
+  const g = norm(typed);
+  if (!g) return false;
+  return g === norm(card.tsw) || (card.alt || []).some(a=>norm(a) === g);
+}
+
+/* ── the tab home ─────────────────────────────────────────────────────────────────── */
+function screenTiro3(){
+  currentScreen = 'Tiro 3';
+  tiro3Run = null;
+  const st = tiro3Get();
+  let mAll = 0, nAll = 0;
+  const tiles = RL_TIRO3.rounds.map(r=>{
+    const m = r.cards.filter(c=>tiro3Mastered(c, st)).length;
+    mAll += m; nAll += r.cards.length;
+    return `<button class="choice" data-t3r="${esc(r.id)}" style="text-align:left">
+      <span class="row spread" style="align-items:flex-start">
+        <b>${r.emoji} ${esc(r.title)}</b><span class="pill">${m} / ${r.cards.length}</span>
+      </span>
+      <span class="tiny" style="display:block; margin-top:3px">${esc(r.sub)} · ${r.cards.length} ${r.id === 'thu' ? 'questions' : 'cards'}</span>
+    </button>`;
+  }).join('');
+  render(tiro3Head('Tiro 3', `${mAll} / ${nAll}`) + `
+    <p class="muted" style="margin:10px 0 4px">The words from his practice quiz, by topic, in the order the quiz leans on them. Each round is ${TIRO3_ROUND} quick items: match, type, pick. Nothing here touches your review schedule.</p>
+    ${tiles}
+    <p class="tiny" style="margin-top:14px">A card counts as known after three clean typed answers (three clean picks in the grammar round). The ones you do not know yet come first. 🔇 means no recording yet; those are still worth typing.</p>`);
+  document.getElementById('b-quit').onclick = screenHome;
+  document.querySelectorAll('[data-t3r]').forEach(b=>{
+    b.onclick = ()=>startTiro3Round(RL_TIRO3.rounds.find(r=>r.id === b.dataset.t3r));
+  });
+}
+
+/* ── one session ──────────────────────────────────────────────────────────────────── */
+/* Not-yet-mastered cards first (shuffled), then the rest (shuffled). The deck is walked
+   with a cursor and refilled when it runs out, so a small round simply comes round again:
+   repetition is the point of this tab, her words. */
+function tiro3Deck(round){
+  const st = tiro3Get();
+  const fresh = shuffle(round.cards.filter(c=>!tiro3Mastered(c, st)));
+  const known = shuffle(round.cards.filter(c=>tiro3Mastered(c, st)));
+  return fresh.concat(known);
+}
+function tiro3Take(r){
+  if (r.cur >= r.deck.length){ r.deck = tiro3Deck(r.round); r.cur = 0; }
+  return r.deck[r.cur++];
+}
+/* Four cards for one match: distinct Setswana AND distinct English, or two tiles could
+   both be right. */
+function tiro3TakeFour(r){
+  const got = [];
+  let guard = 0;
+  while (got.length < 4 && guard++ < 60){
+    const c = tiro3Take(r);
+    if (got.some(g=>g === c || norm(g.tsw) === norm(c.tsw) || norm(g.eng) === norm(c.eng))) continue;
+    got.push(c);
+  }
+  return got;
+}
+function startTiro3Round(round){
+  if (!round) return;
+  const r = {round, deck: tiro3Deck(round), cur: 0, items: [], at: 0,
+             right: 0, total: 0, pending: 0, misses: [], picks: 0};
+  if (round.id === 'thu'){
+    for (let i = 0; i < Math.min(TIRO3_ROUND, round.cards.length); i++) r.items.push({shape: 'pick', cards: [tiro3Take(r)]});
+  } else {
+    for (let i = 0; i < TIRO3_ROUND; i++){
+      const shape = TIRO3_SHAPES[i % TIRO3_SHAPES.length];
+      r.items.push({shape, cards: shape === 'match' ? tiro3TakeFour(r) : [tiro3Take(r)]});
+    }
+  }
+  tiro3Run = r;
+  tiro3Step();
+}
+function tiro3Step(){
+  const r = tiro3Run; if (!r) return;
+  if (r.at >= r.items.length) return finishTiro3Round();
+  const it = r.items[r.at];
+  if (it.shape === 'match') return tiro3Match(it);
+  if (it.shape === 'type') return tiro3Type(it.cards[0]);
+  if (it.cards[0].kind === 'quiz') return tiro3Quiz(it.cards[0]);
+  return tiro3Pick(it.cards[0]);
+}
+function tiro3Next(r){ if (tiro3Run === r){ r.at++; tiro3Step(); } }
+function tiro3Miss(r, card){ if (!r.misses.includes(card)) r.misses.push(card); }
+function tiro3Counter(r){ return `${r.at + 1} / ${r.items.length}`; }
+
+/* 🧩 Match — the lesson engine's match, same taps, same XP (15 clean / 8 with mistakes). */
+function tiro3Match(it){
+  const r = tiro3Run, cards = it.cards;
+  currentScreen = 'Tiro 3 — ' + r.round.id + ' match';
+  const left = shuffle(cards), right = shuffle(cards);
+  render(tiro3Head(r.round.title, tiro3Counter(r)) + `<div id="t3Area">
+    <p class="muted">🧩 Match the pairs</p>
+    <div class="matchgrid">
+      ${left.map(c=>`<button class="tok" data-side="L" data-id="${esc(c.id)}">${esc(c.tsw)}</button>`).join('')}
+      ${right.map(c=>`<button class="tok" data-side="R" data-id="${esc(c.id)}">${esc(c.eng)}</button>`).join('')}
+    </div></div>`);
+  tiro3Quit();
+  let selL = null, selR = null, remaining = cards.length, mistakes = 0;
+  document.querySelectorAll('#t3Area .matchgrid .tok').forEach(t=>{
+    t.onclick = ()=>{
+      if (t.dataset.side === 'L'){ if (selL) selL.classList.remove('selL'); selL = t; t.classList.add('selL'); }
+      else { if (selR) selR.classList.remove('selR'); selR = t; t.classList.add('selR'); }
+      if (!(selL && selR)) return;
+      if (selL.dataset.id === selR.dataset.id){
+        selL.classList.add('matched'); selR.classList.add('matched'); remaining--;
+        const c = cards.find(x=>x.id === selL.dataset.id);
+        const f = tiro3Aud(c); if (f) playAudio(f);
+      } else {
+        mistakes++;
+        const c = cards.find(x=>x.id === selL.dataset.id); if (c) tiro3Miss(r, c);
+      }
+      selL.classList.remove('selL'); selR.classList.remove('selR'); selL = selR = null;
+      if (remaining === 0){
+        const st = tiro3Get();
+        cards.forEach(c=>{ tiro3Rec(st, c.id).m++; });
+        tiro3Set(st);
+        addXP(mistakes <= 1 ? 15 : 8, 'tiro3');
+        r.total++; if (mistakes === 0) r.right++;   // the recap's "first time" = no slip at all
+        setTimeout(()=>tiro3Next(r), 450);
+      }
+    };
+  });
+}
+
+/* ⌨️ Type — English shown, she types the Setswana. Accent-blind (norm), and every `alt`
+   spelling counts. A miss shows the right word at once and she types it once from the
+   screen: the retype is the practice, so it pays nothing and marks nothing. */
+function tiro3Type(card){
+  const r = tiro3Run;
+  currentScreen = 'Tiro 3 — ' + card.id + ' type';
+  render(tiro3Head(r.round.title, tiro3Counter(r)) + `<div id="t3Area">
+    <p class="muted">⌨️ Write it in Setswana. The hats are optional.</p>
+    <div class="bigtsw" style="font-size:1.35rem">${esc(card.eng)}</div>
+    <input id="t3-in" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Setswana…">
+    <button class="btn primary" id="t3-go" style="margin-top:10px">Check</button>
+    <div id="t3-fb"></div></div>`);
+  tiro3Quit();
+  const input = document.getElementById('t3-in'), go = document.getElementById('t3-go'),
+        fb = document.getElementById('t3-fb');
+  let stage = 'first';            // first → (retype) → done
+  input.focus();
+  const note = card.note ? `<p class="tiny" style="margin:6px 0 0">${esc(card.note)}</p>` : '';
+  const done = (html)=>{
+    stage = 'done';
+    input.disabled = true; go.style.display = 'none';
+    fb.innerHTML = html + note + tiro3PlayRow(card) +
+      `<button class="btn primary" id="t3-on" style="margin-top:12px">Continue</button>`;
+    tiro3HookPlay(card);
+    document.getElementById('t3-on').onclick = ()=>tiro3Next(r);
+  };
+  const check = ()=>{
+    if (stage === 'done') return;
+    if (stage === 'first'){
+      r.total++;
+      if (tiro3Accepts(card, input.value)){
+        r.right++;
+        const st = tiro3Get(); tiro3Rec(st, card.id).t++; tiro3Set(st);
+        addXP(2, 'tiro3');
+        return done(`<div class="feedback good">${esc(pick(RL_CONTENT.flavour.correct))} ✓ <b>${esc(card.tsw)}</b></div>`);
+      }
+      tiro3Miss(r, card);
+      stage = 'retype';
+      fb.innerHTML = `<div class="feedback bad">It is <b>${esc(card.tsw)}</b>. Type it once from here.</div>${note}`;
+      input.value = ''; input.placeholder = card.tsw; input.focus();
+      go.textContent = 'Check my retype';
+      return;
+    }
+    // stage === 'retype'
+    if (tiro3Accepts(card, input.value)){
+      return done(`<div class="feedback good">✓ <b>${esc(card.tsw)}</b>, now in your fingers.</div>`);
+    }
+    fb.innerHTML = `<div class="feedback bad">Copy it exactly: <b>${esc(card.tsw)}</b></div>${note}`;
+    input.focus();
+  };
+  go.onclick = check;
+  input.onkeydown = e=>{ if (e.key === 'Enter') check(); };
+}
+
+/* 🔘 Pick — the quiz's own shape. Alternates: Setswana → meaning, then meaning →
+   Setswana. Distractors from the same round first, then from any round. A wrong tap
+   shows the answer and she taps the right one to move on (Tiro 1's quiz rule). */
+function tiro3Distractors(card, round){
+  const ok = c=>c !== card && c.kind !== 'quiz' && norm(c.tsw) !== norm(card.tsw) && norm(c.eng) !== norm(card.eng);
+  const same = shuffle(round.cards.filter(ok));
+  const other = shuffle(tiro3Words().filter(c=>ok(c) && !round.cards.includes(c)));
+  const out = [];
+  for (const c of same.concat(other)){
+    if (out.length >= 3) break;
+    if (out.some(o=>norm(o.tsw) === norm(c.tsw) || norm(o.eng) === norm(c.eng))) continue;
+    out.push(c);
+  }
+  return out;
+}
+function tiro3Pick(card){
+  const r = tiro3Run;
+  const toEng = r.picks++ % 2 === 0;
+  currentScreen = 'Tiro 3 — ' + card.id + ' pick';
+  const opts = shuffle([card, ...tiro3Distractors(card, r.round)]);
+  render(tiro3Head(r.round.title, tiro3Counter(r)) + `<div id="t3Area">
+    <p class="muted">🔘 ${toEng ? 'What does this mean?' : 'Which one says this?'}</p>
+    <div class="bigtsw" style="font-size:1.35rem">${esc(toEng ? card.tsw : card.eng)}</div>
+    ${toEng ? tiro3PlayRow(card) : '<div style="height:6px"></div>'}
+    ${opts.map(o=>`<button class="choice" data-id="${esc(o.id)}">${esc(toEng ? o.eng : o.tsw)}</button>`).join('')}
+    <div id="t3-fb"></div></div>`);
+  tiro3Quit();
+  if (toEng) tiro3HookPlay(card);
+  const fb = document.getElementById('t3-fb');
+  let locked = false, missed = false;
+  document.querySelectorAll('#t3Area .choice').forEach(b=>{
+    b.onclick = ()=>{
+      if (locked) return;
+      if (b.dataset.id === card.id){
+        locked = true; b.classList.add('good');
+        r.total++;
+        if (!missed){
+          r.right++;
+          const st = tiro3Get(); tiro3Rec(st, card.id).p++; tiro3Set(st);
+          addXP(2, 'tiro3');
+        }
+        const f = tiro3Aud(card); if (f) playAudio(f);
+        setTimeout(()=>tiro3Next(r), 600);
+      } else {
+        b.classList.add('bad'); b.disabled = true;
+        if (!missed){ missed = true; tiro3Miss(r, card); }
+        fb.innerHTML = `<div class="feedback bad">Not that one: <b>${esc(card.tsw)}</b> is ${esc(card.eng)}.</div>`;
+      }
+    };
+  });
+}
+
+/* 🧠 The grammar round: his question, his options in HIS order (True/False stays True/
+   False), one tap, then the why line whatever she chose. A pending card has no answer
+   on our side, so it never shows a tick or a cross, only the ⏳ line. */
+function tiro3Quiz(card){
+  const r = tiro3Run;
+  currentScreen = 'Tiro 3 — ' + card.id + ' quiz';
+  render(tiro3Head(r.round.title, tiro3Counter(r)) + `<div id="t3Area">
+    <p class="muted">🔘 His question, his options</p>
+    <div class="bigtsw" style="font-size:1.2rem">${esc(card.q)}</div>
+    <div style="height:6px"></div>
+    ${card.options.map((o, i)=>`<button class="choice" data-i="${i}">${esc(o)}</button>`).join('')}
+    <div id="t3-fb"></div></div>`);
+  tiro3Quit();
+  const fb = document.getElementById('t3-fb');
+  let locked = false;
+  document.querySelectorAll('#t3Area .choice').forEach(b=>{
+    b.onclick = ()=>{
+      if (locked) return;
+      locked = true;
+      const i = parseInt(b.dataset.i, 10);
+      const st = tiro3Get();
+      let verdict;
+      if (card.pending){
+        b.style.outline = '3px solid var(--pink-deep)';
+        r.pending++;
+        tiro3Rec(st, card.id).p++;
+        verdict = `<div class="feedback" style="background:var(--card2); border:2px solid var(--line)">${esc(TIRO3_PENDING_LINE)}</div>`;
+      } else {
+        r.total++;
+        document.querySelectorAll('#t3Area .choice')[card.answer].classList.add('good');
+        if (i === card.answer){
+          r.right++;
+          tiro3Rec(st, card.id).p++;
+          addXP(2, 'tiro3');
+          verdict = `<div class="feedback good">${esc(pick(RL_CONTENT.flavour.correct))} ✓</div>`;
+        } else {
+          b.classList.add('bad');
+          tiro3Miss(r, card);
+          verdict = `<div class="feedback bad">Not that one: it is <b>${esc(card.options[card.answer])}</b>.</div>`;
+        }
+      }
+      tiro3Set(st);
+      document.querySelectorAll('#t3Area .choice').forEach(x=>{ x.disabled = true; });
+      fb.innerHTML = verdict + `<p class="tiny" style="margin:8px 0 0">Why: ${esc(card.why)}</p>
+        <button class="btn primary" id="t3-on" style="margin-top:12px">Continue</button>`;
+      document.getElementById('t3-on').onclick = ()=>tiro3Next(r);
+    };
+  });
+}
+
+/* ── the recap ────────────────────────────────────────────────────────────────────── */
+function finishTiro3Round(){
+  const r = tiro3Run; if (!r) return;
+  tiro3Run = null;
+  currentScreen = 'Tiro 3 — ' + r.round.id + ' done';
+  const st = tiro3Get();
+  const m = r.round.cards.filter(c=>tiro3Mastered(c, st)).length;
+  const misses = r.misses.map(c=>c.kind === 'quiz'
+      ? `<div class="notecard" style="margin:6px 0">${esc(c.q)}<span class="tiny" style="display:block">${c.pending ? esc(TIRO3_PENDING_LINE) : 'Answer: ' + esc(c.options[c.answer])}</span></div>`
+      : `<div class="notecard" style="margin:6px 0"><b>${esc(c.tsw)}</b>: ${esc(c.eng)}</div>`).join('');
+  render(`<div style="margin-top:8vh">
+    <div class="center">
+      <h1 style="font-size:2rem">${esc(RL_CONTENT.flavour.lessonDone)}</h1>
+      <p class="muted">${r.round.emoji} ${esc(r.round.title)}: ${r.right} of ${r.total} first time${r.pending ? ` · ${r.pending} waiting for his memo` : ''}. Nothing here moved a review date.</p>
+      <p class="tiny">${m} of ${r.round.cards.length} known in this round.</p>
+    </div>
+    ${misses ? `<p class="muted" style="margin:16px 0 4px">To look at again:</p>${misses}` : '<p class="muted center" style="margin-top:16px">No misses this round.</p>'}
+    <button class="btn primary" id="t3-again" style="margin-top:16px">▶ Another round</button>
+    <button class="btn ghost" id="t3-back" style="margin-top:8px">← Rounds</button>
+  </div>`);
+  document.getElementById('t3-again').onclick = ()=>startTiro3Round(r.round);
+  document.getElementById('t3-back').onclick = screenTiro3;
 }
 
 /* ---------- ☕ Warm-up — the way back in after time away (added 2026-08-31) ----------
