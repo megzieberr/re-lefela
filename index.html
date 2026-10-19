@@ -3171,7 +3171,11 @@ function tiro3Aud(card){
       if (!(k in tiro3AudMap)) tiro3AudMap[k] = it.audio;
     }
   }
-  return tiro3AudMap[norm(card.tsw)] || null;
+  // main spelling first, then the card's accepted alternatives (mašwi ↔ mashi, 2026-10-19)
+  const hit = tiro3AudMap[norm(card.tsw)];
+  if (hit) return hit;
+  for (const a of (card.alt || [])) { const h = tiro3AudMap[norm(a)]; if (h) return h; }
+  return null;
 }
 /* ▶ + 🐢 for one card, or the quiet 🔇 when no lesson card has a clip for it. */
 function tiro3PlayRow(card){
