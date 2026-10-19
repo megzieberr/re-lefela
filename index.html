@@ -3140,6 +3140,10 @@ const TIRO3_ROUND = 12;
 const TIRO3_MASTER = 3;
 const TIRO3_SHAPES = ['match', 'type', 'pick'];
 const TIRO3_PENDING_LINE = '⏳ his memo will settle this (after Fri 23 Oct)';
+/* SPEC §6 (2026-10-19 evening): the Smart Guide's own word lists sit under a divider,
+   starting at this round. The seven quiz rounds above it keep their ids and order. */
+const TIRO3_GUIDE_FROM = 'mau';
+const TIRO3_GUIDE_LINE = "📖 The Smart Guide's own lists, for Ass 3 and Ass 4";
 let tiro3Run = null;
 
 function tiro3Get(){
@@ -3214,7 +3218,9 @@ function screenTiro3(){
   const tiles = RL_TIRO3.rounds.map(r=>{
     const m = r.cards.filter(c=>tiro3Mastered(c, st)).length;
     mAll += m; nAll += r.cards.length;
-    return `<button class="choice" data-t3r="${esc(r.id)}" style="text-align:left">
+    const divider = r.id === TIRO3_GUIDE_FROM
+      ? `<p id="t3-guide-divider" style="margin:18px 0 8px; padding-top:12px; border-top:2px solid var(--line); font-weight:700">${esc(TIRO3_GUIDE_LINE)}</p>` : '';
+    return divider + `<button class="choice" data-t3r="${esc(r.id)}" style="text-align:left">
       <span class="row spread" style="align-items:flex-start">
         <b>${r.emoji} ${esc(r.title)}</b><span class="pill">${m} / ${r.cards.length}</span>
       </span>
