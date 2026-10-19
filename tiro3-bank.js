@@ -610,7 +610,7 @@ const RL_TIRO3 = {
       { id:'t3-meb-08', kind:'word', tsw:'bosweu', eng:'white', alt:[],
         src:['smart-guide-2026:p69', 'app:u2l6-02'], note:'' },
       { id:'t3-meb-09', kind:'word', tsw:'setlha', eng:'yellow', alt:['tshetla'],
-        src:['smart-guide-2026:p69', 'smart-guide-2026:p29'], note:'the NC friends\' "botala = yellow" is pinned in CLAUDE.md; module answer = setlha' },
+        src:['smart-guide-2026:p69', 'smart-guide-2026:p29'], note:'module answer = setlha; in the Northern Cape you may hear botala for yellow (in the guide botala = green)' },
       { id:'t3-meb-10', kind:'word', tsw:'ntsho', eng:'black', alt:[],
         src:['smart-guide-2026:p69'], note:'' },
       { id:'t3-meb-11', kind:'word', tsw:'phephole', eng:'purple', alt:[],
