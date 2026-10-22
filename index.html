@@ -3123,10 +3123,15 @@ function ass1RecordCard(c){
    SEVEN ROUNDS in the quiz's weight order (animals … grammar). A round is a fixed
    12-item session (the ASS1_QUIZ_ROUND ruling), cards she has not mastered first, the
    shapes rotating 🧩 match → ⌨️ type → 🔘 pick so each session is about a third of each.
-   Before the first exercise comes a 📖 LEARN slide (2026-10-22, her words: "I don't know
-   the words yet, so I need a teaching slide first before the quiz rounds start"): every
-   card the session is about to drill, Setswana, English, note, clip where one exists,
-   no quizzing, no XP. tiro3Learn() below.
+   FIVE AT A TIME (2026-10-22, her words: "I don't know the words yet, so I need a
+   teaching slide first before the quiz rounds start" and "taught 5 words at a time like
+   the normal rounds, not everything at once"): a round is cut into SETS of about five
+   cards (tiro3Sets, balanced, bank order). Tapping a tile opens the first set that still
+   has an unknown card: a 📖 LEARN slide of those five (Setswana, English, note, clip
+   where one exists, no quizzing, no XP; tiro3Learn), then the 12 items drawn from those
+   five only, then a recap with "again these five" / "next set". The recap also shows
+   each card's clean typed answers out of three, because "0 of 20 known" after two
+   rounds read as nothing happening when it was simply the three-pass rule at work.
    The grammar round is pick-only: his question, his options in his order, and the `why`
    line after she answers, right or wrong. Two of those carry `pending` and show the ⏳
    line instead of a tick, because nothing on our side can settle them before his memo.
@@ -3143,6 +3148,7 @@ function ass1RecordCard(c){
 const TIRO3_ROUND = 12;
 const TIRO3_MASTER = 3;
 const TIRO3_SHAPES = ['match', 'type', 'pick'];
+const TIRO3_SET = 5;        // cards per set: the Medumo size, her ask
 const TIRO3_PENDING_LINE = '⏳ his memo will settle this (after Fri 23 Oct)';
 /* SPEC §6 (2026-10-19 evening): the Smart Guide's own word lists sit under a divider,
    starting at this round. The seven quiz rounds above it keep their ids and order. */
@@ -3228,13 +3234,13 @@ function screenTiro3(){
       <span class="row spread" style="align-items:flex-start">
         <b>${r.emoji} ${esc(r.title)}</b><span class="pill">${m} / ${r.cards.length}</span>
       </span>
-      <span class="tiny" style="display:block; margin-top:3px">${esc(r.sub)} · ${r.cards.length} ${r.id === 'thu' ? 'questions' : 'cards'}</span>
+      <span class="tiny" style="display:block; margin-top:3px">${esc(r.sub)} · ${r.cards.length} ${r.id === 'thu' ? 'questions' : 'cards'} in ${tiro3Sets(r).length} sets</span>
     </button>`;
   }).join('');
   render(tiro3Head('Tiro 3', `${mAll} / ${nAll}`) + `
-    <p class="muted" style="margin:10px 0 4px">The words from his practice quiz, by topic, in the order the quiz leans on them. Each round shows you its words first, then ${TIRO3_ROUND} quick items: match, type, pick. Nothing here touches your review schedule.</p>
+    <p class="muted" style="margin:10px 0 4px">The words from his practice quiz, by topic, in the order the quiz leans on them. Each round comes five words at a time: you see the five first, then ${TIRO3_ROUND} quick items on just those five: match, type, pick. Nothing here touches your review schedule.</p>
     ${tiles}
-    <p class="tiny" style="margin-top:14px">A card counts as known after three clean typed answers (three clean picks in the grammar round). The ones you do not know yet come first. 🔇 means no recording yet; those are still worth typing.</p>`);
+    <p class="tiny" style="margin-top:14px">A card counts as known after three clean typed answers (three clean picks in the grammar round), so a set takes about three goes. A round opens on the first set with a word you do not know yet. 🔇 means no recording yet; those are still worth typing.</p>`);
   document.getElementById('b-quit').onclick = screenHome;
   document.querySelectorAll('[data-t3r]').forEach(b=>{
     b.onclick = ()=>startTiro3Round(RL_TIRO3.rounds.find(r=>r.id === b.dataset.t3r));
@@ -3242,17 +3248,28 @@ function screenTiro3(){
 }
 
 /* ── one session ──────────────────────────────────────────────────────────────────── */
+/* A round's sets: about TIRO3_SET cards each, bank order, as many sets as n/5 rounds
+   to, sizes balanced (16 cards → 6/5/5, 11 → 6/5, never 5/5/5/1). Every set lands
+   between four and six cards, so a 4-pair match always has enough. */
+function tiro3Sets(round){
+  const n = round.cards.length, k = Math.max(1, Math.round(n / TIRO3_SET));
+  const base = Math.floor(n / k), extra = n % k;
+  const out = [];
+  let at = 0;
+  for (let i = 0; i < k; i++){ const size = base + (i < extra ? 1 : 0); out.push(round.cards.slice(at, at + size)); at += size; }
+  return out;
+}
 /* Not-yet-mastered cards first (shuffled), then the rest (shuffled). The deck is walked
-   with a cursor and refilled when it runs out, so a small round simply comes round again:
-   repetition is the point of this tab, her words. */
-function tiro3Deck(round){
+   with a cursor and refilled when it runs out, so a set of five simply comes round
+   again: repetition is the point of this tab, her words. */
+function tiro3Deck(cards){
   const st = tiro3Get();
-  const fresh = shuffle(round.cards.filter(c=>!tiro3Mastered(c, st)));
-  const known = shuffle(round.cards.filter(c=>tiro3Mastered(c, st)));
+  const fresh = shuffle(cards.filter(c=>!tiro3Mastered(c, st)));
+  const known = shuffle(cards.filter(c=>tiro3Mastered(c, st)));
   return fresh.concat(known);
 }
 function tiro3Take(r){
-  if (r.cur >= r.deck.length){ r.deck = tiro3Deck(r.round); r.cur = 0; }
+  if (r.cur >= r.deck.length){ r.deck = tiro3Deck(r.set); r.cur = 0; }
   return r.deck[r.cur++];
 }
 /* Four cards for one match: distinct Setswana AND distinct English, or two tiles could
@@ -3267,33 +3284,43 @@ function tiro3TakeFour(r){
   }
   return got;
 }
-function startTiro3Round(round){
+/* One session = one set. No setIdx given (the tile tap) → the first set that still has
+   a card she does not know; all known → the first set. The grammar round's session is
+   each question twice, so a set of five is ten picks. */
+function startTiro3Round(round, setIdx){
   if (!round) return;
-  const r = {round, deck: tiro3Deck(round), cur: 0, items: [], at: 0,
+  const sets = tiro3Sets(round), st = tiro3Get();
+  if (setIdx === undefined || setIdx === null){
+    setIdx = sets.findIndex(set=>set.some(c=>!tiro3Mastered(c, st)));
+    if (setIdx < 0) setIdx = 0;
+  }
+  const set = sets[setIdx];
+  const r = {round, sets, setIdx, set, deck: tiro3Deck(set), cur: 0, items: [], at: 0,
              right: 0, total: 0, pending: 0, misses: [], picks: 0};
   if (round.id === 'thu'){
-    for (let i = 0; i < Math.min(TIRO3_ROUND, round.cards.length); i++) r.items.push({shape: 'pick', cards: [tiro3Take(r)]});
+    for (let i = 0; i < set.length * 2; i++) r.items.push({shape: 'pick', cards: [tiro3Take(r)]});
   } else {
     for (let i = 0; i < TIRO3_ROUND; i++){
-      const shape = TIRO3_SHAPES[i % TIRO3_SHAPES.length];
+      let shape = TIRO3_SHAPES[i % TIRO3_SHAPES.length];
+      if (shape === 'match' && set.length < 4) shape = 'type';
       r.items.push({shape, cards: shape === 'match' ? tiro3TakeFour(r) : [tiro3Take(r)]});
     }
   }
   tiro3Run = r;
   tiro3Learn(r);
 }
-/* 📖 Learn — the slide before the first exercise. Plain presentation of every card this
-   session is about to drill, in the order they will come (not-yet-known ones first, the
-   deck's order): the Setswana, its English, the card's note, ▶ and 🐢 where a lesson
-   clip exists (the same tiro3Aud rule), ✓ known on the ones she has already mastered.
+/* 📖 Learn — the slide before the first exercise. Plain presentation of the set's five
+   cards (not-yet-known ones first): the Setswana, its English, the card's note, ▶ and
+   🐢 where a lesson clip exists (the same tiro3Aud rule), ✓ known on the ones she has
+   already mastered.
    The grammar round shows his question, the answer and the why line (⏳ on the two
    pending ones). Nothing here is graded, pays XP, or writes progress: it is reading. */
+function tiro3SetTitle(r){ return `${r.round.title} · ${r.setIdx + 1}/${r.sets.length}`; }
 function tiro3Learn(r){
   if (tiro3Run !== r) return;
   currentScreen = 'Tiro 3 — ' + r.round.id + ' learn';
   const st = tiro3Get();
-  const cards = [];
-  r.items.forEach(it=>it.cards.forEach(c=>{ if (!cards.includes(c)) cards.push(c); }));
+  const cards = r.set.filter(c=>!tiro3Mastered(c, st)).concat(r.set.filter(c=>tiro3Mastered(c, st)));
   const fresh = cards.filter(c=>!tiro3Mastered(c, st)).length;
   const isQuiz = r.round.id === 'thu';
   const rows = cards.map((c, i)=>{
@@ -3319,12 +3346,12 @@ function tiro3Learn(r){
     </div>`;
   }).join('');
   const intro = isQuiz
-    ? `His questions for this round, with the answers. Read them once, then try them.`
-    : `The words in this round. Read them once, out loud if you can, then start.`;
+    ? `Set ${r.setIdx + 1} of ${r.sets.length}: ${cards.length} of his questions, with the answers. Read them once, then try them.`
+    : `Set ${r.setIdx + 1} of ${r.sets.length}: ${cards.length} words. Read them once, out loud if you can, then start.`;
   const count = fresh
     ? `${fresh} of the ${cards.length} ${isQuiz ? 'questions are' : 'words are'} not known yet.`
     : `You know all ${cards.length} of these already.`;
-  render(tiro3Head(r.round.title, 'learn') + `<div id="t3Area">
+  render(tiro3Head(tiro3SetTitle(r), 'learn') + `<div id="t3Area">
     <p class="muted">📖 ${intro} ${count}</p>
     ${rows}
     <button class="btn primary" id="t3-start" style="margin-top:18px">Start the round →</button></div>`);
@@ -3351,7 +3378,7 @@ function tiro3Match(it){
   const r = tiro3Run, cards = it.cards;
   currentScreen = 'Tiro 3 — ' + r.round.id + ' match';
   const left = shuffle(cards), right = shuffle(cards);
-  render(tiro3Head(r.round.title, tiro3Counter(r)) + `<div id="t3Area">
+  render(tiro3Head(tiro3SetTitle(r), tiro3Counter(r)) + `<div id="t3Area">
     <p class="muted">🧩 Match the pairs</p>
     <div class="matchgrid">
       ${left.map(c=>`<button class="tok" data-side="L" data-id="${esc(c.id)}">${esc(c.tsw)}</button>`).join('')}
@@ -3391,7 +3418,7 @@ function tiro3Match(it){
 function tiro3Type(card){
   const r = tiro3Run;
   currentScreen = 'Tiro 3 — ' + card.id + ' type';
-  render(tiro3Head(r.round.title, tiro3Counter(r)) + `<div id="t3Area">
+  render(tiro3Head(tiro3SetTitle(r), tiro3Counter(r)) + `<div id="t3Area">
     <p class="muted">⌨️ Write it in Setswana. The hats are optional.</p>
     <div class="bigtsw" style="font-size:1.35rem">${esc(card.eng)}</div>
     <input id="t3-in" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Setswana…">
@@ -3440,14 +3467,15 @@ function tiro3Type(card){
 }
 
 /* 🔘 Pick — the quiz's own shape. Alternates: Setswana → meaning, then meaning →
-   Setswana. Distractors from the same round first, then from any round. A wrong tap
+   Setswana. Distractors from the same set first, then the round, then any round. A wrong tap
    shows the answer and she taps the right one to move on (Tiro 1's quiz rule). */
-function tiro3Distractors(card, round){
+function tiro3Distractors(card, r){
   const ok = c=>c !== card && c.kind !== 'quiz' && norm(c.tsw) !== norm(card.tsw) && norm(c.eng) !== norm(card.eng);
-  const same = shuffle(round.cards.filter(ok));
-  const other = shuffle(tiro3Words().filter(c=>ok(c) && !round.cards.includes(c)));
+  const set = shuffle(r.set.filter(ok));
+  const same = shuffle(r.round.cards.filter(c=>ok(c) && !r.set.includes(c)));
+  const other = shuffle(tiro3Words().filter(c=>ok(c) && !r.round.cards.includes(c)));
   const out = [];
-  for (const c of same.concat(other)){
+  for (const c of set.concat(same, other)){
     if (out.length >= 3) break;
     if (out.some(o=>norm(o.tsw) === norm(c.tsw) || norm(o.eng) === norm(c.eng))) continue;
     out.push(c);
@@ -3458,8 +3486,8 @@ function tiro3Pick(card){
   const r = tiro3Run;
   const toEng = r.picks++ % 2 === 0;
   currentScreen = 'Tiro 3 — ' + card.id + ' pick';
-  const opts = shuffle([card, ...tiro3Distractors(card, r.round)]);
-  render(tiro3Head(r.round.title, tiro3Counter(r)) + `<div id="t3Area">
+  const opts = shuffle([card, ...tiro3Distractors(card, r)]);
+  render(tiro3Head(tiro3SetTitle(r), tiro3Counter(r)) + `<div id="t3Area">
     <p class="muted">🔘 ${toEng ? 'What does this mean?' : 'Which one says this?'}</p>
     <div class="bigtsw" style="font-size:1.35rem">${esc(toEng ? card.tsw : card.eng)}</div>
     ${toEng ? tiro3PlayRow(card) : '<div style="height:6px"></div>'}
@@ -3497,7 +3525,7 @@ function tiro3Pick(card){
 function tiro3Quiz(card){
   const r = tiro3Run;
   currentScreen = 'Tiro 3 — ' + card.id + ' quiz';
-  render(tiro3Head(r.round.title, tiro3Counter(r)) + `<div id="t3Area">
+  render(tiro3Head(tiro3SetTitle(r), tiro3Counter(r)) + `<div id="t3Area">
     <p class="muted">🔘 His question, his options</p>
     <div class="bigtsw" style="font-size:1.2rem">${esc(card.q)}</div>
     <div style="height:6px"></div>
@@ -3548,20 +3576,31 @@ function finishTiro3Round(){
   currentScreen = 'Tiro 3 — ' + r.round.id + ' done';
   const st = tiro3Get();
   const m = r.round.cards.filter(c=>tiro3Mastered(c, st)).length;
+  const isQuiz = r.round.id === 'thu';
+  // each card of the set: clean typed answers (clean picks in the grammar round) out of three
+  const dots = r.set.map(c=>{
+    const rec = st.c[c.id] || {}, got = Math.min(TIRO3_MASTER, (isQuiz ? rec.p : rec.t) || 0);
+    return `<span style="white-space:nowrap">${isQuiz ? 'Q' + (r.round.cards.indexOf(c) + 1) : esc(c.tsw)} ${'●'.repeat(got)}${'○'.repeat(TIRO3_MASTER - got)}</span>`;
+  }).join(' · ');
+  const nextIdx = (r.setIdx + 1) % r.sets.length;
   const misses = r.misses.map(c=>c.kind === 'quiz'
       ? `<div class="notecard" style="margin:6px 0">${esc(c.q)}<span class="tiny" style="display:block">${c.pending ? esc(TIRO3_PENDING_LINE) : 'Answer: ' + esc(c.options[c.answer])}</span></div>`
       : `<div class="notecard" style="margin:6px 0"><b>${esc(c.tsw)}</b>: ${esc(c.eng)}</div>`).join('');
   render(`<div style="margin-top:8vh">
     <div class="center">
       <h1 style="font-size:2rem">${esc(RL_CONTENT.flavour.lessonDone)}</h1>
-      <p class="muted">${r.round.emoji} ${esc(r.round.title)}: ${r.right} of ${r.total} first time${r.pending ? ` · ${r.pending} waiting for his memo` : ''}. Nothing here moved a review date.</p>
-      <p class="tiny">${m} of ${r.round.cards.length} known in this round.</p>
+      <p class="muted">${r.round.emoji} ${esc(r.round.title)}, set ${r.setIdx + 1} of ${r.sets.length}: ${r.right} of ${r.total} first time${r.pending ? ` · ${r.pending} waiting for his memo` : ''}. Nothing here moved a review date.</p>
+      <p class="tiny" style="margin:8px 0 2px">Known = three clean ${isQuiz ? 'picks' : 'typed answers'}. This set so far:</p>
+      <p class="tiny" style="line-height:1.7">${dots}</p>
+      <p class="tiny">${m} of ${r.round.cards.length} known in the whole round.</p>
     </div>
     ${misses ? `<p class="muted" style="margin:16px 0 4px">To look at again:</p>${misses}` : '<p class="muted center" style="margin-top:16px">No misses this round.</p>'}
-    <button class="btn primary" id="t3-again" style="margin-top:16px">▶ Another round</button>
+    <button class="btn primary" id="t3-again" style="margin-top:16px">▶ Again, these ${r.set.length}</button>
+    ${r.sets.length > 1 ? `<button class="btn ghost" id="t3-nextset" style="margin-top:8px">Set ${nextIdx + 1} of ${r.sets.length} →</button>` : ''}
     <button class="btn ghost" id="t3-back" style="margin-top:8px">← Rounds</button>
   </div>`);
-  document.getElementById('t3-again').onclick = ()=>startTiro3Round(r.round);
+  document.getElementById('t3-again').onclick = ()=>startTiro3Round(r.round, r.setIdx);
+  const ns = document.getElementById('t3-nextset'); if (ns) ns.onclick = ()=>startTiro3Round(r.round, nextIdx);
   document.getElementById('t3-back').onclick = screenTiro3;
 }
 

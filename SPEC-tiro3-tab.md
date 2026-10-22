@@ -599,3 +599,19 @@ the 12 items exactly as before. The slide grades nothing, pays no XP, and writes
 `rl_tiro3`. "▶ Another round" from the recap passes through the slide again (one tap to get past).
 Code: `tiro3Learn(r)` in index.html, called from `startTiro3Round` in place of the first
 `tiro3Step()`. sw `relefela-v61`.
+
+## 8. ADDENDUM 2026-10-22, later: five at a time (her ask, after two rounds)
+
+Her words: "I was kinda hoping that I can be taught 5 words at a time like the normal rounds, not
+everything at once", and "I've done 2 rounds but it still shows 0/20". So a round is now cut into
+**sets** of about five cards (`tiro3Sets`: bank order, as many sets as cards÷5 rounds to, sizes
+balanced, so 16 cards make 6/5/5 and 11 make 6/5, never 5/5/5/1; every set has four to six cards). Tapping a tile opens the first set with
+a card she does not know yet. The §7 learn slide shows that set's cards only (title `Round · n/k`),
+then the 12 items are drawn from those five alone (a set under four cards would swap match for
+type; none is). Pick distractors come from the set first, then the round, then anywhere. The grammar
+round's session is each question of the set twice (ten picks for five questions).
+
+The recap names the set, shows each card's clean typed answers out of three as dots (●●○), says
+"known = three clean typed answers", and offers "▶ Again, these 5", "Set n of k →" (cycles) and
+"← Rounds". Mastery rule, `rl_tiro3` shape, card ids and XP are unchanged, so nothing resets.
+sw `relefela-v62`.
