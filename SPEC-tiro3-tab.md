@@ -584,3 +584,18 @@ Pick-mode may show the verb and ask for the noun, or the reverse. Type-mode: eng
 | go opela | to sing | | p71 | |
 | go bolaya | to kill | | p71 | |
 | moagi, modiri, lebone | SKIP | | | already rounds 3 / 12 |
+
+## 7. ADDENDUM 2026-10-22: the learn slide before each round (her ask)
+
+Her words: "I see it doesn't teach, it only quizes, but like, Idk the words yet, so I need a teaching
+slide first before the quiz rounds start." So: tapping a round tile now opens a 📖 **learn** slide
+before the first exercise, and nothing else changes. The slide lists every card the session is about
+to drill, in session order (not-yet-known first, as the deck already orders them): Setswana in the
+big pink type, the English under it, the card's `note` where there is one, ▶ and 🐢 where
+`tiro3Aud(card)` resolves (same rule, same borrowed clips), and a small `✓ known` pill on cards she
+has already mastered. The grammar round's slide shows his question, the answer, and the `why` line;
+the two pending cards show the ⏳ line instead of an answer. One button, "Start the round →", runs
+the 12 items exactly as before. The slide grades nothing, pays no XP, and writes nothing to
+`rl_tiro3`. "▶ Another round" from the recap passes through the slide again (one tap to get past).
+Code: `tiro3Learn(r)` in index.html, called from `startTiro3Round` in place of the first
+`tiro3Step()`. sw `relefela-v61`.

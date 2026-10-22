@@ -1066,7 +1066,7 @@ function screenHome(){
      the rest, and the button says so. */
   const tiro3N = tiro3Words().length;
   const tiro3Btn = `<button class="btn ghost" id="b-tiro3" style="margin:10px 0">📝 Tiro 3: the quiz words<br>
-      <span class="tiny">${tiro3N} words in ${RL_TIRO3.rounds.length} rounds · match, type, pick · nothing here touches your review schedule</span></button>`;
+      <span class="tiny">${tiro3N} words in ${RL_TIRO3.rounds.length} rounds · learn, match, type, pick · nothing here touches your review schedule</span></button>`;
   const awayDays = daysSincePractice();
   const welcomeBack = (awayDays >= WARMUP_AWAY_DAYS && wuPool.length >= 2)
     ? `<div class="notecard" style="margin:14px 0">
@@ -3123,6 +3123,10 @@ function ass1RecordCard(c){
    SEVEN ROUNDS in the quiz's weight order (animals … grammar). A round is a fixed
    12-item session (the ASS1_QUIZ_ROUND ruling), cards she has not mastered first, the
    shapes rotating 🧩 match → ⌨️ type → 🔘 pick so each session is about a third of each.
+   Before the first exercise comes a 📖 LEARN slide (2026-10-22, her words: "I don't know
+   the words yet, so I need a teaching slide first before the quiz rounds start"): every
+   card the session is about to drill, Setswana, English, note, clip where one exists,
+   no quizzing, no XP. tiro3Learn() below.
    The grammar round is pick-only: his question, his options in his order, and the `why`
    line after she answers, right or wrong. Two of those carry `pending` and show the ⏳
    line instead of a tick, because nothing on our side can settle them before his memo.
@@ -3228,7 +3232,7 @@ function screenTiro3(){
     </button>`;
   }).join('');
   render(tiro3Head('Tiro 3', `${mAll} / ${nAll}`) + `
-    <p class="muted" style="margin:10px 0 4px">The words from his practice quiz, by topic, in the order the quiz leans on them. Each round is ${TIRO3_ROUND} quick items: match, type, pick. Nothing here touches your review schedule.</p>
+    <p class="muted" style="margin:10px 0 4px">The words from his practice quiz, by topic, in the order the quiz leans on them. Each round shows you its words first, then ${TIRO3_ROUND} quick items: match, type, pick. Nothing here touches your review schedule.</p>
     ${tiles}
     <p class="tiny" style="margin-top:14px">A card counts as known after three clean typed answers (three clean picks in the grammar round). The ones you do not know yet come first. 🔇 means no recording yet; those are still worth typing.</p>`);
   document.getElementById('b-quit').onclick = screenHome;
@@ -3276,7 +3280,58 @@ function startTiro3Round(round){
     }
   }
   tiro3Run = r;
-  tiro3Step();
+  tiro3Learn(r);
+}
+/* 📖 Learn — the slide before the first exercise. Plain presentation of every card this
+   session is about to drill, in the order they will come (not-yet-known ones first, the
+   deck's order): the Setswana, its English, the card's note, ▶ and 🐢 where a lesson
+   clip exists (the same tiro3Aud rule), ✓ known on the ones she has already mastered.
+   The grammar round shows his question, the answer and the why line (⏳ on the two
+   pending ones). Nothing here is graded, pays XP, or writes progress: it is reading. */
+function tiro3Learn(r){
+  if (tiro3Run !== r) return;
+  currentScreen = 'Tiro 3 — ' + r.round.id + ' learn';
+  const st = tiro3Get();
+  const cards = [];
+  r.items.forEach(it=>it.cards.forEach(c=>{ if (!cards.includes(c)) cards.push(c); }));
+  const fresh = cards.filter(c=>!tiro3Mastered(c, st)).length;
+  const isQuiz = r.round.id === 'thu';
+  const rows = cards.map((c, i)=>{
+    const known = tiro3Mastered(c, st) ? ` <span class="pill tiny" style="white-space:nowrap">✓ known</span>` : '';
+    if (c.kind === 'quiz'){
+      const ans = c.pending ? esc(TIRO3_PENDING_LINE) : `Answer: <b>${esc(c.options[c.answer])}</b>`;
+      return `<div style="padding:9px 2px; border-bottom:1px solid var(--line)">
+        <span>${esc(c.q)}</span>${known}
+        <span class="tiny" style="display:block; margin-top:3px">${ans}</span>
+        <span class="tiny" style="display:block">Why: ${esc(c.why)}</span>
+      </div>`;
+    }
+    const f = tiro3Aud(c);
+    const play = f ? `<span class="row" style="gap:6px; flex-shrink:0">
+        <button class="audio-btn t3-lp" data-i="${i}" style="width:40px; height:40px; font-size:1rem" aria-label="Play">▶</button>
+        <button class="audio-btn slow-btn t3-ls" data-i="${i}" style="width:40px; height:40px; font-size:1rem" aria-label="Play slowly" title="Slowly">🐢</button>
+      </span>` : '';
+    const note = c.note ? `<span class="tiny" style="display:block">${esc(c.note)}</span>` : '';
+    return `<div class="row spread" style="padding:9px 2px; border-bottom:1px solid var(--line); gap:8px">
+      <span style="min-width:0"><b class="bigtsw" style="font-size:1.2rem">${esc(c.tsw)}</b>${known}
+        <span class="tiny" style="display:block">${esc(c.eng)}</span>${note}</span>
+      ${play}
+    </div>`;
+  }).join('');
+  const intro = isQuiz
+    ? `His questions for this round, with the answers. Read them once, then try them.`
+    : `The words in this round. Read them once, out loud if you can, then start.`;
+  const count = fresh
+    ? `${fresh} of the ${cards.length} ${isQuiz ? 'questions are' : 'words are'} not known yet.`
+    : `You know all ${cards.length} of these already.`;
+  render(tiro3Head(r.round.title, 'learn') + `<div id="t3Area">
+    <p class="muted">📖 ${intro} ${count}</p>
+    ${rows}
+    <button class="btn primary" id="t3-start" style="margin-top:18px">Start the round →</button></div>`);
+  tiro3Quit();
+  document.querySelectorAll('#t3Area .t3-lp').forEach(b=>{ b.onclick = ()=>playAudio(tiro3Aud(cards[+b.dataset.i])); });
+  document.querySelectorAll('#t3Area .t3-ls').forEach(b=>{ b.onclick = ()=>playAudio(tiro3Aud(cards[+b.dataset.i]), SLOW_RATE); });
+  document.getElementById('t3-start').onclick = ()=>{ if (tiro3Run === r) tiro3Step(); };
 }
 function tiro3Step(){
   const r = tiro3Run; if (!r) return;
