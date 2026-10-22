@@ -615,3 +615,16 @@ The recap names the set, shows each card's clean typed answers out of three as d
 "known = three clean typed answers", and offers "▶ Again, these 5", "Set n of k →" (cycles) and
 "← Rounds". Mastery rule, `rl_tiro3` shape, card ids and XP are unchanged, so nothing resets.
 sw `relefela-v62`.
+
+## 9. ADDENDUM 2026-10-22, later still: the sets build up (her ask)
+
+Her words: "the next 5 can still build on the previous 5 … so like by the 'last' teaching round, it
+quizes everything mixed together, like a build up". So set k's session draws its items from sets 1
+to k (`r.pool`), not from set k alone. The deck puts the set's NEW cards first (not-yet-known first),
+then the earlier sets' cards (not-yet-known first), and refills in that order, so the first match
+and type items are the new five and the rest of the 12 mix in what came before; by the last set the
+pool is the whole round. The learn slide still teaches only the new five, with a 🔁 line underneath
+listing what is mixed in from before (the grammar round gives the count). Pick distractors come from
+the new five, then the earlier sets, then the round, then anywhere. The grammar round's session is
+up to 12 picks, new questions first. The recap adds "known across sets 1 to k". Set 1 is unchanged
+(its pool is itself). sw `relefela-v63`.
