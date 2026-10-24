@@ -3122,7 +3122,11 @@ function ass1RecordCard(c){
 
    SEVEN ROUNDS in the quiz's weight order (animals … grammar). A round is a fixed
    12-item session (the ASS1_QUIZ_ROUND ruling), cards she has not mastered first, the
-   shapes rotating 🧩 match → ⌨️ type → 🔘 pick so each session is about a third of each.
+   shapes in the TIRO3_SHAPES order. MORE TYPING (2026-10-24, her words: "make the type
+   rounds more frequently and chill a bit more on the match the pairs … I want to be able
+   to type more in each round", and Setswana to English "once or twice in a round"):
+   2 🧩 match, 6 ⌨️ type (English → Setswana), 2 ⌨️ type the other way (Setswana →
+   English, tiro3Type with toEng), 2 🔘 pick. It was a third of each before.
    FIVE AT A TIME (2026-10-22, her words: "I don't know the words yet, so I need a
    teaching slide first before the quiz rounds start" and "taught 5 words at a time like
    the normal rounds, not everything at once"): a round is cut into SETS of about five
@@ -3150,7 +3154,10 @@ function ass1RecordCard(c){
    All names here start with tiro3 (the runRecap hoisting lesson). Grep before adding one. */
 const TIRO3_ROUND = 12;
 const TIRO3_MASTER = 3;
-const TIRO3_SHAPES = ['match', 'type', 'pick'];
+/* One session's twelve items in order: 'type' = English → Setswana, 'eng' = Setswana →
+   English. Starts on a match straight after the learn slide; the 'eng' items sit apart. */
+const TIRO3_SHAPES = ['match', 'type', 'type', 'pick', 'type', 'eng',
+                      'type', 'match', 'type', 'pick', 'type', 'eng'];
 const TIRO3_SET = 5;        // cards per set: the Medumo size, her ask
 const TIRO3_PENDING_LINE = '⏳ his memo will settle this (after Fri 23 Oct)';
 /* SPEC §6 (2026-10-19 evening): the Smart Guide's own word lists sit under a divider,
@@ -3307,7 +3314,7 @@ function startTiro3Round(round, setIdx){
   } else {
     for (let i = 0; i < TIRO3_ROUND; i++){
       let shape = TIRO3_SHAPES[i % TIRO3_SHAPES.length];
-      if (shape === 'match' && set.length < 4) shape = 'type';
+      if (shape === 'match' && set.length < 4) shape = 'type';   // never happens: sets are 4 to 6
       r.items.push({shape, cards: shape === 'match' ? tiro3TakeFour(r) : [tiro3Take(r)]});
     }
   }
@@ -3376,6 +3383,7 @@ function tiro3Step(){
   const it = r.items[r.at];
   if (it.shape === 'match') return tiro3Match(it);
   if (it.shape === 'type') return tiro3Type(it.cards[0]);
+  if (it.shape === 'eng') return tiro3Type(it.cards[0], true);
   if (it.cards[0].kind === 'quiz') return tiro3Quiz(it.cards[0]);
   return tiro3Pick(it.cards[0]);
 }
@@ -3424,52 +3432,103 @@ function tiro3Match(it){
 
 /* ⌨️ Type — English shown, she types the Setswana. Accent-blind (norm), and every `alt`
    spelling counts. A miss shows the right word at once and she types it once from the
-   screen: the retype is the practice, so it pays nothing and marks nothing. */
-function tiro3Type(card){
+   screen: the retype is the practice, so it pays nothing and marks nothing.
+   toEng (2026-10-24, her ask): the other way round, Setswana shown (with its clip), she
+   types the English, graded by tiro3EngAccepts. English has more ways to say a thing
+   than the card lists, so a miss also offers "I meant the same thing", which counts it
+   right. English answers do not count toward known (that stays three clean typed
+   SETSWANA answers); they are kept as rec.e. */
+const TIRO3_CONTRACT = {"i'm":'i am', "it's":'it is', "you're":'you are', "we're":'we are',
+                        "they're":'they are', "don't":'do not', "what's":'what is'};
+function tiro3EngPlain(s){
+  return String(s).toLowerCase().replace(/[’‘]/g, "'").replace(/[a-z]+'[a-z]+/g, w=>TIRO3_CONTRACT[w] || w)
+    .trim().replace(/^(to|the|a|an)\s+/, '');
+}
+/* Every English answer a card's gloss allows: the whole gloss, the gloss without its
+   (brackets), each "; also" part, each slash alternative, and for single words each
+   comma alternative ("work, exercise"). A leading to/the/a/an is optional both sides,
+   then the app's own answerMatches decides (one-letter slips count as close). */
+function tiro3EngForms(card){
+  const bare = card.eng.replace(/\([^)]*\)/g, ' ');
+  let parts = bare.split(/;\s*(?:also\s+)?/);
+  if (card.kind === 'word') parts = parts.flatMap(x=>x.split(','));
+  const out = [card.eng, bare, ...parts, ...parts.flatMap(x=>x.split('/'))];
+  return [...new Set(out.map(x=>x.trim()).filter(Boolean))];
+}
+function tiro3EngAccepts(card, typed){
+  const g = tiro3EngPlain(typed);
+  if (!norm(g)) return null;
+  let best = null;
+  for (const f of tiro3EngForms(card)){
+    const v = answerMatches(g, tiro3EngPlain(f));
+    if (v === 'exact') return 'exact';
+    if (v) best = v;
+  }
+  return best;
+}
+function tiro3Type(card, toEng){
   const r = tiro3Run;
-  currentScreen = 'Tiro 3 — ' + card.id + ' type';
+  currentScreen = 'Tiro 3 — ' + card.id + (toEng ? ' type-eng' : ' type');
+  const shown = toEng ? card.tsw : card.eng, want = toEng ? card.eng : card.tsw;
   render(tiro3Head(tiro3SetTitle(r), tiro3Counter(r)) + `<div id="t3Area">
-    <p class="muted">⌨️ Write it in Setswana. The hats are optional.</p>
-    <div class="bigtsw" style="font-size:1.35rem">${esc(card.eng)}</div>
-    <input id="t3-in" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Setswana…">
+    <p class="muted">${toEng ? '⌨️ What does it mean? Write it in English.' : '⌨️ Write it in Setswana. The hats are optional.'}</p>
+    <div class="bigtsw" style="font-size:1.35rem">${esc(shown)}</div>
+    ${toEng ? tiro3PlayRow(card) : ''}
+    <input id="t3-in" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${toEng ? 'English…' : 'Setswana…'}">
     <button class="btn primary" id="t3-go" style="margin-top:10px">Check</button>
     <div id="t3-fb"></div></div>`);
   tiro3Quit();
+  if (toEng) tiro3HookPlay(card);
   const input = document.getElementById('t3-in'), go = document.getElementById('t3-go'),
         fb = document.getElementById('t3-fb');
   let stage = 'first';            // first → (retype) → done
   input.focus();
   const note = card.note ? `<p class="tiny" style="margin:6px 0 0">${esc(card.note)}</p>` : '';
+  const accepts = typed=>toEng ? !!tiro3EngAccepts(card, typed) : tiro3Accepts(card, typed);
   const done = (html)=>{
     stage = 'done';
     input.disabled = true; go.style.display = 'none';
-    fb.innerHTML = html + note + tiro3PlayRow(card) +
+    fb.innerHTML = html + note + (toEng ? '' : tiro3PlayRow(card)) +
       `<button class="btn primary" id="t3-on" style="margin-top:12px">Continue</button>`;
-    tiro3HookPlay(card);
+    if (!toEng) tiro3HookPlay(card);
     document.getElementById('t3-on').onclick = ()=>tiro3Next(r);
+  };
+  const clean = ()=>{
+    r.right++;
+    const st = tiro3Get(), rec = tiro3Rec(st, card.id);
+    if (toEng) rec.e = (rec.e || 0) + 1; else rec.t++;
+    tiro3Set(st);
+    addXP(2, 'tiro3');
   };
   const check = ()=>{
     if (stage === 'done') return;
     if (stage === 'first'){
       r.total++;
-      if (tiro3Accepts(card, input.value)){
-        r.right++;
-        const st = tiro3Get(); tiro3Rec(st, card.id).t++; tiro3Set(st);
-        addXP(2, 'tiro3');
-        return done(`<div class="feedback good">${esc(pick(RL_CONTENT.flavour.correct))} ✓ <b>${esc(card.tsw)}</b></div>`);
+      if (accepts(input.value)){
+        clean();
+        return done(`<div class="feedback good">${esc(pick(RL_CONTENT.flavour.correct))} ✓ <b>${esc(want)}</b></div>`);
       }
       tiro3Miss(r, card);
       stage = 'retype';
-      fb.innerHTML = `<div class="feedback bad">It is <b>${esc(card.tsw)}</b>. Type it once from here.</div>${note}`;
-      input.value = ''; input.placeholder = card.tsw; input.focus();
+      const typed = input.value.trim();
+      fb.innerHTML = `<div class="feedback bad">It is <b>${esc(want)}</b>. Type it once from here.</div>${note}` +
+        (toEng && typed ? `<button class="btn ghost" id="t3-same" style="margin-top:8px">✓ “${esc(typed)}” means the same thing</button>` : '');
+      const same = document.getElementById('t3-same');
+      if (same) same.onclick = ()=>{
+        if (stage !== 'retype') return;
+        r.misses = r.misses.filter(c=>c !== card);
+        clean();
+        done(`<div class="feedback good">✓ Counted. The card says <b>${esc(want)}</b>.</div>`);
+      };
+      input.value = ''; input.placeholder = want; input.focus();
       go.textContent = 'Check my retype';
       return;
     }
     // stage === 'retype'
-    if (tiro3Accepts(card, input.value)){
-      return done(`<div class="feedback good">✓ <b>${esc(card.tsw)}</b>, now in your fingers.</div>`);
+    if (accepts(input.value)){
+      return done(`<div class="feedback good">✓ <b>${esc(want)}</b>, now in your fingers.</div>`);
     }
-    fb.innerHTML = `<div class="feedback bad">Copy it exactly: <b>${esc(card.tsw)}</b></div>${note}`;
+    fb.innerHTML = `<div class="feedback bad">Copy it exactly: <b>${esc(want)}</b></div>${note}`;
     input.focus();
   };
   go.onclick = check;
@@ -3602,7 +3661,7 @@ function finishTiro3Round(){
     <div class="center">
       <h1 style="font-size:2rem">${esc(RL_CONTENT.flavour.lessonDone)}</h1>
       <p class="muted">${r.round.emoji} ${esc(r.round.title)}, set ${r.setIdx + 1} of ${r.sets.length}: ${r.right} of ${r.total} first time${r.pending ? ` · ${r.pending} waiting for his memo` : ''}. Nothing here moved a review date.</p>
-      <p class="tiny" style="margin:8px 0 2px">Known = three clean ${isQuiz ? 'picks' : 'typed answers'}. This set's ${isQuiz ? 'questions' : 'words'} so far:</p>
+      <p class="tiny" style="margin:8px 0 2px">Known = three clean ${isQuiz ? 'picks' : 'typed Setswana answers'}. This set's ${isQuiz ? 'questions' : 'words'} so far:</p>
       <p class="tiny" style="line-height:1.7">${dots}</p>
       <p class="tiny">${r.setIdx ? `${r.pool.filter(c=>tiro3Mastered(c, st)).length} of ${r.pool.length} known across sets 1 to ${r.setIdx + 1} · ` : ''}${m} of ${r.round.cards.length} known in the whole round.</p>
     </div>
