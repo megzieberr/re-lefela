@@ -628,3 +628,24 @@ listing what is mixed in from before (the grammar round gives the count). Pick d
 the new five, then the earlier sets, then the round, then anywhere. The grammar round's session is
 up to 12 picks, new questions first. The recap adds "known across sets 1 to k". Set 1 is unchanged
 (its pool is itself). sw `relefela-v63`.
+
+## 10. ADDENDUM 2026-10-24: more typing, fewer matches, and Setswana → English (her ask)
+
+Her words: "make the type rounds more frequently and chill a bit more on the match the pairs … I still
+like match the pairs, but I want to be able to type more in each round … I also want to translate from
+Setswana to English (once or twice in a round)". So the 12 items of a word session are no longer a
+third of each shape. They now run in a fixed order (`TIRO3_SHAPES`):
+match · type · type · pick · type · **eng** · type · match · type · pick · type · **eng**,
+which comes to 2 🧩 match (was 4), 6 ⌨️ type English → Setswana (was 4), 2 ⌨️ type Setswana → English
+(new), 2 🔘 pick (was 4).
+
+The new **eng** item is the type screen the other way round (`tiro3Type(card, true)`): the Setswana in
+the big pink type with ▶/🐢 where a clip exists, and she types the English. `tiro3EngAccepts` grades it
+leniently: the whole gloss, the gloss without its (brackets), each "; also" part, each slash
+alternative, and for single words each comma alternative all count; a leading to/the/a/an is optional;
+I'm/I am and similar are the same; then the app's own `answerMatches` lets one-letter slips through.
+English has more ways to say a thing than the card lists, so on a miss a "✓ … means the same thing"
+button counts it right (it leaves the misses list). The retype rule is the same as the other direction.
+English answers pay 2 XP and are kept as `rec.e` in `rl_tiro3`, but they do NOT count toward known,
+which stays three clean typed SETSWANA answers (recap wording says so). Nothing else in the record
+shape changes, so nothing resets. The grammar round is unchanged (pick only). sw `relefela-v64`.
